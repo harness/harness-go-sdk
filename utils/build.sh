@@ -11,7 +11,8 @@ function preprelease() {
 
   git branch
   git status
-
+  cat .git/config
+  
   git add -A
   git commit -am"Release v${version} $(date +%m-%d-%Y)"
   git push origin $release_branch
