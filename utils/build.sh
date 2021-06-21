@@ -5,7 +5,8 @@ function preprelease() {
   release_branch="release/$version"
 
   git checkout -b $release_branch
-  
+  git config user.email "harness-ci-automation@harness.io"
+  git config user.name "Harness CI Automation"
   sed -i.bak "s/SDKVersion = .*/SDKVersion = \"$version\"/"  harness/version.go && rm harness/version.go.bak
 
   git branch
