@@ -9,6 +9,22 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+func TestGetSpotInstCloudProviderById(t *testing.T) {
+	c := getClient()
+	expectedName := fmt.Sprintf("%s_%s", t.Name(), utils.RandStringBytes(4))
+
+	cp, err := createSpotInstCloudProvider(expectedName)
+	require.NoError(t, err)
+
+	foundCP, err := c.CloudProviders().GetSpotInstCloudProviderById(cp.Id)
+	require.NoError(t, err)
+	require.NotNil(t, foundCP)
+	require.Equal(t, cp.Id, foundCP.Id)
+
+	err = c.CloudProviders().DeleteCloudProvider(cp.Id)
+	require.NoError(t, err)
+}
+
 func TestGetSpotInstCloudProviderByName(t *testing.T) {
 	c := getClient()
 	expectedName := fmt.Sprintf("%s_%s", t.Name(), utils.RandStringBytes(4))

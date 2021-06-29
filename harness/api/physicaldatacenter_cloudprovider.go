@@ -6,6 +6,16 @@ import (
 	"github.com/harness-io/harness-go-sdk/harness/api/graphql"
 )
 
+func (c *CloudProviderClient) GetPhysicalDataCEnterCloudProviderById(id string) (*graphql.PhysicalDataCenterCloudProvider, error) {
+	cp := &graphql.PhysicalDataCenterCloudProvider{}
+	err := c.getCloudProviderById(id, getPhyisicalDataCenterCloudProviderFields(), &cp)
+	if err != nil {
+		return nil, err
+	}
+
+	return cp, nil
+}
+
 func (c *CloudProviderClient) GetPhysicalDatacenterCloudProviderByName(name string) (*graphql.PhysicalDataCenterCloudProvider, error) {
 	cp := &graphql.PhysicalDataCenterCloudProvider{}
 	err := c.getCloudProviderByName(name, getPhyisicalDataCenterCloudProviderFields(), &cp)

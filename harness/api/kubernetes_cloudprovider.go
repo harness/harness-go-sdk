@@ -6,6 +6,16 @@ import (
 	"github.com/harness-io/harness-go-sdk/harness/api/graphql"
 )
 
+func (c *CloudProviderClient) GetKubernetesCloudProviderById(id string) (*graphql.KubernetesCloudProvider, error) {
+	cp := &graphql.KubernetesCloudProvider{}
+	err := c.getCloudProviderById(id, getKubernetesCloudProviderFields(), &cp)
+	if err != nil {
+		return nil, err
+	}
+
+	return cp, nil
+}
+
 func (c *CloudProviderClient) GetKubernetesCloudProviderByName(name string) (*graphql.KubernetesCloudProvider, error) {
 	cp := &graphql.KubernetesCloudProvider{}
 	err := c.getCloudProviderByName(name, getKubernetesCloudProviderFields(), &cp)

@@ -6,6 +6,16 @@ import (
 	"github.com/harness-io/harness-go-sdk/harness/api/graphql"
 )
 
+func (c *CloudProviderClient) GetAwsCloudProviderById(Id string) (*graphql.AwsCloudProvider, error) {
+	cp := &graphql.AwsCloudProvider{}
+	err := c.getCloudProviderById(Id, getAwsCloudProviderFields(), &cp)
+	if err != nil {
+		return nil, err
+	}
+
+	return cp, nil
+}
+
 func (c *CloudProviderClient) GetAwsCloudProviderByName(name string) (*graphql.AwsCloudProvider, error) {
 	cp := &graphql.AwsCloudProvider{}
 	err := c.getCloudProviderByName(name, getAwsCloudProviderFields(), &cp)

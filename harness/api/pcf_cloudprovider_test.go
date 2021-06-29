@@ -9,6 +9,22 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+func TestGetPcfCloudProviderById(t *testing.T) {
+	c := getClient()
+	expectedName := fmt.Sprintf("%s_%s", t.Name(), utils.RandStringBytes(4))
+
+	cp, err := createPcfCloudProvider(expectedName)
+	require.NoError(t, err)
+
+	foundCP, err := c.CloudProviders().GetPcfCloudProviderById(cp.Id)
+	require.NoError(t, err)
+	require.NotNil(t, foundCP)
+	require.Equal(t, cp.Id, foundCP.Id)
+
+	err = c.CloudProviders().DeleteCloudProvider(cp.Id)
+	require.NoError(t, err)
+}
+
 func TestGetPcfCloudProviderByName(t *testing.T) {
 	c := getClient()
 	expectedName := fmt.Sprintf("%s_%s", t.Name(), utils.RandStringBytes(4))

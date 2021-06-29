@@ -9,14 +9,17 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestCreateAwsCloudProvider(t *testing.T) {
+func TestGetAwsCloudProviderById(t *testing.T) {
 	c := getClient()
 	expectedName := fmt.Sprintf("%s_%s", t.Name(), utils.RandStringBytes(4))
 
 	cp, err := createAwsCloudProvider(expectedName)
 	require.NoError(t, err)
-	require.NotNil(t, cp)
-	require.Equal(t, expectedName, cp.Name)
+
+	foundCP, err := c.CloudProviders().GetAwsCloudProviderById(cp.Id)
+	require.NoError(t, err)
+	require.NotNil(t, foundCP)
+	require.Equal(t, cp.Id, foundCP.Id)
 
 	err = c.CloudProviders().DeleteCloudProvider(cp.Id)
 	require.NoError(t, err)
@@ -33,6 +36,19 @@ func TestGetAwsCloudProviderByName(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, foundCP)
 	require.Equal(t, expectedName, foundCP.Name)
+
+	err = c.CloudProviders().DeleteCloudProvider(cp.Id)
+	require.NoError(t, err)
+}
+
+func TestCreateAwsCloudProvider(t *testing.T) {
+	c := getClient()
+	expectedName := fmt.Sprintf("%s_%s", t.Name(), utils.RandStringBytes(4))
+
+	cp, err := createAwsCloudProvider(expectedName)
+	require.NoError(t, err)
+	require.NotNil(t, cp)
+	require.Equal(t, expectedName, cp.Name)
 
 	err = c.CloudProviders().DeleteCloudProvider(cp.Id)
 	require.NoError(t, err)

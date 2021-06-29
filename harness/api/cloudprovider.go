@@ -77,6 +77,29 @@ const (
 	`
 )
 
+func (c *CloudProviderClient) getCloudProviderById(id string, fields string, respObj interface{}) error {
+	query := &GraphQLQuery{
+		Query: fmt.Sprintf(`{
+			cloudProvider(cloudProviderId: "%[1]s") {
+				%[2]s
+			}
+		}`, id, fields),
+	}
+
+	res := &struct {
+		CloudProvider interface{}
+	}{
+		CloudProvider: respObj,
+	}
+
+	err := c.APIClient.ExecuteGraphQLQuery(query, &res)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (c *CloudProviderClient) getCloudProviderByName(name string, fields string, respObj interface{}) error {
 
 	query := &GraphQLQuery{
