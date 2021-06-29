@@ -220,14 +220,14 @@ var WinRMAuthenticationTypes = &winRMAuthenticationType{
 // 	SSHAuthentication      *SSHAuthentication      `json:"sshAuthentication,omitempty"`
 // }
 
-type secretType struct {
-	EncryptedFile   string
-	EncryptedText   string
-	SSHCredential   string
-	WinRMCredential string
-}
+type SecretType string
 
-var SecretTypes *secretType = &secretType{
+var SecretTypes = struct {
+	EncryptedFile   SecretType
+	EncryptedText   SecretType
+	SSHCredential   SecretType
+	WinRMCredential SecretType
+}{
 	EncryptedFile:   "ENCRYPTED_FILE",
 	EncryptedText:   "ENCRYPTED_TEXT",
 	SSHCredential:   "SSH_CREDENTIAL",
@@ -258,7 +258,7 @@ type WinRMCredential struct {
 type CreateSecretInput struct {
 	ClientMutationId string                `json:"clientMutationId,omitempty"`
 	EncryptedText    *EncryptedTextInput   `json:"encryptedText,omitempty"`
-	SecretType       string                `json:"secretType,omitempty"`
+	SecretType       SecretType            `json:"secretType,omitempty"`
 	SSHCredential    *SSHCredential        `json:"sshCredential,omitempty"`
 	WinRMCredential  *WinRMCredentialInput `json:"winRMCredential,omitempty"`
 }
@@ -267,7 +267,7 @@ type UpdateSecretInput struct {
 	ClientMutationId string                 `json:"clientMutationId,omitempty"`
 	EncryptedText    *UpdateEncryptedText   `json:"encryptedText,omitempty"`
 	SecretId         string                 `json:"secretId,omitempty"`
-	SecretType       string                 `json:"secretType,omitempty"`
+	SecretType       SecretType             `json:"secretType,omitempty"`
 	SSHCredential    *SSHCredential         `json:"sshCredential,omitempty"`
 	WinRMCredential  *UpdateWinRMCredential `json:"winRMCredential,omitempty"`
 }
@@ -275,7 +275,7 @@ type UpdateSecretInput struct {
 type Secret struct {
 	Id         string      `json:"id,omitempty"`
 	Name       string      `json:"name,omitempty"`
-	SecretType string      `json:"secretType,omitempty"`
+	SecretType SecretType  `json:"secretType,omitempty"`
 	UsageScope *UsageScope `json:"usageScope,omitempty"`
 }
 
@@ -435,8 +435,8 @@ var SSHAuthenticationSchemes = &sshAuthenticationScheme{
 }
 
 type DeleteSecretInput struct {
-	SecretId   string `json:"secretId,omitempty"`
-	SecretType string `json:"secretType,omitempty"`
+	SecretId   string     `json:"secretId,omitempty"`
+	SecretType SecretType `json:"secretType,omitempty"`
 }
 
 type connectorType struct {
@@ -818,7 +818,7 @@ type CreateCloudProviderInput struct {
 	AwsCloudProvider                *AwsCloudProvider                `json:"awsCloudProvider,omitempty"`
 	AzureCloudProvider              *AzureCloudProvider              `json:"azureCloudProvider,omitempty"`
 	ClientMutationId                string                           `json:"clientMutationId,omitempty"`
-	CloudProviderType               cloudProviderType                `json:"cloudProviderType,omitempty"`
+	CloudProviderType               CloudProviderType                `json:"cloudProviderType,omitempty"`
 	GCPCloudProvider                *GcpCloudProvider                `json:"gcpCloudProvider,omitempty"`
 	K8sCloudProvider                *KubernetesCloudProvider         `json:"k8sCloudProvider,omitempty"`
 	PcfCloudProvider                *PcfCloudProvider                `json:"pcfCloudProvider,omitempty"`
@@ -826,16 +826,16 @@ type CreateCloudProviderInput struct {
 	SpotInstCloudProvider           *SpotInstCloudProvider           `json:"spotInstCloudProvider,omitempty"`
 }
 
-type cloudProviderType string
+type CloudProviderType string
 
 var CloudProviderTypes = struct {
-	Aws                cloudProviderType
-	Azure              cloudProviderType
-	Gcp                cloudProviderType
-	KubernetesCluster  cloudProviderType
-	Pcf                cloudProviderType
-	PhysicalDataCenter cloudProviderType
-	SpotInst           cloudProviderType
+	Aws                CloudProviderType
+	Azure              CloudProviderType
+	Gcp                CloudProviderType
+	KubernetesCluster  CloudProviderType
+	Pcf                CloudProviderType
+	PhysicalDataCenter CloudProviderType
+	SpotInst           CloudProviderType
 }{
 	Aws:                "AWS",
 	Azure:              "AZURE",
