@@ -2,7 +2,6 @@ package api
 
 import (
 	"fmt"
-	"os"
 	"testing"
 
 	"github.com/harness-io/harness-go-sdk/harness/api/graphql"
@@ -44,7 +43,7 @@ func createAwsCloudProvider(name string) (*graphql.AwsCloudProvider, error) {
 	c := getClient()
 	expectedName := name
 
-	secret, err := createEncryptedTextSecret(expectedName, os.Getenv("HARNESS_TEST_AWS_SECRET_ACCESS_KEY"))
+	secret, err := createEncryptedTextSecret(expectedName, TestEnvVars.AwsSecretAccessKey.Get())
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +52,7 @@ func createAwsCloudProvider(name string) (*graphql.AwsCloudProvider, error) {
 	input.Name = expectedName
 	input.CredentialsType = graphql.AwsCredentialsTypes.Manual
 	input.ManualCredentials = &graphql.AwsManualCredentials{
-		AccessKey:         os.Getenv("HARNESS_TEST_AWS_ACCESS_KEY_ID"),
+		AccessKey:         TestEnvVars.AwsAccessKeyId.Get(),
 		SecretKeySecretId: secret.Id,
 	}
 

@@ -2,7 +2,6 @@ package api
 
 import (
 	"fmt"
-	"os"
 	"testing"
 
 	"github.com/harness-io/harness-go-sdk/harness/api/graphql"
@@ -38,21 +37,22 @@ func TestCreateSpotInstCloudProvider(t *testing.T) {
 	err = c.CloudProviders().DeleteCloudProvider(cp.Id)
 	require.NoError(t, err)
 
-	err = c.Secrets().DeleteSecret(expectedName, graphql.SecretTypes.EncryptedText)
+	secret, err := c.Secrets().GetEncryptedTextByName(expectedName)
 	require.NoError(t, err)
+	c.Secrets().DeleteSecret(secret.Id, secret.SecretType)
 }
 
 func createSpotInstCloudProvider(name string) (*graphql.SpotInstCloudProvider, error) {
 	c := getClient()
 
-	secret, err := createEncryptedTextSecret(name, os.Getenv("HARNESS_TEST_SPOT_TOKEN"))
+	secret, err := createEncryptedTextSecret(name, TestEnvVars.SpotInstToken.Get())
 	if err != nil {
 		return nil, err
 	}
 
 	input := &graphql.SpotInstCloudProvider{}
 	input.Name = name
-	input.AccountId = os.Getenv("HARNESS_TEST_SPOT_ACCT_ID")
+	input.AccountId = TestEnvVars.SpotInstAccountId.Get()
 	input.TokenSecretId = secret.Id
 
 	cp, err := c.CloudProviders().CreateSpotInstCloudProvider(input)

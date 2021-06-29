@@ -2,7 +2,6 @@ package api
 
 import (
 	"fmt"
-	"os"
 	"testing"
 
 	"github.com/harness-io/harness-go-sdk/harness/api/graphql"
@@ -49,16 +48,16 @@ func createAzureCloudProvider(name string) (*graphql.AzureCloudProvider, error) 
 	c := getClient()
 	expectedName := name
 
-	secret, err := createEncryptedTextSecret(expectedName, os.Getenv("HARNESS_TEST_AZURE_CLIENT_SECRET"))
+	secret, err := createEncryptedTextSecret(expectedName, TestEnvVars.AzureClientSecret.Get())
 	if err != nil {
 		return nil, err
 	}
 
 	input := &graphql.AzureCloudProvider{}
 	input.Name = expectedName
-	input.ClientId = os.Getenv("HARNESS_TEST_AZURE_CLIENT_ID")
+	input.ClientId = TestEnvVars.AzureClientId.Get()
 	input.KeySecretId = secret.Id
-	input.TenantId = os.Getenv("HARNESS_TEST_AZURE_TENANT_ID")
+	input.TenantId = TestEnvVars.AzureTenantId.Get()
 
 	return c.CloudProviders().CreateAzureCloudProvider(input)
 }
