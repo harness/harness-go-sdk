@@ -7,6 +7,16 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestEnvVarsAreSet(t *testing.T) {
+	assert.NotEmpty(t, TestEnvVars.AwsAccessKeyId.Get())
+	assert.NotEmpty(t, TestEnvVars.AwsSecretAccessKey.Get())
+	assert.NotEmpty(t, TestEnvVars.AzureClientId.Get())
+	assert.NotEmpty(t, TestEnvVars.AzureClientSecret.Get())
+	assert.NotEmpty(t, TestEnvVars.AzureTenantId.Get())
+	assert.NotEmpty(t, TestEnvVars.SpotInstAccountId.Get())
+	assert.NotEmpty(t, TestEnvVars.SpotInstToken.Get())
+}
+
 type EnvVar string
 
 var TestEnvVars = struct {
@@ -29,14 +39,4 @@ var TestEnvVars = struct {
 
 func (e EnvVar) Get() string {
 	return os.Getenv(string(e))
-}
-
-func TestEnvVarsAreSet(t *testing.T) {
-	assert.NotEmpty(t, TestEnvVars.AwsAccessKeyId.Get())
-	assert.NotEmpty(t, TestEnvVars.AwsSecretAccessKey.Get())
-	assert.NotEmpty(t, TestEnvVars.AzureClientId.Get())
-	assert.NotEmpty(t, TestEnvVars.AzureClientSecret.Get())
-	assert.NotEmpty(t, TestEnvVars.AzureTenantId.Get())
-	assert.NotEmpty(t, TestEnvVars.SpotInstAccountId.Get())
-	assert.NotEmpty(t, TestEnvVars.SpotInstToken.Get())
 }
