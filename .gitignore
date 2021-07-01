@@ -1,9 +1,6 @@
 *.dll
 *.exe
 .DS_Store
-example.tf
-terraform.tfplan
-terraform.tfstate
 bin/
 dist/
 modules-dev/
@@ -15,8 +12,6 @@ website/build
 website/node_modules
 .vagrant/
 *.backup
-./*.tfstate
-.terraform/
 *.log
 *.bak
 *~
@@ -25,7 +20,6 @@ website/node_modules
 *.iml
 *.test
 *.iml
-.vscode
 *debug*
 website/vendor
 
@@ -38,3 +32,13 @@ website/vendor
 
 # Environment Variables
 .env
+
+# VS Code
+.vscode/
+
+# Terraform
+.terraform/
+*.tfstate
+example.tf
+terraform.tfplan
+terraform.tfstate
