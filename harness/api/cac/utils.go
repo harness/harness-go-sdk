@@ -3,41 +3,25 @@ package cac
 import (
 	"errors"
 	"fmt"
+	"path"
+	"reflect"
+	"regexp"
+	"strings"
 
 	"github.com/harness-io/harness-go-sdk/harness/utils"
 	"gopkg.in/yaml.v3"
 )
 
-func (i *ConfigAsCodeItem) ParseYamlContent() (interface{}, error) {
+func (i *ConfigAsCodeItem) ParseYamlContent(respObj interface{}) error {
 	if i.Yaml == "" {
-		return nil, nil
+		return nil
 	}
 
-	tmp := map[string]interface{}{}
-	data := []byte(i.Yaml)
-
-	err := yaml.Unmarshal(data, &tmp)
-	if err != nil {
-		return nil, err
+	if err := yaml.Unmarshal([]byte(i.Yaml), respObj); err != nil {
+		return err
 	}
 
-	val, ok := tmp["type"]
-	if !ok {
-		return nil, errors.New("could not find field 'type' in yaml object")
-	}
-
-	switch val {
-	case ObjectTypes.Service:
-		obj := &Service{}
-		if err := yaml.Unmarshal(data, &obj); err != nil {
-			return nil, err
-		}
-		obj.Name = utils.TrimFileExtension(i.Name)
-		return obj, err
-	default:
-		return nil, fmt.Errorf("could not parse object type of '%s'", val)
-	}
-
+	return nil
 }
 
 func (s *Service) Validate() (bool, error) {
@@ -47,6 +31,22 @@ func (s *Service) Validate() (bool, error) {
 
 	return true, nil
 }
+
+func (s *GcpCloudProvider) Validate() (bool, error) {
+	if s.Name == "" {
+		return false, errors.New("cloud provider is invalid. missing field `name`")
+	}
+
+	return true, nil
+}
+
+// func (s *Service) GetPath() (string, error) {
+// 	if s.ApplicationId == "" || s.ApplicationName == "" {
+// 		return "", errors.New("expected application name to be set")
+// 	}
+
+// 	return fmt.Sprintf("Setup/Applications/%s/Services/%s/Index.yaml", s.ApplicationName, s.Name), nil
+// }
 
 func (i *ConfigAsCodeItem) IsEmpty() bool {
 	return i == &ConfigAsCodeItem{}
@@ -62,9 +62,9 @@ func (m *ResponseMessage) ToError() error {
 	return fmt.Errorf("%s: %s", m.Code, m.Message)
 }
 
-func GetDefaultArtifactType(deploymentType string, fallbackArtifactType string) (string, error) {
+func GetDefaultArtifactType(deploymentType DeploymentType, fallbackArtifactType ArtifactType) (ArtifactType, error) {
 
-	var artifactType string
+	var artifactType ArtifactType
 
 	switch deploymentType {
 	case DeploymentTypes.Kubernetes:
@@ -90,4 +90,86 @@ func GetDefaultArtifactType(deploymentType string, fallbackArtifactType string) 
 	}
 
 	return artifactType, nil
+}
+
+func NewEntity(objectType ObjectType) interface{} {
+	t, ok := objectTypeMap[objectType]
+	if !ok {
+		panic(fmt.Errorf("could not create entity of type `%s`", objectType))
+	}
+
+	i := reflect.New(t).Interface()
+	utils.MustSetField(i, "HarnessApiVersion", HarnessApiVersions.V1)
+	utils.MustSetField(i, "Type", objectType)
+	return i
+}
+
+var objectTypeMap = map[ObjectType]reflect.Type{
+	ObjectTypes.Application:                     reflect.TypeOf(Application{}),
+	ObjectTypes.AwsCloudProvider:                reflect.TypeOf(AwsCloudProvider{}),
+	ObjectTypes.AzureCloudProvider:              reflect.TypeOf(AzureCloudProvider{}),
+	ObjectTypes.GcpCloudProvider:                reflect.TypeOf(GcpCloudProvider{}),
+	ObjectTypes.KubernetesCloudProvider:         reflect.TypeOf(KubernetesCloudProvider{}),
+	ObjectTypes.PcfCloudProvider:                reflect.TypeOf(PcfCloudProvider{}),
+	ObjectTypes.PhysicalDataCenterCloudProvider: reflect.TypeOf(PhysicalDatacenterCloudProvider{}),
+	ObjectTypes.Service:                         reflect.TypeOf(Service{}),
+	ObjectTypes.SpotInstCloudProvider:           reflect.TypeOf(SpotInstCloudProvider{}),
+	ObjectTypes.Application:                     reflect.TypeOf(Application{}),
+}
+
+func (r *SecretRef) MarshalYAML() (interface{}, error) {
+	if (r == &SecretRef{}) {
+		return []byte{}, nil
+	}
+
+	if r.SecretManagerType == "" {
+		return nil, errors.New("SecretManagerType must be set")
+	}
+
+	if r.SecretId == "" {
+		return nil, errors.New("SecretId must be set")
+	}
+
+	return fmt.Sprintf("%s:%s", r.SecretManagerType, r.SecretId), nil
+}
+
+func (r *SecretRef) UnmarshalYAML(unmarshal func(interface{}) error) error {
+
+	var val interface{}
+	err := unmarshal(&val)
+	if err != nil {
+		return err
+	}
+
+	value := val.(string)
+
+	parts := strings.Split(value, ":")
+	r.SecretManagerType = SecretManagerType(parts[0])
+	r.SecretId = parts[1]
+
+	return nil
+}
+
+func GetEntityNameFromPath(yamlPath string) string {
+	dir, file := path.Split(yamlPath)
+
+	if ok, _ := regexp.MatchString("Index.yaml", file); ok {
+		parts := strings.Split(strings.TrimSpace(dir), "/")
+		last := parts[len(parts)-2]
+		return last
+	}
+
+	return utils.TrimFileExtension(file)
+}
+
+func GetServiceYamlPath(applicationName string, serviceName string) string {
+	return fmt.Sprintf("Setup/Applications/%s/Services/%s/Index.yaml", applicationName, serviceName)
+}
+
+func GetCloudProviderYamlPath(cloudProviderName string) string {
+	return fmt.Sprintf("Setup/Cloud Providers/%s.yaml", cloudProviderName)
+}
+
+func GetApplicationYamlPath(applicationName string) string {
+	return fmt.Sprintf("Setup/Applications/%s/index.yaml", applicationName)
 }
