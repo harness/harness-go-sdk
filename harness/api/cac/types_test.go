@@ -52,7 +52,10 @@ func TestKubernetesCLoudProviderSerialization(t *testing.T) {
 	}
 	testObj.OIDCScopes = "scope1 scope2"
 	testObj.OIDCUsername = "username"
-	testObj.ServiceAccountToken = "token"
+	testObj.ServiceAccountToken = &SecretRef{
+		SecretManagerType: SecretManagerTypes.GcpKMS,
+		SecretId:          "token",
+	}
 	testObj.SkipValidation = true
 	testObj.UseEncryptedUsername = true
 	testObj.UseKubernetesDelegate = true
@@ -74,7 +77,7 @@ delegateSelectors:
 continuousEfficiencyConfig:
   continuousefficiencyenabled: true
 masterUrl: masterurl
-serviceAccountToken: token
+serviceAccountToken: gcpkms:token
 skipValidation: true
 useKubernetesDelegate: true
 useEncryptedUsername: true

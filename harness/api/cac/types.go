@@ -84,7 +84,7 @@ type AwsCloudProvider struct {
 	UseIRSA                bool                       `yaml:"useIRSA,omitempty"`
 	UseEc2IamCredentials   bool                       `yaml:"useEc2IamCredentials,omitempty"`
 	UsageRestrictions      *UsageRestrictions         `yaml:"usageRestrictions,omitempty"`
-	DelegateSelector       string                     `yaml:"tag"`
+	DelegateSelector       string                     `yaml:"tag,omitempty"`
 }
 
 type AwsCrossAccountAttributes struct {
@@ -93,22 +93,24 @@ type AwsCrossAccountAttributes struct {
 }
 
 type PcfCloudProvider struct {
-	HarnessApiVersion HarnessApiVersion `yaml:"harnessApiVersion" json:"harnessApiVersion"`
-	Type              ObjectType        `yaml:"type" json:"type"`
-	Id                string            `yaml:"-"`
-	Name              string            `yaml:"-"`
-	EndpointUrl       string            `yaml:"endpointUrl,omitempty"`
-	Password          *SecretRef        `yaml:"password,omitempty"`
-	SkipValidation    bool              `yaml:"skipValidation,omitempty"`
-	Username          string            `yaml:"username,omitempty"`
-	UsernameSecretId  string            `yaml:"usernam	eSecretId,omitempty"`
+	HarnessApiVersion HarnessApiVersion  `yaml:"harnessApiVersion" json:"harnessApiVersion"`
+	Type              ObjectType         `yaml:"type" json:"type"`
+	Id                string             `yaml:"-"`
+	Name              string             `yaml:"-"`
+	EndpointUrl       string             `yaml:"endpointUrl,omitempty"`
+	Password          *SecretRef         `yaml:"password,omitempty"`
+	SkipValidation    bool               `yaml:"skipValidation,omitempty"`
+	Username          string             `yaml:"username,omitempty"`
+	UsernameSecretId  string             `yaml:"usernam	eSecretId,omitempty"`
+	UsageRestrictions *UsageRestrictions `yaml:"usageRestrictions,omitempty"`
 }
 
 type PhysicalDatacenterCloudProvider struct {
-	HarnessApiVersion HarnessApiVersion `yaml:"harnessApiVersion" json:"harnessApiVersion"`
-	Type              ObjectType        `yaml:"type" json:"type"`
-	Name              string            `json:"-"`
-	Id                string            `json:"-"`
+	HarnessApiVersion HarnessApiVersion  `yaml:"harnessApiVersion" json:"harnessApiVersion"`
+	Type              ObjectType         `yaml:"type" json:"type"`
+	Name              string             `json:"-"`
+	Id                string             `json:"-"`
+	UsageRestrictions *UsageRestrictions `yaml:"usageRestrictions,omitempty"`
 }
 
 type AzureCloudProvider struct {
@@ -120,6 +122,7 @@ type AzureCloudProvider struct {
 	ClientId             string               `yaml:"clientId,omitempty"`
 	TenantId             string               `yaml:"tenantId,omitempty"`
 	Key                  *SecretRef           `yaml:"key,omitempty"`
+	UsageRestrictions    *UsageRestrictions   `yaml:"usageRestrictions,omitempty"`
 }
 
 type GcpCloudProvider struct {
@@ -151,7 +154,7 @@ type KubernetesCloudProvider struct {
 	UsernameSecretId           *SecretRef                  `yaml:"usernameSecretId,omitempty"`
 	ContinuousEfficiencyConfig *ContinuousEfficiencyConfig `yaml:"continuousEfficiencyConfig,omitempty"`
 	MasterUrl                  string                      `yaml:"masterUrl,omitempty"`
-	ServiceAccountToken        string                      `yaml:"serviceAccountToken,omitempty"`
+	ServiceAccountToken        *SecretRef                  `yaml:"serviceAccountToken,omitempty"`
 	SkipValidation             bool                        `yaml:"skipValidation,omitempty"`
 	UseKubernetesDelegate      bool                        `yaml:"useKubernetesDelegate,omitempty"`
 	UseEncryptedUsername       bool                        `yaml:"useEncryptedUsername,omitempty"`
@@ -162,6 +165,7 @@ type KubernetesCloudProvider struct {
 	OIDCSecret                 *SecretRef                  `yaml:"oidcSecret,omitempty"`
 	OIDCScopes                 string                      `yaml:"oidcScopes,omitempty"`
 	OIDCUsername               string                      `yaml:"oidcUsername,omitempty"`
+	UsageRestrictions          *UsageRestrictions          `yaml:"usageRestrictions,omitempty"`
 }
 
 type ContinuousEfficiencyConfig struct {
@@ -169,12 +173,13 @@ type ContinuousEfficiencyConfig struct {
 }
 
 type SpotInstCloudProvider struct {
-	HarnessApiVersion HarnessApiVersion `yaml:"harnessApiVersion" json:"harnessApiVersion"`
-	Id                string            `yaml:"id,omitempty"`
-	Name              string            `yaml:"-"`
-	Type              ObjectType        `yaml:"type,omitempty"`
-	AccountId         string            `yaml:"spotInstAccountId,omitempty"`
-	Token             *SecretRef        `yaml:"spotInstToken,omitempty"`
+	HarnessApiVersion HarnessApiVersion  `yaml:"harnessApiVersion" json:"harnessApiVersion"`
+	Id                string             `yaml:"id,omitempty"`
+	Name              string             `yaml:"-"`
+	Type              ObjectType         `yaml:"type,omitempty"`
+	AccountId         string             `yaml:"spotInstAccountId,omitempty"`
+	Token             *SecretRef         `yaml:"spotInstToken,omitempty"`
+	UsageRestrictions *UsageRestrictions `yaml:"usageRestrictions,omitempty"`
 }
 
 type UsageRestrictions struct {
@@ -199,3 +204,5 @@ type SecretRef struct {
 	SecretManagerType SecretManagerType
 	SecretId          string
 }
+
+type YamlPath string

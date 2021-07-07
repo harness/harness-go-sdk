@@ -65,3 +65,23 @@ func TryGetFieldValue(i interface{}, fieldName string) (interface{}, bool) {
 
 	return field.Interface(), true
 }
+
+func RequiredStringFieldsSet(obj interface{}, fields []string) (bool, error) {
+	for _, fieldName := range fields {
+		if val, ok := TryGetFieldValue(obj, fieldName); !ok || val == "" {
+			return false, fmt.Errorf("expected %s to be set", fieldName)
+		}
+	}
+
+	return true, nil
+}
+
+func RequiredFieldsCheck(obj interface{}, fields []string) (bool, error) {
+	for _, fieldName := range fields {
+		if !HasField(obj, fieldName) {
+			return false, fmt.Errorf("expected object to have field '%s'", fieldName)
+		}
+	}
+
+	return true, nil
+}

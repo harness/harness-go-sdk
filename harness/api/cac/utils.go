@@ -32,21 +32,13 @@ func (s *Service) Validate() (bool, error) {
 	return true, nil
 }
 
-func (s *GcpCloudProvider) Validate() (bool, error) {
-	if s.Name == "" {
-		return false, errors.New("cloud provider is invalid. missing field `name`")
-	}
-
-	return true, nil
+func (cp *GcpCloudProvider) Validate() (bool, error) {
+	return utils.RequiredStringFieldsSet(cp, []string{"Name"})
 }
 
-// func (s *Service) GetPath() (string, error) {
-// 	if s.ApplicationId == "" || s.ApplicationName == "" {
-// 		return "", errors.New("expected application name to be set")
-// 	}
-
-// 	return fmt.Sprintf("Setup/Applications/%s/Services/%s/Index.yaml", s.ApplicationName, s.Name), nil
-// }
+func (cp *PhysicalDatacenterCloudProvider) Validate() (bool, error) {
+	return utils.RequiredStringFieldsSet(cp, []string{"Name"})
+}
 
 func (i *ConfigAsCodeItem) IsEmpty() bool {
 	return i == &ConfigAsCodeItem{}
@@ -122,12 +114,16 @@ func (r *SecretRef) MarshalYAML() (interface{}, error) {
 		return []byte{}, nil
 	}
 
-	if r.SecretManagerType == "" {
-		return nil, errors.New("SecretManagerType must be set")
-	}
-
 	if r.SecretId == "" {
 		return nil, errors.New("SecretId must be set")
+	}
+
+	// if r.SecretManagerType == "" {
+	// 	return nil, errors.New("SecretManagerType must be set")
+	// }
+
+	if r.SecretManagerType == "" {
+		return r.SecretId, nil
 	}
 
 	return fmt.Sprintf("%s:%s", r.SecretManagerType, r.SecretId), nil
@@ -150,8 +146,8 @@ func (r *SecretRef) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return nil
 }
 
-func GetEntityNameFromPath(yamlPath string) string {
-	dir, file := path.Split(yamlPath)
+func GetEntityNameFromPath(yamlPath YamlPath) string {
+	dir, file := path.Split(string(yamlPath))
 
 	if ok, _ := regexp.MatchString("Index.yaml", file); ok {
 		parts := strings.Split(strings.TrimSpace(dir), "/")
@@ -162,14 +158,14 @@ func GetEntityNameFromPath(yamlPath string) string {
 	return utils.TrimFileExtension(file)
 }
 
-func GetServiceYamlPath(applicationName string, serviceName string) string {
-	return fmt.Sprintf("Setup/Applications/%s/Services/%s/Index.yaml", applicationName, serviceName)
+func GetServiceYamlPath(applicationName string, serviceName string) YamlPath {
+	return YamlPath(fmt.Sprintf("Setup/Applications/%s/Services/%s/Index.yaml", applicationName, serviceName))
 }
 
-func GetCloudProviderYamlPath(cloudProviderName string) string {
-	return fmt.Sprintf("Setup/Cloud Providers/%s.yaml", cloudProviderName)
+func GetCloudProviderYamlPath(cloudProviderName string) YamlPath {
+	return YamlPath(fmt.Sprintf("Setup/Cloud Providers/%s.yaml", cloudProviderName))
 }
 
-func GetApplicationYamlPath(applicationName string) string {
-	return fmt.Sprintf("Setup/Applications/%s/index.yaml", applicationName)
+func GetApplicationYamlPath(applicationName string) YamlPath {
+	return YamlPath(fmt.Sprintf("Setup/Applications/%s/index.yaml", applicationName))
 }

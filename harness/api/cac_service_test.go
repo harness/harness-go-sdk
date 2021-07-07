@@ -80,6 +80,40 @@ func TestGetService(t *testing.T) {
 	require.Equal(t, cac.HelmVersions.V2, svcLookup.HelmVersion)
 }
 
+func TestGetServiceById(t *testing.T) {
+
+	// Create application
+	c := getClient()
+	appName := fmt.Sprintf("app_%s_%s", t.Name(), utils.RandStringBytes(4))
+	app, err := createApplication(appName)
+	require.NotNil(t, app)
+	require.NoError(t, err)
+
+	// Create service
+	serviceName := fmt.Sprintf("%s_%s", t.Name(), utils.RandStringBytes(4))
+	svcInput := cac.NewEntity(cac.ObjectTypes.Service).(*cac.Service)
+	svcInput.Name = serviceName
+	svcInput.ApplicationId = app.Id
+	svcInput.DeploymentType = cac.DeploymentTypes.Kubernetes
+	svcInput.ArtifactType = cac.ArtifactTypes.Docker
+
+	require.NoError(t, err)
+	require.NotNil(t, svcInput)
+
+	svc := &cac.Service{}
+	err = c.ConfigAsCode().UpsertObject(svcInput, cac.GetServiceYamlPath(app.Name, serviceName), svc)
+	require.NoError(t, err)
+	require.NotNil(t, svc)
+
+	defer func() {
+		c.Applications().DeleteApplication(app.Id)
+	}()
+
+	// Find service by id
+	svcLookup, err := c.ConfigAsCode().GetServiceById(app.Id, svc.Id)
+	require.NoError(t, err)
+	require.Equal(t, svc, svcLookup)
+}
 func TestServiceSerialization(t *testing.T) {
 	// Setup
 	c := getClient()
@@ -131,7 +165,7 @@ func TestDeleteService(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, svcLookup)
 
-	c.ConfigAsCode().DeleteEntities([]string{svcYamlPath})
+	c.ConfigAsCode().DeleteEntity(svcYamlPath)
 	require.NoError(t, err)
 
 	svcLookup = &cac.Service{}

@@ -16,7 +16,7 @@ func TestGetEntityNameFromPath_Index(t *testing.T) {
 	fmt.Println(path.Dir(yamlPath))
 	fmt.Println(path.Split(yamlPath))
 
-	name := GetEntityNameFromPath(yamlPath)
+	name := GetEntityNameFromPath(YamlPath(yamlPath))
 	require.Equal(t, "myservice", name)
 }
 
@@ -28,6 +28,6 @@ func TestGetEntityNameFromPath_NameInFile(t *testing.T) {
 	fmt.Println(path.Dir(yamlPath))
 	fmt.Println(path.Split(yamlPath))
 
-	name := GetEntityNameFromPath(yamlPath)
+	name := GetEntityNameFromPath(YamlPath(yamlPath))
 	require.Equal(t, "google-cloud-provider", name)
 }

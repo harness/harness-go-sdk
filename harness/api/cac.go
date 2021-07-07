@@ -24,9 +24,9 @@ func (c *Client) ConfigAsCode() *ConfigAsCodeClient {
 	}
 }
 
-func FindConfigAsCodeItemByPath(rootItem *cac.ConfigAsCodeItem, path string) *cac.ConfigAsCodeItem {
+func FindConfigAsCodeItemByPath(rootItem *cac.ConfigAsCodeItem, path cac.YamlPath) *cac.ConfigAsCodeItem {
 
-	if rootItem.DirectoryPath != nil && rootItem.DirectoryPath.Path == path {
+	if rootItem.DirectoryPath != nil && rootItem.DirectoryPath.Path == string(path) {
 		return rootItem
 	}
 
@@ -99,7 +99,7 @@ func (c *ConfigAsCodeClient) GetDirectoryTree(applicationId string) (*cac.Config
 	return item, nil
 }
 
-func (c *ConfigAsCodeClient) UpsertYamlEntity(filePath string, entity interface{}) (*cac.ConfigAsCodeItem, error) {
+func (c *ConfigAsCodeClient) UpsertYamlEntity(filePath cac.YamlPath, entity interface{}) (*cac.ConfigAsCodeItem, error) {
 
 	payload, err := yaml.Marshal(&entity)
 	if err != nil {
@@ -136,7 +136,7 @@ func (c *ConfigAsCodeClient) UpsertYamlEntity(filePath string, entity interface{
 	// Add the account ID to the query string
 	q := req.URL.Query()
 	q.Add(QueryParamAccountId, c.ApiClient.AccountId)
-	q.Add(QueryParamYamlFilePath, filePath)
+	q.Add(QueryParamYamlFilePath, string(filePath))
 	req.URL.RawQuery = q.Encode()
 
 	item, err := c.ExecuteRequest(req)
@@ -210,7 +210,7 @@ type ConfigAsCodeClient struct {
 	ApiClient *Client
 }
 
-func (c *ConfigAsCodeClient) DeleteEntities(filePaths []string) error {
+func (c *ConfigAsCodeClient) DeleteEntity(filePath cac.YamlPath) error {
 
 	req, err := retryablehttp.NewRequest(http.MethodDelete, fmt.Sprintf("%s%s", c.ApiClient.Endpoint, "/gateway/api/setup-as-code/yaml/delete-entities"), nil)
 	if err != nil {
@@ -225,7 +225,7 @@ func (c *ConfigAsCodeClient) DeleteEntities(filePaths []string) error {
 	// Add the account ID to the query string
 	q := req.URL.Query()
 	q.Add(QueryParamAccountId, c.ApiClient.AccountId)
-	q.Add(QueryParamFilePaths, strings.Join(filePaths, ","))
+	q.Add(QueryParamFilePaths, string(filePath))
 	req.URL.RawQuery = q.Encode()
 
 	_, err = c.ExecuteRequest(req)
@@ -236,17 +236,13 @@ func (c *ConfigAsCodeClient) DeleteEntities(filePaths []string) error {
 	return nil
 }
 
-func (c *ConfigAsCodeClient) UpsertObject(input interface{}, filePath string, responseObj interface{}) error {
+func (c *ConfigAsCodeClient) UpsertObject(input interface{}, filePath cac.YamlPath, responseObj interface{}) error {
 	if input == nil {
 		return errors.New("object to upsert is nil")
 	}
 
-	// Check required fields are implemented
-	requiredFields := []string{"Name", "Id"}
-	for _, f := range requiredFields {
-		if !utils.HasField(input, f) {
-			return fmt.Errorf("obj must have field `%s`", f)
-		}
+	if ok, err := utils.RequiredFieldsCheck(input, []string{"Name", "Id"}); !ok {
+		return err
 	}
 
 	// If the object implements the Validation interface then check it
@@ -275,7 +271,10 @@ func (c *ConfigAsCodeClient) UpsertObject(input interface{}, filePath string, re
 	return nil
 }
 
-func (c *ConfigAsCodeClient) FindObject(applicationId string, filePath string, obj interface{}) error {
+// This function is used when the Id of the object is unknown and we need to look it up.
+// Typically this is needed just after an Upsert command. The Upsert API unfortunately does not
+// return the Id of the newly created object.
+func (c *ConfigAsCodeClient) FindObject(applicationId string, filePath cac.YamlPath, obj interface{}) error {
 	rootItem, err := c.GetDirectoryTree(applicationId)
 	if err != nil {
 		return err
