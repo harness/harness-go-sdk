@@ -303,11 +303,11 @@ func (c *ConfigAsCodeClient) FindObject(applicationId string, filePath cac.YamlP
 	}
 
 	// Set the required fields for all entities
-	utils.TrySetField(obj, "Name", cac.GetEntityNameFromPath(filePath))
-	utils.TrySetField(obj, "Id", item.UUID)
+	utils.MustSetField(obj, "Name", cac.GetEntityNameFromPath(filePath))
+	utils.MustSetField(obj, "Id", item.UUID)
 
 	if applicationId != "" && utils.HasField(obj, "ApplicationId") {
-		utils.TrySetField(obj, "ApplicationId", applicationId)
+		utils.MustSetField(obj, "ApplicationId", applicationId)
 	}
 
 	return nil

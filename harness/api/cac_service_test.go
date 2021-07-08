@@ -106,7 +106,8 @@ func TestGetServiceById(t *testing.T) {
 	require.NotNil(t, svc)
 
 	defer func() {
-		c.Applications().DeleteApplication(app.Id)
+		err := c.Applications().DeleteApplication(app.Id)
+		require.NoError(t, err)
 	}()
 
 	// Find service by id
@@ -165,7 +166,7 @@ func TestDeleteService(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, svcLookup)
 
-	c.ConfigAsCode().DeleteEntity(svcYamlPath)
+	err = c.ConfigAsCode().DeleteEntity(svcYamlPath)
 	require.NoError(t, err)
 
 	svcLookup = &cac.Service{}

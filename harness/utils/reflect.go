@@ -6,12 +6,12 @@ import (
 )
 
 func MustSetField(i interface{}, fieldName string, value interface{}) {
-	if err := TrySetField(i, fieldName, value); err != nil {
+	if ok, err := TrySetField(i, fieldName, value); !ok {
 		panic(err)
 	}
 }
 
-func TrySetField(i interface{}, fieldName string, value interface{}) error {
+func TrySetField(i interface{}, fieldName string, value interface{}) (bool, error) {
 	valueI := reflect.ValueOf(i)
 
 	// Check if the passed interface is a pointer
@@ -23,16 +23,16 @@ func TrySetField(i interface{}, fieldName string, value interface{}) error {
 	// 'dereference' with Elem() and get the field by name
 	field := valueI.Elem().FieldByName(fieldName)
 	if !field.IsValid() {
-		return fmt.Errorf("interface `%s` does not have the field `%s`", valueI.Type(), fieldName)
+		return false, fmt.Errorf("interface `%s` does not have the field `%s`", valueI.Type(), fieldName)
 	}
 
 	if !field.CanSet() {
-		return fmt.Errorf("unable to set field `%s` with value `%s`", fieldName, value)
+		return false, fmt.Errorf("unable to set field `%s` with value `%s`", fieldName, value)
 	}
 
 	field.Set(reflect.ValueOf(value))
 
-	return nil
+	return true, nil
 }
 
 func HasField(i interface{}, fieldName string) bool {
