@@ -198,6 +198,7 @@ type AppFilter struct {
 
 type EnvFilter struct {
 	FilterTypes []EnvironmentFilterType `yaml:"filterTypes,omitempty"`
+	EntityNames []string                `yaml:"entityNames,omitempty"`
 }
 
 type SecretRef struct {

@@ -200,11 +200,13 @@ var ApplicationFilterTypes = &struct {
 type EnvironmentFilterType string
 
 var EnvironmentFilterTypes = &struct {
-	Prod    EnvironmentFilterType
-	NonProd EnvironmentFilterType
+	Prod     EnvironmentFilterType
+	NonProd  EnvironmentFilterType
+	Selected EnvironmentFilterType
 }{
-	Prod:    "PROD",
-	NonProd: "NON_PROD",
+	Prod:     "PROD",
+	NonProd:  "NON_PROD",
+	Selected: "SELECTED",
 }
 
 type SecretManagerType string
