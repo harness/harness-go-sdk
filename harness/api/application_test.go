@@ -138,7 +138,7 @@ func createApplication(name string) (*graphql.Application, error) {
 
 func TestListApplications(t *testing.T) {
 	client := getClient()
-	limit := 10
+	limit := 100
 	offset := 0
 	hasMore := true
 

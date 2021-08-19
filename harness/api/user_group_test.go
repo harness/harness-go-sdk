@@ -321,7 +321,7 @@ func TestAddUserToUserGroup(t *testing.T) {
 
 	// User should already be in the group
 	ok, err = c.Users().AddUserToGroup(user.Id, userGroup.Id)
-	require.NoError(t, err)
+	require.Error(t, err)
 	require.False(t, ok)
 
 	ok, err = c.Users().IsUserInGroup(user.Id, userGroup.Id)
