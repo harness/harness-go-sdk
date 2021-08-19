@@ -370,10 +370,6 @@ func TestListUsersGroupMembership(t *testing.T) {
 	for hasMore {
 		groups, pagination, err := c.Users().ListGroupMembershipByUserId(user.Id, limit, offset)
 		require.NoError(t, err, "Failed to list user group membership: %s", err)
-<<<<<<< HEAD
-=======
-		require.NotEmpty(t, groups, "No user groups found")
->>>>>>> Added users and user group managements
 		require.NotNil(t, pagination, "Pagination should not be nil")
 
 		hasMore = len(groups) == limit
