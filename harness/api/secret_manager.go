@@ -12,7 +12,6 @@ import (
 )
 
 const (
-	globalAccountId              = "__GLOBAL_ACCOUNT_ID__"
 	standardSecretsManagerFields = `
 		id
 		name
