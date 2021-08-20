@@ -12,7 +12,6 @@ import (
 )
 
 const (
-	globalAccountId              = "__GLOBAL_ACCOUNT_ID__"
 	standardSecretsManagerFields = `
 		id
 		name
@@ -123,7 +122,10 @@ func (c *SecretClient) GetDefaultSecretManagerId() (string, error) {
 	}
 
 	defer func() {
-		c.DeleteSecret(secret.Id, graphql.SecretTypes.EncryptedText)
+		err := c.DeleteSecret(secret.Id, graphql.SecretTypes.EncryptedText)
+		if err != nil {
+			panic(err)
+		}
 	}()
 
 	return secret.SecretManagerId, nil
