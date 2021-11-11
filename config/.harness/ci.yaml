@@ -38,9 +38,6 @@ pipeline:
                   - name: HARNESS_TEST_DELEGATE_PROFILE_ID
                     type: Secret
                     value: org.harness_delegate_profile_id
-                  - name: HARNESS_TEST_DELEGATE_WAIT_TIMEOUT
-                    type: String
-                    value: 30m
               type: CI
               spec:
                   infrastructure:
@@ -133,9 +130,7 @@ pipeline:
                                       spec:
                                           connectorRef: org.gcp
                                           image: us.gcr.io/sales-209522/micah/go-build-tools:1.16-stretch-10
-                                          command: |-
-                                              #gotestsum --junitfile junit.xml --format testname
-                                              gotestsum --junitfile junit,xml --format testname -- -run ^TestCreateDelegate$ github.com/harness-io/harness-go-sdk/harness/cd -v -timeout 60m -count 1
+                                          command: gotestsum --junitfile junit.xml --format testname
                                           privileged: false
                                           reports:
                                               type: JUnit
