@@ -45,6 +45,20 @@ pipeline:
                   execution:
                       steps:
                           - step:
+                                type: Run
+                                name: Wait for Docker Host
+                                identifier: Wait_for_Docker_Host
+                                spec:
+                                    connectorRef: account.harnessImage
+                                    image: docker:dind
+                                    command: |-
+                                        while ! docker ps ;do
+                                            echo "Docker not availble yet"
+                                            sleep 1s
+                                        done
+                                            echo "Docker Service Ready"
+                                    privileged: false
+                          - step:
                                 type: RestoreCacheGCS
                                 spec:
                                     resources:
@@ -114,6 +128,18 @@ pipeline:
                   sharedPaths:
                       - /var/run
                       - /var/lib/docker
+                  serviceDependencies:
+                      - identifier: DockerHost
+                        name: DockerHost
+                        type: Service
+                        spec:
+                            connectorRef: account.harnessImage
+                            image: docker:dind
+                            privileged: true
+                            resources:
+                                limits:
+                                    memory: 4Gi
+                                    cpu: "1"
               name: Build
               identifier: Build
     properties:
