@@ -52,11 +52,28 @@ pipeline:
                                     connectorRef: account.harnessImage
                                     image: docker:dind
                                     command: |-
+                                        ls -la /var/run
+                                        ls -la /var/lib/docker
+
                                         while ! docker ps ;do
                                             echo "Docker not availble yet"
                                             sleep 1s
                                         done
                                             echo "Docker Service Ready"
+
+                                        ls -la /var/run
+                                        ls -la /var/lib/docker
+                                    privileged: false
+                          - step:
+                                type: Run
+                                name: test
+                                identifier: test
+                                spec:
+                                    connectorRef: account.harnessImage
+                                    image: busybox:latest
+                                    command: |
+                                        ls -la /var/run
+                                        ls -la /var/lib/docker
                                     privileged: false
                           - step:
                                 type: RestoreCacheGCS
