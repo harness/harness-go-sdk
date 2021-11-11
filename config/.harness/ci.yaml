@@ -111,6 +111,9 @@ pipeline:
                                       name: Test
                                       identifier: Test
                   cloneCodebase: true
+                  sharedPaths:
+                      - /var/run
+                      - /var/lib/docker
               name: Build
               identifier: Build
     properties:
