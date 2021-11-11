@@ -121,7 +121,8 @@ pipeline:
                                           image: us.gcr.io/sales-209522/micah/go-build-tools:1.16-stretch-10
                                           connectorRef: org.gcp
                                           command: |
-                                              gotestsum --junitfile junit.xml --format testname
+                                              # gotestsum --junitfile junit.xml --format testname
+                                              sleep 30m
                                       name: Test
                                       identifier: Test
                   cloneCodebase: true
