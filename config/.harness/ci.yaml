@@ -125,6 +125,12 @@ pipeline:
                                                   cpu: "1"
                                       name: Lint
                                       identifier: lint
+                                      failureStrategies:
+                                          - onFailure:
+                                                errors:
+                                                    - AllErrors
+                                                action:
+                                                    type: Ignore
                                 - step:
                                       type: Run
                                       spec:
