@@ -28,8 +28,6 @@ type ServiceConnection struct {
 	PageInfo PageInfo
 }
 
-type Service struct{}
-
 type ArtifactSource struct {
 	CommonMetadata
 	Artifacts ArtifactConnection
