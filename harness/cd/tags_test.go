@@ -35,6 +35,12 @@ func TestAttachTagToApplication(t *testing.T) {
 	require.Equal(t, resp.TagLink.EntityType, input.EntityType)
 	require.Equal(t, resp.TagLink.Name, input.Name)
 	require.Equal(t, resp.TagLink.Value, input.Value)
+
+	app, err = c.ApplicationClient.GetApplicationById(app.Id)
+	require.NoError(t, err)
+	require.Equal(t, 1, len(app.Tags))
+	require.Equal(t, "test", app.Tags[0].Name)
+	require.Equal(t, "foo", app.Tags[0].Value)
 }
 
 func TestDetachTagToApplication(t *testing.T) {
@@ -53,7 +59,7 @@ func TestDetachTagToApplication(t *testing.T) {
 	input := &graphql.AttachTagInput{
 		EntityId:   app.Id,
 		EntityType: graphql.TagEntityTypes.Application,
-		Name:       "test",
+		Name:       name,
 		Value:      "foo",
 	}
 
@@ -71,4 +77,8 @@ func TestDetachTagToApplication(t *testing.T) {
 	}
 	err = c.TagClient.DetachTag(detachInput)
 	require.NoError(t, err)
+
+	app, err = c.ApplicationClient.GetApplicationById(app.Id)
+	require.NoError(t, err)
+	require.Equal(t, 0, len(app.Tags))
 }
