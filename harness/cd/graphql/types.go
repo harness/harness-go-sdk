@@ -869,3 +869,8 @@ type Approval struct {
 	ExecutionId  string              `json:"executionId,omitempty"`
 	Variables    []*ApprovalVariable `json:"variables,omitempty"`
 }
+
+type ApproveOrRejectApprovalsInputPayload struct {
+	ClientMutationId string `json:"clientMutationId,omitempty"`
+	Success          bool   `json:"success,omitempty"`
+}
