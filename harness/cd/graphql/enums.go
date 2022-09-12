@@ -396,6 +396,7 @@ var Actions = struct {
 	EXECUTE_WORKFLOW  Action
 	READ              Action
 	ROLLBACK_WORKFLOW Action
+	ABORT_WORKFLOW	  Action
 	UPDATE            Action
 }{
 	CREATE:            "CREATE",
@@ -403,6 +404,7 @@ var Actions = struct {
 	EXECUTE:           "EXECUTE",
 	EXECUTE_PIPELINE:  "EXECUTE_PIPELINE",
 	EXECUTE_WORKFLOW:  "EXECUTE_WORKFLOW",
+	ABORT_WORKFLOW:    "ABORT_WORKFLOW",
 	READ:              "READ",
 	ROLLBACK_WORKFLOW: "ROLLBACK_WORKFLOW",
 	UPDATE:            "UPDATE",
