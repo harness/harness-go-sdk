@@ -110,6 +110,8 @@ type APIClient struct {
 
 	GitFullSyncApi *GitFullSyncApiService
 
+	GitopsClusterApi *GitopsClusterServiceApiService
+
 	GitSyncApi *GitSyncApiService
 
 	GitSyncErrorsApi *GitSyncErrorsApiService
@@ -226,6 +228,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.FilterApi = (*FilterApiService)(&c.common)
 	c.GitBranchesApi = (*GitBranchesApiService)(&c.common)
 	c.GitFullSyncApi = (*GitFullSyncApiService)(&c.common)
+	c.GitopsClusterApi = (*GitopsClusterServiceApiService)(&c.common)
 	c.GitSyncApi = (*GitSyncApiService)(&c.common)
 	c.GitSyncErrorsApi = (*GitSyncErrorsApiService)(&c.common)
 	c.GitSyncSettingsApi = (*GitSyncSettingsApiService)(&c.common)
