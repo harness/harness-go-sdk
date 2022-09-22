@@ -1,17 +1,17 @@
-# {{classname}}
+# nextgen{{classname}}
 
-All URIs are relative to *https://app.harness.io/gateway*
+All URIs are relative to *https://qa.harness.io/gateway/ng/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateServiceV2**](ServicesApi.md#CreateServiceV2) | **Post** /ng/api/servicesV2 | Create a Service
-[**CreateServicesV2**](ServicesApi.md#CreateServicesV2) | **Post** /ng/api/servicesV2/batch | Create Services
-[**DeleteServiceV2**](ServicesApi.md#DeleteServiceV2) | **Delete** /ng/api/servicesV2/{serviceIdentifier} | Delete a Service by identifier
-[**GetServiceAccessList**](ServicesApi.md#GetServiceAccessList) | **Get** /ng/api/servicesV2/list/access | Gets Service Access list
-[**GetServiceList**](ServicesApi.md#GetServiceList) | **Get** /ng/api/servicesV2 | Gets Service list
-[**GetServiceV2**](ServicesApi.md#GetServiceV2) | **Get** /ng/api/servicesV2/{serviceIdentifier} | Gets a Service by identifier
-[**UpdateServiceV2**](ServicesApi.md#UpdateServiceV2) | **Put** /ng/api/servicesV2 | Update a Service by identifier
-[**UpsertServiceV2**](ServicesApi.md#UpsertServiceV2) | **Put** /ng/api/servicesV2/upsert | Upsert a Service by identifier
+[**CreateServiceV2**](ServicesApi.md#CreateServiceV2) | **Post** /servicesV2 | Create a Service
+[**CreateServicesV2**](ServicesApi.md#CreateServicesV2) | **Post** /servicesV2/batch | Create Services
+[**DeleteServiceV2**](ServicesApi.md#DeleteServiceV2) | **Delete** /servicesV2/{serviceIdentifier} | Delete a Service by identifier
+[**GetServiceAccessList**](ServicesApi.md#GetServiceAccessList) | **Get** /servicesV2/list/access | Gets Service Access list
+[**GetServiceList**](ServicesApi.md#GetServiceList) | **Get** /servicesV2 | Gets Service list
+[**GetServiceV2**](ServicesApi.md#GetServiceV2) | **Get** /servicesV2/{serviceIdentifier} | Gets a Service by identifier
+[**UpdateServiceV2**](ServicesApi.md#UpdateServiceV2) | **Put** /servicesV2 | Update a Service by identifier
+[**UpsertServiceV2**](ServicesApi.md#UpsertServiceV2) | **Put** /servicesV2/upsert | Upsert a Service by identifier
 
 # **CreateServiceV2**
 > ResponseDtoServiceResponse CreateServiceV2(ctx, accountIdentifier, optional)
@@ -22,7 +22,7 @@ Create a Service
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **accountIdentifier** | **string**| Account Identifier for the Entity | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity. | 
  **optional** | ***ServicesApiCreateServiceV2Opts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -38,7 +38,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey)
+No authorization required
 
 ### HTTP request headers
 
@@ -56,7 +56,7 @@ Create Services
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **accountIdentifier** | **string**| Account Identifier for the Entity | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity. | 
  **optional** | ***ServicesApiCreateServicesV2Opts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey)
+No authorization required
 
 ### HTTP request headers
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **serviceIdentifier** | **string**| Service Identifier for the entity | 
-  **accountIdentifier** | **string**| Account Identifier for the Entity | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity. | 
  **optional** | ***ServicesApiDeleteServiceV2Opts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -101,8 +101,8 @@ Name | Type | Description  | Notes
 
 
  **ifMatch** | **optional.String**|  | 
- **orgIdentifier** | **optional.String**| Organization Identifier for the Entity | 
- **projectIdentifier** | **optional.String**| Project Identifier for the Entity | 
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity. | 
 
 ### Return type
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey)
+No authorization required
 
 ### HTTP request headers
 
@@ -128,7 +128,7 @@ Gets Service Access list
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **accountIdentifier** | **string**| Account Identifier for the Entity | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity. | 
  **optional** | ***ServicesApiGetServiceAccessListOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -136,13 +136,15 @@ Optional parameters are passed through a pointer to a ServicesApiGetServiceAcces
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **page** | **optional.Int32**| Indicates the number of pages. Results for these pages will be retrieved. | [default to 0]
- **size** | **optional.Int32**| The number of the elements to fetch | [default to 100]
- **orgIdentifier** | **optional.String**| Organization Identifier for the Entity | 
- **projectIdentifier** | **optional.String**| Project Identifier for the Entity | 
+ **page** | **optional.Int32**| Page Index of the results to fetch.Default Value: 0 | [default to 0]
+ **size** | **optional.Int32**| Results per page | [default to 100]
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity. | 
  **searchTerm** | **optional.String**| The word to be searched and included in the list response | 
  **serviceIdentifiers** | [**optional.Interface of []string**](string.md)| List of ServicesIds | 
  **sort** | [**optional.Interface of []string**](string.md)| Specifies the sorting criteria of the list. Like sorting based on the last updated entity, alphabetical sorting in an ascending or descending order | 
+ **type_** | **optional.String**|  | 
+ **gitOpsEnabled** | **optional.Bool**|  | 
 
 ### Return type
 
@@ -150,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey)
+No authorization required
 
 ### HTTP request headers
 
@@ -168,7 +170,7 @@ Gets Service list
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **accountIdentifier** | **string**| Account Identifier for the Entity | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity. | 
  **optional** | ***ServicesApiGetServiceListOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -176,13 +178,17 @@ Optional parameters are passed through a pointer to a ServicesApiGetServiceListO
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **page** | **optional.Int32**| Indicates the number of pages. Results for these pages will be retrieved. | [default to 0]
- **size** | **optional.Int32**| The number of the elements to fetch | [default to 100]
- **orgIdentifier** | **optional.String**| Organization Identifier for the Entity | 
- **projectIdentifier** | **optional.String**| Project Identifier for the Entity | 
+ **page** | **optional.Int32**| Page Index of the results to fetch.Default Value: 0 | [default to 0]
+ **size** | **optional.Int32**| Results per page | [default to 100]
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity. | 
  **searchTerm** | **optional.String**| The word to be searched and included in the list response | 
  **serviceIdentifiers** | [**optional.Interface of []string**](string.md)| List of ServicesIds | 
  **sort** | [**optional.Interface of []string**](string.md)| Specifies the sorting criteria of the list. Like sorting based on the last updated entity, alphabetical sorting in an ascending or descending order | 
+ **type_** | **optional.String**|  | 
+ **gitOpsEnabled** | **optional.Bool**|  | 
+ **deploymentTemplateIdentifier** | **optional.String**|  | 
+ **versionLabel** | **optional.String**|  | 
 
 ### Return type
 
@@ -190,7 +196,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey)
+No authorization required
 
 ### HTTP request headers
 
@@ -209,7 +215,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **serviceIdentifier** | **string**| Service Identifier for the entity | 
-  **accountIdentifier** | **string**| Account Identifier for the Entity | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity. | 
  **optional** | ***ServicesApiGetServiceV2Opts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -218,8 +224,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **orgIdentifier** | **optional.String**| Organization Identifier for the Entity | 
- **projectIdentifier** | **optional.String**| Project Identifier for the Entity | 
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity. | 
  **deleted** | **optional.Bool**| Specify whether Service is deleted or not | [default to false]
 
 ### Return type
@@ -228,7 +234,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey)
+No authorization required
 
 ### HTTP request headers
 
@@ -246,7 +252,7 @@ Update a Service by identifier
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **accountIdentifier** | **string**| Account Identifier for the Entity | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity. | 
  **optional** | ***ServicesApiUpdateServiceV2Opts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -263,7 +269,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey)
+No authorization required
 
 ### HTTP request headers
 
@@ -281,7 +287,7 @@ Upsert a Service by identifier
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **accountIdentifier** | **string**| Account Identifier for the Entity | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity. | 
  **optional** | ***ServicesApiUpsertServiceV2Opts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -298,7 +304,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey)
+No authorization required
 
 ### HTTP request headers
 

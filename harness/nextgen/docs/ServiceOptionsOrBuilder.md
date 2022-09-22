@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **UninterpretedOptionCount** | **int32** |  | [optional] [default to null]
 **UninterpretedOptionOrBuilderList** | [**[]UninterpretedOptionOrBuilder**](UninterpretedOptionOrBuilder.md) |  | [optional] [default to null]
 **DefaultInstanceForType** | [***Message**](Message.md) |  | [optional] [default to null]
-**InitializationErrorString** | **string** |  | [optional] [default to null]
-**DescriptorForType** | [***Descriptor**](Descriptor.md) |  | [optional] [default to null]
 **AllFields** | [**map[string]interface{}**](interface{}.md) |  | [optional] [default to null]
+**DescriptorForType** | [***Descriptor**](Descriptor.md) |  | [optional] [default to null]
+**InitializationErrorString** | **string** |  | [optional] [default to null]
 **UnknownFields** | [***UnknownFieldSet**](UnknownFieldSet.md) |  | [optional] [default to null]
 **Initialized** | **bool** |  | [optional] [default to null]
 
