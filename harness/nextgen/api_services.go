@@ -1,7 +1,7 @@
 /*
  * Harness NextGen Software Delivery Platform API Reference
  *
- * This is the Open Api Spec 3 for the NextGen Manager. This is under active development. Beware of the breaking change with respect to the generated code stub
+ * This is the Open Api Spec 3 for the NextGen Manager. This is under active development. Beware of the breaking change with respect to the generated code stub  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * API version: 3.0
  * Contact: contact@harness.io
@@ -50,7 +50,7 @@ func (a *ServicesApiService) CreateServiceV2(ctx context.Context, accountIdentif
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/servicesV2"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/servicesV2"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -79,6 +79,19 @@ func (a *ServicesApiService) CreateServiceV2(ctx context.Context, accountIdentif
 
 		localVarOptionalBody := localVarOptionals.Body.Value()
 		localVarPostBody = &localVarOptionalBody
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -168,7 +181,7 @@ func (a *ServicesApiService) CreateServicesV2(ctx context.Context, accountIdenti
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/servicesV2/batch"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/servicesV2/batch"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -197,6 +210,19 @@ func (a *ServicesApiService) CreateServicesV2(ctx context.Context, accountIdenti
 
 		localVarOptionalBody := localVarOptionals.Body.Value()
 		localVarPostBody = &localVarOptionalBody
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -291,7 +317,7 @@ func (a *ServicesApiService) DeleteServiceV2(ctx context.Context, serviceIdentif
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/servicesV2/{serviceIdentifier}"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/servicesV2/{serviceIdentifier}"
 	localVarPath = strings.Replace(localVarPath, "{"+"serviceIdentifier"+"}", fmt.Sprintf("%v", serviceIdentifier), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -324,6 +350,19 @@ func (a *ServicesApiService) DeleteServiceV2(ctx context.Context, serviceIdentif
 	}
 	if localVarOptionals != nil && localVarOptionals.IfMatch.IsSet() {
 		localVarHeaderParams["If-Match"] = parameterToString(localVarOptionals.IfMatch.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -395,15 +434,13 @@ ServicesApiService Gets Service Access list
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param accountIdentifier Account Identifier for the Entity.
  * @param optional nil or *ServicesApiGetServiceAccessListOpts - Optional Parameters:
-     * @param "Page" (optional.Int32) -  Page Index of the results to fetch.Default Value: 0
-     * @param "Size" (optional.Int32) -  Results per page
+     * @param "Page" (optional.Int32) -  Number of pages.
+     * @param "Size" (optional.Int32) -  Number of Elements to fetch.
      * @param "OrgIdentifier" (optional.String) -  Organization Identifier for the Entity.
      * @param "ProjectIdentifier" (optional.String) -  Project Identifier for the Entity.
      * @param "SearchTerm" (optional.String) -  The word to be searched and included in the list response
      * @param "ServiceIdentifiers" (optional.Interface of []string) -  List of ServicesIds
      * @param "Sort" (optional.Interface of []string) -  Specifies the sorting criteria of the list. Like sorting based on the last updated entity, alphabetical sorting in an ascending or descending order
-     * @param "Type_" (optional.String) -
-     * @param "GitOpsEnabled" (optional.Bool) -
 @return ResponseDtoListServiceResponse
 */
 
@@ -415,8 +452,6 @@ type ServicesApiGetServiceAccessListOpts struct {
 	SearchTerm         optional.String
 	ServiceIdentifiers optional.Interface
 	Sort               optional.Interface
-	Type_              optional.String
-	GitOpsEnabled      optional.Bool
 }
 
 func (a *ServicesApiService) GetServiceAccessList(ctx context.Context, accountIdentifier string, localVarOptionals *ServicesApiGetServiceAccessListOpts) (ResponseDtoListServiceResponse, *http.Response, error) {
@@ -429,7 +464,7 @@ func (a *ServicesApiService) GetServiceAccessList(ctx context.Context, accountId
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/servicesV2/list/access"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/servicesV2/list/access"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -457,12 +492,6 @@ func (a *ServicesApiService) GetServiceAccessList(ctx context.Context, accountId
 	if localVarOptionals != nil && localVarOptionals.Sort.IsSet() {
 		localVarQueryParams.Add("sort", parameterToString(localVarOptionals.Sort.Value(), "multi"))
 	}
-	if localVarOptionals != nil && localVarOptionals.Type_.IsSet() {
-		localVarQueryParams.Add("type", parameterToString(localVarOptionals.Type_.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.GitOpsEnabled.IsSet() {
-		localVarQueryParams.Add("gitOpsEnabled", parameterToString(localVarOptionals.GitOpsEnabled.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -479,6 +508,19 @@ func (a *ServicesApiService) GetServiceAccessList(ctx context.Context, accountId
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -550,32 +592,24 @@ ServicesApiService Gets Service list
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param accountIdentifier Account Identifier for the Entity.
  * @param optional nil or *ServicesApiGetServiceListOpts - Optional Parameters:
-     * @param "Page" (optional.Int32) -  Page Index of the results to fetch.Default Value: 0
-     * @param "Size" (optional.Int32) -  Results per page
+     * @param "Page" (optional.Int32) -  Number of pages.
+     * @param "Size" (optional.Int32) -  Number of Elements to fetch.
      * @param "OrgIdentifier" (optional.String) -  Organization Identifier for the Entity.
      * @param "ProjectIdentifier" (optional.String) -  Project Identifier for the Entity.
      * @param "SearchTerm" (optional.String) -  The word to be searched and included in the list response
      * @param "ServiceIdentifiers" (optional.Interface of []string) -  List of ServicesIds
      * @param "Sort" (optional.Interface of []string) -  Specifies the sorting criteria of the list. Like sorting based on the last updated entity, alphabetical sorting in an ascending or descending order
-     * @param "Type_" (optional.String) -
-     * @param "GitOpsEnabled" (optional.Bool) -
-     * @param "DeploymentTemplateIdentifier" (optional.String) -
-     * @param "VersionLabel" (optional.String) -
 @return ResponseDtoPageResponseServiceResponse
 */
 
 type ServicesApiGetServiceListOpts struct {
-	Page                         optional.Int32
-	Size                         optional.Int32
-	OrgIdentifier                optional.String
-	ProjectIdentifier            optional.String
-	SearchTerm                   optional.String
-	ServiceIdentifiers           optional.Interface
-	Sort                         optional.Interface
-	Type_                        optional.String
-	GitOpsEnabled                optional.Bool
-	DeploymentTemplateIdentifier optional.String
-	VersionLabel                 optional.String
+	Page               optional.Int32
+	Size               optional.Int32
+	OrgIdentifier      optional.String
+	ProjectIdentifier  optional.String
+	SearchTerm         optional.String
+	ServiceIdentifiers optional.Interface
+	Sort               optional.Interface
 }
 
 func (a *ServicesApiService) GetServiceList(ctx context.Context, accountIdentifier string, localVarOptionals *ServicesApiGetServiceListOpts) (ResponseDtoPageResponseServiceResponse, *http.Response, error) {
@@ -588,7 +622,7 @@ func (a *ServicesApiService) GetServiceList(ctx context.Context, accountIdentifi
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/servicesV2"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/servicesV2"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -616,18 +650,6 @@ func (a *ServicesApiService) GetServiceList(ctx context.Context, accountIdentifi
 	if localVarOptionals != nil && localVarOptionals.Sort.IsSet() {
 		localVarQueryParams.Add("sort", parameterToString(localVarOptionals.Sort.Value(), "multi"))
 	}
-	if localVarOptionals != nil && localVarOptionals.Type_.IsSet() {
-		localVarQueryParams.Add("type", parameterToString(localVarOptionals.Type_.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.GitOpsEnabled.IsSet() {
-		localVarQueryParams.Add("gitOpsEnabled", parameterToString(localVarOptionals.GitOpsEnabled.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.DeploymentTemplateIdentifier.IsSet() {
-		localVarQueryParams.Add("deploymentTemplateIdentifier", parameterToString(localVarOptionals.DeploymentTemplateIdentifier.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.VersionLabel.IsSet() {
-		localVarQueryParams.Add("versionLabel", parameterToString(localVarOptionals.VersionLabel.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -644,6 +666,19 @@ func (a *ServicesApiService) GetServiceList(ctx context.Context, accountIdentifi
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -738,7 +773,7 @@ func (a *ServicesApiService) GetServiceV2(ctx context.Context, serviceIdentifier
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/servicesV2/{serviceIdentifier}"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/servicesV2/{serviceIdentifier}"
 	localVarPath = strings.Replace(localVarPath, "{"+"serviceIdentifier"+"}", fmt.Sprintf("%v", serviceIdentifier), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -771,6 +806,19 @@ func (a *ServicesApiService) GetServiceV2(ctx context.Context, serviceIdentifier
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -862,7 +910,7 @@ func (a *ServicesApiService) UpdateServiceV2(ctx context.Context, accountIdentif
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/servicesV2"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/servicesV2"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -894,6 +942,19 @@ func (a *ServicesApiService) UpdateServiceV2(ctx context.Context, accountIdentif
 
 		localVarOptionalBody := localVarOptionals.Body.Value()
 		localVarPostBody = &localVarOptionalBody
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -985,7 +1046,7 @@ func (a *ServicesApiService) UpsertServiceV2(ctx context.Context, accountIdentif
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/servicesV2/upsert"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/servicesV2/upsert"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1017,6 +1078,19 @@ func (a *ServicesApiService) UpsertServiceV2(ctx context.Context, accountIdentif
 
 		localVarOptionalBody := localVarOptionals.Body.Value()
 		localVarPostBody = &localVarOptionalBody
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
