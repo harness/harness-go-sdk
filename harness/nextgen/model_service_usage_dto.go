@@ -10,11 +10,11 @@
 package nextgen
 
 type ServiceUsageDto struct {
-	AccountIdentifier string `json:"accountIdentifier,omitempty"`
-	Module string `json:"module,omitempty"`
-	Timestamp int64 `json:"timestamp,omitempty"`
-	ActiveServices *UsageDataDto `json:"activeServices,omitempty"`
+	AccountIdentifier      string        `json:"accountIdentifier,omitempty"`
+	Module                 string        `json:"module,omitempty"`
+	Timestamp              int64         `json:"timestamp,omitempty"`
+	ActiveServices         *UsageDataDto `json:"activeServices,omitempty"`
 	ActiveServiceInstances *UsageDataDto `json:"activeServiceInstances,omitempty"`
-	CdLicenseType string `json:"cdLicenseType,omitempty"`
-	ServiceLicenses *UsageDataDto `json:"serviceLicenses,omitempty"`
+	CdLicenseType          string        `json:"cdLicenseType,omitempty"`
+	ServiceLicenses        *UsageDataDto `json:"serviceLicenses,omitempty"`
 }
