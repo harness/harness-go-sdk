@@ -307,6 +307,7 @@ func (a *AgentClusterServiceApiService) AgentClusterServiceGet(ctx context.Conte
 		localVarReturnValue Servicev1Cluster
 	)
 
+	// ctx = context.WithValue(ctx, ContextAccessToken, helpers.EnvVars.BearerToken.Get())
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/gitops/api/v1/agents/{agentIdentifier}/clusters/{identifier}"
 	localVarPath = strings.Replace(localVarPath, "{"+"agentIdentifier"+"}", fmt.Sprintf("%v", agentIdentifier), -1)
