@@ -94,6 +94,8 @@ type APIClient struct {
 
 	DelegateTokenResourceApi *DelegateTokenResourceApiService
 
+	DelegateDownloadResourceApi *DelegateDownloadResourceApiService
+
 	EnvironmentsApi *EnvironmentsApiService
 
 	EnvironmentGroupApi *EnvironmentGroupApiService
@@ -218,6 +220,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CloudCostRecommendationsApi = (*CloudCostRecommendationsApiService)(&c.common)
 	c.CloudCostRecommendationsDetailsApi = (*CloudCostRecommendationsDetailsApiService)(&c.common)
 	c.ConnectorsApi = (*ConnectorsApiService)(&c.common)
+	c.DelegateDownloadResourceApi = (*DelegateDownloadResourceApiService)(&c.common)
 	c.DelegateGroupTagsResourceApi = (*DelegateGroupTagsResourceApiService)(&c.common)
 	c.DelegateTokenResourceApi = (*DelegateTokenResourceApiService)(&c.common)
 	c.EnvironmentsApi = (*EnvironmentsApiService)(&c.common)
