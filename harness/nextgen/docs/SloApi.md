@@ -5,9 +5,9 @@ All URIs are relative to *https://{{host}}/cv/api*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**SaveSLODataNg**](SloApi.md#SaveSLODataNg) | **Post** /account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/slo/v2 | saves slo data
-[**GetServiceLevelObjectiveNg**](SloApi.md#GetServiceLevelObjectiveNg) | **Get** /account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/identifier/{identifier}/slo/v2 | get service level objective data
-[**UpdateSLODataNg**](SloApi.md#UpdateSLODataNg) | **Put** /account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/identifier/{identifier}/slo/v2 | update slo data
-[**DeleteSLODataNg**](SloApi.md#DeleteSLODataNg) | **Delete** /account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/identifier/{identifier}/slo/v2 | delete slo data
+[**GetServiceLevelObjectiveNg**](SloApi.md#GetServiceLevelObjectiveNg) | **Get** /account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/slo/v2/identifier/{identifier} | get service level objective data
+[**UpdateSLODataNg**](SloApi.md#UpdateSLODataNg) | **Put** /account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/slo/v2/identifier/{identifier} | update slo data
+[**DeleteSLODataNg**](SloApi.md#DeleteSLODataNg) | **Delete** /account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/slo/v2/identifier/{identifier} | delete slo data
 
 # **SaveSLODataNg**
 > RestResponseServiceLevelObjectiveV2Response SaveSLODataNg(ctx, accountIdentifier, orgIdentifier, projectIdentifier, optional)
