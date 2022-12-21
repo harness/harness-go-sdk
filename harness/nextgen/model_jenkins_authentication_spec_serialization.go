@@ -20,10 +20,12 @@ func (a *JenkinsAuthentication) UnmarshalJSON(data []byte) error {
 	}
 
 	switch a.Type_ {
-	case "JenkinsBearerToken":
+	case "BearerToken":
 		err = json.Unmarshal(aux.Spec, &a.JenkinsBearerToken)
-	case "JenkinsUserNamePassword":
+	case "UsernamePassword":
 		err = json.Unmarshal(aux.Spec, &a.JenkinsUserNamePassword)
+	case "Anonymous":
+		//noop
 	default:
 		panic(fmt.Sprintf("unknown authentication type %s", a.Type_))
 	}
@@ -38,10 +40,12 @@ func (a *JenkinsAuthentication) MarshalJSON() ([]byte, error) {
 	var err error
 
 	switch a.Type_ {
-	case "JenkinsBearerToken":
+	case "BearerToken":
 		spec, err = json.Marshal(a.JenkinsBearerToken)
-	case "JenkinsUserNamePassword":
+	case "UsernamePassword":
 		spec, err = json.Marshal(a.JenkinsUserNamePassword)
+	case "Anonymous":
+		//noop
 	default:
 		panic(fmt.Sprintf("unknown authentication type %s", a.Type_))
 	}
