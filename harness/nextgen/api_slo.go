@@ -163,7 +163,7 @@ func (a *SloApiService) GetServiceLevelObjectiveNg(ctx context.Context, accountI
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/cv/api" + "/account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/identifier/{identifier}" + "/slo/v2"
+	localVarPath := a.client.cfg.BasePath + "/cv/api" + "/account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/slo/v2/identifier/{identifier}"
 	localVarPath = strings.Replace(localVarPath, "{"+"accountIdentifier"+"}", fmt.Sprintf("%v", accountIdentifier), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"orgIdentifier"+"}", fmt.Sprintf("%v", orgIdentifier), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"projectIdentifier"+"}", fmt.Sprintf("%v", projectIdentifier), -1)
@@ -270,7 +270,7 @@ func (a *SloApiService) UpdateSLODataNg(ctx context.Context, accountIdentifier s
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/cv/api" + "/account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/identifier/{identifier}" + "/slo/v2"
+	localVarPath := a.client.cfg.BasePath + "/cv/api" + "/account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/slo/v2/identifier/{identifier}"
 	localVarPath = strings.Replace(localVarPath, "{"+"accountIdentifier"+"}", fmt.Sprintf("%v", accountIdentifier), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"orgIdentifier"+"}", fmt.Sprintf("%v", orgIdentifier), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"projectIdentifier"+"}", fmt.Sprintf("%v", projectIdentifier), -1)
@@ -380,7 +380,7 @@ func (a *SloApiService) DeleteSLODataNg(ctx context.Context, accountIdentifier s
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/cv/api" + "/account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/identifier/{identifier}" + "/slo/v2"
+	localVarPath := a.client.cfg.BasePath + "/cv/api" + "/account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/slo/v2/identifier/{identifier}"
 	localVarPath = strings.Replace(localVarPath, "{"+"accountIdentifier"+"}", fmt.Sprintf("%v", accountIdentifier), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"orgIdentifier"+"}", fmt.Sprintf("%v", orgIdentifier), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"projectIdentifier"+"}", fmt.Sprintf("%v", projectIdentifier), -1)
