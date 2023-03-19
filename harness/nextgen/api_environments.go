@@ -307,20 +307,22 @@ func (a *EnvironmentsApiService) DeleteEnvironmentV2(ctx context.Context, enviro
 EnvironmentsApiService Delete a ServiceOverride entity
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param accountIdentifier Account Identifier for the Entity.
- * @param orgIdentifier Organization Identifier for the Entity.
- * @param projectIdentifier Project Identifier for the Entity.
  * @param optional nil or *EnvironmentsApiDeleteServiceOverrideOpts - Optional Parameters:
+     * @param "OrgIdentifier" (optional.String) -  Organization Identifier for the Entity.
+     * @param "ProjectIdentifier" (optional.String) -  Project Identifier for the Entity.
      * @param "EnvironmentIdentifier" (optional.String) -  Environment Identifier for the Entity.
      * @param "ServiceIdentifier" (optional.String) -  Service Identifier for the Entity.
 @return ResponseDtoBoolean
 */
 
 type EnvironmentsApiDeleteServiceOverrideOpts struct {
+	OrgIdentifier         optional.String
+	ProjectIdentifier     optional.String
 	EnvironmentIdentifier optional.String
 	ServiceIdentifier     optional.String
 }
 
-func (a *EnvironmentsApiService) DeleteServiceOverride(ctx context.Context, accountIdentifier string, orgIdentifier string, projectIdentifier string, localVarOptionals *EnvironmentsApiDeleteServiceOverrideOpts) (ResponseDtoBoolean, *http.Response, error) {
+func (a *EnvironmentsApiService) DeleteServiceOverride(ctx context.Context, accountIdentifier string, localVarOptionals *EnvironmentsApiDeleteServiceOverrideOpts) (ResponseDtoBoolean, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Delete")
 		localVarPostBody    interface{}
@@ -337,11 +339,11 @@ func (a *EnvironmentsApiService) DeleteServiceOverride(ctx context.Context, acco
 	localVarFormParams := url.Values{}
 
 	localVarQueryParams.Add("accountIdentifier", parameterToString(accountIdentifier, ""))
-	if len(orgIdentifier) > 0 {
-		localVarQueryParams.Add("orgIdentifier", parameterToString(orgIdentifier, ""))
+	if localVarOptionals != nil && localVarOptionals.OrgIdentifier.IsSet() {
+		localVarQueryParams.Add("orgIdentifier", parameterToString(localVarOptionals.OrgIdentifier.Value(), ""))
 	}
-	if len(projectIdentifier) > 0 {
-		localVarQueryParams.Add("projectIdentifier", parameterToString(projectIdentifier, ""))
+	if localVarOptionals != nil && localVarOptionals.ProjectIdentifier.IsSet() {
+		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.EnvironmentIdentifier.IsSet() {
 		localVarQueryParams.Add("environmentIdentifier", parameterToString(localVarOptionals.EnvironmentIdentifier.Value(), ""))
