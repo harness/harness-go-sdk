@@ -337,8 +337,12 @@ func (a *EnvironmentsApiService) DeleteServiceOverride(ctx context.Context, acco
 	localVarFormParams := url.Values{}
 
 	localVarQueryParams.Add("accountIdentifier", parameterToString(accountIdentifier, ""))
-	localVarQueryParams.Add("orgIdentifier", parameterToString(orgIdentifier, ""))
-	localVarQueryParams.Add("projectIdentifier", parameterToString(projectIdentifier, ""))
+	if len(orgIdentifier) > 0 {
+		localVarQueryParams.Add("orgIdentifier", parameterToString(orgIdentifier, ""))
+	}
+	if len(projectIdentifier) > 0 {
+		localVarQueryParams.Add("projectIdentifier", parameterToString(projectIdentifier, ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.EnvironmentIdentifier.IsSet() {
 		localVarQueryParams.Add("environmentIdentifier", parameterToString(localVarOptionals.EnvironmentIdentifier.Value(), ""))
 	}
