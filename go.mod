@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/antihax/optional v1.0.0
-	github.com/docker/docker v20.10.22+incompatible
+	github.com/docker/docker v23.0.4+incompatible
 	github.com/hashicorp/go-cleanhttp v0.5.2
 	github.com/hashicorp/go-retryablehttp v0.7.1
 	github.com/jinzhu/copier v0.3.5
