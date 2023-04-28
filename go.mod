@@ -8,7 +8,7 @@ require (
 	github.com/hashicorp/go-cleanhttp v0.5.2
 	github.com/hashicorp/go-retryablehttp v0.7.1
 	github.com/jinzhu/copier v0.3.5
-	github.com/opencontainers/image-spec v1.1.0-rc2
+	github.com/opencontainers/image-spec v1.1.0-rc.3
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.0
 	github.com/stretchr/testify v1.7.1
