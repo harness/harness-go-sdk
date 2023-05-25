@@ -327,6 +327,14 @@ Class | Method | HTTP request | Description
 *ServicesApi* | [**GetServiceV2**](docs/ServicesApi.md#getservicev2) | **Get** /ng/api/servicesV2/{serviceIdentifier} | Gets a Service by identifier
 *ServicesApi* | [**UpdateServiceV2**](docs/ServicesApi.md#updateservicev2) | **Put** /ng/api/servicesV2 | Update a Service by identifier
 *ServicesApi* | [**UpsertServiceV2**](docs/ServicesApi.md#upsertservicev2) | **Put** /ng/api/servicesV2/upsert | Upsert a Service by identifier
+*ServiceOverridesApi* | [**CreateServiceOverrideV2**](docs/ServiceOverridesApi.md#createserviceoverridev2) | **Post** /serviceOverrides | Create an ServiceOverride Entity
+*ServiceOverridesApi* | [**DeleteServiceOverrideV2**](docs/ServiceOverridesApi.md#deleteserviceoverridev2) | **Delete** /serviceOverrides/{identifier} | Delete a Service Override entity
+*ServiceOverridesApi* | [**GetServiceOverrideListV2**](docs/ServiceOverridesApi.md#getserviceoverridelistv2) | **Get** /serviceOverrides/list | Gets Service Override List
+*ServiceOverridesApi* | [**GetServiceOverridesV2**](docs/ServiceOverridesApi.md#getserviceoverridesv2) | **Get** /serviceOverrides/{identifier} | Gets Service Overrides by Identifier
+*ServiceOverridesApi* | [**MigrateServiceOverride**](docs/ServiceOverridesApi.md#migrateserviceoverride) | **Post** /serviceOverrides/migrate | Migrate ServiceOverride to V2
+*ServiceOverridesApi* | [**MigrateServiceOverrideScoped**](docs/ServiceOverridesApi.md#migrateserviceoverridescoped) | **Post** /serviceOverrides/migrateScope | Migrate ServiceOverride to V2 at one scope
+*ServiceOverridesApi* | [**UpdateServiceOverrideV2**](docs/ServiceOverridesApi.md#updateserviceoverridev2) | **Put** /serviceOverrides | Update an ServiceOverride Entity
+*ServiceOverridesApi* | [**UpsertServiceOverrideV2**](docs/ServiceOverridesApi.md#upsertserviceoverridev2) | **Post** /serviceOverrides/upsert | Upsert an ServiceOverride Entity
 *SloApi* | [**DeleteSLODataNg**](docs/SloApi.md#deleteslodatang) | **Delete** /account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/slo/v2/identifier/{identifier} | delete slo data
 *SloApi* | [**GetServiceLevelObjectiveNg**](docs/SloApi.md#getservicelevelobjectiveng) | **Get** /account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/slo/v2/identifier/{identifier} | get service level objective data
 *SloApi* | [**SaveSLODataNg**](docs/SloApi.md#saveslodatang) | **Post** /account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/slo/v2 | saves slo data
@@ -871,6 +879,8 @@ Class | Method | HTTP request | Description
  - [NexusConnector](docs/NexusConnector.md)
  - [NexusUsernamePasswordAuth](docs/NexusUsernamePasswordAuth.md)
  - [NgAuthSettings](docs/NgAuthSettings.md)
+ - [NgServiceOverrideConfig](docs/NgServiceOverrideConfig.md)
+ - [NgServiceOverrideInfoConfig](docs/NgServiceOverrideInfoConfig.md)
  - [NgSmtp](docs/NgSmtp.md)
  - [NgTag](docs/NgTag.md)
  - [NgTriggerDetailsResponseDto](docs/NgTriggerDetailsResponseDto.md)
@@ -901,6 +911,7 @@ Class | Method | HTTP request | Description
  - [PagerDutyChangeSourceSpec](docs/PagerDutyChangeSourceSpec.md)
  - [PagePipelineExecutionSummary](docs/PagePipelineExecutionSummary.md)
  - [PagePmsPipelineSummaryResponse](docs/PagePmsPipelineSummaryResponse.md)
+ - [PageServiceOverridesResponseDtov2](docs/PageServiceOverridesResponseDtov2.md)
  - [PageResponseApiKeyAggregate](docs/PageResponseApiKeyAggregate.md)
  - [PageResponseAuditEventDto](docs/PageResponseAuditEventDto.md)
  - [PageResponseConnectorResponse](docs/PageResponseConnectorResponse.md)
@@ -1233,6 +1244,7 @@ Class | Method | HTTP request | Description
  - [ResponseMessageExceptionStackTrace](docs/ResponseMessageExceptionStackTrace.md)
  - [ResponseMessageExceptionSuppressed](docs/ResponseMessageExceptionSuppressed.md)
  - [ResponseMonitoredServiceResponse](docs/ResponseMonitoredServiceResponse.md)
+ - [ResponseServiceOverridesResponseDtov2](docs/ResponseServiceOverridesResponseDtov2.md)
  - [RestResponse](docs/RestResponse.md)
  - [RestResponseAuthenticationSettingsResponse](docs/RestResponseAuthenticationSettingsResponse.md)
  - [RestResponseBoolean](docs/RestResponseBoolean.md)
@@ -1318,6 +1330,9 @@ Class | Method | HTTP request | Description
  - [ServiceNowConnector](docs/ServiceNowConnector.md)
  - [ServiceOptions](docs/ServiceOptions.md)
  - [ServiceOptionsOrBuilder](docs/ServiceOptionsOrBuilder.md)
+ - [ServiceOverrideRequestDtov2](docs/ServiceOverrideRequestDtov2.md)
+ - [ServiceOverridesResponseDtov2](docs/ServiceOverridesResponseDtov2.md)
+ - [ServiceOverridesSpec](docs/ServiceOverridesSpec.md)
  - [ServiceRequest](docs/ServiceRequest.md)
  - [ServiceResponse](docs/ServiceResponse.md)
  - [ServiceResponseDetails](docs/ServiceResponseDetails.md)
