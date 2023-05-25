@@ -331,8 +331,6 @@ Class | Method | HTTP request | Description
 *ServiceOverridesApi* | [**DeleteServiceOverrideV2**](docs/ServiceOverridesApi.md#deleteserviceoverridev2) | **Delete** /serviceOverrides/{identifier} | Delete a Service Override entity
 *ServiceOverridesApi* | [**GetServiceOverrideListV2**](docs/ServiceOverridesApi.md#getserviceoverridelistv2) | **Get** /serviceOverrides/list | Gets Service Override List
 *ServiceOverridesApi* | [**GetServiceOverridesV2**](docs/ServiceOverridesApi.md#getserviceoverridesv2) | **Get** /serviceOverrides/{identifier} | Gets Service Overrides by Identifier
-*ServiceOverridesApi* | [**MigrateServiceOverride**](docs/ServiceOverridesApi.md#migrateserviceoverride) | **Post** /serviceOverrides/migrate | Migrate ServiceOverride to V2
-*ServiceOverridesApi* | [**MigrateServiceOverrideScoped**](docs/ServiceOverridesApi.md#migrateserviceoverridescoped) | **Post** /serviceOverrides/migrateScope | Migrate ServiceOverride to V2 at one scope
 *ServiceOverridesApi* | [**UpdateServiceOverrideV2**](docs/ServiceOverridesApi.md#updateserviceoverridev2) | **Put** /serviceOverrides | Update an ServiceOverride Entity
 *ServiceOverridesApi* | [**UpsertServiceOverrideV2**](docs/ServiceOverridesApi.md#upsertserviceoverridev2) | **Post** /serviceOverrides/upsert | Upsert an ServiceOverride Entity
 *SloApi* | [**DeleteSLODataNg**](docs/SloApi.md#deleteslodatang) | **Delete** /account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/slo/v2/identifier/{identifier} | delete slo data
@@ -1244,6 +1242,7 @@ Class | Method | HTTP request | Description
  - [ResponseMessageExceptionStackTrace](docs/ResponseMessageExceptionStackTrace.md)
  - [ResponseMessageExceptionSuppressed](docs/ResponseMessageExceptionSuppressed.md)
  - [ResponseMonitoredServiceResponse](docs/ResponseMonitoredServiceResponse.md)
+ - [ResponsePageServiceOverridesResponseDtov2](docs/ResponsePageServiceOverridesResponseDtov2.md)
  - [ResponseServiceOverridesResponseDtov2](docs/ResponseServiceOverridesResponseDtov2.md)
  - [RestResponse](docs/RestResponse.md)
  - [RestResponseAuthenticationSettingsResponse](docs/RestResponseAuthenticationSettingsResponse.md)
