@@ -877,8 +877,6 @@ Class | Method | HTTP request | Description
  - [NexusConnector](docs/NexusConnector.md)
  - [NexusUsernamePasswordAuth](docs/NexusUsernamePasswordAuth.md)
  - [NgAuthSettings](docs/NgAuthSettings.md)
- - [NgServiceOverrideConfig](docs/NgServiceOverrideConfig.md)
- - [NgServiceOverrideInfoConfig](docs/NgServiceOverrideInfoConfig.md)
  - [NgSmtp](docs/NgSmtp.md)
  - [NgTag](docs/NgTag.md)
  - [NgTriggerDetailsResponseDto](docs/NgTriggerDetailsResponseDto.md)
