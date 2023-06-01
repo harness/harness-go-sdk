@@ -14,11 +14,9 @@ the breaking change with respect to the generated code stub  # Authentication  <
 package nextgen
 
 type ServiceOverridesSpec struct {
-	/*
-		Variables []NgVariable `json:"variables,omitempty"`
-		Manifests []ManifestConfigWrapper `json:"manifests,omitempty"`
-		ConfigFiles []ConfigFileWrapper `json:"configFiles,omitempty"`
-		ApplicationSettings *ApplicationSettingsConfiguration `json:"applicationSettings,omitempty"`
-		ConnectionStrings *ConnectionStringsConfiguration `json:"connectionStrings,omitempty"`
-	*/
+	Variables           []NgVariable                      `json:"variables,omitempty"`
+	Manifests           []ManifestConfigWrapper           `json:"manifests,omitempty"`
+	ConfigFiles         []ConfigFileWrapper               `json:"configFiles,omitempty"`
+	ApplicationSettings *ApplicationSettingsConfiguration `json:"applicationSettings,omitempty"`
+	ConnectionStrings   *ConnectionStringsConfiguration   `json:"connectionStrings,omitempty"`
 }

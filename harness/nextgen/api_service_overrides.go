@@ -55,7 +55,7 @@ func (a *ServiceOverridesApiService) CreateServiceOverrideV2(ctx context.Context
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/serviceOverrides"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/serviceOverrides"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -182,7 +182,7 @@ func (a *ServiceOverridesApiService) DeleteServiceOverrideV2(ctx context.Context
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/serviceOverrides/{identifier}"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/serviceOverrides/{identifier}"
 	localVarPath = strings.Replace(localVarPath, "{"+"identifier"+"}", fmt.Sprintf("%v",
 		identifier), -1)
 
@@ -318,7 +318,7 @@ func (a *ServiceOverridesApiService) GetServiceOverrideListV2(ctx context.Contex
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/serviceOverrides/list"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/serviceOverrides/list"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -457,7 +457,7 @@ func (a *ServiceOverridesApiService) GetServiceOverridesV2(ctx context.Context, 
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/serviceOverrides/{identifier}"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/serviceOverrides/{identifier}"
 	localVarPath = strings.Replace(localVarPath, "{"+"identifier"+"}", fmt.Sprintf("%v",
 		identifier), -1)
 
@@ -575,7 +575,7 @@ func (a *ServiceOverridesApiService) UpdateServiceOverrideV2(ctx context.Context
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/serviceOverrides"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/serviceOverrides"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -699,7 +699,7 @@ func (a *ServiceOverridesApiService) UpsertServiceOverrideV2(ctx context.Context
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/serviceOverrides/upsert"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/serviceOverrides/upsert"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -728,6 +728,19 @@ func (a *ServiceOverridesApiService) UpsertServiceOverrideV2(ctx context.Context
 
 		localVarOptionalBody := localVarOptionals.Body.Value()
 		localVarPostBody = &localVarOptionalBody
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody,
 		localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -771,17 +784,19 @@ func (a *ServiceOverridesApiService) UpsertServiceOverrideV2(ctx context.Context
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		if localVarHttpResponse.StatusCode == 400 {
-			var v Failure
-			err = a.client.decode(&v, localVarBody,
-				localVarHttpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+		/*
+			if localVarHttpResponse.StatusCode == 400 {
+				var v Failure
+				err = a.client.decode(&v, localVarBody,
+					localVarHttpResponse.Header.Get("Content-Type"))
+				if err != nil {
+					newErr.error = err.Error()
+					return localVarReturnValue, localVarHttpResponse, newErr
+				}
+				newErr.model = v
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
-			newErr.model = v
-			return localVarReturnValue, localVarHttpResponse, newErr
-		}
+		*/
 		if localVarHttpResponse.StatusCode == 500 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody,

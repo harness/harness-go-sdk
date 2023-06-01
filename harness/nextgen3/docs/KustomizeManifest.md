@@ -1,0 +1,16 @@
+# KustomizeManifest
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Store** | [***StoreConfigWrapper**](StoreConfigWrapper.md) |  | [optional] [default to null]
+**OverlayConfiguration** | [***OverlayConfiguration**](OverlayConfiguration.md) |  | [optional] [default to null]
+**PatchesPaths** | **[]string** |  | [optional] [default to null]
+**SkipResourceVersioning** | [***ParameterFieldBoolean**](ParameterFieldBoolean.md) |  | [optional] [default to null]
+**EnableDeclarativeRollback** | [***ParameterFieldBoolean**](ParameterFieldBoolean.md) |  | [optional] [default to null]
+**PluginPath** | **string** |  | [optional] [default to null]
+**CommandFlags** | [**[]KustomizeManifestCommandFlag**](KustomizeManifestCommandFlag.md) |  | [optional] [default to null]
+**Metadata** | **string** |  | [optional] [default to null]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
