@@ -9,20 +9,20 @@
  */
 package nextgen
 
-// Git Experience related details of the Entity.
-type GitDetails struct {
-	// Object identifier / blob id
-	ObjectId string `json:"object_id,omitempty"`
+// Contains parameters related to creating an Entity for Git Experience.
+type GitCreateDetails struct {
 	// Name of the branch.
 	BranchName string `json:"branch_name,omitempty"`
 	// File path of the Entity in the repository.
 	FilePath string `json:"file_path,omitempty"`
+	// Commit message used for the merge commit.
+	CommitMessage string `json:"commit_message,omitempty"`
+	// Name of the default branch (this checks out a new branch titled by branch_name).
+	BaseBranch string `json:"base_branch,omitempty"`
+	// Identifier of the Harness Connector used for CRUD operations on the Entity.
+	ConnectorRef string `json:"connector_ref,omitempty"`
+	// Specifies whether the Entity is to be stored in Git or not.
+	StoreType string `json:"store_type,omitempty"`
 	// Name of the repository.
 	RepoName string `json:"repo_name,omitempty"`
-	// Latest commit identifier.
-	CommitId string `json:"commit_id,omitempty"`
-	// File URL of the Entity.
-	FileUrl string `json:"file_url,omitempty"`
-	// Repository URL of the Entity.
-	RepoUrl string `json:"repo_url,omitempty"`
 }
