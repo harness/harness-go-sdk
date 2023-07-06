@@ -314,7 +314,7 @@ func (c *ConfigAsCodeClient) UpsertObject(input interface{}, filePath cac.YamlPa
 	}
 
 	// Upsert the yaml document
-	_, err := c.UpsertYamlEntity(filePath, input)
+	cacEntity, err := c.UpsertYamlEntity(filePath, input)
 	if err != nil {
 		return err
 	}
@@ -322,6 +322,11 @@ func (c *ConfigAsCodeClient) UpsertObject(input interface{}, filePath cac.YamlPa
 	appId, ok := utils.TryGetFieldValue(input, "ApplicationId")
 	if !ok {
 		appId = ""
+	}
+
+	// If EntityId is set, we do not want to do a lookup using #FindObjectByPath
+	if cacEntity != nil && cacEntity.EntityId != "" {
+		return nil
 	}
 
 	err = c.FindObjectByPath(appId.(string), filePath, responseObj)
