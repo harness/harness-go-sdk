@@ -8,5 +8,5 @@ output:
 linters-settings:
   errcheck:
     exclude-functions:
-      - io.Copy(os.Stdout)
+      - io.Copy(os.Stdouttt)
       - encoding/json.Indent
