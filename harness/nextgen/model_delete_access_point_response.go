@@ -9,8 +9,6 @@
  */
 package nextgen
 
-type GetAccessPointResponse struct {
-	Response *AccessPoint `json:"response,omitempty"`
-	Errors   []string     `json:"errors,omitempty"`
-	Success  bool         `json:"success"`
+type DeleteAccessPointResponse struct {
+	Errors []string `json:"errors,omitempty"`
 }

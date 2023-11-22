@@ -80,7 +80,6 @@ func (a *CloudCostAutoStoppingFixedSchedulesApiService) CreateAutoStoppingSchedu
 				key = auth.Key
 			}
 			localVarHeaderParams["x-api-key"] = key
-
 		}
 	}
 
@@ -180,7 +179,6 @@ func (a *CloudCostAutoStoppingFixedSchedulesApiService) GetFixedSchedule(ctx con
 				key = auth.Key
 			}
 			localVarHeaderParams["x-api-key"] = key
-
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -277,7 +275,6 @@ func (a *CloudCostAutoStoppingFixedSchedulesApiService) DeleteAutoStoppingFixedS
 				key = auth.Key
 			}
 			localVarHeaderParams["x-api-key"] = key
-
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
