@@ -102,9 +102,9 @@ func (a *CloudCostAutoStoppingFixedSchedulesApiService) CreateAutoStoppingSchedu
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
@@ -113,29 +113,11 @@ func (a *CloudCostAutoStoppingFixedSchedulesApiService) CreateAutoStoppingSchedu
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-
-		if localVarHttpResponse.StatusCode == 201 {
-			var v FixedScheduleCreateResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHttpResponse, newErr
-			}
-			newErr.model = v
+		if err != nil {
+			newErr.error = err.Error()
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-
-		if localVarHttpResponse.StatusCode == 400 {
-			var v Model400BadRequestResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHttpResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-
+		newErr.error = strings.Join(localVarReturnValue.Errors, ", ")
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -217,9 +199,9 @@ func (a *CloudCostAutoStoppingFixedSchedulesApiService) GetFixedSchedule(ctx con
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
@@ -228,18 +210,11 @@ func (a *CloudCostAutoStoppingFixedSchedulesApiService) GetFixedSchedule(ctx con
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-
-		if localVarHttpResponse.StatusCode == 200 {
-			var v FixedSchedulesGetResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHttpResponse, newErr
-			}
-			newErr.model = v
+		if err != nil {
+			newErr.error = err.Error()
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-
+		newErr.error = strings.Join(localVarReturnValue.Errors, ", ")
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -321,9 +296,9 @@ func (a *CloudCostAutoStoppingFixedSchedulesApiService) DeleteAutoStoppingFixedS
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
@@ -332,18 +307,11 @@ func (a *CloudCostAutoStoppingFixedSchedulesApiService) DeleteAutoStoppingFixedS
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-
-		if localVarHttpResponse.StatusCode == 200 {
-			var v FixedScheduleDeleteResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHttpResponse, newErr
-			}
-			newErr.model = v
+		if err != nil {
+			newErr.error = err.Error()
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-
+		newErr.error = strings.Join(localVarReturnValue.Errors, ", ")
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
