@@ -1,4 +1,4 @@
-# Harness SDK for Go
+# Harness SDK for Go 
 
 This project is a Harness SDK for the go programming language. It provides go client for interacting with the current gen GraphQL and Config-as-Code API's.
 
