@@ -19,7 +19,5 @@ type ServiceLevelIndicatorDto struct {
 	Request    *RequestBasedServiceLevelIndicatorSpec `json:"-"`
 	MetricLess *MetricLessServiceLevelIndicatorSpec   `json:"-"`
 
-	Spec               json.RawMessage `json:"spec"`
-	SliMissingDataType string          `json:"sliMissingDataType"`
-	HealthSourceRef    string          `json:"healthSourceRef,omitempty"`
+	Spec json.RawMessage `json:"spec"`
 }
