@@ -11,7 +11,7 @@ package nextgen
 
 type SimpleServiceLevelObjectiveSpec struct {
 	MonitoredServiceRef string `json:"monitoredServiceRef"`
-	HealthSourceRef string `json:"healthSourceRef"`
-	ServiceLevelIndicatorType string `json:"serviceLevelIndicatorType"`
+	HealthSourceRef     string `json:"healthSourceRef"`
+	//ServiceLevelIndicatorType string `json:"serviceLevelIndicatorType"`
 	ServiceLevelIndicators []ServiceLevelIndicatorDto `json:"serviceLevelIndicators"`
 }
