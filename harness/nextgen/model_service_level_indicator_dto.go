@@ -12,10 +12,8 @@ package nextgen
 import "encoding/json"
 
 type ServiceLevelIndicatorDto struct {
-	Name       string `json:"name,omitempty"`
-	Identifier string `json:"identifier,omitempty"`
-	//Type_              SLIEvaluationType          `json:"type"`
-	//Spec               *ServiceLevelIndicatorSpec `json:"spec"`
+	Name       string                                 `json:"name,omitempty"`
+	Identifier string                                 `json:"identifier,omitempty"`
 	Type_      SLIEvaluationType                      `json:"type,omitempty"`
 	Window     *WindowBasedServiceLevelIndicatorSpec  `json:"-"`
 	Request    *RequestBasedServiceLevelIndicatorSpec `json:"-"`
