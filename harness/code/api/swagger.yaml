@@ -1,0 +1,305 @@
+openapi: 3.0.0
+info:
+  title: API Specification
+  version: 0.0.0
+servers:
+- url: /api/v1
+security:
+- bearerAuth: []
+paths:
+  /repos:
+    post:
+      tags:
+      - repository
+      operationId: createRepository
+      parameters:
+      - name: space_path
+        in: query
+        description: path of parent space (Not needed in standalone).
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: "false"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OpenapiCreateRepositoryRequest'
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypesRepository'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+  /repos/{repo_ref}:
+    get:
+      tags:
+      - repository
+      operationId: findRepository
+      parameters:
+      - name: repo_ref
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypesRepository'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+    delete:
+      tags:
+      - repository
+      operationId: deleteRepository
+      parameters:
+      - name: repo_ref
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+    patch:
+      tags:
+      - repository
+      operationId: updateRepository
+      parameters:
+      - name: repo_ref
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OpenapiUpdateRepoRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypesRepository'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+components:
+  schemas:
+    OpenapiCreateRepositoryRequest:
+      type: object
+      properties:
+        default_branch:
+          type: string
+        description:
+          type: string
+        fork_id:
+          type: integer
+        git_ignore:
+          type: string
+        is_public:
+          type: boolean
+        license:
+          type: string
+        parent_ref:
+          type: string
+        readme:
+          type: boolean
+        uid:
+          type: string
+    OpenapiUpdateRepoRequest:
+      type: object
+      properties:
+        description:
+          type: string
+          nullable: true
+        is_public:
+          type: boolean
+          nullable: true
+    TypesRepository:
+      type: object
+      properties:
+        created:
+          type: integer
+        created_by:
+          type: integer
+        default_branch:
+          type: string
+        description:
+          type: string
+        fork_id:
+          type: integer
+        git_url:
+          type: string
+        id:
+          type: integer
+        importing:
+          type: boolean
+        is_public:
+          type: boolean
+        num_closed_pulls:
+          type: integer
+        num_forks:
+          type: integer
+        num_merged_pulls:
+          type: integer
+        num_open_pulls:
+          type: integer
+        num_pulls:
+          type: integer
+        parent_id:
+          type: integer
+        path:
+          type: string
+        size:
+          type: integer
+        size_updated:
+          type: integer
+        uid:
+          type: string
+        updated:
+          type: integer
+      example:
+        num_pulls: 3
+        created: 0
+        fork_id: 1
+        num_open_pulls: 9
+        description: description
+        created_by: 6
+        size_updated: 7
+        importing: true
+        path: path
+        uid: uid
+        size: 4
+        num_merged_pulls: 7
+        parent_id: 2
+        is_public: true
+        default_branch: default_branch
+        id: 5
+        git_url: git_url
+        updated: 1
+        num_closed_pulls: 5
+        num_forks: 2
+    UsererrorError:
+      type: object
+      properties:
+        message:
+          type: string
+        values:
+          type: object
+          additionalProperties: {}
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
