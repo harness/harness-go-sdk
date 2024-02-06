@@ -4,41 +4,38 @@ All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CalculateCommitDivergence**](RepositoryApi.md#CalculateCommitDivergence) | **Post** /repos/{repo_ref}/commits/calculate-divergence | 
-[**CodeOwnersValidate**](RepositoryApi.md#CodeOwnersValidate) | **Get** /repos/{repo_ref}/codeowners/validate | 
-[**CommitFiles**](RepositoryApi.md#CommitFiles) | **Post** /repos/{repo_ref}/commits | 
-[**CreateBranch**](RepositoryApi.md#CreateBranch) | **Post** /repos/{repo_ref}/branches | 
+[**CalculateCommitDivergence**](RepositoryApi.md#CalculateCommitDivergence) | **Post** /repos/{repo_identifier}/commits/calculate-divergence | 
+[**CodeOwnersValidate**](RepositoryApi.md#CodeOwnersValidate) | **Get** /repos/{repo_identifier}/codeowners/validate | 
+[**CommitFiles**](RepositoryApi.md#CommitFiles) | **Post** /repos/{repo_identifier}/commits | 
+[**CreateBranch**](RepositoryApi.md#CreateBranch) | **Post** /repos/{repo_identifier}/branches | 
 [**CreateRepository**](RepositoryApi.md#CreateRepository) | **Post** /repos | 
-[**CreateTag**](RepositoryApi.md#CreateTag) | **Post** /repos/{repo_ref}/tags | 
-[**DeleteBranch**](RepositoryApi.md#DeleteBranch) | **Delete** /repos/{repo_ref}/branches/{branch_name} | 
-[**DeleteRepository**](RepositoryApi.md#DeleteRepository) | **Delete** /repos/{repo_ref} | 
-[**DeleteTag**](RepositoryApi.md#DeleteTag) | **Delete** /repos/{repo_ref}/tags/{tag_name} | 
-[**DiffStats**](RepositoryApi.md#DiffStats) | **Get** /repos/{repo_ref}/diff-stats/{range} | 
-[**FindRepository**](RepositoryApi.md#FindRepository) | **Get** /repos/{repo_ref} | 
-[**GetBlame**](RepositoryApi.md#GetBlame) | **Get** /repos/{repo_ref}/blame/{path} | 
-[**GetBranch**](RepositoryApi.md#GetBranch) | **Get** /repos/{repo_ref}/branches/{branch_name} | 
-[**GetCommit**](RepositoryApi.md#GetCommit) | **Get** /repos/{repo_ref}/commits/{commit_sha} | 
-[**GetCommitDiff**](RepositoryApi.md#GetCommitDiff) | **Get** /repos/{repo_ref}/commits/{commit_sha}/diff | 
-[**GetContent**](RepositoryApi.md#GetContent) | **Get** /repos/{repo_ref}/content/{path} | 
-[**GetRaw**](RepositoryApi.md#GetRaw) | **Get** /repos/{repo_ref}/raw/{path} | 
+[**CreateTag**](RepositoryApi.md#CreateTag) | **Post** /repos/{repo_identifier}/tags | 
+[**DeleteBranch**](RepositoryApi.md#DeleteBranch) | **Delete** /repos/{repo_identifier}/branches/{branch_name} | 
+[**DeleteRepository**](RepositoryApi.md#DeleteRepository) | **Delete** /repos/{repo_identifier} | 
+[**DeleteTag**](RepositoryApi.md#DeleteTag) | **Delete** /repos/{repo_identifier}/tags/{tag_name} | 
+[**DiffStats**](RepositoryApi.md#DiffStats) | **Get** /repos/{repo_identifier}/diff-stats/{range} | 
+[**FindRepository**](RepositoryApi.md#FindRepository) | **Get** /repos/{repo_identifier} | 
+[**GetBlame**](RepositoryApi.md#GetBlame) | **Get** /repos/{repo_identifier}/blame/{path} | 
+[**GetBranch**](RepositoryApi.md#GetBranch) | **Get** /repos/{repo_identifier}/branches/{branch_name} | 
+[**GetCommit**](RepositoryApi.md#GetCommit) | **Get** /repos/{repo_identifier}/commits/{commit_sha} | 
+[**GetCommitDiff**](RepositoryApi.md#GetCommitDiff) | **Get** /repos/{repo_identifier}/commits/{commit_sha}/diff | 
+[**GetContent**](RepositoryApi.md#GetContent) | **Get** /repos/{repo_identifier}/content/{path} | 
+[**GetRaw**](RepositoryApi.md#GetRaw) | **Get** /repos/{repo_identifier}/raw/{path} | 
 [**ImportRepository**](RepositoryApi.md#ImportRepository) | **Post** /repos/import | 
-[**ListBranches**](RepositoryApi.md#ListBranches) | **Get** /repos/{repo_ref}/branches | 
-[**ListCommits**](RepositoryApi.md#ListCommits) | **Get** /repos/{repo_ref}/commits | 
-[**ListRepositoryServiceAccounts**](RepositoryApi.md#ListRepositoryServiceAccounts) | **Get** /repos/{repo_ref}/service-accounts | 
-[**ListTags**](RepositoryApi.md#ListTags) | **Get** /repos/{repo_ref}/tags | 
-[**MergeCheck**](RepositoryApi.md#MergeCheck) | **Post** /repos/{repo_ref}/merge-check/{range} | 
-[**MoveRepository**](RepositoryApi.md#MoveRepository) | **Post** /repos/{repo_ref}/move | 
-[**PathDetails**](RepositoryApi.md#PathDetails) | **Post** /repos/{repo_ref}/path-details | 
-[**RawDiff**](RepositoryApi.md#RawDiff) | **Get** /repos/{repo_ref}/diff/{range} | 
-[**RuleAdd**](RepositoryApi.md#RuleAdd) | **Post** /repos/{repo_ref}/rules | 
-[**RuleDelete**](RepositoryApi.md#RuleDelete) | **Delete** /repos/{repo_ref}/rules/{rule_uid} | 
-[**RuleGet**](RepositoryApi.md#RuleGet) | **Get** /repos/{repo_ref}/rules/{rule_uid} | 
-[**RuleList**](RepositoryApi.md#RuleList) | **Get** /repos/{repo_ref}/rules | 
-[**RuleUpdate**](RepositoryApi.md#RuleUpdate) | **Patch** /repos/{repo_ref}/rules/{rule_uid} | 
-[**UpdateRepository**](RepositoryApi.md#UpdateRepository) | **Patch** /repos/{repo_ref} | 
+[**ListBranches**](RepositoryApi.md#ListBranches) | **Get** /repos/{repo_identifier}/branches | 
+[**ListCommits**](RepositoryApi.md#ListCommits) | **Get** /repos/{repo_identifier}/commits | 
+[**ListRepos**](RepositoryApi.md#ListRepos) | **Get** /repos | 
+[**ListTags**](RepositoryApi.md#ListTags) | **Get** /repos/{repo_identifier}/tags | 
+[**MergeCheck**](RepositoryApi.md#MergeCheck) | **Post** /repos/{repo_identifier}/merge-check/{range} | 
+[**MoveRepository**](RepositoryApi.md#MoveRepository) | **Post** /repos/{repo_identifier}/move | 
+[**PathDetails**](RepositoryApi.md#PathDetails) | **Post** /repos/{repo_identifier}/path-details | 
+[**RawDiff**](RepositoryApi.md#RawDiff) | **Get** /repos/{repo_identifier}/diff/{range} | 
+[**RawDiffPost**](RepositoryApi.md#RawDiffPost) | **Post** /repos/{repo_identifier}/diff/{range} | 
+[**RuleList**](RepositoryApi.md#RuleList) | **Get** /repos/{repo_identifier}/rules | 
+[**UpdateRepository**](RepositoryApi.md#UpdateRepository) | **Patch** /repos/{repo_identifier} | 
 
 # **CalculateCommitDivergence**
-> []RepoCommitDivergence CalculateCommitDivergence(ctx, repoRef, optional)
+> []RepoCommitDivergence CalculateCommitDivergence(ctx, accountIdentifier, repoIdentifier, optional)
 
 
 ### Required Parameters
@@ -46,7 +43,8 @@ Method | HTTP request | Description
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
  **optional** | ***RepositoryApiCalculateCommitDivergenceOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -54,7 +52,10 @@ Optional parameters are passed through a pointer to a RepositoryApiCalculateComm
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
  **body** | [**optional.Interface of OpenapiCalculateCommitDivergenceRequest**](OpenapiCalculateCommitDivergenceRequest.md)|  | 
+ **orgIdentifier** | **optional.**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.**| Project Identifier for the Entity.. | 
 
 ### Return type
 
@@ -72,7 +73,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CodeOwnersValidate**
-> CodeOwnersValidate(ctx, repoRef, optional)
+> CodeOwnersValidate(ctx, accountIdentifier, repoIdentifier, optional)
 
 
 ### Required Parameters
@@ -80,7 +81,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
  **optional** | ***RepositoryApiCodeOwnersValidateOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -88,6 +90,9 @@ Optional parameters are passed through a pointer to a RepositoryApiCodeOwnersVal
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
  **gitRef** | **optional.String**| The git reference (branch / tag / commitID) that will be used to retrieve the data. If no value is provided the default branch of the repository is used. | [default to {Repository Default Branch}]
 
 ### Return type
@@ -106,7 +111,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CommitFiles**
-> TypesCommitFilesResponse CommitFiles(ctx, repoRef, optional)
+> TypesCommitFilesResponse CommitFiles(ctx, accountIdentifier, repoIdentifier, optional)
 
 
 ### Required Parameters
@@ -114,7 +119,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
  **optional** | ***RepositoryApiCommitFilesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -122,7 +128,10 @@ Optional parameters are passed through a pointer to a RepositoryApiCommitFilesOp
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
  **body** | [**optional.Interface of OpenapiCommitFilesRequest**](OpenapiCommitFilesRequest.md)|  | 
+ **orgIdentifier** | **optional.**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.**| Project Identifier for the Entity.. | 
 
 ### Return type
 
@@ -140,7 +149,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateBranch**
-> RepoBranch CreateBranch(ctx, repoRef, optional)
+> RepoBranch CreateBranch(ctx, accountIdentifier, repoIdentifier, optional)
 
 
 ### Required Parameters
@@ -148,7 +157,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
  **optional** | ***RepositoryApiCreateBranchOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -156,7 +166,10 @@ Optional parameters are passed through a pointer to a RepositoryApiCreateBranchO
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
  **body** | [**optional.Interface of OpenapiCreateBranchRequest**](OpenapiCreateBranchRequest.md)|  | 
+ **orgIdentifier** | **optional.**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.**| Project Identifier for the Entity.. | 
 
 ### Return type
 
@@ -174,7 +187,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateRepository**
-> TypesRepository CreateRepository(ctx, optional)
+> TypesRepository CreateRepository(ctx, accountIdentifier, optional)
 
 
 ### Required Parameters
@@ -182,14 +195,17 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
  **optional** | ***RepositoryApiCreateRepositoryOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
 Optional parameters are passed through a pointer to a RepositoryApiCreateRepositoryOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **body** | [**optional.Interface of OpenapiCreateRepositoryRequest**](OpenapiCreateRepositoryRequest.md)|  | 
- **spacePath** | **optional.**| path of parent space (Not needed in standalone). | [default to false]
+ **orgIdentifier** | **optional.**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.**| Project Identifier for the Entity.. | 
 
 ### Return type
 
@@ -207,7 +223,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateTag**
-> RepoCommitTag CreateTag(ctx, repoRef, optional)
+> RepoCommitTag CreateTag(ctx, accountIdentifier, repoIdentifier, optional)
 
 
 ### Required Parameters
@@ -215,7 +231,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
  **optional** | ***RepositoryApiCreateTagOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -223,7 +240,10 @@ Optional parameters are passed through a pointer to a RepositoryApiCreateTagOpts
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
  **body** | [**optional.Interface of OpenapiCreateTagRequest**](OpenapiCreateTagRequest.md)|  | 
+ **orgIdentifier** | **optional.**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.**| Project Identifier for the Entity.. | 
 
 ### Return type
 
@@ -241,7 +261,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **DeleteBranch**
-> DeleteBranch(ctx, repoRef, branchName, optional)
+> DeleteBranch(ctx, accountIdentifier, repoIdentifier, branchName, optional)
 
 
 ### Required Parameters
@@ -249,7 +269,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
   **branchName** | **string**|  | 
  **optional** | ***RepositoryApiDeleteBranchOpts** | optional parameters | nil if no parameters
 
@@ -259,6 +280,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
  **bypassRules** | **optional.Bool**| Bypass rule violations if possible. | [default to false]
 
 ### Return type
@@ -277,7 +301,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **DeleteRepository**
-> DeleteRepository(ctx, repoRef)
+> DeleteRepository(ctx, accountIdentifier, repoIdentifier, optional)
 
 
 ### Required Parameters
@@ -285,7 +309,18 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
+ **optional** | ***RepositoryApiDeleteRepositoryOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a RepositoryApiDeleteRepositoryOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
 
 ### Return type
 
@@ -303,7 +338,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **DeleteTag**
-> DeleteTag(ctx, repoRef, tagName, optional)
+> DeleteTag(ctx, accountIdentifier, repoIdentifier, tagName, optional)
 
 
 ### Required Parameters
@@ -311,7 +346,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
   **tagName** | **string**|  | 
  **optional** | ***RepositoryApiDeleteTagOpts** | optional parameters | nil if no parameters
 
@@ -321,6 +357,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
  **bypassRules** | **optional.Bool**| Bypass rule violations if possible. | [default to false]
 
 ### Return type
@@ -339,7 +378,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **DiffStats**
-> TypesDiffStats DiffStats(ctx, repoRef, range_)
+> TypesDiffStats DiffStats(ctx, accountIdentifier, repoIdentifier, range_, optional)
 
 
 ### Required Parameters
@@ -347,8 +386,21 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
   **range_** | **string**|  | 
+ **optional** | ***RepositoryApiDiffStatsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a RepositoryApiDiffStatsOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
+ **path** | [**optional.Interface of []string**](string.md)| provide path for diff operation | 
 
 ### Return type
 
@@ -366,7 +418,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **FindRepository**
-> TypesRepository FindRepository(ctx, repoRef)
+> TypesRepository FindRepository(ctx, accountIdentifier, repoIdentifier, optional)
 
 
 ### Required Parameters
@@ -374,7 +426,18 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
+ **optional** | ***RepositoryApiFindRepositoryOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a RepositoryApiFindRepositoryOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
 
 ### Return type
 
@@ -392,7 +455,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetBlame**
-> []GitBlamePart GetBlame(ctx, repoRef, path, optional)
+> []GitBlamePart GetBlame(ctx, accountIdentifier, repoIdentifier, path, optional)
 
 
 ### Required Parameters
@@ -400,7 +463,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
   **path** | **string**|  | 
  **optional** | ***RepositoryApiGetBlameOpts** | optional parameters | nil if no parameters
 
@@ -410,6 +474,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
  **gitRef** | **optional.String**| The git reference (branch / tag / commitID) that will be used to retrieve the data. If no value is provided the default branch of the repository is used. | [default to {Repository Default Branch}]
  **lineFrom** | **optional.Int32**| Line number from which the file data is considered | [default to 0]
  **lineTo** | **optional.Int32**| Line number to which the file data is considered | [default to 0]
@@ -430,7 +497,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetBranch**
-> RepoBranch GetBranch(ctx, repoRef, branchName)
+> RepoBranch GetBranch(ctx, accountIdentifier, repoIdentifier, branchName, optional)
 
 
 ### Required Parameters
@@ -438,8 +505,20 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
   **branchName** | **string**|  | 
+ **optional** | ***RepositoryApiGetBranchOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a RepositoryApiGetBranchOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
 
 ### Return type
 
@@ -457,7 +536,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCommit**
-> TypesCommit GetCommit(ctx, repoRef, commitSha)
+> TypesCommit GetCommit(ctx, accountIdentifier, repoIdentifier, commitSha, optional)
 
 
 ### Required Parameters
@@ -465,8 +544,20 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
   **commitSha** | **string**|  | 
+ **optional** | ***RepositoryApiGetCommitOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a RepositoryApiGetCommitOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
 
 ### Return type
 
@@ -484,7 +575,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCommitDiff**
-> string GetCommitDiff(ctx, repoRef, commitSha)
+> string GetCommitDiff(ctx, accountIdentifier, repoIdentifier, commitSha, optional)
 
 
 ### Required Parameters
@@ -492,8 +583,20 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
   **commitSha** | **string**|  | 
+ **optional** | ***RepositoryApiGetCommitDiffOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a RepositoryApiGetCommitDiffOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
 
 ### Return type
 
@@ -511,7 +614,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetContent**
-> OpenapiGetContentOutput GetContent(ctx, repoRef, path, optional)
+> OpenapiGetContentOutput GetContent(ctx, accountIdentifier, repoIdentifier, path, optional)
 
 
 ### Required Parameters
@@ -519,7 +622,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
   **path** | **string**|  | 
  **optional** | ***RepositoryApiGetContentOpts** | optional parameters | nil if no parameters
 
@@ -529,8 +633,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **gitRef** | **optional.String**| The git reference (branch / tag / commitID) that will be used to retrieve the data. If no value is provided the default branch of the repository is used. | [default to {Repository Default Branch}]
- **includeCommit** | **optional.Bool**| Indicates whether optional commit information should be included in the response. | [default to false]
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
 
 ### Return type
 
@@ -548,7 +653,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetRaw**
-> GetRaw(ctx, repoRef, path, optional)
+> GetRaw(ctx, accountIdentifier, repoIdentifier, path, optional)
 
 
 ### Required Parameters
@@ -556,7 +661,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
   **path** | **string**|  | 
  **optional** | ***RepositoryApiGetRawOpts** | optional parameters | nil if no parameters
 
@@ -566,6 +672,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
  **gitRef** | **optional.String**| The git reference (branch / tag / commitID) that will be used to retrieve the data. If no value is provided the default branch of the repository is used. | [default to {Repository Default Branch}]
 
 ### Return type
@@ -584,7 +693,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ImportRepository**
-> TypesRepository ImportRepository(ctx, optional)
+> TypesRepository ImportRepository(ctx, accountIdentifier, optional)
 
 
 ### Required Parameters
@@ -592,14 +701,17 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
  **optional** | ***RepositoryApiImportRepositoryOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
 Optional parameters are passed through a pointer to a RepositoryApiImportRepositoryOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **body** | [**optional.Interface of ReposImportBody**](ReposImportBody.md)|  | 
- **spacePath** | **optional.**| path of parent space (Not needed in standalone). | [default to false]
+ **orgIdentifier** | **optional.**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.**| Project Identifier for the Entity.. | 
 
 ### Return type
 
@@ -617,7 +729,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListBranches**
-> []RepoBranch ListBranches(ctx, repoRef, optional)
+> []RepoBranch ListBranches(ctx, accountIdentifier, repoIdentifier, optional)
 
 
 ### Required Parameters
@@ -625,7 +737,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
  **optional** | ***RepositoryApiListBranchesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -633,6 +746,9 @@ Optional parameters are passed through a pointer to a RepositoryApiListBranchesO
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
  **includeCommit** | **optional.Bool**| Indicates whether optional commit information should be included in the response. | [default to false]
  **query** | **optional.String**| The substring by which the branches are filtered. | 
  **order** | **optional.String**| The order of the output. | [default to asc]
@@ -656,7 +772,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListCommits**
-> []TypesListCommitResponse ListCommits(ctx, repoRef, optional)
+> []TypesListCommitResponse ListCommits(ctx, accountIdentifier, repoIdentifier, optional)
 
 
 ### Required Parameters
@@ -664,7 +780,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
  **optional** | ***RepositoryApiListCommitsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -672,6 +789,9 @@ Optional parameters are passed through a pointer to a RepositoryApiListCommitsOp
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
  **gitRef** | **optional.String**| The git reference (branch / tag / commitID) that will be used to retrieve the data. If no value is provided the default branch of the repository is used. | [default to {Repository Default Branch}]
  **after** | **optional.String**| The result should only contain commits that occurred after the provided reference. | 
  **path** | **optional.String**| Path for which commit information should be retrieved | 
@@ -696,8 +816,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ListRepositoryServiceAccounts**
-> []TypesServiceAccount ListRepositoryServiceAccounts(ctx, repoRef)
+# **ListRepos**
+> []TypesRepository ListRepos(ctx, accountIdentifier, optional)
 
 
 ### Required Parameters
@@ -705,11 +825,25 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+ **optional** | ***RepositoryApiListReposOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a RepositoryApiListReposOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
+ **query** | **optional.String**| The substring which is used to filter the repositories by their path name. | 
+ **sort** | **optional.String**| The data by which the repositories are sorted. | [default to identifier]
+ **order** | **optional.String**| The order of the output. | [default to asc]
+ **page** | **optional.Int32**| The page to return. | [default to 1]
+ **limit** | **optional.Int32**| The maximum number of results to return. | [default to 30]
 
 ### Return type
 
-[**[]TypesServiceAccount**](TypesServiceAccount.md)
+[**[]TypesRepository**](TypesRepository.md)
 
 ### Authorization
 
@@ -723,7 +857,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListTags**
-> []RepoCommitTag ListTags(ctx, repoRef, optional)
+> []RepoCommitTag ListTags(ctx, accountIdentifier, repoIdentifier, optional)
 
 
 ### Required Parameters
@@ -731,7 +865,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
  **optional** | ***RepositoryApiListTagsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -739,6 +874,9 @@ Optional parameters are passed through a pointer to a RepositoryApiListTagsOpts 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
  **includeCommit** | **optional.Bool**| Indicates whether optional commit information should be included in the response. | [default to false]
  **query** | **optional.String**| The substring by which the tags are filtered. | 
  **order** | **optional.String**| The order of the output. | [default to asc]
@@ -762,7 +900,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **MergeCheck**
-> RepoMergeCheck MergeCheck(ctx, repoRef, range_)
+> RepoMergeCheck MergeCheck(ctx, accountIdentifier, repoIdentifier, range_, optional)
 
 
 ### Required Parameters
@@ -770,8 +908,21 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
   **range_** | **string**|  | 
+ **optional** | ***RepositoryApiMergeCheckOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a RepositoryApiMergeCheckOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
+ **path** | [**optional.Interface of []string**](string.md)| provide path for diff operation | 
 
 ### Return type
 
@@ -789,7 +940,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **MoveRepository**
-> TypesRepository MoveRepository(ctx, repoRef, optional)
+> TypesRepository MoveRepository(ctx, accountIdentifier, repoIdentifier, optional)
 
 
 ### Required Parameters
@@ -797,7 +948,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
  **optional** | ***RepositoryApiMoveRepositoryOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -805,7 +957,10 @@ Optional parameters are passed through a pointer to a RepositoryApiMoveRepositor
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
  **body** | [**optional.Interface of OpenapiMoveRepoRequest**](OpenapiMoveRepoRequest.md)|  | 
+ **orgIdentifier** | **optional.**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.**| Project Identifier for the Entity.. | 
 
 ### Return type
 
@@ -823,7 +978,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PathDetails**
-> RepoPathsDetailsOutput PathDetails(ctx, repoRef, optional)
+> RepoPathsDetailsOutput PathDetails(ctx, accountIdentifier, repoIdentifier, optional)
 
 
 ### Required Parameters
@@ -831,7 +986,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
  **optional** | ***RepositoryApiPathDetailsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -839,7 +995,10 @@ Optional parameters are passed through a pointer to a RepositoryApiPathDetailsOp
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
  **body** | [**optional.Interface of OpenapiPathsDetailsRequest**](OpenapiPathsDetailsRequest.md)|  | 
+ **orgIdentifier** | **optional.**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.**| Project Identifier for the Entity.. | 
  **gitRef** | **optional.**| The git reference (branch / tag / commitID) that will be used to retrieve the data. If no value is provided the default branch of the repository is used. | [default to {Repository Default Branch}]
 
 ### Return type
@@ -858,7 +1017,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **RawDiff**
-> []GitFileDiff RawDiff(ctx, repoRef, range_)
+> []GitFileDiff RawDiff(ctx, accountIdentifier, repoIdentifier, range_, optional)
 
 
 ### Required Parameters
@@ -866,8 +1025,21 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
   **range_** | **string**|  | 
+ **optional** | ***RepositoryApiRawDiffOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a RepositoryApiRawDiffOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
+ **path** | [**optional.Interface of []string**](string.md)| provide path for diff operation | 
 
 ### Return type
 
@@ -884,8 +1056,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **RuleAdd**
-> OpenapiRule RuleAdd(ctx, repoRef, optional)
+# **RawDiffPost**
+> []GitFileDiff RawDiffPost(ctx, accountIdentifier, repoIdentifier, range_, optional)
 
 
 ### Required Parameters
@@ -893,19 +1065,25 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
- **optional** | ***RepositoryApiRuleAddOpts** | optional parameters | nil if no parameters
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
+  **range_** | **string**|  | 
+ **optional** | ***RepositoryApiRawDiffPostOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a RepositoryApiRuleAddOpts struct
+Optional parameters are passed through a pointer to a RepositoryApiRawDiffPostOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**optional.Interface of RepoRefRulesBody**](RepoRefRulesBody.md)|  | 
+
+
+ **body** | [**optional.Interface of []TypesFileDiffRequest**](TypesFileDiffRequest.md)|  | 
+ **orgIdentifier** | **optional.**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.**| Project Identifier for the Entity.. | 
 
 ### Return type
 
-[**OpenapiRule**](OpenapiRule.md)
+[**[]GitFileDiff**](GitFileDiff.md)
 
 ### Authorization
 
@@ -914,66 +1092,12 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **RuleDelete**
-> RuleDelete(ctx, repoRef, ruleUid)
-
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
-  **ruleUid** | **string**|  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **RuleGet**
-> []OpenapiRule RuleGet(ctx, repoRef, ruleUid)
-
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
-  **ruleUid** | **string**|  | 
-
-### Return type
-
-[**[]OpenapiRule**](OpenapiRule.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **RuleList**
-> []OpenapiRule RuleList(ctx, repoRef, optional)
+> []OpenapiRule RuleList(ctx, accountIdentifier, repoIdentifier, optional)
 
 
 ### Required Parameters
@@ -981,7 +1105,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
  **optional** | ***RepositoryApiRuleListOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -989,6 +1114,9 @@ Optional parameters are passed through a pointer to a RepositoryApiRuleListOpts 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
  **query** | **optional.String**| The substring by which the repository protection rules are filtered. | 
  **order** | **optional.String**| The order of the output. | [default to asc]
  **sort** | **optional.String**| The field by which the protection rules are sorted. | [default to created_at]
@@ -1010,44 +1138,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **RuleUpdate**
-> OpenapiRule RuleUpdate(ctx, repoRef, ruleUid, optional)
-
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
-  **ruleUid** | **string**|  | 
- **optional** | ***RepositoryApiRuleUpdateOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a RepositoryApiRuleUpdateOpts struct
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **body** | [**optional.Interface of RulesRuleUidBody**](RulesRuleUidBody.md)|  | 
-
-### Return type
-
-[**OpenapiRule**](OpenapiRule.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **UpdateRepository**
-> TypesRepository UpdateRepository(ctx, repoRef, optional)
+> TypesRepository UpdateRepository(ctx, accountIdentifier, repoIdentifier, optional)
 
 
 ### Required Parameters
@@ -1055,7 +1147,8 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **repoRef** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
  **optional** | ***RepositoryApiUpdateRepositoryOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -1063,7 +1156,10 @@ Optional parameters are passed through a pointer to a RepositoryApiUpdateReposit
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
  **body** | [**optional.Interface of OpenapiUpdateRepoRequest**](OpenapiUpdateRepoRequest.md)|  | 
+ **orgIdentifier** | **optional.**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.**| Project Identifier for the Entity.. | 
 
 ### Return type
 

@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **CreatedBy** | [***TypesPrincipalInfo**](TypesPrincipalInfo.md) |  | [optional] [default to null]
 **Definition** | [***OpenapiRuleDefinition**](OpenapiRuleDefinition.md) |  | [optional] [default to null]
 **Description** | **string** |  | [optional] [default to null]
+**Identifier** | **string** |  | [optional] [default to null]
 **Pattern** | [***ProtectionPattern**](ProtectionPattern.md) |  | [optional] [default to null]
 **State** | [***EnumRuleState**](EnumRuleState.md) |  | [optional] [default to null]
 **Type_** | [***OpenapiRuleType**](OpenapiRuleType.md) |  | [optional] [default to null]
-**Uid** | **string** |  | [optional] [default to null]
 **Updated** | **int32** |  | [optional] [default to null]
 **Users** | [**map[string]TypesPrincipalInfo**](TypesPrincipalInfo.md) |  | [optional] [default to null]
 

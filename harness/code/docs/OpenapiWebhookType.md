@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Enabled** | **bool** |  | [optional] [default to null]
 **HasSecret** | **bool** |  | [optional] [default to null]
 **Id** | **int32** |  | [optional] [default to null]
+**Identifier** | **string** |  | [optional] [default to null]
 **Insecure** | **bool** |  | [optional] [default to null]
 **LatestExecutionResult** | [***EnumWebhookExecutionResult**](EnumWebhookExecutionResult.md) |  | [optional] [default to null]
 **ParentId** | **int32** |  | [optional] [default to null]

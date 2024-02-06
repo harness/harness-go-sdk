@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Description** | **string** |  | [optional] [default to null]
 **ForkId** | **int32** |  | [optional] [default to null]
 **GitIgnore** | **string** |  | [optional] [default to null]
+**Identifier** | **string** |  | [optional] [default to null]
 **IsPublic** | **bool** |  | [optional] [default to null]
 **License** | **string** |  | [optional] [default to null]
 **ParentRef** | **string** |  | [optional] [default to null]
