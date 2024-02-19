@@ -40,7 +40,20 @@ type EnvironmentsApiCreateEnvironmentV2Opts struct {
 	Body optional.Interface
 }
 
-func (a *EnvironmentsApiService) CreateEnvironmentV2(ctx context.Context, accountIdentifier string, localVarOptionals *EnvironmentsApiCreateEnvironmentV2Opts) (ResponseDtoEnvironmentResponse, *http.Response, error) {
+type GitEntityCreateInfoOpts struct {
+	Branch optional.String
+	FilePath optional.String
+	CommitMsg optional.String
+	IsNewBranch optional.Bool
+	BaseBranch optional.String
+	ConnectorRef optional.String
+	RepoName optional.String
+	IsHarnessCodeRepo optional.Bool
+}
+
+
+
+func (a *EnvironmentsApiService) CreateEnvironmentV2(ctx context.Context, accountIdentifier string, gitXVarOptionals *GitEntityCreateInfoOpts,localVarOptionals *EnvironmentsApiCreateEnvironmentV2Opts) (ResponseDtoEnvironmentResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
@@ -57,6 +70,30 @@ func (a *EnvironmentsApiService) CreateEnvironmentV2(ctx context.Context, accoun
 	localVarFormParams := url.Values{}
 
 	localVarQueryParams.Add("accountIdentifier", parameterToString(accountIdentifier, ""))
+	if gitXVarOptionals != nil && gitXVarOptionals.Branch.IsSet() {
+		localVarQueryParams.Add("branch", parameterToString(gitXVarOptionals.Branch.Value(), ""))
+	}
+	if gitXVarOptionals != nil && gitXVarOptionals.FilePath.IsSet() {
+		localVarQueryParams.Add("filePath", parameterToString(gitXVarOptionals.FilePath.Value(), ""))
+	}
+	if gitXVarOptionals != nil && gitXVarOptionals.CommitMsg.IsSet() {
+		localVarQueryParams.Add("commitMsg", parameterToString(gitXVarOptionals.CommitMsg.Value(), ""))
+	}
+	if gitXVarOptionals != nil && gitXVarOptionals.IsNewBranch.IsSet() {
+		localVarQueryParams.Add("isNewBranch", parameterToString(gitXVarOptionals.IsNewBranch.Value(), ""))
+	}
+	if gitXVarOptionals != nil && gitXVarOptionals.BaseBranch.IsSet() {
+		localVarQueryParams.Add("baseBranch", parameterToString(gitXVarOptionals.BaseBranch.Value(), ""))
+	}
+	if gitXVarOptionals != nil && gitXVarOptionals.ConnectorRef.IsSet() {
+		localVarQueryParams.Add("connectorRef", parameterToString(gitXVarOptionals.ConnectorRef.Value(), ""))
+	}
+	if gitXVarOptionals != nil && gitXVarOptionals.RepoName.IsSet() {
+		localVarQueryParams.Add("repoName", parameterToString(gitXVarOptionals.RepoName.Value(), ""))
+	}
+	if gitXVarOptionals != nil && gitXVarOptionals.IsHarnessCodeRepo.IsSet() {
+		localVarQueryParams.Add("isHarnessCodeRepo", parameterToString(gitXVarOptionals.IsHarnessCodeRepo.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/yaml"}
 
