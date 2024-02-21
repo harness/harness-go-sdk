@@ -211,7 +211,7 @@ func (a *EnvironmentsApiService) CreateEnvironmentV2(ctx context.Context, accoun
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
-
+}
 /*
 EnvironmentsApiService Delete an Environment by identifier
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
