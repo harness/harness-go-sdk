@@ -82,12 +82,6 @@ func (a *EnvironmentsApiService) CreateEnvironmentV2(ctx context.Context, accoun
 	if localVarOptionals != nil && localVarOptionals.Branch.IsSet() {
 		localVarQueryParams.Add("branch", parameterToString(localVarOptionals.Branch.Value(), ""))
 	}
-	if localVarOptionals != nil && localVarOptionals.RepoIdentifier.IsSet() {
-		localVarQueryParams.Add("repoIdentifier", parameterToString(localVarOptionals.RepoIdentifier.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.RootFolder.IsSet() {
-		localVarQueryParams.Add("rootFolder", parameterToString(localVarOptionals.RootFolder.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.FilePath.IsSet() {
 		localVarQueryParams.Add("filePath", parameterToString(localVarOptionals.FilePath.Value(), ""))
 	}
@@ -111,6 +105,7 @@ func (a *EnvironmentsApiService) CreateEnvironmentV2(ctx context.Context, accoun
 	}
 	if localVarOptionals != nil && localVarOptionals.IsHarnessCodeRepo.IsSet() {
 		localVarQueryParams.Add("isHarnessCodeRepo", parameterToString(localVarOptionals.IsHarnessCodeRepo.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/yaml"}
 
@@ -211,7 +206,7 @@ func (a *EnvironmentsApiService) CreateEnvironmentV2(ctx context.Context, accoun
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
-}
+
 /*
 EnvironmentsApiService Delete an Environment by identifier
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1229,12 +1224,6 @@ func (a *EnvironmentsApiService) UpdateEnvironmentV2(ctx context.Context, accoun
 	if localVarOptionals != nil && localVarOptionals.Branch.IsSet() {
 		localVarQueryParams.Add("branch", parameterToString(localVarOptionals.Branch.Value(), ""))
 	}
-	if localVarOptionals != nil && localVarOptionals.RepoIdentifier.IsSet() {
-		localVarQueryParams.Add("repoIdentifier", parameterToString(localVarOptionals.RepoIdentifier.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.RootFolder.IsSet() {
-		localVarQueryParams.Add("rootFolder", parameterToString(localVarOptionals.RootFolder.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.FilePath.IsSet() {
 		localVarQueryParams.Add("filePath", parameterToString(localVarOptionals.FilePath.Value(), ""))
 	}
@@ -1243,9 +1232,6 @@ func (a *EnvironmentsApiService) UpdateEnvironmentV2(ctx context.Context, accoun
 	}
 	if localVarOptionals != nil && localVarOptionals.LastObjectId.IsSet() {
 		localVarQueryParams.Add("lastObjectId", parameterToString(localVarOptionals.LastObjectId.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ResolvedConflictCommitId.IsSet() {
-		localVarQueryParams.Add("resolvedConflictCommitId", parameterToString(localVarOptionals.ResolvedConflictCommitId.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.BaseBranch.IsSet() {
 		localVarQueryParams.Add("baseBranch", parameterToString(localVarOptionals.BaseBranch.Value(), ""))
@@ -1664,13 +1650,13 @@ type EnvironmentsV2ApiImportEnvironmentOpts struct {
     IsHarnessCodeRepo optional.Bool
 }
 
-func (a *EnvironmentsV2ApiService) ImportEnvironment(ctx context.Context, accountIdentifier string, localVarOptionals *EnvironmentsV2ApiImportEnvironmentOpts) (ResponseEnvironmentImportResponseDto, *http.Response, error) {
+func (a *EnvironmentsApiService) ImportEnvironment(ctx context.Context, accountIdentifier string, localVarOptionals *EnvironmentsV2ApiImportEnvironmentOpts) (EnvironmentImportResponseDto, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue ResponseEnvironmentImportResponseDto
+		localVarReturnValue EnvironmentImportResponseDto
 	)
 
 	// create path and map variables
@@ -1755,7 +1741,7 @@ func (a *EnvironmentsV2ApiService) ImportEnvironment(ctx context.Context, accoun
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v ResponseEnvironmentImportResponseDto
+			var v EnvironmentImportResponseDto
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -1820,13 +1806,13 @@ type EnvironmentsV2ApiMoveEnvironmentConfigsOpts struct {
     BaseBranch optional.String
 }
 
-func (a *EnvironmentsV2ApiService) MoveEnvironmentConfigs(ctx context.Context, accountIdentifier string, environmentIdentifier string, moveConfigType string, localVarOptionals *EnvironmentsV2ApiMoveEnvironmentConfigsOpts) (ResponseEnvironmentMoveConfigResponse, *http.Response, error) {
+func (a *EnvironmentsApiService) MoveEnvironmentConfigs(ctx context.Context, accountIdentifier string, environmentIdentifier string, moveConfigType string, localVarOptionals *EnvironmentsV2ApiMoveEnvironmentConfigsOpts) (EnvironmentMoveConfigResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue ResponseEnvironmentMoveConfigResponse
+		localVarReturnValue EnvironmentMoveConfigResponse
 	)
 
 	// create path and map variables
@@ -1913,7 +1899,7 @@ func (a *EnvironmentsV2ApiService) MoveEnvironmentConfigs(ctx context.Context, a
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v ResponseEnvironmentMoveConfigResponse
+			var v EnvironmentMoveConfigResponse
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
