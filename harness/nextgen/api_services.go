@@ -34,8 +34,6 @@ ServicesApiService Create a Service
  * @param optional nil or *ServicesApiCreateServiceV2Opts - Optional Parameters:
      * @param "Body" (optional.Interface of ServiceRequest) - 
      * @param "Branch" (optional.String) - 
-     * @param "RepoIdentifier" (optional.String) - 
-     * @param "RootFolder" (optional.String) - 
      * @param "FilePath" (optional.String) - 
      * @param "CommitMsg" (optional.String) - 
      * @param "IsNewBranch" (optional.Bool) - 
@@ -50,8 +48,6 @@ ServicesApiService Create a Service
 type ServicesApiCreateServiceV2Opts struct {
     Body optional.Interface
     Branch optional.String
-    RepoIdentifier optional.String
-    RootFolder optional.String
     FilePath optional.String
     CommitMsg optional.String
     IsNewBranch optional.Bool
@@ -81,12 +77,6 @@ func (a *ServicesApiService) CreateServiceV2(ctx context.Context, accountIdentif
 	localVarQueryParams.Add("accountIdentifier", parameterToString(accountIdentifier, ""))
 	if localVarOptionals != nil && localVarOptionals.Branch.IsSet() {
 		localVarQueryParams.Add("branch", parameterToString(localVarOptionals.Branch.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.RepoIdentifier.IsSet() {
-		localVarQueryParams.Add("repoIdentifier", parameterToString(localVarOptionals.RepoIdentifier.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.RootFolder.IsSet() {
-		localVarQueryParams.Add("rootFolder", parameterToString(localVarOptionals.RootFolder.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.FilePath.IsSet() {
 		localVarQueryParams.Add("filePath", parameterToString(localVarOptionals.FilePath.Value(), ""))
@@ -817,13 +807,7 @@ ServicesApiService Gets a Service by identifier
      * @param "Deleted" (optional.Bool) - 
      * @param "FetchResolvedYaml" (optional.Bool) - 
      * @param "Branch" (optional.String) - 
-     * @param "RepoIdentifier" (optional.String) - 
      * @param "GetDefaultFromOtherRepo" (optional.Bool) - 
-     * @param "ParentEntityConnectorRef" (optional.String) - 
-     * @param "ParentEntityRepoName" (optional.String) - 
-     * @param "ParentEntityAccountIdentifier" (optional.String) - 
-     * @param "ParentEntityOrgIdentifier" (optional.String) - 
-     * @param "ParentEntityProjectIdentifier" (optional.String) - 
      * @param "RepoName" (optional.String) - 
      * @param "LoadFromCache" (optional.String) - 
      * @param "LoadFromFallbackBranch" (optional.Bool) - 
@@ -836,13 +820,7 @@ type ServicesApiGetServiceV2Opts struct {
 	Deleted           optional.Bool
 	FetchResolvedYaml optional.Bool
     Branch optional.String
-    RepoIdentifier optional.String
     GetDefaultFromOtherRepo optional.Bool
-    ParentEntityConnectorRef optional.String
-    ParentEntityRepoName optional.String
-    ParentEntityAccountIdentifier optional.String
-    ParentEntityOrgIdentifier optional.String
-    ParentEntityProjectIdentifier optional.String
     RepoName optional.String
     LoadFromCache optional.String
     LoadFromFallbackBranch optional.Bool
@@ -881,29 +859,14 @@ func (a *ServicesApiService) GetServiceV2(ctx context.Context, serviceIdentifier
 	if localVarOptionals != nil && localVarOptionals.Branch.IsSet() {
 		localVarQueryParams.Add("branch", parameterToString(localVarOptionals.Branch.Value(), ""))
 	}
-	if localVarOptionals != nil && localVarOptionals.RepoIdentifier.IsSet() {
-		localVarQueryParams.Add("repoIdentifier", parameterToString(localVarOptionals.RepoIdentifier.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.GetDefaultFromOtherRepo.IsSet() {
 		localVarQueryParams.Add("getDefaultFromOtherRepo", parameterToString(localVarOptionals.GetDefaultFromOtherRepo.Value(), ""))
 	}
-	if localVarOptionals != nil && localVarOptionals.ParentEntityConnectorRef.IsSet() {
-		localVarQueryParams.Add("parentEntityConnectorRef", parameterToString(localVarOptionals.ParentEntityConnectorRef.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ParentEntityRepoName.IsSet() {
-		localVarQueryParams.Add("parentEntityRepoName", parameterToString(localVarOptionals.ParentEntityRepoName.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ParentEntityAccountIdentifier.IsSet() {
-		localVarQueryParams.Add("parentEntityAccountIdentifier", parameterToString(localVarOptionals.ParentEntityAccountIdentifier.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ParentEntityOrgIdentifier.IsSet() {
-		localVarQueryParams.Add("parentEntityOrgIdentifier", parameterToString(localVarOptionals.ParentEntityOrgIdentifier.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ParentEntityProjectIdentifier.IsSet() {
-		localVarQueryParams.Add("parentEntityProjectIdentifier", parameterToString(localVarOptionals.ParentEntityProjectIdentifier.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.RepoName.IsSet() {
 		localVarQueryParams.Add("repoName", parameterToString(localVarOptionals.RepoName.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.LoadFromCache.IsSet() {
+		localVarQueryParams.Add("loadFromCache", parameterToString(localVarOptionals.LoadFromCache.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.LoadFromFallbackBranch.IsSet() {
 		localVarQueryParams.Add("loadFromFallbackBranch", parameterToString(localVarOptionals.LoadFromFallbackBranch.Value(), ""))
@@ -1011,8 +974,6 @@ ServicesApiService Update a Service by identifier
      * @param "Body" (optional.Interface of ServiceRequestDto) - 
      * @param "IfMatch" (optional.String) - 
      * @param "Branch" (optional.String) - 
-     * @param "RepoIdentifier" (optional.String) - 
-     * @param "RootFolder" (optional.String) - 
      * @param "FilePath" (optional.String) - 
      * @param "CommitMsg" (optional.String) - 
      * @param "LastObjectId" (optional.String) - 
@@ -1030,8 +991,6 @@ type ServicesApiUpdateServiceV2Opts struct {
 	Body    optional.Interface
 	IfMatch optional.String
 	Branch optional.String
-    RepoIdentifier optional.String
-    RootFolder optional.String
     FilePath optional.String
     CommitMsg optional.String
     LastObjectId optional.String
@@ -1063,12 +1022,6 @@ func (a *ServicesApiService) UpdateServiceV2(ctx context.Context, accountIdentif
 	localVarQueryParams.Add("accountIdentifier", parameterToString(accountIdentifier, ""))
 	if localVarOptionals != nil && localVarOptionals.Branch.IsSet() {
 		localVarQueryParams.Add("branch", parameterToString(localVarOptionals.Branch.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.RepoIdentifier.IsSet() {
-		localVarQueryParams.Add("repoIdentifier", parameterToString(localVarOptionals.RepoIdentifier.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.RootFolder.IsSet() {
-		localVarQueryParams.Add("rootFolder", parameterToString(localVarOptionals.RootFolder.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.FilePath.IsSet() {
 		localVarQueryParams.Add("filePath", parameterToString(localVarOptionals.FilePath.Value(), ""))
@@ -1333,167 +1286,6 @@ func (a *ServicesApiService) UpsertServiceV2(ctx context.Context, accountIdentif
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHttpResponse, nil
-}
-/*
-ServicesApiService Move Service YAML from inline to remote
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountIdentifier
- * @param serviceIdentifier
- * @param optional nil or *ServicesV2ApiMoveServiceConfigsOpts - Optional Parameters:
-     * @param "OrgIdentifier" (optional.String) - 
-     * @param "ProjectIdentifier" (optional.String) - 
-     * @param "ConnectorRef" (optional.String) - 
-     * @param "RepoName" (optional.String) - 
-     * @param "Branch" (optional.String) - 
-     * @param "FilePath" (optional.String) - 
-     * @param "CommitMsg" (optional.String) - 
-     * @param "IsNewBranch" (optional.Bool) - 
-     * @param "BaseBranch" (optional.String) - 
-     * @param "MoveConfigType" (optional.String) - 
-@return ResponseServiceMoveConfigResponse
-*/
-
-type ServicesApiMoveServiceConfigsOpts struct {
-    OrgIdentifier optional.String
-    ProjectIdentifier optional.String
-    ConnectorRef optional.String
-    RepoName optional.String
-    Branch optional.String
-    FilePath optional.String
-    CommitMsg optional.String
-    IsNewBranch optional.Bool
-    BaseBranch optional.String
-    MoveConfigType optional.String
-}
-
-func (a *ServicesApiService) MoveServiceConfigs(ctx context.Context, accountIdentifier string, serviceIdentifier string, localVarOptionals *ServicesV2ApiMoveServiceConfigsOpts) (ResponseServiceMoveConfigResponse, *http.Response, error) {
-	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
-		localVarReturnValue ResponseServiceMoveConfigResponse
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "ng/api/servicesV2/move-config/{serviceIdentifier}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serviceIdentifier"+"}", fmt.Sprintf("%v", serviceIdentifier), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	localVarQueryParams.Add("accountIdentifier", parameterToString(accountIdentifier, ""))
-	if localVarOptionals != nil && localVarOptionals.OrgIdentifier.IsSet() {
-		localVarQueryParams.Add("orgIdentifier", parameterToString(localVarOptionals.OrgIdentifier.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ProjectIdentifier.IsSet() {
-		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ConnectorRef.IsSet() {
-		localVarQueryParams.Add("connectorRef", parameterToString(localVarOptionals.ConnectorRef.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.RepoName.IsSet() {
-		localVarQueryParams.Add("repoName", parameterToString(localVarOptionals.RepoName.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.Branch.IsSet() {
-		localVarQueryParams.Add("branch", parameterToString(localVarOptionals.Branch.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.FilePath.IsSet() {
-		localVarQueryParams.Add("filePath", parameterToString(localVarOptionals.FilePath.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.CommitMsg.IsSet() {
-		localVarQueryParams.Add("commitMsg", parameterToString(localVarOptionals.CommitMsg.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.IsNewBranch.IsSet() {
-		localVarQueryParams.Add("isNewBranch", parameterToString(localVarOptionals.IsNewBranch.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.BaseBranch.IsSet() {
-		localVarQueryParams.Add("baseBranch", parameterToString(localVarOptionals.BaseBranch.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.MoveConfigType.IsSet() {
-		localVarQueryParams.Add("moveConfigType", parameterToString(localVarOptionals.MoveConfigType.Value(), ""))
-	}
-	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
-	if localVarHttpContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHttpContentType
-	}
-
-	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{"application/json", "application/yaml"}
-
-	// set Accept header
-	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
-	if localVarHttpHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHttpResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHttpResponse == nil {
-		return localVarReturnValue, localVarHttpResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHttpResponse, err
-	}
-
-	if localVarHttpResponse.StatusCode < 300 {
-		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
-	}
-
-	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
-			body: localVarBody,
-			error: localVarHttpResponse.Status,
-		}
-		if localVarHttpResponse.StatusCode == 200 {
-			var v ResponseServiceMoveConfigResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
-				return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		if localVarHttpResponse.StatusCode == 400 {
-			var v Failure
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
-				return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		if localVarHttpResponse.StatusCode == 500 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
-				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
