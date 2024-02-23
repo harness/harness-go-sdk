@@ -798,19 +798,18 @@ func (a *ServicesApiService) GetServiceList(ctx context.Context, accountIdentifi
 
 /*
 ServicesApiService Gets a Service by identifier
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param serviceIdentifier
- * @param accountIdentifier
- * @param optional nil or *ServicesApiGetServiceV2Opts - Optional Parameters:
-     * @param "OrgIdentifier" (optional.String) - 
-     * @param "ProjectIdentifier" (optional.String) - 
-     * @param "Deleted" (optional.Bool) - 
-     * @param "FetchResolvedYaml" (optional.Bool) - 
-     * @param "Branch" (optional.String) - 
-     * @param "GetDefaultFromOtherRepo" (optional.Bool) - 
-     * @param "RepoName" (optional.String) - 
-     * @param "LoadFromCache" (optional.String) - 
-     * @param "LoadFromFallbackBranch" (optional.Bool) - 
+	* @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	* @param serviceIdentifier
+	* @param accountIdentifier
+	* @param optional nil or *ServicesApiGetServiceV2Opts - Optional Parameters:
+	* @param "OrgIdentifier" (optional.String) - 
+	* @param "ProjectIdentifier" (optional.String) - 
+	* @param "Deleted" (optional.Bool) - 
+	* @param "FetchResolvedYaml" (optional.Bool) - 
+	* @param "Branch" (optional.String) - 
+	* @param "RepoName" (optional.String) - 
+	* @param "LoadFromCache" (optional.String) - 
+	* @param "LoadFromFallbackBranch" (optional.Bool) - 
 @return ResponseDtoServiceResponse
 */
 
@@ -820,7 +819,6 @@ type ServicesApiGetServiceV2Opts struct {
 	Deleted           optional.Bool
 	FetchResolvedYaml optional.Bool
     Branch optional.String
-    GetDefaultFromOtherRepo optional.Bool
     RepoName optional.String
     LoadFromCache optional.String
     LoadFromFallbackBranch optional.Bool
@@ -858,9 +856,6 @@ func (a *ServicesApiService) GetServiceV2(ctx context.Context, serviceIdentifier
 	}
 	if localVarOptionals != nil && localVarOptionals.Branch.IsSet() {
 		localVarQueryParams.Add("branch", parameterToString(localVarOptionals.Branch.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.GetDefaultFromOtherRepo.IsSet() {
-		localVarQueryParams.Add("getDefaultFromOtherRepo", parameterToString(localVarOptionals.GetDefaultFromOtherRepo.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.RepoName.IsSet() {
 		localVarQueryParams.Add("repoName", parameterToString(localVarOptionals.RepoName.Value(), ""))
@@ -977,7 +972,6 @@ ServicesApiService Update a Service by identifier
      * @param "FilePath" (optional.String) - 
      * @param "CommitMsg" (optional.String) - 
      * @param "LastObjectId" (optional.String) - 
-     * @param "ResolvedConflictCommitId" (optional.String) - 
      * @param "BaseBranch" (optional.String) - 
      * @param "ConnectorRef" (optional.String) - 
      * @param "StoreType" (optional.String) - 
@@ -994,7 +988,6 @@ type ServicesApiUpdateServiceV2Opts struct {
     FilePath optional.String
     CommitMsg optional.String
     LastObjectId optional.String
-    ResolvedConflictCommitId optional.String
     BaseBranch optional.String
     ConnectorRef optional.String
     StoreType optional.String
@@ -1031,9 +1024,6 @@ func (a *ServicesApiService) UpdateServiceV2(ctx context.Context, accountIdentif
 	}
 	if localVarOptionals != nil && localVarOptionals.LastObjectId.IsSet() {
 		localVarQueryParams.Add("lastObjectId", parameterToString(localVarOptionals.LastObjectId.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ResolvedConflictCommitId.IsSet() {
-		localVarQueryParams.Add("resolvedConflictCommitId", parameterToString(localVarOptionals.ResolvedConflictCommitId.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.BaseBranch.IsSet() {
 		localVarQueryParams.Add("baseBranch", parameterToString(localVarOptionals.BaseBranch.Value(), ""))
@@ -1295,18 +1285,18 @@ func (a *ServicesApiService) UpsertServiceV2(ctx context.Context, accountIdentif
 
 /*
 ServicesApiService Get Service YAML from Git Repository
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountIdentifier
- * @param optional nil or *ServicesApiImportServiceOpts - Optional Parameters:
-     * @param "OrgIdentifier" (optional.String) - 
-     * @param "ProjectIdentifier" (optional.String) - 
-     * @param "ServiceIdentifier" (optional.String) - 
-     * @param "ConnectorRef" (optional.String) - 
-     * @param "RepoName" (optional.String) - 
-     * @param "Branch" (optional.String) - 
-     * @param "FilePath" (optional.String) - 
-     * @param "IsForceImport" (optional.Bool) - 
-     * @param "IsHarnessCodeRepo" (optional.Bool) - 
+	* @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	* @param accountIdentifier
+	* @param optional nil or *ServicesApiImportServiceOpts - Optional Parameters:
+	* @param "OrgIdentifier" (optional.String) - 
+	* @param "ProjectIdentifier" (optional.String) - 
+	* @param "ServiceIdentifier" (optional.String) - 
+	* @param "ConnectorRef" (optional.String) - 
+	* @param "RepoName" (optional.String) - 
+	* @param "Branch" (optional.String) - 
+	* @param "FilePath" (optional.String) - 
+	* @param "IsForceImport" (optional.Bool) - 
+	* @param "IsHarnessCodeRepo" (optional.Bool) - 
 @return ResponseServiceImportResponseDto
 */
 
@@ -1332,7 +1322,7 @@ func (a *ServicesApiService) ImportService(ctx context.Context, accountIdentifie
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/servicesV2/import"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/servicesV2/import"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1382,6 +1372,19 @@ func (a *ServicesApiService) ImportService(ctx context.Context, accountIdentifie
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+		if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
