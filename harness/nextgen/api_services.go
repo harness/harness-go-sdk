@@ -29,19 +29,19 @@ type ServicesApiService service
 
 /*
 ServicesApiService Create a Service
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountIdentifier
- * @param optional nil or *ServicesApiCreateServiceV2Opts - Optional Parameters:
-     * @param "Body" (optional.Interface of ServiceRequest) - 
-     * @param "Branch" (optional.String) - 
-     * @param "FilePath" (optional.String) - 
-     * @param "CommitMsg" (optional.String) - 
-     * @param "IsNewBranch" (optional.Bool) - 
-     * @param "BaseBranch" (optional.String) - 
-     * @param "ConnectorRef" (optional.String) - 
-     * @param "StoreType" (optional.String) - 
-     * @param "RepoName" (optional.String) - 
-     * @param "IsHarnessCodeRepo" (optional.Bool) - 
+	* @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	* @param accountIdentifier Account Identifier for the Entity.
+	* @param optional nil or *ServicesApiCreateServiceV2Opts - Optional Parameters:
+	* @param "Body" (optional.Interface of ServiceRequest) - Details of the Service to be created
+	* @param "Branch" (optional.String) - 
+	* @param "FilePath" (optional.String) - 
+	* @param "CommitMsg" (optional.String) - 
+	* @param "IsNewBranch" (optional.Bool) - 
+	* @param "BaseBranch" (optional.String) - 
+	* @param "ConnectorRef" (optional.String) - 
+	* @param "StoreType" (optional.String) - 
+	* @param "RepoName" (optional.String) - 
+	* @param "IsHarnessCodeRepo" (optional.Bool) - 
 @return ResponseDtoServiceResponse
 */
 
@@ -799,12 +799,12 @@ func (a *ServicesApiService) GetServiceList(ctx context.Context, accountIdentifi
 /*
 ServicesApiService Gets a Service by identifier
 	* @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	* @param serviceIdentifier
-	* @param accountIdentifier
+	* @param serviceIdentifier Service Identifier for the entity
+	* @param accountIdentifier Account Identifier for the Entity.
 	* @param optional nil or *ServicesApiGetServiceV2Opts - Optional Parameters:
-	* @param "OrgIdentifier" (optional.String) - 
-	* @param "ProjectIdentifier" (optional.String) - 
-	* @param "Deleted" (optional.Bool) - 
+	* @param "OrgIdentifier" (optional.String) - Organization Identifier for the Entity.
+	* @param "ProjectIdentifier" (optional.String) -  Project Identifier for the Entity.
+	* @param "Deleted" (optional.Bool) - Specify whether Service is deleted or not
 	* @param "FetchResolvedYaml" (optional.Bool) - 
 	* @param "Branch" (optional.String) - 
 	* @param "RepoName" (optional.String) - 
@@ -963,21 +963,21 @@ func (a *ServicesApiService) GetServiceV2(ctx context.Context, serviceIdentifier
 
 /*
 ServicesApiService Update a Service by identifier
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountIdentifier
- * @param optional nil or *ServicesApiUpdateServiceV2Opts - Optional Parameters:
-     * @param "Body" (optional.Interface of ServiceRequestDto) - 
-     * @param "IfMatch" (optional.String) - 
-     * @param "Branch" (optional.String) - 
-     * @param "FilePath" (optional.String) - 
-     * @param "CommitMsg" (optional.String) - 
-     * @param "LastObjectId" (optional.String) - 
-     * @param "BaseBranch" (optional.String) - 
-     * @param "ConnectorRef" (optional.String) - 
-     * @param "StoreType" (optional.String) - 
-     * @param "LastCommitId" (optional.String) - 
-     * @param "IsNewBranch" (optional.Bool) - 
-     * @param "IsHarnessCodeRepo" (optional.Bool) - 
+	* @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	* @param accountIdentifier Account Identifier for the Entity.
+	* @param optional nil or *ServicesApiUpdateServiceV2Opts - Optional Parameters:
+	* @param "Body" (optional.Interface of ServiceRequestDto) -  Details of the Service to be updated 
+	* @param "IfMatch" (optional.String) - 
+	* @param "Branch" (optional.String) - 
+	* @param "FilePath" (optional.String) - 
+	* @param "CommitMsg" (optional.String) - 
+	* @param "LastObjectId" (optional.String) - 
+	* @param "BaseBranch" (optional.String) - 
+	* @param "ConnectorRef" (optional.String) - 
+	* @param "StoreType" (optional.String) - 
+	* @param "LastCommitId" (optional.String) - 
+	* @param "IsNewBranch" (optional.Bool) - 
+	* @param "IsHarnessCodeRepo" (optional.Bool) - 
 @return ResponseDtoServiceResponse
 */
 
