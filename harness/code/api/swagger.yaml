@@ -3,7 +3,7 @@ info:
   title: API Specification
   version: 0.0.0
 servers:
-- url: http://app.harness.io/gateway/code/api/v1
+- url: /gateway/code/api/v1
 security:
 - bearerAuth: []
   x-api-key: []

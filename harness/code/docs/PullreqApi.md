@@ -1,6 +1,6 @@
 # {{classname}}
 
-All URIs are relative to *http://app.harness.io/gateway/code/api/v1*
+All URIs are relative to */gateway/code/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
