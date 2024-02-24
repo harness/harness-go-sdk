@@ -32,6 +32,7 @@ Method | HTTP request | Description
 [**RawDiff**](RepositoryApi.md#RawDiff) | **Get** /repos/{repo_identifier}/diff/{range} | Get raw diff
 [**RawDiffPost**](RepositoryApi.md#RawDiffPost) | **Post** /repos/{repo_identifier}/diff/{range} | Get raw diff
 [**RuleAdd**](RepositoryApi.md#RuleAdd) | **Post** /repos/{repo_identifier}/rules | Add protection rule
+[**RuleDelete**](RepositoryApi.md#RuleDelete) | **Delete** /repos/{repo_identifier}/rules/{rule_uid} | Delete protection rule
 [**RuleGet**](RepositoryApi.md#RuleGet) | **Get** /repos/{repo_identifier}/rules/{rule_uid} | Get protection rule
 [**RuleList**](RepositoryApi.md#RuleList) | **Get** /repos/{repo_identifier}/rules | List protection rules
 [**RuleUpdate**](RepositoryApi.md#RuleUpdate) | **Patch** /repos/{repo_identifier}/rules/{rule_uid} | Update protection rule
@@ -1133,6 +1134,45 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **RuleDelete**
+> RuleDelete(ctx, accountIdentifier, repoIdentifier, ruleUid, optional)
+Delete protection rule
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**|  | 
+  **ruleUid** | **string**|  | 
+ **optional** | ***RepositoryApiRuleDeleteOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a RepositoryApiRuleDeleteOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity.. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [x-api-key](../README.md#x-api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

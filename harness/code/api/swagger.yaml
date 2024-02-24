@@ -4696,6 +4696,77 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UsererrorError'
+    delete:
+      tags:
+      - repository
+      summary: Delete protection rule
+      operationId: ruleDelete
+      parameters:
+      - name: accountIdentifier
+        in: query
+        description: Account Identifier for the Entity..
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: orgIdentifier
+        in: query
+        description: Organization Identifier for the Entity..
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project Identifier for the Entity..
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: repo_identifier
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: rule_uid
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsererrorError'
     patch:
       tags:
       - repository
