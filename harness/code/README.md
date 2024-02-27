@@ -72,6 +72,7 @@ Class | Method | HTTP request | Description
 *RepositoryApi* | [**RawDiff**](docs/RepositoryApi.md#rawdiff) | **Get** /repos/{repo_identifier}/diff/{range} | Get raw diff
 *RepositoryApi* | [**RawDiffPost**](docs/RepositoryApi.md#rawdiffpost) | **Post** /repos/{repo_identifier}/diff/{range} | Get raw diff
 *RepositoryApi* | [**RuleAdd**](docs/RepositoryApi.md#ruleadd) | **Post** /repos/{repo_identifier}/rules | Add protection rule
+*RepositoryApi* | [**RuleDelete**](docs/RepositoryApi.md#ruledelete) | **Delete** /repos/{repo_identifier}/rules/{rule_uid} | Delete protection rule
 *RepositoryApi* | [**RuleGet**](docs/RepositoryApi.md#ruleget) | **Get** /repos/{repo_identifier}/rules/{rule_uid} | Get protection rule
 *RepositoryApi* | [**RuleList**](docs/RepositoryApi.md#rulelist) | **Get** /repos/{repo_identifier}/rules | List protection rules
 *RepositoryApi* | [**RuleUpdate**](docs/RepositoryApi.md#ruleupdate) | **Patch** /repos/{repo_identifier}/rules/{rule_uid} | Update protection rule

@@ -1178,7 +1178,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **RuleGet**
-> []OpenapiRule RuleGet(ctx, accountIdentifier, repoIdentifier, ruleUid, optional)
+> OpenapiRule RuleGet(ctx, accountIdentifier, repoIdentifier, ruleUid, optional)
 Get protection rule
 
 ### Required Parameters
@@ -1203,7 +1203,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]OpenapiRule**](OpenapiRule.md)
+[**OpenapiRule**](OpenapiRule.md)
 
 ### Authorization
 

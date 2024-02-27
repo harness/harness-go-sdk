@@ -4727,7 +4727,7 @@ RepositoryApiService Get protection rule
  * @param optional nil or *RepositoryApiRuleGetOpts - Optional Parameters:
      * @param "OrgIdentifier" (optional.String) -  Organization Identifier for the Entity..
      * @param "ProjectIdentifier" (optional.String) -  Project Identifier for the Entity..
-@return []OpenapiRule
+@return OpenapiRule
 */
 
 type RepositoryApiRuleGetOpts struct {
@@ -4735,13 +4735,13 @@ type RepositoryApiRuleGetOpts struct {
 	ProjectIdentifier optional.String
 }
 
-func (a *RepositoryApiService) RuleGet(ctx context.Context, accountIdentifier string, repoIdentifier string, ruleUid string, localVarOptionals *RepositoryApiRuleGetOpts) ([]OpenapiRule, *http.Response, error) {
+func (a *RepositoryApiService) RuleGet(ctx context.Context, accountIdentifier string, repoIdentifier string, ruleUid string, localVarOptionals *RepositoryApiRuleGetOpts) (OpenapiRule, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue []OpenapiRule
+		localVarReturnValue OpenapiRule
 	)
 
 	// create path and map variables
@@ -4820,7 +4820,7 @@ func (a *RepositoryApiService) RuleGet(ctx context.Context, accountIdentifier st
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v []OpenapiRule
+			var v OpenapiRule
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
