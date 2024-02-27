@@ -4593,6 +4593,10 @@ paths:
       responses:
         "201":
           description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenapiRule'
         "401":
           description: Unauthorized
           content:
@@ -4668,10 +4672,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/OpenapiRule'
-                x-content-type: application/json
+                $ref: '#/components/schemas/OpenapiRule'
         "401":
           description: Unauthorized
           content:
