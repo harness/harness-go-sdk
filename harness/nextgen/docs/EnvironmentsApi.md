@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**UpdateEnvironmentV2**](EnvironmentsApi.md#UpdateEnvironmentV2) | **Put** /ng/api/environmentsV2 | Update an Environment by identifier
 [**UpsertEnvironmentV2**](EnvironmentsApi.md#UpsertEnvironmentV2) | **Put** /ng/api/environmentsV2/upsert | Upsert an Environment by identifier
 [**UpsertServiceOverride**](EnvironmentsApi.md#UpsertServiceOverride) | **Post** /ng/api/environmentsV2/serviceOverrides | Upsert
+[**ImportEnvironment**](EnvironmentsApi.md#ImportEnvironment) | **Post** ng/api/environmentV2/import | Get Environment YAML from Git Repository
 
 # **CreateEnvironmentV2**
 > ResponseDtoEnvironmentResponse CreateEnvironmentV2(ctx, accountIdentifier, optional)
