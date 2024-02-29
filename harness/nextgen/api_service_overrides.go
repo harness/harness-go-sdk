@@ -746,7 +746,7 @@ type ServiceOverridesApiImportServiceOverridesOpts struct {
     IsHarnessCodeRepo optional.Bool
 }
 
-func (a *ServiceOverridesApiService) ImportServiceOverrides(ctx context.Context, localVarOptionals *ServiceOverridesApiImportServiceOverridesOpts) (ResponseServiceOverrideImportResponseDto, *http.Response, error) {
+func (a *ServiceOverridesApiService) ImportServiceOverrides(ctx context.Context, accountIdentifier string, localVarOptionals *ServiceOverridesApiImportServiceOverridesOpts) (ResponseServiceOverrideImportResponseDto, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -762,6 +762,7 @@ func (a *ServiceOverridesApiService) ImportServiceOverrides(ctx context.Context,
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	localVarQueryParams.Add("accountIdentifier", parameterToString(accountIdentifier, ""))
 	if localVarOptionals != nil && localVarOptionals.AccountIdentifier.IsSet() {
 		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
 	}
