@@ -1656,7 +1656,7 @@ func (a *EnvironmentsApiService) ImportEnvironment(ctx context.Context, accountI
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue EnvironmentImportResponseDto
+		localVarReturnValue ResponseEnvironmentImportResponseDto
 	)
 
 	// create path and map variables
