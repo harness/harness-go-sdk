@@ -421,7 +421,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseServiceImportResponseDto**](ResponseEnvironmentImportResponseDto.md)
+[**ResponseEnvironmentImportResponseDto**](ResponseEnvironmentImportResponseDto.md)
 
 ### Authorization
 
