@@ -392,3 +392,44 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ImportEnvironment**
+> ResponseEnvironmentImportResponseDto ImportEnvironment(ctx, accountIdentifier, optional)
+Get Environment YAML from Git Repository
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **accountIdentifier** | **string**|  | 
+ **optional** | ***ServicesV2ApiImportServiceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a EnvironmentsV2ApiImportEnvironmentOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **orgIdentifier** | **optional.String**|  | 
+ **projectIdentifier** | **optional.String**|  | 
+ **serviceIdentifier** | **optional.String**|  | 
+ **connectorRef** | **optional.String**|  | 
+ **repoName** | **optional.String**|  | 
+ **branch** | **optional.String**|  | 
+ **filePath** | **optional.String**|  | 
+ **isForceImport** | **optional.Bool**|  | [default to false]
+ **isHarnessCodeRepo** | **optional.Bool**|  | 
+
+### Return type
+
+[**ResponseServiceImportResponseDto**](ResponseEnvironmentImportResponseDto.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/yaml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

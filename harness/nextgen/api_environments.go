@@ -50,8 +50,6 @@ EnvironmentsApiService Create an Environment
 type EnvironmentsApiCreateEnvironmentV2Opts struct {
 	Body optional.Interface
     Branch optional.String
-    RepoIdentifier optional.String
-    RootFolder optional.String
     FilePath optional.String
     CommitMsg optional.String
     IsNewBranch optional.Bool
@@ -1190,8 +1188,6 @@ type EnvironmentsApiUpdateEnvironmentV2Opts struct {
 	Body optional.Interface
     IfMatch optional.String
     Branch optional.String
-    RepoIdentifier optional.String
-    RootFolder optional.String
     FilePath optional.String
     CommitMsg optional.String
     LastObjectId optional.String
@@ -1789,34 +1785,4 @@ func (a *EnvironmentsApiService) ImportEnvironment(ctx context.Context, accountI
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
-}
-/*
-EnvironmentsV2ApiService Move environment YAML from inline to remote
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountIdentifier
- * @param environmentIdentifier
- * @param moveConfigType
- * @param optional nil or *EnvironmentsV2ApiMoveEnvironmentConfigsOpts - Optional Parameters:
-     * @param "OrgIdentifier" (optional.String) - 
-     * @param "ProjectIdentifier" (optional.String) - 
-     * @param "ConnectorRef" (optional.String) - 
-     * @param "RepoName" (optional.String) - 
-     * @param "Branch" (optional.String) - 
-     * @param "FilePath" (optional.String) - 
-     * @param "CommitMsg" (optional.String) - 
-     * @param "IsNewBranch" (optional.Bool) - 
-     * @param "BaseBranch" (optional.String) - 
-@return ResponseEnvironmentMoveConfigResponse
-*/
-
-type EnvironmentsV2ApiMoveEnvironmentConfigsOpts struct {
-    OrgIdentifier optional.String
-    ProjectIdentifier optional.String
-    ConnectorRef optional.String
-    RepoName optional.String
-    Branch optional.String
-    FilePath optional.String
-    CommitMsg optional.String
-    IsNewBranch optional.Bool
-    BaseBranch optional.String
 }
