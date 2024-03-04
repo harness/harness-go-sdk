@@ -32,7 +32,7 @@ EnvironmentsApiService Create an Environment
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param accountIdentifier Account Identifier for the Entity.
  * @param optional nil or *EnvironmentsApiCreateEnvironmentV2Opts - Optional Parameters:
-     * @param "Body" (optional.Interface of EnvironmentRequestDto) - 
+     * @param "Body" (optional.Interface of EnvironmentRequestDto) - Details of the Environment to be created
      * @param "Branch" (optional.String) - 
      * @param "RepoIdentifier" (optional.String) - 
      * @param "RootFolder" (optional.String) - 
@@ -820,9 +820,9 @@ EnvironmentsApiService Gets an Environment by identifier
  * @param environmentIdentifier Environment Identifier for the entity
  * @param accountIdentifier Account Identifier for the Entity.
  * @param optional nil or *EnvironmentsApiGetEnvironmentV2Opts - Optional Parameters:
-     * @param "OrgIdentifier" (optional.String) - 
-     * @param "ProjectIdentifier" (optional.String) - 
-     * @param "Deleted" (optional.Bool) - 
+     * @param "OrgIdentifier" (optional.String) - Organization Identifier for the Entity.
+     * @param "ProjectIdentifier" (optional.String) - Project Identifier for the Entity.
+     * @param "Deleted" (optional.Bool) - Specify whether Environment is deleted or not
      * @param "Branch" (optional.String) - 
      * @param "RepoIdentifier" (optional.String) - 
      * @param "GetDefaultFromOtherRepo" (optional.Bool) - 
@@ -842,13 +842,6 @@ type EnvironmentsApiGetEnvironmentV2Opts struct {
     ProjectIdentifier optional.String
     Deleted optional.Bool
     Branch optional.String
-    RepoIdentifier optional.String
-    GetDefaultFromOtherRepo optional.Bool
-    ParentEntityConnectorRef optional.String
-    ParentEntityRepoName optional.String
-    ParentEntityAccountIdentifier optional.String
-    ParentEntityOrgIdentifier optional.String
-    ParentEntityProjectIdentifier optional.String
     RepoName optional.String
     LoadFromCache optional.String
     LoadFromFallbackBranch optional.Bool
@@ -883,27 +876,6 @@ func (a *EnvironmentsApiService) GetEnvironmentV2(ctx context.Context, environme
 	}
 	if localVarOptionals != nil && localVarOptionals.Branch.IsSet() {
 		localVarQueryParams.Add("branch", parameterToString(localVarOptionals.Branch.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.RepoIdentifier.IsSet() {
-		localVarQueryParams.Add("repoIdentifier", parameterToString(localVarOptionals.RepoIdentifier.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.GetDefaultFromOtherRepo.IsSet() {
-		localVarQueryParams.Add("getDefaultFromOtherRepo", parameterToString(localVarOptionals.GetDefaultFromOtherRepo.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ParentEntityConnectorRef.IsSet() {
-		localVarQueryParams.Add("parentEntityConnectorRef", parameterToString(localVarOptionals.ParentEntityConnectorRef.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ParentEntityRepoName.IsSet() {
-		localVarQueryParams.Add("parentEntityRepoName", parameterToString(localVarOptionals.ParentEntityRepoName.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ParentEntityAccountIdentifier.IsSet() {
-		localVarQueryParams.Add("parentEntityAccountIdentifier", parameterToString(localVarOptionals.ParentEntityAccountIdentifier.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ParentEntityOrgIdentifier.IsSet() {
-		localVarQueryParams.Add("parentEntityOrgIdentifier", parameterToString(localVarOptionals.ParentEntityOrgIdentifier.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ParentEntityProjectIdentifier.IsSet() {
-		localVarQueryParams.Add("parentEntityProjectIdentifier", parameterToString(localVarOptionals.ParentEntityProjectIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.RepoName.IsSet() {
 		localVarQueryParams.Add("repoName", parameterToString(localVarOptionals.RepoName.Value(), ""))
@@ -1169,8 +1141,6 @@ EnvironmentsApiService Update an Environment by identifier
      * @param "Body" (optional.Interface of EnvironmentRequestDto) - 
      * @param "IfMatch" (optional.String) - 
      * @param "Branch" (optional.String) - 
-     * @param "RepoIdentifier" (optional.String) - 
-     * @param "RootFolder" (optional.String) - 
      * @param "FilePath" (optional.String) - 
      * @param "CommitMsg" (optional.String) - 
      * @param "LastObjectId" (optional.String) - 

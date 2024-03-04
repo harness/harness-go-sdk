@@ -402,7 +402,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **accountIdentifier** | **string**|  | 
- **optional** | ***ServicesV2ApiImportServiceOpts** | optional parameters | nil if no parameters
+ **optional** | ***EnvironmentsV2ApiImportEnvironmentOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
 Optional parameters are passed through a pointer to a EnvironmentsV2ApiImportEnvironmentOpts struct
@@ -411,7 +411,7 @@ Name | Type | Description  | Notes
 
  **orgIdentifier** | **optional.String**|  | 
  **projectIdentifier** | **optional.String**|  | 
- **serviceIdentifier** | **optional.String**|  | 
+ **environmentIdentifier** | **optional.String**|  | 
  **connectorRef** | **optional.String**|  | 
  **repoName** | **optional.String**|  | 
  **branch** | **optional.String**|  | 
