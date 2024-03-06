@@ -724,7 +724,7 @@ func (a *InfrastructuresApiService) ImportInfrastructure(ctx context.Context, ac
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/infrastructures/import"
+	localVarPath := a.client.cfg.BasePath + "/ng/api/infrastructures/import"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
