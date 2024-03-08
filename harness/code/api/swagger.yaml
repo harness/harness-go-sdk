@@ -5803,7 +5803,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: OK
@@ -5878,7 +5878,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
+          type: string
       responses:
         "204":
           description: No Content
@@ -5949,7 +5949,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
+          type: string
       requestBody:
         content:
           application/json:
@@ -6051,7 +6051,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: OK
@@ -6151,7 +6151,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
+          type: string
       - name: webhook_execution_id
         in: path
         required: true

@@ -205,7 +205,7 @@ type WebhookApiDeleteWebhookOpts struct {
 	ProjectIdentifier optional.String
 }
 
-func (a *WebhookApiService) DeleteWebhook(ctx context.Context, accountIdentifier string, repoIdentifier string, webhookIdentifier int32, localVarOptionals *WebhookApiDeleteWebhookOpts) (*http.Response, error) {
+func (a *WebhookApiService) DeleteWebhook(ctx context.Context, accountIdentifier string, repoIdentifier string, webhookIdentifier string, localVarOptionals *WebhookApiDeleteWebhookOpts) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
@@ -343,7 +343,7 @@ type WebhookApiGetWebhookOpts struct {
 	ProjectIdentifier optional.String
 }
 
-func (a *WebhookApiService) GetWebhook(ctx context.Context, accountIdentifier string, repoIdentifier string, webhookIdentifier int32, localVarOptionals *WebhookApiGetWebhookOpts) (OpenapiWebhookType, *http.Response, error) {
+func (a *WebhookApiService) GetWebhook(ctx context.Context, accountIdentifier string, repoIdentifier string, webhookIdentifier string, localVarOptionals *WebhookApiGetWebhookOpts) (OpenapiWebhookType, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
@@ -505,7 +505,7 @@ type WebhookApiGetWebhookExecutionOpts struct {
 	Limit             optional.Int32
 }
 
-func (a *WebhookApiService) GetWebhookExecution(ctx context.Context, accountIdentifier string, repoIdentifier string, webhookIdentifier int32, webhookExecutionId int32, localVarOptionals *WebhookApiGetWebhookExecutionOpts) (TypesWebhookExecution, *http.Response, error) {
+func (a *WebhookApiService) GetWebhookExecution(ctx context.Context, accountIdentifier string, repoIdentifier string, webhookIdentifier string, webhookExecutionId int32, localVarOptionals *WebhookApiGetWebhookExecutionOpts) (TypesWebhookExecution, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
@@ -673,7 +673,7 @@ type WebhookApiListWebhookExecutionsOpts struct {
 	Limit             optional.Int32
 }
 
-func (a *WebhookApiService) ListWebhookExecutions(ctx context.Context, accountIdentifier string, repoIdentifier string, webhookIdentifier int32, localVarOptionals *WebhookApiListWebhookExecutionsOpts) ([]TypesWebhookExecution, *http.Response, error) {
+func (a *WebhookApiService) ListWebhookExecutions(ctx context.Context, accountIdentifier string, repoIdentifier string, webhookIdentifier string, localVarOptionals *WebhookApiListWebhookExecutionsOpts) ([]TypesWebhookExecution, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
@@ -1018,7 +1018,7 @@ type WebhookApiUpdateWebhookOpts struct {
 	ProjectIdentifier optional.String
 }
 
-func (a *WebhookApiService) UpdateWebhook(ctx context.Context, accountIdentifier string, repoIdentifier string, webhookIdentifier int32, localVarOptionals *WebhookApiUpdateWebhookOpts) (OpenapiWebhookType, *http.Response, error) {
+func (a *WebhookApiService) UpdateWebhook(ctx context.Context, accountIdentifier string, repoIdentifier string, webhookIdentifier string, localVarOptionals *WebhookApiUpdateWebhookOpts) (OpenapiWebhookType, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Patch")
 		localVarPostBody    interface{}

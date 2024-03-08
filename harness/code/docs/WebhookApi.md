@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
   **repoIdentifier** | **string**|  | 
-  **webhookIdentifier** | **int32**|  | 
+  **webhookIdentifier** | **string**|  | 
  **optional** | ***WebhookApiDeleteWebhookOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
   **repoIdentifier** | **string**|  | 
-  **webhookIdentifier** | **int32**|  | 
+  **webhookIdentifier** | **string**|  | 
  **optional** | ***WebhookApiGetWebhookOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
   **repoIdentifier** | **string**|  | 
-  **webhookIdentifier** | **int32**|  | 
+  **webhookIdentifier** | **string**|  | 
   **webhookExecutionId** | **int32**|  | 
  **optional** | ***WebhookApiGetWebhookExecutionOpts** | optional parameters | nil if no parameters
 
@@ -182,7 +182,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
   **repoIdentifier** | **string**|  | 
-  **webhookIdentifier** | **int32**|  | 
+  **webhookIdentifier** | **string**|  | 
  **optional** | ***WebhookApiListWebhookExecutionsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -265,7 +265,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
   **repoIdentifier** | **string**|  | 
-  **webhookIdentifier** | **int32**|  | 
+  **webhookIdentifier** | **string**|  | 
  **optional** | ***WebhookApiUpdateWebhookOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
