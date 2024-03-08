@@ -213,10 +213,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **accountIdentifier** | **string**|  | 
- **optional** | ***InfrastructuresApiUpdateInfrastructureOpts** | optional parameters | nil if no parameters
+ **optional** | ***InfrastructuresApiImportInfrastructureOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a InfrastructuresApiUpdateInfrastructureOpts struct
+Optional parameters are passed through a pointer to a InfrastructuresApiImportInfrastructureOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
