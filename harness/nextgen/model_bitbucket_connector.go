@@ -16,5 +16,6 @@ type BitbucketConnector struct {
 	Authentication    *BitbucketAuthentication `json:"authentication"`
 	ApiAccess         *BitbucketApiAccess      `json:"apiAccess,omitempty"`
 	DelegateSelectors []string                 `json:"delegateSelectors,omitempty"`
+	ExecuteOnDelegate bool                     `json:"executeOnDelegate"`
 	Type_             GitConnectorType         `json:"type"`
 }
