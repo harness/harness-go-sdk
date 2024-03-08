@@ -9,6 +9,7 @@
 package code
 
 type UsererrorError struct {
-	Message string            `json:"message,omitempty"`
-	Values  map[string]Object `json:"values,omitempty"`
+	Message string `json:"message,omitempty"`
+	// manually changed object to interface
+	Values map[string]interface{} `json:"values,omitempty"`
 }

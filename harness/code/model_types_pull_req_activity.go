@@ -16,16 +16,18 @@ type TypesPullReqActivity struct {
 	Edited      int32                    `json:"edited,omitempty"`
 	Id          int32                    `json:"id,omitempty"`
 	Kind        *EnumPullReqActivityKind `json:"kind,omitempty"`
-	Metadata    map[string]Object        `json:"metadata,omitempty"`
-	Order       int32                    `json:"order,omitempty"`
-	ParentId    int32                    `json:"parent_id,omitempty"`
-	Payload     *Object                  `json:"payload,omitempty"`
-	PullreqId   int32                    `json:"pullreq_id,omitempty"`
-	RepoId      int32                    `json:"repo_id,omitempty"`
-	Resolved    int32                    `json:"resolved,omitempty"`
-	Resolver    *TypesPrincipalInfo      `json:"resolver,omitempty"`
-	SubOrder    int32                    `json:"sub_order,omitempty"`
-	Text        string                   `json:"text,omitempty"`
-	Type_       *EnumPullReqActivityType `json:"type,omitempty"`
-	Updated     int32                    `json:"updated,omitempty"`
+	// manually changed object to interface
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Order    int32                  `json:"order,omitempty"`
+	ParentId int32                  `json:"parent_id,omitempty"`
+	// manually changed object to interface
+	Payload   map[string]interface{}   `json:"payload,omitempty"`
+	PullreqId int32                    `json:"pullreq_id,omitempty"`
+	RepoId    int32                    `json:"repo_id,omitempty"`
+	Resolved  int32                    `json:"resolved,omitempty"`
+	Resolver  *TypesPrincipalInfo      `json:"resolver,omitempty"`
+	SubOrder  int32                    `json:"sub_order,omitempty"`
+	Text      string                   `json:"text,omitempty"`
+	Type_     *EnumPullReqActivityType `json:"type,omitempty"`
+	Updated   int32                    `json:"updated,omitempty"`
 }

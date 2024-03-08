@@ -9,7 +9,8 @@
 package code
 
 type TypesCheckPayload struct {
-	Data    *Object               `json:"data,omitempty"`
-	Kind    *EnumCheckPayloadKind `json:"kind,omitempty"`
-	Version string                `json:"version,omitempty"`
+	// manually changed object to interface
+	Data    map[string]interface{} `json:"data,omitempty"`
+	Kind    *EnumCheckPayloadKind  `json:"kind,omitempty"`
+	Version string                 `json:"version,omitempty"`
 }

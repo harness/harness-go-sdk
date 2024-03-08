@@ -9,7 +9,8 @@
 package code
 
 type TypesViolation struct {
-	Code    string   `json:"code,omitempty"`
-	Message string   `json:"message,omitempty"`
-	Params  []Object `json:"params,omitempty"`
+	Code    string `json:"code,omitempty"`
+	Message string `json:"message,omitempty"`
+	// manually changed object to interface
+	Params []map[string]interface{} `json:"params,omitempty"`
 }
