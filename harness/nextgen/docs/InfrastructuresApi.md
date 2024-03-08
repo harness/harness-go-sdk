@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
  **orgIdentifier** | **optional.String**|  | 
  **projectIdentifier** | **optional.String**|  | 
- **infraIdentifierIdentifier** | **optional.String**|  | 
+ **infraIdentifier** | **optional.String**|  | 
  **connectorRef** | **optional.String**|  | 
  **repoName** | **optional.String**|  | 
  **branch** | **optional.String**|  | 
