@@ -8,7 +8,6 @@
  */
 package code
 
-type UsererrorError struct {
-	Message string            `json:"message,omitempty"`
-	Values  map[string]Object `json:"values,omitempty"`
+type OpenapiRestoreRequest struct {
+	NewIdentifier string `json:"new_identifier,omitempty"`
 }

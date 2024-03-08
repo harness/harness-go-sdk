@@ -8,7 +8,8 @@
  */
 package code
 
-type UsererrorError struct {
-	Message string            `json:"message,omitempty"`
-	Values  map[string]Object `json:"values,omitempty"`
+type TypesPullReqCheck struct {
+	Bypassable bool        `json:"bypassable,omitempty"`
+	Check      *TypesCheck `json:"check,omitempty"`
+	Required   bool        `json:"required,omitempty"`
 }

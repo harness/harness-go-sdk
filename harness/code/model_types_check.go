@@ -9,17 +9,16 @@
 package code
 
 type TypesCheck struct {
-	Created    int32  `json:"created,omitempty"`
-	Ended      int32  `json:"ended,omitempty"`
-	Id         int32  `json:"id,omitempty"`
-	Identifier string `json:"identifier,omitempty"`
-	Link       string `json:"link,omitempty"`
-	// manually changed object to interface
-	Metadata   map[string]interface{} `json:"metadata,omitempty"`
-	Payload    *TypesCheckPayload     `json:"payload,omitempty"`
-	ReportedBy *TypesPrincipalInfo    `json:"reported_by,omitempty"`
-	Started    int32                  `json:"started,omitempty"`
-	Status     *EnumCheckStatus       `json:"status,omitempty"`
-	Summary    string                 `json:"summary,omitempty"`
-	Updated    int32                  `json:"updated,omitempty"`
+	Created    int32               `json:"created,omitempty"`
+	Ended      int32               `json:"ended,omitempty"`
+	Id         int32               `json:"id,omitempty"`
+	Identifier string              `json:"identifier,omitempty"`
+	Link       string              `json:"link,omitempty"`
+	Metadata   *Object             `json:"metadata,omitempty"`
+	Payload    *TypesCheckPayload  `json:"payload,omitempty"`
+	ReportedBy *TypesPrincipalInfo `json:"reported_by,omitempty"`
+	Started    int32               `json:"started,omitempty"`
+	Status     *EnumCheckStatus    `json:"status,omitempty"`
+	Summary    string              `json:"summary,omitempty"`
+	Updated    int32               `json:"updated,omitempty"`
 }

@@ -8,7 +8,5 @@
  */
 package code
 
-type UsererrorError struct {
-	Message string            `json:"message,omitempty"`
-	Values  map[string]Object `json:"values,omitempty"`
+type GitCommitDiffStats struct {
 }

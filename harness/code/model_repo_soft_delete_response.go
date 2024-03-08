@@ -8,7 +8,6 @@
  */
 package code
 
-type UsererrorError struct {
-	Message string            `json:"message,omitempty"`
-	Values  map[string]Object `json:"values,omitempty"`
+type RepoSoftDeleteResponse struct {
+	DeletedAt int32 `json:"deleted_at,omitempty"`
 }

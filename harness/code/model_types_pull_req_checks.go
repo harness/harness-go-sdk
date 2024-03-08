@@ -8,7 +8,7 @@
  */
 package code
 
-type UsererrorError struct {
-	Message string            `json:"message,omitempty"`
-	Values  map[string]Object `json:"values,omitempty"`
+type TypesPullReqChecks struct {
+	Checks    []TypesPullReqCheck `json:"checks,omitempty"`
+	CommitSha string              `json:"commit_sha,omitempty"`
 }
