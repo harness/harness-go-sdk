@@ -53,16 +53,20 @@ type APIKey struct {
 }
 
 type Configuration struct {
+	AccountId     string            `json:"accountId,omitempty"`
 	BasePath      string            `json:"basePath,omitempty"`
 	Host          string            `json:"host,omitempty"`
 	Scheme        string            `json:"scheme,omitempty"`
 	DefaultHeader map[string]string `json:"defaultHeader,omitempty"`
 	UserAgent     string            `json:"userAgent,omitempty"`
 	HTTPClient    *http.Client
+	ApiKey        string `json:"apiKey,omitempty"`
 }
 
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
+		AccountId:     helpers.EnvVars.AccountId.Get(),
+		ApiKey:        helpers.EnvVars.PlatformApiKey.Get(),
 		BasePath:      helpers.EnvVars.Endpoint.GetWithDefault(utils.BaseUrl),
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "Swagger-Codegen/1.0.0/go",
