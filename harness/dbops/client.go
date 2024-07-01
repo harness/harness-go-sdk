@@ -51,10 +51,6 @@ type APIClient struct {
 	DatabaseInstanceApi *DatabaseInstanceApiService
 
 	DatabaseSchemaApi *DatabaseSchemaApiService
-
-	LogIngestApi *LogIngestApiService
-
-	PipelineStepApi *PipelineStepApiService
 }
 
 type service struct {
@@ -77,8 +73,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.DatabaseInstanceApi = (*DatabaseInstanceApiService)(&c.common)
 	c.DatabaseSchemaApi = (*DatabaseSchemaApiService)(&c.common)
-	c.LogIngestApi = (*LogIngestApiService)(&c.common)
-	c.PipelineStepApi = (*PipelineStepApiService)(&c.common)
 
 	return c
 }
