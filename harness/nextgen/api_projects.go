@@ -69,7 +69,7 @@ func (a *ProjectsApiService) AgentProjectServiceCreate(ctx context.Context, body
 	if localVarOptionals != nil && localVarOptionals.ProjectIdentifier.IsSet() {
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
 	}
-	// to determine the Content-Type header
+	// To determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
 
 	// set Content-Type header
