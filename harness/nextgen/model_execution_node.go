@@ -21,14 +21,17 @@ type ExecutionNode struct {
 	EndTs          int64                             `json:"endTs,omitempty"`
 	StepType       string                            `json:"stepType,omitempty"`
 	// This is the Execution Status of the entity
-	Status              string                            `json:"status,omitempty"`
-	FailureInfo         *FailureInfoDto                   `json:"failureInfo,omitempty"`
-	SkipInfo            *SkipInfo                         `json:"skipInfo,omitempty"`
-	NodeRunInfo         *NodeRunInfo                      `json:"nodeRunInfo,omitempty"`
-	ExecutableResponses []ExecutableResponse              `json:"executableResponses,omitempty"`
-	UnitProgresses      []UnitProgress                    `json:"unitProgresses,omitempty"`
-	ProgressData        *map[string]interface{}           `json:"progressData,omitempty"`
-	DelegateInfoList    []DelegateInfo                    `json:"delegateInfoList,omitempty"`
-	InterruptHistories  []InterruptEffectDto              `json:"interruptHistories,omitempty"`
-	StepDetails         map[string]map[string]interface{} `json:"stepDetails,omitempty"`
+	Status                   string                            `json:"status,omitempty"`
+	FailureInfo              *FailureInfoDto                   `json:"failureInfo,omitempty"`
+	SkipInfo                 *SkipInfo                         `json:"skipInfo,omitempty"`
+	NodeRunInfo              *NodeRunInfo                      `json:"nodeRunInfo,omitempty"`
+	ExecutableResponses      []ExecutableResponse              `json:"executableResponses,omitempty"`
+	UnitProgresses           []UnitProgress                    `json:"unitProgresses,omitempty"`
+	ProgressData             *map[string]interface{}           `json:"progressData,omitempty"`
+	DelegateInfoList         []DelegateInfo                    `json:"delegateInfoList,omitempty"`
+	InterruptHistories       []InterruptEffectDto              `json:"interruptHistories,omitempty"`
+	StepDetails              map[string]map[string]interface{} `json:"stepDetails,omitempty"`
+	StrategyMetadata         *StrategyMetadata                 `json:"strategyMetadata,omitempty"`
+	ExecutionInputConfigured bool                              `json:"executionInputConfigured,omitempty"`
+	LogBaseKey               string                            `json:"logBaseKey,omitempty"`
 }

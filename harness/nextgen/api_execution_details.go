@@ -169,13 +169,17 @@ ExecutionDetailsApiService Get the Pipeline Execution details for given PlanExec
  * @param projectIdentifier Project Identifier for the Entity.
  * @param planExecutionId Plan Execution Id for which we want to get the Execution details
  * @param optional nil or *ExecutionDetailsApiGetExecutionDetailV2Opts - Optional Parameters:
-     * @param "StageNodeId" (optional.String) -  Stage Node Identifier to get execution stats.
-     * @param "RenderFullBottomGraph" (optional.Bool) -  Generate full graph
+     * @param "StageNodeId" (optional.String) -  Stage Node Identifier for which Stage Graph needs to be Rendered
+     * @param "StageNodeExecutionId" (optional.String) -  Stage Node Execution ID for which Stage Graph needs to be Rendered. (Needed only when there are Multiple Runs for a Given Stage. It can be Extracted from LayoutNodeMap Field)
+     * @param "ChildStageNodeId" (optional.String) -  Stage Node Execution ID for which Stage Graph needs to be Rendered. (Needed only when there are Multiple Runs for a Given Stage. It can be Extracted from LayoutNodeMap Field)
+     * @param "RenderFullBottomGraph" (optional.Bool) -  Generate Graph for all the Stages including Steps in each Stage
 @return ResponseDtoPipelineExecutionDetail
 */
 
 type ExecutionDetailsApiGetExecutionDetailV2Opts struct {
 	StageNodeId           optional.String
+	StageNodeExecutionId  optional.String
+	ChildStageNodeId      optional.String
 	RenderFullBottomGraph optional.Bool
 }
 
@@ -201,6 +205,12 @@ func (a *ExecutionDetailsApiService) GetExecutionDetailV2(ctx context.Context, a
 	localVarQueryParams.Add("projectIdentifier", parameterToString(projectIdentifier, ""))
 	if localVarOptionals != nil && localVarOptionals.StageNodeId.IsSet() {
 		localVarQueryParams.Add("stageNodeId", parameterToString(localVarOptionals.StageNodeId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.StageNodeExecutionId.IsSet() {
+		localVarQueryParams.Add("stageNodeExecutionId", parameterToString(localVarOptionals.StageNodeExecutionId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.ChildStageNodeId.IsSet() {
+		localVarQueryParams.Add("childStageNodeId", parameterToString(localVarOptionals.ChildStageNodeId.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.RenderFullBottomGraph.IsSet() {
 		localVarQueryParams.Add("renderFullBottomGraph", parameterToString(localVarOptionals.RenderFullBottomGraph.Value(), ""))
