@@ -168,6 +168,8 @@ type APIClient struct {
 
 	RolesApi *RolesApiService
 
+	RuleApi *RuleApiService
+
 	RuleEnforcementApi *RuleEnforcementApiService
 
 	SCIMApi *SCIMApiService
