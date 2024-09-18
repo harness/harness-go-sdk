@@ -36,7 +36,7 @@ type CcmRule struct {
 	// storeType
 	StoreType string `json:"storeType,omitempty"`
 	// isOOTB
-	IsOOTB bool `json:"isOOTB,omitempty"`
+	IsOOTB bool `json:"isOOTB"`
 	// deleted
 	Deleted bool `json:"deleted,omitempty"`
 	// forRecommendation
