@@ -30,7 +30,7 @@ type RuleSet struct {
 	// List of rules identifiers from governancePolicy collection
 	RulesIdentifier []string `json:"rulesIdentifier,omitempty"`
 	// is OOTB flag
-	IsOOTB bool `json:"isOOTB,omitempty"`
+	IsOOTB bool `json:"isOOTB"`
 	// Time at which the entity was created
 	CreatedAt int64 `json:"createdAt,omitempty"`
 	// Time at which the entity was last updated
