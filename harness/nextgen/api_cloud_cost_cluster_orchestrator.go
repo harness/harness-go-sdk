@@ -9,9 +9,9 @@ import (
 	"strings"
 )
 
-type ClusterOrchestratorApiService service
+type CloudCostClusterOrchestratorApiService service
 
-func (a *ClusterOrchestratorApiService) CreateClusterOrchestrator(ctx context.Context, accountIdentifier string, body CreateClusterOrchestratorDto) (CreateClusterOrchestratorResponse, *http.Response, error) {
+func (a *CloudCostClusterOrchestratorApiService) CreateClusterOrchestrator(ctx context.Context, accountIdentifier string, body CreateClusterOrchestratorDto) (CreateClusterOrchestratorResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
