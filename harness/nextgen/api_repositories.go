@@ -205,6 +205,7 @@ type RepositoriesApiAgentRepositoryServiceDeleteRepositoryOpts struct {
 	QueryRepo         optional.String
 	QueryForceRefresh optional.Bool
 	QueryProject      optional.String
+        ForceDelete optional.Bool
 }
 
 func (a *RepositoriesApiService) AgentRepositoryServiceDeleteRepository(ctx context.Context, agentIdentifier string, identifier string, localVarOptionals *RepositoriesApiAgentRepositoryServiceDeleteRepositoryOpts) (RepositoriesRepoResponse, *http.Response, error) {
