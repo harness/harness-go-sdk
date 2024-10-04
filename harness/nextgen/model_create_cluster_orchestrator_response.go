@@ -9,7 +9,7 @@
  */
 package nextgen
 
-type CreateClusterOrchestratorResponse struct {
+type ClusterOrchestratorResponse struct {
 	Response *ClusterOrchestrator `json:"response,omitempty"`
 	Errors   []string             `json:"errors,omitempty"`
 	Success  bool                 `json:"success"`

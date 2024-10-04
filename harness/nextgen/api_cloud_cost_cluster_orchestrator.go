@@ -11,13 +11,13 @@ import (
 
 type CloudCostClusterOrchestratorApiService service
 
-func (a *CloudCostClusterOrchestratorApiService) CreateClusterOrchestrator(ctx context.Context, accountIdentifier string, body CreateClusterOrchestratorDto) (CreateClusterOrchestratorResponse, *http.Response, error) {
+func (a *CloudCostClusterOrchestratorApiService) CreateClusterOrchestrator(ctx context.Context, accountIdentifier string, body CreateClusterOrchestratorDto) (ClusterOrchestratorResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue CreateClusterOrchestratorResponse
+		localVarReturnValue ClusterOrchestratorResponse
 	)
 
 	localVarPath := a.client.cfg.BasePath + "/lw/api/accounts/{account_id}/clusters/orchestrator"
@@ -97,13 +97,13 @@ func (a *CloudCostClusterOrchestratorApiService) CreateClusterOrchestrator(ctx c
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
-func (a *CloudCostClusterOrchestratorApiService) ClusterOrchestratorDetails(ctx context.Context, accountIdentifier string, Identifier string) (InlineResponse200, *http.Response, error) {
+func (a *CloudCostClusterOrchestratorApiService) ClusterOrchestratorDetails(ctx context.Context, accountIdentifier string, Identifier string) (ClusterOrchestratorResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue InlineResponse200
+		localVarReturnValue ClusterOrchestratorResponse
 	)
 
 	// create path and map variables
