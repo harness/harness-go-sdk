@@ -11,5 +11,6 @@ package nextgen
 
 type CreateClusterOrchestratorDto struct {
 	Name       string                        `json:"name"`
+	K8sConnID  string                        `json:"k8s_connector_id"`
 	UserConfig ClusterOrchestratorUserConfig `json:"user_config"`
 }

@@ -23,7 +23,6 @@ type ClusterOrchConfig struct {
 
 type ClusterOrchestratorUserConfig struct {
 	ClusterEndPoint string `json:"cluster_endpoint"`
-	K8sConnID       string `json:"k8s_connector_id"`
 }
 
 type ClusterOrchestrator struct {
