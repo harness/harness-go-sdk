@@ -17,7 +17,7 @@ import "./swagger"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to */*
+All URIs are relative to */api/manager*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -176,8 +176,29 @@ Class | Method | HTTP request | Description
  - [V1VsphereVirtualDiskVolumeSource](docs/V1VsphereVirtualDiskVolumeSource.md)
 
 ## Documentation For Authorization
- Endpoints do not require authorization.
 
+## ApiKeyAuth
+- **Type**: API key 
+
+Example
+```golang
+auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
+	Key: "APIKEY",
+	Prefix: "Bearer", // Omit if not necessary.
+})
+r, err := client.Service.Operation(auth, args)
+```
+## BasicAuth
+- **Type**: HTTP basic authentication
+
+Example
+```golang
+auth := context.WithValue(context.Background(), sw.ContextBasicAuth, sw.BasicAuth{
+	UserName: "username",
+	Password: "password",
+})
+r, err := client.Service.Operation(auth, args)
+```
 
 ## Author
 

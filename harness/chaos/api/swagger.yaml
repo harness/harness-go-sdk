@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   contact: {}
 servers:
-- url: /
+- url: /api/manager
 paths:
   /rest/v2/infrastructure:
     post:
@@ -2392,4 +2392,12 @@ components:
         volumePath:
           type: string
           description: Path that identifies vSphere volume vmdk
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-Key
+      in: header
+    BasicAuth:
+      type: http
+      scheme: basic
 x-original-swagger-version: "2.0"

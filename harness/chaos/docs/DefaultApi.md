@@ -1,6 +1,6 @@
 # {{classname}}
 
-All URIs are relative to */*
+All URIs are relative to */api/manager*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -39,7 +39,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
