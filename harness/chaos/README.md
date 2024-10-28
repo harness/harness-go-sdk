@@ -21,7 +21,7 @@ All URIs are relative to */api/manager*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ExternalApi* | [**RegisterInfraV2**](docs/ExternalApi.md#registerinfrav2) | **Post** /rest/v2/infrastructure | Register a new v2 infra
+*ChaosSdkApi* | [**RegisterInfraV2**](docs/ChaosSdkApi.md#registerinfrav2) | **Post** /rest/v2/infrastructure | Register a new v2 infra
 
 ## Documentation For Models
 

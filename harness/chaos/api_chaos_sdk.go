@@ -23,25 +23,25 @@ var (
 	_ context.Context
 )
 
-type ExternalApiService service
+type ChaosSdkApiService service
 /*
-ExternalApiService Register a new v2 infra
+ChaosSdkApiService Register a new v2 infra
 Register a new v2 infra
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param body Register Infra V2
  * @param accountIdentifier account id that want to access the resource
  * @param organizationIdentifier organization id that want to access the resource
  * @param projectIdentifier project id that want to access the resource
- * @param optional nil or *ExternalApiRegisterInfraV2Opts - Optional Parameters:
+ * @param optional nil or *ChaosSdkApiRegisterInfraV2Opts - Optional Parameters:
      * @param "CorrelationID" (optional.String) -  correlation id is used to debug micro svc communication
 @return InfraV2RegisterInfrastructureV2Response
 */
 
-type ExternalApiRegisterInfraV2Opts struct {
+type ChaosSdkApiRegisterInfraV2Opts struct {
     CorrelationID optional.String
 }
 
-func (a *ExternalApiService) RegisterInfraV2(ctx context.Context, body InfraV2RegisterInfrastructureV2Request, accountIdentifier string, organizationIdentifier string, projectIdentifier string, localVarOptionals *ExternalApiRegisterInfraV2Opts) (InfraV2RegisterInfrastructureV2Response, *http.Response, error) {
+func (a *ChaosSdkApiService) RegisterInfraV2(ctx context.Context, body InfraV2RegisterInfrastructureV2Request, accountIdentifier string, organizationIdentifier string, projectIdentifier string, localVarOptionals *ChaosSdkApiRegisterInfraV2Opts) (InfraV2RegisterInfrastructureV2Response, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}

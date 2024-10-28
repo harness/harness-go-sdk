@@ -9,7 +9,7 @@ paths:
   /rest/v2/infrastructure:
     post:
       tags:
-      - external
+      - chaos-sdk
       summary: Register a new v2 infra
       description: Register a new v2 infra
       operationId: registerInfraV2

@@ -44,7 +44,7 @@ type APIClient struct {
 
 	// API Services
 
-	ExternalApi *ExternalApiService
+	ChaosSdkApi *ChaosSdkApiService
 }
 
 type service struct {
@@ -63,7 +63,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.ExternalApi = (*ExternalApiService)(&c.common)
+	c.ChaosSdkApi = (*ChaosSdkApiService)(&c.common)
 
 	return c
 }
