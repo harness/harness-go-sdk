@@ -21,5 +21,5 @@ type AwsSecretManager struct {
 	Default_          bool     `json:"default,omitempty"`
 	UsePutSecret      bool     `json:"usePutSecret,omitempty"`
 	ForceDeleteWithoutRecovery      bool     `json:"forceDeleteWithoutRecovery,omitempty"`
-	RecoveryWindowInDays            int64     `json:"recoveryWindowInDays,omitempty"`
+	RecoveryWindowInDays            int64    `json:"recoveryWindowInDays,omitempty"`
 }
