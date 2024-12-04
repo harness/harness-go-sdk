@@ -12,8 +12,7 @@ type V1StorageMedium string
 
 // List of v1.StorageMedium
 const (
-	EMPTY_V1StorageMedium V1StorageMedium = ""
-	MEMORY_V1StorageMedium V1StorageMedium = "Memory"
-	HUGE_PAGES_V1StorageMedium V1StorageMedium = "HugePages"
+	EMPTY_V1StorageMedium      V1StorageMedium = ""
+	MEMORY_V1StorageMedium     V1StorageMedium = "Memory"
 	HUGE_PAGES_V1StorageMedium V1StorageMedium = "HugePages-"
 )
