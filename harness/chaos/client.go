@@ -45,7 +45,6 @@ type APIClient struct {
 	AccountId string
 	ApiKey    string
 	Endpoint  string
-
 	// API Services
 
 	ChaosSdkApi *ChaosSdkApiService
@@ -65,6 +64,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c := &APIClient{}
 	c.cfg = cfg
 	c.common.client = c
+
+	// Api Config
+	c.ApiKey = cfg.ApiKey
+	c.AccountId = cfg.AccountId
+	c.Endpoint = cfg.BasePath
 
 	// API Services
 	c.ChaosSdkApi = (*ChaosSdkApiService)(&c.common)
