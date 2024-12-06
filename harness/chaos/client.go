@@ -360,16 +360,22 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 	}
 
 	if reader, ok := body.(io.Reader); ok {
+		fmt.Println("b4")
 		_, err = bodyBuf.ReadFrom(reader)
 	} else if b, ok := body.([]byte); ok {
+		fmt.Println("b5")
 		_, err = bodyBuf.Write(b)
 	} else if s, ok := body.(string); ok {
+		fmt.Println("b6")
 		_, err = bodyBuf.WriteString(s)
 	} else if s, ok := body.(*string); ok {
+		fmt.Println("b1")
 		_, err = bodyBuf.WriteString(*s)
 	} else if jsonCheck.MatchString(contentType) {
+		fmt.Println("b2")
 		err = json.NewEncoder(bodyBuf).Encode(body)
 	} else if xmlCheck.MatchString(contentType) {
+		fmt.Println("b3")
 		xml.NewEncoder(bodyBuf).Encode(body)
 	}
 
@@ -377,7 +383,7 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 		return nil, err
 	}
 	fmt.Println("body insetbody", body)
-	fmt.Printf("bodybuf", bodyBuf.String())
+	fmt.Println("bodybuf", bodyBuf.String())
 	if bodyBuf.Len() == 0 {
 		fmt.Println("here inside")
 		err = fmt.Errorf("Invalid body type %s\n", contentType)
