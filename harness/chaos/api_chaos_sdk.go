@@ -425,6 +425,8 @@ func (a *ChaosSdkApiService) RegisterInfraV2(ctx context.Context, body InfraV2Re
 		localVarReturnValue InfraV2RegisterInfrastructureV2Response
 	)
 
+	fmt.Println("bodayyyyy", body)
+
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/rest/v2/infrastructure"
 
