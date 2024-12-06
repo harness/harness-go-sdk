@@ -49,7 +49,7 @@ paths:
       requestBody:
         description: update Infra V2
         content:
-          '*/*':
+          application/json:
             schema:
               $ref: '#/components/schemas/infra_v2.UpdateKubernetesInfrastructureV2Request'
         required: true
@@ -111,7 +111,7 @@ paths:
       requestBody:
         description: Register Infra V2
         content:
-          '*/*':
+          application/json:
             schema:
               $ref: '#/components/schemas/infra_v2.RegisterInfrastructureV2Request'
         required: true
