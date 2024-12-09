@@ -650,7 +650,6 @@ func (a *ProjectApiService) PostProject(ctx context.Context, body ProjectRequest
 		localVarFileBytes   []byte
 		localVarReturnValue ResponseDtoProjectResponse
 	)
-	fmt.Println("pojrct body", body)
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/ng/api/projects"
 

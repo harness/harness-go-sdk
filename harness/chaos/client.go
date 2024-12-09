@@ -172,16 +172,13 @@ func (c *APIClient) prepareRequest(
 	fileBytes []byte) (localVarRequest *http.Request, err error) {
 
 	var body *bytes.Buffer
-	fmt.Println("post body", postBody)
 	// Detect postBody type and post.
 	if postBody != nil {
 		contentType := headerParams["Content-Type"]
 		if contentType == "" {
 			contentType = detectContentType(postBody)
-			fmt.Println("content", contentType)
 			headerParams["Content-Type"] = contentType
 		}
-		fmt.Println("content1", contentType)
 		body, err = setBody(postBody, contentType)
 		if err != nil {
 			return nil, err
@@ -254,7 +251,6 @@ func (c *APIClient) prepareRequest(
 
 	// Encode the parameters.
 	url.RawQuery = query.Encode()
-	fmt.Println("url", url.String())
 	// Generate a new request
 	if body != nil {
 		localVarRequest, err = http.NewRequest(method, url.String(), body)
@@ -361,32 +357,23 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 	}
 
 	if reader, ok := body.(io.Reader); ok {
-		fmt.Println("b4")
 		_, err = bodyBuf.ReadFrom(reader)
 	} else if b, ok := body.([]byte); ok {
-		fmt.Println("b5")
 		_, err = bodyBuf.Write(b)
 	} else if s, ok := body.(string); ok {
-		fmt.Println("b6")
 		_, err = bodyBuf.WriteString(s)
 	} else if s, ok := body.(*string); ok {
-		fmt.Println("b1")
 		_, err = bodyBuf.WriteString(*s)
 	} else if jsonCheck.MatchString(contentType) {
-		fmt.Println("b2")
 		err = json.NewEncoder(bodyBuf).Encode(body)
 	} else if xmlCheck.MatchString(contentType) {
-		fmt.Println("b3")
 		xml.NewEncoder(bodyBuf).Encode(body)
 	}
 
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println("body insetbody", body)
-	fmt.Println("bodybuf", bodyBuf.String())
 	if bodyBuf.Len() == 0 {
-		fmt.Println("here inside")
 		err = fmt.Errorf("Invalid body type %s\n", contentType)
 		return nil, err
 	}
