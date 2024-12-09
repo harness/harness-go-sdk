@@ -254,7 +254,7 @@ func (c *APIClient) prepareRequest(
 
 	// Encode the parameters.
 	url.RawQuery = query.Encode()
-
+	fmt.Println("url", url.String())
 	// Generate a new request
 	if body != nil {
 		localVarRequest, err = http.NewRequest(method, url.String(), body)
