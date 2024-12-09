@@ -521,6 +521,7 @@ func (a *ChaosSdkApiService) RegisterInfraV2(ctx context.Context, body InfraV2Re
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			newErr.error = v.Description
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr

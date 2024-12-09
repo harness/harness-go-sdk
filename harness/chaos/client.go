@@ -309,7 +309,7 @@ func (c *APIClient) prepareRequest(
 	for header, value := range c.cfg.DefaultHeader {
 		localVarRequest.Header.Add(header, value)
 	}
-	fmt.Println("apikey", localVarRequest.Header["X-API-Key"])
+	fmt.Println("apikey123", localVarRequest.Header.Get("X-API-Key"))
 
 	return localVarRequest, nil
 }
