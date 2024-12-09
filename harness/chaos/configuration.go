@@ -67,7 +67,7 @@ func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		AccountId:     helpers.EnvVars.AccountId.Get(),
 		ApiKey:        helpers.EnvVars.PlatformApiKey.Get(),
-		BasePath:      helpers.EnvVars.Endpoint.GetWithDefault(utils.BaseUrl) + "/api/manager",
+		BasePath:      helpers.EnvVars.Endpoint.GetWithDefault(utils.BaseUrl) + "/chaos/manager/api",
 		DefaultHeader: make(map[string]string),
 		UserAgent:     fmt.Sprintf("%s-%s", harness.SDKName, harness.SDKVersion),
 	}
