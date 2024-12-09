@@ -264,7 +264,7 @@ func (c *APIClient) prepareRequest(
 	if err != nil {
 		return nil, err
 	}
-
+	fmt.Println("api request", localVarRequest)
 	// add header parameters, if any
 	if len(headerParams) > 0 {
 		headers := http.Header{}
