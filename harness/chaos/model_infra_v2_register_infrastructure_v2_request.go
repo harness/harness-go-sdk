@@ -16,6 +16,7 @@ type InfraV2RegisterInfrastructureV2Request struct {
 	DiscoveryAgentID string `json:"discoveryAgentID,omitempty"`
 	Env []InfraV2Env `json:"env,omitempty"`
 	EnvironmentID string `json:"environmentID,omitempty"`
+	Identifier *InfraV2Identifiers `json:"identifier,omitempty"`
 	Identity string `json:"identity,omitempty"`
 	ImageRegistry *ImageRegistryImageRegistryV2 `json:"imageRegistry,omitempty"`
 	InfraID string `json:"infraID,omitempty"`

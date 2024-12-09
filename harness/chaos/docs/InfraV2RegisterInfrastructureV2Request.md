@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **DiscoveryAgentID** | **string** |  | [optional] [default to null]
 **Env** | [**[]InfraV2Env**](infra_v2.Env.md) |  | [optional] [default to null]
 **EnvironmentID** | **string** |  | [optional] [default to null]
+**Identifier** | [***InfraV2Identifiers**](infra_v2.Identifiers.md) |  | [optional] [default to null]
 **Identity** | **string** |  | [optional] [default to null]
 **ImageRegistry** | [***ImageRegistryImageRegistryV2**](image_registry.ImageRegistryV2.md) |  | [optional] [default to null]
 **InfraID** | **string** |  | [optional] [default to null]
