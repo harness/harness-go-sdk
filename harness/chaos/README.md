@@ -17,7 +17,7 @@ import "./chaos"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to */api/manager*
+All URIs are relative to */chaos/manager/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

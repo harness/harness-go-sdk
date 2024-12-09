@@ -4,7 +4,7 @@ info:
   contact: {}
   version: "1.0"
 servers:
-- url: /api/manager
+- url: /chaos/manager/api
 paths:
   /rest/v2/infrastructure:
     put:
