@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **DelegateSelectors** | **[]string** |  | [optional] [default to null]
 **Default_** | **bool** |  | [optional] [default to null]
 **UsePutSecret** | **bool** |  | [optional] [default to null]
+**ForceDeleteWithoutRecovery** | **bool** |  | [optional] [default to null]
+**RecoveryWindowInDays** | **int64** |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
