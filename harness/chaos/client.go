@@ -260,7 +260,7 @@ func (c *APIClient) prepareRequest(
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println("api request", *localVarRequest)
+
 	// add header parameters, if any
 	if len(headerParams) > 0 {
 		headers := http.Header{}
@@ -309,7 +309,6 @@ func (c *APIClient) prepareRequest(
 	for header, value := range c.cfg.DefaultHeader {
 		localVarRequest.Header.Add(header, value)
 	}
-	fmt.Println("apikey123", localVarRequest.Header.Get("X-API-Key"))
 
 	return localVarRequest, nil
 }

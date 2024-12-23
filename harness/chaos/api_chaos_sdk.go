@@ -458,7 +458,6 @@ func (a *ChaosSdkApiService) RegisterInfraV2(ctx context.Context, body InfraV2Re
 	// body params
 	localVarPostBody = &body
 	if ctx != nil {
-		fmt.Println("context", ctx)
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
 			var key string
@@ -471,7 +470,6 @@ func (a *ChaosSdkApiService) RegisterInfraV2(ctx context.Context, body InfraV2Re
 
 		}
 	}
-	fmt.Println("apikeyyyy", localVarHeaderParams["X-API-Key"])
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -487,9 +485,6 @@ func (a *ChaosSdkApiService) RegisterInfraV2(ctx context.Context, body InfraV2Re
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
-	fmt.Println("localVarBody", string(localVarBody))
-	fmt.Println("localVarHttpResponse", localVarHttpResponse.Status)
-	fmt.Println("errresp", err)
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
