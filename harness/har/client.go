@@ -42,9 +42,9 @@ type APIClient struct {
 	cfg    *Configuration
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
-	ApiKey    string
 	AccountId string
-
+	ApiKey    string
+	Endpoint  string
 	// API Services
 
 	ArtifactsApi *ArtifactsApiService
@@ -74,6 +74,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 	c.ApiKey = cfg.ApiKey
 	c.AccountId = cfg.AccountId
+	c.Endpoint = cfg.BasePath
 
 	// API Services
 	c.ArtifactsApi = (*ArtifactsApiService)(&c.common)
