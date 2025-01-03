@@ -65,7 +65,7 @@ func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		AccountId:     helpers.EnvVars.AccountId.Get(),
 		ApiKey:        helpers.EnvVars.PlatformApiKey.Get(),
-		BasePath:      helpers.EnvVars.Endpoint.GetWithDefault(utils.BaseUrl) + "/har/api/v1",
+		BasePath:      helpers.EnvVars.Endpoint.GetWithDefault(utils.BaseUrl) + "/gateway/har/api/v1",
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "Swagger-Codegen/1.0.0/go",
 	}

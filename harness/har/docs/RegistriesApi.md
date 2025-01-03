@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateRegistry**](RegistriesApi.md#CreateRegistry) | **Post** /registry | Create Registry.
 [**DeleteRegistry**](RegistriesApi.md#DeleteRegistry) | **Delete** /registry/{registry_ref} | Delete a Registry
-[**GetAllArtifactsByRegistry**](RegistriesApi.md#GetAllArtifactsByRegistry) | **Get** /registry/{registry_ref}/artifacts | List Artifacts for Registry
+[**GetAllArtifactsByRegistry**](RegistriesApi.md#GetAllArtifactsByRegistry) | **Get** /registry/{registry_ref}/+/artifacts | List Artifacts for Registry
 [**GetClientSetupDetails**](RegistriesApi.md#GetClientSetupDetails) | **Get** /registry/{registry_ref}/client-setup-details | Returns CLI Client Setup Details
 [**GetRegistry**](RegistriesApi.md#GetRegistry) | **Get** /registry/{registry_ref} | Returns Registry Details
 [**ModifyRegistry**](RegistriesApi.md#ModifyRegistry) | **Put** /registry/{registry_ref} | Updates a Registry

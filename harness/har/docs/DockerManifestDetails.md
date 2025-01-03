@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **string** |  | [optional] [default to null]
 **Digest** | **string** |  | [default to null]
+**DownloadsCount** | **int64** |  | [optional] [default to null]
 **OsArch** | **string** |  | [default to null]
 **Size** | **string** |  | [optional] [default to null]
 **StoExecutionId** | **string** |  | [optional] [default to null]

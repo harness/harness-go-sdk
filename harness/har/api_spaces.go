@@ -40,6 +40,7 @@ Lists all the Harness Artifacts.
      * @param "SearchTerm" (optional.String) -  search Term.
      * @param "LatestVersion" (optional.Bool) -  Latest Version Filter.
      * @param "DeployedArtifact" (optional.Bool) -  Deployed Artifact Filter.
+     * @param "PackageType" (optional.Interface of []string) -  Registry Package Type
 @return InlineResponse20016
 */
 
@@ -52,6 +53,7 @@ type SpacesApiGetAllHarnessArtifactsOpts struct {
 	SearchTerm       optional.String
 	LatestVersion    optional.Bool
 	DeployedArtifact optional.Bool
+	PackageType      optional.Interface
 }
 
 func (a *SpacesApiService) GetAllHarnessArtifacts(ctx context.Context, spaceRef string, localVarOptionals *SpacesApiGetAllHarnessArtifactsOpts) (InlineResponse20016, *http.Response, error) {
@@ -64,7 +66,7 @@ func (a *SpacesApiService) GetAllHarnessArtifacts(ctx context.Context, spaceRef 
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/spaces/{space_ref}/artifacts"
+	localVarPath := a.client.cfg.BasePath + "/spaces/{space_ref}/+/artifacts"
 	localVarPath = strings.Replace(localVarPath, "{"+"space_ref"+"}", fmt.Sprintf("%v", spaceRef), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -94,6 +96,9 @@ func (a *SpacesApiService) GetAllHarnessArtifacts(ctx context.Context, spaceRef 
 	}
 	if localVarOptionals != nil && localVarOptionals.DeployedArtifact.IsSet() {
 		localVarQueryParams.Add("deployed_artifact", parameterToString(localVarOptionals.DeployedArtifact.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.PackageType.IsSet() {
+		localVarQueryParams.Add("package_type", parameterToString(localVarOptionals.PackageType.Value(), "multi"))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -245,7 +250,7 @@ func (a *SpacesApiService) GetAllRegistries(ctx context.Context, spaceRef string
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/spaces/{space_ref}/registries"
+	localVarPath := a.client.cfg.BasePath + "/spaces/{space_ref}/+/registries"
 	localVarPath = strings.Replace(localVarPath, "{"+"space_ref"+"}", fmt.Sprintf("%v", spaceRef), -1)
 
 	localVarHeaderParams := make(map[string]string)

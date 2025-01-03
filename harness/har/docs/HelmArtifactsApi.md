@@ -4,8 +4,8 @@ All URIs are relative to */gateway/har/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetHelmArtifactDetails**](HelmArtifactsApi.md#GetHelmArtifactDetails) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/helm/details | Describe Helm Artifact Detail
-[**GetHelmArtifactManifest**](HelmArtifactsApi.md#GetHelmArtifactManifest) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/helm/manifest | Describe Helm Artifact Manifest
+[**GetHelmArtifactDetails**](HelmArtifactsApi.md#GetHelmArtifactDetails) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/helm/details | Describe Helm Artifact Detail
+[**GetHelmArtifactManifest**](HelmArtifactsApi.md#GetHelmArtifactManifest) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/helm/manifest | Describe Helm Artifact Manifest
 
 # **GetHelmArtifactDetails**
 > InlineResponse2009 GetHelmArtifactDetails(ctx, registryRef, artifact, version)

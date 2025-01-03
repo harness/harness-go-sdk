@@ -45,7 +45,7 @@ func (a *ArtifactsApiService) DeleteArtifact(ctx context.Context, registryRef st
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 
@@ -185,7 +185,7 @@ func (a *ArtifactsApiService) DeleteArtifactVersion(ctx context.Context, registr
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}/version/{version}"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}/version/{version}"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"version"+"}", fmt.Sprintf("%v", version), -1)
@@ -339,7 +339,7 @@ func (a *ArtifactsApiService) GetAllArtifactVersions(ctx context.Context, regist
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}/versions"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}/versions"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 
@@ -510,7 +510,7 @@ func (a *ArtifactsApiService) GetArtifactDeployments(ctx context.Context, regist
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}/version/{version}/deploymentdetails"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}/version/{version}/deploymentdetails"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"version"+"}", fmt.Sprintf("%v", version), -1)
@@ -676,7 +676,7 @@ func (a *ArtifactsApiService) GetArtifactStats(ctx context.Context, registryRef 
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}/stats"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}/stats"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 
@@ -828,7 +828,7 @@ func (a *ArtifactsApiService) GetArtifactStatsForRegistry(ctx context.Context, r
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/stats"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/stats"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -979,7 +979,7 @@ func (a *ArtifactsApiService) GetArtifactStatsForSpace(ctx context.Context, spac
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/spaces/{space_ref}/artifact/stats"
+	localVarPath := a.client.cfg.BasePath + "/spaces/{space_ref}/+/artifact/stats"
 	localVarPath = strings.Replace(localVarPath, "{"+"space_ref"+"}", fmt.Sprintf("%v", spaceRef), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1123,7 +1123,7 @@ func (a *ArtifactsApiService) GetArtifactSummary(ctx context.Context, registryRe
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}/summary"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}/summary"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 
@@ -1269,7 +1269,7 @@ func (a *ArtifactsApiService) GetArtifactVersionSummary(ctx context.Context, reg
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}/version/{version}/summary"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}/version/{version}/summary"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"version"+"}", fmt.Sprintf("%v", version), -1)
@@ -1421,7 +1421,7 @@ func (a *ArtifactsApiService) ListArtifactLabels(ctx context.Context, registryRe
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/labels"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/labels"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1708,7 +1708,7 @@ func (a *ArtifactsApiService) UpdateArtifactLabels(ctx context.Context, registry
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}/labels"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}/labels"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 

@@ -4,18 +4,18 @@ All URIs are relative to */gateway/har/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteArtifact**](ArtifactsApi.md#DeleteArtifact) | **Delete** /registry/{registry_ref}/artifact/{artifact} | Delete Artifact
-[**DeleteArtifactVersion**](ArtifactsApi.md#DeleteArtifactVersion) | **Delete** /registry/{registry_ref}/artifact/{artifact}/version/{version} | Delete an Artifact Version
-[**GetAllArtifactVersions**](ArtifactsApi.md#GetAllArtifactVersions) | **Get** /registry/{registry_ref}/artifact/{artifact}/versions | List Artifact Versions
-[**GetArtifactDeployments**](ArtifactsApi.md#GetArtifactDeployments) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/deploymentdetails | Describe Artifact Deployments
-[**GetArtifactStats**](ArtifactsApi.md#GetArtifactStats) | **Get** /registry/{registry_ref}/artifact/{artifact}/stats | Get Artifact Stats
-[**GetArtifactStatsForRegistry**](ArtifactsApi.md#GetArtifactStatsForRegistry) | **Get** /registry/{registry_ref}/artifact/stats | Get Artifact Stats
-[**GetArtifactStatsForSpace**](ArtifactsApi.md#GetArtifactStatsForSpace) | **Get** /spaces/{space_ref}/artifact/stats | Get Artifact Stats
-[**GetArtifactSummary**](ArtifactsApi.md#GetArtifactSummary) | **Get** /registry/{registry_ref}/artifact/{artifact}/summary | Get Artifact Summary
-[**GetArtifactVersionSummary**](ArtifactsApi.md#GetArtifactVersionSummary) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/summary | Get Artifact Version Summary
-[**ListArtifactLabels**](ArtifactsApi.md#ListArtifactLabels) | **Get** /registry/{registry_ref}/artifact/labels | List Artifact Labels
+[**DeleteArtifact**](ArtifactsApi.md#DeleteArtifact) | **Delete** /registry/{registry_ref}/+/artifact/{artifact} | Delete Artifact
+[**DeleteArtifactVersion**](ArtifactsApi.md#DeleteArtifactVersion) | **Delete** /registry/{registry_ref}/+/artifact/{artifact}/version/{version} | Delete an Artifact Version
+[**GetAllArtifactVersions**](ArtifactsApi.md#GetAllArtifactVersions) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/versions | List Artifact Versions
+[**GetArtifactDeployments**](ArtifactsApi.md#GetArtifactDeployments) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/deploymentdetails | Describe Artifact Deployments
+[**GetArtifactStats**](ArtifactsApi.md#GetArtifactStats) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/stats | Get Artifact Stats
+[**GetArtifactStatsForRegistry**](ArtifactsApi.md#GetArtifactStatsForRegistry) | **Get** /registry/{registry_ref}/+/artifact/stats | Get Artifact Stats
+[**GetArtifactStatsForSpace**](ArtifactsApi.md#GetArtifactStatsForSpace) | **Get** /spaces/{space_ref}/+/artifact/stats | Get Artifact Stats
+[**GetArtifactSummary**](ArtifactsApi.md#GetArtifactSummary) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/summary | Get Artifact Summary
+[**GetArtifactVersionSummary**](ArtifactsApi.md#GetArtifactVersionSummary) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/summary | Get Artifact Version Summary
+[**ListArtifactLabels**](ArtifactsApi.md#ListArtifactLabels) | **Get** /registry/{registry_ref}/+/artifact/labels | List Artifact Labels
 [**RedirectHarnessArtifact**](ArtifactsApi.md#RedirectHarnessArtifact) | **Get** /registry/{registry_identifier}/artifact/{artifact}/redirect | Redirect to Harness Artifact Page
-[**UpdateArtifactLabels**](ArtifactsApi.md#UpdateArtifactLabels) | **Put** /registry/{registry_ref}/artifact/{artifact}/labels | Update Artifact Labels
+[**UpdateArtifactLabels**](ArtifactsApi.md#UpdateArtifactLabels) | **Put** /registry/{registry_ref}/+/artifact/{artifact}/labels | Update Artifact Labels
 
 # **DeleteArtifact**
 > InlineResponse200 DeleteArtifact(ctx, registryRef, artifact)

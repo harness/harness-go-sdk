@@ -307,7 +307,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}:
+  /registry/{registry_ref}/+/artifact/{artifact}:
     delete:
       tags:
       - Artifacts
@@ -368,7 +368,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}/labels:
+  /registry/{registry_ref}/+/artifact/{artifact}/labels:
     put:
       tags:
       - Artifacts
@@ -431,7 +431,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}/stats:
+  /registry/{registry_ref}/+/artifact/{artifact}/stats:
     get:
       tags:
       - Artifacts
@@ -508,7 +508,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}/summary:
+  /registry/{registry_ref}/+/artifact/{artifact}/summary:
     get:
       tags:
       - Artifacts
@@ -569,7 +569,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}/version/{version}:
+  /registry/{registry_ref}/+/artifact/{artifact}/version/{version}:
     delete:
       tags:
       - Artifacts
@@ -638,7 +638,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}/version/{version}/deploymentdetails:
+  /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/deploymentdetails:
     get:
       tags:
       - Artifacts
@@ -763,7 +763,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/details:
+  /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/docker/details:
     get:
       tags:
       - Docker Artifacts
@@ -840,7 +840,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/integrationdetails:
+  /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/docker/integrationdetails:
     get:
       tags:
       - Docker Artifacts
@@ -917,7 +917,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/layers:
+  /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/docker/layers:
     get:
       tags:
       - Docker Artifacts
@@ -994,7 +994,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/manifest:
+  /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/docker/manifest:
     get:
       tags:
       - Docker Artifacts
@@ -1071,7 +1071,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/manifests:
+  /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/docker/manifests:
     get:
       tags:
       - Docker Artifacts
@@ -1140,7 +1140,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}/version/{version}/helm/details:
+  /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/helm/details:
     get:
       tags:
       - Helm Artifacts
@@ -1209,7 +1209,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}/version/{version}/helm/manifest:
+  /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/helm/manifest:
     get:
       tags:
       - Helm Artifacts
@@ -1278,7 +1278,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}/version/{version}/summary:
+  /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/summary:
     get:
       tags:
       - Artifacts
@@ -1355,7 +1355,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/{artifact}/versions:
+  /registry/{registry_ref}/+/artifact/{artifact}/versions:
     get:
       tags:
       - Artifacts
@@ -1460,7 +1460,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/labels:
+  /registry/{registry_ref}/+/artifact/labels:
     get:
       tags:
       - Artifacts
@@ -1541,7 +1541,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifact/stats:
+  /registry/{registry_ref}/+/artifact/stats:
     get:
       tags:
       - Artifacts
@@ -1610,7 +1610,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/artifacts:
+  /registry/{registry_ref}/+/artifacts:
     get:
       tags:
       - Registries
@@ -1786,7 +1786,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /spaces/{space_ref}/artifact/stats:
+  /spaces/{space_ref}/+/artifact/stats:
     get:
       tags:
       - Artifacts
@@ -1855,7 +1855,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /spaces/{space_ref}/artifacts:
+  /spaces/{space_ref}/+/artifacts:
     get:
       tags:
       - Spaces
@@ -1941,6 +1941,16 @@ paths:
         explode: true
         schema:
           type: boolean
+      - name: package_type
+        in: query
+        description: Registry Package Type
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
       responses:
         "200":
           description: response for list artifact
@@ -1978,7 +1988,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /spaces/{space_ref}/registries:
+  /spaces/{space_ref}/+/registries:
     get:
       tags:
       - Spaces
@@ -2871,6 +2881,9 @@ components:
           type: string
         digest:
           type: string
+        downloadsCount:
+          type: integer
+          format: int64
         osArch:
           type: string
         size:
@@ -2882,6 +2895,7 @@ components:
       description: Harness Artifact Layers
       example:
         createdAt: createdAt
+        downloadsCount: 0
         stoPipelineId: stoPipelineId
         size: size
         stoExecutionId: stoExecutionId
@@ -2909,12 +2923,14 @@ components:
         isLatestVersion: true
         manifests:
         - createdAt: createdAt
+          downloadsCount: 0
           stoPipelineId: stoPipelineId
           size: size
           stoExecutionId: stoExecutionId
           osArch: osArch
           digest: digest
         - createdAt: createdAt
+          downloadsCount: 0
           stoPipelineId: stoPipelineId
           size: size
           stoExecutionId: stoExecutionId
@@ -3991,12 +4007,14 @@ components:
           isLatestVersion: true
           manifests:
           - createdAt: createdAt
+            downloadsCount: 0
             stoPipelineId: stoPipelineId
             size: size
             stoExecutionId: stoExecutionId
             osArch: osArch
             digest: digest
           - createdAt: createdAt
+            downloadsCount: 0
             stoPipelineId: stoPipelineId
             size: size
             stoExecutionId: stoExecutionId

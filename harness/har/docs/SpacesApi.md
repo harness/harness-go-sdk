@@ -4,8 +4,8 @@ All URIs are relative to */gateway/har/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetAllHarnessArtifacts**](SpacesApi.md#GetAllHarnessArtifacts) | **Get** /spaces/{space_ref}/artifacts | List Harness Artifacts
-[**GetAllRegistries**](SpacesApi.md#GetAllRegistries) | **Get** /spaces/{space_ref}/registries | List Registries
+[**GetAllHarnessArtifacts**](SpacesApi.md#GetAllHarnessArtifacts) | **Get** /spaces/{space_ref}/+/artifacts | List Harness Artifacts
+[**GetAllRegistries**](SpacesApi.md#GetAllRegistries) | **Get** /spaces/{space_ref}/+/registries | List Registries
 
 # **GetAllHarnessArtifacts**
 > InlineResponse20016 GetAllHarnessArtifacts(ctx, spaceRef, optional)
@@ -34,6 +34,7 @@ Name | Type | Description  | Notes
  **searchTerm** | **optional.String**| search Term. | 
  **latestVersion** | **optional.Bool**| Latest Version Filter. | 
  **deployedArtifact** | **optional.Bool**| Deployed Artifact Filter. | 
+ **packageType** | [**optional.Interface of []string**](string.md)| Registry Package Type | 
 
 ### Return type
 

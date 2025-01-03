@@ -22,33 +22,33 @@ All URIs are relative to */gateway/har/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ArtifactsApi* | [**DeleteArtifact**](docs/ArtifactsApi.md#deleteartifact) | **Delete** /registry/{registry_ref}/artifact/{artifact} | Delete Artifact
-*ArtifactsApi* | [**DeleteArtifactVersion**](docs/ArtifactsApi.md#deleteartifactversion) | **Delete** /registry/{registry_ref}/artifact/{artifact}/version/{version} | Delete an Artifact Version
-*ArtifactsApi* | [**GetAllArtifactVersions**](docs/ArtifactsApi.md#getallartifactversions) | **Get** /registry/{registry_ref}/artifact/{artifact}/versions | List Artifact Versions
-*ArtifactsApi* | [**GetArtifactDeployments**](docs/ArtifactsApi.md#getartifactdeployments) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/deploymentdetails | Describe Artifact Deployments
-*ArtifactsApi* | [**GetArtifactStats**](docs/ArtifactsApi.md#getartifactstats) | **Get** /registry/{registry_ref}/artifact/{artifact}/stats | Get Artifact Stats
-*ArtifactsApi* | [**GetArtifactStatsForRegistry**](docs/ArtifactsApi.md#getartifactstatsforregistry) | **Get** /registry/{registry_ref}/artifact/stats | Get Artifact Stats
-*ArtifactsApi* | [**GetArtifactStatsForSpace**](docs/ArtifactsApi.md#getartifactstatsforspace) | **Get** /spaces/{space_ref}/artifact/stats | Get Artifact Stats
-*ArtifactsApi* | [**GetArtifactSummary**](docs/ArtifactsApi.md#getartifactsummary) | **Get** /registry/{registry_ref}/artifact/{artifact}/summary | Get Artifact Summary
-*ArtifactsApi* | [**GetArtifactVersionSummary**](docs/ArtifactsApi.md#getartifactversionsummary) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/summary | Get Artifact Version Summary
-*ArtifactsApi* | [**ListArtifactLabels**](docs/ArtifactsApi.md#listartifactlabels) | **Get** /registry/{registry_ref}/artifact/labels | List Artifact Labels
+*ArtifactsApi* | [**DeleteArtifact**](docs/ArtifactsApi.md#deleteartifact) | **Delete** /registry/{registry_ref}/+/artifact/{artifact} | Delete Artifact
+*ArtifactsApi* | [**DeleteArtifactVersion**](docs/ArtifactsApi.md#deleteartifactversion) | **Delete** /registry/{registry_ref}/+/artifact/{artifact}/version/{version} | Delete an Artifact Version
+*ArtifactsApi* | [**GetAllArtifactVersions**](docs/ArtifactsApi.md#getallartifactversions) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/versions | List Artifact Versions
+*ArtifactsApi* | [**GetArtifactDeployments**](docs/ArtifactsApi.md#getartifactdeployments) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/deploymentdetails | Describe Artifact Deployments
+*ArtifactsApi* | [**GetArtifactStats**](docs/ArtifactsApi.md#getartifactstats) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/stats | Get Artifact Stats
+*ArtifactsApi* | [**GetArtifactStatsForRegistry**](docs/ArtifactsApi.md#getartifactstatsforregistry) | **Get** /registry/{registry_ref}/+/artifact/stats | Get Artifact Stats
+*ArtifactsApi* | [**GetArtifactStatsForSpace**](docs/ArtifactsApi.md#getartifactstatsforspace) | **Get** /spaces/{space_ref}/+/artifact/stats | Get Artifact Stats
+*ArtifactsApi* | [**GetArtifactSummary**](docs/ArtifactsApi.md#getartifactsummary) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/summary | Get Artifact Summary
+*ArtifactsApi* | [**GetArtifactVersionSummary**](docs/ArtifactsApi.md#getartifactversionsummary) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/summary | Get Artifact Version Summary
+*ArtifactsApi* | [**ListArtifactLabels**](docs/ArtifactsApi.md#listartifactlabels) | **Get** /registry/{registry_ref}/+/artifact/labels | List Artifact Labels
 *ArtifactsApi* | [**RedirectHarnessArtifact**](docs/ArtifactsApi.md#redirectharnessartifact) | **Get** /registry/{registry_identifier}/artifact/{artifact}/redirect | Redirect to Harness Artifact Page
-*ArtifactsApi* | [**UpdateArtifactLabels**](docs/ArtifactsApi.md#updateartifactlabels) | **Put** /registry/{registry_ref}/artifact/{artifact}/labels | Update Artifact Labels
-*DockerArtifactsApi* | [**GetDockerArtifactDetails**](docs/DockerArtifactsApi.md#getdockerartifactdetails) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/details | Describe Docker Artifact Detail
-*DockerArtifactsApi* | [**GetDockerArtifactIntegrationDetails**](docs/DockerArtifactsApi.md#getdockerartifactintegrationdetails) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/integrationdetails | Describe Docker Artifact Integration Detail
-*DockerArtifactsApi* | [**GetDockerArtifactLayers**](docs/DockerArtifactsApi.md#getdockerartifactlayers) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/layers | Describe Docker Artifact Layers
-*DockerArtifactsApi* | [**GetDockerArtifactManifest**](docs/DockerArtifactsApi.md#getdockerartifactmanifest) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/manifest | Describe Docker Artifact Manifest
-*DockerArtifactsApi* | [**GetDockerArtifactManifests**](docs/DockerArtifactsApi.md#getdockerartifactmanifests) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/manifests | Describe Docker Artifact Manifests
-*HelmArtifactsApi* | [**GetHelmArtifactDetails**](docs/HelmArtifactsApi.md#gethelmartifactdetails) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/helm/details | Describe Helm Artifact Detail
-*HelmArtifactsApi* | [**GetHelmArtifactManifest**](docs/HelmArtifactsApi.md#gethelmartifactmanifest) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/helm/manifest | Describe Helm Artifact Manifest
+*ArtifactsApi* | [**UpdateArtifactLabels**](docs/ArtifactsApi.md#updateartifactlabels) | **Put** /registry/{registry_ref}/+/artifact/{artifact}/labels | Update Artifact Labels
+*DockerArtifactsApi* | [**GetDockerArtifactDetails**](docs/DockerArtifactsApi.md#getdockerartifactdetails) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/docker/details | Describe Docker Artifact Detail
+*DockerArtifactsApi* | [**GetDockerArtifactIntegrationDetails**](docs/DockerArtifactsApi.md#getdockerartifactintegrationdetails) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/docker/integrationdetails | Describe Docker Artifact Integration Detail
+*DockerArtifactsApi* | [**GetDockerArtifactLayers**](docs/DockerArtifactsApi.md#getdockerartifactlayers) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/docker/layers | Describe Docker Artifact Layers
+*DockerArtifactsApi* | [**GetDockerArtifactManifest**](docs/DockerArtifactsApi.md#getdockerartifactmanifest) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/docker/manifest | Describe Docker Artifact Manifest
+*DockerArtifactsApi* | [**GetDockerArtifactManifests**](docs/DockerArtifactsApi.md#getdockerartifactmanifests) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/docker/manifests | Describe Docker Artifact Manifests
+*HelmArtifactsApi* | [**GetHelmArtifactDetails**](docs/HelmArtifactsApi.md#gethelmartifactdetails) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/helm/details | Describe Helm Artifact Detail
+*HelmArtifactsApi* | [**GetHelmArtifactManifest**](docs/HelmArtifactsApi.md#gethelmartifactmanifest) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/version/{version}/helm/manifest | Describe Helm Artifact Manifest
 *RegistriesApi* | [**CreateRegistry**](docs/RegistriesApi.md#createregistry) | **Post** /registry | Create Registry.
 *RegistriesApi* | [**DeleteRegistry**](docs/RegistriesApi.md#deleteregistry) | **Delete** /registry/{registry_ref} | Delete a Registry
-*RegistriesApi* | [**GetAllArtifactsByRegistry**](docs/RegistriesApi.md#getallartifactsbyregistry) | **Get** /registry/{registry_ref}/artifacts | List Artifacts for Registry
+*RegistriesApi* | [**GetAllArtifactsByRegistry**](docs/RegistriesApi.md#getallartifactsbyregistry) | **Get** /registry/{registry_ref}/+/artifacts | List Artifacts for Registry
 *RegistriesApi* | [**GetClientSetupDetails**](docs/RegistriesApi.md#getclientsetupdetails) | **Get** /registry/{registry_ref}/client-setup-details | Returns CLI Client Setup Details
 *RegistriesApi* | [**GetRegistry**](docs/RegistriesApi.md#getregistry) | **Get** /registry/{registry_ref} | Returns Registry Details
 *RegistriesApi* | [**ModifyRegistry**](docs/RegistriesApi.md#modifyregistry) | **Put** /registry/{registry_ref} | Updates a Registry
-*SpacesApi* | [**GetAllHarnessArtifacts**](docs/SpacesApi.md#getallharnessartifacts) | **Get** /spaces/{space_ref}/artifacts | List Harness Artifacts
-*SpacesApi* | [**GetAllRegistries**](docs/SpacesApi.md#getallregistries) | **Get** /spaces/{space_ref}/registries | List Registries
+*SpacesApi* | [**GetAllHarnessArtifacts**](docs/SpacesApi.md#getallharnessartifacts) | **Get** /spaces/{space_ref}/+/artifacts | List Harness Artifacts
+*SpacesApi* | [**GetAllRegistries**](docs/SpacesApi.md#getallregistries) | **Get** /spaces/{space_ref}/+/registries | List Registries
 
 ## Documentation For Models
 
