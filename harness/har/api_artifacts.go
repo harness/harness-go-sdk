@@ -979,7 +979,7 @@ func (a *ArtifactsApiService) GetArtifactStatsForSpace(ctx context.Context, spac
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/spaces/{space_ref}/+/artifact/stats"
+	localVarPath := a.client.cfg.BasePath + "/spaces/{space_ref}/artifact/stats"
 	localVarPath = strings.Replace(localVarPath, "{"+"space_ref"+"}", fmt.Sprintf("%v", spaceRef), -1)
 
 	localVarHeaderParams := make(map[string]string)

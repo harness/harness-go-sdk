@@ -148,7 +148,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}:
+  /registry/{registry_ref}/+:
     get:
       tags:
       - Registries
@@ -1717,7 +1717,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /registry/{registry_ref}/client-setup-details:
+  /registry/{registry_ref}/+/client-setup-details:
     get:
       tags:
       - Registries
