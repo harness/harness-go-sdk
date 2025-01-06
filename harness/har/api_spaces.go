@@ -66,7 +66,7 @@ func (a *SpacesApiService) GetAllHarnessArtifacts(ctx context.Context, spaceRef 
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/spaces/{space_ref}/artifacts"
+	localVarPath := a.client.cfg.BasePath + "/spaces/{space_ref}/+/artifacts"
 	localVarPath = strings.Replace(localVarPath, "{"+"space_ref"+"}", fmt.Sprintf("%v", spaceRef), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -250,7 +250,7 @@ func (a *SpacesApiService) GetAllRegistries(ctx context.Context, spaceRef string
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/spaces/{space_ref}/registries"
+	localVarPath := a.client.cfg.BasePath + "/spaces/{space_ref}/+/registries"
 	localVarPath = strings.Replace(localVarPath, "{"+"space_ref"+"}", fmt.Sprintf("%v", spaceRef), -1)
 
 	localVarHeaderParams := make(map[string]string)
