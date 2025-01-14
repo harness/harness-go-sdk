@@ -60,6 +60,9 @@ type SecretManager struct {
 	KeyName                                       string             `json:"keyName,omitempty"`
 	Credentials                                   string             `json:"credentials,omitempty"`
 	UsePutSecret                                  bool               `json:"usePutSecret,omitempty"`
+	UseJwtAuth                                    bool               `json:"useJwtAuth,omitempty"`
+	JwtAuthRole                                   string             `json:"jwtAuthRole,omitempty"`
+	JwtAuthPath                                   string             `json:"jwtAuthPath,omitempty"`
 }
 
 type User struct {
