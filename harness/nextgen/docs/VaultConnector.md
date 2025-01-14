@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **UseJwtAuth** | **bool** |  | [optional] [default to false]
 **JwtAuthRole** | **string** |  | [optional] [default to null]
 **JwtAuthPath** | **string** |  | [optional] [default to null]
+**ExecuteOnDelegate** | **bool** |  | [optional] [default to true]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

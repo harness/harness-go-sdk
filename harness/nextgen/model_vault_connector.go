@@ -66,5 +66,6 @@ type VaultConnector struct {
 	// This is the role name which is created to perform JWT auth method.
 	JwtAuthRole string `json:"jwtAuthRole,omitempty"`
 	// This specifies mount path where JWT auth method is enabled.
-	JwtAuthPath string `json:"jwtAuthPath,omitempty"`
+	JwtAuthPath       string `json:"jwtAuthPath,omitempty"`
+	ExecuteOnDelegate bool   `json:"executeOnDelegate,omitempty"`
 }

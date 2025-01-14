@@ -65,6 +65,7 @@ type SecretManager struct {
 	UseJwtAuth                                    bool               `json:"useJwtAuth,omitempty"`
 	JwtAuthRole                                   string             `json:"jwtAuthRole,omitempty"`
 	JwtAuthPath                                   string             `json:"jwtAuthPath,omitempty"`
+	ExecuteOnDelegate                             bool               `json:"executeOnDelegate,omitempty"`
 }
 
 type User struct {
