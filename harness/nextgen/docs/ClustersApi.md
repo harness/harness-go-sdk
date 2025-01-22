@@ -1,6 +1,6 @@
-# {{classname}}
+# nextgen{{classname}}
 
-All URIs are relative to *https://app.harness.io/gateway*
+All URIs are relative to */*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -89,6 +89,7 @@ Name | Type | Description  | Notes
  **queryIdType** | **optional.String**| type is the type of the specified cluster identifier ( \&quot;server\&quot; - default, \&quot;name\&quot; ). | 
  **queryIdValue** | **optional.String**| value holds the cluster server URL or cluster name. | 
  **queryProject** | **optional.String**|  | 
+ **forceDelete** | **optional.Bool**|  | 
 
 ### Return type
 
@@ -152,7 +153,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **AgentClusterServiceList**
-> ClustersClusterList AgentClusterServiceList(ctx, agentIdentifier, accountIdentifier, optional)
+> ClustersClusterList AgentClusterServiceList(ctx, agentIdentifier, optional)
 List returns list of clusters
 
 List clusters.
@@ -163,7 +164,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **agentIdentifier** | **string**| Agent identifier for entity. | 
-  **accountIdentifier** | **string**| Account Identifier for the Entity. | 
  **optional** | ***ClustersApiAgentClusterServiceListOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -171,7 +171,7 @@ Optional parameters are passed through a pointer to a ClustersApiAgentClusterSer
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
+ **accountIdentifier** | **optional.String**| Account Identifier for the Entity. | 
  **orgIdentifier** | **optional.String**| Organization Identifier for the Entity. | 
  **projectIdentifier** | **optional.String**| Project Identifier for the Entity. | 
  **identifier** | **optional.String**|  | 
@@ -187,7 +187,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKey](../README.md#ApiKey)
+No authorization required
 
 ### HTTP request headers
 
