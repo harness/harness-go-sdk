@@ -1,6 +1,6 @@
-# nextgen{{classname}}
+# {{classname}}
 
-All URIs are relative to */*
+All URIs are relative to *https://app.harness.io/gateway*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **AgentClusterServiceList**
-> ClustersClusterList AgentClusterServiceList(ctx, agentIdentifier, optional)
+> ClustersClusterList AgentClusterServiceList(ctx, agentIdentifier, accountIdentifier, optional)
 List returns list of clusters
 
 List clusters.
@@ -163,7 +163,8 @@ List clusters.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **agentIdentifier** | **string**| Agent identifier for entity. | 
+ **agentIdentifier** | **string**| Agent identifier for entity. |
+ **accountIdentifier** | **string**| Account Identifier for the Entity. |
  **optional** | ***ClustersApiAgentClusterServiceListOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -171,7 +172,6 @@ Optional parameters are passed through a pointer to a ClustersApiAgentClusterSer
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **accountIdentifier** | **optional.String**| Account Identifier for the Entity. | 
  **orgIdentifier** | **optional.String**| Organization Identifier for the Entity. | 
  **projectIdentifier** | **optional.String**| Project Identifier for the Entity. | 
  **identifier** | **optional.String**|  | 
@@ -187,7 +187,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
