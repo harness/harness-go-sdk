@@ -163,14 +163,15 @@ List clusters.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **agentIdentifier** | **string**| Agent identifier for entity. |
- **accountIdentifier** | **string**| Account Identifier for the Entity. |
+  **agentIdentifier** | **string**| Agent identifier for entity. |
+  **accountIdentifier** | **string**| Account Identifier for the Entity. |
  **optional** | ***ClustersApiAgentClusterServiceListOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
 Optional parameters are passed through a pointer to a ClustersApiAgentClusterServiceListOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **orgIdentifier** | **optional.String**| Organization Identifier for the Entity. | 
  **projectIdentifier** | **optional.String**| Project Identifier for the Entity. | 
