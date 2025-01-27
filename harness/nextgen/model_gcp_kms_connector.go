@@ -26,7 +26,7 @@ type GcpKmsConnector struct {
 	OidcDetails          *GcpOidcDetails `json:"oidcDetails,omitempty"`
 	IgnoreTestConnection bool            `json:"ignoreTestConnection,omitempty"`
 	// Should the secret manager execute operations on the delegate, or via Harness platform
-	ExecuteOnDelegate bool   `json:"executeOnDelegate,omitempty"`
-	Default_          bool   `json:"default,omitempty"`
+	ExecuteOnDelegate bool   `json:"executeOnDelegate"`
+	Default_          bool   `json:"default"`
 	ConnectorType     string `json:"connectorType"`
 }

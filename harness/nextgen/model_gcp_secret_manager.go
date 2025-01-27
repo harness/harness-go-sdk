@@ -16,12 +16,12 @@ type GcpSecretManager struct {
 	// List of Delegate Selectors that belong to the same Delegate and are used to connect to the Secret Manager.
 	DelegateSelectors []string `json:"delegateSelectors,omitempty"`
 	// Should the secret manager execute operations on the delegate, or via Harness platform
-	ExecuteOnDelegate bool `json:"executeOnDelegate,omitempty"`
+	ExecuteOnDelegate bool `json:"executeOnDelegate"`
 	// Boolean value to indicate that Credentials are taken from the Delegate.
-	AssumeCredentialsOnDelegate            bool                                    `json:"assumeCredentialsOnDelegate,omitempty"`
+	AssumeCredentialsOnDelegate            bool                                    `json:"assumeCredentialsOnDelegate"`
 	Credential                             *GcpConnectorCredential                 `json:"credential,omitempty"`
 	GcpOidcTokenExchangeDetailsForDelegate *GcpOidcTokenExchangeDetailsForDelegate `json:"gcpOidcTokenExchangeDetailsForDelegate,omitempty"`
 	IgnoreTestConnection                   bool                                    `json:"ignoreTestConnection,omitempty"`
-	Default_                               bool                                    `json:"default,omitempty"`
+	Default_                               bool                                    `json:"default"`
 	ConnectorType                          string                                  `json:"connectorType"`
 }
