@@ -21,13 +21,13 @@ type AwsSecretManager struct {
 	AwsOidcTokenExchangeDetailsForDelegate *AwsOidcTokenExchangeDetailsForDelegate `json:"awsOidcTokenExchangeDetailsForDelegate,omitempty"`
 	IgnoreTestConnection                   bool                                    `json:"ignoreTestConnection,omitempty"`
 	// Should the secret manager execute operations on the delegate, or via Harness platform
-	ExecuteOnDelegate bool `json:"executeOnDelegate,omitempty"`
+	ExecuteOnDelegate bool `json:"executeOnDelegate"`
 	// Whether to update secret value using putSecretValue action.
 	UsePutSecret bool `json:"usePutSecret,omitempty"`
 	// Whether to delete the secret without any recovery window.
 	ForceDeleteWithoutRecovery bool `json:"forceDeleteWithoutRecovery,omitempty"`
 	// Number of days a Secret can be recovered after it is deleted.
 	RecoveryWindowInDays int64  `json:"recoveryWindowInDays,omitempty"`
-	Default_             bool   `json:"default,omitempty"`
+	Default_             bool   `json:"default"`
 	ConnectorType        string `json:"connectorType"`
 }
