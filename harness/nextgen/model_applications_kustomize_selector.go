@@ -9,12 +9,8 @@
  */
 package nextgen
 
-import "encoding/json"
-
-// This entity contains the details for JDBC Authentication
-type JdbcAuthenticationDto struct {
-	Type_            JDBCAuthType             `json:"type"`
-	UsernamePassword *JdbcUserNamePasswordDto `json:"-"`
-	ServiceAccount   *JdbcServiceAccountDto   `json:"-"`
-	Spec             json.RawMessage          `json:"spec,omitempty"`
+type ApplicationsKustomizeSelector struct {
+	ResId              *ApplicationsKustomizeResId `json:"resId,omitempty"`
+	AnnotationSelector string                      `json:"annotationSelector,omitempty"`
+	LabelSelector      string                      `json:"labelSelector,omitempty"`
 }
