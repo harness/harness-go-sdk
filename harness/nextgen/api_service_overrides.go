@@ -1033,7 +1033,7 @@ type ServiceOverridesV2ApiEditGitDetailsOpts struct {
 	FilePath     optional.String
 }
 
-func (a *ServiceOverridesApiService) EditGitDetialsForServiceOverridesV2(ctx context.Context, accountIdentifier string, orgIdentifier string, projectIdentifier string, serviceIdentifier string, localVarOptionals *PipelinesApiEditGitDetailsOpts) (ResponseDtoEditServiceOverrideV2GitDetailsResponse, *http.Response, error) {
+func (a *ServiceOverridesApiService) EditGitDetialsForServiceOverridesV2(ctx context.Context, accountIdentifier string, orgIdentifier string, projectIdentifier string, serviceIdentifier string, localVarOptionals *ServiceOverridesV2ApiEditGitDetailsOpts) (ResponseDtoEditServiceOverrideV2GitDetailsResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Put")
 		localVarPostBody    interface{}
