@@ -11,5 +11,9 @@ package nextgen
 
 // Contains the Pipeline details for the given Pipeline ID
 type EditServiceOverrideV2GitDetailsResponse struct {
-	Identifier string `json:"identifier,omitempty"`
+	Identifier           string `json:"identifier,omitempty"`
+	EnvironmentRef       string `json:"environmentRef,omitempty"`
+	ServiceRef           string `json:"serviceRef,omitempty"`
+	InfraIdentifier      string `json:"infraIdentifier,omitempty"`
+	ServiceOverridesType string `json:"serviceOverridesType,omitempty"`
 }
