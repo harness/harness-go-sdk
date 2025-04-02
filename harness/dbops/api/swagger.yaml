@@ -1555,11 +1555,23 @@ components:
   schemas:
     DBSchemaIn:
       title: Database Schema Request
-      required:
-      - changelog
-      - identifier
-      - name
       type: object
+      description: 'Database Schema Request '
+      x-examples:
+        Example 1:
+          identifier: myservice_database
+          name: my service database
+          tags:
+            region: us-east-1
+          changelog:
+            connector: harness_git
+            location: folder/changelog.yaml
+          service: harness_service
+      x-stoplight:
+        id: 50h201oitfzde
+      required:
+        - identifier
+        - name
       properties:
         identifier:
           pattern: "^[a-zA-Z_][0-9a-zA-Z_$]{0,127}$"
@@ -1575,12 +1587,12 @@ components:
         tags:
           maxProperties: 128
           type: object
+          description: tags attached to the database schema
+          x-go-type-skip-optional-pointer: true
           additionalProperties:
             type: string
             x-oapi-codegen-extra-tags:
               validate: max=128
-          description: tags attached to the database schema
-          x-go-type-skip-optional-pointer: true
         changelog:
           $ref: '#/components/schemas/Changelog'
         service:
@@ -1589,28 +1601,20 @@ components:
           description: |
             harness service corresponding to database schema
           example: harness_service
-      description: 'Database Schema Request '
-      x-examples:
-        Example 1:
-          identifier: myservice_database
-          name: my service database
-          tags:
-            region: us-east-1
-          changelog:
-            connector: harness_git
-            location: folder/changelog.yaml
-          service: harness_service
-      x-stoplight:
-        id: 50h201oitfzde
+        type:
+          $ref: '#/components/schemas/DBSchemaType'
+        changeLogScript:
+          $ref: '#/components/schemas/ChangeLogScript'
     DBSchemaOut:
       title: Database Schema Response
-      required:
-      - changelog
-      - created
-      - identifier
-      - instanceCount
-      - name
       type: object
+      description: Database Schema Response
+      required:
+        - identifier
+        - name
+        - created
+        - instanceCount
+        - type
       properties:
         identifier:
           type: string
@@ -1628,10 +1632,10 @@ components:
           format: int64
         tags:
           type: object
-          additionalProperties:
-            type: string
           description: tags attached to the database schema
           x-go-type-skip-optional-pointer: true
+          additionalProperties:
+            type: string
         changelog:
           $ref: '#/components/schemas/Changelog'
         service:
@@ -1643,30 +1647,17 @@ components:
           format: int64
         schemaSourceType:
           type: string
-          readOnly: true
           enum:
-          - Git
-          - Artifactory
+            - Git
+            - Artifactory
+            - custom
           x-stoplight:
             id: 802m1r25ghm6l
-      description: Database Schema Response
-      example:
-        identifier: identifier
-        created: 0
-        service: service
-        instanceCount: 1
-        name: name
-        changelog:
-          connector: harness_git
-          repo: folder/changelog.yaml
-          location: folder/changelog.yaml
-          archivePath: archivePath
-        schemaSourceType: Git
-        updated: 6
-        tags:
-          key: tags
-      x-stoplight:
-        id: 1y01syuq8w851
+          readOnly: true
+        changeLogScript:
+          $ref: '#/components/schemas/ChangeLogScript'
+        type:
+          $ref: '#/components/schemas/DBSchemaType'
     ParsedLogOut:
       title: Ingest Log
       required:
@@ -2351,21 +2342,6 @@ components:
           x-stoplight:
             id: fyjz8vfzb4jcs
       example:
-        schema:
-          identifier: identifier
-          created: 0
-          service: service
-          instanceCount: 1
-          name: name
-          changelog:
-            connector: harness_git
-            repo: folder/changelog.yaml
-            location: folder/changelog.yaml
-            archivePath: archivePath
-          schemaSourceType: Git
-          updated: 6
-          tags:
-            key: tags
         propertiesResult:
           key: propertiesResult
         image: image
@@ -2413,31 +2389,77 @@ components:
         dbSchemaCount: 1
         dbInstanceCount: 6
         recentDeployments:
-        - dbSchemaIdentifier: dbSchemaIdentifier
-          dbInstanceIdentifier: dbInstanceIdentifier
-          dbInstanceName: dbInstanceName
-          dbSchemaName: dbSchemaName
-          lastDeployed: 0
-        - dbSchemaIdentifier: dbSchemaIdentifier
-          dbInstanceIdentifier: dbInstanceIdentifier
-          dbInstanceName: dbInstanceName
-          dbSchemaName: dbSchemaName
-          lastDeployed: 0
-        - dbSchemaIdentifier: dbSchemaIdentifier
-          dbInstanceIdentifier: dbInstanceIdentifier
-          dbInstanceName: dbInstanceName
-          dbSchemaName: dbSchemaName
-          lastDeployed: 0
-        - dbSchemaIdentifier: dbSchemaIdentifier
-          dbInstanceIdentifier: dbInstanceIdentifier
-          dbInstanceName: dbInstanceName
-          dbSchemaName: dbSchemaName
-          lastDeployed: 0
-        - dbSchemaIdentifier: dbSchemaIdentifier
-          dbInstanceIdentifier: dbInstanceIdentifier
-          dbInstanceName: dbInstanceName
-          dbSchemaName: dbSchemaName
-          lastDeployed: 0
+          - dbSchemaIdentifier: dbSchemaIdentifier
+            dbInstanceIdentifier: dbInstanceIdentifier
+            dbInstanceName: dbInstanceName
+            dbSchemaName: dbSchemaName
+            lastDeployed: 0
+          - dbSchemaIdentifier: dbSchemaIdentifier
+            dbInstanceIdentifier: dbInstanceIdentifier
+            dbInstanceName: dbInstanceName
+            dbSchemaName: dbSchemaName
+            lastDeployed: 0
+          - dbSchemaIdentifier: dbSchemaIdentifier
+            dbInstanceIdentifier: dbInstanceIdentifier
+            dbInstanceName: dbInstanceName
+            dbSchemaName: dbSchemaName
+            lastDeployed: 0
+          - dbSchemaIdentifier: dbSchemaIdentifier
+            dbInstanceIdentifier: dbInstanceIdentifier
+            dbInstanceName: dbInstanceName
+            dbSchemaName: dbSchemaName
+            lastDeployed: 0
+          - dbSchemaIdentifier: dbSchemaIdentifier
+            dbInstanceIdentifier: dbInstanceIdentifier
+            dbInstanceName: dbInstanceName
+            dbSchemaName: dbSchemaName
+            lastDeployed: 0
+    ChangeLogScript:
+      title: ChangeLogScript
+      x-stoplight:
+        id: lamjk17e0b56z
+      type: object
+      description: if schemaType is Script location of the changelog file after using a custom script to download
+      x-examples: {}
+      required:
+        - image
+        - command
+        - shell
+        - location
+      properties:
+        image:
+          type: string
+          x-stoplight:
+            id: rle73dx5q6cq7
+          example: 'plugins/image:latest'
+          minLength: 1
+          description: The fully-qualified name (FQN) of the image
+        command:
+          type: string
+          x-stoplight:
+            id: 1bl2w7wf6exlr
+          description: command script used to download the changelog file
+          example: 'curl -X -o changeLog.yaml https://www.filestore.com/changeLog.yaml'
+        shell:
+          type: string
+          x-stoplight:
+            id: t5zcqpt6l784x
+          description: shell type
+          example: 'Sh, Bash, <+pipeline.variables.shell>'
+        location:
+          type: string
+          x-stoplight:
+            id: sn916ihq297p3
+          description: location of the changelog file
+          example: folder/changelog.yaml
+    DBSchemaType:
+      title: DBSchemaType
+      x-stoplight:
+        id: 21ikm27shlnsf
+      enum:
+        - Repository
+        - Script
+      description: db schema type
   responses:
     DBSchemaListResponse:
       description: Response body for List Database Schema
@@ -2719,13 +2741,16 @@ components:
               tags:
                 maxProperties: 128
                 type: object
+                description: Database Schema tags
                 additionalProperties:
                   type: string
                   x-oapi-codegen-extra-tags:
                     validate: max=128
-                description: Database Schema tags
               changelog:
                 type: object
+                additionalProperties: false
+                description: |
+                  location of the changelog file containing schema changes in a git repository
                 properties:
                   connector:
                     type: string
@@ -2737,8 +2762,7 @@ components:
                     example: folder/changelog.yaml
                   repo:
                     type: string
-                    description: repo name of the git based connector when ConnectionType
-                      is Account
+                    description: repo name of the git based connector when ConnectionType is Account
                     x-stoplight:
                       id: jpl7puzto8jfo
                   archivePath:
@@ -2746,14 +2770,37 @@ components:
                     description: path excluding the repo till the archive file
                     x-stoplight:
                       id: lmyqjd54oln7q
-                additionalProperties: false
-                description: |
-                  location of the changelog file containing schema changes in a git repository
               service:
                 type: string
                 description: |
                   harness service corresponding to database schema
                 example: harness_service
+              type:
+                $ref: '#/components/schemas/DBSchemaType'
+              changeLogScript:
+                x-stoplight:
+                  id: 3g0zmfv118ub8
+                type: object
+                properties:
+                  image:
+                    type: string
+                    x-stoplight:
+                      id: cv9o3n6qslm1z
+                    example: 'plugins/image:latest'
+                  command:
+                    type: string
+                    x-stoplight:
+                      id: 0wjp0e0ejveun
+                    example: 'curl -X -o changeLog.yaml https://www.filestore.com/changeLog.yaml'
+                  shell:
+                    type: string
+                    x-stoplight:
+                      id: u1kw59fil84i8
+                    example: 'Sh, Bash, <+pipeline.variables.shell>'
+                  location:
+                    type: string
+                    x-stoplight:
+                      id: 91yj4mcke8jds
       required: true
     DBInstanceCreateRequest:
       content:
