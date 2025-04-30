@@ -12,5 +12,6 @@ package nextgen
 // This contains details of the information needed for Azure Repo API access
 type AzureRepoApiAccess struct {
 	Type_ string                  `json:"type"`
+	Token *AzureRepoTokenSpec     `json:"-"`
 	Spec  *AzureRepoApiAccessSpec `json:"spec,omitempty"`
 }
