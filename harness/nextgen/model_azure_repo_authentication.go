@@ -11,6 +11,8 @@ package nextgen
 
 // This contains details of the information needed for Azure DevOps access
 type AzureRepoAuthentication struct {
-	Type_ string                `json:"type"`
-	Spec  *AzureRepoCredentials `json:"spec"`
+	Type_ string                    `json:"type"`
+	Http  *AzureRepoHttpCredentials `json:"-"`
+	Ssh   *AzureRepoSshCredentials  `json:"-"`
+	Spec  *AzureRepoCredentials     `json:"spec"`
 }
