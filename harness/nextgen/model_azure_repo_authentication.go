@@ -9,10 +9,12 @@
  */
 package nextgen
 
+import "encoding/json"
+
 // This contains details of the information needed for Azure DevOps access
 type AzureRepoAuthentication struct {
-	Type_ string                    `json:"type"`
+	Type_ GitAuthType               `json:"type"`
 	Http  *AzureRepoHttpCredentials `json:"-"`
 	Ssh   *AzureRepoSshCredentials  `json:"-"`
-	Spec  *AzureRepoCredentials     `json:"spec"`
+	Spec  json.RawMessage           `json:"spec"`
 }
