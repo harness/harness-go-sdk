@@ -21,5 +21,5 @@ type AzureRepoConfig struct {
 	DelegateSelectors []string `json:"delegateSelectors,omitempty"`
 	ExecuteOnDelegate bool     `json:"executeOnDelegate"`
 	// Organization | Repository connector type
-	Type_ string `json:"type"`
+	Type_ AzureRepoConnectorType `json:"type"`
 }
