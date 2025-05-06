@@ -65,6 +65,8 @@ func (a *ApplicationSetApiService) ApplicationSetServiceCreate(ctx context.Conte
 
 	if localVarOptionals != nil && localVarOptionals.AccountIdentifier.IsSet() {
 		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
+		localVarQueryParams.Add("routingId", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
+
 	}
 	if localVarOptionals != nil && localVarOptionals.OrgIdentifier.IsSet() {
 		localVarQueryParams.Add("orgIdentifier", parameterToString(localVarOptionals.OrgIdentifier.Value(), ""))
@@ -211,6 +213,7 @@ func (a *ApplicationSetApiService) ApplicationSetServiceDelete(ctx context.Conte
 
 	if localVarOptionals != nil && localVarOptionals.AccountIdentifier.IsSet() {
 		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
+		localVarQueryParams.Add("routingId", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.OrgIdentifier.IsSet() {
 		localVarQueryParams.Add("orgIdentifier", parameterToString(localVarOptionals.OrgIdentifier.Value(), ""))
@@ -354,6 +357,7 @@ func (a *ApplicationSetApiService) ApplicationSetServiceGenerate(ctx context.Con
 
 	if localVarOptionals != nil && localVarOptionals.AccountIdentifier.IsSet() {
 		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
+		localVarQueryParams.Add("routingId", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.OrgIdentifier.IsSet() {
 		localVarQueryParams.Add("orgIdentifier", parameterToString(localVarOptionals.OrgIdentifier.Value(), ""))
@@ -502,6 +506,7 @@ func (a *ApplicationSetApiService) ApplicationSetServiceGet(ctx context.Context,
 
 	if localVarOptionals != nil && localVarOptionals.AccountIdentifier.IsSet() {
 		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
+		localVarQueryParams.Add("routingId", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.OrgIdentifier.IsSet() {
 		localVarQueryParams.Add("orgIdentifier", parameterToString(localVarOptionals.OrgIdentifier.Value(), ""))
@@ -649,6 +654,7 @@ func (a *ApplicationSetApiService) ApplicationSetServiceGetApplicationSetGenerat
 
 	if localVarOptionals != nil && localVarOptionals.AccountIdentifier.IsSet() {
 		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
+		localVarQueryParams.Add("routingId", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.OrgIdentifier.IsSet() {
 		localVarQueryParams.Add("orgIdentifier", parameterToString(localVarOptionals.OrgIdentifier.Value(), ""))
@@ -793,6 +799,7 @@ func (a *ApplicationSetApiService) ApplicationSetServiceGetApplicationSetTemplat
 
 	if localVarOptionals != nil && localVarOptionals.AccountIdentifier.IsSet() {
 		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
+		localVarQueryParams.Add("routingId", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.OrgIdentifier.IsSet() {
 		localVarQueryParams.Add("orgIdentifier", parameterToString(localVarOptionals.OrgIdentifier.Value(), ""))
@@ -1180,6 +1187,7 @@ func (a *ApplicationSetApiService) ApplicationSetServiceResourceTree(ctx context
 
 	if localVarOptionals != nil && localVarOptionals.AccountIdentifier.IsSet() {
 		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
+		localVarQueryParams.Add("routingId", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.OrgIdentifier.IsSet() {
 		localVarQueryParams.Add("orgIdentifier", parameterToString(localVarOptionals.OrgIdentifier.Value(), ""))
@@ -1329,6 +1337,7 @@ func (a *ApplicationSetApiService) ApplicationSetServiceUpdate(ctx context.Conte
 
 	if localVarOptionals != nil && localVarOptionals.AccountIdentifier.IsSet() {
 		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
+		localVarQueryParams.Add("routingId", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.OrgIdentifier.IsSet() {
 		localVarQueryParams.Add("orgIdentifier", parameterToString(localVarOptionals.OrgIdentifier.Value(), ""))
