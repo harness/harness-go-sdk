@@ -122,6 +122,11 @@ Class | Method | HTTP request | Description
 *ConnectorsApi* | [**ListConnectorByFQN**](docs/ConnectorsApi.md#listconnectorbyfqn) | **Post** /ng/api/connectors/listbyfqn | Get the list of connectors by FQN satisfying the criteria (if any) in the request
 *ConnectorsApi* | [**UpdateConnector**](docs/ConnectorsApi.md#updateconnector) | **Put** /ng/api/connectors | Updates the Connector
 *ConnectorsApi* | [**ValidateTheIdentifierIsUnique**](docs/ConnectorsApi.md#validatetheidentifierisunique) | **Get** /ng/api/connectors/validateUniqueIdentifier | Validate the Connector by Account Identifier and Connector Identifier
+*DashboardsApi* | [**CloneDashboard**](docs/DashboardsApi.md#clonedashboard) | **Post** /dashboard/clone | Clones a Dashboard
+*DashboardsApi* | [**GetDashboardElements**](docs/DashboardsApi.md#getdashboardelements) | **Get** /dashboard/dashboards/{dashboard_id}/elements | Gets all the elements within a Dashboard
+*DashboardsApi* | [**GetDashboardFilters**](docs/DashboardsApi.md#getdashboardfilters) | **Get** /dashboard/dashboards/{dashboard_id}/filters | Gets all the filters within a Dashboard
+*DashboardsApi* | [**SchedulesRunOnce**](docs/DashboardsApi.md#schedulesrunonce) | **Post** /dashboard/schedules/run_once | Runs a schedule delivery once that is then immediately sent via email to recipients
+*DashboardsApi* | [**UpdateDashboardFilter**](docs/DashboardsApi.md#updatedashboardfilter) | **Patch** /dashboard/dashboards/{dashboard_id}/filters/{filter_id} | Updates a specified Dashboard filter
 *DelegateGroupTagsResourceApi* | [**AddTagsToDelegateGroup**](docs/DelegateGroupTagsResourceApi.md#addtagstodelegategroup) | **Post** /ng/api/delegate-group-tags/{groupIdentifier} | Add given list of tags to the Delegate group
 *DelegateGroupTagsResourceApi* | [**DeleteTagsFromDelegateGroup**](docs/DelegateGroupTagsResourceApi.md#deletetagsfromdelegategroup) | **Delete** /ng/api/delegate-group-tags/{groupIdentifier} | Deletes all tags from the Delegate group
 *DelegateGroupTagsResourceApi* | [**ListTagsForDelegateGroup**](docs/DelegateGroupTagsResourceApi.md#listtagsfordelegategroup) | **Get** /ng/api/delegate-group-tags/{groupIdentifier} | Retrieves list of tags attached with Delegate group
@@ -581,6 +586,8 @@ Class | Method | HTTP request | Description
  - [CiLicenseSummary](docs/CiLicenseSummary.md)
  - [CiModuleLicense](docs/CiModuleLicense.md)
  - [Clause](docs/Clause.md)
+ - [CloneDashboardRequestBody](docs/CloneDashboardRequestBody.md)
+ - [ClonedDashboardResponse](docs/ClonedDashboardResponse.md)
  - [CloudWatchMetricDefinition](docs/CloudWatchMetricDefinition.md)
  - [CloudWatchMetricsHealthSourceSpec](docs/CloudWatchMetricsHealthSourceSpec.md)
  - [ClusterBudgetScope](docs/ClusterBudgetScope.md)
@@ -625,6 +632,7 @@ Class | Method | HTTP request | Description
  - [CvModuleLicense](docs/CvModuleLicense.md)
  - [DashboardPipelineExecution](docs/DashboardPipelineExecution.md)
  - [DashboardPipelineHealth](docs/DashboardPipelineHealth.md)
+ - [DashboardsErrorResponse](docs/DashboardsErrorResponse.md)
  - [DataPoint](docs/DataPoint.md)
  - [DatadogConnectorDto](docs/DatadogConnectorDto.md)
  - [DatadogLogHealthSourceSpec](docs/DatadogLogHealthSourceSpec.md)
@@ -746,6 +754,9 @@ Class | Method | HTTP request | Description
  - [GcpKmsConnector](docs/GcpKmsConnector.md)
  - [GcpManualDetails](docs/GcpManualDetails.md)
  - [GetAccessPointResponse](docs/GetAccessPointResponse.md)
+ - [GetDashboardElementsResponse](docs/GetDashboardElementsResponse.md)
+ - [GetDashboardFilterResponse](docs/GetDashboardFilterResponse.md)
+ - [GetDashboardFiltersResponse](docs/GetDashboardFiltersResponse.md)
  - [GitAuthentication](docs/GitAuthentication.md)
  - [GitBranch](docs/GitBranch.md)
  - [GitBranchList](docs/GitBranchList.md)
@@ -1297,6 +1308,9 @@ Class | Method | HTTP request | Description
  - [SampleErrorMetadata](docs/SampleErrorMetadata.md)
  - [SaveServiceRequest](docs/SaveServiceRequest.md)
  - [SaveStaticSchedulesRequest](docs/SaveStaticSchedulesRequest.md)
+ - [ScheduleReportRequestBody](docs/ScheduleReportRequestBody.md)
+ - [ScheduleReportResponse](docs/ScheduleReportResponse.md)
+ - [ScheduleReportResponseBody](docs/ScheduleReportResponseBody.md)
  - [ScimUser](docs/ScimUser.md)
  - [ScmErrorMetadataDto](docs/ScmErrorMetadataDto.md)
  - [Scope](docs/Scope.md)
@@ -1447,6 +1461,7 @@ Class | Method | HTTP request | Description
  - [UninterpretedOptionOrBuilder](docs/UninterpretedOptionOrBuilder.md)
  - [UnitProgress](docs/UnitProgress.md)
  - [UnknownFieldSet](docs/UnknownFieldSet.md)
+ - [UpdateDashboardFilterRequest](docs/UpdateDashboardFilterRequest.md)
  - [UsageDataDto](docs/UsageDataDto.md)
  - [UserAggregate](docs/UserAggregate.md)
  - [UserFilter](docs/UserFilter.md)
