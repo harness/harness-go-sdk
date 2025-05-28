@@ -125,7 +125,6 @@ Class | Method | HTTP request | Description
 *DashboardsApi* | [**CloneDashboard**](docs/DashboardsApi.md#clonedashboard) | **Post** /dashboard/clone | Clones a Dashboard
 *DashboardsApi* | [**GetDashboardElements**](docs/DashboardsApi.md#getdashboardelements) | **Get** /dashboard/dashboards/{dashboard_id}/elements | Gets all the elements within a Dashboard
 *DashboardsApi* | [**GetDashboardFilters**](docs/DashboardsApi.md#getdashboardfilters) | **Get** /dashboard/dashboards/{dashboard_id}/filters | Gets all the filters within a Dashboard
-*DashboardsApi* | [**SchedulesRunOnce**](docs/DashboardsApi.md#schedulesrunonce) | **Post** /dashboard/schedules/run_once | Runs a schedule delivery once that is then immediately sent via email to recipients
 *DashboardsApi* | [**UpdateDashboardFilter**](docs/DashboardsApi.md#updatedashboardfilter) | **Patch** /dashboard/dashboards/{dashboard_id}/filters/{filter_id} | Updates a specified Dashboard filter
 *DelegateGroupTagsResourceApi* | [**AddTagsToDelegateGroup**](docs/DelegateGroupTagsResourceApi.md#addtagstodelegategroup) | **Post** /ng/api/delegate-group-tags/{groupIdentifier} | Add given list of tags to the Delegate group
 *DelegateGroupTagsResourceApi* | [**DeleteTagsFromDelegateGroup**](docs/DelegateGroupTagsResourceApi.md#deletetagsfromdelegategroup) | **Delete** /ng/api/delegate-group-tags/{groupIdentifier} | Deletes all tags from the Delegate group
@@ -1313,9 +1312,6 @@ Class | Method | HTTP request | Description
  - [SampleErrorMetadata](docs/SampleErrorMetadata.md)
  - [SaveServiceRequest](docs/SaveServiceRequest.md)
  - [SaveStaticSchedulesRequest](docs/SaveStaticSchedulesRequest.md)
- - [ScheduleReportRequestBody](docs/ScheduleReportRequestBody.md)
- - [ScheduleReportResponse](docs/ScheduleReportResponse.md)
- - [ScheduleReportResponseBody](docs/ScheduleReportResponseBody.md)
  - [ScimUser](docs/ScimUser.md)
  - [ScmErrorMetadataDto](docs/ScmErrorMetadataDto.md)
  - [Scope](docs/Scope.md)
