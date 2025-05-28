@@ -189,6 +189,7 @@ Class | Method | HTTP request | Description
 *FiltersApi* | [**FilterServiceGet**](docs/FiltersApi.md#filterserviceget) | **Get** /api/filters/{identifier} | Get get GitOps filter details
 *FiltersApi* | [**FilterServiceList**](docs/FiltersApi.md#filterservicelist) | **Get** /api/filters | List GitOps filters
 *FiltersApi* | [**FilterServiceUpdate**](docs/FiltersApi.md#filterserviceupdate) | **Put** /api/filters | Update a GitOps filter
+*FoldersApi* | [**CreateFolder**](docs/FoldersApi.md#createfolder) | **Post** /dashboard/folders | Create a Folder that can hold Custom Dashboards
 *GitBranchesApi* | [**GetListOfBranchesWithStatus**](docs/GitBranchesApi.md#getlistofbrancheswithstatus) | **Get** /ng/api/git-sync-branch/listBranchesWithStatus | Lists branches with their status(Synced, Unsynced) by Git Sync Config Id for the given scope
 *GitBranchesApi* | [**SyncGitBranch**](docs/GitBranchesApi.md#syncgitbranch) | **Post** /ng/api/git-sync-branch/sync | Sync the content of new Git Branch into harness with Git Sync Config Id
 *GitFullSyncApi* | [**CreateGitFullSyncConfig**](docs/GitFullSyncApi.md#creategitfullsyncconfig) | **Post** /ng/api/git-full-sync/config | Create Configuration for Git Full Sync for the provided scope
@@ -617,6 +618,7 @@ Class | Method | HTTP request | Description
  - [CostDetailsQueryParams](docs/CostDetailsQueryParams.md)
  - [CostOverview](docs/CostOverview.md)
  - [CreateAccessPointResponse](docs/CreateAccessPointResponse.md)
+ - [CreateFolderRequestBody](docs/CreateFolderRequestBody.md)
  - [CreateInvite](docs/CreateInvite.md)
  - [CrossAccountAccess](docs/CrossAccountAccess.md)
  - [CumulativeSavings](docs/CumulativeSavings.md)
@@ -743,6 +745,8 @@ Class | Method | HTTP request | Description
  - [FixedSchedulesListResponse](docs/FixedSchedulesListResponse.md)
  - [FlagBasicInfo](docs/FlagBasicInfo.md)
  - [FlagBasicInfos](docs/FlagBasicInfos.md)
+ - [Folder](docs/Folder.md)
+ - [FolderChildren](docs/FolderChildren.md)
  - [FolderNode](docs/FolderNode.md)
  - [FormDataContentDisposition](docs/FormDataContentDisposition.md)
  - [GatewayAccountRequest](docs/GatewayAccountRequest.md)
@@ -757,6 +761,7 @@ Class | Method | HTTP request | Description
  - [GetDashboardElementsResponse](docs/GetDashboardElementsResponse.md)
  - [GetDashboardFilterResponse](docs/GetDashboardFilterResponse.md)
  - [GetDashboardFiltersResponse](docs/GetDashboardFiltersResponse.md)
+ - [GetFolderResponse](docs/GetFolderResponse.md)
  - [GitAuthentication](docs/GitAuthentication.md)
  - [GitBranch](docs/GitBranch.md)
  - [GitBranchList](docs/GitBranchList.md)
