@@ -122,6 +122,10 @@ Class | Method | HTTP request | Description
 *ConnectorsApi* | [**ListConnectorByFQN**](docs/ConnectorsApi.md#listconnectorbyfqn) | **Post** /ng/api/connectors/listbyfqn | Get the list of connectors by FQN satisfying the criteria (if any) in the request
 *ConnectorsApi* | [**UpdateConnector**](docs/ConnectorsApi.md#updateconnector) | **Put** /ng/api/connectors | Updates the Connector
 *ConnectorsApi* | [**ValidateTheIdentifierIsUnique**](docs/ConnectorsApi.md#validatetheidentifierisunique) | **Get** /ng/api/connectors/validateUniqueIdentifier | Validate the Connector by Account Identifier and Connector Identifier
+*DashboardsApi* | [**CloneDashboard**](docs/DashboardsApi.md#clonedashboard) | **Post** /dashboard/clone | Clones a Dashboard
+*DashboardsApi* | [**GetDashboardElements**](docs/DashboardsApi.md#getdashboardelements) | **Get** /dashboard/dashboards/{dashboard_id}/elements | Gets all the elements within a Dashboard
+*DashboardsApi* | [**GetDashboardFilters**](docs/DashboardsApi.md#getdashboardfilters) | **Get** /dashboard/dashboards/{dashboard_id}/filters | Gets all the filters within a Dashboard
+*DashboardsApi* | [**UpdateDashboardFilter**](docs/DashboardsApi.md#updatedashboardfilter) | **Patch** /dashboard/dashboards/{dashboard_id}/filters/{filter_id} | Updates a specified Dashboard filter
 *DelegateGroupTagsResourceApi* | [**AddTagsToDelegateGroup**](docs/DelegateGroupTagsResourceApi.md#addtagstodelegategroup) | **Post** /ng/api/delegate-group-tags/{groupIdentifier} | Add given list of tags to the Delegate group
 *DelegateGroupTagsResourceApi* | [**DeleteTagsFromDelegateGroup**](docs/DelegateGroupTagsResourceApi.md#deletetagsfromdelegategroup) | **Delete** /ng/api/delegate-group-tags/{groupIdentifier} | Deletes all tags from the Delegate group
 *DelegateGroupTagsResourceApi* | [**ListTagsForDelegateGroup**](docs/DelegateGroupTagsResourceApi.md#listtagsfordelegategroup) | **Get** /ng/api/delegate-group-tags/{groupIdentifier} | Retrieves list of tags attached with Delegate group
@@ -184,6 +188,7 @@ Class | Method | HTTP request | Description
 *FiltersApi* | [**FilterServiceGet**](docs/FiltersApi.md#filterserviceget) | **Get** /api/filters/{identifier} | Get get GitOps filter details
 *FiltersApi* | [**FilterServiceList**](docs/FiltersApi.md#filterservicelist) | **Get** /api/filters | List GitOps filters
 *FiltersApi* | [**FilterServiceUpdate**](docs/FiltersApi.md#filterserviceupdate) | **Put** /api/filters | Update a GitOps filter
+*FoldersApi* | [**CreateFolder**](docs/FoldersApi.md#createfolder) | **Post** /dashboard/folders | Create a Folder that can hold Custom Dashboards
 *GitBranchesApi* | [**GetListOfBranchesWithStatus**](docs/GitBranchesApi.md#getlistofbrancheswithstatus) | **Get** /ng/api/git-sync-branch/listBranchesWithStatus | Lists branches with their status(Synced, Unsynced) by Git Sync Config Id for the given scope
 *GitBranchesApi* | [**SyncGitBranch**](docs/GitBranchesApi.md#syncgitbranch) | **Post** /ng/api/git-sync-branch/sync | Sync the content of new Git Branch into harness with Git Sync Config Id
 *GitFullSyncApi* | [**CreateGitFullSyncConfig**](docs/GitFullSyncApi.md#creategitfullsyncconfig) | **Post** /ng/api/git-full-sync/config | Create Configuration for Git Full Sync for the provided scope
@@ -581,6 +586,9 @@ Class | Method | HTTP request | Description
  - [CiLicenseSummary](docs/CiLicenseSummary.md)
  - [CiModuleLicense](docs/CiModuleLicense.md)
  - [Clause](docs/Clause.md)
+ - [CloneDashboardRequestBody](docs/CloneDashboardRequestBody.md)
+ - [ClonedDashboard](docs/ClonedDashboard.md)
+ - [ClonedDashboardResponse](docs/ClonedDashboardResponse.md)
  - [CloudWatchMetricDefinition](docs/CloudWatchMetricDefinition.md)
  - [CloudWatchMetricsHealthSourceSpec](docs/CloudWatchMetricsHealthSourceSpec.md)
  - [ClusterBudgetScope](docs/ClusterBudgetScope.md)
@@ -610,6 +618,7 @@ Class | Method | HTTP request | Description
  - [CostDetailsQueryParams](docs/CostDetailsQueryParams.md)
  - [CostOverview](docs/CostOverview.md)
  - [CreateAccessPointResponse](docs/CreateAccessPointResponse.md)
+ - [CreateFolderRequestBody](docs/CreateFolderRequestBody.md)
  - [CreateInvite](docs/CreateInvite.md)
  - [CrossAccountAccess](docs/CrossAccountAccess.md)
  - [CumulativeSavings](docs/CumulativeSavings.md)
@@ -625,6 +634,9 @@ Class | Method | HTTP request | Description
  - [CvModuleLicense](docs/CvModuleLicense.md)
  - [DashboardPipelineExecution](docs/DashboardPipelineExecution.md)
  - [DashboardPipelineHealth](docs/DashboardPipelineHealth.md)
+ - [DashboardElements](docs/DashboardElements.md)
+ - [DashboardFilter](docs/DashboardFilter.md)
+ - [DashboardsErrorResponse](docs/DashboardsErrorResponse.md)
  - [DataPoint](docs/DataPoint.md)
  - [DatadogConnectorDto](docs/DatadogConnectorDto.md)
  - [DatadogLogHealthSourceSpec](docs/DatadogLogHealthSourceSpec.md)
@@ -735,6 +747,8 @@ Class | Method | HTTP request | Description
  - [FixedSchedulesListResponse](docs/FixedSchedulesListResponse.md)
  - [FlagBasicInfo](docs/FlagBasicInfo.md)
  - [FlagBasicInfos](docs/FlagBasicInfos.md)
+ - [Folder](docs/Folder.md)
+ - [FolderChildren](docs/FolderChildren.md)
  - [FolderNode](docs/FolderNode.md)
  - [FormDataContentDisposition](docs/FormDataContentDisposition.md)
  - [GatewayAccountRequest](docs/GatewayAccountRequest.md)
@@ -746,6 +760,10 @@ Class | Method | HTTP request | Description
  - [GcpKmsConnector](docs/GcpKmsConnector.md)
  - [GcpManualDetails](docs/GcpManualDetails.md)
  - [GetAccessPointResponse](docs/GetAccessPointResponse.md)
+ - [GetDashboardElementsResponse](docs/GetDashboardElementsResponse.md)
+ - [GetDashboardFilterResponse](docs/GetDashboardFilterResponse.md)
+ - [GetDashboardFiltersResponse](docs/GetDashboardFiltersResponse.md)
+ - [GetFolderResponse](docs/GetFolderResponse.md)
  - [GitAuthentication](docs/GitAuthentication.md)
  - [GitBranch](docs/GitBranch.md)
  - [GitBranchList](docs/GitBranchList.md)
@@ -1447,6 +1465,7 @@ Class | Method | HTTP request | Description
  - [UninterpretedOptionOrBuilder](docs/UninterpretedOptionOrBuilder.md)
  - [UnitProgress](docs/UnitProgress.md)
  - [UnknownFieldSet](docs/UnknownFieldSet.md)
+ - [UpdateDashboardFilterRequest](docs/UpdateDashboardFilterRequest.md)
  - [UsageDataDto](docs/UsageDataDto.md)
  - [UserAggregate](docs/UserAggregate.md)
  - [UserFilter](docs/UserFilter.md)
