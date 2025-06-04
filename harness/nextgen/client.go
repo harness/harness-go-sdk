@@ -102,6 +102,10 @@ type APIClient struct {
 
 	DashboardsApi *DashboardsApiService
 
+	DashboardsFilterApi *DashboardsFilterApiService
+
+	DashboardsFolderApi *DashboardsFolderApiService
+
 	DelegateGroupTagsResourceApi *DelegateGroupTagsResourceApiService
 
 	DelegateTokenResourceApi *DelegateTokenResourceApiService
@@ -117,8 +121,6 @@ type APIClient struct {
 	FeatureFlagsApi *FeatureFlagsApiService
 
 	FileStoreApi *FileStoreApiService
-
-	FoldersApi *FoldersApiService
 
 	GitOpsFiltersApi *FiltersApiService
 
@@ -283,6 +285,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CloudCostClusterOrchestratorApi = (*CloudCostClusterOrchestratorApiService)(&c.common)
 	c.ConnectorsApi = (*ConnectorsApiService)(&c.common)
 	c.DashboardsApi = (*DashboardsApiService)(&c.common)
+	c.DashboardsFilterApi = (*DashboardsFilterApiService)(&c.common)
+	c.DashboardsFolderApi = (*DashboardsFolderApiService)(&c.common)
 	c.DelegateGroupTagsResourceApi = (*DelegateGroupTagsResourceApiService)(&c.common)
 	c.DelegateTokenResourceApi = (*DelegateTokenResourceApiService)(&c.common)
 	c.EnvironmentsApi = (*EnvironmentsApiService)(&c.common)
@@ -291,7 +295,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ExecutionDetailsApi = (*ExecutionDetailsApiService)(&c.common)
 	c.FeatureFlagsApi = (*FeatureFlagsApiService)(&c.common)
 	c.FileStoreApi = (*FileStoreApiService)(&c.common)
-	c.FoldersApi = (*FoldersApiService)(&c.common)
 	c.GitOpsFiltersApi = (*FiltersApiService)(&c.common)
 	c.FilterApi = (*FilterApiService)(&c.common)
 	c.FreezeCRUDApi = (*FreezeCRUDApiService)(&c.common)

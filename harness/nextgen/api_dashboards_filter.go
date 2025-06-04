@@ -11,6 +11,7 @@ package nextgen
 
 import (
 	"context"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -24,33 +25,34 @@ var (
 	_ context.Context
 )
 
-type FoldersApiService service
+type DashboardsFilterApiService service
 
 /*
-FoldersApiService
-Create a new folder.
+DashboardsFilterApiService
+Get all filters within a dashboard by ID.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param body Create a new folder
- * @param optional nil or *FoldersApiCreateFolderOpts - Optional Parameters:
+ * @param dashboardId
+ * @param optional nil or *DashboardsFilterApiGetDashboardFiltersOpts - Optional Parameters:
      * @param "AccountId" (optional.String) -
-@return GetFolderResponse
+@return GetDashboardFiltersResponse
 */
 
-type FoldersApiCreateFolderOpts struct {
+type DashboardsFilterApiGetDashboardFiltersOpts struct {
 	AccountId optional.String
 }
 
-func (a *FoldersApiService) CreateFolder(ctx context.Context, body CreateFolderRequestBody, localVarOptionals *FoldersApiCreateFolderOpts) (GetFolderResponse, *http.Response, error) {
+func (a *DashboardsFilterApiService) GetDashboardFilters(ctx context.Context, dashboardId string, localVarOptionals *DashboardsFilterApiGetDashboardFiltersOpts) (GetDashboardFiltersResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue GetFolderResponse
+		localVarReturnValue GetDashboardFiltersResponse
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/dashboard/folders"
+	localVarPath := a.client.cfg.BasePath + "/dashboard/dashboards/{dashboard_id}/filters"
+	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_id"+"}", fmt.Sprintf("%v", dashboardId), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -59,6 +61,129 @@ func (a *FoldersApiService) CreateFolder(ctx context.Context, body CreateFolderR
 	if localVarOptionals != nil && localVarOptionals.AccountId.IsSet() {
 		localVarQueryParams.Add("accountId", parameterToString(localVarOptionals.AccountId.Value(), ""))
 	}
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+		if localVarHttpResponse.StatusCode == 200 {
+			var v GetDashboardFiltersResponse
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 404 {
+			var v DashboardsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 0 {
+			var v DashboardsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+DashboardsFilterApiService
+Update a specific filter within a dashboard by ID.
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param body
+  - @param dashboardId
+  - @param filterId
+
+@return GetDashboardFilterResponse
+*/
+func (a *DashboardsFilterApiService) UpdateDashboardFilter(ctx context.Context, body UpdateDashboardFilterRequest, dashboardId string, filterId string) (GetDashboardFilterResponse, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Patch")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue GetDashboardFilterResponse
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/dashboard/dashboards/{dashboard_id}/filters/{filter_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_id"+"}", fmt.Sprintf("%v", dashboardId), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"filter_id"+"}", fmt.Sprintf("%v", filterId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
 
@@ -121,7 +246,37 @@ func (a *FoldersApiService) CreateFolder(ctx context.Context, body CreateFolderR
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v GetFolderResponse
+			var v GetDashboardFilterResponse
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 400 {
+			var v DashboardsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 403 {
+			var v DashboardsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 404 {
+			var v DashboardsErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

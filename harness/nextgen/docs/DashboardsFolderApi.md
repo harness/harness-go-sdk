@@ -4,7 +4,7 @@ All URIs are relative to *https://app.harness.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateFolder**](FoldersApi.md#CreateFolder) | **Post** /dashboard/folders | 
+[**CreateFolder**](DashboardsFoldersApi.md#CreateFolder) | **Post** /dashboard/folders | 
 
 # **CreateFolder**
 > GetFolderResponse CreateFolder(ctx, body, optional)
@@ -18,10 +18,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **body** | [**CreateFolderRequestBody**](CreateFolderRequestBody.md)| Create a new folder | 
- **optional** | ***FoldersApiCreateFolderOpts** | optional parameters | nil if no parameters
+ **optional** | ***DashboardsFoldersApiCreateFolderOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a FoldersApiCreateFolderOpts struct
+Optional parameters are passed through a pointer to a DashboardsFoldersApiCreateFolderOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 

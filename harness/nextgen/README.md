@@ -123,9 +123,9 @@ Class | Method | HTTP request | Description
 *ConnectorsApi* | [**UpdateConnector**](docs/ConnectorsApi.md#updateconnector) | **Put** /ng/api/connectors | Updates the Connector
 *ConnectorsApi* | [**ValidateTheIdentifierIsUnique**](docs/ConnectorsApi.md#validatetheidentifierisunique) | **Get** /ng/api/connectors/validateUniqueIdentifier | Validate the Connector by Account Identifier and Connector Identifier
 *DashboardsApi* | [**CloneDashboard**](docs/DashboardsApi.md#clonedashboard) | **Post** /dashboard/clone | Clones a Dashboard
-*DashboardsApi* | [**GetDashboardElements**](docs/DashboardsApi.md#getdashboardelements) | **Get** /dashboard/dashboards/{dashboard_id}/elements | Gets all the elements within a Dashboard
-*DashboardsApi* | [**GetDashboardFilters**](docs/DashboardsApi.md#getdashboardfilters) | **Get** /dashboard/dashboards/{dashboard_id}/filters | Gets all the filters within a Dashboard
-*DashboardsApi* | [**UpdateDashboardFilter**](docs/DashboardsApi.md#updatedashboardfilter) | **Patch** /dashboard/dashboards/{dashboard_id}/filters/{filter_id} | Updates a specified Dashboard filter
+*DashboardsFilterApi* | [**GetDashboardFilters**](docs/DashboardsFilterApi.md#getdashboardfilters) | **Get** /dashboard/dashboards/{dashboard_id}/filters | Gets all the filters within a Dashboard
+*DashboardsFilterApi* | [**UpdateDashboardFilter**](docs/DashboardsFilterApi.md#updatedashboardfilter) | **Patch** /dashboard/dashboards/{dashboard_id}/filters/{filter_id} | Updates a specified Dashboard filter
+*DashboardsFolderApi* | [**CreateFolder**](docs/DashboardsFolderApi.md#createfolder) | **Post** /dashboard/folders | Create a Folder that can hold Custom Dashboards
 *DelegateGroupTagsResourceApi* | [**AddTagsToDelegateGroup**](docs/DelegateGroupTagsResourceApi.md#addtagstodelegategroup) | **Post** /ng/api/delegate-group-tags/{groupIdentifier} | Add given list of tags to the Delegate group
 *DelegateGroupTagsResourceApi* | [**DeleteTagsFromDelegateGroup**](docs/DelegateGroupTagsResourceApi.md#deletetagsfromdelegategroup) | **Delete** /ng/api/delegate-group-tags/{groupIdentifier} | Deletes all tags from the Delegate group
 *DelegateGroupTagsResourceApi* | [**ListTagsForDelegateGroup**](docs/DelegateGroupTagsResourceApi.md#listtagsfordelegategroup) | **Get** /ng/api/delegate-group-tags/{groupIdentifier} | Retrieves list of tags attached with Delegate group
@@ -188,7 +188,6 @@ Class | Method | HTTP request | Description
 *FiltersApi* | [**FilterServiceGet**](docs/FiltersApi.md#filterserviceget) | **Get** /api/filters/{identifier} | Get get GitOps filter details
 *FiltersApi* | [**FilterServiceList**](docs/FiltersApi.md#filterservicelist) | **Get** /api/filters | List GitOps filters
 *FiltersApi* | [**FilterServiceUpdate**](docs/FiltersApi.md#filterserviceupdate) | **Put** /api/filters | Update a GitOps filter
-*FoldersApi* | [**CreateFolder**](docs/FoldersApi.md#createfolder) | **Post** /dashboard/folders | Create a Folder that can hold Custom Dashboards
 *GitBranchesApi* | [**GetListOfBranchesWithStatus**](docs/GitBranchesApi.md#getlistofbrancheswithstatus) | **Get** /ng/api/git-sync-branch/listBranchesWithStatus | Lists branches with their status(Synced, Unsynced) by Git Sync Config Id for the given scope
 *GitBranchesApi* | [**SyncGitBranch**](docs/GitBranchesApi.md#syncgitbranch) | **Post** /ng/api/git-sync-branch/sync | Sync the content of new Git Branch into harness with Git Sync Config Id
 *GitFullSyncApi* | [**CreateGitFullSyncConfig**](docs/GitFullSyncApi.md#creategitfullsyncconfig) | **Post** /ng/api/git-full-sync/config | Create Configuration for Git Full Sync for the provided scope
@@ -634,7 +633,6 @@ Class | Method | HTTP request | Description
  - [CvModuleLicense](docs/CvModuleLicense.md)
  - [DashboardPipelineExecution](docs/DashboardPipelineExecution.md)
  - [DashboardPipelineHealth](docs/DashboardPipelineHealth.md)
- - [DashboardElements](docs/DashboardElements.md)
  - [DashboardFilter](docs/DashboardFilter.md)
  - [DashboardsErrorResponse](docs/DashboardsErrorResponse.md)
  - [DataPoint](docs/DataPoint.md)
@@ -760,7 +758,6 @@ Class | Method | HTTP request | Description
  - [GcpKmsConnector](docs/GcpKmsConnector.md)
  - [GcpManualDetails](docs/GcpManualDetails.md)
  - [GetAccessPointResponse](docs/GetAccessPointResponse.md)
- - [GetDashboardElementsResponse](docs/GetDashboardElementsResponse.md)
  - [GetDashboardFilterResponse](docs/GetDashboardFilterResponse.md)
  - [GetDashboardFiltersResponse](docs/GetDashboardFiltersResponse.md)
  - [GetFolderResponse](docs/GetFolderResponse.md)
