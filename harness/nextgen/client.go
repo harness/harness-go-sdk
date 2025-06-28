@@ -54,7 +54,18 @@ type APIClient struct {
 
 	AccessControlListApi *AccessControlListApiService
 
-	AccountSettingApi *AccountSettingApiService
+	AccountSettingApi                        *AccountSettingApiService
+	AccountDefaultNotificationTemplateSetApi *AccountDefaultNotificationTemplateSetApiService
+
+	NotificationAttachmentsApi *NotificationAttachmentsApiService
+
+	NotificationChannelsApi *NotificationChannelsApiService
+
+	NotificationRulesApi *NotificationRulesApiService
+
+	OrgDefaultNotificationTemplateSetApi *OrgDefaultNotificationTemplateSetApiService
+
+	ProjectDefaultNotificationTemplateSetApi *ProjectDefaultNotificationTemplateSetApiService
 
 	AccountsApi *AccountsApiService
 
@@ -278,6 +289,12 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CloudCostAutoStoppingRulesV2Api = (*CloudCostAutoStoppingRulesV2ApiService)(&c.common)
 	c.CloudCostBudgetsApi = (*CloudCostBudgetsApiService)(&c.common)
 	c.CloudCostDetailsApi = (*CloudCostDetailsApiService)(&c.common)
+	c.AccountDefaultNotificationTemplateSetApi = (*AccountDefaultNotificationTemplateSetApiService)(&c.common)
+	c.NotificationAttachmentsApi = (*NotificationAttachmentsApiService)(&c.common)
+	c.NotificationChannelsApi = (*NotificationChannelsApiService)(&c.common)
+	c.NotificationRulesApi = (*NotificationRulesApiService)(&c.common)
+	c.OrgDefaultNotificationTemplateSetApi = (*OrgDefaultNotificationTemplateSetApiService)(&c.common)
+	c.ProjectDefaultNotificationTemplateSetApi = (*ProjectDefaultNotificationTemplateSetApiService)(&c.common)
 	c.CloudCostPerspectiveReportsApi = (*CloudCostPerspectiveReportsApiService)(&c.common)
 	c.CloudCostPerspectivesApi = (*CloudCostPerspectivesApiService)(&c.common)
 	c.CloudCostRecommendationsApi = (*CloudCostRecommendationsApiService)(&c.common)
