@@ -60,7 +60,7 @@ type IacmCreateWorkspaceRequestBody struct {
 	// state_checksum is the sha-256 checksum of terraform state file
 	StateChecksum string `json:"state_checksum,omitempty"`
 	// Tags associated with the workspace.
-	Tags string `json:"tags,omitempty"`
+	Tags map[string]string `json:"tags,omitempty"`
 	// terraform_plan_json is the identifier to the current state file only in JSON format.
 	TerraformPlanJson string `json:"terraform_plan_json,omitempty"`
 	// terraform_state is the identifier to the plan file used to create the latest state.
