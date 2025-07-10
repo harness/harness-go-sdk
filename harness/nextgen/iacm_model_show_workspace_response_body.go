@@ -76,7 +76,7 @@ type IacmShowWorkspaceResponseBody struct {
 	// The status of the workspace
 	Status string `json:"status"`
 	// Tags associated with the workspace.
-	Tags string `json:"tags"`
+	Tags map[string]string `json:"tags"`
 	// terraform_plan_json is the identifier to the current state file only in JSON format.
 	TerraformPlanJson string `json:"terraform_plan_json,omitempty"`
 	// terraform_state is the identifier to the plan file used to create the latest state.

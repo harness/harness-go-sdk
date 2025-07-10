@@ -48,7 +48,7 @@ type IacmUpdateWorkspaceRequestBody struct {
 	// List of patterens that will be used for sparse checkout option of git clone
 	SparseCheckout string `json:"sparse_checkout,omitempty"`
 	// Tags associated with the workspace.
-	Tags string `json:"tags,omitempty"`
+	Tags map[string]string `json:"tags,omitempty"`
 	// define an array of terraform variables files that belong to a different repository
 	TerraformVariableFiles []IacmWorkspaceTerraformVariableFiles `json:"terraform_variable_files,omitempty"`
 	// list of terraform variables configured on the workspace.
