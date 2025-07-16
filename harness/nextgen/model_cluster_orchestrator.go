@@ -9,7 +9,9 @@
  */
 package nextgen
 
-import "time"
+import (
+	"time"
+)
 
 type ClusterOrchDistributionSelector string
 type ClusterOrchNodeDistributionStrategy string
@@ -58,18 +60,24 @@ type WindowAppliesTo struct {
 	ReverseFallback    bool `json:"reverse_fallback"`
 }
 
+type TimeInDayForWindow struct {
+	Hour int `json:"hour"`
+	Min  int `json:"minute"`
+}
+
 type WindowDetails struct {
-	Days      []time.Weekday `json:"days"`
-	AllDay    bool           `json:"all_day"`
-	StartTime *TimeInDay     `json:"start_time"`
-	EndTime   *TimeInDay     `json:"end_time"`
-	TimeZone  string         `json:"time_zone"`
+	Days      []time.Weekday      `json:"days"`
+	AllDay    bool                `json:"all_day"`
+	StartTime *TimeInDayForWindow `json:"start_time"`
+	EndTime   *TimeInDayForWindow `json:"end_time"`
+	TimeZone  string              `json:"time_zone"`
 }
 type ReplacementWindow struct {
 	AppliesTo             *WindowAppliesTo      `json:"applies_to"`
 	ReplacementWindowType ReplacementWindowType `json:"replacement_window_type"`
 	WindowDetails         *WindowDetails        `json:"window_details,omitempty"`
 }
+
 type ClusterOrchConfig struct {
 	SpotDistribution      ClusterOrchDistributionSelector     `json:"spot_distribution"`
 	NodeDeletionDelay     int                                 `json:"node_deletion_delay"`
