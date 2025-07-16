@@ -14,8 +14,14 @@ import "time"
 type ClusterOrchDistributionSelector string
 type ClusterOrchNodeDistributionStrategy string
 type ConsolidationPolicy string
-type replacementWindowType string
 type ReplacementWindowType string
+
+const (
+	AlwaysReplacementWindow ReplacementWindowType = "Always"
+	NeverReplacementWindow  ReplacementWindowType = "Never"
+	CustomReplacementWindow ReplacementWindowType = "Custom"
+)
+
 type podEvictor struct {
 	Enabled             bool    `json:"enabled"`
 	EvictSingleReplicas bool    `json:"evict_single_replicas"`
