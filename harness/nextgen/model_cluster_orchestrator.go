@@ -54,6 +54,8 @@ type CommitmentIntegration struct {
 }
 type WindowAppliesTo struct {
 	HarnessPodEviction bool `json:"harness_pod_eviction"`
+	Consolidation      bool `json:"consolidation"`
+	ReverseFallback    bool `json:"reverse_fallback"`
 }
 
 type WindowDetails struct {
