@@ -15,6 +15,7 @@ type ClusterOrchDistributionSelector string
 type ClusterOrchNodeDistributionStrategy string
 type ConsolidationPolicy string
 type replacementWindowType string
+type ReplacementWindowType string
 type podEvictor struct {
 	Enabled             bool    `json:"enabled"`
 	EvictSingleReplicas bool    `json:"evict_single_replicas"`
@@ -41,24 +42,25 @@ type ReverseFallback struct {
 	Enabled       bool   `json:"enabled"`
 	RetryInterval string `json:"retry_interval"`
 }
-type commitmentIntegration struct {
+type CommitmentIntegration struct {
 	Enabled        bool   `json:"enabled"`
 	CloudAccountID string `json:"cloud_account_id"`
 }
-type windowAppliesTo struct {
+type WindowAppliesTo struct {
 	HarnessPodEviction bool `json:"harness_pod_eviction"`
 }
-type windowDetails struct {
+
+type WindowDetails struct {
 	Days      []time.Weekday `json:"days"`
 	AllDay    bool           `json:"all_day"`
 	StartTime *TimeInDay     `json:"start_time"`
 	EndTime   *TimeInDay     `json:"end_time"`
 	TimeZone  string         `json:"time_zone"`
 }
-type replacementWindow struct {
-	AppliesTo             *windowAppliesTo      `json:"applies_to"`
-	ReplacementWindowType replacementWindowType `json:"replacement_window_type"`
-	WindowDetails         *windowDetails        `json:"window_details,omitempty"`
+type ReplacementWindow struct {
+	AppliesTo             *WindowAppliesTo      `json:"applies_to"`
+	ReplacementWindowType ReplacementWindowType `json:"replacement_window_type"`
+	WindowDetails         *WindowDetails        `json:"window_details,omitempty"`
 }
 type ClusterOrchConfig struct {
 	SpotDistribution      ClusterOrchDistributionSelector     `json:"spot_distribution"`
@@ -69,8 +71,8 @@ type ClusterOrchConfig struct {
 	OnDemandSplit         int                                 `json:"on_demand_split"`
 	Consolidation         consolidation                       `json:"consolidation"`
 	ReverseFallback       *ReverseFallback                    `json:"reverse_fallback"`
-	CommitmentIntegration *commitmentIntegration              `json:"commitment_integration"`
-	ReplacementWindow     *replacementWindow                  `json:"replacement_window"`
+	CommitmentIntegration *CommitmentIntegration              `json:"commitment_integration"`
+	ReplacementWindow     *ReplacementWindow                  `json:"replacement_window"`
 }
 
 type ClusterOrchestratorUserConfig struct {
