@@ -15,7 +15,7 @@ import (
 
 const (
 	// DefaultGraphQLEndpoint is the default GraphQL endpoint
-	DefaultGraphQLEndpoint = "/chaos/manager/api/query"
+	DefaultGraphQLEndpoint = "/query"
 )
 
 // GraphQLQuery represents a GraphQL query
