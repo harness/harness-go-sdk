@@ -28,6 +28,7 @@ import (
 	"time"
 	"unicode/utf8"
 
+	"github.com/sirupsen/logrus"
 	"golang.org/x/oauth2"
 )
 
@@ -45,6 +46,7 @@ type APIClient struct {
 	AccountId string
 	ApiKey    string
 	Endpoint  string
+	Logger    *logrus.Logger
 
 	// API Services
 
@@ -53,6 +55,8 @@ type APIClient struct {
 	DefaultApi *DefaultApiService
 
 	ListExperimentsMinimalNotificationApi *ListExperimentsMinimalNotificationApiService
+
+	ImageRegistryApi *ImageRegistryClient
 }
 
 type service struct {
@@ -79,6 +83,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ChaosSdkApi = (*ChaosSdkApiService)(&c.common)
 	c.DefaultApi = (*DefaultApiService)(&c.common)
 	c.ListExperimentsMinimalNotificationApi = (*ListExperimentsMinimalNotificationApiService)(&c.common)
+	c.ImageRegistryApi = NewImageRegistryClient(c)
 
 	return c
 }
