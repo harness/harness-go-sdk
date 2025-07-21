@@ -12,13 +12,13 @@ import (
 )
 
 // Get and display registry details
-func getRegistryDetails(registryClient *chaos.ImageRegistryClient, identifiers model.ScopedIdentifiersRequest) (*model.ImageRegistryResponse, error) {
+func getRegistryDetails(registryClient *chaos.ImageRegistryClient, identifiers model.ScopedIdentifiersRequest, infraID *string) (*model.ImageRegistryResponse, error) {
 	fmt.Println("\n=== Getting Registry Details ===")
 
 	registry, err := registryClient.Get(
 		context.Background(),
 		identifiers,
-		nil, // infraID
+		infraID, // infraID
 	)
 
 	if err != nil {
@@ -54,7 +54,7 @@ func getRegistryDetails(registryClient *chaos.ImageRegistryClient, identifiers m
 }
 
 // Example of checking registry override
-func exampleCheckOverride(registryClient *chaos.ImageRegistryClient, identifiers model.ScopedIdentifiersRequest) {
+func exampleCheckOverride(registryClient *chaos.ImageRegistryClient, identifiers model.ScopedIdentifiersRequest, infraID *string) {
 	fmt.Println("\n=== Example: Check Registry Override ===")
 
 	// First, get the current registry details to show what we're checking
@@ -119,6 +119,7 @@ func main() {
 	accountID := os.Getenv("HARNESS_ACCOUNT_ID")
 	orgID := os.Getenv("HARNESS_ORG_ID")
 	projectID := os.Getenv("HARNESS_PROJECT_ID")
+	infraID := os.Getenv("HARNESS_INFRA_ID")
 
 	if apiKey == "" || accountID == "" {
 		log.Fatal("HARNESS_API_KEY and HARNESS_ACCOUNT_ID environment variables are required")
@@ -128,7 +129,7 @@ func main() {
 	cfg := &chaos.Configuration{
 		ApiKey:        apiKey,
 		AccountId:     accountID,
-		BasePath:      "https://app.harness.io/gateway", // or your custom base URL
+		BasePath:      "https://app.harness.io/gateway/chaos/manager/api", // or your custom base URL
 		UserAgent:     "Harness-Go-SDK-Example/1.0.0",
 		DefaultHeader: map[string]string{"X-Api-Key": apiKey},
 	}
@@ -151,27 +152,28 @@ func main() {
 		projectIDCopy := projectID // Create a new variable to take the address of
 		identifiers.ProjectIdentifier = &projectIDCopy
 	}
+	infraIDCopy := infraID // Create a new variable to take the address of
 
 	// Run examples
-	exampleCreateWithCustomImages(registryClient, identifiers)
-	getRegistryDetails(registryClient, identifiers)
-	exampleCheckOverride(registryClient, identifiers) // Check override after creation
+	exampleCreateWithCustomImages(registryClient, identifiers, &infraIDCopy)
+	getRegistryDetails(registryClient, identifiers, &infraIDCopy)
+	exampleCheckOverride(registryClient, identifiers, &infraIDCopy) // Check override after creation
 
-	exampleUpdateWithCustomImages(registryClient, identifiers)
-	getRegistryDetails(registryClient, identifiers)
-	exampleCheckOverride(registryClient, identifiers) // Check override after update
+	exampleUpdateWithCustomImages(registryClient, identifiers, &infraIDCopy)
+	getRegistryDetails(registryClient, identifiers, &infraIDCopy)
+	exampleCheckOverride(registryClient, identifiers, &infraIDCopy) // Check override after update
 }
 
 // Example of creating a registry with custom images
-func exampleCreateWithCustomImages(registryClient *chaos.ImageRegistryClient, identifiers model.ScopedIdentifiersRequest) {
+func exampleCreateWithCustomImages(registryClient *chaos.ImageRegistryClient, identifiers model.ScopedIdentifiersRequest, infraID *string) {
 	fmt.Println("\n=== Example: Create Registry with Custom Images ===")
 
 	// Define custom images with updated tags
 	customImages := map[string]string{
-		"logWatcher": "us-west1-docker.pkg.dev/gar-setup/docker/harness-tf/chaos-log-watcher:1.62.0",
-		"ddcr":       "us-west1-docker.pkg.dev/gar-setup/docker/harness-tf/chaos-ddcr:1.62.0",
-		"ddcrLib":    "us-west1-docker.pkg.dev/gar-setup/docker/harness-tf/chaos-ddcr-faults:1.62.0",
-		"ddcrFault":  "us-west1-docker.pkg.dev/gar-setup/docker/harness-tf/chaos-ddcr-faults:1.62.0",
+		"logWatcher": "us-west1-docker.pkg.dev/gar-setup/docker/harness-tf-done/chaos-log-watcher:1.62.0",
+		"ddcr":       "us-west1-docker.pkg.dev/gar-setup/docker/harness-tf-done/chaos-ddcr:1.62.0",
+		"ddcrLib":    "us-west1-docker.pkg.dev/gar-setup/docker/harness-tf-done/chaos-ddcr-faults:1.62.0",
+		"ddcrFault":  "us-west1-docker.pkg.dev/gar-setup/docker/harness-tf-done/chaos-ddcr-faults:1.62.0",
 	}
 
 	// Create registry with custom images using map
@@ -179,8 +181,8 @@ func exampleCreateWithCustomImages(registryClient *chaos.ImageRegistryClient, id
 	_, err := registryClient.Create(
 		context.Background(),
 		identifiers,
-		"registry-tf.io",
-		"harness-tf",
+		"registry-harness-done.io",
+		"harness-tf-done",
 		true, // isPrivate
 		func(req model.ImageRegistryRequest) model.ImageRegistryRequest {
 			req = chaos.WithImageRegistryIsDefault(req, true)
@@ -199,7 +201,7 @@ func exampleCreateWithCustomImages(registryClient *chaos.ImageRegistryClient, id
 }
 
 // Example of updating a registry with custom images
-func exampleUpdateWithCustomImages(registryClient *chaos.ImageRegistryClient, identifiers model.ScopedIdentifiersRequest) {
+func exampleUpdateWithCustomImages(registryClient *chaos.ImageRegistryClient, identifiers model.ScopedIdentifiersRequest, infraID *string) {
 	fmt.Println("\n=== Example: Update Registry with Custom Images ===")
 
 	// First, check if there's an existing default registry
@@ -226,17 +228,17 @@ func exampleUpdateWithCustomImages(registryClient *chaos.ImageRegistryClient, id
 		context.Background(),
 		identifiers,
 		nil, // infraID for project-level registry
-		"registry-tf.io",
-		"harness-tf",
+		"registry-harness-done.io",
+		"harness-tf-done",
 		true, // isPrivate
 		func(req model.ImageRegistryRequest) model.ImageRegistryRequest {
 			req = chaos.WithImageRegistryIsDefault(req, isDefault)
 			req = chaos.WithImageRegistrySecretName(req, "my-updated-secret")
 			req = chaos.WithImageRegistryCustomImages(
-				"us-west1-docker.pkg.dev/gar-setup/docker/harness-tf/chaos-log-watcher:1.62.0",
-				"us-west1-docker.pkg.dev/gar-setup/docker/harness-tf/chaos-ddcr:1.62.0",
-				"us-west1-docker.pkg.dev/gar-setup/docker/harness-tf/chaos-ddcr-faults:1.62.0",
-				"us-west1-docker.pkg.dev/gar-setup/docker/harness-tf/chaos-ddcr-faults:1.62.0",
+				"us-west1-docker.pkg.dev/gar-setup/docker/harness-tf-done/chaos-log-watcher:1.62.0",
+				"us-west1-docker.pkg.dev/gar-setup/docker/harness-tf-done/chaos-ddcr:1.62.0",
+				"us-west1-docker.pkg.dev/gar-setup/docker/harness-tf-done/chaos-ddcr-faults:1.62.0",
+				"us-west1-docker.pkg.dev/gar-setup/docker/harness-tf-done/chaos-ddcr-faults:1.62.0",
 			)(req)
 			return req
 		},
