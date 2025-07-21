@@ -57,6 +57,8 @@ type APIClient struct {
 	ListExperimentsMinimalNotificationApi *ListExperimentsMinimalNotificationApiService
 
 	ImageRegistryApi *ImageRegistryClient
+
+	ChaosHubApi *ChaosHubClient
 }
 
 type service struct {
@@ -84,6 +86,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DefaultApi = (*DefaultApiService)(&c.common)
 	c.ListExperimentsMinimalNotificationApi = (*ListExperimentsMinimalNotificationApiService)(&c.common)
 	c.ImageRegistryApi = NewImageRegistryClient(c)
+	c.ChaosHubApi = NewChaosHubClient(c)
 
 	return c
 }
