@@ -196,7 +196,7 @@ func (a *RegistriesApiService) DeleteRegistry(ctx context.Context, registryRef s
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -361,7 +361,7 @@ func (a *RegistriesApiService) GetAllArtifactsByRegistry(ctx context.Context, re
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifacts"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifacts"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -536,7 +536,7 @@ func (a *RegistriesApiService) GetClientSetupDetails(ctx context.Context, regist
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/client-setup-details"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/client-setup-details"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -690,7 +690,7 @@ func (a *RegistriesApiService) GetRegistry(ctx context.Context, registryRef stri
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -845,7 +845,7 @@ func (a *RegistriesApiService) ModifyRegistry(ctx context.Context, registryRef s
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 
 	localVarHeaderParams := make(map[string]string)

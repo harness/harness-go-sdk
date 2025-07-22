@@ -49,7 +49,7 @@ func (a *WebhooksApiService) CreateWebhook(ctx context.Context, registryRef stri
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/webhooks"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/webhooks"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -194,7 +194,7 @@ func (a *WebhooksApiService) DeleteWebhook(ctx context.Context, registryRef stri
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/webhooks/{webhook_identifier}"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/webhooks/{webhook_identifier}"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"webhook_identifier"+"}", fmt.Sprintf("%v", webhookIdentifier), -1)
 
@@ -344,7 +344,7 @@ func (a *WebhooksApiService) GetWebhook(ctx context.Context, registryRef string,
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/webhooks/{webhook_identifier}"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/webhooks/{webhook_identifier}"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"webhook_identifier"+"}", fmt.Sprintf("%v", webhookIdentifier), -1)
 
@@ -485,7 +485,7 @@ func (a *WebhooksApiService) GetWebhookExecution(ctx context.Context, registryRe
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/webhooks/{webhook_identifier}/executions/{webhook_execution_id}"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/webhooks/{webhook_identifier}/executions/{webhook_execution_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"webhook_identifier"+"}", fmt.Sprintf("%v", webhookIdentifier), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"webhook_execution_id"+"}", fmt.Sprintf("%v", webhookExecutionId), -1)
@@ -635,7 +635,7 @@ func (a *WebhooksApiService) ListWebhookExecutions(ctx context.Context, registry
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/webhooks/{webhook_identifier}/executions"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/webhooks/{webhook_identifier}/executions"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"webhook_identifier"+"}", fmt.Sprintf("%v", webhookIdentifier), -1)
 
@@ -795,7 +795,7 @@ func (a *WebhooksApiService) ListWebhooks(ctx context.Context, registryRef strin
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/webhooks"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/webhooks"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -950,7 +950,7 @@ func (a *WebhooksApiService) ReTriggerWebhookExecution(ctx context.Context, regi
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/webhooks/{webhook_identifier}/executions/{webhook_execution_id}/retrigger"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/webhooks/{webhook_identifier}/executions/{webhook_execution_id}/retrigger"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"webhook_identifier"+"}", fmt.Sprintf("%v", webhookIdentifier), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"webhook_execution_id"+"}", fmt.Sprintf("%v", webhookExecutionId), -1)
@@ -1098,7 +1098,7 @@ func (a *WebhooksApiService) UpdateWebhook(ctx context.Context, registryRef stri
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/webhooks/{webhook_identifier}"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/webhooks/{webhook_identifier}"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"webhook_identifier"+"}", fmt.Sprintf("%v", webhookIdentifier), -1)
 

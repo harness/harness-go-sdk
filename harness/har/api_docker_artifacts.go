@@ -44,7 +44,7 @@ func (a *DockerArtifactsApiService) GetDockerArtifactDetails(ctx context.Context
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/details"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/docker/details"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"version"+"}", fmt.Sprintf("%v", version), -1)
@@ -198,7 +198,7 @@ func (a *DockerArtifactsApiService) GetDockerArtifactIntegrationDetails(ctx cont
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/integrationdetails"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/docker/integrationdetails"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"version"+"}", fmt.Sprintf("%v", version), -1)
@@ -352,7 +352,7 @@ func (a *DockerArtifactsApiService) GetDockerArtifactLayers(ctx context.Context,
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/layers"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/docker/layers"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"version"+"}", fmt.Sprintf("%v", version), -1)
@@ -506,7 +506,7 @@ func (a *DockerArtifactsApiService) GetDockerArtifactManifest(ctx context.Contex
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/manifest"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/docker/manifest"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"version"+"}", fmt.Sprintf("%v", version), -1)
@@ -659,7 +659,7 @@ func (a *DockerArtifactsApiService) GetDockerArtifactManifests(ctx context.Conte
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/manifests"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/docker/manifests"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"version"+"}", fmt.Sprintf("%v", version), -1)

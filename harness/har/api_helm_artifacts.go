@@ -43,7 +43,7 @@ func (a *HelmArtifactsApiService) GetHelmArtifactDetails(ctx context.Context, re
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}/version/{version}/helm/details"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/helm/details"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"version"+"}", fmt.Sprintf("%v", version), -1)
@@ -195,7 +195,7 @@ func (a *HelmArtifactsApiService) GetHelmArtifactManifest(ctx context.Context, r
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/artifact/{artifact}/version/{version}/helm/manifest"
+	localVarPath := a.client.cfg.BasePath + "/registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/helm/manifest"
 	localVarPath = strings.Replace(localVarPath, "{"+"registry_ref"+"}", fmt.Sprintf("%v", registryRef), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact"+"}", fmt.Sprintf("%v", artifact), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"version"+"}", fmt.Sprintf("%v", version), -1)

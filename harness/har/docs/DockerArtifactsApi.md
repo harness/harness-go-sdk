@@ -4,11 +4,11 @@ All URIs are relative to */gateway/har/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetDockerArtifactDetails**](DockerArtifactsApi.md#GetDockerArtifactDetails) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/details | Describe Docker Artifact Detail
-[**GetDockerArtifactIntegrationDetails**](DockerArtifactsApi.md#GetDockerArtifactIntegrationDetails) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/integrationdetails | Describe Docker Artifact Integration Detail
-[**GetDockerArtifactLayers**](DockerArtifactsApi.md#GetDockerArtifactLayers) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/layers | Describe Docker Artifact Layers
-[**GetDockerArtifactManifest**](DockerArtifactsApi.md#GetDockerArtifactManifest) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/manifest | Describe Docker Artifact Manifest
-[**GetDockerArtifactManifests**](DockerArtifactsApi.md#GetDockerArtifactManifests) | **Get** /registry/{registry_ref}/artifact/{artifact}/version/{version}/docker/manifests | Describe Docker Artifact Manifests
+[**GetDockerArtifactDetails**](DockerArtifactsApi.md#GetDockerArtifactDetails) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/docker/details | Describe Docker Artifact Detail
+[**GetDockerArtifactIntegrationDetails**](DockerArtifactsApi.md#GetDockerArtifactIntegrationDetails) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/docker/integrationdetails | Describe Docker Artifact Integration Detail
+[**GetDockerArtifactLayers**](DockerArtifactsApi.md#GetDockerArtifactLayers) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/docker/layers | Describe Docker Artifact Layers
+[**GetDockerArtifactManifest**](DockerArtifactsApi.md#GetDockerArtifactManifest) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/docker/manifest | Describe Docker Artifact Manifest
+[**GetDockerArtifactManifests**](DockerArtifactsApi.md#GetDockerArtifactManifests) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/docker/manifests | Describe Docker Artifact Manifests
 
 # **GetDockerArtifactDetails**
 > InlineResponse2005 GetDockerArtifactDetails(ctx, registryRef, artifact, version, digest)

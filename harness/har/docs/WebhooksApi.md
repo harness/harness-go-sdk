@@ -4,14 +4,14 @@ All URIs are relative to */gateway/har/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateWebhook**](WebhooksApi.md#CreateWebhook) | **Post** /registry/{registry_ref}/webhooks | CreateWebhook
-[**DeleteWebhook**](WebhooksApi.md#DeleteWebhook) | **Delete** /registry/{registry_ref}/webhooks/{webhook_identifier} | DeleteWebhook
-[**GetWebhook**](WebhooksApi.md#GetWebhook) | **Get** /registry/{registry_ref}/webhooks/{webhook_identifier} | GetWebhook
-[**GetWebhookExecution**](WebhooksApi.md#GetWebhookExecution) | **Get** /registry/{registry_ref}/webhooks/{webhook_identifier}/executions/{webhook_execution_id} | GetWebhookExecution
-[**ListWebhookExecutions**](WebhooksApi.md#ListWebhookExecutions) | **Get** /registry/{registry_ref}/webhooks/{webhook_identifier}/executions | ListWebhookExecutions
-[**ListWebhooks**](WebhooksApi.md#ListWebhooks) | **Get** /registry/{registry_ref}/webhooks | ListWebhooks
-[**ReTriggerWebhookExecution**](WebhooksApi.md#ReTriggerWebhookExecution) | **Get** /registry/{registry_ref}/webhooks/{webhook_identifier}/executions/{webhook_execution_id}/retrigger | ReTriggerWebhookExecution
-[**UpdateWebhook**](WebhooksApi.md#UpdateWebhook) | **Put** /registry/{registry_ref}/webhooks/{webhook_identifier} | UpdateWebhook
+[**CreateWebhook**](WebhooksApi.md#CreateWebhook) | **Post** /registry/{registry_ref}/+/webhooks | CreateWebhook
+[**DeleteWebhook**](WebhooksApi.md#DeleteWebhook) | **Delete** /registry/{registry_ref}/+/webhooks/{webhook_identifier} | DeleteWebhook
+[**GetWebhook**](WebhooksApi.md#GetWebhook) | **Get** /registry/{registry_ref}/+/webhooks/{webhook_identifier} | GetWebhook
+[**GetWebhookExecution**](WebhooksApi.md#GetWebhookExecution) | **Get** /registry/{registry_ref}/+/webhooks/{webhook_identifier}/executions/{webhook_execution_id} | GetWebhookExecution
+[**ListWebhookExecutions**](WebhooksApi.md#ListWebhookExecutions) | **Get** /registry/{registry_ref}/+/webhooks/{webhook_identifier}/executions | ListWebhookExecutions
+[**ListWebhooks**](WebhooksApi.md#ListWebhooks) | **Get** /registry/{registry_ref}/+/webhooks | ListWebhooks
+[**ReTriggerWebhookExecution**](WebhooksApi.md#ReTriggerWebhookExecution) | **Get** /registry/{registry_ref}/+/webhooks/{webhook_identifier}/executions/{webhook_execution_id}/retrigger | ReTriggerWebhookExecution
+[**UpdateWebhook**](WebhooksApi.md#UpdateWebhook) | **Put** /registry/{registry_ref}/+/webhooks/{webhook_identifier} | UpdateWebhook
 
 # **CreateWebhook**
 > InlineResponse2011 CreateWebhook(ctx, registryRef, optional)
