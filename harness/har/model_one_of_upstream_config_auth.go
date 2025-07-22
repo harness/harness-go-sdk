@@ -9,7 +9,7 @@
 package har
 
 type OneOfUpstreamConfigAuth struct {
-	UserPassword
-	Anonymous
-	AuthType *AuthType `json:"authType"`
+    UserPassword
+    Anonymous
+    AccessKeySecretKey
 }

@@ -1,12 +1,12 @@
-# har{{classname}}
+# {{classname}}
 
-All URIs are relative to */gateway/har/api/v1*
+All URIs are relative to *https://app.harness.io/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateRegistry**](RegistriesApi.md#CreateRegistry) | **Post** /registry | Create Registry.
 [**DeleteRegistry**](RegistriesApi.md#DeleteRegistry) | **Delete** /registry/{registry_ref} | Delete a Registry
-[**GetAllArtifactsByRegistry**](RegistriesApi.md#GetAllArtifactsByRegistry) | **Get** /registry/{registry_ref}/+/artifacts | List Artifacts for Registry
+[**GetAllArtifactsByRegistry**](RegistriesApi.md#GetAllArtifactsByRegistry) | **Get** /registry/{registry_ref}/artifacts | List Artifacts for Registry
 [**GetClientSetupDetails**](RegistriesApi.md#GetClientSetupDetails) | **Get** /registry/{registry_ref}/client-setup-details | Returns CLI Client Setup Details
 [**GetRegistry**](RegistriesApi.md#GetRegistry) | **Get** /registry/{registry_ref} | Returns Registry Details
 [**ModifyRegistry**](RegistriesApi.md#ModifyRegistry) | **Put** /registry/{registry_ref} | Updates a Registry
@@ -75,7 +75,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetAllArtifactsByRegistry**
-> InlineResponse20014 GetAllArtifactsByRegistry(ctx, registryRef, optional)
+> InlineResponse20017 GetAllArtifactsByRegistry(ctx, registryRef, optional)
 List Artifacts for Registry
 
 Lists all the Artifacts for Registry
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20014**](inline_response_200_14.md)
+[**InlineResponse20017**](inline_response_200_17.md)
 
 ### Authorization
 
@@ -116,7 +116,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetClientSetupDetails**
-> InlineResponse20015 GetClientSetupDetails(ctx, registryRef, optional)
+> InlineResponse20018 GetClientSetupDetails(ctx, registryRef, optional)
 Returns CLI Client Setup Details
 
 Returns CLI Client Setup Details based on package type
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20015**](inline_response_200_15.md)
+[**InlineResponse20018**](inline_response_200_18.md)
 
 ### Authorization
 
