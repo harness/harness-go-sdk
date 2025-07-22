@@ -1,6 +1,6 @@
 # {{classname}}
 
-All URIs are relative to *https://app.harness.io/api/v1*
+All URIs are relative to */gateway/har/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -40,7 +40,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[XApiKeyAuth](../README.md#XApiKeyAuth)
 
 ### HTTP request headers
 
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[XApiKeyAuth](../README.md#XApiKeyAuth)
 
 ### HTTP request headers
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[XApiKeyAuth](../README.md#XApiKeyAuth)
 
 ### HTTP request headers
 
@@ -128,7 +128,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[XApiKeyAuth](../README.md#XApiKeyAuth)
 
 ### HTTP request headers
 
@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[XApiKeyAuth](../README.md#XApiKeyAuth)
 
 ### HTTP request headers
 
@@ -207,7 +207,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[XApiKeyAuth](../README.md#XApiKeyAuth)
 
 ### HTTP request headers
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[XApiKeyAuth](../README.md#XApiKeyAuth)
 
 ### HTTP request headers
 
@@ -275,7 +275,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[XApiKeyAuth](../README.md#XApiKeyAuth)
 
 ### HTTP request headers
 

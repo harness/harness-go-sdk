@@ -18,7 +18,7 @@ import "./har"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://app.harness.io/api/v1*
+All URIs are relative to */gateway/har/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -196,8 +196,18 @@ Class | Method | HTTP request | Description
  - [WebhookRequest](docs/WebhookRequest.md)
 
 ## Documentation For Authorization
- Endpoints do not require authorization.
 
+## XApiKeyAuth
+- **Type**: API key 
+
+Example
+```golang
+auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
+	Key: "APIKEY",
+	Prefix: "Bearer", // Omit if not necessary.
+})
+r, err := client.Service.Operation(auth, args)
+```
 
 ## Author
 

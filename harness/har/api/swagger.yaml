@@ -6,8 +6,10 @@ info:
     url: https://www.harness.io
   version: 1.0.0
 servers:
-- url: https://app.harness.io/api/v1
+- url: /gateway/har/api/v1
   description: Registry
+security:
+- XApiKeyAuth: []
 tags:
 - name: Registries
   description: "APIs to create, update, list registries"
@@ -7358,3 +7360,8 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/WebhookRequest"
+  securitySchemes:
+    XApiKeyAuth:
+      type: apiKey
+      name: x-api-key
+      in: header
