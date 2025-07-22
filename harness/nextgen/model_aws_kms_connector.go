@@ -14,6 +14,8 @@ type AwsKmsConnector struct {
 	Credential *AwsKmsConnectorCredential `json:"credential"`
 	// ARN for AWS KMS.
 	KmsArn string `json:"kmsArn"`
+	//ARN as plaintext for AWS KMS
+	KmsArnInPlaintext string `json:"KmsArnInPlaintext"`
 	// Region for AWS KMS.
 	Region    string `json:"region"`
 	IsDefault bool   `json:"isDefault,omitempty"`
