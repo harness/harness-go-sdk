@@ -1,41 +1,84 @@
-# {{classname}}
+# \ArtifactsAPI
 
 All URIs are relative to */gateway/har/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteArtifact**](ArtifactsApi.md#DeleteArtifact) | **Delete** /registry/{registry_ref}/+/artifact/{artifact}/+ | Delete Artifact
-[**DeleteArtifactVersion**](ArtifactsApi.md#DeleteArtifactVersion) | **Delete** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version} | Delete an Artifact Version
-[**GetAllArtifactVersions**](ArtifactsApi.md#GetAllArtifactVersions) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/versions | List Artifact Versions
-[**GetArtifactDeployments**](ArtifactsApi.md#GetArtifactDeployments) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/deploymentdetails | Describe Artifact Deployments
-[**GetArtifactDetails**](ArtifactsApi.md#GetArtifactDetails) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/details | Describe Artifact Details
-[**GetArtifactFile**](ArtifactsApi.md#GetArtifactFile) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/file/{file_name} | Get Artifact file
-[**GetArtifactFiles**](ArtifactsApi.md#GetArtifactFiles) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/files | Describe Artifact files
-[**GetArtifactStats**](ArtifactsApi.md#GetArtifactStats) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/stats | Get Artifact Stats
-[**GetArtifactStatsForRegistry**](ArtifactsApi.md#GetArtifactStatsForRegistry) | **Get** /registry/{registry_ref}/+/artifact/stats | Get Artifact Stats
-[**GetArtifactSummary**](ArtifactsApi.md#GetArtifactSummary) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/summary | Get Artifact Summary
-[**GetArtifactVersionSummary**](ArtifactsApi.md#GetArtifactVersionSummary) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/summary | Get Artifact Version Summary
-[**ListArtifactLabels**](ArtifactsApi.md#ListArtifactLabels) | **Get** /registry/{registry_ref}/+/artifact/labels | List Artifact Labels
-[**RedirectHarnessArtifact**](ArtifactsApi.md#RedirectHarnessArtifact) | **Get** /registry/{registry_identifier}/artifact/{artifact}/+/redirect | Redirect to Harness Artifact Page
-[**UpdateArtifactLabels**](ArtifactsApi.md#UpdateArtifactLabels) | **Put** /registry/{registry_ref}/+/artifact/{artifact}/+/labels | Update Artifact Labels
+[**DeleteArtifact**](ArtifactsAPI.md#DeleteArtifact) | **Delete** /registry/{registry_ref}/+/artifact/{artifact}/+ | Delete Artifact
+[**DeleteArtifactVersion**](ArtifactsAPI.md#DeleteArtifactVersion) | **Delete** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version} | Delete an Artifact Version
+[**GetAllArtifactVersions**](ArtifactsAPI.md#GetAllArtifactVersions) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/versions | List Artifact Versions
+[**GetArtifactDeployments**](ArtifactsAPI.md#GetArtifactDeployments) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/deploymentdetails | Describe Artifact Deployments
+[**GetArtifactDetails**](ArtifactsAPI.md#GetArtifactDetails) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/details | Describe Artifact Details
+[**GetArtifactFile**](ArtifactsAPI.md#GetArtifactFile) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/file/{file_name} | Get Artifact file
+[**GetArtifactFiles**](ArtifactsAPI.md#GetArtifactFiles) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/files | Describe Artifact files
+[**GetArtifactStats**](ArtifactsAPI.md#GetArtifactStats) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/stats | Get Artifact Stats
+[**GetArtifactStatsForRegistry**](ArtifactsAPI.md#GetArtifactStatsForRegistry) | **Get** /registry/{registry_ref}/+/artifact/stats | Get Artifact Stats
+[**GetArtifactSummary**](ArtifactsAPI.md#GetArtifactSummary) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/summary | Get Artifact Summary
+[**GetArtifactVersionSummary**](ArtifactsAPI.md#GetArtifactVersionSummary) | **Get** /registry/{registry_ref}/+/artifact/{artifact}/+/version/{version}/summary | Get Artifact Version Summary
+[**ListArtifactLabels**](ArtifactsAPI.md#ListArtifactLabels) | **Get** /registry/{registry_ref}/+/artifact/labels | List Artifact Labels
+[**RedirectHarnessArtifact**](ArtifactsAPI.md#RedirectHarnessArtifact) | **Get** /registry/{registry_identifier}/artifact/{artifact}/+/redirect | Redirect to Harness Artifact Page
+[**UpdateArtifactLabels**](ArtifactsAPI.md#UpdateArtifactLabels) | **Put** /registry/{registry_ref}/+/artifact/{artifact}/+/labels | Update Artifact Labels
 
-# **DeleteArtifact**
-> InlineResponse200 DeleteArtifact(ctx, registryRef, artifact)
+
+
+## DeleteArtifact
+
+> InlineResponse200 DeleteArtifact(ctx, registryRef, artifact).Execute()
+
 Delete Artifact
 
-Delete Artifact.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	registryRef := "registryRef_example" // string | Unique registry path.
+	artifact := "artifact_example" // string | Name of artifact.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.DeleteArtifact(context.Background(), registryRef, artifact).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.DeleteArtifact``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteArtifact`: InlineResponse200
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.DeleteArtifact`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **registryRef** | **string**| Unique registry path. | 
-  **artifact** | **string**| Name of artifact. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryRef** | **string** | Unique registry path. | 
+**artifact** | **string** | Name of artifact. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteArtifactRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 ### Return type
 
-[**InlineResponse200**](inline_response_200.md)
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -43,29 +86,75 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **DeleteArtifactVersion**
-> InlineResponse200 DeleteArtifactVersion(ctx, registryRef, artifact, version)
+
+## DeleteArtifactVersion
+
+> InlineResponse200 DeleteArtifactVersion(ctx, registryRef, artifact, version).Execute()
+
 Delete an Artifact Version
 
-Delete Artifact Version.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	registryRef := "registryRef_example" // string | Unique registry path.
+	artifact := "artifact_example" // string | Name of artifact.
+	version := "version_example" // string | Name of Artifact Version.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.DeleteArtifactVersion(context.Background(), registryRef, artifact, version).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.DeleteArtifactVersion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteArtifactVersion`: InlineResponse200
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.DeleteArtifactVersion`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **registryRef** | **string**| Unique registry path. | 
-  **artifact** | **string**| Name of artifact. | 
-  **version** | **string**| Name of Artifact Version. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryRef** | **string** | Unique registry path. | 
+**artifact** | **string** | Name of artifact. | 
+**version** | **string** | Name of Artifact Version. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteArtifactVersionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
 
 ### Return type
 
-[**InlineResponse200**](inline_response_200.md)
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -73,41 +162,82 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetAllArtifactVersions**
-> InlineResponse20015 GetAllArtifactVersions(ctx, registryRef, artifact, optional)
+
+## GetAllArtifactVersions
+
+> InlineResponse20015 GetAllArtifactVersions(ctx, registryRef, artifact).Page(page).Size(size).SortOrder(sortOrder).SortField(sortField).SearchTerm(searchTerm).Execute()
+
 List Artifact Versions
 
-Lists all the Artifact Versions.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	registryRef := "registryRef_example" // string | Unique registry path.
+	artifact := "artifact_example" // string | Name of artifact.
+	page := int64(789) // int64 | Current page number (optional) (default to 1)
+	size := int64(789) // int64 | Number of items per page (optional) (default to 20)
+	sortOrder := "sortOrder_example" // string | sortOrder (optional)
+	sortField := "sortField_example" // string | sortField (optional)
+	searchTerm := "searchTerm_example" // string | search Term. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.GetAllArtifactVersions(context.Background(), registryRef, artifact).Page(page).Size(size).SortOrder(sortOrder).SortField(sortField).SearchTerm(searchTerm).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.GetAllArtifactVersions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAllArtifactVersions`: InlineResponse20015
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.GetAllArtifactVersions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **registryRef** | **string**| Unique registry path. | 
-  **artifact** | **string**| Name of artifact. | 
- **optional** | ***ArtifactsApiGetAllArtifactVersionsOpts** | optional parameters | nil if no parameters
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryRef** | **string** | Unique registry path. | 
+**artifact** | **string** | Name of artifact. | 
 
-### Optional Parameters
-Optional parameters are passed through a pointer to a ArtifactsApiGetAllArtifactVersionsOpts struct
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAllArtifactVersionsRequest struct via the builder pattern
+
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **page** | **optional.Int64**| Current page number | [default to 1]
- **size** | **optional.Int64**| Number of items per page | [default to 20]
- **sortOrder** | **optional.String**| sortOrder | 
- **sortField** | **optional.String**| sortField | 
- **searchTerm** | **optional.String**| search Term. | 
+ **page** | **int64** | Current page number | [default to 1]
+ **size** | **int64** | Number of items per page | [default to 20]
+ **sortOrder** | **string** | sortOrder | 
+ **sortField** | **string** | sortField | 
+ **searchTerm** | **string** | search Term. | 
 
 ### Return type
 
-[**InlineResponse20015**](inline_response_200_15.md)
+[**InlineResponse20015**](InlineResponse20015.md)
 
 ### Authorization
 
@@ -115,44 +245,87 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetArtifactDeployments**
-> InlineResponse2003 GetArtifactDeployments(ctx, registryRef, artifact, version, optional)
+
+## GetArtifactDeployments
+
+> InlineResponse2003 GetArtifactDeployments(ctx, registryRef, artifact, version).EnvType(envType).Page(page).Size(size).SortOrder(sortOrder).SortField(sortField).SearchTerm(searchTerm).Execute()
+
 Describe Artifact Deployments
 
-Get Artifact Deployments
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	registryRef := "registryRef_example" // string | Unique registry path.
+	artifact := "artifact_example" // string | Name of artifact.
+	version := "version_example" // string | Name of Artifact Version.
+	envType := "envType_example" // string | env type (optional)
+	page := int64(789) // int64 | Current page number (optional) (default to 1)
+	size := int64(789) // int64 | Number of items per page (optional) (default to 20)
+	sortOrder := "sortOrder_example" // string | sortOrder (optional)
+	sortField := "sortField_example" // string | sortField (optional)
+	searchTerm := "searchTerm_example" // string | search Term. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.GetArtifactDeployments(context.Background(), registryRef, artifact, version).EnvType(envType).Page(page).Size(size).SortOrder(sortOrder).SortField(sortField).SearchTerm(searchTerm).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.GetArtifactDeployments``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetArtifactDeployments`: InlineResponse2003
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.GetArtifactDeployments`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **registryRef** | **string**| Unique registry path. | 
-  **artifact** | **string**| Name of artifact. | 
-  **version** | **string**| Name of Artifact Version. | 
- **optional** | ***ArtifactsApiGetArtifactDeploymentsOpts** | optional parameters | nil if no parameters
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryRef** | **string** | Unique registry path. | 
+**artifact** | **string** | Name of artifact. | 
+**version** | **string** | Name of Artifact Version. | 
 
-### Optional Parameters
-Optional parameters are passed through a pointer to a ArtifactsApiGetArtifactDeploymentsOpts struct
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetArtifactDeploymentsRequest struct via the builder pattern
+
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
 
- **envType** | **optional.String**| env type | 
- **page** | **optional.Int64**| Current page number | [default to 1]
- **size** | **optional.Int64**| Number of items per page | [default to 20]
- **sortOrder** | **optional.String**| sortOrder | 
- **sortField** | **optional.String**| sortField | 
- **searchTerm** | **optional.String**| search Term. | 
+ **envType** | **string** | env type | 
+ **page** | **int64** | Current page number | [default to 1]
+ **size** | **int64** | Number of items per page | [default to 20]
+ **sortOrder** | **string** | sortOrder | 
+ **sortField** | **string** | sortField | 
+ **searchTerm** | **string** | search Term. | 
 
 ### Return type
 
-[**InlineResponse2003**](inline_response_200_3.md)
+[**InlineResponse2003**](InlineResponse2003.md)
 
 ### Authorization
 
@@ -160,39 +333,77 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetArtifactDetails**
-> InlineResponse2004 GetArtifactDetails(ctx, registryRef, artifact, version, optional)
+
+## GetArtifactDetails
+
+> InlineResponse2004 GetArtifactDetails(ctx, registryRef, artifact, version).ChildVersion(childVersion).Execute()
+
 Describe Artifact Details
 
-Get Artifact Details
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	registryRef := "registryRef_example" // string | Unique registry path.
+	artifact := "artifact_example" // string | Name of artifact.
+	version := "version_example" // string | Name of Artifact Version.
+	childVersion := "childVersion_example" // string | Child version incase of Docker artifacts. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.GetArtifactDetails(context.Background(), registryRef, artifact, version).ChildVersion(childVersion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.GetArtifactDetails``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetArtifactDetails`: InlineResponse2004
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.GetArtifactDetails`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **registryRef** | **string**| Unique registry path. | 
-  **artifact** | **string**| Name of artifact. | 
-  **version** | **string**| Name of Artifact Version. | 
- **optional** | ***ArtifactsApiGetArtifactDetailsOpts** | optional parameters | nil if no parameters
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryRef** | **string** | Unique registry path. | 
+**artifact** | **string** | Name of artifact. | 
+**version** | **string** | Name of Artifact Version. | 
 
-### Optional Parameters
-Optional parameters are passed through a pointer to a ArtifactsApiGetArtifactDetailsOpts struct
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetArtifactDetailsRequest struct via the builder pattern
+
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
 
- **childVersion** | **optional.String**| Child version incase of Docker artifacts. | 
+ **childVersion** | **string** | Child version incase of Docker artifacts. | 
 
 ### Return type
 
-[**InlineResponse2004**](inline_response_200_4.md)
+[**InlineResponse2004**](InlineResponse2004.md)
 
 ### Authorization
 
@@ -200,30 +411,78 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetArtifactFile**
-> InlineResponse20010 GetArtifactFile(ctx, registryRef, artifact, version, fileName)
+
+## GetArtifactFile
+
+> InlineResponse20010 GetArtifactFile(ctx, registryRef, artifact, version, fileName).Execute()
+
 Get Artifact file
 
-just validate existence of Artifact file
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	registryRef := "registryRef_example" // string | Unique registry path.
+	artifact := "artifact_example" // string | Name of artifact.
+	version := "version_example" // string | Name of Artifact Version.
+	fileName := "fileName_example" // string | Name of Artifact File.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.GetArtifactFile(context.Background(), registryRef, artifact, version, fileName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.GetArtifactFile``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetArtifactFile`: InlineResponse20010
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.GetArtifactFile`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **registryRef** | **string**| Unique registry path. | 
-  **artifact** | **string**| Name of artifact. | 
-  **version** | **string**| Name of Artifact Version. | 
-  **fileName** | **string**| Name of Artifact File. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryRef** | **string** | Unique registry path. | 
+**artifact** | **string** | Name of artifact. | 
+**version** | **string** | Name of Artifact Version. | 
+**fileName** | **string** | Name of Artifact File. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetArtifactFileRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
 
 ### Return type
 
-[**InlineResponse20010**](inline_response_200_10.md)
+[**InlineResponse20010**](InlineResponse20010.md)
 
 ### Authorization
 
@@ -231,43 +490,85 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetArtifactFiles**
-> InlineResponse20011 GetArtifactFiles(ctx, registryRef, artifact, version, optional)
+
+## GetArtifactFiles
+
+> InlineResponse20011 GetArtifactFiles(ctx, registryRef, artifact, version).Page(page).Size(size).SortOrder(sortOrder).SortField(sortField).SearchTerm(searchTerm).Execute()
+
 Describe Artifact files
 
-Get Artifact files
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	registryRef := "registryRef_example" // string | Unique registry path.
+	artifact := "artifact_example" // string | Name of artifact.
+	version := "version_example" // string | Name of Artifact Version.
+	page := int64(789) // int64 | Current page number (optional) (default to 1)
+	size := int64(789) // int64 | Number of items per page (optional) (default to 20)
+	sortOrder := "sortOrder_example" // string | sortOrder (optional)
+	sortField := "sortField_example" // string | sortField (optional)
+	searchTerm := "searchTerm_example" // string | search Term. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.GetArtifactFiles(context.Background(), registryRef, artifact, version).Page(page).Size(size).SortOrder(sortOrder).SortField(sortField).SearchTerm(searchTerm).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.GetArtifactFiles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetArtifactFiles`: InlineResponse20011
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.GetArtifactFiles`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **registryRef** | **string**| Unique registry path. | 
-  **artifact** | **string**| Name of artifact. | 
-  **version** | **string**| Name of Artifact Version. | 
- **optional** | ***ArtifactsApiGetArtifactFilesOpts** | optional parameters | nil if no parameters
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryRef** | **string** | Unique registry path. | 
+**artifact** | **string** | Name of artifact. | 
+**version** | **string** | Name of Artifact Version. | 
 
-### Optional Parameters
-Optional parameters are passed through a pointer to a ArtifactsApiGetArtifactFilesOpts struct
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetArtifactFilesRequest struct via the builder pattern
+
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
 
- **page** | **optional.Int64**| Current page number | [default to 1]
- **size** | **optional.Int64**| Number of items per page | [default to 20]
- **sortOrder** | **optional.String**| sortOrder | 
- **sortField** | **optional.String**| sortField | 
- **searchTerm** | **optional.String**| search Term. | 
+ **page** | **int64** | Current page number | [default to 1]
+ **size** | **int64** | Number of items per page | [default to 20]
+ **sortOrder** | **string** | sortOrder | 
+ **sortField** | **string** | sortField | 
+ **searchTerm** | **string** | search Term. | 
 
 ### Return type
 
-[**InlineResponse20011**](inline_response_200_11.md)
+[**InlineResponse20011**](InlineResponse20011.md)
 
 ### Authorization
 
@@ -275,38 +576,76 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetArtifactStats**
-> InlineResponse2002 GetArtifactStats(ctx, registryRef, artifact, optional)
+
+## GetArtifactStats
+
+> InlineResponse2002 GetArtifactStats(ctx, registryRef, artifact).From(from).To(to).Execute()
+
 Get Artifact Stats
 
-Get Artifact Stats.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	registryRef := "registryRef_example" // string | Unique registry path.
+	artifact := "artifact_example" // string | Name of artifact.
+	from := "from_example" // string | Date. Format - MM/DD/YYYY (optional)
+	to := "to_example" // string | Date. Format - MM/DD/YYYY (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.GetArtifactStats(context.Background(), registryRef, artifact).From(from).To(to).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.GetArtifactStats``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetArtifactStats`: InlineResponse2002
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.GetArtifactStats`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **registryRef** | **string**| Unique registry path. | 
-  **artifact** | **string**| Name of artifact. | 
- **optional** | ***ArtifactsApiGetArtifactStatsOpts** | optional parameters | nil if no parameters
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryRef** | **string** | Unique registry path. | 
+**artifact** | **string** | Name of artifact. | 
 
-### Optional Parameters
-Optional parameters are passed through a pointer to a ArtifactsApiGetArtifactStatsOpts struct
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetArtifactStatsRequest struct via the builder pattern
+
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **from** | **optional.String**| Date. Format - MM/DD/YYYY | 
- **to** | **optional.String**| Date. Format - MM/DD/YYYY | 
+ **from** | **string** | Date. Format - MM/DD/YYYY | 
+ **to** | **string** | Date. Format - MM/DD/YYYY | 
 
 ### Return type
 
-[**InlineResponse2002**](inline_response_200_2.md)
+[**InlineResponse2002**](InlineResponse2002.md)
 
 ### Authorization
 
@@ -314,36 +653,73 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetArtifactStatsForRegistry**
-> InlineResponse2002 GetArtifactStatsForRegistry(ctx, registryRef, optional)
+
+## GetArtifactStatsForRegistry
+
+> InlineResponse2002 GetArtifactStatsForRegistry(ctx, registryRef).From(from).To(to).Execute()
+
 Get Artifact Stats
 
-Get Artifact Stats.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	registryRef := "registryRef_example" // string | Unique registry path.
+	from := "from_example" // string | Date. Format - MM/DD/YYYY (optional)
+	to := "to_example" // string | Date. Format - MM/DD/YYYY (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.GetArtifactStatsForRegistry(context.Background(), registryRef).From(from).To(to).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.GetArtifactStatsForRegistry``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetArtifactStatsForRegistry`: InlineResponse2002
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.GetArtifactStatsForRegistry`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **registryRef** | **string**| Unique registry path. | 
- **optional** | ***ArtifactsApiGetArtifactStatsForRegistryOpts** | optional parameters | nil if no parameters
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryRef** | **string** | Unique registry path. | 
 
-### Optional Parameters
-Optional parameters are passed through a pointer to a ArtifactsApiGetArtifactStatsForRegistryOpts struct
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetArtifactStatsForRegistryRequest struct via the builder pattern
+
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **from** | **optional.String**| Date. Format - MM/DD/YYYY | 
- **to** | **optional.String**| Date. Format - MM/DD/YYYY | 
+ **from** | **string** | Date. Format - MM/DD/YYYY | 
+ **to** | **string** | Date. Format - MM/DD/YYYY | 
 
 ### Return type
 
-[**InlineResponse2002**](inline_response_200_2.md)
+[**InlineResponse2002**](InlineResponse2002.md)
 
 ### Authorization
 
@@ -351,28 +727,72 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetArtifactSummary**
-> InlineResponse2001 GetArtifactSummary(ctx, registryRef, artifact)
+
+## GetArtifactSummary
+
+> InlineResponse2001 GetArtifactSummary(ctx, registryRef, artifact).Execute()
+
 Get Artifact Summary
 
-Get Artifact Summary.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	registryRef := "registryRef_example" // string | Unique registry path.
+	artifact := "artifact_example" // string | Name of artifact.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.GetArtifactSummary(context.Background(), registryRef, artifact).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.GetArtifactSummary``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetArtifactSummary`: InlineResponse2001
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.GetArtifactSummary`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **registryRef** | **string**| Unique registry path. | 
-  **artifact** | **string**| Name of artifact. | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryRef** | **string** | Unique registry path. | 
+**artifact** | **string** | Name of artifact. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetArtifactSummaryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 ### Return type
 
-[**InlineResponse2001**](inline_response_200_1.md)
+[**InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -380,39 +800,77 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetArtifactVersionSummary**
-> InlineResponse20014 GetArtifactVersionSummary(ctx, registryRef, artifact, version, optional)
+
+## GetArtifactVersionSummary
+
+> InlineResponse20014 GetArtifactVersionSummary(ctx, registryRef, artifact, version).Digest(digest).Execute()
+
 Get Artifact Version Summary
 
-Get Artifact Version Summary.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	registryRef := "registryRef_example" // string | Unique registry path.
+	artifact := "artifact_example" // string | Name of artifact.
+	version := "version_example" // string | Name of Artifact Version.
+	digest := "digest_example" // string | Digest. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.GetArtifactVersionSummary(context.Background(), registryRef, artifact, version).Digest(digest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.GetArtifactVersionSummary``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetArtifactVersionSummary`: InlineResponse20014
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.GetArtifactVersionSummary`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **registryRef** | **string**| Unique registry path. | 
-  **artifact** | **string**| Name of artifact. | 
-  **version** | **string**| Name of Artifact Version. | 
- **optional** | ***ArtifactsApiGetArtifactVersionSummaryOpts** | optional parameters | nil if no parameters
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryRef** | **string** | Unique registry path. | 
+**artifact** | **string** | Name of artifact. | 
+**version** | **string** | Name of Artifact Version. | 
 
-### Optional Parameters
-Optional parameters are passed through a pointer to a ArtifactsApiGetArtifactVersionSummaryOpts struct
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetArtifactVersionSummaryRequest struct via the builder pattern
+
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
 
- **digest** | **optional.String**| Digest. | 
+ **digest** | **string** | Digest. | 
 
 ### Return type
 
-[**InlineResponse20014**](inline_response_200_14.md)
+[**InlineResponse20014**](InlineResponse20014.md)
 
 ### Authorization
 
@@ -420,37 +878,75 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **ListArtifactLabels**
-> InlineResponse20016 ListArtifactLabels(ctx, registryRef, optional)
+
+## ListArtifactLabels
+
+> InlineResponse20016 ListArtifactLabels(ctx, registryRef).Page(page).Size(size).SearchTerm(searchTerm).Execute()
+
 List Artifact Labels
 
-List Artifact Labels.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	registryRef := "registryRef_example" // string | Unique registry path.
+	page := int64(789) // int64 | Current page number (optional) (default to 1)
+	size := int64(789) // int64 | Number of items per page (optional) (default to 20)
+	searchTerm := "searchTerm_example" // string | search Term. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.ListArtifactLabels(context.Background(), registryRef).Page(page).Size(size).SearchTerm(searchTerm).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.ListArtifactLabels``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListArtifactLabels`: InlineResponse20016
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.ListArtifactLabels`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **registryRef** | **string**| Unique registry path. | 
- **optional** | ***ArtifactsApiListArtifactLabelsOpts** | optional parameters | nil if no parameters
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryRef** | **string** | Unique registry path. | 
 
-### Optional Parameters
-Optional parameters are passed through a pointer to a ArtifactsApiListArtifactLabelsOpts struct
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListArtifactLabelsRequest struct via the builder pattern
+
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **page** | **optional.Int64**| Current page number | [default to 1]
- **size** | **optional.Int64**| Number of items per page | [default to 20]
- **searchTerm** | **optional.String**| search Term. | 
+ **page** | **int64** | Current page number | [default to 1]
+ **size** | **int64** | Number of items per page | [default to 20]
+ **searchTerm** | **string** | search Term. | 
 
 ### Return type
 
-[**InlineResponse20016**](inline_response_200_16.md)
+[**InlineResponse20016**](InlineResponse20016.md)
 
 ### Authorization
 
@@ -458,34 +954,70 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **RedirectHarnessArtifact**
-> RedirectHarnessArtifact(ctx, registryIdentifier, artifact, optional)
+
+## RedirectHarnessArtifact
+
+> RedirectHarnessArtifact(ctx, registryIdentifier, artifact).AccountIdentifier(accountIdentifier).Version(version).Execute()
+
 Redirect to Harness Artifact Page
 
-Redirect to Harness Artifact Page
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	registryIdentifier := "registryIdentifier_example" // string | Unique registry Identifier in a account.
+	artifact := "artifact_example" // string | Name of artifact.
+	accountIdentifier := "accountIdentifier_example" // string | Account Identifier (optional)
+	version := "version_example" // string | Version (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ArtifactsAPI.RedirectHarnessArtifact(context.Background(), registryIdentifier, artifact).AccountIdentifier(accountIdentifier).Version(version).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.RedirectHarnessArtifact``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **registryIdentifier** | **string**| Unique registry Identifier in a account. | 
-  **artifact** | **string**| Name of artifact. | 
- **optional** | ***ArtifactsApiRedirectHarnessArtifactOpts** | optional parameters | nil if no parameters
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryIdentifier** | **string** | Unique registry Identifier in a account. | 
+**artifact** | **string** | Name of artifact. | 
 
-### Optional Parameters
-Optional parameters are passed through a pointer to a ArtifactsApiRedirectHarnessArtifactOpts struct
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRedirectHarnessArtifactRequest struct via the builder pattern
+
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **accountIdentifier** | **optional.String**| Account Identifier | 
- **version** | **optional.String**| Version | 
+ **accountIdentifier** | **string** | Account Identifier | 
+ **version** | **string** | Version | 
 
 ### Return type
 
@@ -497,37 +1029,74 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **UpdateArtifactLabels**
-> InlineResponse2001 UpdateArtifactLabels(ctx, registryRef, artifact, optional)
+
+## UpdateArtifactLabels
+
+> InlineResponse2001 UpdateArtifactLabels(ctx, registryRef, artifact).ArtifactLabelRequest(artifactLabelRequest).Execute()
+
 Update Artifact Labels
 
-Update Artifact Labels.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	registryRef := "registryRef_example" // string | Unique registry path.
+	artifact := "artifact_example" // string | Name of artifact.
+	artifactLabelRequest := *openapiclient.NewArtifactLabelRequest([]string{"Labels_example"}) // ArtifactLabelRequest | request to update artifact labels (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.UpdateArtifactLabels(context.Background(), registryRef, artifact).ArtifactLabelRequest(artifactLabelRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.UpdateArtifactLabels``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateArtifactLabels`: InlineResponse2001
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.UpdateArtifactLabels`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **registryRef** | **string**| Unique registry path. | 
-  **artifact** | **string**| Name of artifact. | 
- **optional** | ***ArtifactsApiUpdateArtifactLabelsOpts** | optional parameters | nil if no parameters
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryRef** | **string** | Unique registry path. | 
+**artifact** | **string** | Name of artifact. | 
 
-### Optional Parameters
-Optional parameters are passed through a pointer to a ArtifactsApiUpdateArtifactLabelsOpts struct
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateArtifactLabelsRequest struct via the builder pattern
+
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**optional.Interface of ArtifactLabelRequest**](ArtifactLabelRequest.md)| request to update artifact labels | 
+ **artifactLabelRequest** | [**ArtifactLabelRequest**](ArtifactLabelRequest.md) | request to update artifact labels | 
 
 ### Return type
 
-[**InlineResponse2001**](inline_response_200_1.md)
+[**InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -535,8 +1104,10 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 

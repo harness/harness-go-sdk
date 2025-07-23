@@ -1,8 +1,13 @@
 # SectionType
 
-## Properties
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+## Enum
+
+
+* `INLINE` (value: `"INLINE"`)
+
+* `TABS` (value: `"TABS"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 
