@@ -8,7 +8,7 @@
  */
 package har
 
-// Harness Regstries Webhook
+// Harness Registries Webhook
 type Webhook struct {
 	CreatedAt string `json:"createdAt,omitempty"`
 	CreatedBy int64 `json:"createdBy,omitempty"`
