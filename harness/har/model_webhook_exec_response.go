@@ -8,7 +8,7 @@
  */
 package har
 
-// Harness Regstries HTTP Webhook Response
+// Harness Registries HTTP Webhook Response
 type WebhookExecResponse struct {
 	Body string `json:"body,omitempty"`
 	Headers string `json:"headers,omitempty"`
