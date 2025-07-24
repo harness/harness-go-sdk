@@ -8,7 +8,7 @@
  */
 package har
 
-// Harness Regstries Webhook Execution
+// Harness Registries Webhook Execution
 type WebhookExecution struct {
 	Created int64 `json:"created,omitempty"`
 	Duration int64 `json:"duration,omitempty"`
