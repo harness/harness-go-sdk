@@ -31,6 +31,7 @@ type SecretManager struct {
 	AccessKey                                     string             `json:"accessKey,omitempty"`
 	SecretKey                                     string             `json:"secretKey,omitempty"`
 	KmsArn                                        string             `json:"kmsArn,omitempty"`
+	KmsArnInPlaintext                             string             `json:"kmsArnInPlaintext,omitempty"`
 	Region                                        string             `json:"region"`
 	AssumeIamRoleOnDelegate                       bool               `json:"assumeIamRoleOnDelegate,omitempty"`
 	AssumeStsRoleOnDelegate                       bool               `json:"assumeStsRoleOnDelegate,omitempty"`
