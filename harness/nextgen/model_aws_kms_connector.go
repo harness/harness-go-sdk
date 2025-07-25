@@ -15,7 +15,7 @@ type AwsKmsConnector struct {
 	// ARN for AWS KMS.
 	KmsArn string `json:"kmsArn"`
 	//ARN as plaintext for AWS KMS
-	KmsArnInPlaintext string `json:"KmsArnInPlaintext"`
+	KmsArnInPlaintext string `json:"kmsArnInPlaintext"`
 	// Region for AWS KMS.
 	Region    string `json:"region"`
 	IsDefault bool   `json:"isDefault,omitempty"`
