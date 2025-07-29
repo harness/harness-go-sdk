@@ -964,7 +964,7 @@ Checks for whether the cluster exists
  * @param optional nil or *ClustersApiClusterServiceExistsOpts - Optional Parameters:
      * @param "OrgIdentifier" (optional.String) -  Organization Identifier for the Entity.
      * @param "ProjectIdentifier" (optional.String) -  Project Identifier for the Entity.
-		 * @param "ForceUpdate" (optional.Bool) -  ForceUpdate to bypass cluster name validation
+     * @param "ForceUpdate" (optional.Bool) -  ForceUpdate to bypass cluster name validation
      * @param "AgentIdentifier" (optional.String) -  Agent identifier for entity.
      * @param "Server" (optional.String) -
 @return bool
