@@ -54,6 +54,8 @@ type APIClient struct {
 
 	AccessControlListApi *AccessControlListApiService
 
+	AccountDataSinksApi *AccountDataSinksApiService
+
 	AccountDefaultNotificationTemplateSetApi *AccountDefaultNotificationTemplateSetApiService
 
 	AccountSettingApi *AccountSettingApiService
@@ -269,6 +271,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.APIKeysApi = (*APIKeysApiService)(&c.common)
 	c.AccessControlListApi = (*AccessControlListApiService)(&c.common)
+	c.AccountDataSinksApi = (*AccountDataSinksApiService)(&c.common)
 	c.AccountDefaultNotificationTemplateSetApi = (*AccountDefaultNotificationTemplateSetApiService)(&c.common)
 	c.AccountSettingApi = (*AccountSettingApiService)(&c.common)
 	c.AccountsApi = (*AccountsApiService)(&c.common)
