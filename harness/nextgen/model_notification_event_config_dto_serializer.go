@@ -21,11 +21,17 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 	}
 
 	// Now, peek into the raw JSON to find the type discriminator.
-	var probe NotificationEventParamsDto
-	if len(a.NotificationEventData) > 0 && a.NotificationEventData[0] != 'n' { // ignore if null
-		if err := json.Unmarshal(a.NotificationEventData, &probe); err != nil {
-			return fmt.Errorf("failed to probe notification_event_data type: %w", err)
-		}
+	probe := NotificationEventParamsDto{}
+	if len(a.NotificationEventData) == 0 {
+		return fmt.Errorf("notification_event_data is empty")
+	}
+
+	if a.NotificationEventData[0] == 'n' { // null
+		return fmt.Errorf("notification_event_data is null")
+	}
+
+	if err := json.Unmarshal(a.NotificationEventData, &probe); err != nil {
+		return fmt.Errorf("failed to probe notification_event_data type: %w", err)
 	}
 
 	// Check if Type_ is nil to prevent nil pointer dereference
@@ -58,11 +64,17 @@ func (a *NotificationEventConfigDto) MarshalJSON() ([]byte, error) {
 	var err error
 
 	// Now, peek into the raw JSON to find the type discriminator.
-	var probe NotificationEventParamsDto
-	if len(a.NotificationEventData) > 0 && a.NotificationEventData[0] != 'n' { // ignore if null
-		if err = json.Unmarshal(a.NotificationEventData, &probe); err != nil {
-			return nil, fmt.Errorf("failed to probe notification_event_data type: %w", err)
-		}
+	probe := NotificationEventParamsDto{}
+	if len(a.NotificationEventData) == 0 {
+		return nil, fmt.Errorf("notification_event_data is empty")
+	}
+
+	if a.NotificationEventData[0] == 'n' { // null
+		return nil, fmt.Errorf("notification_event_data is null")
+	}
+
+	if err = json.Unmarshal(a.NotificationEventData, &probe); err != nil {
+		return nil, fmt.Errorf("failed to probe notification_event_data type: %w", err)
 	}
 
 	// Check if Type_ is nil to prevent nil pointer dereference
