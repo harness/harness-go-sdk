@@ -27,7 +27,9 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 			return fmt.Errorf("failed to probe notification_event_data type: %w", err)
 		}
 	}
-
+	fmt.Println("probe", probe)
+	fmt.Println("probe", &probe)
+	fmt.Println("Notification event config: ", aux)
 	switch *probe.Type_ {
 	case DELEGATE_ResourceTypeEnum:
 		err = json.Unmarshal(aux.NotificationEventData, &a.DelegateEventNotificationParamsDto)
