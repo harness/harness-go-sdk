@@ -27,9 +27,12 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 			return fmt.Errorf("failed to probe notification_event_data type: %w", err)
 		}
 	}
-	fmt.Println("probe", probe)
-	fmt.Println("probe", &probe)
-	fmt.Println("Notification event config: ", aux)
+
+	// Check if Type_ is nil to prevent nil pointer dereference
+	if probe.Type_ == nil {
+		return fmt.Errorf("notification_event_data type field is missing or null")
+	}
+
 	switch *probe.Type_ {
 	case DELEGATE_ResourceTypeEnum:
 		err = json.Unmarshal(aux.NotificationEventData, &a.DelegateEventNotificationParamsDto)
@@ -42,7 +45,7 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 	case STO_EXEMPTION_ResourceTypeEnum:
 		err = json.Unmarshal(aux.NotificationEventData, &a.StoExemptionEventNotificationParamsDto)
 	default:
-		panic(fmt.Sprintf("unknown resource type %s", probe.Type_))
+		return fmt.Errorf("unknown resource type %s", *probe.Type_)
 	}
 
 	return err
@@ -62,6 +65,11 @@ func (a *NotificationEventConfigDto) MarshalJSON() ([]byte, error) {
 		}
 	}
 
+	// Check if Type_ is nil to prevent nil pointer dereference
+	if probe.Type_ == nil {
+		return nil, fmt.Errorf("notification_event_data type field is missing or null")
+	}
+
 	switch *probe.Type_ {
 	case DELEGATE_ResourceTypeEnum:
 		notification_event_data, err = json.Marshal(a.DelegateEventNotificationParamsDto)
@@ -74,7 +82,7 @@ func (a *NotificationEventConfigDto) MarshalJSON() ([]byte, error) {
 	case SERVICE_LEVEL_OBJECTIVE_ResourceTypeEnum:
 		notification_event_data, err = json.Marshal(a.SloEventNotificationParamsDto)
 	default:
-		panic(fmt.Sprintf("unknown secret type %s", *probe.Type_))
+		return nil, fmt.Errorf("unknown resource type %s", *probe.Type_)
 	}
 
 	if err != nil {

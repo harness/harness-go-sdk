@@ -38,7 +38,7 @@ func (a *NotificationRuleCondition) UnmarshalJSON(data []byte) error {
 	case NotificationRuleConditionTypes.DeploymentImpactReport:
 		err = json.Unmarshal(aux.Spec, &a.DeploymentImpactReport)
 	default:
-		panic(fmt.Sprintf("unknown notification rule condition type type %s", a.Type_))
+		return fmt.Errorf("unknown notification rule condition type %s", a.Type_)
 	}
 
 	return err
@@ -68,7 +68,7 @@ func (a *NotificationRuleCondition) MarshalJSON() ([]byte, error) {
 	case NotificationRuleConditionTypes.DeploymentImpactReport:
 		spec, err = json.Marshal(a.DeploymentImpactReport)
 	default:
-		panic(fmt.Sprintf("unknown notification rule condition type type %s", a.Type_))
+		return nil, fmt.Errorf("unknown notification rule condition type %s", a.Type_)
 	}
 
 	if err != nil {
