@@ -72,23 +72,7 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 func (a *NotificationEventConfigDto) MarshalJSON() ([]byte, error) {
 	type Alias NotificationEventConfigDto
 
-	// Always use the original NotificationEventData if it's available
-	if len(a.NotificationEventData) > 0 {
-		// Validate that the NotificationEventData contains valid JSON
-		var validate interface{}
-		if err := json.Unmarshal(a.NotificationEventData, &validate); err != nil {
-			// If the JSON is malformed, set it to null to avoid API errors
-			result := *a
-			result.NotificationEventData = json.RawMessage(`null`)
-			return json.Marshal((*Alias)(&result))
-		}
-
-		// Create a copy to avoid modifying the original
-		result := *a
-		return json.Marshal((*Alias)(&result))
-	}
-
-	// If NotificationEventData is empty, try to reconstruct from specific DTOs
+	// Always marshal the specific DTO, not the raw NotificationEventData
 	var notification_event_data []byte
 	var err error
 
@@ -104,8 +88,7 @@ func (a *NotificationEventConfigDto) MarshalJSON() ([]byte, error) {
 	} else if a.StoExemptionEventNotificationParamsDto != nil {
 		notification_event_data, err = json.Marshal(a.StoExemptionEventNotificationParamsDto)
 	} else {
-		// If no specific DTO is populated and NotificationEventData is empty,
-		// set it to null to avoid API errors
+		// If no specific DTO is populated, set it to null
 		notification_event_data = json.RawMessage(`null`)
 	}
 
