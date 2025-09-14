@@ -2,7 +2,6 @@ package nextgen
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
@@ -20,9 +19,10 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	// Handle null notification_event_data - this is valid for some notification types
+	// Handle empty notification_event_data - this is valid for some notification types
 	if len(a.NotificationEventData) == 0 {
-		return fmt.Errorf("notification_event_data is empty")
+		// Empty notification_event_data is valid - no need to process further
+		return nil
 	}
 
 	// Check if notification_event_data is null
@@ -34,12 +34,15 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 	// Now, peek into the raw JSON to find the type discriminator.
 	probe := NotificationEventParamsDto{}
 	if err := json.Unmarshal(a.NotificationEventData, &probe); err != nil {
-		return fmt.Errorf("failed to probe notification_event_data type: %w", err)
+		// If the JSON is malformed, skip type-specific unmarshaling
+		// The NotificationEventData will be preserved as-is
+		return nil
 	}
 
 	// Check if Type_ is nil to prevent nil pointer dereference
 	if probe.Type_ == nil {
-		return fmt.Errorf("notification_event_data type field is missing or null")
+		// If type field is missing, skip type-specific unmarshaling
+		return nil
 	}
 
 	switch *probe.Type_ {
@@ -59,7 +62,8 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 		a.StoExemptionEventNotificationParamsDto = &StoExemptionEventNotificationParamsDto{}
 		err = json.Unmarshal(aux.NotificationEventData, a.StoExemptionEventNotificationParamsDto)
 	default:
-		return fmt.Errorf("unknown resource type %s", *probe.Type_)
+		// Unknown resource type, skip type-specific unmarshaling
+		return nil
 	}
 
 	return err
@@ -70,6 +74,15 @@ func (a *NotificationEventConfigDto) MarshalJSON() ([]byte, error) {
 
 	// Always use the original NotificationEventData if it's available
 	if len(a.NotificationEventData) > 0 {
+		// Validate that the NotificationEventData contains valid JSON
+		var validate interface{}
+		if err := json.Unmarshal(a.NotificationEventData, &validate); err != nil {
+			// If the JSON is malformed, set it to null to avoid API errors
+			result := *a
+			result.NotificationEventData = json.RawMessage(`null`)
+			return json.Marshal((*Alias)(&result))
+		}
+
 		// Create a copy to avoid modifying the original
 		result := *a
 		return json.Marshal((*Alias)(&result))
@@ -91,7 +104,9 @@ func (a *NotificationEventConfigDto) MarshalJSON() ([]byte, error) {
 	} else if a.StoExemptionEventNotificationParamsDto != nil {
 		notification_event_data, err = json.Marshal(a.StoExemptionEventNotificationParamsDto)
 	} else {
-		return nil, fmt.Errorf("notification_event_data is empty and no specific DTO is populated")
+		// If no specific DTO is populated and NotificationEventData is empty,
+		// set it to null to avoid API errors
+		notification_event_data = json.RawMessage(`null`)
 	}
 
 	if err != nil {
