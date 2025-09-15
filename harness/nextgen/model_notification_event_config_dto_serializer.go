@@ -2,6 +2,8 @@ package nextgen
 
 import (
 	"encoding/json"
+	fmt.Printf("[NotifCfg] probed type: %q (entity=%s)\n", tprobe.Type, a.NotificationEntity)
+	"fmt"
 )
 
 func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
@@ -44,25 +46,32 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 		// If type field is missing, skip type-specific unmarshaling
 		return nil
 	}
+	fmt.Printf("[NotifCfg] probed type: %q (entity=%s)\n", tprobe.Type, a.NotificationEntity)
 
 	switch ResourceTypeEnum(*probe.Type_) {
 	case DELEGATE_ResourceTypeEnum:
+		fmt.Printf("[NotifCfg] decoding DELEGATE payload\n")
 		a.DelegateEventNotificationParamsDto = &DelegateEventNotificationParamsDto{}
 		err = json.Unmarshal(aux.NotificationEventData, a.DelegateEventNotificationParamsDto)
 	case PIPELINE_ResourceTypeEnum:
+		fmt.Printf("[NotifCfg] decoding PIPELINE payload\n")
 		a.PipelineEventNotificationParamsDto = &PipelineEventNotificationParamsDto{}
 		err = json.Unmarshal(aux.NotificationEventData, a.PipelineEventNotificationParamsDto)
 	case CHAOS_EXPERIMENT_ResourceTypeEnum:
+		fmt.Printf("[NotifCfg] decoding CHAOS_EXPERIMENT payload\n")
 		a.ChaosExperimentEventNotificationParamsDto = &ChaosExperimentEventNotificationParamsDto{}
 		err = json.Unmarshal(aux.NotificationEventData, a.ChaosExperimentEventNotificationParamsDto)
 	case SERVICE_LEVEL_OBJECTIVE_ResourceTypeEnum:
+		fmt.Printf("[NotifCfg] decoding SERVICE_LEVEL_OBJECTIVE payload\n")
 		a.SloEventNotificationParamsDto = &SloEventNotificationParamsDto{}
 		err = json.Unmarshal(aux.NotificationEventData, a.SloEventNotificationParamsDto)
 	case STO_EXEMPTION_ResourceTypeEnum:
+		fmt.Printf("[NotifCfg] decoding STO_EXEMPTION payload\n")
 		a.StoExemptionEventNotificationParamsDto = &StoExemptionEventNotificationParamsDto{}
 		err = json.Unmarshal(aux.NotificationEventData, a.StoExemptionEventNotificationParamsDto)
 	default:
 		// Unknown resource type, skip type-specific unmarshaling
+		fmt.Printf("[NotifCfg] unknown or missing type: %q; keeping raw only\n", tprobe.Type)
 		return nil
 	}
 
