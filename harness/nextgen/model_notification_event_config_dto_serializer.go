@@ -10,6 +10,7 @@ import (
 func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 	fmt.Fprintln(os.Stderr, "[NotifCfg] raw:", string(a.NotificationEventData))
 	log.Printf("[NotifCfg] type")
+	log.Printf("[NotifCfg] type=%q", a)
 	type Alias NotificationEventConfigDto
 
 	aux := &struct {
