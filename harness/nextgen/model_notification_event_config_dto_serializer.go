@@ -3,6 +3,8 @@ package nextgen
 import (
 	"encoding/json"
 	"fmt"
+	"log"
+	"os"
 )
 
 func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
@@ -46,7 +48,8 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	fmt.Printf("[NotifCfg] probed type: %q (entity=%s)\n", probe.Type_, a.NotificationEntity)
-
+	fmt.Fprintln(os.Stderr, "[NotifCfg] raw:", string(a.NotificationEventData))
+	log.Printf("[NotifCfg] type=%q", *probe.Type_)
 	switch ResourceTypeEnum(*probe.Type_) {
 	case DELEGATE_ResourceTypeEnum:
 		fmt.Printf("[NotifCfg] decoding DELEGATE payload\n")
