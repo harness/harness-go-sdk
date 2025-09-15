@@ -45,7 +45,7 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	switch *probe.Type_ {
+	switch ResourceTypeEnum(*probe.Type_) {
 	case DELEGATE_ResourceTypeEnum:
 		a.DelegateEventNotificationParamsDto = &DelegateEventNotificationParamsDto{}
 		err = json.Unmarshal(aux.NotificationEventData, a.DelegateEventNotificationParamsDto)
