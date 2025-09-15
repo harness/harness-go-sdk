@@ -83,6 +83,9 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 }
 
 func (a *NotificationEventConfigDto) MarshalJSON() ([]byte, error) {
+	fmt.Fprintln(os.Stderr, "[NotifCfg marshel] raw:", string(a.NotificationEventData))
+	log.Printf("[NotifCfg marshel] type")
+	log.Printf("[NotifCfg marshel] type=%q", a)
 	type Alias NotificationEventConfigDto
 
 	// Always marshal the specific DTO, not the raw NotificationEventData
