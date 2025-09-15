@@ -45,7 +45,7 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 		// If type field is missing, skip type-specific unmarshaling
 		return nil
 	}
-	fmt.Printf("[NotifCfg] probed type: %q (entity=%s)\n", tprobe.Type, a.NotificationEntity)
+	fmt.Printf("[NotifCfg] probed type: %q (entity=%s)\n", probe.Type_, a.NotificationEntity)
 
 	switch ResourceTypeEnum(*probe.Type_) {
 	case DELEGATE_ResourceTypeEnum:
@@ -70,7 +70,7 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 		err = json.Unmarshal(aux.NotificationEventData, a.StoExemptionEventNotificationParamsDto)
 	default:
 		// Unknown resource type, skip type-specific unmarshaling
-		fmt.Printf("[NotifCfg] unknown or missing type: %q; keeping raw only\n", tprobe.Type)
+		fmt.Printf("[NotifCfg] unknown or missing type: %q; keeping raw only\n", probe.Type_)
 		return nil
 	}
 
