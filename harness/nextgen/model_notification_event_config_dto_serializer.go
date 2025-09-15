@@ -2,7 +2,6 @@ package nextgen
 
 import (
 	"encoding/json"
-	fmt.Printf("[NotifCfg] probed type: %q (entity=%s)\n", tprobe.Type, a.NotificationEntity)
 	"fmt"
 )
 
