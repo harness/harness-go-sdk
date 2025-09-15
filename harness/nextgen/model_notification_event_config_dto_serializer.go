@@ -18,18 +18,6 @@ func (a *NotificationEventConfigDto) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	// Handle empty notification_event_data - this is valid for some notification types
-	if len(a.NotificationEventData) == 0 {
-		// Empty notification_event_data is valid - no need to process further
-		return nil
-	}
-
-	// Check if notification_event_data is null
-	if len(a.NotificationEventData) == 4 && string(a.NotificationEventData) == "null" {
-		// null notification_event_data is valid - no need to process further
-		return nil
-	}
-
 	// Now, peek into the raw JSON to find the type discriminator.
 	probe := NotificationEventParamsDto{}
 	if err := json.Unmarshal(a.NotificationEventData, &probe); err != nil {
