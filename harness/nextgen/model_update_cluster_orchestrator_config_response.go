@@ -14,3 +14,7 @@ type UpdateClusterOrchestratorConfigResponse struct {
 	Errors   []string `json:"errors"`
 	Response string   `json:"response"`
 }
+type ToggleStateResponse struct {
+	Success bool     `json:"success,omitempty"`
+	Errors  []string `json:"errors,omitempty"`
+}
