@@ -1740,13 +1740,13 @@ components:
         context:
           type: string
           description: Liquibase context
-        liquibaseSubstituteProperties:
+        substituteProperties:
           type: object
           additionalProperties:
             type: string
             x-stoplight:
               id: lq57gp08jqckf
-          description: properties to substitute in liquibase changelog
+          description: Placeholder replacement in migration scripts.
           x-stoplight:
             id: ylfffbh8lhcwr
       description: Database Instance Request
@@ -1803,13 +1803,13 @@ components:
           description: Tag on last deployed changeSet
           x-stoplight:
             id: dlbvh5adtk2de
-        liquibaseSubstituteProperties:
+        substituteProperties:
           type: object
           additionalProperties:
             type: string
             x-stoplight:
               id: szxsmt48sj6o2
-          description: properties to substitute in liquibase changelog
+          description: Placeholder replacement in migration scripts.
           x-stoplight:
             id: zk5v0mxn7p4ns
       description: Database Instance Response
@@ -2887,13 +2887,13 @@ components:
               version:
                 type: string
                 description: version of the changelog applied to the database
-              liquibaseSubstituteProperties:
+              substituteProperties:
                 type: object
                 additionalProperties:
                   type: string
                   x-stoplight:
                     id: j2at4cjqe9em3
-                description: properties to substitute in liquibase changelog
+                description: Placeholder replacement in migration scripts.
                 x-stoplight:
                   id: 411rxl6wqmjnm
           examples:

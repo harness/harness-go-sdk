@@ -32,6 +32,6 @@ type DbInstanceOut struct {
 	ToOnboard      bool   `json:"toOnboard,omitempty"`
 	// Tag on last deployed changeSet
 	LastDeployedChangeSetTag string `json:"lastDeployedChangeSetTag"`
-	// properties to substitute in liquibase changelog
-	LiquibaseSubstituteProperties map[string]string `json:"liquibaseSubstituteProperties,omitempty"`
+	// Placeholder replacement in migration scripts.
+	SubstituteProperties map[string]string `json:"substituteProperties,omitempty"`
 }
