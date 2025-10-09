@@ -9,49 +9,22 @@
  */
 package nextgen
 
-// ModuleResource result type (default view)
-type ModuleResource struct {
-	// account that owns the module
+// ModuleTestingMetadata result type (default view)
+type ModuleTestingMetadata struct {
+	// Account is the internal customer account ID.
 	Account string `json:"account"`
-	// Created is the unix timestamp at which the resource was originally created in milliseconds.
-	Created int64 `json:"created"`
-	// description of the module
-	Description string `json:"description,omitempty"`
-	// Git Tag Style
-	GitTagStyle string `json:"git_tag_style,omitempty"`
-	// module id
-	Id string `json:"id"`
-	// error while retrieving the module
-	ModuleError string `json:"module_error,omitempty"`
-	// module name
-	Name string `json:"name"`
-	// org that owns the module
-	Org string `json:"org,omitempty"`
-	// project that owns the module
-	Project string `json:"project,omitempty"`
-	// Repository is the name of the repository to use.
-	Repository string `json:"repository,omitempty"`
-	// Repository Branch in which the code should be accessed.
-	RepositoryBranch string `json:"repository_branch,omitempty"`
-	// Repository Commit/Tag in which the code should be accessed.
-	RepositoryCommit string `json:"repository_commit,omitempty"`
-	// Repository Connector is the reference to the connector to use for this code.
-	RepositoryConnector string `json:"repository_connector,omitempty"`
-	// Repository Path is the path in which the infra code resides.
-	RepositoryPath string `json:"repository_path,omitempty"`
-	// Repository url.
-	RepositoryUrl string `json:"repository_url,omitempty"`
-	// Synced is the unix timestamp at which the resource was synced for the last time in milliseconds.
-	Synced int64 `json:"synced"`
-	// system name
-	System string `json:"system"`
-	// tags defining the module
-	Tags string `json:"tags,omitempty"`
-	// testing enabled
-	TestingEnabled bool `json:"testing_enabled,omitempty"`
-	TestingMetadata *ModuleTestingMetadata `json:"testing_metadata,omitempty"`
-	// Modified is the unix timestamp at which the resource was last modified in milliseconds.
-	Updated int64 `json:"updated"`
-	// versions
-	Versions []string `json:"versions,omitempty"`
+	// Org is the organisation identifier.
+	Org string `json:"org"`
+	// pipelines where the testing is enabled
+	Pipelines []string `json:"pipelines"`
+	// Project is the project identifier.
+	Project string `json:"project"`
+	// provider connector for testing purposes
+	ProviderConnector string `json:"provider_connector"`
+	// provisioner type for testing purposes
+	ProvisionerType string `json:"provisioner_type"`
+	// provisioner version for testing purposes
+	ProvisionerVersion string `json:"provisioner_version"`
+	// release pipeline
+	ReleasePipeline string `json:"release_pipeline,omitempty"`
 }
