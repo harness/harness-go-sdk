@@ -352,7 +352,7 @@ func (a *SecretsApiService) ListSecretsV2(ctx context.Context, accountIdentifier
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Identifiers.IsSet() {
-		localVarQueryParams.Add("identifiers", parameterToString(localVarOptionals.Identifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "identifiers", localVarOptionals.Identifiers.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.Type_.IsSet() {
 		localVarQueryParams.Add("type", parameterToString(localVarOptionals.Type_.Value(), ""))
@@ -361,7 +361,7 @@ func (a *SecretsApiService) ListSecretsV2(ctx context.Context, accountIdentifier
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Types.IsSet() {
-		localVarQueryParams.Add("types", parameterToString(localVarOptionals.Types.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "types", localVarOptionals.Types.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.SourceCategory.IsSet() {
 		localVarQueryParams.Add("source_category", parameterToString(localVarOptionals.SourceCategory.Value(), ""))

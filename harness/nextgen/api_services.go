@@ -538,10 +538,10 @@ func (a *ServicesApiService) GetServiceAccessList(ctx context.Context, accountId
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.ServiceIdentifiers.IsSet() {
-		localVarQueryParams.Add("serviceIdentifiers", parameterToString(localVarOptionals.ServiceIdentifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "serviceIdentifiers", localVarOptionals.ServiceIdentifiers.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.Sort.IsSet() {
-		localVarQueryParams.Add("sort", parameterToString(localVarOptionals.Sort.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sort", localVarOptionals.Sort.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -696,10 +696,10 @@ func (a *ServicesApiService) GetServiceList(ctx context.Context, accountIdentifi
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.ServiceIdentifiers.IsSet() {
-		localVarQueryParams.Add("serviceIdentifiers", parameterToString(localVarOptionals.ServiceIdentifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "serviceIdentifiers", localVarOptionals.ServiceIdentifiers.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.Sort.IsSet() {
-		localVarQueryParams.Add("sort", parameterToString(localVarOptionals.Sort.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sort", localVarOptionals.Sort.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}

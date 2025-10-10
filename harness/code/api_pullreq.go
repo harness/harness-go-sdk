@@ -1206,7 +1206,7 @@ func (a *PullreqApiService) DiffPullReq(ctx context.Context, accountIdentifier s
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Path.IsSet() {
-		localVarQueryParams.Add("path", parameterToString(localVarOptionals.Path.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "path", localVarOptionals.Path.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -2168,7 +2168,7 @@ func (a *PullreqApiService) ListPullReq(ctx context.Context, accountIdentifier s
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.State.IsSet() {
-		localVarQueryParams.Add("state", parameterToString(localVarOptionals.State.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "state", localVarOptionals.State.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.SourceRepoIdentifier.IsSet() {
 		localVarQueryParams.Add("source_repo_identifier", parameterToString(localVarOptionals.SourceRepoIdentifier.Value(), ""))
@@ -2365,10 +2365,10 @@ func (a *PullreqApiService) ListPullReqActivities(ctx context.Context, accountId
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Kind.IsSet() {
-		localVarQueryParams.Add("kind", parameterToString(localVarOptionals.Kind.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "kind", localVarOptionals.Kind.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.Type_.IsSet() {
-		localVarQueryParams.Add("type", parameterToString(localVarOptionals.Type_.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "type", localVarOptionals.Type_.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.After.IsSet() {
 		localVarQueryParams.Add("after", parameterToString(localVarOptionals.After.Value(), ""))

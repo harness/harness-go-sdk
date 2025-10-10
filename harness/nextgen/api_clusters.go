@@ -691,7 +691,7 @@ type ClustersApiAgentClusterServiceUpdateOpts struct {
 	AccountIdentifier optional.String
 	OrgIdentifier     optional.String
 	ProjectIdentifier optional.String
-	ForceUpdate optional.Bool
+	ForceUpdate       optional.Bool
 }
 
 func (a *ClustersApiService) AgentClusterServiceUpdate(ctx context.Context, body ClustersClusterUpdateRequest, agentIdentifier string, identifier string, localVarOptionals *ClustersApiAgentClusterServiceUpdateOpts) (Servicev1Cluster, *http.Response, error) {
@@ -1558,10 +1558,10 @@ func (a *ClustersApiService) GetClusterList(ctx context.Context, accountIdentifi
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Identifiers.IsSet() {
-		localVarQueryParams.Add("identifiers", parameterToString(localVarOptionals.Identifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "identifiers", localVarOptionals.Identifiers.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.Sort.IsSet() {
-		localVarQueryParams.Add("sort", parameterToString(localVarOptionals.Sort.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sort", localVarOptionals.Sort.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}

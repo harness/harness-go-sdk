@@ -409,7 +409,7 @@ func (a *EnvironmentGroupApiService) GetEnvironmentGroupList(ctx context.Context
 
 	localVarQueryParams.Add("accountIdentifier", parameterToString(accountIdentifier, ""))
 	if localVarOptionals != nil && localVarOptionals.EnvGroupIdentifiers.IsSet() {
-		localVarQueryParams.Add("envGroupIdentifiers", parameterToString(localVarOptionals.EnvGroupIdentifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "envGroupIdentifiers", localVarOptionals.EnvGroupIdentifiers.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.SearchTerm.IsSet() {
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))
@@ -421,7 +421,7 @@ func (a *EnvironmentGroupApiService) GetEnvironmentGroupList(ctx context.Context
 		localVarQueryParams.Add("size", parameterToString(localVarOptionals.Size.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Sort.IsSet() {
-		localVarQueryParams.Add("sort", parameterToString(localVarOptionals.Sort.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sort", localVarOptionals.Sort.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.FilterIdentifier.IsSet() {
 		localVarQueryParams.Add("filterIdentifier", parameterToString(localVarOptionals.FilterIdentifier.Value(), ""))

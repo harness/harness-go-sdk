@@ -159,9 +159,10 @@ func (a *OrganizationApiService) DeleteOrganization(ctx context.Context, identif
 
 /*
 OrganizationApiService Get the Organization by accountIdentifier and orgIdentifier
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param identifier Organization Identifier for the Entity.
- * @param accountIdentifier Account Identifier for the Entity.
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param identifier Organization Identifier for the Entity.
+  - @param accountIdentifier Account Identifier for the Entity.
+
 @return ResponseDtoOrganizationResponse
 */
 func (a *OrganizationApiService) GetOrganization(ctx context.Context, identifier string, accountIdentifier string) (ResponseDtoOrganizationResponse, *http.Response, error) {
@@ -316,7 +317,7 @@ func (a *OrganizationApiService) GetOrganizationList(ctx context.Context, accoun
 
 	localVarQueryParams.Add("accountIdentifier", parameterToString(accountIdentifier, ""))
 	if localVarOptionals != nil && localVarOptionals.Identifiers.IsSet() {
-		localVarQueryParams.Add("identifiers", parameterToString(localVarOptionals.Identifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "identifiers", localVarOptionals.Identifiers.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.SearchTerm.IsSet() {
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))
@@ -328,7 +329,7 @@ func (a *OrganizationApiService) GetOrganizationList(ctx context.Context, accoun
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -427,9 +428,10 @@ func (a *OrganizationApiService) GetOrganizationList(ctx context.Context, accoun
 
 /*
 OrganizationApiService Creates an Organization
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param body Details of the Organization to create
- * @param accountIdentifier Account Identifier for the Entity.
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param body Details of the Organization to create
+  - @param accountIdentifier Account Identifier for the Entity.
+
 @return ResponseDtoOrganizationResponse
 */
 func (a *OrganizationApiService) PostOrganization(ctx context.Context, body OrganizationRequest, accountIdentifier string) (ResponseDtoOrganizationResponse, *http.Response, error) {

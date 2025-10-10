@@ -578,7 +578,7 @@ func (a *InfrastructuresApiService) GetInfrastructureList(ctx context.Context, a
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.InfraIdentifiers.IsSet() {
-		localVarQueryParams.Add("infraIdentifiers", parameterToString(localVarOptionals.InfraIdentifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "infraIdentifiers", localVarOptionals.InfraIdentifiers.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.DeploymentType.IsSet() {
 		localVarQueryParams.Add("deploymentType", parameterToString(localVarOptionals.DeploymentType.Value(), ""))
@@ -590,7 +590,7 @@ func (a *InfrastructuresApiService) GetInfrastructureList(ctx context.Context, a
 		localVarQueryParams.Add("versionLabel", parameterToString(localVarOptionals.VersionLabel.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Sort.IsSet() {
-		localVarQueryParams.Add("sort", parameterToString(localVarOptionals.Sort.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sort", localVarOptionals.Sort.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
