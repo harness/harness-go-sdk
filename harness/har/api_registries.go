@@ -11,7 +11,7 @@ package har
 import (
 	"context"
 	"fmt"
-	"github.com/anti
+	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -24,7 +24,7 @@ var (
 )
 
 type RegistriesApiService service
-vi
+
 /*
 RegistriesApiService Create Registry.
 Create a Registry.
@@ -179,7 +179,7 @@ func (a *RegistriesApiService) CreateRegistry(ctx context.Context, localVarOptio
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
-ns
+
 /*
 RegistriesApiService Delete a Registry
 Delete a Registry in the account for the given key
@@ -329,7 +329,7 @@ func (a *RegistriesApiService) DeleteRegistry(ctx context.Context, registryRef s
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
-e,
+
 /*
 RegistriesApiService List Artifacts for Registry
 Lists all the Artifacts for Registry
@@ -513,7 +513,7 @@ func (a *RegistriesApiService) GetAllArtifactsByRegistry(ctx context.Context, re
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
- n
+
 /*
 RegistriesApiService Returns CLI Client Setup Details
 Returns CLI Client Setup Details based on package type
@@ -677,7 +677,7 @@ func (a *RegistriesApiService) GetClientSetupDetails(ctx context.Context, regist
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
-il
+
 /*
 RegistriesApiService Returns Registry Details
 Returns Registry Details in the account for the given key
@@ -828,7 +828,6 @@ func (a *RegistriesApiService) GetRegistry(ctx context.Context, registryRef stri
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-}
 /*
 RegistriesApiService Updates a Registry
 Updates a Registry in the account for the given key
@@ -839,16 +838,16 @@ Updates a Registry in the account for the given key
 @return InlineResponse201
 */
 
+type RegistriesApiModifyRegistryOpts struct {
 	Body optional.Interface
-    Body optional.Interface
 }
 
 func (a *RegistriesApiService) ModifyRegistry(ctx context.Context, registryRef string, localVarOptionals *RegistriesApiModifyRegistryOpts) (InlineResponse201, *http.Response, error) {
+	var (
 		localVarHttpMethod  = strings.ToUpper("Put")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarFileBytes  []byte
 		localVarReturnValue InlineResponse201
 	)
 
@@ -878,9 +877,9 @@ func (a *RegistriesApiService) ModifyRegistry(ctx context.Context, registryRef s
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
+	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
 
 		localVarOptionalBody := localVarOptionals.Body.Value()
-		localVarOptionalBody:= localVarOptionals.Body.Value()
 		localVarPostBody = &localVarOptionalBody
 	}
 	if ctx != nil {
@@ -892,8 +891,8 @@ func (a *RegistriesApiService) ModifyRegistry(ctx context.Context, registryRef s
 			} else {
 				key = auth.Key
 			}
+			localVarHeaderParams["x-api-key"] = key
 
-			
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -913,19 +912,20 @@ func (a *RegistriesApiService) ModifyRegistry(ctx context.Context, registryRef s
 	}
 
 	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err == nil {
-		if err == nil { 
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
 			body:  localVarBody,
-			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
+			var v InlineResponse201
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -933,9 +933,9 @@ func (a *RegistriesApiService) ModifyRegistry(ctx context.Context, registryRef s
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 400 {
+			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -943,9 +943,9 @@ func (a *RegistriesApiService) ModifyRegistry(ctx context.Context, registryRef s
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 401 {
+			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -953,9 +953,9 @@ func (a *RegistriesApiService) ModifyRegistry(ctx context.Context, registryRef s
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 403 {
+			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -963,9 +963,9 @@ func (a *RegistriesApiService) ModifyRegistry(ctx context.Context, registryRef s
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 404 {
+			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -973,9 +973,9 @@ func (a *RegistriesApiService) ModifyRegistry(ctx context.Context, registryRef s
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 500 {
+			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -983,7 +983,6 @@ func (a *RegistriesApiService) ModifyRegistry(ctx context.Context, registryRef s
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
