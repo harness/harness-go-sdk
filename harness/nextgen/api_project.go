@@ -353,7 +353,7 @@ func (a *ProjectApiService) GetProjectList(ctx context.Context, accountIdentifie
 		localVarQueryParams.Add("hasModule", parameterToString(localVarOptionals.HasModule.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Identifiers.IsSet() {
-		localVarQueryParams.Add("identifiers", parameterToString(localVarOptionals.Identifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "identifiers", localVarOptionals.Identifiers.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.ModuleType.IsSet() {
 		localVarQueryParams.Add("moduleType", parameterToString(localVarOptionals.ModuleType.Value(), ""))
@@ -368,7 +368,7 @@ func (a *ProjectApiService) GetProjectList(ctx context.Context, accountIdentifie
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -510,13 +510,13 @@ func (a *ProjectApiService) GetProjectListWithMultiOrgFilter(ctx context.Context
 
 	localVarQueryParams.Add("accountIdentifier", parameterToString(accountIdentifier, ""))
 	if localVarOptionals != nil && localVarOptionals.OrgIdentifiers.IsSet() {
-		localVarQueryParams.Add("orgIdentifiers", parameterToString(localVarOptionals.OrgIdentifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "orgIdentifiers", localVarOptionals.OrgIdentifiers.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.HasModule.IsSet() {
 		localVarQueryParams.Add("hasModule", parameterToString(localVarOptionals.HasModule.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Identifiers.IsSet() {
-		localVarQueryParams.Add("identifiers", parameterToString(localVarOptionals.Identifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "identifiers", localVarOptionals.Identifiers.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.ModuleType.IsSet() {
 		localVarQueryParams.Add("moduleType", parameterToString(localVarOptionals.ModuleType.Value(), ""))
@@ -531,7 +531,7 @@ func (a *ProjectApiService) GetProjectListWithMultiOrgFilter(ctx context.Context
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}

@@ -459,13 +459,14 @@ func (a *ExecuteApiService) GetStagesExecutionList(ctx context.Context, accountI
 
 /*
 ExecuteApiService Handles Ignore,Abort,MarkAsSuccess,Retry on post manual intervention for a given execution with the given planExecutionId
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountIdentifier Account Identifier for the Entity.
- * @param orgIdentifier Organization Identifier for the Entity.
- * @param projectIdentifier Project Identifier for the Entity.
- * @param interruptType The Interrupt type needed to be applied to the execution. Choose a value from the enum list.
- * @param planExecutionId The Pipeline Execution Id on which the Interrupt needs to be applied.
- * @param nodeExecutionId The runtime Id of the step/stage on which the Interrupt needs to be applied.
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param accountIdentifier Account Identifier for the Entity.
+  - @param orgIdentifier Organization Identifier for the Entity.
+  - @param projectIdentifier Project Identifier for the Entity.
+  - @param interruptType The Interrupt type needed to be applied to the execution. Choose a value from the enum list.
+  - @param planExecutionId The Pipeline Execution Id on which the Interrupt needs to be applied.
+  - @param nodeExecutionId The runtime Id of the step/stage on which the Interrupt needs to be applied.
+
 @return ResponseDtoInterruptResponse
 */
 func (a *ExecuteApiService) HandleManualInterventionInterrupt(ctx context.Context, accountIdentifier string, orgIdentifier string, projectIdentifier string, interruptType string, planExecutionId string, nodeExecutionId string) (ResponseDtoInterruptResponse, *http.Response, error) {
@@ -587,13 +588,14 @@ func (a *ExecuteApiService) HandleManualInterventionInterrupt(ctx context.Contex
 
 /*
 ExecuteApiService Handles the interrupt for a given stage in a pipeline
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountIdentifier Account Identifier for the Entity.
- * @param orgIdentifier Organization Identifier for the Entity.
- * @param projectIdentifier Project Identifier for the Entity.
- * @param interruptType The Interrupt type needed to be applied to the execution. Choose a value from the enum list.
- * @param planExecutionId The Pipeline Execution Id on which the Interrupt needs to be applied.
- * @param nodeExecutionId The runtime Id of the step/stage on which the Interrupt needs to be applied.
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param accountIdentifier Account Identifier for the Entity.
+  - @param orgIdentifier Organization Identifier for the Entity.
+  - @param projectIdentifier Project Identifier for the Entity.
+  - @param interruptType The Interrupt type needed to be applied to the execution. Choose a value from the enum list.
+  - @param planExecutionId The Pipeline Execution Id on which the Interrupt needs to be applied.
+  - @param nodeExecutionId The runtime Id of the step/stage on which the Interrupt needs to be applied.
+
 @return ResponseDtoInterruptResponse
 */
 func (a *ExecuteApiService) HandleStageInterrupt(ctx context.Context, accountIdentifier string, orgIdentifier string, projectIdentifier string, interruptType string, planExecutionId string, nodeExecutionId string) (ResponseDtoInterruptResponse, *http.Response, error) {
@@ -715,12 +717,13 @@ func (a *ExecuteApiService) HandleStageInterrupt(ctx context.Context, accountIde
 
 /*
 ExecuteApiService Latest ExecutionId from Retry Executions
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountIdentifier Account Identifier for the Entity.
- * @param orgIdentifier Organization Identifier for the Entity.
- * @param projectIdentifier Project Identifier for the Entity.
- * @param pipelineIdentifier Pipeline Identifier
- * @param planExecutionId planExecutionId of the execution of whose we need to find the latest execution planExecutionId
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param accountIdentifier Account Identifier for the Entity.
+  - @param orgIdentifier Organization Identifier for the Entity.
+  - @param projectIdentifier Project Identifier for the Entity.
+  - @param pipelineIdentifier Pipeline Identifier
+  - @param planExecutionId planExecutionId of the execution of whose we need to find the latest execution planExecutionId
+
 @return ResponseDtoRetryLatestExecutionResponse
 */
 func (a *ExecuteApiService) LatestExecutionId(ctx context.Context, accountIdentifier string, orgIdentifier string, projectIdentifier string, pipelineIdentifier string, planExecutionId string) (ResponseDtoRetryLatestExecutionResponse, *http.Response, error) {
@@ -1474,12 +1477,13 @@ func (a *ExecuteApiService) PostReExecuteStages(ctx context.Context, accountIden
 
 /*
 ExecuteApiService Execute an Interrupt on an execution
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountIdentifier Account Identifier for the Entity.
- * @param orgIdentifier Organization Identifier for the Entity.
- * @param projectIdentifier Project Identifier for the Entity.
- * @param interruptType The Interrupt type needed to be applied to the execution. Choose a value from the enum list.
- * @param planExecutionId The Pipeline Execution Id on which the Interrupt needs to be applied.
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param accountIdentifier Account Identifier for the Entity.
+  - @param orgIdentifier Organization Identifier for the Entity.
+  - @param projectIdentifier Project Identifier for the Entity.
+  - @param interruptType The Interrupt type needed to be applied to the execution. Choose a value from the enum list.
+  - @param planExecutionId The Pipeline Execution Id on which the Interrupt needs to be applied.
+
 @return ResponseDtoInterruptResponse
 */
 func (a *ExecuteApiService) PutHandleInterrupt(ctx context.Context, accountIdentifier string, orgIdentifier string, projectIdentifier string, interruptType string, planExecutionId string) (ResponseDtoInterruptResponse, *http.Response, error) {
@@ -1914,12 +1918,13 @@ func (a *ExecuteApiService) RerunPipelineWithInputSetIdentifierList(ctx context.
 
 /*
 ExecuteApiService Retry History for a given execution
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountIdentifier Account Identifier for the Entity.
- * @param orgIdentifier Organization Identifier for the Entity.
- * @param projectIdentifier Project Identifier for the Entity.
- * @param pipelineIdentifier Pipeline Identifier
- * @param planExecutionId planExecutionId of the execution of whose we need to find the retry history
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param accountIdentifier Account Identifier for the Entity.
+  - @param orgIdentifier Organization Identifier for the Entity.
+  - @param projectIdentifier Project Identifier for the Entity.
+  - @param pipelineIdentifier Pipeline Identifier
+  - @param planExecutionId planExecutionId of the execution of whose we need to find the retry history
+
 @return ResponseDtoRetryHistoryResponse
 */
 func (a *ExecuteApiService) RetryHistory(ctx context.Context, accountIdentifier string, orgIdentifier string, projectIdentifier string, pipelineIdentifier string, planExecutionId string) (ResponseDtoRetryHistoryResponse, *http.Response, error) {
@@ -2081,7 +2086,7 @@ func (a *ExecuteApiService) RetryPipeline(ctx context.Context, accountIdentifier
 	localVarQueryParams.Add("projectIdentifier", parameterToString(projectIdentifier, ""))
 	localVarQueryParams.Add("moduleType", parameterToString(moduleType, ""))
 	localVarQueryParams.Add("planExecutionId", parameterToString(planExecutionId, ""))
-	localVarQueryParams.Add("retryStages", parameterToString(retryStages, "multi"))
+	addQueryParam(localVarQueryParams, "retryStages", retryStages, "multi")
 	if localVarOptionals != nil && localVarOptionals.RunAllStages.IsSet() {
 		localVarQueryParams.Add("runAllStages", parameterToString(localVarOptionals.RunAllStages.Value(), ""))
 	}

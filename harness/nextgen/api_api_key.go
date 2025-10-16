@@ -481,7 +481,7 @@ func (a *ApiKeyApiService) ListApiKeys(ctx context.Context, accountIdentifier st
 	localVarQueryParams.Add("apiKeyType", parameterToString(apiKeyType, ""))
 	localVarQueryParams.Add("parentIdentifier", parameterToString(parentIdentifier, ""))
 	if localVarOptionals != nil && localVarOptionals.Identifiers.IsSet() {
-		localVarQueryParams.Add("identifiers", parameterToString(localVarOptionals.Identifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "identifiers", localVarOptionals.Identifiers.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -631,7 +631,7 @@ func (a *ApiKeyApiService) ListApiKeys1(ctx context.Context, accountIdentifier s
 	localVarQueryParams.Add("apiKeyType", parameterToString(apiKeyType, ""))
 	localVarQueryParams.Add("parentIdentifier", parameterToString(parentIdentifier, ""))
 	if localVarOptionals != nil && localVarOptionals.Identifiers.IsSet() {
-		localVarQueryParams.Add("identifiers", parameterToString(localVarOptionals.Identifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "identifiers", localVarOptionals.Identifiers.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.PageIndex.IsSet() {
 		localVarQueryParams.Add("pageIndex", parameterToString(localVarOptionals.PageIndex.Value(), ""))
@@ -640,7 +640,7 @@ func (a *ApiKeyApiService) ListApiKeys1(ctx context.Context, accountIdentifier s
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.SearchTerm.IsSet() {
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))

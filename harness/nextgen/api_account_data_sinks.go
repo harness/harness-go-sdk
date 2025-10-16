@@ -412,7 +412,7 @@ func (a *AccountDataSinksApiService) GetAccountScopedDataSinks(ctx context.Conte
 		localVarQueryParams.Add("status", parameterToString(localVarOptionals.Status.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Type_.IsSet() {
-		localVarQueryParams.Add("type", parameterToString(localVarOptionals.Type_.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "type", localVarOptionals.Type_.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}

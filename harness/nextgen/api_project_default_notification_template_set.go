@@ -407,16 +407,16 @@ func (a *ProjectDefaultNotificationTemplateSetApiService) ListProjectDefaultNoti
 		localVarQueryParams.Add("search_term", parameterToString(localVarOptionals.SearchTerm.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Identifiers.IsSet() {
-		localVarQueryParams.Add("identifiers", parameterToString(localVarOptionals.Identifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "identifiers", localVarOptionals.Identifiers.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.NotificationChannelTypes.IsSet() {
-		localVarQueryParams.Add("notification_channel_types", parameterToString(localVarOptionals.NotificationChannelTypes.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "notification_channel_types", localVarOptionals.NotificationChannelTypes.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.NotificationEvents.IsSet() {
-		localVarQueryParams.Add("notification_events", parameterToString(localVarOptionals.NotificationEvents.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "notification_events", localVarOptionals.NotificationEvents.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.NotificationEntities.IsSet() {
-		localVarQueryParams.Add("notification_entities", parameterToString(localVarOptionals.NotificationEntities.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "notification_entities", localVarOptionals.NotificationEntities.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
 		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))

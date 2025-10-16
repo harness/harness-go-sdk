@@ -710,7 +710,7 @@ func (a *PipelinesApiService) GetPipelineList(ctx context.Context, accountIdenti
 		localVarQueryParams.Add("size", parameterToString(localVarOptionals.Size.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Sort.IsSet() {
-		localVarQueryParams.Add("sort", parameterToString(localVarOptionals.Sort.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sort", localVarOptionals.Sort.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.SearchTerm.IsSet() {
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))

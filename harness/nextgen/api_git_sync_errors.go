@@ -238,7 +238,7 @@ func (a *GitSyncErrorsApiService) ListGitSyncErrors(ctx context.Context, localVa
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.AccountIdentifier.IsSet() {
 		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
@@ -412,7 +412,7 @@ func (a *GitSyncErrorsApiService) ListGitToHarnessErrorForCommit(ctx context.Con
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.AccountIdentifier.IsSet() {
 		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))
@@ -582,7 +582,7 @@ func (a *GitSyncErrorsApiService) ListGitToHarnessErrorsGroupedByCommits(ctx con
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.AccountIdentifier.IsSet() {
 		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.AccountIdentifier.Value(), ""))

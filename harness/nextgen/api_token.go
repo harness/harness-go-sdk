@@ -354,7 +354,7 @@ func (a *TokenApiService) ListAggregatedTokens(ctx context.Context, accountIdent
 	localVarQueryParams.Add("parentIdentifier", parameterToString(parentIdentifier, ""))
 	localVarQueryParams.Add("apiKeyIdentifier", parameterToString(apiKeyIdentifier, ""))
 	if localVarOptionals != nil && localVarOptionals.Identifiers.IsSet() {
-		localVarQueryParams.Add("identifiers", parameterToString(localVarOptionals.Identifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "identifiers", localVarOptionals.Identifiers.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.PageIndex.IsSet() {
 		localVarQueryParams.Add("pageIndex", parameterToString(localVarOptionals.PageIndex.Value(), ""))
@@ -363,7 +363,7 @@ func (a *TokenApiService) ListAggregatedTokens(ctx context.Context, accountIdent
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.SearchTerm.IsSet() {
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))

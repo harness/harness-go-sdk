@@ -939,7 +939,7 @@ func (a *FileStoreApiService) ListFilesAndFolders(ctx context.Context, accountId
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Identifiers.IsSet() {
-		localVarQueryParams.Add("identifiers", parameterToString(localVarOptionals.Identifiers.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "identifiers", localVarOptionals.Identifiers.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.SearchTerm.IsSet() {
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))
@@ -951,7 +951,7 @@ func (a *FileStoreApiService) ListFilesAndFolders(ctx context.Context, accountId
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.PageToken.IsSet() {
 		localVarQueryParams.Add("pageToken", parameterToString(localVarOptionals.PageToken.Value(), ""))
@@ -1104,7 +1104,7 @@ func (a *FileStoreApiService) ListFilesWithFilter(ctx context.Context, localVarO
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.PageToken.IsSet() {
 		localVarQueryParams.Add("pageToken", parameterToString(localVarOptionals.PageToken.Value(), ""))

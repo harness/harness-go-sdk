@@ -1019,7 +1019,7 @@ func (a *UserGroupApiService) GetUserGroupList(ctx context.Context, accountIdent
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -1308,7 +1308,7 @@ func (a *UserGroupApiService) GetUserListInUserGroup(ctx context.Context, accoun
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/yaml"}

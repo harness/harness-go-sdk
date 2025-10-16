@@ -1027,7 +1027,7 @@ func (a *UserApiService) GetAggregatedUsers(ctx context.Context, accountIdentifi
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.PageToken.IsSet() {
 		localVarQueryParams.Add("pageToken", parameterToString(localVarOptionals.PageToken.Value(), ""))
@@ -1431,7 +1431,7 @@ func (a *UserApiService) GetUsers(ctx context.Context, accountIdentifier string,
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.PageToken.IsSet() {
 		localVarQueryParams.Add("pageToken", parameterToString(localVarOptionals.PageToken.Value(), ""))

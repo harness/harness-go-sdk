@@ -601,7 +601,7 @@ func (a *ApplicationsApiService) AgentApplicationServiceGet(ctx context.Context,
 		localVarQueryParams.Add("query.refresh", parameterToString(localVarOptionals.QueryRefresh.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.QueryProject.IsSet() {
-		localVarQueryParams.Add("query.project", parameterToString(localVarOptionals.QueryProject.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "query.project", localVarOptionals.QueryProject.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.QueryResourceVersion.IsSet() {
 		localVarQueryParams.Add("query.resourceVersion", parameterToString(localVarOptionals.QueryResourceVersion.Value(), ""))
@@ -1183,7 +1183,7 @@ func (a *ApplicationsApiService) AgentApplicationServiceList(ctx context.Context
 		localVarQueryParams.Add("query.refresh", parameterToString(localVarOptionals.QueryRefresh.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.QueryProject.IsSet() {
-		localVarQueryParams.Add("query.project", parameterToString(localVarOptionals.QueryProject.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "query.project", localVarOptionals.QueryProject.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.QueryResourceVersion.IsSet() {
 		localVarQueryParams.Add("query.resourceVersion", parameterToString(localVarOptionals.QueryResourceVersion.Value(), ""))
@@ -3498,7 +3498,7 @@ func (a *ApplicationsApiService) AgentApplicationServiceWatch(ctx context.Contex
 		localVarQueryParams.Add("query.refresh", parameterToString(localVarOptionals.QueryRefresh.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.QueryProject.IsSet() {
-		localVarQueryParams.Add("query.project", parameterToString(localVarOptionals.QueryProject.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "query.project", localVarOptionals.QueryProject.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.QueryResourceVersion.IsSet() {
 		localVarQueryParams.Add("query.resourceVersion", parameterToString(localVarOptionals.QueryResourceVersion.Value(), ""))
