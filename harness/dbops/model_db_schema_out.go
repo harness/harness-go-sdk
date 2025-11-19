@@ -29,4 +29,5 @@ type DbSchemaOut struct {
 	SchemaSourceType string           `json:"schemaSourceType,omitempty"`
 	ChangeLogScript  *ChangeLogScript `json:"changeLogScript,omitempty"`
 	Type_            *DbSchemaType    `json:"type"`
+	MigrationType    *MigrationType   `json:"migrationType"`
 }

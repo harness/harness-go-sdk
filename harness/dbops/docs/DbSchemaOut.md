@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **SchemaSourceType** | **string** |  | [optional] [default to null]
 **ChangeLogScript** | [***ChangeLogScript**](ChangeLogScript.md) |  | [optional] [default to null]
 **Type_** | [***DbSchemaType**](DBSchemaType.md) |  | [default to null]
+**MigrationType** | [***MigrationType**](MigrationType.md) |  | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

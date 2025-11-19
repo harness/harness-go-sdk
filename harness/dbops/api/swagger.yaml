@@ -1592,6 +1592,8 @@ components:
           $ref: "#/components/schemas/DBSchemaType"
         changeLogScript:
           $ref: "#/components/schemas/ChangeLogScript"
+        migrationType:
+          $ref: "#/components/schemas/MigrationType"
       description: 'Database Schema Request '
       x-examples:
         Example 1:
@@ -1611,6 +1613,7 @@ components:
       - created
       - identifier
       - instanceCount
+      - migrationType
       - name
       - type
       type: object
@@ -1657,6 +1660,8 @@ components:
           $ref: "#/components/schemas/ChangeLogScript"
         type:
           $ref: "#/components/schemas/DBSchemaType"
+        migrationType:
+          $ref: "#/components/schemas/MigrationType"
       description: Database Schema Response
       example:
         identifier: identifier
@@ -1870,6 +1875,11 @@ components:
           description: path excluding the repo till the archive file
           x-stoplight:
             id: 53mqhpfa5038m
+        toml:
+          type: string
+          description: config file for Flyway migration type
+          x-stoplight:
+            id: 7m9n0umenjjhf
       additionalProperties: false
       description: |
         location of the changelog file containing schema changes in a git repository
@@ -2487,6 +2497,11 @@ components:
           example: folder/changelog.yaml
           x-stoplight:
             id: sn916ihq297p3
+        toml:
+          type: string
+          description: config file for Flyway migration type
+          x-stoplight:
+            id: s0cp5j17j45dk
       description: if schemaType is Script location of the changelog file after using
         a custom script to download
       example:
@@ -2506,6 +2521,15 @@ components:
       - Script
       x-stoplight:
         id: 21ikm27shlnsf
+    MigrationType:
+      title: MigrationType
+      type: string
+      description: DB Migration tool type
+      enum:
+      - Liquibase
+      - Flyway
+      x-stoplight:
+        id: 2vj413xlt5qrp
   responses:
     DBSchemaListResponse:
       description: Response body for List Database Schema
