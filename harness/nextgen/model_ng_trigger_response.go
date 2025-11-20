@@ -22,6 +22,7 @@ type NgTriggerResponse struct {
 	Yaml              string                       `json:"yaml,omitempty"`
 	Version           int64                        `json:"version,omitempty"`
 	Enabled           bool                         `json:"enabled,omitempty"`
+	WebhookUrl        string                       `json:"webhookUrl,omitempty"`
 	Errors            map[string]map[string]string `json:"errors,omitempty"`
 	ErrorResponse     bool                         `json:"errorResponse,omitempty"`
 }
