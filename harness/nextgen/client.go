@@ -112,6 +112,8 @@ type APIClient struct {
 
 	DelegateGroupTagsResourceApi *DelegateGroupTagsResourceApiService
 
+	DelegateSetupResourceApi *DelegateSetupResourceApiService
+
 	DelegateTokenResourceApi *DelegateTokenResourceApiService
 
 	EnvironmentsApi *EnvironmentsApiService
@@ -300,6 +302,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DashboardsFilterApi = (*DashboardsFilterApiService)(&c.common)
 	c.DashboardsFolderApi = (*DashboardsFolderApiService)(&c.common)
 	c.DelegateGroupTagsResourceApi = (*DelegateGroupTagsResourceApiService)(&c.common)
+	c.DelegateSetupResourceApi = (*DelegateSetupResourceApiService)(&c.common)
 	c.DelegateTokenResourceApi = (*DelegateTokenResourceApiService)(&c.common)
 	c.EnvironmentsApi = (*EnvironmentsApiService)(&c.common)
 	c.EnvironmentGroupApi = (*EnvironmentGroupApiService)(&c.common)
