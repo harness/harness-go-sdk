@@ -37,7 +37,8 @@ Name | Type | Description  | Notes
 
 
  **orgIdentifier** | **optional.String**| Organization Identifier for the Entity | 
- **projectIdentifier** | **optional.String**| Project Identifier for the Entity | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity |
+ **forceDelete** | **optional.Bool**| force delete the Entity |
 
 ### Return type
 

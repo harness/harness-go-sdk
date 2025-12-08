@@ -35,12 +35,14 @@ SecretsApiService Deletes Secret by ID and Scope
  * @param optional nil or *SecretsApiDeleteSecretV2Opts - Optional Parameters:
      * @param "OrgIdentifier" (optional.String) -  Organization Identifier for the Entity.
      * @param "ProjectIdentifier" (optional.String) -  Project Identifier for the Entity.
+     * @param "ForceDelete" (optional.Bool) -  Force Delete the Secret.
 @return ResponseDtoBoolean
 */
 
 type SecretsApiDeleteSecretV2Opts struct {
 	OrgIdentifier     optional.String
 	ProjectIdentifier optional.String
+	ForceDelete       optional.Bool
 }
 
 func (a *SecretsApiService) DeleteSecretV2(ctx context.Context, identifier string, accountIdentifier string, localVarOptionals *SecretsApiDeleteSecretV2Opts) (ResponseDtoBoolean, *http.Response, error) {
@@ -66,6 +68,9 @@ func (a *SecretsApiService) DeleteSecretV2(ctx context.Context, identifier strin
 	}
 	if localVarOptionals != nil && localVarOptionals.ProjectIdentifier.IsSet() {
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.ForceDelete.IsSet() {
+		localVarQueryParams.Add("forceDelete", parameterToString(localVarOptionals.ForceDelete.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
