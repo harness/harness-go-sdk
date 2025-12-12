@@ -22,4 +22,5 @@ type V1AppProjectMappingV2 struct {
 	AgentIdentifier   string    `json:"agentIdentifier,omitempty"`
 	CreatedAt         time.Time `json:"createdAt,omitempty"`
 	LastModifiedAt    time.Time `json:"lastModifiedAt,omitempty"`
+	AutoCreateServiceEnv bool `json:"autoCreateServiceEnv,omitempty"`
 }
