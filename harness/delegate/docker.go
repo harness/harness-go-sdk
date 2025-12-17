@@ -5,8 +5,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
+	"github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/api/types/network"
 	"github.com/docker/docker/client"
 	"github.com/harness/harness-go-sdk/harness/utils"
@@ -32,8 +32,8 @@ type DockerDelegateConfig struct {
 	HostConfig             *container.HostConfig
 	NetworkingConfig       *network.NetworkingConfig
 	Platform               *specs.Platform
-	ContainerStartOptions  types.ContainerStartOptions
-	ContainerRemoveOptions types.ContainerRemoveOptions
+	ContainerStartOptions  container.StartOptions
+	ContainerRemoveOptions container.RemoveOptions
 }
 
 func getDefaultEnvConfig(cfg *DockerDelegateConfig) map[string]string {
@@ -109,7 +109,7 @@ func PullDelegateImage(ctx context.Context, cfg *DockerDelegateConfig) error {
 	}
 
 	log.Infof("Pulling docker image %s", cfg.Image)
-	reader, err := cli.ImagePull(ctx, cfg.Image, types.ImagePullOptions{All: true})
+	reader, err := cli.ImagePull(ctx, cfg.Image, image.PullOptions{All: true})
 	if err != nil {
 		return errors.Wrap(err, "failed to pull docker image")
 	}
@@ -145,7 +145,7 @@ func RunDelegateContainer(ctx context.Context, cfg *DockerDelegateConfig, pullIm
 
 	if pullImage {
 		log.Infof("Pulling docker image %s", cfg.Image)
-		reader, err := cli.ImagePull(ctx, cfg.Image, types.ImagePullOptions{All: true})
+		reader, err := cli.ImagePull(ctx, cfg.Image, image.PullOptions{All: true})
 		if err != nil {
 			return "", errors.Wrap(err, "failed to pull docker image")
 		}
@@ -174,7 +174,7 @@ func RemoveDelegateContainer(ctx context.Context, cfg *DockerDelegateConfig, con
 	}
 
 	log.Infof("Stopping docker container %s", containerId)
-	err = cli.ContainerStop(ctx, containerId, nil)
+	err = cli.ContainerStop(ctx, containerId, container.StopOptions{})
 	if err != nil {
 		return errors.Wrap(err, "failed to stop delegate container")
 	}
