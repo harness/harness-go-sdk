@@ -9,8 +9,8 @@
 package chaos
 
 type ProbeTlsConfigSm struct {
-	CaCrt *GithubComHarnessHceSaasHceSdkTemplateSchemaProbeSecretManager `json:"caCrt,omitempty"`
-	ClientCrt *GithubComHarnessHceSaasHceSdkTemplateSchemaProbeSecretManager `json:"clientCrt,omitempty"`
-	InsecureSkipVerify *interface{} `json:"insecureSkipVerify,omitempty"`
-	Key *GithubComHarnessHceSaasHceSdkTemplateSchemaProbeSecretManager `json:"key,omitempty"`
+	CaCrt              *GithubComHarnessHceSaasHceSdkTemplateSchemaProbeSecretManager `json:"caCrt,omitempty"`
+	ClientCrt          *GithubComHarnessHceSaasHceSdkTemplateSchemaProbeSecretManager `json:"clientCrt,omitempty"`
+	InsecureSkipVerify *interface{}                                                   `json:"insecureSkipVerify,omitempty"`
+	Key                *GithubComHarnessHceSaasHceSdkTemplateSchemaProbeSecretManager `json:"key,omitempty"`
 }

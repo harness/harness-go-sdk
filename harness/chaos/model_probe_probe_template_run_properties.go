@@ -9,12 +9,12 @@
 package chaos
 
 type ProbeProbeTemplateRunProperties struct {
-	Attempt *interface{} `json:"attempt,omitempty"`
-	InitialDelay string `json:"initialDelay,omitempty"`
-	Interval string `json:"interval,omitempty"`
-	PollingInterval string `json:"pollingInterval,omitempty"`
-	Retry *interface{} `json:"retry,omitempty"`
-	StopOnFailure bool `json:"stopOnFailure,omitempty"`
-	Timeout string `json:"timeout,omitempty"`
-	Verbosity string `json:"verbosity,omitempty"`
+	Attempt         *interface{} `json:"attempt,omitempty"`
+	InitialDelay    string       `json:"initialDelay,omitempty"`
+	Interval        string       `json:"interval,omitempty"`
+	PollingInterval string       `json:"pollingInterval,omitempty"`
+	Retry           *interface{} `json:"retry,omitempty"`
+	StopOnFailure   bool         `json:"stopOnFailure,omitempty"`
+	Timeout         string       `json:"timeout,omitempty"`
+	Verbosity       string       `json:"verbosity,omitempty"`
 }

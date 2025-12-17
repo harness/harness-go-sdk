@@ -10,8 +10,8 @@
 package nextgen
 
 type SplunkMetricHealthSourceSpec struct {
-	ConnectorRef string `json:"connectorRef"`
-	MetricPacks []TimeSeriesMetricPackDto `json:"metricPacks,omitempty"`
-	Feature string `json:"feature"`
-	MetricDefinitions []SplunkMetricDefinition `json:"metricDefinitions,omitempty"`
+	ConnectorRef      string                    `json:"connectorRef"`
+	MetricPacks       []TimeSeriesMetricPackDto `json:"metricPacks,omitempty"`
+	Feature           string                    `json:"feature"`
+	MetricDefinitions []SplunkMetricDefinition  `json:"metricDefinitions,omitempty"`
 }

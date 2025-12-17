@@ -32,7 +32,7 @@ type V1SourceDetails struct {
 	// NodeSelector for the source pod
 	NodeSelector map[string]string `json:"nodeSelector,omitempty"`
 	// Privileged for the source pod
-	Privileged bool `json:"privileged,omitempty"`
+	Privileged  bool           `json:"privileged,omitempty"`
 	Tolerations []V1Toleration `json:"tolerations,omitempty"`
 	// VolumesMount for the source pod
 	VolumeMount []V1VolumeMount `json:"volumeMount,omitempty"`

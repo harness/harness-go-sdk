@@ -10,6 +10,6 @@ package chaos
 
 type ProbeComparatorTemplate struct {
 	Criteria string `json:"criteria,omitempty"`
-	Type_ string `json:"type,omitempty"`
-	Value string `json:"value,omitempty"`
+	Type_    string `json:"type,omitempty"`
+	Value    string `json:"value,omitempty"`
 }

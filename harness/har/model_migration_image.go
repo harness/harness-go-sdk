@@ -9,8 +9,8 @@
 package har
 
 type MigrationImage struct {
-	ImageId string `json:"imageId,omitempty"`
+	ImageId  string `json:"imageId,omitempty"`
 	ImageTag string `json:"imageTag,omitempty"`
-	Progress int32 `json:"progress,omitempty"`
-	Status string `json:"status,omitempty"`
+	Progress int32  `json:"progress,omitempty"`
+	Status   string `json:"status,omitempty"`
 }

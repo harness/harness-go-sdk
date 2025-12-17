@@ -10,6 +10,6 @@ package chaos
 
 type ProbeDatadogMetricsTemplate struct {
 	Comparator *ProbeComparatorTemplate `json:"comparator,omitempty"`
-	Query string `json:"query,omitempty"`
-	TimeFrame string `json:"timeFrame,omitempty"`
+	Query      string                   `json:"query,omitempty"`
+	TimeFrame  string                   `json:"timeFrame,omitempty"`
 }

@@ -12,10 +12,10 @@ type ChaosExecutionNodesChaosStepStatus string
 
 // List of chaos_execution_nodes.ChaosStepStatus
 const (
-	PENDING_ChaosExecutionNodesChaosStepStatus ChaosExecutionNodesChaosStepStatus = "PENDING"
-	RUNNING_ChaosExecutionNodesChaosStepStatus ChaosExecutionNodesChaosStepStatus = "RUNNING"
-	STOPPED_ChaosExecutionNodesChaosStepStatus ChaosExecutionNodesChaosStepStatus = "STOPPED"
+	PENDING_ChaosExecutionNodesChaosStepStatus   ChaosExecutionNodesChaosStepStatus = "PENDING"
+	RUNNING_ChaosExecutionNodesChaosStepStatus   ChaosExecutionNodesChaosStepStatus = "RUNNING"
+	STOPPED_ChaosExecutionNodesChaosStepStatus   ChaosExecutionNodesChaosStepStatus = "STOPPED"
 	COMPLETED_ChaosExecutionNodesChaosStepStatus ChaosExecutionNodesChaosStepStatus = "COMPLETED"
-	FAILED_ChaosExecutionNodesChaosStepStatus ChaosExecutionNodesChaosStepStatus = "FAILED"
-	SKIPPED_ChaosExecutionNodesChaosStepStatus ChaosExecutionNodesChaosStepStatus = "SKIPPED"
+	FAILED_ChaosExecutionNodesChaosStepStatus    ChaosExecutionNodesChaosStepStatus = "FAILED"
+	SKIPPED_ChaosExecutionNodesChaosStepStatus   ChaosExecutionNodesChaosStepStatus = "SKIPPED"
 )

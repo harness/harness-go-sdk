@@ -10,6 +10,6 @@ package chaos
 
 type HandlersDashboard struct {
 	Description string `json:"description,omitempty"`
-	Id int32 `json:"id,omitempty"`
-	Title string `json:"title,omitempty"`
+	Id          int32  `json:"id,omitempty"`
+	Title       string `json:"title,omitempty"`
 }

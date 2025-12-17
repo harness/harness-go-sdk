@@ -9,7 +9,7 @@
 package chaos
 
 type IntstrIntOrString struct {
-	IntVal int32 `json:"intVal,omitempty"`
-	StrVal string `json:"strVal,omitempty"`
-	Type_ *IntstrType `json:"type,omitempty"`
+	IntVal int32       `json:"intVal,omitempty"`
+	StrVal string      `json:"strVal,omitempty"`
+	Type_  *IntstrType `json:"type,omitempty"`
 }

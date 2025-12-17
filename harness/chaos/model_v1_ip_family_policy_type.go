@@ -12,7 +12,7 @@ type V1IpFamilyPolicyType string
 
 // List of v1.IPFamilyPolicyType
 const (
-	SINGLE_STACK_V1IpFamilyPolicyType V1IpFamilyPolicyType = "SingleStack"
-	PREFER_DUAL_STACK_V1IpFamilyPolicyType V1IpFamilyPolicyType = "PreferDualStack"
+	SINGLE_STACK_V1IpFamilyPolicyType       V1IpFamilyPolicyType = "SingleStack"
+	PREFER_DUAL_STACK_V1IpFamilyPolicyType  V1IpFamilyPolicyType = "PreferDualStack"
 	REQUIRE_DUAL_STACK_V1IpFamilyPolicyType V1IpFamilyPolicyType = "RequireDualStack"
 )

@@ -9,7 +9,7 @@
 package chaos
 
 type InfraV2KubernetesInfraV2FilterInput struct {
-	InfraScope *InfraV2InfraScope `json:"infraScope,omitempty"`
+	InfraScope      *InfraV2InfraScope      `json:"infraScope,omitempty"`
 	InfraTypeFilter *InfraV2InfraTypeFilter `json:"infraTypeFilter,omitempty"`
-	Tags []string `json:"tags,omitempty"`
+	Tags            []string                `json:"tags,omitempty"`
 }

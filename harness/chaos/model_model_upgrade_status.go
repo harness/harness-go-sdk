@@ -12,10 +12,10 @@ type ModelUpgradeStatus string
 
 // List of model.UpgradeStatus
 const (
-	UPGRADING_INFRA_ModelUpgradeStatus ModelUpgradeStatus = "UPGRADING_INFRA"
-	UPGRADE_SKIPPED_ModelUpgradeStatus ModelUpgradeStatus = "UPGRADE_SKIPPED"
+	UPGRADING_INFRA_ModelUpgradeStatus    ModelUpgradeStatus = "UPGRADING_INFRA"
+	UPGRADE_SKIPPED_ModelUpgradeStatus    ModelUpgradeStatus = "UPGRADE_SKIPPED"
 	UPGRADE_SUCCESSFUL_ModelUpgradeStatus ModelUpgradeStatus = "UPGRADE_SUCCESSFUL"
-	UPGRADE_FAILED_ModelUpgradeStatus ModelUpgradeStatus = "UPGRADE_FAILED"
+	UPGRADE_FAILED_ModelUpgradeStatus     ModelUpgradeStatus = "UPGRADE_FAILED"
 	DETECTING_UPGRADER_ModelUpgradeStatus ModelUpgradeStatus = "DETECTING_UPGRADER"
-	UPGRADER_DISABLED_ModelUpgradeStatus ModelUpgradeStatus = "UPGRADER_DISABLED"
+	UPGRADER_DISABLED_ModelUpgradeStatus  ModelUpgradeStatus = "UPGRADER_DISABLED"
 )

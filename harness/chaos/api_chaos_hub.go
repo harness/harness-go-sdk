@@ -158,9 +158,9 @@ func (c *ChaosHubClient) Update(
 	opts ...func(*model.ChaosHubRequest) *model.ChaosHubRequest,
 ) (*model.ChaosHub, error) {
 	req := &model.ChaosHubRequest{
-		HubName:       hubName,
-		RepoBranch:    repoBranch,
-		ConnectorID:   connectorID,
+		HubName:        hubName,
+		RepoBranch:     repoBranch,
+		ConnectorID:    connectorID,
 		ConnectorScope: model.ConnectorScopeProject, // Default to project scope
 	}
 
@@ -200,8 +200,8 @@ func (c *ChaosHubClient) Update(
         }`
 
 	variables := map[string]interface{}{
-		"id":         hubID,
-		"request":    req,
+		"id":          hubID,
+		"request":     req,
 		"identifiers": identifiers,
 	}
 
@@ -287,7 +287,7 @@ func (c *ChaosHubClient) Delete(
         }`
 
 	variables := map[string]interface{}{
-		"id":         hubID,
+		"id":          hubID,
 		"identifiers": identifiers,
 	}
 
@@ -323,7 +323,7 @@ func (c *ChaosHubClient) Sync(
         }`
 
 	variables := map[string]interface{}{
-		"id":         hubID,
+		"id":          hubID,
 		"identifiers": identifiers,
 	}
 

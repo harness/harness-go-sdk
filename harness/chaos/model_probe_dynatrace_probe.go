@@ -9,18 +9,18 @@
 package chaos
 
 type ProbeDynatraceProbe struct {
-	ApiTokenSecretName string `json:"apiTokenSecretName,omitempty"`
-	Attempt *interface{} `json:"attempt,omitempty"`
-	Comparator *ProbeComparator `json:"comparator,omitempty"`
-	Endpoint string `json:"endpoint,omitempty"`
-	InitialDelay string `json:"initialDelay,omitempty"`
-	InitialDelaySeconds *interface{} `json:"initialDelaySeconds,omitempty"`
-	Interval string `json:"interval,omitempty"`
-	Metrics *ProbeMetrics `json:"metrics,omitempty"`
-	PollingInterval string `json:"pollingInterval,omitempty"`
-	ProbeTimeout string `json:"probeTimeout,omitempty"`
-	Retry *interface{} `json:"retry,omitempty"`
-	StopOnFailure bool `json:"stopOnFailure,omitempty"`
-	TimeFrame string `json:"timeFrame,omitempty"`
-	Verbosity string `json:"verbosity,omitempty"`
+	ApiTokenSecretName  string           `json:"apiTokenSecretName,omitempty"`
+	Attempt             *interface{}     `json:"attempt,omitempty"`
+	Comparator          *ProbeComparator `json:"comparator,omitempty"`
+	Endpoint            string           `json:"endpoint,omitempty"`
+	InitialDelay        string           `json:"initialDelay,omitempty"`
+	InitialDelaySeconds *interface{}     `json:"initialDelaySeconds,omitempty"`
+	Interval            string           `json:"interval,omitempty"`
+	Metrics             *ProbeMetrics    `json:"metrics,omitempty"`
+	PollingInterval     string           `json:"pollingInterval,omitempty"`
+	ProbeTimeout        string           `json:"probeTimeout,omitempty"`
+	Retry               *interface{}     `json:"retry,omitempty"`
+	StopOnFailure       bool             `json:"stopOnFailure,omitempty"`
+	TimeFrame           string           `json:"timeFrame,omitempty"`
+	Verbosity           string           `json:"verbosity,omitempty"`
 }

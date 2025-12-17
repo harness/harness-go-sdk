@@ -9,10 +9,10 @@
 package chaos
 
 type DatabaseDiscoveredKubernetesWorkload struct {
-	Annotations map[string]string `json:"annotations,omitempty"`
-	Identity *V1ObjectReference `json:"identity,omitempty"`
-	Labels map[string]string `json:"labels,omitempty"`
-	PodAnnotations map[string]string `json:"podAnnotations,omitempty"`
-	PodLabels map[string]string `json:"podLabels,omitempty"`
-	Replicas []DatabaseDiscoveredPod `json:"replicas,omitempty"`
+	Annotations    map[string]string       `json:"annotations,omitempty"`
+	Identity       *V1ObjectReference      `json:"identity,omitempty"`
+	Labels         map[string]string       `json:"labels,omitempty"`
+	PodAnnotations map[string]string       `json:"podAnnotations,omitempty"`
+	PodLabels      map[string]string       `json:"podLabels,omitempty"`
+	Replicas       []DatabaseDiscoveredPod `json:"replicas,omitempty"`
 }

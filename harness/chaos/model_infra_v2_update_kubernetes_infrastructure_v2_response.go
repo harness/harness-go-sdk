@@ -10,5 +10,5 @@ package chaos
 
 type InfraV2UpdateKubernetesInfrastructureV2Response struct {
 	CorrelationId string `json:"correlationId,omitempty"`
-	Message string `json:"message,omitempty"`
+	Message       string `json:"message,omitempty"`
 }

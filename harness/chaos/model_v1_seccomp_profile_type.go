@@ -12,7 +12,7 @@ type V1SeccompProfileType string
 
 // List of v1.SeccompProfileType
 const (
-	UNCONFINED_V1SeccompProfileType V1SeccompProfileType = "Unconfined"
+	UNCONFINED_V1SeccompProfileType      V1SeccompProfileType = "Unconfined"
 	RUNTIME_DEFAULT_V1SeccompProfileType V1SeccompProfileType = "RuntimeDefault"
-	LOCALHOST_V1SeccompProfileType V1SeccompProfileType = "Localhost"
+	LOCALHOST_V1SeccompProfileType       V1SeccompProfileType = "Localhost"
 )

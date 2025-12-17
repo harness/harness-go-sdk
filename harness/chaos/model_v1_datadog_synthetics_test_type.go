@@ -12,6 +12,6 @@ type V1DatadogSyntheticsTestType string
 
 // List of v1.DatadogSyntheticsTestType
 const (
-	API_V1DatadogSyntheticsTestType V1DatadogSyntheticsTestType = "api"
+	API_V1DatadogSyntheticsTestType     V1DatadogSyntheticsTestType = "api"
 	BROWSER_V1DatadogSyntheticsTestType V1DatadogSyntheticsTestType = "browser"
 )

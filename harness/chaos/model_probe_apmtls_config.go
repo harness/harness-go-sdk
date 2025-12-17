@@ -9,8 +9,8 @@
 package chaos
 
 type ProbeApmtlsConfig struct {
-	CaCrt *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeSecretManager `json:"caCrt,omitempty"`
-	ClientCrt *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeSecretManager `json:"clientCrt,omitempty"`
-	InsecureSkipVerify bool `json:"insecureSkipVerify,omitempty"`
-	Key *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeSecretManager `json:"key,omitempty"`
+	CaCrt              *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeSecretManager `json:"caCrt,omitempty"`
+	ClientCrt          *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeSecretManager `json:"clientCrt,omitempty"`
+	InsecureSkipVerify bool                                                                      `json:"insecureSkipVerify,omitempty"`
+	Key                *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeSecretManager `json:"key,omitempty"`
 }

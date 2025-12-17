@@ -9,6 +9,6 @@
 package chaos
 
 type TypesListExperimentV2Response struct {
-	Data []TypesExperimentV2 `json:"data,omitempty"`
+	Data       []TypesExperimentV2                                `json:"data,omitempty"`
 	Pagination *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
 }

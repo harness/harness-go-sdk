@@ -12,10 +12,10 @@ type ModelInfrastructureType string
 
 // List of model.InfrastructureType
 const (
-	KUBERNETES_ModelInfrastructureType ModelInfrastructureType = "Kubernetes"
+	KUBERNETES_ModelInfrastructureType    ModelInfrastructureType = "Kubernetes"
 	KUBERNETES_V2_ModelInfrastructureType ModelInfrastructureType = "KubernetesV2"
-	WINDOWS_ModelInfrastructureType ModelInfrastructureType = "Windows"
-	LINUX_ModelInfrastructureType ModelInfrastructureType = "Linux"
+	WINDOWS_ModelInfrastructureType       ModelInfrastructureType = "Windows"
+	LINUX_ModelInfrastructureType         ModelInfrastructureType = "Linux"
 	CLOUD_FOUNDRY_ModelInfrastructureType ModelInfrastructureType = "CloudFoundry"
-	CONTAINER_ModelInfrastructureType ModelInfrastructureType = "Container"
+	CONTAINER_ModelInfrastructureType     ModelInfrastructureType = "Container"
 )

@@ -22,9 +22,9 @@ type ClustersCluster struct {
 	// Shard contains optional shard number. Calculated on the fly by the application controller if not specified.
 	Shard string `json:"shard,omitempty"`
 	// Indicates if cluster level resources should be managed. This setting is used only if cluster is connected in a namespaced mode.
-	ClusterResources bool              `json:"clusterResources,omitempty"`
-	Project          string            `json:"project,omitempty"`
-	Labels           map[string]string `json:"labels,omitempty"`
-	Annotations      map[string]string `json:"annotations,omitempty"`
-	Type_ *ClustersClusterType `json:"type,omitempty"`
+	ClusterResources bool                 `json:"clusterResources,omitempty"`
+	Project          string               `json:"project,omitempty"`
+	Labels           map[string]string    `json:"labels,omitempty"`
+	Annotations      map[string]string    `json:"annotations,omitempty"`
+	Type_            *ClustersClusterType `json:"type,omitempty"`
 }

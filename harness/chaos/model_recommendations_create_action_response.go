@@ -9,6 +9,6 @@
 package chaos
 
 type RecommendationsCreateActionResponse struct {
-	ExperimentID string `json:"experimentID,omitempty"`
+	ExperimentID   string `json:"experimentID,omitempty"`
 	ExperimentName string `json:"experimentName,omitempty"`
 }

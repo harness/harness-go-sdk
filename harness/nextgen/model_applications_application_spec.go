@@ -19,6 +19,6 @@ type ApplicationsApplicationSpec struct {
 	IgnoreDifferences []ApplicationsResourceIgnoreDifferences `json:"ignoreDifferences,omitempty"`
 	Info              []ApplicationsInfo                      `json:"info,omitempty"`
 	// RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.
-	RevisionHistoryLimit string `json:"revisionHistoryLimit,omitempty"`
-	Sources []ApplicationsApplicationSource `json:"sources,omitempty"`
+	RevisionHistoryLimit string                          `json:"revisionHistoryLimit,omitempty"`
+	Sources              []ApplicationsApplicationSource `json:"sources,omitempty"`
 }

@@ -12,10 +12,10 @@ type Gamedayv2GamedayRunStatus string
 
 // List of gamedayv2.GamedayRunStatus
 const (
-	AWAITING_APPROVAL_Gamedayv2GamedayRunStatus Gamedayv2GamedayRunStatus = "awaiting_approval"
+	AWAITING_APPROVAL_Gamedayv2GamedayRunStatus       Gamedayv2GamedayRunStatus = "awaiting_approval"
 	PREPARING_PREREQUISITES_Gamedayv2GamedayRunStatus Gamedayv2GamedayRunStatus = "preparing_prerequisites"
-	RUNNING_EXPERIMENTS_Gamedayv2GamedayRunStatus Gamedayv2GamedayRunStatus = "running_experiments"
-	POST_MORTEM_Gamedayv2GamedayRunStatus Gamedayv2GamedayRunStatus = "post_mortem"
-	TERMINATED_Gamedayv2GamedayRunStatus Gamedayv2GamedayRunStatus = "terminated"
-	COMPLETED_Gamedayv2GamedayRunStatus Gamedayv2GamedayRunStatus = "completed"
+	RUNNING_EXPERIMENTS_Gamedayv2GamedayRunStatus     Gamedayv2GamedayRunStatus = "running_experiments"
+	POST_MORTEM_Gamedayv2GamedayRunStatus             Gamedayv2GamedayRunStatus = "post_mortem"
+	TERMINATED_Gamedayv2GamedayRunStatus              Gamedayv2GamedayRunStatus = "terminated"
+	COMPLETED_Gamedayv2GamedayRunStatus               Gamedayv2GamedayRunStatus = "completed"
 )

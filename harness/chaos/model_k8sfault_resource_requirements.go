@@ -9,6 +9,6 @@
 package chaos
 
 type K8sfaultResourceRequirements struct {
-	Limits map[string]string `json:"limits,omitempty"`
+	Limits   map[string]string `json:"limits,omitempty"`
 	Requests map[string]string `json:"requests,omitempty"`
 }

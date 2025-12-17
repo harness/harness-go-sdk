@@ -10,5 +10,5 @@ package chaos
 
 type ChaosExecutionNodesFaultDetails struct {
 	Definition *ExperimentDefinition `json:"definition,omitempty"`
-	Name string `json:"name,omitempty"`
+	Name       string                `json:"name,omitempty"`
 }

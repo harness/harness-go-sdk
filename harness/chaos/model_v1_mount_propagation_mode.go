@@ -12,7 +12,7 @@ type V1MountPropagationMode string
 
 // List of v1.MountPropagationMode
 const (
-	NONE_V1MountPropagationMode V1MountPropagationMode = "None"
+	NONE_V1MountPropagationMode              V1MountPropagationMode = "None"
 	HOST_TO_CONTAINER_V1MountPropagationMode V1MountPropagationMode = "HostToContainer"
-	BIDIRECTIONAL_V1MountPropagationMode V1MountPropagationMode = "Bidirectional"
+	BIDIRECTIONAL_V1MountPropagationMode     V1MountPropagationMode = "Bidirectional"
 )

@@ -12,16 +12,16 @@ type ModelWorkflowRunStatus string
 
 // List of model.WorkflowRunStatus
 const (
-	ALL_ModelWorkflowRunStatus ModelWorkflowRunStatus = "All"
-	RUNNING_ModelWorkflowRunStatus ModelWorkflowRunStatus = "Running"
-	COMPLETED_ModelWorkflowRunStatus ModelWorkflowRunStatus = "Completed"
-	COMPLETED_WITH_ERROR_ModelWorkflowRunStatus ModelWorkflowRunStatus = "Completed_With_Error"
+	ALL_ModelWorkflowRunStatus                          ModelWorkflowRunStatus = "All"
+	RUNNING_ModelWorkflowRunStatus                      ModelWorkflowRunStatus = "Running"
+	COMPLETED_ModelWorkflowRunStatus                    ModelWorkflowRunStatus = "Completed"
+	COMPLETED_WITH_ERROR_ModelWorkflowRunStatus         ModelWorkflowRunStatus = "Completed_With_Error"
 	COMPLETED_WITH_PROBE_FAILURE_ModelWorkflowRunStatus ModelWorkflowRunStatus = "Completed_With_Probe_Failure"
-	STOPPED_ModelWorkflowRunStatus ModelWorkflowRunStatus = "Stopped"
-	SKIPPED_ModelWorkflowRunStatus ModelWorkflowRunStatus = "Skipped"
-	ERROR__ModelWorkflowRunStatus ModelWorkflowRunStatus = "Error"
-	TIMEOUT_ModelWorkflowRunStatus ModelWorkflowRunStatus = "Timeout"
-	NA_ModelWorkflowRunStatus ModelWorkflowRunStatus = "NA"
-	QUEUED_ModelWorkflowRunStatus ModelWorkflowRunStatus = "Queued"
-	BLOCKED_ModelWorkflowRunStatus ModelWorkflowRunStatus = "Blocked"
+	STOPPED_ModelWorkflowRunStatus                      ModelWorkflowRunStatus = "Stopped"
+	SKIPPED_ModelWorkflowRunStatus                      ModelWorkflowRunStatus = "Skipped"
+	ERROR__ModelWorkflowRunStatus                       ModelWorkflowRunStatus = "Error"
+	TIMEOUT_ModelWorkflowRunStatus                      ModelWorkflowRunStatus = "Timeout"
+	NA_ModelWorkflowRunStatus                           ModelWorkflowRunStatus = "NA"
+	QUEUED_ModelWorkflowRunStatus                       ModelWorkflowRunStatus = "Queued"
+	BLOCKED_ModelWorkflowRunStatus                      ModelWorkflowRunStatus = "Blocked"
 )

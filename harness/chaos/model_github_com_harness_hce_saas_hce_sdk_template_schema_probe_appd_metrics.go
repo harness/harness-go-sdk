@@ -9,6 +9,6 @@
 package chaos
 
 type GithubComHarnessHceSaasHceSdkTemplateSchemaProbeAppdMetrics struct {
-	DurationInMin *interface{} `json:"durationInMin,omitempty"`
-	MetricsFullPath string `json:"metricsFullPath,omitempty"`
+	DurationInMin   *interface{} `json:"durationInMin,omitempty"`
+	MetricsFullPath string       `json:"metricsFullPath,omitempty"`
 }

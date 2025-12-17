@@ -9,13 +9,13 @@
 package chaos
 
 type TypesExperimentRuns struct {
-	ChaosInfraID string `json:"chaosInfraID,omitempty"`
-	EnvironmentID string `json:"environmentID,omitempty"`
-	ExperimentCsv string `json:"experimentCsv,omitempty"`
-	ExperimentID string `json:"experimentID,omitempty"`
-	ExperimentManifest string `json:"experimentManifest,omitempty"`
-	ExperimentTemplateName string `json:"experimentTemplateName,omitempty"`
-	HubID string `json:"hubID,omitempty"`
-	InfraType *ModelInfrastructureType `json:"infraType,omitempty"`
-	LastRunNotifyID string `json:"lastRunNotifyID,omitempty"`
+	ChaosInfraID           string                   `json:"chaosInfraID,omitempty"`
+	EnvironmentID          string                   `json:"environmentID,omitempty"`
+	ExperimentCsv          string                   `json:"experimentCsv,omitempty"`
+	ExperimentID           string                   `json:"experimentID,omitempty"`
+	ExperimentManifest     string                   `json:"experimentManifest,omitempty"`
+	ExperimentTemplateName string                   `json:"experimentTemplateName,omitempty"`
+	HubID                  string                   `json:"hubID,omitempty"`
+	InfraType              *ModelInfrastructureType `json:"infraType,omitempty"`
+	LastRunNotifyID        string                   `json:"lastRunNotifyID,omitempty"`
 }

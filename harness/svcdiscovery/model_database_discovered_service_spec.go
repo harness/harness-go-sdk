@@ -9,10 +9,10 @@
 package svcdiscovery
 
 type DatabaseDiscoveredServiceSpec struct {
-	Fqdn []string `json:"fqdn,omitempty"`
-	HarnessEnvironmentIdentity *DatabaseEnvironmentIdentity `json:"harnessEnvironmentIdentity,omitempty"`
-	HarnessServiceIdentity *DatabaseServiceIdentity `json:"harnessServiceIdentity,omitempty"`
-	Ip []string `json:"ip,omitempty"`
-	Kubernetes *DatabaseDiscoveredServiceKubernetesSpec `json:"kubernetes,omitempty"`
-	Port []string `json:"port,omitempty"`
+	Fqdn                       []string                                 `json:"fqdn,omitempty"`
+	HarnessEnvironmentIdentity *DatabaseEnvironmentIdentity             `json:"harnessEnvironmentIdentity,omitempty"`
+	HarnessServiceIdentity     *DatabaseServiceIdentity                 `json:"harnessServiceIdentity,omitempty"`
+	Ip                         []string                                 `json:"ip,omitempty"`
+	Kubernetes                 *DatabaseDiscoveredServiceKubernetesSpec `json:"kubernetes,omitempty"`
+	Port                       []string                                 `json:"port,omitempty"`
 }

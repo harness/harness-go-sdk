@@ -10,6 +10,6 @@ package chaos
 
 type ActionsRecentExecutions struct {
 	ExecutedByExperiment *ActionsExecutedByExperiment `json:"executedByExperiment,omitempty"`
-	Status string `json:"status,omitempty"`
-	StepName string `json:"stepName,omitempty"`
+	Status               string                       `json:"status,omitempty"`
+	StepName             string                       `json:"stepName,omitempty"`
 }

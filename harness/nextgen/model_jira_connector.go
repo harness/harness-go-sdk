@@ -11,11 +11,11 @@ package nextgen
 
 // JIRA Connector details.
 type JiraConnector struct {
-	ConnectorType string `json:"connectorType"`
-	JiraUrl string `json:"jiraUrl"`
-	Username string `json:"username,omitempty"`
-	UsernameRef string `json:"usernameRef,omitempty"`
-	PasswordRef string `json:"passwordRef,omitempty"`
-	DelegateSelectors []string `json:"delegateSelectors,omitempty"`
-	Auth *JiraAuthentication `json:"auth"`
+	ConnectorType     string              `json:"connectorType"`
+	JiraUrl           string              `json:"jiraUrl"`
+	Username          string              `json:"username,omitempty"`
+	UsernameRef       string              `json:"usernameRef,omitempty"`
+	PasswordRef       string              `json:"passwordRef,omitempty"`
+	DelegateSelectors []string            `json:"delegateSelectors,omitempty"`
+	Auth              *JiraAuthentication `json:"auth"`
 }

@@ -11,8 +11,8 @@ package nextgen
 
 // This contains AWS manual credentials connector spec
 type AwsManualConfigSpec struct {
-	AccessKey    string `json:"accessKey,omitempty"`
-	AccessKeyRef string `json:"accessKeyRef,omitempty"`
-	SecretKeyRef string `json:"secretKeyRef"`
+	AccessKey       string `json:"accessKey,omitempty"`
+	AccessKeyRef    string `json:"accessKeyRef,omitempty"`
+	SecretKeyRef    string `json:"secretKeyRef"`
 	SessionTokenRef string `json:"sessionTokenRef,omitempty"`
 }

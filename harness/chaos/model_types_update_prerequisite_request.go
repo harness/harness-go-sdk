@@ -9,7 +9,7 @@
 package chaos
 
 type TypesUpdatePrerequisiteRequest struct {
-	ID string `json:"ID,omitempty"`
-	Comment string `json:"comment,omitempty"`
-	Status *Gamedayrunv2PrerequisiteStatus `json:"status,omitempty"`
+	ID      string                          `json:"ID,omitempty"`
+	Comment string                          `json:"comment,omitempty"`
+	Status  *Gamedayrunv2PrerequisiteStatus `json:"status,omitempty"`
 }

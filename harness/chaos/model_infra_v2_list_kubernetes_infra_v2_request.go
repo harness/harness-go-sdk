@@ -9,6 +9,6 @@
 package chaos
 
 type InfraV2ListKubernetesInfraV2Request struct {
-	Filter *InfraV2KubernetesInfraV2FilterInput `json:"filter,omitempty"`
-	Identifier *InfraV2Identifiers `json:"identifier,omitempty"`
+	Filter     *InfraV2KubernetesInfraV2FilterInput `json:"filter,omitempty"`
+	Identifier *InfraV2Identifiers                  `json:"identifier,omitempty"`
 }

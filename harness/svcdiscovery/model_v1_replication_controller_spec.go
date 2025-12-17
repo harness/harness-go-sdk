@@ -14,6 +14,6 @@ type V1ReplicationControllerSpec struct {
 	// Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#what-is-a-replicationcontroller +optional
 	Replicas int32 `json:"replicas,omitempty"`
 	// Selector is a label query over pods that should match the Replicas count. If Selector is empty, it is defaulted to the labels present on the Pod template. Label keys and values that must match in order to be controlled by this replication controller, if empty defaulted to labels on Pod template. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors +optional +mapType=atomic
-	Selector map[string]string `json:"selector,omitempty"`
+	Selector map[string]string  `json:"selector,omitempty"`
 	Template *V1PodTemplateSpec `json:"template,omitempty"`
 }

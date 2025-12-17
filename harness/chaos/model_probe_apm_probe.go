@@ -9,18 +9,18 @@
 package chaos
 
 type ProbeApmProbe struct {
-	AppDynamicsProbeInputs *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeAppDynamicsProbeInputs `json:"appDynamicsProbeInputs,omitempty"`
-	Attempt *interface{} `json:"attempt,omitempty"`
-	Comparator *ProbeComparator `json:"comparator,omitempty"`
-	InitialDelay string `json:"initialDelay,omitempty"`
-	InitialDelaySeconds *interface{} `json:"initialDelaySeconds,omitempty"`
-	Interval string `json:"interval,omitempty"`
-	PollingInterval string `json:"pollingInterval,omitempty"`
-	ProbeTimeout string `json:"probeTimeout,omitempty"`
-	PrometheusProbeInputs *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbePrometheusProbeInputs `json:"prometheusProbeInputs,omitempty"`
-	Retry *interface{} `json:"retry,omitempty"`
+	AppDynamicsProbeInputs         *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeAppDynamicsProbeInputs         `json:"appDynamicsProbeInputs,omitempty"`
+	Attempt                        *interface{}                                                                               `json:"attempt,omitempty"`
+	Comparator                     *ProbeComparator                                                                           `json:"comparator,omitempty"`
+	InitialDelay                   string                                                                                     `json:"initialDelay,omitempty"`
+	InitialDelaySeconds            *interface{}                                                                               `json:"initialDelaySeconds,omitempty"`
+	Interval                       string                                                                                     `json:"interval,omitempty"`
+	PollingInterval                string                                                                                     `json:"pollingInterval,omitempty"`
+	ProbeTimeout                   string                                                                                     `json:"probeTimeout,omitempty"`
+	PrometheusProbeInputs          *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbePrometheusProbeInputs          `json:"prometheusProbeInputs,omitempty"`
+	Retry                          *interface{}                                                                               `json:"retry,omitempty"`
 	SplunkObservabilityProbeInputs *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeSplunkObservabilityProbeInputs `json:"splunkObservabilityProbeInputs,omitempty"`
-	StopOnFailure bool `json:"stopOnFailure,omitempty"`
-	Type_ string `json:"type,omitempty"`
-	Verbosity string `json:"verbosity,omitempty"`
+	StopOnFailure                  bool                                                                                       `json:"stopOnFailure,omitempty"`
+	Type_                          string                                                                                     `json:"type,omitempty"`
+	Verbosity                      string                                                                                     `json:"verbosity,omitempty"`
 }

@@ -14,13 +14,13 @@ import (
 )
 
 type V1AppProjectMappingV2 struct {
-	Identifier        string    `json:"identifier,omitempty"`
-	ArgoProjectName   string    `json:"argoProjectName,omitempty"`
-	ProjectIdentifier string    `json:"projectIdentifier,omitempty"`
-	OrgIdentifier     string    `json:"orgIdentifier,omitempty"`
-	AccountIdentifier string    `json:"accountIdentifier,omitempty"`
-	AgentIdentifier   string    `json:"agentIdentifier,omitempty"`
-	CreatedAt         time.Time `json:"createdAt,omitempty"`
-	LastModifiedAt    time.Time `json:"lastModifiedAt,omitempty"`
-	AutoCreateServiceEnv bool `json:"autoCreateServiceEnv,omitempty"`
+	Identifier           string    `json:"identifier,omitempty"`
+	ArgoProjectName      string    `json:"argoProjectName,omitempty"`
+	ProjectIdentifier    string    `json:"projectIdentifier,omitempty"`
+	OrgIdentifier        string    `json:"orgIdentifier,omitempty"`
+	AccountIdentifier    string    `json:"accountIdentifier,omitempty"`
+	AgentIdentifier      string    `json:"agentIdentifier,omitempty"`
+	CreatedAt            time.Time `json:"createdAt,omitempty"`
+	LastModifiedAt       time.Time `json:"lastModifiedAt,omitempty"`
+	AutoCreateServiceEnv bool      `json:"autoCreateServiceEnv,omitempty"`
 }

@@ -9,13 +9,13 @@
 package har
 
 type OneOfArtifactDetail struct {
-    DockerArtifactDetailConfig
-    HelmArtifactDetailConfig
-    GenericArtifactDetailConfig
-    MavenArtifactDetailConfig
-    PythonArtifactDetailConfig
-    NpmArtifactDetailConfig
-    RpmArtifactDetailConfig
-    NugetArtifactDetailConfig
-    CargoArtifactDetailConfig
+	DockerArtifactDetailConfig
+	HelmArtifactDetailConfig
+	GenericArtifactDetailConfig
+	MavenArtifactDetailConfig
+	PythonArtifactDetailConfig
+	NpmArtifactDetailConfig
+	RpmArtifactDetailConfig
+	NugetArtifactDetailConfig
+	CargoArtifactDetailConfig
 }

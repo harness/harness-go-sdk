@@ -10,5 +10,5 @@ package svcdiscovery
 
 type ApiError struct {
 	Description string `json:"description,omitempty"`
-	Message string `json:"message,omitempty"`
+	Message     string `json:"message,omitempty"`
 }

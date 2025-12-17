@@ -12,12 +12,12 @@ type V1HostPathType string
 
 // List of v1.HostPathType
 const (
-	EMPTY_V1HostPathType V1HostPathType = ""
+	EMPTY_V1HostPathType               V1HostPathType = ""
 	DIRECTORY_OR_CREATE_V1HostPathType V1HostPathType = "DirectoryOrCreate"
-	DIRECTORY_V1HostPathType V1HostPathType = "Directory"
-	FILE_OR_CREATE_V1HostPathType V1HostPathType = "FileOrCreate"
-	FILE_V1HostPathType V1HostPathType = "File"
-	SOCKET_V1HostPathType V1HostPathType = "Socket"
-	CHAR_DEVICE_V1HostPathType V1HostPathType = "CharDevice"
-	BLOCK_DEVICE_V1HostPathType V1HostPathType = "BlockDevice"
+	DIRECTORY_V1HostPathType           V1HostPathType = "Directory"
+	FILE_OR_CREATE_V1HostPathType      V1HostPathType = "FileOrCreate"
+	FILE_V1HostPathType                V1HostPathType = "File"
+	SOCKET_V1HostPathType              V1HostPathType = "Socket"
+	CHAR_DEVICE_V1HostPathType         V1HostPathType = "CharDevice"
+	BLOCK_DEVICE_V1HostPathType        V1HostPathType = "BlockDevice"
 )

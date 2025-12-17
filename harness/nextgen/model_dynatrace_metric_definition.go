@@ -10,12 +10,12 @@
 package nextgen
 
 type DynatraceMetricDefinition struct {
-	Identifier string `json:"identifier"`
-	MetricName string `json:"metricName"`
-	RiskProfile *RiskProfile `json:"riskProfile,omitempty"`
-	Analysis *AnalysisDto `json:"analysis,omitempty"`
-	Sli *Slidto `json:"sli,omitempty"`
-	GroupName string `json:"groupName,omitempty"`
-	MetricSelector string `json:"metricSelector,omitempty"`
-	IsManualQuery bool `json:"isManualQuery,omitempty"`
+	Identifier     string       `json:"identifier"`
+	MetricName     string       `json:"metricName"`
+	RiskProfile    *RiskProfile `json:"riskProfile,omitempty"`
+	Analysis       *AnalysisDto `json:"analysis,omitempty"`
+	Sli            *Slidto      `json:"sli,omitempty"`
+	GroupName      string       `json:"groupName,omitempty"`
+	MetricSelector string       `json:"metricSelector,omitempty"`
+	IsManualQuery  bool         `json:"isManualQuery,omitempty"`
 }

@@ -10,10 +10,10 @@ package chaos
 
 type ExecutionProbeIterations struct {
 	CommandProbe *ExecutionCommandProbe `json:"commandProbe,omitempty"`
-	Duration int32 `json:"duration,omitempty"`
+	Duration     int32                  `json:"duration,omitempty"`
 	// TODO: Add other probe result spec
 	HttpProbe *AllOfexecutionProbeIterationsHttpProbe `json:"httpProbe,omitempty"`
-	Phase string `json:"phase,omitempty"`
-	PromProbe *ExecutionPromProbe `json:"promProbe,omitempty"`
-	Timestamp int32 `json:"timestamp,omitempty"`
+	Phase     string                                  `json:"phase,omitempty"`
+	PromProbe *ExecutionPromProbe                     `json:"promProbe,omitempty"`
+	Timestamp int32                                   `json:"timestamp,omitempty"`
 }

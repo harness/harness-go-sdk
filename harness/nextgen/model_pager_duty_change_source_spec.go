@@ -10,6 +10,6 @@
 package nextgen
 
 type PagerDutyChangeSourceSpec struct {
-	ConnectorRef string `json:"connectorRef,omitempty"`
+	ConnectorRef       string `json:"connectorRef,omitempty"`
 	PagerDutyServiceId string `json:"pagerDutyServiceId,omitempty"`
 }

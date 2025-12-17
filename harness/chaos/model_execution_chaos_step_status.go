@@ -12,13 +12,13 @@ type ExecutionChaosStepStatus string
 
 // List of execution.ChaosStepStatus
 const (
-	ERROR__ExecutionChaosStepStatus ExecutionChaosStepStatus = "ERROR"
+	ERROR__ExecutionChaosStepStatus                       ExecutionChaosStepStatus = "ERROR"
 	COMPLETED_WITH_PROBE_FAILURE_ExecutionChaosStepStatus ExecutionChaosStepStatus = "COMPLETED_WITH_PROBE_FAILURE"
-	PENDING_ExecutionChaosStepStatus ExecutionChaosStepStatus = "PENDING"
-	RUNNING_ExecutionChaosStepStatus ExecutionChaosStepStatus = "RUNNING"
-	STOPPED_ExecutionChaosStepStatus ExecutionChaosStepStatus = "STOPPED"
-	COMPLETED_ExecutionChaosStepStatus ExecutionChaosStepStatus = "COMPLETED"
-	FAILED_ExecutionChaosStepStatus ExecutionChaosStepStatus = "FAILED"
-	PASSED_ExecutionChaosStepStatus ExecutionChaosStepStatus = "PASSED"
-	SKIPPED_ExecutionChaosStepStatus ExecutionChaosStepStatus = "SKIPPED"
+	PENDING_ExecutionChaosStepStatus                      ExecutionChaosStepStatus = "PENDING"
+	RUNNING_ExecutionChaosStepStatus                      ExecutionChaosStepStatus = "RUNNING"
+	STOPPED_ExecutionChaosStepStatus                      ExecutionChaosStepStatus = "STOPPED"
+	COMPLETED_ExecutionChaosStepStatus                    ExecutionChaosStepStatus = "COMPLETED"
+	FAILED_ExecutionChaosStepStatus                       ExecutionChaosStepStatus = "FAILED"
+	PASSED_ExecutionChaosStepStatus                       ExecutionChaosStepStatus = "PASSED"
+	SKIPPED_ExecutionChaosStepStatus                      ExecutionChaosStepStatus = "SKIPPED"
 )

@@ -9,6 +9,6 @@
 package chaos
 
 type ExperimentSecurityContext struct {
-	ContainerSecurityContext *V1SecurityContext `json:"containerSecurityContext,omitempty"`
-	PodSecurityContext *V1PodSecurityContext `json:"podSecurityContext,omitempty"`
+	ContainerSecurityContext *V1SecurityContext    `json:"containerSecurityContext,omitempty"`
+	PodSecurityContext       *V1PodSecurityContext `json:"podSecurityContext,omitempty"`
 }

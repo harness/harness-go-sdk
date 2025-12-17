@@ -9,8 +9,8 @@
 package chaos
 
 type InfraV2MtlsConfiguration struct {
-	CertPath string `json:"certPath,omitempty"`
-	KeyPath string `json:"keyPath,omitempty"`
+	CertPath   string `json:"certPath,omitempty"`
+	KeyPath    string `json:"keyPath,omitempty"`
 	SecretName string `json:"secretName,omitempty"`
-	Url string `json:"url,omitempty"`
+	Url        string `json:"url,omitempty"`
 }

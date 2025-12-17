@@ -9,7 +9,7 @@
 package svcdiscovery
 
 type V1LifecycleHandler struct {
-	Exec *V1ExecAction `json:"exec,omitempty"`
-	HttpGet *V1HttpGetAction `json:"httpGet,omitempty"`
+	Exec      *V1ExecAction      `json:"exec,omitempty"`
+	HttpGet   *V1HttpGetAction   `json:"httpGet,omitempty"`
 	TcpSocket *V1TcpSocketAction `json:"tcpSocket,omitempty"`
 }

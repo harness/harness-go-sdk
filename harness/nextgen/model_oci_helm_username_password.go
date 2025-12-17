@@ -11,7 +11,7 @@ package nextgen
 
 // This contains oci helm username password details
 type OciHelmUsernamePassword struct {
-	Username string `json:"username,omitempty"`
+	Username    string `json:"username,omitempty"`
 	UsernameRef string `json:"usernameRef,omitempty"`
 	PasswordRef string `json:"passwordRef"`
 }

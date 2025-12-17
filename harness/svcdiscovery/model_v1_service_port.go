@@ -18,6 +18,6 @@ type V1ServicePort struct {
 	// The port that will be exposed by this service.
 	Port int32 `json:"port,omitempty"`
 	// The IP protocol for this port. Supports \"TCP\", \"UDP\", and \"SCTP\". Default is TCP. +default=\"TCP\" +optional
-	Protocol string `json:"protocol,omitempty"`
+	Protocol   string             `json:"protocol,omitempty"`
 	TargetPort *IntstrIntOrString `json:"targetPort,omitempty"`
 }

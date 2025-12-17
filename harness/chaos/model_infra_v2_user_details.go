@@ -9,7 +9,7 @@
 package chaos
 
 type InfraV2UserDetails struct {
-	Email string `json:"email,omitempty"`
-	Name string `json:"name,omitempty"`
+	Email    string `json:"email,omitempty"`
+	Name     string `json:"name,omitempty"`
 	Username string `json:"username,omitempty"`
 }

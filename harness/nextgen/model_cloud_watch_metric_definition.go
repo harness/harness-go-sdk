@@ -10,12 +10,12 @@
 package nextgen
 
 type CloudWatchMetricDefinition struct {
-	Identifier string `json:"identifier"`
-	MetricName string `json:"metricName"`
-	RiskProfile *RiskProfile `json:"riskProfile,omitempty"`
-	Analysis *AnalysisDto `json:"analysis,omitempty"`
-	Sli *Slidto `json:"sli,omitempty"`
-	GroupName string `json:"groupName"`
-	Expression string `json:"expression"`
+	Identifier      string                 `json:"identifier"`
+	MetricName      string                 `json:"metricName"`
+	RiskProfile     *RiskProfile           `json:"riskProfile,omitempty"`
+	Analysis        *AnalysisDto           `json:"analysis,omitempty"`
+	Sli             *Slidto                `json:"sli,omitempty"`
+	GroupName       string                 `json:"groupName"`
+	Expression      string                 `json:"expression"`
 	ResponseMapping *MetricResponseMapping `json:"responseMapping,omitempty"`
 }

@@ -10,6 +10,6 @@ package chaos
 
 type V1alpha1TargetDetails struct {
 	ChaosStatus string `json:"chaosStatus,omitempty"`
-	Kind string `json:"kind,omitempty"`
-	Name string `json:"name,omitempty"`
+	Kind        string `json:"kind,omitempty"`
+	Name        string `json:"name,omitempty"`
 }

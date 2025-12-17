@@ -9,7 +9,7 @@
 package chaos
 
 type RecommendationsFilters struct {
-	Category string `json:"category,omitempty"`
-	Source *RecommendationRecommendationSource `json:"source,omitempty"`
-	Status *RecommendationRecommendationStatus `json:"status,omitempty"`
+	Category string                              `json:"category,omitempty"`
+	Source   *RecommendationRecommendationSource `json:"source,omitempty"`
+	Status   *RecommendationRecommendationStatus `json:"status,omitempty"`
 }

@@ -9,8 +9,8 @@
 package chaos
 
 type TypesActionItem struct {
-	CreatedAt int32 `json:"createdAt,omitempty"`
-	Id string `json:"id,omitempty"`
-	Item string `json:"item,omitempty"`
-	User *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"user,omitempty"`
+	CreatedAt int32                                                      `json:"createdAt,omitempty"`
+	Id        string                                                     `json:"id,omitempty"`
+	Item      string                                                     `json:"item,omitempty"`
+	User      *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"user,omitempty"`
 }

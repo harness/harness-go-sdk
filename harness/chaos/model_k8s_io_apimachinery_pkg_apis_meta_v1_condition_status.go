@@ -12,7 +12,7 @@ type K8sIoApimachineryPkgApisMetaV1ConditionStatus string
 
 // List of k8s_io_apimachinery_pkg_apis_meta_v1.ConditionStatus
 const (
-	TRUE_K8sIoApimachineryPkgApisMetaV1ConditionStatus K8sIoApimachineryPkgApisMetaV1ConditionStatus = "True"
-	FALSE_K8sIoApimachineryPkgApisMetaV1ConditionStatus K8sIoApimachineryPkgApisMetaV1ConditionStatus = "False"
+	TRUE_K8sIoApimachineryPkgApisMetaV1ConditionStatus    K8sIoApimachineryPkgApisMetaV1ConditionStatus = "True"
+	FALSE_K8sIoApimachineryPkgApisMetaV1ConditionStatus   K8sIoApimachineryPkgApisMetaV1ConditionStatus = "False"
 	UNKNOWN_K8sIoApimachineryPkgApisMetaV1ConditionStatus K8sIoApimachineryPkgApisMetaV1ConditionStatus = "Unknown"
 )

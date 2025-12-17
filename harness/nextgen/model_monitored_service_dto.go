@@ -10,18 +10,18 @@
 package nextgen
 
 type MonitoredServiceDto struct {
-	OrgIdentifier string `json:"orgIdentifier"`
-	ProjectIdentifier string `json:"projectIdentifier"`
-	Identifier string `json:"identifier"`
-	Name string `json:"name"`
-	Type_ string `json:"type"`
-	Description string `json:"description,omitempty"`
-	ServiceRef string `json:"serviceRef"`
-	EnvironmentRef string `json:"environmentRef,omitempty"`
-	EnvironmentRefList []string `json:"environmentRefList,omitempty"`
-	Tags map[string]string `json:"tags,omitempty"`
-	Sources *Sources `json:"sources,omitempty"`
-	Dependencies []ServiceDependencyDto `json:"dependencies,omitempty"`
+	OrgIdentifier        string                   `json:"orgIdentifier"`
+	ProjectIdentifier    string                   `json:"projectIdentifier"`
+	Identifier           string                   `json:"identifier"`
+	Name                 string                   `json:"name"`
+	Type_                string                   `json:"type"`
+	Description          string                   `json:"description,omitempty"`
+	ServiceRef           string                   `json:"serviceRef"`
+	EnvironmentRef       string                   `json:"environmentRef,omitempty"`
+	EnvironmentRefList   []string                 `json:"environmentRefList,omitempty"`
+	Tags                 map[string]string        `json:"tags,omitempty"`
+	Sources              *Sources                 `json:"sources,omitempty"`
+	Dependencies         []ServiceDependencyDto   `json:"dependencies,omitempty"`
 	NotificationRuleRefs []NotificationRuleRefDto `json:"notificationRuleRefs,omitempty"`
-	Template *TemplateDto `json:"template,omitempty"`
+	Template             *TemplateDto             `json:"template,omitempty"`
 }

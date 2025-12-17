@@ -9,8 +9,8 @@
 package svcdiscovery
 
 type DatabaseAgentPodInfo struct {
-	Name string `json:"name,omitempty"`
+	Name      string `json:"name,omitempty"`
 	Namespace string `json:"namespace,omitempty"`
-	Status string `json:"status,omitempty"`
-	Uid string `json:"uid,omitempty"`
+	Status    string `json:"status,omitempty"`
+	Uid       string `json:"uid,omitempty"`
 }

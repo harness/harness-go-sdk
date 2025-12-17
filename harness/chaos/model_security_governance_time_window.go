@@ -9,9 +9,9 @@
 package chaos
 
 type SecurityGovernanceTimeWindow struct {
-	Duration string `json:"duration,omitempty"`
-	EndTime int32 `json:"endTime,omitempty"`
+	Duration   string                        `json:"duration,omitempty"`
+	EndTime    int32                         `json:"endTime,omitempty"`
 	Recurrence *SecurityGovernanceRecurrence `json:"recurrence,omitempty"`
-	StartTime int32 `json:"startTime,omitempty"`
-	TimeZone string `json:"timeZone,omitempty"`
+	StartTime  int32                         `json:"startTime,omitempty"`
+	TimeZone   string                        `json:"timeZone,omitempty"`
 }

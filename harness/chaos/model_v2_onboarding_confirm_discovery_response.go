@@ -9,7 +9,7 @@
 package chaos
 
 type V2OnboardingConfirmDiscoveryResponse struct {
-	AgentCreated bool `json:"agentCreated,omitempty"`
-	AgentLinked bool `json:"agentLinked,omitempty"`
+	AgentCreated       bool `json:"agentCreated,omitempty"`
+	AgentLinked        bool `json:"agentLinked,omitempty"`
 	DiscoveryCompleted bool `json:"discoveryCompleted,omitempty"`
 }

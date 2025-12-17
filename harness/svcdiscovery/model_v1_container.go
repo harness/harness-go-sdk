@@ -20,17 +20,17 @@ type V1Container struct {
 	// Container image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets. +optional
 	Image string `json:"image,omitempty"`
 	// Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images +optional
-	ImagePullPolicy string `json:"imagePullPolicy,omitempty"`
-	Lifecycle *V1Lifecycle `json:"lifecycle,omitempty"`
-	LivenessProbe *V1Probe `json:"livenessProbe,omitempty"`
+	ImagePullPolicy string       `json:"imagePullPolicy,omitempty"`
+	Lifecycle       *V1Lifecycle `json:"lifecycle,omitempty"`
+	LivenessProbe   *V1Probe     `json:"livenessProbe,omitempty"`
 	// Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.
 	Name string `json:"name,omitempty"`
 	// List of ports to expose from the container. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default \"0.0.0.0\" address inside a container will be accessible from the network. Modifying this array with strategic merge patch may corrupt the data. For more information See https://github.com/kubernetes/kubernetes/issues/108255. Cannot be updated. +optional +patchMergeKey=containerPort +patchStrategy=merge +listType=map +listMapKey=containerPort +listMapKey=protocol
-	Ports []V1ContainerPort `json:"ports,omitempty"`
-	ReadinessProbe *V1Probe `json:"readinessProbe,omitempty"`
-	Resources *V1ResourceRequirements `json:"resources,omitempty"`
-	SecurityContext *V1SecurityContext `json:"securityContext,omitempty"`
-	StartupProbe *V1Probe `json:"startupProbe,omitempty"`
+	Ports           []V1ContainerPort       `json:"ports,omitempty"`
+	ReadinessProbe  *V1Probe                `json:"readinessProbe,omitempty"`
+	Resources       *V1ResourceRequirements `json:"resources,omitempty"`
+	SecurityContext *V1SecurityContext      `json:"securityContext,omitempty"`
+	StartupProbe    *V1Probe                `json:"startupProbe,omitempty"`
 	// Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false. +optional
 	Stdin bool `json:"stdin,omitempty"`
 	// Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false +optional

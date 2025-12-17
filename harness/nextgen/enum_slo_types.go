@@ -3,11 +3,11 @@ package nextgen
 type SLOType string
 
 var SLOTypes = struct {
-	Simple        SLOType
-	Composite     SLOType
+	Simple    SLOType
+	Composite SLOType
 }{
-	Simple:       "Simple",
-	Composite:    "Composite",
+	Simple:    "Simple",
+	Composite: "Composite",
 }
 
 var SLOTypesSlice = []string{

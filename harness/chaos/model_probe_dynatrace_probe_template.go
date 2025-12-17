@@ -9,9 +9,9 @@
 package chaos
 
 type ProbeDynatraceProbeTemplate struct {
-	ApiTokenSecretName string `json:"apiTokenSecretName,omitempty"`
-	Comparator *ProbeComparatorTemplate `json:"comparator,omitempty"`
-	Endpoint string `json:"endpoint,omitempty"`
-	Metrics *ProbeDynatraceMetricsTemplate `json:"metrics,omitempty"`
-	TimeFrame string `json:"timeFrame,omitempty"`
+	ApiTokenSecretName string                         `json:"apiTokenSecretName,omitempty"`
+	Comparator         *ProbeComparatorTemplate       `json:"comparator,omitempty"`
+	Endpoint           string                         `json:"endpoint,omitempty"`
+	Metrics            *ProbeDynatraceMetricsTemplate `json:"metrics,omitempty"`
+	TimeFrame          string                         `json:"timeFrame,omitempty"`
 }

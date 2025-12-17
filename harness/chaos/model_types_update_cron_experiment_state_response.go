@@ -9,6 +9,6 @@
 package chaos
 
 type TypesUpdateCronExperimentStateResponse struct {
-	FailedIDs []string `json:"failedIDs,omitempty"`
+	FailedIDs  []string `json:"failedIDs,omitempty"`
 	SuccessIDs []string `json:"successIDs,omitempty"`
 }

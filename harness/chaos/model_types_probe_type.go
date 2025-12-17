@@ -12,12 +12,12 @@ type TypesProbeType string
 
 // List of types.ProbeType
 const (
-	HTTP_PROBE_TypesProbeType TypesProbeType = "httpProbe"
-	CMD_PROBE_TypesProbeType TypesProbeType = "cmdProbe"
-	PROM_PROBE_TypesProbeType TypesProbeType = "promProbe"
-	K8S_PROBE_TypesProbeType TypesProbeType = "k8sProbe"
-	SLO_PROBE_TypesProbeType TypesProbeType = "sloProbe"
-	DATADOG_PROBE_TypesProbeType TypesProbeType = "datadogProbe"
+	HTTP_PROBE_TypesProbeType      TypesProbeType = "httpProbe"
+	CMD_PROBE_TypesProbeType       TypesProbeType = "cmdProbe"
+	PROM_PROBE_TypesProbeType      TypesProbeType = "promProbe"
+	K8S_PROBE_TypesProbeType       TypesProbeType = "k8sProbe"
+	SLO_PROBE_TypesProbeType       TypesProbeType = "sloProbe"
+	DATADOG_PROBE_TypesProbeType   TypesProbeType = "datadogProbe"
 	DYNATRACE_PROBE_TypesProbeType TypesProbeType = "dynatraceProbe"
-	APM_PROBE_TypesProbeType TypesProbeType = "apmProbe"
+	APM_PROBE_TypesProbeType       TypesProbeType = "apmProbe"
 )

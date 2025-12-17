@@ -9,7 +9,7 @@
 package chaos
 
 type ChaosfaulttemplateActionTemplateVariables struct {
-	ActionProperties []TemplateVariable `json:"actionProperties,omitempty"`
+	ActionProperties  []TemplateVariable `json:"actionProperties,omitempty"`
 	ActionRunProperty []TemplateVariable `json:"actionRunProperty,omitempty"`
-	Variables []TemplateVariable `json:"variables,omitempty"`
+	Variables         []TemplateVariable `json:"variables,omitempty"`
 }

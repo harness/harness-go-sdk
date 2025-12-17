@@ -12,6 +12,6 @@ type V1PersistentVolumeMode string
 
 // List of v1.PersistentVolumeMode
 const (
-	BLOCK_V1PersistentVolumeMode V1PersistentVolumeMode = "Block"
+	BLOCK_V1PersistentVolumeMode      V1PersistentVolumeMode = "Block"
 	FILESYSTEM_V1PersistentVolumeMode V1PersistentVolumeMode = "Filesystem"
 )

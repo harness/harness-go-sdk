@@ -11,6 +11,6 @@ package nextgen
 
 // PullRequestGeneratorFilter is a single pull request filter. If multiple filter types are set on a single struct, they will be AND'd together. All filters must pass for a pull request to be included.
 type ApplicationsPullRequestGeneratorFilter struct {
-	BranchMatch string `json:"branchMatch,omitempty"`
+	BranchMatch       string `json:"branchMatch,omitempty"`
 	TargetBranchMatch string `json:"targetBranchMatch,omitempty"`
 }

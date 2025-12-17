@@ -9,6 +9,6 @@
 package svcdiscovery
 
 type ApiUpdateNetworkMapRequest struct {
-	Connections []DatabaseConnection `json:"connections,omitempty"`
-	Resources []DatabaseNetworkMapEntity `json:"resources"`
+	Connections []DatabaseConnection       `json:"connections,omitempty"`
+	Resources   []DatabaseNetworkMapEntity `json:"resources"`
 }

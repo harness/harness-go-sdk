@@ -10,7 +10,7 @@
 package nextgen
 
 type ElkHealthSourceSpec struct {
-	ConnectorRef string `json:"connectorRef"`
-	Feature string `json:"feature"`
-	Queries []ElkHealthSourceQueryDto `json:"queries"`
+	ConnectorRef string                    `json:"connectorRef"`
+	Feature      string                    `json:"feature"`
+	Queries      []ElkHealthSourceQueryDto `json:"queries"`
 }

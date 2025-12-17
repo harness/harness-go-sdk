@@ -9,10 +9,10 @@
 package svcdiscovery
 
 type DatabaseConnectionSpec struct {
-	DestinationIP string `json:"destinationIP"`
-	DestinationPort string `json:"destinationPort"`
-	Kubernetes *DatabaseConnectionKubernetesSpec `json:"kubernetes,omitempty"`
-	NodeName string `json:"nodeName"`
-	SourceIP string `json:"sourceIP"`
-	Type_ string `json:"type"`
+	DestinationIP   string                            `json:"destinationIP"`
+	DestinationPort string                            `json:"destinationPort"`
+	Kubernetes      *DatabaseConnectionKubernetesSpec `json:"kubernetes,omitempty"`
+	NodeName        string                            `json:"nodeName"`
+	SourceIP        string                            `json:"sourceIP"`
+	Type_           string                            `json:"type"`
 }

@@ -9,11 +9,11 @@
 package chaos
 
 type ChaosExperimentRunRuleDetails struct {
-	Conditions []ChaosExperimentRunConditionDetails `json:"conditions,omitempty"`
-	Description string `json:"description,omitempty"`
-	Message string `json:"message,omitempty"`
-	RuleID string `json:"ruleID,omitempty"`
-	RuleName string `json:"ruleName,omitempty"`
-	TimeWindow *SecurityGovernanceTimeWindow `json:"timeWindow,omitempty"`
-	UserGroupIds []string `json:"userGroupIds,omitempty"`
+	Conditions   []ChaosExperimentRunConditionDetails `json:"conditions,omitempty"`
+	Description  string                               `json:"description,omitempty"`
+	Message      string                               `json:"message,omitempty"`
+	RuleID       string                               `json:"ruleID,omitempty"`
+	RuleName     string                               `json:"ruleName,omitempty"`
+	TimeWindow   *SecurityGovernanceTimeWindow        `json:"timeWindow,omitempty"`
+	UserGroupIds []string                             `json:"userGroupIds,omitempty"`
 }

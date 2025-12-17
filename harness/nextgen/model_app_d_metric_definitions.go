@@ -10,14 +10,14 @@
 package nextgen
 
 type AppDMetricDefinitions struct {
-	Identifier string `json:"identifier"`
-	MetricName string `json:"metricName"`
-	RiskProfile *RiskProfile `json:"riskProfile,omitempty"`
-	Analysis *AnalysisDto `json:"analysis,omitempty"`
-	Sli *Slidto `json:"sli,omitempty"`
-	GroupName string `json:"groupName,omitempty"`
-	BaseFolder string `json:"baseFolder,omitempty"`
-	MetricPath string `json:"metricPath,omitempty"`
-	CompleteMetricPath string `json:"completeMetricPath,omitempty"`
-	CompleteServiceInstanceMetricPath string `json:"completeServiceInstanceMetricPath,omitempty"`
+	Identifier                        string       `json:"identifier"`
+	MetricName                        string       `json:"metricName"`
+	RiskProfile                       *RiskProfile `json:"riskProfile,omitempty"`
+	Analysis                          *AnalysisDto `json:"analysis,omitempty"`
+	Sli                               *Slidto      `json:"sli,omitempty"`
+	GroupName                         string       `json:"groupName,omitempty"`
+	BaseFolder                        string       `json:"baseFolder,omitempty"`
+	MetricPath                        string       `json:"metricPath,omitempty"`
+	CompleteMetricPath                string       `json:"completeMetricPath,omitempty"`
+	CompleteServiceInstanceMetricPath string       `json:"completeServiceInstanceMetricPath,omitempty"`
 }

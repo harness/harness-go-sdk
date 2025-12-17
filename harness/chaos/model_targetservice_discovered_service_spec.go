@@ -9,10 +9,10 @@
 package chaos
 
 type TargetserviceDiscoveredServiceSpec struct {
-	Id string `json:"id,omitempty"`
-	Kind string `json:"kind,omitempty"`
-	Label map[string]string `json:"label,omitempty"`
-	Name string `json:"name,omitempty"`
-	Namespace string `json:"namespace,omitempty"`
-	Uuid string `json:"uuid,omitempty"`
+	Id        string            `json:"id,omitempty"`
+	Kind      string            `json:"kind,omitempty"`
+	Label     map[string]string `json:"label,omitempty"`
+	Name      string            `json:"name,omitempty"`
+	Namespace string            `json:"namespace,omitempty"`
+	Uuid      string            `json:"uuid,omitempty"`
 }

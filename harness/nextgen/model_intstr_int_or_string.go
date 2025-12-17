@@ -11,7 +11,7 @@ package nextgen
 
 // +protobuf=true +protobuf.options.(gogoproto.goproto_stringer)=false +k8s:openapi-gen=true
 type IntstrIntOrString struct {
-	Type_ string `json:"type,omitempty"`
-	IntVal int32 `json:"intVal,omitempty"`
+	Type_  string `json:"type,omitempty"`
+	IntVal int32  `json:"intVal,omitempty"`
 	StrVal string `json:"strVal,omitempty"`
 }

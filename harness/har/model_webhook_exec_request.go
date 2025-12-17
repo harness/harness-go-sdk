@@ -10,7 +10,7 @@ package har
 
 // Harness Registries HTTP Webhook Request
 type WebhookExecRequest struct {
-	Body string `json:"body,omitempty"`
+	Body    string `json:"body,omitempty"`
 	Headers string `json:"headers,omitempty"`
-	Url string `json:"url,omitempty"`
+	Url     string `json:"url,omitempty"`
 }

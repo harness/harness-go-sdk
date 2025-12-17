@@ -13,9 +13,9 @@ type OciRepoTypeResponseOciRepoTypeEnum string
 
 // List of OCIRepoTypeResponseOCIRepoTypeEnum
 const (
-	UNSET_OciRepoTypeResponseOciRepoTypeEnum OciRepoTypeResponseOciRepoTypeEnum = "UNSET"
-	AWS_OciRepoTypeResponseOciRepoTypeEnum OciRepoTypeResponseOciRepoTypeEnum = "AWS"
-	GOOGLE_OciRepoTypeResponseOciRepoTypeEnum OciRepoTypeResponseOciRepoTypeEnum = "GOOGLE"
-	GITHUB_OciRepoTypeResponseOciRepoTypeEnum OciRepoTypeResponseOciRepoTypeEnum = "GITHUB"
+	UNSET_OciRepoTypeResponseOciRepoTypeEnum     OciRepoTypeResponseOciRepoTypeEnum = "UNSET"
+	AWS_OciRepoTypeResponseOciRepoTypeEnum       OciRepoTypeResponseOciRepoTypeEnum = "AWS"
+	GOOGLE_OciRepoTypeResponseOciRepoTypeEnum    OciRepoTypeResponseOciRepoTypeEnum = "GOOGLE"
+	GITHUB_OciRepoTypeResponseOciRepoTypeEnum    OciRepoTypeResponseOciRepoTypeEnum = "GITHUB"
 	DOCKERHUB_OciRepoTypeResponseOciRepoTypeEnum OciRepoTypeResponseOciRepoTypeEnum = "DOCKERHUB"
 )

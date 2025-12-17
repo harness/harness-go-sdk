@@ -12,6 +12,6 @@ type SecurityGovernanceOperator string
 
 // List of security_governance.Operator
 const (
-	EQUAL_TO_SecurityGovernanceOperator SecurityGovernanceOperator = "EQUAL_TO"
+	EQUAL_TO_SecurityGovernanceOperator     SecurityGovernanceOperator = "EQUAL_TO"
 	NOT_EQUAL_TO_SecurityGovernanceOperator SecurityGovernanceOperator = "NOT_EQUAL_TO"
 )

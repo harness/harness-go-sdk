@@ -18,6 +18,6 @@ type InlineResponse20011 struct {
 	// The current page
 	PageIndex int64 `json:"pageIndex,omitempty"`
 	// The number of items per page
-	PageSize int32 `json:"pageSize,omitempty"`
-	Status *Status `json:"status"`
+	PageSize int32   `json:"pageSize,omitempty"`
+	Status   *Status `json:"status"`
 }

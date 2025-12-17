@@ -11,6 +11,6 @@ package chaos
 // Needed for API response *not to be stored in DB*
 type AllOfchaosactiontemplateChaosActionTemplateActionProperties struct {
 	CustomScriptAction *ActionCustomScriptActionTemplate `json:"customScriptAction,omitempty"`
-	DelayAction *ActionDelayActionTemplate `json:"delayAction,omitempty"`
-	SourceAction *ActionSourceActionTemplate `json:"sourceAction,omitempty"`
+	DelayAction        *ActionDelayActionTemplate        `json:"delayAction,omitempty"`
+	SourceAction       *ActionSourceActionTemplate       `json:"sourceAction,omitempty"`
 }

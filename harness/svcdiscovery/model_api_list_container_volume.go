@@ -9,6 +9,6 @@
 package svcdiscovery
 
 type ApiListContainerVolume struct {
-	CorrelationID string `json:"correlationID,omitempty"`
-	Items []ApiContainerVolume `json:"items,omitempty"`
+	CorrelationID string               `json:"correlationID,omitempty"`
+	Items         []ApiContainerVolume `json:"items,omitempty"`
 }

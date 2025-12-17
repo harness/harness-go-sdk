@@ -9,6 +9,6 @@
 package chaos
 
 type ChaosfaulttemplateGetActionTemplateResponse struct {
-	CorrelationID string `json:"correlationID,omitempty"`
-	Data *ChaosactiontemplateChaosActionTemplate `json:"data,omitempty"`
+	CorrelationID string                                  `json:"correlationID,omitempty"`
+	Data          *ChaosactiontemplateChaosActionTemplate `json:"data,omitempty"`
 }

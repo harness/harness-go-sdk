@@ -13,6 +13,6 @@ type ModelClusterType string
 // List of model.ClusterType
 const (
 	KUBERNETES_ModelClusterType ModelClusterType = "KUBERNETES"
-	OPENSHIFT_ModelClusterType ModelClusterType = "OPENSHIFT"
-	HELM_ModelClusterType ModelClusterType = "HELM"
+	OPENSHIFT_ModelClusterType  ModelClusterType = "OPENSHIFT"
+	HELM_ModelClusterType       ModelClusterType = "HELM"
 )

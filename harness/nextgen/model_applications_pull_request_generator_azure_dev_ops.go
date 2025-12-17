@@ -18,7 +18,7 @@ type ApplicationsPullRequestGeneratorAzureDevOps struct {
 	// Azure DevOps repo name to scan. Required.
 	Repo string `json:"repo,omitempty"`
 	// The Azure DevOps API URL to talk to. If blank, use https://dev.azure.com/.
-	Api string `json:"api,omitempty"`
+	Api      string                 `json:"api,omitempty"`
 	TokenRef *ApplicationsSecretRef `json:"tokenRef,omitempty"`
-	Labels []string `json:"labels,omitempty"`
+	Labels   []string               `json:"labels,omitempty"`
 }

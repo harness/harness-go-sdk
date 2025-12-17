@@ -10,6 +10,6 @@
 package nextgen
 
 type V1LabelSelector struct {
-	MatchLabels map[string]string `json:"matchLabels,omitempty"`
+	MatchLabels      map[string]string            `json:"matchLabels,omitempty"`
 	MatchExpressions []V1LabelSelectorRequirement `json:"matchExpressions,omitempty"`
 }

@@ -9,6 +9,6 @@
 package chaos
 
 type V2OnboardingAgentData struct {
-	ClusterAgent *V2OnboardingAgentDetails `json:"clusterAgent,omitempty"`
-	NodeAgent []V2OnboardingAgentDetails `json:"nodeAgent,omitempty"`
+	ClusterAgent *V2OnboardingAgentDetails  `json:"clusterAgent,omitempty"`
+	NodeAgent    []V2OnboardingAgentDetails `json:"nodeAgent,omitempty"`
 }

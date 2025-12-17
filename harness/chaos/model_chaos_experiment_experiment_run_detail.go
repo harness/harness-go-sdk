@@ -9,16 +9,16 @@
 package chaos
 
 type ChaosExperimentExperimentRunDetail struct {
-	Completed bool `json:"completed,omitempty"`
-	CreatedAt int32 `json:"createdAt,omitempty"`
-	CreatedBy string `json:"createdBy,omitempty"`
-	ExperimentRunID string `json:"experimentRunID,omitempty"`
+	Completed        bool                       `json:"completed,omitempty"`
+	CreatedAt        int32                      `json:"createdAt,omitempty"`
+	CreatedBy        string                     `json:"createdBy,omitempty"`
+	ExperimentRunID  string                     `json:"experimentRunID,omitempty"`
 	FaultsWithProbes []ChaosExperimentRunFaults `json:"faultsWithProbes,omitempty"`
-	IsRemoved bool `json:"isRemoved"`
-	NotifyID string `json:"notifyID,omitempty"`
-	Phase string `json:"phase,omitempty"`
-	ResiliencyScore float64 `json:"resiliencyScore,omitempty"`
-	RunSequence int32 `json:"runSequence,omitempty"`
-	UpdatedAt int32 `json:"updatedAt,omitempty"`
-	UpdatedBy string `json:"updatedBy,omitempty"`
+	IsRemoved        bool                       `json:"isRemoved"`
+	NotifyID         string                     `json:"notifyID,omitempty"`
+	Phase            string                     `json:"phase,omitempty"`
+	ResiliencyScore  float64                    `json:"resiliencyScore,omitempty"`
+	RunSequence      int32                      `json:"runSequence,omitempty"`
+	UpdatedAt        int32                      `json:"updatedAt,omitempty"`
+	UpdatedBy        string                     `json:"updatedBy,omitempty"`
 }

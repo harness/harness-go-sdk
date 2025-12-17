@@ -10,11 +10,11 @@
 package nextgen
 
 type DynatraceHealthSourceSpec struct {
-	ConnectorRef string `json:"connectorRef"`
-	MetricPacks []TimeSeriesMetricPackDto `json:"metricPacks,omitempty"`
-	Feature string `json:"feature"`
-	ServiceId string `json:"serviceId"`
-	ServiceName string `json:"serviceName,omitempty"`
-	ServiceMethodIds []string `json:"serviceMethodIds,omitempty"`
+	ConnectorRef      string                      `json:"connectorRef"`
+	MetricPacks       []TimeSeriesMetricPackDto   `json:"metricPacks,omitempty"`
+	Feature           string                      `json:"feature"`
+	ServiceId         string                      `json:"serviceId"`
+	ServiceName       string                      `json:"serviceName,omitempty"`
+	ServiceMethodIds  []string                    `json:"serviceMethodIds,omitempty"`
 	MetricDefinitions []DynatraceMetricDefinition `json:"metricDefinitions,omitempty"`
 }

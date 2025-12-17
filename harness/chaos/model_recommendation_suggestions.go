@@ -9,12 +9,12 @@
 package chaos
 
 type RecommendationSuggestions struct {
-	Count int32 `json:"count,omitempty"`
-	Error_ string `json:"error,omitempty"`
-	Fixes []RecommendationFixes `json:"fixes,omitempty"`
-	IgnoreCounter int32 `json:"ignoreCounter,omitempty"`
-	Reason string `json:"reason,omitempty"`
-	RecommendationType *RecommendationRecommendationType `json:"recommendationType,omitempty"`
-	Status *RecommendationRecommendationStatus `json:"status,omitempty"`
-	UpdatedAt int32 `json:"updatedAt,omitempty"`
+	Count              int32                               `json:"count,omitempty"`
+	Error_             string                              `json:"error,omitempty"`
+	Fixes              []RecommendationFixes               `json:"fixes,omitempty"`
+	IgnoreCounter      int32                               `json:"ignoreCounter,omitempty"`
+	Reason             string                              `json:"reason,omitempty"`
+	RecommendationType *RecommendationRecommendationType   `json:"recommendationType,omitempty"`
+	Status             *RecommendationRecommendationStatus `json:"status,omitempty"`
+	UpdatedAt          int32                               `json:"updatedAt,omitempty"`
 }

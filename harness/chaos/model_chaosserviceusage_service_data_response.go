@@ -9,7 +9,7 @@
 package chaos
 
 type ChaosserviceusageServiceDataResponse struct {
-	ServiceData []ChaosserviceusageServiceData `json:"serviceData,omitempty"`
-	ServiceTypes []string `json:"serviceTypes,omitempty"`
-	Total int32 `json:"total,omitempty"`
+	ServiceData  []ChaosserviceusageServiceData `json:"serviceData,omitempty"`
+	ServiceTypes []string                       `json:"serviceTypes,omitempty"`
+	Total        int32                          `json:"total,omitempty"`
 }

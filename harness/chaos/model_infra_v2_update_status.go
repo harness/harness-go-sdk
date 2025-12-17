@@ -12,7 +12,7 @@ type InfraV2UpdateStatus string
 
 // List of infra_v2.UpdateStatus
 const (
-	AVAILABLE_InfraV2UpdateStatus InfraV2UpdateStatus = "AVAILABLE"
-	MANDATORY_InfraV2UpdateStatus InfraV2UpdateStatus = "MANDATORY"
+	AVAILABLE_InfraV2UpdateStatus    InfraV2UpdateStatus = "AVAILABLE"
+	MANDATORY_InfraV2UpdateStatus    InfraV2UpdateStatus = "MANDATORY"
 	NOT_REQUIRED_InfraV2UpdateStatus InfraV2UpdateStatus = "NOT_REQUIRED"
 )

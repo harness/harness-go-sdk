@@ -9,8 +9,8 @@
 package chaos
 
 type InfraV2ProxyConfiguration struct {
-	HttpProxy string `json:"httpProxy,omitempty"`
+	HttpProxy  string `json:"httpProxy,omitempty"`
 	HttpsProxy string `json:"httpsProxy,omitempty"`
-	NoProxy string `json:"noProxy,omitempty"`
-	Url string `json:"url,omitempty"`
+	NoProxy    string `json:"noProxy,omitempty"`
+	Url        string `json:"url,omitempty"`
 }

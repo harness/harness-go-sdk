@@ -10,13 +10,13 @@
 package nextgen
 
 type CustomHealthMetricDefinition struct {
-	Identifier string `json:"identifier"`
-	MetricName string `json:"metricName"`
-	RiskProfile *RiskProfile `json:"riskProfile,omitempty"`
-	Analysis *AnalysisDto `json:"analysis,omitempty"`
-	Sli *Slidto `json:"sli,omitempty"`
-	RequestDefinition *CustomHealthRequestDefinition `json:"requestDefinition,omitempty"`
-	QueryType string `json:"queryType,omitempty"`
-	MetricResponseMapping *MetricResponseMapping `json:"metricResponseMapping,omitempty"`
-	GroupName string `json:"groupName,omitempty"`
+	Identifier            string                         `json:"identifier"`
+	MetricName            string                         `json:"metricName"`
+	RiskProfile           *RiskProfile                   `json:"riskProfile,omitempty"`
+	Analysis              *AnalysisDto                   `json:"analysis,omitempty"`
+	Sli                   *Slidto                        `json:"sli,omitempty"`
+	RequestDefinition     *CustomHealthRequestDefinition `json:"requestDefinition,omitempty"`
+	QueryType             string                         `json:"queryType,omitempty"`
+	MetricResponseMapping *MetricResponseMapping         `json:"metricResponseMapping,omitempty"`
+	GroupName             string                         `json:"groupName,omitempty"`
 }

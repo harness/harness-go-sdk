@@ -10,8 +10,8 @@
 package nextgen
 
 type RepositoriesRepoAppsQuery struct {
-	Repo string `json:"repo,omitempty"`
-	Revision string `json:"revision,omitempty"`
-	AppName string `json:"appName,omitempty"`
+	Repo       string `json:"repo,omitempty"`
+	Revision   string `json:"revision,omitempty"`
+	AppName    string `json:"appName,omitempty"`
 	AppProject string `json:"appProject,omitempty"`
 }

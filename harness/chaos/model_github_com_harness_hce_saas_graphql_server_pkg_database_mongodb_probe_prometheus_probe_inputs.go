@@ -9,7 +9,7 @@
 package chaos
 
 type GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbePrometheusProbeInputs struct {
-	ConnectorID string `json:"connectorID,omitempty"`
-	Query string `json:"query,omitempty"`
-	TlsConfig *ProbeApmtlsConfig `json:"tlsConfig,omitempty"`
+	ConnectorID string             `json:"connectorID,omitempty"`
+	Query       string             `json:"query,omitempty"`
+	TlsConfig   *ProbeApmtlsConfig `json:"tlsConfig,omitempty"`
 }

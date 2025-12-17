@@ -10,7 +10,7 @@
 package nextgen
 
 type ThresholdSliMetricSpec struct {
-	Metric1 string `json:"metric1"`
+	Metric1        string  `json:"metric1"`
 	ThresholdValue float64 `json:"thresholdValue"`
-	ThresholdType string `json:"thresholdType"`
+	ThresholdType  string  `json:"thresholdType"`
 }

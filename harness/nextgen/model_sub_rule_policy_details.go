@@ -11,7 +11,7 @@ package nextgen
 
 // This object stores policy details for a multi policy rule.
 type SubRulePolicyDetails struct {
-	Name string `json:"name,omitempty"`
-	Yaml string `json:"yaml,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Yaml         string `json:"yaml,omitempty"`
 	ResourceType string `json:"resourceType,omitempty"`
 }

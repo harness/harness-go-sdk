@@ -12,8 +12,8 @@ type TypesStakeHolderRole string
 
 // List of types.StakeHolderRole
 const (
-	COORDINATOR_TypesStakeHolderRole TypesStakeHolderRole = "coordinator"
+	COORDINATOR_TypesStakeHolderRole     TypesStakeHolderRole = "coordinator"
 	TRIAGE_ENGINEER_TypesStakeHolderRole TypesStakeHolderRole = "triage_engineer"
-	ATTENDEE_TypesStakeHolderRole TypesStakeHolderRole = "attendee"
-	OTHERS_TypesStakeHolderRole TypesStakeHolderRole = "others"
+	ATTENDEE_TypesStakeHolderRole        TypesStakeHolderRole = "attendee"
+	OTHERS_TypesStakeHolderRole          TypesStakeHolderRole = "others"
 )

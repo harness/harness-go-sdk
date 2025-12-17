@@ -9,7 +9,7 @@
 package chaos
 
 type CommonTypesExperimentRunsData struct {
-	ExperimentRunStats []CommonTypesExperimentRunStats `json:"experimentRunStats,omitempty"`
-	TotalExperimentChange int32 `json:"totalExperimentChange,omitempty"`
-	TotalExperimentRuns int32 `json:"totalExperimentRuns,omitempty"`
+	ExperimentRunStats    []CommonTypesExperimentRunStats `json:"experimentRunStats,omitempty"`
+	TotalExperimentChange int32                           `json:"totalExperimentChange,omitempty"`
+	TotalExperimentRuns   int32                           `json:"totalExperimentRuns,omitempty"`
 }

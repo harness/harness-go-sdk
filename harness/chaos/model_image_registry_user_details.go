@@ -9,7 +9,7 @@
 package chaos
 
 type ImageRegistryUserDetails struct {
-	Email string `json:"email,omitempty"`
-	UserID string `json:"userID,omitempty"`
+	Email    string `json:"email,omitempty"`
+	UserID   string `json:"userID,omitempty"`
 	Username string `json:"username,omitempty"`
 }

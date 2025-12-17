@@ -9,8 +9,8 @@
 package chaos
 
 type ProbeDatadogProbeTemplate struct {
-	DatadogCredentialsSecretName string `json:"datadogCredentialsSecretName,omitempty"`
-	DatadogSite string `json:"datadogSite,omitempty"`
-	Metrics *ProbeDatadogMetricsTemplate `json:"metrics,omitempty"`
-	SyntheticsTest *ProbeSyntheticsTestTemplate `json:"syntheticsTest,omitempty"`
+	DatadogCredentialsSecretName string                       `json:"datadogCredentialsSecretName,omitempty"`
+	DatadogSite                  string                       `json:"datadogSite,omitempty"`
+	Metrics                      *ProbeDatadogMetricsTemplate `json:"metrics,omitempty"`
+	SyntheticsTest               *ProbeSyntheticsTestTemplate `json:"syntheticsTest,omitempty"`
 }

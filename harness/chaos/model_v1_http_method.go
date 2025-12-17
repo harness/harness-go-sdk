@@ -9,6 +9,6 @@
 package chaos
 
 type V1HttpMethod struct {
-	Get *V1GetMethod `json:"get,omitempty"`
+	Get  *V1GetMethod  `json:"get,omitempty"`
 	Post *V1PostMethod `json:"post,omitempty"`
 }

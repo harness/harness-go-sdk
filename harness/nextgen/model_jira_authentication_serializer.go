@@ -24,7 +24,7 @@ func (a *JiraAuthentication) UnmarshalJSON(data []byte) error {
 	case JiraAuthTypes.UsernamePassword:
 		err = json.Unmarshal(aux.Spec, &a.UsernamePassword)
 	case JiraAuthTypes.PersonalAccessToken:
-		err = json.Unmarshal(aux.Spec, &a.PersonalAccessToken)		
+		err = json.Unmarshal(aux.Spec, &a.PersonalAccessToken)
 	default:
 		panic(fmt.Sprintf("unknown jira auth method type %s", a.Type_))
 	}
@@ -42,7 +42,7 @@ func (a *JiraAuthentication) MarshalJSON() ([]byte, error) {
 	case JiraAuthTypes.UsernamePassword:
 		spec, err = json.Marshal(a.UsernamePassword)
 	case JiraAuthTypes.PersonalAccessToken:
-		spec, err = json.Marshal(a.PersonalAccessToken)		
+		spec, err = json.Marshal(a.PersonalAccessToken)
 	default:
 		panic(fmt.Sprintf("unknown jira auth method type %s", a.Type_))
 	}

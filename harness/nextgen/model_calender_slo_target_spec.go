@@ -17,5 +17,5 @@ type CalenderSloTargetSpec struct {
 	Monthly   *MonthlyCalenderSpec   `json:"-"`
 	Quarterly *QuarterlyCalenderSpec `json:"-"`
 
-	Spec      json.RawMessage        `json:"spec"`
+	Spec json.RawMessage `json:"spec"`
 }

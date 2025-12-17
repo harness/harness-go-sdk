@@ -9,7 +9,7 @@
 package chaos
 
 type InputsetsListInputSetResponse struct {
-	CorrelationID string `json:"correlationID,omitempty"`
-	Data []InputsetInputSet `json:"data,omitempty"`
-	Pagination *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
+	CorrelationID string                                             `json:"correlationID,omitempty"`
+	Data          []InputsetInputSet                                 `json:"data,omitempty"`
+	Pagination    *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
 }

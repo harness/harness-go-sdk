@@ -9,9 +9,9 @@
 package chaos
 
 type ExecutionProbeData struct {
-	Description string `json:"description,omitempty"`
-	Iterations []ExecutionProbeIterations `json:"iterations,omitempty"`
-	Name string `json:"name,omitempty"`
-	ProbeType string `json:"probeType,omitempty"`
-	Weightage int32 `json:"weightage,omitempty"`
+	Description string                     `json:"description,omitempty"`
+	Iterations  []ExecutionProbeIterations `json:"iterations,omitempty"`
+	Name        string                     `json:"name,omitempty"`
+	ProbeType   string                     `json:"probeType,omitempty"`
+	Weightage   int32                      `json:"weightage,omitempty"`
 }

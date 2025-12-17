@@ -10,7 +10,7 @@
 package nextgen
 
 type SplunkHealthSourceSpec struct {
-	ConnectorRef string `json:"connectorRef"`
-	Feature string `json:"feature"`
-	Queries []SplunkHealthSourceQueryDto `json:"queries"`
+	ConnectorRef string                       `json:"connectorRef"`
+	Feature      string                       `json:"feature"`
+	Queries      []SplunkHealthSourceQueryDto `json:"queries"`
 }

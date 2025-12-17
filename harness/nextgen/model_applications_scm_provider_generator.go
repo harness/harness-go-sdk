@@ -11,19 +11,19 @@ package nextgen
 
 // SCMProviderGenerator defines a generator that scrapes a SCMaaS API to find candidate repos.
 type ApplicationsScmProviderGenerator struct {
-	Github *ApplicationsScmProviderGeneratorGithub `json:"github,omitempty"`
-	Gitlab *ApplicationsScmProviderGeneratorGitlab `json:"gitlab,omitempty"`
-	Bitbucket *ApplicationsScmProviderGeneratorBitbucket `json:"bitbucket,omitempty"`
+	Github          *ApplicationsScmProviderGeneratorGithub          `json:"github,omitempty"`
+	Gitlab          *ApplicationsScmProviderGeneratorGitlab          `json:"gitlab,omitempty"`
+	Bitbucket       *ApplicationsScmProviderGeneratorBitbucket       `json:"bitbucket,omitempty"`
 	BitbucketServer *ApplicationsScmProviderGeneratorBitbucketServer `json:"bitbucketServer,omitempty"`
-	Gitea *ApplicationsScmProviderGeneratorGitea `json:"gitea,omitempty"`
-	AzureDevOps *ApplicationsScmProviderGeneratorAzureDevOps `json:"azureDevOps,omitempty"`
+	Gitea           *ApplicationsScmProviderGeneratorGitea           `json:"gitea,omitempty"`
+	AzureDevOps     *ApplicationsScmProviderGeneratorAzureDevOps     `json:"azureDevOps,omitempty"`
 	// Filters for which repos should be considered.
 	Filters []ApplicationsScmProviderGeneratorFilter `json:"filters,omitempty"`
 	// Which protocol to use for the SCM URL. Default is provider-specific but ssh if possible. Not all providers necessarily support all protocols.
 	CloneProtocol string `json:"cloneProtocol,omitempty"`
 	// Standard parameters.
-	RequeueAfterSeconds string `json:"requeueAfterSeconds,omitempty"`
-	Template *ApplicationsApplicationSetTemplate `json:"template,omitempty"`
-	Values map[string]string `json:"values,omitempty"`
-	AwsCodeCommit *ApplicationsScmProviderGeneratorAwsCodeCommit `json:"awsCodeCommit,omitempty"`
+	RequeueAfterSeconds string                                         `json:"requeueAfterSeconds,omitempty"`
+	Template            *ApplicationsApplicationSetTemplate            `json:"template,omitempty"`
+	Values              map[string]string                              `json:"values,omitempty"`
+	AwsCodeCommit       *ApplicationsScmProviderGeneratorAwsCodeCommit `json:"awsCodeCommit,omitempty"`
 }

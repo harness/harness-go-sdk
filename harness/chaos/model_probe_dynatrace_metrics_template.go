@@ -9,6 +9,6 @@
 package chaos
 
 type ProbeDynatraceMetricsTemplate struct {
-	EntitySelector string `json:"entitySelector,omitempty"`
+	EntitySelector  string `json:"entitySelector,omitempty"`
 	MetricsSelector string `json:"metricsSelector,omitempty"`
 }

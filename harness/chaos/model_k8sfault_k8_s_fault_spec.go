@@ -9,6 +9,6 @@
 package chaos
 
 type K8sfaultK8SFaultSpec struct {
-	Chaos *K8sfaultChaosSpec `json:"chaos,omitempty"`
-	Target *K8sfaultTarget `json:"target,omitempty"`
+	Chaos  *K8sfaultChaosSpec `json:"chaos,omitempty"`
+	Target *K8sfaultTarget    `json:"target,omitempty"`
 }

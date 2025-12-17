@@ -9,6 +9,6 @@
 package chaos
 
 type V2OnboardingAgentDetails struct {
-	Name string `json:"name,omitempty"`
+	Name   string      `json:"name,omitempty"`
 	Status *V1PodPhase `json:"status,omitempty"`
 }

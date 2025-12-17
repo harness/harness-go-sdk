@@ -9,8 +9,8 @@
 package chaos
 
 type ExperimentHostFile struct {
-	MountPath string `json:"mountPath,omitempty"`
-	Name string `json:"name,omitempty"`
-	NodePath string `json:"nodePath,omitempty"`
-	Type_ *V1HostPathType `json:"type,omitempty"`
+	MountPath string          `json:"mountPath,omitempty"`
+	Name      string          `json:"name,omitempty"`
+	NodePath  string          `json:"nodePath,omitempty"`
+	Type_     *V1HostPathType `json:"type,omitempty"`
 }

@@ -9,9 +9,9 @@
 package chaos
 
 type TypesNote struct {
-	Comment string `json:"comment,omitempty"`
-	CreatedAt int32 `json:"createdAt,omitempty"`
-	NoteId string `json:"noteId,omitempty"`
-	UpdatedAt int32 `json:"updatedAt,omitempty"`
-	User *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"user,omitempty"`
+	Comment   string                                                     `json:"comment,omitempty"`
+	CreatedAt int32                                                      `json:"createdAt,omitempty"`
+	NoteId    string                                                     `json:"noteId,omitempty"`
+	UpdatedAt int32                                                      `json:"updatedAt,omitempty"`
+	User      *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"user,omitempty"`
 }

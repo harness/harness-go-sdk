@@ -9,6 +9,6 @@
 package chaos
 
 type ProbeSloSourceMetadataTemplate struct {
-	ApiTokenSecret string `json:"apiTokenSecret,omitempty"`
-	Scope *GithubComHarnessHceSaasHceSdkTemplateSchemaProbeIdentifier `json:"scope,omitempty"`
+	ApiTokenSecret string                                                      `json:"apiTokenSecret,omitempty"`
+	Scope          *GithubComHarnessHceSaasHceSdkTemplateSchemaProbeIdentifier `json:"scope,omitempty"`
 }

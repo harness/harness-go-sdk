@@ -9,7 +9,7 @@
 package svcdiscovery
 
 type IntstrIntOrString struct {
-	IntVal int32 `json:"intVal,omitempty"`
+	IntVal int32  `json:"intVal,omitempty"`
 	StrVal string `json:"strVal,omitempty"`
-	Type_ int32 `json:"type,omitempty"`
+	Type_  int32  `json:"type,omitempty"`
 }

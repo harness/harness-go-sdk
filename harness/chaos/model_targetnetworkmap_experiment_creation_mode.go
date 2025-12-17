@@ -12,7 +12,7 @@ type TargetnetworkmapExperimentCreationMode string
 
 // List of targetnetworkmap.ExperimentCreationMode
 const (
-	BASIC_TargetnetworkmapExperimentCreationMode TargetnetworkmapExperimentCreationMode = "Basic"
+	BASIC_TargetnetworkmapExperimentCreationMode        TargetnetworkmapExperimentCreationMode = "Basic"
 	INTERMEDIATE_TargetnetworkmapExperimentCreationMode TargetnetworkmapExperimentCreationMode = "Intermediate"
-	ADVANCED_TargetnetworkmapExperimentCreationMode TargetnetworkmapExperimentCreationMode = "Advanced"
+	ADVANCED_TargetnetworkmapExperimentCreationMode     TargetnetworkmapExperimentCreationMode = "Advanced"
 )

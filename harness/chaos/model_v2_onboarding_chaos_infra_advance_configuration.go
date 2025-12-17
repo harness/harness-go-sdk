@@ -9,12 +9,12 @@
 package chaos
 
 type V2OnboardingChaosInfraAdvanceConfiguration struct {
-	ImagePullPolicy *V1PullPolicy `json:"imagePullPolicy,omitempty"`
-	InsecureSkipVerify bool `json:"insecureSkipVerify,omitempty"`
-	Mtls *InfraV2MtlsConfiguration `json:"mtls,omitempty"`
-	NodeSelector map[string]string `json:"nodeSelector,omitempty"`
-	Proxy *InfraV2ProxyConfiguration `json:"proxy,omitempty"`
-	RunAsGroup int32 `json:"runAsGroup,omitempty"`
-	RunAsUser int32 `json:"runAsUser,omitempty"`
-	Tolerations []V1Toleration `json:"tolerations,omitempty"`
+	ImagePullPolicy    *V1PullPolicy              `json:"imagePullPolicy,omitempty"`
+	InsecureSkipVerify bool                       `json:"insecureSkipVerify,omitempty"`
+	Mtls               *InfraV2MtlsConfiguration  `json:"mtls,omitempty"`
+	NodeSelector       map[string]string          `json:"nodeSelector,omitempty"`
+	Proxy              *InfraV2ProxyConfiguration `json:"proxy,omitempty"`
+	RunAsGroup         int32                      `json:"runAsGroup,omitempty"`
+	RunAsUser          int32                      `json:"runAsUser,omitempty"`
+	Tolerations        []V1Toleration             `json:"tolerations,omitempty"`
 }

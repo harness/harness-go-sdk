@@ -15,5 +15,5 @@ const (
 	STRING__TemplateVariableType TemplateVariableType = "String"
 	INTEGER_TemplateVariableType TemplateVariableType = "Integer"
 	BOOLEAN_TemplateVariableType TemplateVariableType = "Boolean"
-	NUMBER_TemplateVariableType TemplateVariableType = "Number"
+	NUMBER_TemplateVariableType  TemplateVariableType = "Number"
 )

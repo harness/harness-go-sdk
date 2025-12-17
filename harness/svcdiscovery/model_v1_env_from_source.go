@@ -11,6 +11,6 @@ package svcdiscovery
 type V1EnvFromSource struct {
 	ConfigMapRef *V1ConfigMapEnvSource `json:"configMapRef,omitempty"`
 	// An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER. +optional
-	Prefix string `json:"prefix,omitempty"`
+	Prefix    string             `json:"prefix,omitempty"`
 	SecretRef *V1SecretEnvSource `json:"secretRef,omitempty"`
 }

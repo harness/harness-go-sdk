@@ -10,9 +10,9 @@ package svcdiscovery
 
 type V1PersistentVolumeClaimStatus struct {
 	// accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1 +optional
-	AccessModes []string `json:"accessModes,omitempty"`
+	AccessModes        []string                     `json:"accessModes,omitempty"`
 	AllocatedResources *map[string]ResourceQuantity `json:"allocatedResources,omitempty"`
-	Capacity *map[string]ResourceQuantity `json:"capacity,omitempty"`
+	Capacity           *map[string]ResourceQuantity `json:"capacity,omitempty"`
 	// conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. +optional +patchMergeKey=type +patchStrategy=merge
 	Conditions []V1PersistentVolumeClaimCondition `json:"conditions,omitempty"`
 	// phase represents the current phase of PersistentVolumeClaim. +optional

@@ -9,6 +9,6 @@
 package chaos
 
 type K8sfaultChaosParameter struct {
-	Name string `json:"name,omitempty"`
+	Name  string `json:"name,omitempty"`
 	Value string `json:"value,omitempty"`
 }

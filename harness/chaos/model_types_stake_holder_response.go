@@ -9,7 +9,7 @@
 package chaos
 
 type TypesStakeHolderResponse struct {
-	ApprovalRequired bool `json:"approvalRequired,omitempty"`
-	Role *TypesStakeHolderRole `json:"role,omitempty"`
-	User *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"user,omitempty"`
+	ApprovalRequired bool                                                       `json:"approvalRequired,omitempty"`
+	Role             *TypesStakeHolderRole                                      `json:"role,omitempty"`
+	User             *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"user,omitempty"`
 }

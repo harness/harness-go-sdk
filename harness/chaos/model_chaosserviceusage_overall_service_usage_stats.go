@@ -9,8 +9,8 @@
 package chaos
 
 type ChaosserviceusageOverallServiceUsageStats struct {
-	AccountID string `json:"accountID,omitempty"`
+	AccountID             string                               `json:"accountID,omitempty"`
 	LicenseServiceMapping *ChaosserviceusageServiceStatsByType `json:"licenseServiceMapping,omitempty"`
-	ServiceStats *ChaosserviceusageServiceStatsByType `json:"serviceStats,omitempty"`
-	TotalUsage float64 `json:"totalUsage,omitempty"`
+	ServiceStats          *ChaosserviceusageServiceStatsByType `json:"serviceStats,omitempty"`
+	TotalUsage            float64                              `json:"totalUsage,omitempty"`
 }

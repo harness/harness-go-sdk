@@ -12,8 +12,8 @@ type TypesScenarioType string
 
 // List of types.ScenarioType
 const (
-	CRON_TypesScenarioType TypesScenarioType = "CRON"
+	CRON_TypesScenarioType     TypesScenarioType = "CRON"
 	NON_CRON_TypesScenarioType TypesScenarioType = "NON_CRON"
-	GAMEDAY_TypesScenarioType TypesScenarioType = "GAMEDAY"
-	ALL_TypesScenarioType TypesScenarioType = "ALL"
+	GAMEDAY_TypesScenarioType  TypesScenarioType = "GAMEDAY"
+	ALL_TypesScenarioType      TypesScenarioType = "ALL"
 )

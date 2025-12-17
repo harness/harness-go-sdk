@@ -9,11 +9,11 @@
 package chaos
 
 type ProbeSloProbeTemplate struct {
-	Comparator *ProbeComparatorTemplate `json:"comparator,omitempty"`
-	EvaluationTimeout string `json:"evaluationTimeout,omitempty"`
-	EvaluationWindow *ProbeEvaluationWindowTemplate `json:"evaluationWindow,omitempty"`
-	InsecureSkipVerify bool `json:"insecureSkipVerify,omitempty"`
-	PlatformEndpoint string `json:"platformEndpoint,omitempty"`
-	SloIdentifier string `json:"sloIdentifier,omitempty"`
-	SloSourceMetadata *ProbeSloSourceMetadataTemplate `json:"sloSourceMetadata,omitempty"`
+	Comparator         *ProbeComparatorTemplate        `json:"comparator,omitempty"`
+	EvaluationTimeout  string                          `json:"evaluationTimeout,omitempty"`
+	EvaluationWindow   *ProbeEvaluationWindowTemplate  `json:"evaluationWindow,omitempty"`
+	InsecureSkipVerify bool                            `json:"insecureSkipVerify,omitempty"`
+	PlatformEndpoint   string                          `json:"platformEndpoint,omitempty"`
+	SloIdentifier      string                          `json:"sloIdentifier,omitempty"`
+	SloSourceMetadata  *ProbeSloSourceMetadataTemplate `json:"sloSourceMetadata,omitempty"`
 }

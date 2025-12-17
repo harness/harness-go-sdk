@@ -9,6 +9,6 @@
 package chaos
 
 type ChaosserviceusageUsageStats struct {
-	AccountID string `json:"accountID,omitempty"`
+	AccountID     string                           `json:"accountID,omitempty"`
 	PeriodicStats []ChaosserviceusagePeriodicStats `json:"periodicStats,omitempty"`
 }

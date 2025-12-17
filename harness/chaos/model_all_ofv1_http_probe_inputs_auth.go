@@ -10,7 +10,7 @@ package chaos
 
 // Auth contains the authentication details for the http probe
 type AllOfv1HttpProbeInputsAuth struct {
-	Credentials string `json:"credentials,omitempty"`
+	Credentials     string `json:"credentials,omitempty"`
 	CredentialsFile string `json:"credentialsFile,omitempty"`
-	Type_ string `json:"type,omitempty"`
+	Type_           string `json:"type,omitempty"`
 }

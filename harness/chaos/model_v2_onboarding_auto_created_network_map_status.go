@@ -9,6 +9,6 @@
 package chaos
 
 type V2OnboardingAutoCreatedNetworkMapStatus struct {
-	Status *V2OnboardingV2OnboardingStatus `json:"status,omitempty"`
-	TotalNetworkMaps int32 `json:"totalNetworkMaps,omitempty"`
+	Status           *V2OnboardingV2OnboardingStatus `json:"status,omitempty"`
+	TotalNetworkMaps int32                           `json:"totalNetworkMaps,omitempty"`
 }

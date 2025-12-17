@@ -12,7 +12,7 @@ type V1Protocol string
 
 // List of v1.Protocol
 const (
-	TCP_V1Protocol V1Protocol = "TCP"
-	UDP_V1Protocol V1Protocol = "UDP"
+	TCP_V1Protocol  V1Protocol = "TCP"
+	UDP_V1Protocol  V1Protocol = "UDP"
 	SCTP_V1Protocol V1Protocol = "SCTP"
 )

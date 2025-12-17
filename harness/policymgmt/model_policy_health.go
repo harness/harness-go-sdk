@@ -11,7 +11,7 @@ package policymgmt
 // Policy health metrics
 type PolicyHealth struct {
 	// Total number of evaluations that have occurred
-	TotalEvaluationCount int64 `json:"total_evaluation_count"`
+	TotalEvaluationCount       int64             `json:"total_evaluation_count"`
 	TotalEvaluationEntityCount *EvaluationCounts `json:"total_evaluation_entity_count"`
 	// Total number of policies stored
 	TotalPolicyCount int64 `json:"total_policy_count"`

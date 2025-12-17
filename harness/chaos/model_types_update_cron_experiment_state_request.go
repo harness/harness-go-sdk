@@ -9,8 +9,8 @@
 package chaos
 
 type TypesUpdateCronExperimentStateRequest struct {
-	Action *TypesUpdateCronExperimentAction `json:"action,omitempty"`
-	CronSyntax string `json:"cronSyntax,omitempty"`
-	ExperimentIDs []string `json:"experimentIDs,omitempty"`
-	IsSingleRunCronEnabled bool `json:"isSingleRunCronEnabled,omitempty"`
+	Action                 *TypesUpdateCronExperimentAction `json:"action,omitempty"`
+	CronSyntax             string                           `json:"cronSyntax,omitempty"`
+	ExperimentIDs          []string                         `json:"experimentIDs,omitempty"`
+	IsSingleRunCronEnabled bool                             `json:"isSingleRunCronEnabled,omitempty"`
 }

@@ -10,13 +10,13 @@ package svcdiscovery
 
 type V1PodSpec struct {
 	// Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer. +optional
-	ActiveDeadlineSeconds int32 `json:"activeDeadlineSeconds,omitempty"`
-	Affinity *V1Affinity `json:"affinity,omitempty"`
+	ActiveDeadlineSeconds int32       `json:"activeDeadlineSeconds,omitempty"`
+	Affinity              *V1Affinity `json:"affinity,omitempty"`
 	// AutomountServiceAccountToken indicates whether a service account token should be automatically mounted. +optional
 	AutomountServiceAccountToken bool `json:"automountServiceAccountToken,omitempty"`
 	// List of containers belonging to the pod. Containers cannot currently be added or removed. There must be at least one container in a Pod. Cannot be updated. +patchMergeKey=name +patchStrategy=merge
-	Containers []V1Container `json:"containers,omitempty"`
-	DnsConfig *V1PodDnsConfig `json:"dnsConfig,omitempty"`
+	Containers []V1Container   `json:"containers,omitempty"`
+	DnsConfig  *V1PodDnsConfig `json:"dnsConfig,omitempty"`
 	// Set DNS policy for the pod. Defaults to \"ClusterFirst\". Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'. +optional
 	DnsPolicy string `json:"dnsPolicy,omitempty"`
 	// EnableServiceLinks indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Optional: Defaults to true. +optional
@@ -42,9 +42,9 @@ type V1PodSpec struct {
 	// NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements. +optional
 	NodeName string `json:"nodeName,omitempty"`
 	// NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/ +optional +mapType=atomic
-	NodeSelector map[string]string `json:"nodeSelector,omitempty"`
-	Os *V1PodOs `json:"os,omitempty"`
-	Overhead *map[string]ResourceQuantity `json:"overhead,omitempty"`
+	NodeSelector map[string]string            `json:"nodeSelector,omitempty"`
+	Os           *V1PodOs                     `json:"os,omitempty"`
+	Overhead     *map[string]ResourceQuantity `json:"overhead,omitempty"`
 	// PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. +optional
 	PreemptionPolicy string `json:"preemptionPolicy,omitempty"`
 	// The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority. +optional
@@ -58,7 +58,7 @@ type V1PodSpec struct {
 	// RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the \"legacy\" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class +optional
 	RuntimeClassName string `json:"runtimeClassName,omitempty"`
 	// If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler. +optional
-	SchedulerName string `json:"schedulerName,omitempty"`
+	SchedulerName   string                `json:"schedulerName,omitempty"`
 	SecurityContext *V1PodSecurityContext `json:"securityContext,omitempty"`
 	// DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead. +k8s:conversion-gen=false +optional
 	ServiceAccount string `json:"serviceAccount,omitempty"`

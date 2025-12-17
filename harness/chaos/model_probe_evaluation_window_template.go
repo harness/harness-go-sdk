@@ -9,6 +9,6 @@
 package chaos
 
 type ProbeEvaluationWindowTemplate struct {
-	EvaluationEndTime *interface{} `json:"evaluationEndTime,omitempty"`
+	EvaluationEndTime   *interface{} `json:"evaluationEndTime,omitempty"`
 	EvaluationStartTime *interface{} `json:"evaluationStartTime,omitempty"`
 }

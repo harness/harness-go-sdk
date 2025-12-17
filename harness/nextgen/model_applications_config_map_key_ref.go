@@ -12,5 +12,5 @@ package nextgen
 // Utility struct for a reference to a configmap key.
 type ApplicationsConfigMapKeyRef struct {
 	ConfigMapName string `json:"configMapName,omitempty"`
-	Key string `json:"key,omitempty"`
+	Key           string `json:"key,omitempty"`
 }

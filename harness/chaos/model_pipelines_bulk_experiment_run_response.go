@@ -10,5 +10,5 @@ package chaos
 
 type PipelinesBulkExperimentRunResponse struct {
 	CreatePipelineResponse *PipelinesCreatePipelineResponse `json:"createPipelineResponse,omitempty"`
-	StageID string `json:"stageID,omitempty"`
+	StageID                string                           `json:"stageID,omitempty"`
 }

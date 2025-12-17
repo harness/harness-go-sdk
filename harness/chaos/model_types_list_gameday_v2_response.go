@@ -9,6 +9,6 @@
 package chaos
 
 type TypesListGamedayV2Response struct {
-	Data []TypesGamedayV2 `json:"data,omitempty"`
+	Data       []TypesGamedayV2                                   `json:"data,omitempty"`
 	Pagination *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
 }

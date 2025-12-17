@@ -18,10 +18,10 @@ type V1RepositoryCredentialsQuery struct {
 	OrgIdentifier string `json:"orgIdentifier,omitempty"`
 	// Agent identifier for entity.
 	AgentIdentifier string `json:"agentIdentifier,omitempty"`
-	Identifier string `json:"identifier,omitempty"`
-	SearchTerm string `json:"searchTerm,omitempty"`
-	PageSize int32 `json:"pageSize,omitempty"`
-	PageIndex int32 `json:"pageIndex,omitempty"`
+	Identifier      string `json:"identifier,omitempty"`
+	SearchTerm      string `json:"searchTerm,omitempty"`
+	PageSize        int32  `json:"pageSize,omitempty"`
+	PageIndex       int32  `json:"pageIndex,omitempty"`
 	// Filters for Repo Credentials. Eg. \"identifier\": { \"$in\": [\"id1\", \"id2\"]
 	Filter *interface{} `json:"filter,omitempty"`
 }

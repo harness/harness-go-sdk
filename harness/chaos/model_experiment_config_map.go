@@ -9,7 +9,7 @@
 package chaos
 
 type ExperimentConfigMap struct {
-	DefaultMode int32 `json:"defaultMode,omitempty"`
-	MountPath string `json:"mountPath,omitempty"`
-	Name string `json:"name,omitempty"`
+	DefaultMode int32  `json:"defaultMode,omitempty"`
+	MountPath   string `json:"mountPath,omitempty"`
+	Name        string `json:"name,omitempty"`
 }

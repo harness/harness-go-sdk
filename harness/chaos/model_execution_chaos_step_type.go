@@ -12,8 +12,8 @@ type ExecutionChaosStepType string
 
 // List of execution.ChaosStepType
 const (
-	FAULT_ExecutionChaosStepType ExecutionChaosStepType = "FAULT"
-	PROBE_ExecutionChaosStepType ExecutionChaosStepType = "PROBE"
-	ACTION_ExecutionChaosStepType ExecutionChaosStepType = "ACTION"
+	FAULT_ExecutionChaosStepType      ExecutionChaosStepType = "FAULT"
+	PROBE_ExecutionChaosStepType      ExecutionChaosStepType = "PROBE"
+	ACTION_ExecutionChaosStepType     ExecutionChaosStepType = "ACTION"
 	EXPERIMENT_ExecutionChaosStepType ExecutionChaosStepType = "EXPERIMENT"
 )

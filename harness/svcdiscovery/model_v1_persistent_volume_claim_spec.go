@@ -10,11 +10,11 @@ package svcdiscovery
 
 type V1PersistentVolumeClaimSpec struct {
 	// accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1 +optional
-	AccessModes []string `json:"accessModes,omitempty"`
-	DataSource *V1TypedLocalObjectReference `json:"dataSource,omitempty"`
+	AccessModes   []string                     `json:"accessModes,omitempty"`
+	DataSource    *V1TypedLocalObjectReference `json:"dataSource,omitempty"`
 	DataSourceRef *V1TypedLocalObjectReference `json:"dataSourceRef,omitempty"`
-	Resources *V1ResourceRequirements `json:"resources,omitempty"`
-	Selector *V1LabelSelector `json:"selector,omitempty"`
+	Resources     *V1ResourceRequirements      `json:"resources,omitempty"`
+	Selector      *V1LabelSelector             `json:"selector,omitempty"`
 	// storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1 +optional
 	StorageClassName string `json:"storageClassName,omitempty"`
 	// volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec. +optional

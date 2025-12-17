@@ -9,12 +9,12 @@
 package chaos
 
 type DatabaseAgentConfiguration struct {
-	CollectorImage string `json:"collectorImage,omitempty"`
-	Data *DatabaseDataCollectionConfiguration `json:"data"`
-	ImagePullSecrets []string `json:"imagePullSecrets,omitempty"`
-	Kubernetes *DatabaseKubernetesAgentConfiguration `json:"kubernetes,omitempty"`
-	LogWatcherImage string `json:"logWatcherImage,omitempty"`
-	Mtls *DatabaseMtlsConfiguration `json:"mtls,omitempty"`
-	Proxy *DatabaseProxyConfiguration `json:"proxy,omitempty"`
-	SkipSecureVerify bool `json:"skipSecureVerify,omitempty"`
+	CollectorImage   string                                `json:"collectorImage,omitempty"`
+	Data             *DatabaseDataCollectionConfiguration  `json:"data"`
+	ImagePullSecrets []string                              `json:"imagePullSecrets,omitempty"`
+	Kubernetes       *DatabaseKubernetesAgentConfiguration `json:"kubernetes,omitempty"`
+	LogWatcherImage  string                                `json:"logWatcherImage,omitempty"`
+	Mtls             *DatabaseMtlsConfiguration            `json:"mtls,omitempty"`
+	Proxy            *DatabaseProxyConfiguration           `json:"proxy,omitempty"`
+	SkipSecureVerify bool                                  `json:"skipSecureVerify,omitempty"`
 }

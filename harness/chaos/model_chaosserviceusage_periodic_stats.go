@@ -10,6 +10,6 @@ package chaos
 
 type ChaosserviceusagePeriodicStats struct {
 	ServiceStatsByType *ChaosserviceusageServiceStatsByType `json:"serviceStatsByType,omitempty"`
-	Timestamp int32 `json:"timestamp,omitempty"`
-	TotalConsumption float64 `json:"totalConsumption,omitempty"`
+	Timestamp          int32                                `json:"timestamp,omitempty"`
+	TotalConsumption   float64                              `json:"totalConsumption,omitempty"`
 }

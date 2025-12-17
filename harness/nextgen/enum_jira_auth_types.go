@@ -3,10 +3,10 @@ package nextgen
 type JiraAuthType string
 
 var JiraAuthTypes = struct {
-	UsernamePassword JiraAuthType
+	UsernamePassword    JiraAuthType
 	PersonalAccessToken JiraAuthType
 }{
-	UsernamePassword: "UsernamePassword",
+	UsernamePassword:    "UsernamePassword",
 	PersonalAccessToken: "PersonalAccessToken",
 }
 

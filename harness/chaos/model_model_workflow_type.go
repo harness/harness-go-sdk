@@ -12,10 +12,10 @@ type ModelWorkflowType string
 
 // List of model.WorkflowType
 const (
-	ALL_ModelWorkflowType ModelWorkflowType = "All"
+	ALL_ModelWorkflowType              ModelWorkflowType = "All"
 	GAMEDAY_WORKFLOW_ModelWorkflowType ModelWorkflowType = "GamedayWorkflow"
-	WORKFLOW_ModelWorkflowType ModelWorkflowType = "Workflow"
-	CRON_WORKFLOW_ModelWorkflowType ModelWorkflowType = "CronWorkflow"
-	CHAOS_ENGINE_ModelWorkflowType ModelWorkflowType = "ChaosEngine"
-	CHAOS_SCHEDULE_ModelWorkflowType ModelWorkflowType = "ChaosSchedule"
+	WORKFLOW_ModelWorkflowType         ModelWorkflowType = "Workflow"
+	CRON_WORKFLOW_ModelWorkflowType    ModelWorkflowType = "CronWorkflow"
+	CHAOS_ENGINE_ModelWorkflowType     ModelWorkflowType = "ChaosEngine"
+	CHAOS_SCHEDULE_ModelWorkflowType   ModelWorkflowType = "ChaosSchedule"
 )

@@ -9,10 +9,9 @@
  */
 package nextgen
 
-
 type ClustersClusterQuery struct {
-	Server string `json:"server,omitempty"`
-	Name string `json:"name,omitempty"`
-	Id *ClustersClusterId `json:"id,omitempty"`
-	Project string `json:"project,omitempty"`
+	Server  string             `json:"server,omitempty"`
+	Name    string             `json:"name,omitempty"`
+	Id      *ClustersClusterId `json:"id,omitempty"`
+	Project string             `json:"project,omitempty"`
 }

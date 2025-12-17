@@ -16,7 +16,7 @@ type IacmEvaluatedPolicy struct {
 	// The values of any `deny` rego rules as returned by the rego engine
 	DenyMessages []string `json:"deny_messages"`
 	// The output returned by the rego engine when this policy was evaluated
-	Output **os.File `json:"output"`
+	Output **os.File   `json:"output"`
 	Policy *IacmPolicy `json:"policy"`
 	// Any errors returned by the rego engine when this policy was evaluated
 	RegoError string `json:"rego_error"`

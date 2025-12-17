@@ -9,10 +9,10 @@
 package chaos
 
 type ActionActionTemplateRunProperties struct {
-	InitialDelay string `json:"initialDelay,omitempty"`
-	Interval string `json:"interval,omitempty"`
-	MaxRetries *interface{} `json:"maxRetries,omitempty"`
-	StopOnFailure bool `json:"stopOnFailure,omitempty"`
-	Timeout string `json:"timeout,omitempty"`
-	Verbosity string `json:"verbosity,omitempty"`
+	InitialDelay  string       `json:"initialDelay,omitempty"`
+	Interval      string       `json:"interval,omitempty"`
+	MaxRetries    *interface{} `json:"maxRetries,omitempty"`
+	StopOnFailure bool         `json:"stopOnFailure,omitempty"`
+	Timeout       string       `json:"timeout,omitempty"`
+	Verbosity     string       `json:"verbosity,omitempty"`
 }

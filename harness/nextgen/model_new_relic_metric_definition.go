@@ -10,12 +10,12 @@
 package nextgen
 
 type NewRelicMetricDefinition struct {
-	Identifier string `json:"identifier"`
-	MetricName string `json:"metricName"`
-	RiskProfile *RiskProfile `json:"riskProfile,omitempty"`
-	Analysis *AnalysisDto `json:"analysis,omitempty"`
-	Sli *Slidto `json:"sli,omitempty"`
-	GroupName string `json:"groupName,omitempty"`
-	Nrql string `json:"nrql,omitempty"`
+	Identifier      string                 `json:"identifier"`
+	MetricName      string                 `json:"metricName"`
+	RiskProfile     *RiskProfile           `json:"riskProfile,omitempty"`
+	Analysis        *AnalysisDto           `json:"analysis,omitempty"`
+	Sli             *Slidto                `json:"sli,omitempty"`
+	GroupName       string                 `json:"groupName,omitempty"`
+	Nrql            string                 `json:"nrql,omitempty"`
 	ResponseMapping *MetricResponseMapping `json:"responseMapping,omitempty"`
 }

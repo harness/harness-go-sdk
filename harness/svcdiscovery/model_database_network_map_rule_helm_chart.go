@@ -9,6 +9,6 @@
 package svcdiscovery
 
 type DatabaseNetworkMapRuleHelmChart struct {
-	Namespace string `json:"namespace,omitempty"`
+	Namespace   string `json:"namespace,omitempty"`
 	ReleaseName string `json:"releaseName,omitempty"`
 }

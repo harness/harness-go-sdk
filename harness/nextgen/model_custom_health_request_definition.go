@@ -10,9 +10,9 @@
 package nextgen
 
 type CustomHealthRequestDefinition struct {
-	UrlPath string `json:"urlPath,omitempty"`
-	RequestBody string `json:"requestBody,omitempty"`
-	Method string `json:"method,omitempty"`
+	UrlPath       string         `json:"urlPath,omitempty"`
+	RequestBody   string         `json:"requestBody,omitempty"`
+	Method        string         `json:"method,omitempty"`
 	StartTimeInfo *TimestampInfo `json:"startTimeInfo,omitempty"`
-	EndTimeInfo *TimestampInfo `json:"endTimeInfo,omitempty"`
+	EndTimeInfo   *TimestampInfo `json:"endTimeInfo,omitempty"`
 }

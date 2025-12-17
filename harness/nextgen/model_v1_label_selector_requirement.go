@@ -14,6 +14,6 @@ type V1LabelSelectorRequirement struct {
 	// key is the label key that the selector applies to.
 	Key string `json:"key,omitempty"`
 	// operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
-	Operator string `json:"operator,omitempty"`
-	Values []string `json:"values,omitempty"`
+	Operator string   `json:"operator,omitempty"`
+	Values   []string `json:"values,omitempty"`
 }

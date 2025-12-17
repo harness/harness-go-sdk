@@ -12,8 +12,8 @@ package nextgen
 // SCMProviderGeneratorBitbucket defines connection info specific to Bitbucket Cloud (API version 2).
 type ApplicationsScmProviderGeneratorBitbucket struct {
 	// Bitbucket workspace to scan. Required.
-	Owner string `json:"owner,omitempty"`
-	User string `json:"user,omitempty"`
+	Owner          string                 `json:"owner,omitempty"`
+	User           string                 `json:"user,omitempty"`
 	AppPasswordRef *ApplicationsSecretRef `json:"appPasswordRef,omitempty"`
 	// Scan all branches instead of just the main branch.
 	AllBranches bool `json:"allBranches,omitempty"`

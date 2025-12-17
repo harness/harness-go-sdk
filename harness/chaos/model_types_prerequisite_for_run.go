@@ -9,9 +9,9 @@
 package chaos
 
 type TypesPrerequisiteForRun struct {
-	ID string `json:"ID,omitempty"`
-	ActionItem string `json:"actionItem,omitempty"`
-	Comment string `json:"comment,omitempty"`
-	Description string `json:"description,omitempty"`
-	Status *Gamedayrunv2PrerequisiteStatus `json:"status,omitempty"`
+	ID          string                          `json:"ID,omitempty"`
+	ActionItem  string                          `json:"actionItem,omitempty"`
+	Comment     string                          `json:"comment,omitempty"`
+	Description string                          `json:"description,omitempty"`
+	Status      *Gamedayrunv2PrerequisiteStatus `json:"status,omitempty"`
 }

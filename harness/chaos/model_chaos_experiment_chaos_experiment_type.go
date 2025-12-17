@@ -12,13 +12,13 @@ type ChaosExperimentChaosExperimentType string
 
 // List of chaos_experiment.ChaosExperimentType
 const (
-	EXPERIMENT_V2_ChaosExperimentChaosExperimentType ChaosExperimentChaosExperimentType = "experiment_v2"
-	EXPERIMENT_ChaosExperimentChaosExperimentType ChaosExperimentChaosExperimentType = "experiment"
-	CRONEXPERIMENT_V2_ChaosExperimentChaosExperimentType ChaosExperimentChaosExperimentType = "cronexperiment_v2"
-	CRONEXPERIMENT_ChaosExperimentChaosExperimentType ChaosExperimentChaosExperimentType = "cronexperiment"
-	CRONEXPERIMENT_LINUX_ChaosExperimentChaosExperimentType ChaosExperimentChaosExperimentType = "cronexperiment_linux"
+	EXPERIMENT_V2_ChaosExperimentChaosExperimentType          ChaosExperimentChaosExperimentType = "experiment_v2"
+	EXPERIMENT_ChaosExperimentChaosExperimentType             ChaosExperimentChaosExperimentType = "experiment"
+	CRONEXPERIMENT_V2_ChaosExperimentChaosExperimentType      ChaosExperimentChaosExperimentType = "cronexperiment_v2"
+	CRONEXPERIMENT_ChaosExperimentChaosExperimentType         ChaosExperimentChaosExperimentType = "cronexperiment"
+	CRONEXPERIMENT_LINUX_ChaosExperimentChaosExperimentType   ChaosExperimentChaosExperimentType = "cronexperiment_linux"
 	CRONEXPERIMENT_WINDOWS_ChaosExperimentChaosExperimentType ChaosExperimentChaosExperimentType = "cronexperiment_windows"
-	CRONEXPERIMENT_CF_ChaosExperimentChaosExperimentType ChaosExperimentChaosExperimentType = "cronexperiment_cf"
-	CHAOSENGINE_ChaosExperimentChaosExperimentType ChaosExperimentChaosExperimentType = "chaosengine"
-	GAMEDAY_ChaosExperimentChaosExperimentType ChaosExperimentChaosExperimentType = "gameday"
+	CRONEXPERIMENT_CF_ChaosExperimentChaosExperimentType      ChaosExperimentChaosExperimentType = "cronexperiment_cf"
+	CHAOSENGINE_ChaosExperimentChaosExperimentType            ChaosExperimentChaosExperimentType = "chaosengine"
+	GAMEDAY_ChaosExperimentChaosExperimentType                ChaosExperimentChaosExperimentType = "gameday"
 )

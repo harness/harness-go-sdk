@@ -10,13 +10,13 @@
 package nextgen
 
 type MetricResponseMapping struct {
-	MetricValueJsonPath string `json:"metricValueJsonPath,omitempty"`
-	TimestampJsonPath string `json:"timestampJsonPath,omitempty"`
-	ServiceInstanceJsonPath string `json:"serviceInstanceJsonPath,omitempty"`
-	ServiceInstanceListJsonPath string `json:"serviceInstanceListJsonPath,omitempty"`
-	RelativeMetricListJsonPath string `json:"relativeMetricListJsonPath,omitempty"`
-	RelativeTimestampJsonPath string `json:"relativeTimestampJsonPath,omitempty"`
-	RelativeMetricValueJsonPath string `json:"relativeMetricValueJsonPath,omitempty"`
+	MetricValueJsonPath                  string `json:"metricValueJsonPath,omitempty"`
+	TimestampJsonPath                    string `json:"timestampJsonPath,omitempty"`
+	ServiceInstanceJsonPath              string `json:"serviceInstanceJsonPath,omitempty"`
+	ServiceInstanceListJsonPath          string `json:"serviceInstanceListJsonPath,omitempty"`
+	RelativeMetricListJsonPath           string `json:"relativeMetricListJsonPath,omitempty"`
+	RelativeTimestampJsonPath            string `json:"relativeTimestampJsonPath,omitempty"`
+	RelativeMetricValueJsonPath          string `json:"relativeMetricValueJsonPath,omitempty"`
 	RelativeServiceInstanceValueJsonPath string `json:"relativeServiceInstanceValueJsonPath,omitempty"`
-	TimestampFormat string `json:"timestampFormat,omitempty"`
+	TimestampFormat                      string `json:"timestampFormat,omitempty"`
 }

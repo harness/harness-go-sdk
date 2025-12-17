@@ -12,9 +12,9 @@ type ExecutionInfraType string
 
 // List of execution.InfraType
 const (
-	KUBERNETES_ExecutionInfraType ExecutionInfraType = "Kubernetes"
-	WINDOWS_ExecutionInfraType ExecutionInfraType = "Windows"
-	LINUX_ExecutionInfraType ExecutionInfraType = "Linux"
+	KUBERNETES_ExecutionInfraType    ExecutionInfraType = "Kubernetes"
+	WINDOWS_ExecutionInfraType       ExecutionInfraType = "Windows"
+	LINUX_ExecutionInfraType         ExecutionInfraType = "Linux"
 	CLOUD_FOUNDRY_ExecutionInfraType ExecutionInfraType = "CloudFoundry"
-	CONTAINER_ExecutionInfraType ExecutionInfraType = "Container"
+	CONTAINER_ExecutionInfraType     ExecutionInfraType = "Container"
 )

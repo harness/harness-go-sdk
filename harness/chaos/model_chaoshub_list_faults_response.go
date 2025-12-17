@@ -9,7 +9,7 @@
 package chaos
 
 type ChaoshubListFaultsResponse struct {
-	Data []ChaoshubresourcesChaosHubResource `json:"data,omitempty"`
-	FaultCategoriesCount *ChaoshubFaultCategoriesCount `json:"faultCategoriesCount,omitempty"`
-	Pagination *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
+	Data                 []ChaoshubresourcesChaosHubResource                `json:"data,omitempty"`
+	FaultCategoriesCount *ChaoshubFaultCategoriesCount                      `json:"faultCategoriesCount,omitempty"`
+	Pagination           *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
 }

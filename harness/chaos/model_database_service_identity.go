@@ -9,8 +9,8 @@
 package chaos
 
 type DatabaseServiceIdentity struct {
-	AccountIdentifier string `json:"accountIdentifier,omitempty"`
-	Identifier string `json:"identifier,omitempty"`
+	AccountIdentifier      string `json:"accountIdentifier,omitempty"`
+	Identifier             string `json:"identifier,omitempty"`
 	OrganizationIdentifier string `json:"organizationIdentifier,omitempty"`
-	ProjectIdentifier string `json:"projectIdentifier,omitempty"`
+	ProjectIdentifier      string `json:"projectIdentifier,omitempty"`
 }

@@ -12,7 +12,7 @@ type ProbeApmProbeType string
 
 // List of probe.APMProbeType
 const (
-	PROMETHEUS_ProbeApmProbeType ProbeApmProbeType = "Prometheus"
-	APP_DYNAMICS_ProbeApmProbeType ProbeApmProbeType = "AppDynamics"
+	PROMETHEUS_ProbeApmProbeType           ProbeApmProbeType = "Prometheus"
+	APP_DYNAMICS_ProbeApmProbeType         ProbeApmProbeType = "AppDynamics"
 	SPLUNK_OBSERVABILITY_ProbeApmProbeType ProbeApmProbeType = "SplunkObservability"
 )

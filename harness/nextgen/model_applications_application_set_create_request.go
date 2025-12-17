@@ -11,6 +11,6 @@ package nextgen
 
 type ApplicationsApplicationSetCreateRequest struct {
 	Applicationset *ApplicationsApplicationSet `json:"applicationset,omitempty"`
-	Upsert bool `json:"upsert,omitempty"`
-	DryRun bool `json:"dryRun,omitempty"`
+	Upsert         bool                        `json:"upsert,omitempty"`
+	DryRun         bool                        `json:"dryRun,omitempty"`
 }

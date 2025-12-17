@@ -16,8 +16,8 @@ type ChaoshubresourcesChaosHubResource struct {
 	ChaosType string `json:"chaosType,omitempty"`
 	// chartserviceversion yml in encoded form (chartserviceversion.yaml)
 	ChartServiceVersion string `json:"chartServiceVersion,omitempty"`
-	CreatedAt int32 `json:"createdAt,omitempty"`
-	CreatedBy string `json:"createdBy,omitempty"`
+	CreatedAt           int32  `json:"createdAt,omitempty"`
+	CreatedBy           string `json:"createdBy,omitempty"`
 	// Description of the resource
 	Description string `json:"description,omitempty"`
 	// Display name of the resource
@@ -40,7 +40,7 @@ type ChaoshubresourcesChaosHubResource struct {
 	Infras []string `json:"infras,omitempty"`
 	// IsDefaultHub represents if it is a default hub
 	IsDefaultHub bool `json:"isDefaultHub,omitempty"`
-	IsRemoved bool `json:"isRemoved"`
+	IsRemoved    bool `json:"isRemoved"`
 	// IsTemplatised denotes if template is available for the fault
 	IsTemplatised bool `json:"isTemplatised,omitempty"`
 	// K8sFault yml in encoded form (k8s-fault.yaml)
@@ -52,7 +52,7 @@ type ChaoshubresourcesChaosHubResource struct {
 	// Links are array of Link
 	Links []ChaoshubresourcesLink `json:"links,omitempty"`
 	// name of the resource
-	Name string `json:"name,omitempty"`
+	Name  string `json:"name,omitempty"`
 	OrgID string `json:"orgID,omitempty"`
 	// PermissionsRequired represents the level of permissions required for the resource
 	PermissionsRequired *AllOfchaoshubresourcesChaosHubResourcePermissionsRequired `json:"permissionsRequired,omitempty"`
@@ -60,13 +60,13 @@ type ChaoshubresourcesChaosHubResource struct {
 	Plan []string `json:"plan,omitempty"`
 	// Platforms supported (GKE, Minikube, EKS, AKS etc)
 	Platforms []string `json:"platforms,omitempty"`
-	ProjectID string `json:"projectID,omitempty"`
+	ProjectID string   `json:"projectID,omitempty"`
 	// Type: fault or experiment or probes
 	ResourceType string `json:"resourceType,omitempty"`
 	// tags for the resource
 	Tags []string `json:"tags,omitempty"`
 	// template yaml in encoded form (template.yaml)
-	Template string `json:"template,omitempty"`
-	UpdatedAt int32 `json:"updatedAt,omitempty"`
+	Template  string `json:"template,omitempty"`
+	UpdatedAt int32  `json:"updatedAt,omitempty"`
 	UpdatedBy string `json:"updatedBy,omitempty"`
 }

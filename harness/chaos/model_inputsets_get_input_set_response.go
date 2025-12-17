@@ -9,6 +9,6 @@
 package chaos
 
 type InputsetsGetInputSetResponse struct {
-	CorrelationID string `json:"correlationID,omitempty"`
-	Data *InputsetInputSet `json:"data,omitempty"`
+	CorrelationID string            `json:"correlationID,omitempty"`
+	Data          *InputsetInputSet `json:"data,omitempty"`
 }

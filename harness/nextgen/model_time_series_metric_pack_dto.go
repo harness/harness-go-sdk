@@ -10,6 +10,6 @@
 package nextgen
 
 type TimeSeriesMetricPackDto struct {
-	Identifier string `json:"identifier"`
+	Identifier       string            `json:"identifier"`
 	MetricThresholds []MetricThreshold `json:"metricThresholds,omitempty"`
 }

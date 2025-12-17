@@ -9,12 +9,12 @@
 package chaos
 
 type RecommendationConfigScannerEvents struct {
-	Details string `json:"details,omitempty"`
-	Error_ []RecommendationFailure `json:"error,omitempty"`
-	Id string `json:"id,omitempty"`
-	Kind string `json:"kind,omitempty"`
-	Labels string `json:"labels,omitempty"`
-	Name string `json:"name,omitempty"`
-	Namespace string `json:"namespace,omitempty"`
-	ParentObject string `json:"parentObject,omitempty"`
+	Details      string                  `json:"details,omitempty"`
+	Error_       []RecommendationFailure `json:"error,omitempty"`
+	Id           string                  `json:"id,omitempty"`
+	Kind         string                  `json:"kind,omitempty"`
+	Labels       string                  `json:"labels,omitempty"`
+	Name         string                  `json:"name,omitempty"`
+	Namespace    string                  `json:"namespace,omitempty"`
+	ParentObject string                  `json:"parentObject,omitempty"`
 }

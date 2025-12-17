@@ -9,9 +9,9 @@
 package chaos
 
 type TypesRecentGamedayRun struct {
-	GameDayRunID string `json:"gameDayRunID,omitempty"`
-	Name string `json:"name,omitempty"`
-	RunAt string `json:"runAt,omitempty"`
-	RunBy *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"runBy,omitempty"`
-	Status *Gamedayv2GamedayRunStatus `json:"status,omitempty"`
+	GameDayRunID string                                                     `json:"gameDayRunID,omitempty"`
+	Name         string                                                     `json:"name,omitempty"`
+	RunAt        string                                                     `json:"runAt,omitempty"`
+	RunBy        *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"runBy,omitempty"`
+	Status       *Gamedayv2GamedayRunStatus                                 `json:"status,omitempty"`
 }

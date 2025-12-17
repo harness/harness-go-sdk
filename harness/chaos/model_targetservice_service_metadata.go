@@ -9,8 +9,8 @@
 package chaos
 
 type TargetserviceServiceMetadata struct {
-	Id string `json:"id,omitempty"`
-	Name string `json:"name,omitempty"`
+	Id        string `json:"id,omitempty"`
+	Name      string `json:"name,omitempty"`
 	Namespace string `json:"namespace,omitempty"`
-	Uid string `json:"uid,omitempty"`
+	Uid       string `json:"uid,omitempty"`
 }

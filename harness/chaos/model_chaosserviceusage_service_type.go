@@ -12,11 +12,11 @@ type ChaosserviceusageServiceType string
 
 // List of chaosserviceusage.ServiceType
 const (
-	KUBERNETES_ChaosserviceusageServiceType ChaosserviceusageServiceType = "Kubernetes"
-	LINUX_ChaosserviceusageServiceType ChaosserviceusageServiceType = "Linux"
-	WINDOWS_ChaosserviceusageServiceType ChaosserviceusageServiceType = "Windows"
-	SERVERLESS_ChaosserviceusageServiceType ChaosserviceusageServiceType = "Serverless"
+	KUBERNETES_ChaosserviceusageServiceType         ChaosserviceusageServiceType = "Kubernetes"
+	LINUX_ChaosserviceusageServiceType              ChaosserviceusageServiceType = "Linux"
+	WINDOWS_ChaosserviceusageServiceType            ChaosserviceusageServiceType = "Windows"
+	SERVERLESS_ChaosserviceusageServiceType         ChaosserviceusageServiceType = "Serverless"
 	CONTAINER_SERVICES_ChaosserviceusageServiceType ChaosserviceusageServiceType = "ContainerServices"
-	CLOUD_RESOURCES_ChaosserviceusageServiceType ChaosserviceusageServiceType = "CloudResources"
-	OTHERS_ChaosserviceusageServiceType ChaosserviceusageServiceType = "Others"
+	CLOUD_RESOURCES_ChaosserviceusageServiceType    ChaosserviceusageServiceType = "CloudResources"
+	OTHERS_ChaosserviceusageServiceType             ChaosserviceusageServiceType = "Others"
 )

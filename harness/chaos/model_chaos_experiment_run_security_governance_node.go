@@ -9,11 +9,11 @@
 package chaos
 
 type ChaosExperimentRunSecurityGovernanceNode struct {
-	FinishedAt int32 `json:"finishedAt,omitempty"`
-	Message string `json:"message,omitempty"`
-	Name string `json:"name,omitempty"`
-	Phase string `json:"phase,omitempty"`
+	FinishedAt                 int32                                         `json:"finishedAt,omitempty"`
+	Message                    string                                        `json:"message,omitempty"`
+	Name                       string                                        `json:"name,omitempty"`
+	Phase                      string                                        `json:"phase,omitempty"`
 	SecurityGovernanceNodeData *ChaosExperimentRunSecurityGovernanceNodeData `json:"securityGovernanceNodeData,omitempty"`
-	StartedAt int32 `json:"startedAt,omitempty"`
-	Type_ string `json:"type,omitempty"`
+	StartedAt                  int32                                         `json:"startedAt,omitempty"`
+	Type_                      string                                        `json:"type,omitempty"`
 }

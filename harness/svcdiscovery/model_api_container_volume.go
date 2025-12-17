@@ -11,8 +11,8 @@ package svcdiscovery
 type ApiContainerVolume struct {
 	ContainerName string `json:"containerName,omitempty"`
 	ContainerType string `json:"containerType,omitempty"`
-	MountPath string `json:"mountPath,omitempty"`
-	PvcName string `json:"pvcName,omitempty"`
-	PvcNamespace string `json:"pvcNamespace,omitempty"`
-	VolumeName string `json:"volumeName,omitempty"`
+	MountPath     string `json:"mountPath,omitempty"`
+	PvcName       string `json:"pvcName,omitempty"`
+	PvcNamespace  string `json:"pvcNamespace,omitempty"`
+	VolumeName    string `json:"volumeName,omitempty"`
 }

@@ -10,6 +10,6 @@ package chaos
 
 type ModelEventMetadata struct {
 	EnvironmentIdentifier []string `json:"environmentIdentifier,omitempty"`
-	FaultName string `json:"faultName,omitempty"`
-	ServiceIdentifier []string `json:"serviceIdentifier,omitempty"`
+	FaultName             string   `json:"faultName,omitempty"`
+	ServiceIdentifier     []string `json:"serviceIdentifier,omitempty"`
 }

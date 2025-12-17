@@ -14,11 +14,11 @@ type ApplicationsScmProviderGeneratorBitbucketServer struct {
 	// Project to scan. Required.
 	Project string `json:"project,omitempty"`
 	// The Bitbucket Server REST API URL to talk to. Required.
-	Api string `json:"api,omitempty"`
+	Api       string                                `json:"api,omitempty"`
 	BasicAuth *ApplicationsBasicAuthBitbucketServer `json:"basicAuth,omitempty"`
 	// Scan all branches instead of just the default branch.
-	AllBranches bool `json:"allBranches,omitempty"`
+	AllBranches bool                              `json:"allBranches,omitempty"`
 	BearerToken *ApplicationsBearerTokenBitbucket `json:"bearerToken,omitempty"`
-	Insecure bool `json:"insecure,omitempty"`
-	CaRef *ApplicationsConfigMapKeyRef `json:"caRef,omitempty"`
+	Insecure    bool                              `json:"insecure,omitempty"`
+	CaRef       *ApplicationsConfigMapKeyRef      `json:"caRef,omitempty"`
 }

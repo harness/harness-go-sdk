@@ -10,7 +10,7 @@
 package nextgen
 
 type DatadogLogHealthSourceSpec struct {
-	ConnectorRef string `json:"connectorRef"`
-	Feature string `json:"feature"`
-	Queries []DatadogLogHealthSourceQueryDto `json:"queries"`
+	ConnectorRef string                           `json:"connectorRef"`
+	Feature      string                           `json:"feature"`
+	Queries      []DatadogLogHealthSourceQueryDto `json:"queries"`
 }

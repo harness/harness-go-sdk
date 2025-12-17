@@ -14,7 +14,7 @@ type V1ContainerStatus struct {
 	// The image the container is running. More info: https://kubernetes.io/docs/concepts/containers/images.
 	Image string `json:"image,omitempty"`
 	// ImageID of the container's image.
-	ImageID string `json:"imageID,omitempty"`
+	ImageID   string            `json:"imageID,omitempty"`
 	LastState *V1ContainerState `json:"lastState,omitempty"`
 	// This must be a DNS_LABEL. Each container in a pod must have a unique name. Cannot be updated.
 	Name string `json:"name,omitempty"`
@@ -23,6 +23,6 @@ type V1ContainerStatus struct {
 	// The number of times the container has been restarted.
 	RestartCount int32 `json:"restartCount,omitempty"`
 	// Specifies whether the container has passed its startup probe. Initialized as false, becomes true after startupProbe is considered successful. Resets to false when the container is restarted, or if kubelet loses state temporarily. Is always true when no startupProbe is defined. +optional
-	Started bool `json:"started,omitempty"`
-	State *V1ContainerState `json:"state,omitempty"`
+	Started bool              `json:"started,omitempty"`
+	State   *V1ContainerState `json:"state,omitempty"`
 }

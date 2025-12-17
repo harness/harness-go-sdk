@@ -9,26 +9,26 @@
 package svcdiscovery
 
 type ApiGetInstallationResponse struct {
-	AccountIdentifier string `json:"accountIdentifier"`
-	AgentDetails *DatabaseAgentDetails `json:"agentDetails,omitempty"`
-	AgentID string `json:"agentID"`
-	CorrelationID string `json:"correlationID,omitempty"`
-	CreatedAt string `json:"createdAt,omitempty"`
-	CreatedBy string `json:"createdBy,omitempty"`
-	DelegateID string `json:"delegateID,omitempty"`
-	DelegateTaskID string `json:"delegateTaskID,omitempty"`
-	DelegateTaskStatus string `json:"delegateTaskStatus,omitempty"`
-	EnvironmentIdentifier string `json:"environmentIdentifier"`
-	Id string `json:"id"`
-	IsCronTriggered bool `json:"isCronTriggered,omitempty"`
-	LogStreamCreatedAt string `json:"logStreamCreatedAt,omitempty"`
-	LogStreamID string `json:"logStreamID,omitempty"`
-	OrganizationIdentifier string `json:"organizationIdentifier,omitempty"`
-	ProjectIdentifier string `json:"projectIdentifier,omitempty"`
-	Removed bool `json:"removed,omitempty"`
-	RemovedAt string `json:"removedAt,omitempty"`
+	AccountIdentifier      string                `json:"accountIdentifier"`
+	AgentDetails           *DatabaseAgentDetails `json:"agentDetails,omitempty"`
+	AgentID                string                `json:"agentID"`
+	CorrelationID          string                `json:"correlationID,omitempty"`
+	CreatedAt              string                `json:"createdAt,omitempty"`
+	CreatedBy              string                `json:"createdBy,omitempty"`
+	DelegateID             string                `json:"delegateID,omitempty"`
+	DelegateTaskID         string                `json:"delegateTaskID,omitempty"`
+	DelegateTaskStatus     string                `json:"delegateTaskStatus,omitempty"`
+	EnvironmentIdentifier  string                `json:"environmentIdentifier"`
+	Id                     string                `json:"id"`
+	IsCronTriggered        bool                  `json:"isCronTriggered,omitempty"`
+	LogStreamCreatedAt     string                `json:"logStreamCreatedAt,omitempty"`
+	LogStreamID            string                `json:"logStreamID,omitempty"`
+	OrganizationIdentifier string                `json:"organizationIdentifier,omitempty"`
+	ProjectIdentifier      string                `json:"projectIdentifier,omitempty"`
+	Removed                bool                  `json:"removed,omitempty"`
+	RemovedAt              string                `json:"removedAt,omitempty"`
 	// IsLogStreamOpen    bool               `bson:\"isLogStreamOpen\" json:\"isLogStreamOpen\"`
-	Stopped bool `json:"stopped,omitempty"`
+	Stopped   bool   `json:"stopped,omitempty"`
 	UpdatedAt string `json:"updatedAt,omitempty"`
 	UpdatedBy string `json:"updatedBy,omitempty"`
 }

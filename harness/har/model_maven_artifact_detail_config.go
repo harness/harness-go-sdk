@@ -11,5 +11,5 @@ package har
 // Config for maven artifact details
 type MavenArtifactDetailConfig struct {
 	ArtifactId string `json:"artifactId,omitempty"`
-	GroupId string `json:"groupId,omitempty"`
+	GroupId    string `json:"groupId,omitempty"`
 }

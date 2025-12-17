@@ -9,11 +9,10 @@
  */
 package nextgen
 
-
 type ClustersClusterType string
 
 // List of clustersClusterType
 const (
 	CUSTOMER_PROVIDED_ClustersClusterType ClustersClusterType = "CUSTOMER_PROVIDED"
-	HARNESS_HOSTED_ClustersClusterType ClustersClusterType = "HARNESS_HOSTED"
+	HARNESS_HOSTED_ClustersClusterType    ClustersClusterType = "HARNESS_HOSTED"
 )

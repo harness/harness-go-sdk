@@ -9,8 +9,8 @@
 package chaos
 
 type ChaosExperimentRunAnnotation struct {
-	Mode string `json:"mode,omitempty"`
-	Name string `json:"name,omitempty"`
-	ProbeID string `json:"probeID,omitempty"`
+	Mode       string `json:"mode,omitempty"`
+	Name       string `json:"name,omitempty"`
+	ProbeID    string `json:"probeID,omitempty"`
 	RevisionID string `json:"revisionID,omitempty"`
 }

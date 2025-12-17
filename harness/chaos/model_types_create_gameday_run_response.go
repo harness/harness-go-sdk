@@ -9,6 +9,6 @@
 package chaos
 
 type TypesCreateGamedayRunResponse struct {
-	Data *TypesRun `json:"data,omitempty"`
+	Data            *TypesRun                      `json:"data,omitempty"`
 	ExperimentError []TypesExperimentCreationError `json:"experimentError,omitempty"`
 }

@@ -12,7 +12,7 @@ type V1AzureDataDiskKind string
 
 // List of v1.AzureDataDiskKind
 const (
-	SHARED_V1AzureDataDiskKind V1AzureDataDiskKind = "Shared"
+	SHARED_V1AzureDataDiskKind    V1AzureDataDiskKind = "Shared"
 	DEDICATED_V1AzureDataDiskKind V1AzureDataDiskKind = "Dedicated"
-	MANAGED_V1AzureDataDiskKind V1AzureDataDiskKind = "Managed"
+	MANAGED_V1AzureDataDiskKind   V1AzureDataDiskKind = "Managed"
 )

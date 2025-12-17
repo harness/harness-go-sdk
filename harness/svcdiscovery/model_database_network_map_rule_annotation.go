@@ -9,7 +9,7 @@
 package svcdiscovery
 
 type DatabaseNetworkMapRuleAnnotation struct {
-	Key string `json:"key,omitempty"`
+	Key       string `json:"key,omitempty"`
 	Namespace string `json:"namespace,omitempty"`
-	Value string `json:"value,omitempty"`
+	Value     string `json:"value,omitempty"`
 }

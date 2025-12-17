@@ -10,16 +10,16 @@
 package nextgen
 
 type StackdriverDefinition struct {
-	Identifier string `json:"identifier"`
-	MetricName string `json:"metricName"`
-	RiskProfile *RiskProfile `json:"riskProfile,omitempty"`
-	Analysis *AnalysisDto `json:"analysis,omitempty"`
-	Sli *Slidto `json:"sli,omitempty"`
-	DashboardName string `json:"dashboardName,omitempty"`
-	DashboardPath string `json:"dashboardPath,omitempty"`
-	JsonMetricDefinition *interface{} `json:"jsonMetricDefinition,omitempty"`
-	JsonMetricDefinitionString string `json:"jsonMetricDefinitionString,omitempty"`
-	MetricTags []string `json:"metricTags,omitempty"`
-	ServiceInstanceField string `json:"serviceInstanceField,omitempty"`
-	IsManualQuery bool `json:"isManualQuery,omitempty"`
+	Identifier                 string       `json:"identifier"`
+	MetricName                 string       `json:"metricName"`
+	RiskProfile                *RiskProfile `json:"riskProfile,omitempty"`
+	Analysis                   *AnalysisDto `json:"analysis,omitempty"`
+	Sli                        *Slidto      `json:"sli,omitempty"`
+	DashboardName              string       `json:"dashboardName,omitempty"`
+	DashboardPath              string       `json:"dashboardPath,omitempty"`
+	JsonMetricDefinition       *interface{} `json:"jsonMetricDefinition,omitempty"`
+	JsonMetricDefinitionString string       `json:"jsonMetricDefinitionString,omitempty"`
+	MetricTags                 []string     `json:"metricTags,omitempty"`
+	ServiceInstanceField       string       `json:"serviceInstanceField,omitempty"`
+	IsManualQuery              bool         `json:"isManualQuery,omitempty"`
 }

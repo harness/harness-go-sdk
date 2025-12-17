@@ -9,16 +9,16 @@
 package svcdiscovery
 
 type DatabaseKubernetesAgentConfiguration struct {
-	Annotations map[string]string `json:"annotations,omitempty"`
-	DisableNamespaceCreation bool `json:"disableNamespaceCreation,omitempty"`
-	ImagePullPolicy string `json:"imagePullPolicy,omitempty"`
-	Labels map[string]string `json:"labels,omitempty"`
-	Namespace string `json:"namespace,omitempty"`
-	Namespaced bool `json:"namespaced,omitempty"`
-	NodeSelector map[string]string `json:"nodeSelector,omitempty"`
-	Resources *DatabaseResourceRequirements `json:"resources,omitempty"`
-	RunAsGroup int32 `json:"runAsGroup,omitempty"`
-	RunAsUser int32 `json:"runAsUser,omitempty"`
-	ServiceAccount string `json:"serviceAccount,omitempty"`
-	Tolerations []V1Toleration `json:"tolerations,omitempty"`
+	Annotations              map[string]string             `json:"annotations,omitempty"`
+	DisableNamespaceCreation bool                          `json:"disableNamespaceCreation,omitempty"`
+	ImagePullPolicy          string                        `json:"imagePullPolicy,omitempty"`
+	Labels                   map[string]string             `json:"labels,omitempty"`
+	Namespace                string                        `json:"namespace,omitempty"`
+	Namespaced               bool                          `json:"namespaced,omitempty"`
+	NodeSelector             map[string]string             `json:"nodeSelector,omitempty"`
+	Resources                *DatabaseResourceRequirements `json:"resources,omitempty"`
+	RunAsGroup               int32                         `json:"runAsGroup,omitempty"`
+	RunAsUser                int32                         `json:"runAsUser,omitempty"`
+	ServiceAccount           string                        `json:"serviceAccount,omitempty"`
+	Tolerations              []V1Toleration                `json:"tolerations,omitempty"`
 }

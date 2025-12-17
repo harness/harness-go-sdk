@@ -10,7 +10,7 @@
 package nextgen
 
 type ApplicationsApplicationSet struct {
-	Metadata *V1ObjectMeta `json:"metadata,omitempty"`
-	Spec *ApplicationsApplicationSetSpec `json:"spec,omitempty"`
-	Status *ApplicationsApplicationSetStatus `json:"status,omitempty"`
+	Metadata *V1ObjectMeta                     `json:"metadata,omitempty"`
+	Spec     *ApplicationsApplicationSetSpec   `json:"spec,omitempty"`
+	Status   *ApplicationsApplicationSetStatus `json:"status,omitempty"`
 }

@@ -9,18 +9,18 @@
 package chaos
 
 type ActionSourceActionTemplate struct {
-	Args *interface{} `json:"args,omitempty"`
-	Command *interface{} `json:"command,omitempty"`
-	Env *interface{} `json:"env,omitempty"`
-	Image string `json:"image,omitempty"`
-	ImagePullPolicy string `json:"imagePullPolicy,omitempty"`
-	ImagePullSecrets *interface{} `json:"imagePullSecrets,omitempty"`
-	InheritInputs bool `json:"inheritInputs,omitempty"`
-	NodeSelector *interface{} `json:"nodeSelector,omitempty"`
-	Privileged bool `json:"privileged,omitempty"`
-	Resources *interface{} `json:"resources,omitempty"`
-	ServiceAccountName string `json:"serviceAccountName,omitempty"`
-	Tolerations *interface{} `json:"tolerations,omitempty"`
-	VolumeMount *interface{} `json:"volumeMount,omitempty"`
-	Volumes *interface{} `json:"volumes,omitempty"`
+	Args               *interface{} `json:"args,omitempty"`
+	Command            *interface{} `json:"command,omitempty"`
+	Env                *interface{} `json:"env,omitempty"`
+	Image              string       `json:"image,omitempty"`
+	ImagePullPolicy    string       `json:"imagePullPolicy,omitempty"`
+	ImagePullSecrets   *interface{} `json:"imagePullSecrets,omitempty"`
+	InheritInputs      bool         `json:"inheritInputs,omitempty"`
+	NodeSelector       *interface{} `json:"nodeSelector,omitempty"`
+	Privileged         bool         `json:"privileged,omitempty"`
+	Resources          *interface{} `json:"resources,omitempty"`
+	ServiceAccountName string       `json:"serviceAccountName,omitempty"`
+	Tolerations        *interface{} `json:"tolerations,omitempty"`
+	VolumeMount        *interface{} `json:"volumeMount,omitempty"`
+	Volumes            *interface{} `json:"volumes,omitempty"`
 }

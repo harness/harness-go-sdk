@@ -12,6 +12,6 @@ type Gamedayrunv2PrerequisiteStatus string
 
 // List of gamedayrunv2.PrerequisiteStatus
 const (
-	DONE_Gamedayrunv2PrerequisiteStatus Gamedayrunv2PrerequisiteStatus = "done"
+	DONE_Gamedayrunv2PrerequisiteStatus    Gamedayrunv2PrerequisiteStatus = "done"
 	PENDING_Gamedayrunv2PrerequisiteStatus Gamedayrunv2PrerequisiteStatus = "pending"
 )

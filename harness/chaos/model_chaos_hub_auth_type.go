@@ -12,6 +12,6 @@ type ChaosHubAuthType string
 
 // List of chaos_hub.AuthType
 const (
-	SSH_ChaosHubAuthType ChaosHubAuthType = "Ssh"
+	SSH_ChaosHubAuthType            ChaosHubAuthType = "Ssh"
 	USERNAME_TOKEN_ChaosHubAuthType ChaosHubAuthType = "UsernameToken"
 )

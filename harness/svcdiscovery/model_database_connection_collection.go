@@ -9,17 +9,17 @@
 package svcdiscovery
 
 type DatabaseConnectionCollection struct {
-	AccountIdentifier string `json:"accountIdentifier"`
-	AgentID string `json:"agentID"`
-	CreatedAt string `json:"createdAt,omitempty"`
-	CreatedBy string `json:"createdBy,omitempty"`
-	EnvironmentIdentifier string `json:"environmentIdentifier"`
-	Id string `json:"id"`
-	OrganizationIdentifier string `json:"organizationIdentifier,omitempty"`
-	ProjectIdentifier string `json:"projectIdentifier,omitempty"`
-	Removed bool `json:"removed,omitempty"`
-	RemovedAt string `json:"removedAt,omitempty"`
-	Spec *DatabaseConnectionSpec `json:"spec"`
-	UpdatedAt string `json:"updatedAt,omitempty"`
-	UpdatedBy string `json:"updatedBy,omitempty"`
+	AccountIdentifier      string                  `json:"accountIdentifier"`
+	AgentID                string                  `json:"agentID"`
+	CreatedAt              string                  `json:"createdAt,omitempty"`
+	CreatedBy              string                  `json:"createdBy,omitempty"`
+	EnvironmentIdentifier  string                  `json:"environmentIdentifier"`
+	Id                     string                  `json:"id"`
+	OrganizationIdentifier string                  `json:"organizationIdentifier,omitempty"`
+	ProjectIdentifier      string                  `json:"projectIdentifier,omitempty"`
+	Removed                bool                    `json:"removed,omitempty"`
+	RemovedAt              string                  `json:"removedAt,omitempty"`
+	Spec                   *DatabaseConnectionSpec `json:"spec"`
+	UpdatedAt              string                  `json:"updatedAt,omitempty"`
+	UpdatedBy              string                  `json:"updatedBy,omitempty"`
 }

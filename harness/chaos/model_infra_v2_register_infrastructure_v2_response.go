@@ -10,6 +10,6 @@ package chaos
 
 type InfraV2RegisterInfrastructureV2Response struct {
 	Identity string `json:"identity,omitempty"`
-	Name string `json:"name,omitempty"`
-	Token string `json:"token,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Token    string `json:"token,omitempty"`
 }

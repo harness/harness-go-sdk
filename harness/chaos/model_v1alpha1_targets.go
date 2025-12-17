@@ -9,10 +9,10 @@
 package chaos
 
 type V1alpha1Targets struct {
-	ID string `json:"ID,omitempty"`
-	Kind string `json:"kind,omitempty"`
-	Name string `json:"name,omitempty"`
+	ID        string `json:"ID,omitempty"`
+	Kind      string `json:"kind,omitempty"`
+	Name      string `json:"name,omitempty"`
 	Namespace string `json:"namespace,omitempty"`
-	SubType string `json:"subType,omitempty"`
-	Type_ string `json:"type,omitempty"`
+	SubType   string `json:"subType,omitempty"`
+	Type_     string `json:"type,omitempty"`
 }

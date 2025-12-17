@@ -9,9 +9,9 @@
 package chaos
 
 type V2OnboardingOnboardingTargetExperiment struct {
-	Identity string `json:"identity,omitempty"`
-	IsProcessed bool `json:"isProcessed,omitempty"`
-	Name string `json:"name,omitempty"`
-	TotalChaosExperiments int32 `json:"totalChaosExperiments,omitempty"`
-	TotalServiceCount int32 `json:"totalServiceCount,omitempty"`
+	Identity              string `json:"identity,omitempty"`
+	IsProcessed           bool   `json:"isProcessed,omitempty"`
+	Name                  string `json:"name,omitempty"`
+	TotalChaosExperiments int32  `json:"totalChaosExperiments,omitempty"`
+	TotalServiceCount     int32  `json:"totalServiceCount,omitempty"`
 }

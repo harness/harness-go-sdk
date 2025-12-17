@@ -10,5 +10,5 @@ package chaos
 
 type InfraV2Pagination struct {
 	Limit int32 `json:"limit,omitempty"`
-	Page int32 `json:"page,omitempty"`
+	Page  int32 `json:"page,omitempty"`
 }

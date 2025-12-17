@@ -11,5 +11,5 @@ package nextgen
 
 type GpgkeysGnuPgPublicKeyCreateRequest struct {
 	Publickey *GpgkeysGnuPgPublicKey `json:"publickey,omitempty"`
-	Upsert bool `json:"upsert,omitempty"`
+	Upsert    bool                   `json:"upsert,omitempty"`
 }

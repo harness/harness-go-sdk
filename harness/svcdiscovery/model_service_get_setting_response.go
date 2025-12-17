@@ -9,13 +9,13 @@
 package svcdiscovery
 
 type ServiceGetSettingResponse struct {
-	CorrelationID string `json:"correlationID,omitempty"`
-	CreatedAt string `json:"createdAt,omitempty"`
-	CreatedBy string `json:"createdBy,omitempty"`
-	Id string `json:"id"`
+	CorrelationID string                       `json:"correlationID,omitempty"`
+	CreatedAt     string                       `json:"createdAt,omitempty"`
+	CreatedBy     string                       `json:"createdBy,omitempty"`
+	Id            string                       `json:"id"`
 	ImageRegistry *ServiceImageRegistrySetting `json:"imageRegistry,omitempty"`
-	Removed bool `json:"removed,omitempty"`
-	RemovedAt string `json:"removedAt,omitempty"`
-	UpdatedAt string `json:"updatedAt,omitempty"`
-	UpdatedBy string `json:"updatedBy,omitempty"`
+	Removed       bool                         `json:"removed,omitempty"`
+	RemovedAt     string                       `json:"removedAt,omitempty"`
+	UpdatedAt     string                       `json:"updatedAt,omitempty"`
+	UpdatedBy     string                       `json:"updatedBy,omitempty"`
 }

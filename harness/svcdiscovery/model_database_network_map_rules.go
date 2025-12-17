@@ -9,14 +9,14 @@
 package svcdiscovery
 
 type DatabaseNetworkMapRules struct {
-	Annotation *DatabaseNetworkMapRuleAnnotation `json:"annotation,omitempty"`
-	HelmChart *DatabaseNetworkMapRuleHelmChart `json:"helmChart,omitempty"`
-	Label *DatabaseNetworkMapRuleLabel `json:"label,omitempty"`
-	Namespace *DatabaseNetworkMapRuleNamespace `json:"namespace,omitempty"`
-	PodAnnotation *DatabaseNetworkMapRuleAnnotation `json:"podAnnotation,omitempty"`
-	PodLabel *DatabaseNetworkMapRuleLabel `json:"podLabel,omitempty"`
-	ServiceAnnotation *DatabaseNetworkMapRuleAnnotation `json:"serviceAnnotation,omitempty"`
-	ServiceLabel *DatabaseNetworkMapRuleLabel `json:"serviceLabel,omitempty"`
+	Annotation         *DatabaseNetworkMapRuleAnnotation `json:"annotation,omitempty"`
+	HelmChart          *DatabaseNetworkMapRuleHelmChart  `json:"helmChart,omitempty"`
+	Label              *DatabaseNetworkMapRuleLabel      `json:"label,omitempty"`
+	Namespace          *DatabaseNetworkMapRuleNamespace  `json:"namespace,omitempty"`
+	PodAnnotation      *DatabaseNetworkMapRuleAnnotation `json:"podAnnotation,omitempty"`
+	PodLabel           *DatabaseNetworkMapRuleLabel      `json:"podLabel,omitempty"`
+	ServiceAnnotation  *DatabaseNetworkMapRuleAnnotation `json:"serviceAnnotation,omitempty"`
+	ServiceLabel       *DatabaseNetworkMapRuleLabel      `json:"serviceLabel,omitempty"`
 	WorkloadAnnotation *DatabaseNetworkMapRuleAnnotation `json:"workloadAnnotation,omitempty"`
-	WorkloadLabel *DatabaseNetworkMapRuleLabel `json:"workloadLabel,omitempty"`
+	WorkloadLabel      *DatabaseNetworkMapRuleLabel      `json:"workloadLabel,omitempty"`
 }

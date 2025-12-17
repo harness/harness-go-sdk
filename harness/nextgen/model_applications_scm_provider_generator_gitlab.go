@@ -12,16 +12,16 @@ package nextgen
 // SCMProviderGeneratorGitlab defines connection info specific to Gitlab.
 type ApplicationsScmProviderGeneratorGitlab struct {
 	// Gitlab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.
-	Group string `json:"group,omitempty"`
-	IncludeSubgroups bool `json:"includeSubgroups,omitempty"`
+	Group            string `json:"group,omitempty"`
+	IncludeSubgroups bool   `json:"includeSubgroups,omitempty"`
 	// The Gitlab API URL to talk to.
-	Api string `json:"api,omitempty"`
+	Api      string                 `json:"api,omitempty"`
 	TokenRef *ApplicationsSecretRef `json:"tokenRef,omitempty"`
 	// Scan all branches instead of just the default branch.
-	AllBranches bool `json:"allBranches,omitempty"`
-	Insecure bool `json:"insecure,omitempty"`
+	AllBranches           bool `json:"allBranches,omitempty"`
+	Insecure              bool `json:"insecure,omitempty"`
 	IncludeSharedProjects bool `json:"includeSharedProjects,omitempty"`
 	// Filter repos list based on Gitlab Topic.
-	Topic string `json:"topic,omitempty"`
+	Topic string                       `json:"topic,omitempty"`
 	CaRef *ApplicationsConfigMapKeyRef `json:"caRef,omitempty"`
 }

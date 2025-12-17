@@ -9,11 +9,11 @@
 package svcdiscovery
 
 type ApiSaveNetworkMapRequest struct {
-	Connections []DatabaseConnection `json:"connections,omitempty"`
-	Description string `json:"description,omitempty"`
-	Identity string `json:"identity"`
-	Name string `json:"name"`
-	Resources []DatabaseNetworkMapEntity `json:"resources"`
-	Rules *DatabaseNetworkMapRules `json:"rules,omitempty"`
-	Tags []string `json:"tags,omitempty"`
+	Connections []DatabaseConnection       `json:"connections,omitempty"`
+	Description string                     `json:"description,omitempty"`
+	Identity    string                     `json:"identity"`
+	Name        string                     `json:"name"`
+	Resources   []DatabaseNetworkMapEntity `json:"resources"`
+	Rules       *DatabaseNetworkMapRules   `json:"rules,omitempty"`
+	Tags        []string                   `json:"tags,omitempty"`
 }

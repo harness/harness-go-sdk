@@ -9,6 +9,6 @@
 package chaos
 
 type ProbeMethod struct {
-	Get *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeGet `json:"get,omitempty"`
+	Get  *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeGet  `json:"get,omitempty"`
 	Post *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbePost `json:"post,omitempty"`
 }

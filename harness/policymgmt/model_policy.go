@@ -24,7 +24,7 @@ type Policy struct {
 	// The file id of the file in the default branch, may be empty for bitbucket files
 	GitDefaultBranchFileId string `json:"git_default_branch_file_id,omitempty"`
 	// The url of the file in the default branch
-	GitDefaultBranchFileUrl string `json:"git_default_branch_file_url,omitempty"`
+	GitDefaultBranchFileUrl     string          `json:"git_default_branch_file_url,omitempty"`
 	GitDefaultBranchUpdateError *GitErrorResult `json:"git_default_branch_update_error,omitempty"`
 	// The last time the service successfully pulled in changes from the default branch
 	GitDefaultBranchUpdated int64 `json:"git_default_branch_updated,omitempty"`

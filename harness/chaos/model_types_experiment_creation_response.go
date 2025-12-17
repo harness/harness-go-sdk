@@ -10,5 +10,5 @@ package chaos
 
 type TypesExperimentCreationResponse struct {
 	AuditAction *ExperimentSaveChaosExperimentResponse `json:"auditAction,omitempty"`
-	Data *TypesExperimentCreationRequest `json:"data,omitempty"`
+	Data        *TypesExperimentCreationRequest        `json:"data,omitempty"`
 }

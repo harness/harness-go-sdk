@@ -12,6 +12,6 @@ type V1ManagedFieldsOperationType string
 
 // List of v1.ManagedFieldsOperationType
 const (
-	APPLY_V1ManagedFieldsOperationType V1ManagedFieldsOperationType = "Apply"
+	APPLY_V1ManagedFieldsOperationType  V1ManagedFieldsOperationType = "Apply"
 	UPDATE_V1ManagedFieldsOperationType V1ManagedFieldsOperationType = "Update"
 )

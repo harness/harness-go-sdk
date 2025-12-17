@@ -10,9 +10,9 @@
 package nextgen
 
 type AwsPrometheusHealthSourceSpec struct {
-	ConnectorRef string `json:"connectorRef"`
-	MetricPacks []TimeSeriesMetricPackDto `json:"metricPacks,omitempty"`
+	ConnectorRef      string                       `json:"connectorRef"`
+	MetricPacks       []TimeSeriesMetricPackDto    `json:"metricPacks,omitempty"`
 	MetricDefinitions []PrometheusMetricDefinition `json:"metricDefinitions,omitempty"`
-	Region string `json:"region"`
-	WorkspaceId string `json:"workspaceId"`
+	Region            string                       `json:"region"`
+	WorkspaceId       string                       `json:"workspaceId"`
 }

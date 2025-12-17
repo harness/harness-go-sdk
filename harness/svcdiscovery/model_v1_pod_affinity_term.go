@@ -9,7 +9,7 @@
 package svcdiscovery
 
 type V1PodAffinityTerm struct {
-	LabelSelector *V1LabelSelector `json:"labelSelector,omitempty"`
+	LabelSelector     *V1LabelSelector `json:"labelSelector,omitempty"`
 	NamespaceSelector *V1LabelSelector `json:"namespaceSelector,omitempty"`
 	// namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means \"this pod's namespace\". +optional
 	Namespaces []string `json:"namespaces,omitempty"`

@@ -9,14 +9,14 @@
 package chaos
 
 type V2OnboardingDiscoveredService struct {
-	AgentDetails *V2OnboardingAgentData `json:"agentDetails,omitempty"`
-	CompletedAgentCount int32 `json:"completedAgentCount,omitempty"`
-	DiscoveredServiceCount int32 `json:"discoveredServiceCount,omitempty"`
-	ErroredAgentCount int32 `json:"erroredAgentCount,omitempty"`
-	IsTracingEnabled bool `json:"isTracingEnabled,omitempty"`
-	PendingAgentCount int32 `json:"pendingAgentCount,omitempty"`
-	SDAgentID string `json:"sDAgentID,omitempty"`
-	SDAgentIdentity string `json:"sDAgentIdentity,omitempty"`
-	Status *V2OnboardingV2OnboardingStatus `json:"status,omitempty"`
-	TotalAgentCount int32 `json:"totalAgentCount,omitempty"`
+	AgentDetails           *V2OnboardingAgentData          `json:"agentDetails,omitempty"`
+	CompletedAgentCount    int32                           `json:"completedAgentCount,omitempty"`
+	DiscoveredServiceCount int32                           `json:"discoveredServiceCount,omitempty"`
+	ErroredAgentCount      int32                           `json:"erroredAgentCount,omitempty"`
+	IsTracingEnabled       bool                            `json:"isTracingEnabled,omitempty"`
+	PendingAgentCount      int32                           `json:"pendingAgentCount,omitempty"`
+	SDAgentID              string                          `json:"sDAgentID,omitempty"`
+	SDAgentIdentity        string                          `json:"sDAgentIdentity,omitempty"`
+	Status                 *V2OnboardingV2OnboardingStatus `json:"status,omitempty"`
+	TotalAgentCount        int32                           `json:"totalAgentCount,omitempty"`
 }

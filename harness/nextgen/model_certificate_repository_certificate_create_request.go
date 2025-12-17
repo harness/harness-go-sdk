@@ -11,5 +11,5 @@ package nextgen
 
 type CertificateRepositoryCertificateCreateRequest struct {
 	Certificates *Applicationv1alpha1RepositoryCertificateList `json:"certificates,omitempty"`
-	Upsert bool `json:"upsert,omitempty"`
+	Upsert       bool                                          `json:"upsert,omitempty"`
 }

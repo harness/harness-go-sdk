@@ -10,5 +10,5 @@ package chaos
 
 type TypesProbeBulkEnableRequest struct {
 	IsBulkUpdate bool `json:"isBulkUpdate,omitempty"`
-	IsEnabled bool `json:"isEnabled,omitempty"`
+	IsEnabled    bool `json:"isEnabled,omitempty"`
 }

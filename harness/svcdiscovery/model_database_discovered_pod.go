@@ -10,5 +10,5 @@ package svcdiscovery
 
 type DatabaseDiscoveredPod struct {
 	Identity *V1ObjectReference `json:"identity,omitempty"`
-	Phase string `json:"phase,omitempty"`
+	Phase    string             `json:"phase,omitempty"`
 }

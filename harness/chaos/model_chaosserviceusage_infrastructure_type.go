@@ -12,8 +12,8 @@ type ChaosserviceusageInfrastructureType string
 
 // List of chaosserviceusage.InfrastructureType
 const (
-	KUBERNETES_ChaosserviceusageInfrastructureType ChaosserviceusageInfrastructureType = "Kubernetes"
+	KUBERNETES_ChaosserviceusageInfrastructureType    ChaosserviceusageInfrastructureType = "Kubernetes"
 	KUBERNETES_V2_ChaosserviceusageInfrastructureType ChaosserviceusageInfrastructureType = "KubernetesV2"
-	WINDOWS_ChaosserviceusageInfrastructureType ChaosserviceusageInfrastructureType = "Windows"
-	LINUX_ChaosserviceusageInfrastructureType ChaosserviceusageInfrastructureType = "Linux"
+	WINDOWS_ChaosserviceusageInfrastructureType       ChaosserviceusageInfrastructureType = "Windows"
+	LINUX_ChaosserviceusageInfrastructureType         ChaosserviceusageInfrastructureType = "Linux"
 )

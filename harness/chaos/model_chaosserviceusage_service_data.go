@@ -9,18 +9,18 @@
 package chaos
 
 type ChaosserviceusageServiceData struct {
-	ExperimentRuns int32 `json:"experimentRuns,omitempty"`
-	Experiments int32 `json:"experiments,omitempty"`
-	FaultsRan int32 `json:"faultsRan,omitempty"`
-	InfraStructure string `json:"infraStructure,omitempty"`
-	InfraType *ChaosserviceusageInfrastructureType `json:"infraType,omitempty"`
-	LicenseUtilisation float64 `json:"licenseUtilisation,omitempty"`
-	Namespace string `json:"namespace,omitempty"`
-	OrgID string `json:"orgID,omitempty"`
-	ProjectID string `json:"projectID,omitempty"`
-	Resource string `json:"resource,omitempty"`
-	Service string `json:"service,omitempty"`
-	ServiceID string `json:"serviceID,omitempty"`
-	SubType string `json:"subType,omitempty"`
-	Type_ *ChaosserviceusageServiceType `json:"type,omitempty"`
+	ExperimentRuns     int32                                `json:"experimentRuns,omitempty"`
+	Experiments        int32                                `json:"experiments,omitempty"`
+	FaultsRan          int32                                `json:"faultsRan,omitempty"`
+	InfraStructure     string                               `json:"infraStructure,omitempty"`
+	InfraType          *ChaosserviceusageInfrastructureType `json:"infraType,omitempty"`
+	LicenseUtilisation float64                              `json:"licenseUtilisation,omitempty"`
+	Namespace          string                               `json:"namespace,omitempty"`
+	OrgID              string                               `json:"orgID,omitempty"`
+	ProjectID          string                               `json:"projectID,omitempty"`
+	Resource           string                               `json:"resource,omitempty"`
+	Service            string                               `json:"service,omitempty"`
+	ServiceID          string                               `json:"serviceID,omitempty"`
+	SubType            string                               `json:"subType,omitempty"`
+	Type_              *ChaosserviceusageServiceType        `json:"type,omitempty"`
 }

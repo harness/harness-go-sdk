@@ -9,6 +9,6 @@
 package chaos
 
 type ProbeSyntheticsTest struct {
-	PublicId string `json:"publicId,omitempty"`
+	PublicId string                                                                                `json:"publicId,omitempty"`
 	TestType *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeDatadogSyntheticsTestType `json:"testType,omitempty"`
 }

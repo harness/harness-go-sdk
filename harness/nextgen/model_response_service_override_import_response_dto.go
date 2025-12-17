@@ -14,8 +14,8 @@ the breaking change with respect to the generated code stub  # Authentication  <
 package nextgen
 
 type ResponseServiceOverrideImportResponseDto struct {
-	Status string `json:"status,omitempty"`
-	Data *ServiceOverrideImportResponseDto `json:"data,omitempty"`
-	MetaData *interface{} `json:"metaData,omitempty"`
-	CorrelationId string `json:"correlationId,omitempty"`
+	Status        string                            `json:"status,omitempty"`
+	Data          *ServiceOverrideImportResponseDto `json:"data,omitempty"`
+	MetaData      *interface{}                      `json:"metaData,omitempty"`
+	CorrelationId string                            `json:"correlationId,omitempty"`
 }

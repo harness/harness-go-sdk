@@ -336,10 +336,10 @@ func main() {
 		log.Printf("Warning: Failed to sync hub: %v", err)
 	} else {
 		fmt.Println("Successfully triggered sync operation")
-		
+
 		// Wait a moment for sync to potentially complete
 		time.Sleep(3 * time.Second)
-		
+
 		// Get updated details to check sync status
 		syncedHub, err := getChaosHubDetails(hubClient, newHub.ID, identifiers)
 		if err != nil {
@@ -347,7 +347,7 @@ func main() {
 		} else {
 			fmt.Printf("Last Synced At: %s\n", syncedHub.LastSyncedAt)
 			if syncedHub.IsAvailable {
-				fmt.Printf("Hub is available with %d experiments and %d faults\n", 
+				fmt.Printf("Hub is available with %d experiments and %d faults\n",
 					syncedHub.TotalExperiments, syncedHub.TotalFaults)
 			} else {
 				fmt.Println("Note: Hub is not currently available")

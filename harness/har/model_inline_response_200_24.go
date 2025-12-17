@@ -9,6 +9,6 @@
 package har
 
 type InlineResponse20024 struct {
-	Data *ListMigrationImage `json:"data"`
-	Status *Status `json:"status"`
+	Data   *ListMigrationImage `json:"data"`
+	Status *Status             `json:"status"`
 }

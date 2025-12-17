@@ -9,9 +9,9 @@
 package svcdiscovery
 
 type ApiPagination struct {
-	All bool `json:"all,omitempty"`
-	Index int32 `json:"index,omitempty"`
-	Limit int32 `json:"limit,omitempty"`
+	All        bool  `json:"all,omitempty"`
+	Index      int32 `json:"index,omitempty"`
+	Limit      int32 `json:"limit,omitempty"`
 	TotalItems int32 `json:"totalItems,omitempty"`
 	TotalPages int32 `json:"totalPages,omitempty"`
 }

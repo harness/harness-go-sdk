@@ -9,6 +9,6 @@
 package chaos
 
 type ProbeMethodTemplate struct {
-	Get *GithubComHarnessHceSaasHceSdkTemplateSchemaProbeGet `json:"get,omitempty"`
+	Get  *GithubComHarnessHceSaasHceSdkTemplateSchemaProbeGet  `json:"get,omitempty"`
 	Post *GithubComHarnessHceSaasHceSdkTemplateSchemaProbePost `json:"post,omitempty"`
 }

@@ -9,11 +9,11 @@
 package chaos
 
 type RecommendationProbePayload struct {
-	Error_ string `json:"error,omitempty"`
-	ExperimentID string `json:"experimentID,omitempty"`
-	ExperimentName string `json:"experimentName,omitempty"`
+	Error_          string `json:"error,omitempty"`
+	ExperimentID    string `json:"experimentID,omitempty"`
+	ExperimentName  string `json:"experimentName,omitempty"`
 	ExperimentRunID string `json:"experimentRunID,omitempty"`
-	ProbeID string `json:"probeID,omitempty"`
-	ProbeName string `json:"probeName,omitempty"`
-	ProbeType string `json:"probeType,omitempty"`
+	ProbeID         string `json:"probeID,omitempty"`
+	ProbeName       string `json:"probeName,omitempty"`
+	ProbeType       string `json:"probeType,omitempty"`
 }

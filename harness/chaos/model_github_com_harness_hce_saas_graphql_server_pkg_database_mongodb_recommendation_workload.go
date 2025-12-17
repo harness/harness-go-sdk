@@ -9,8 +9,8 @@
 package chaos
 
 type GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbRecommendationWorkload struct {
-	Kind string `json:"kind,omitempty"`
-	Labels string `json:"labels,omitempty"`
-	Name string `json:"name,omitempty"`
+	Kind      string `json:"kind,omitempty"`
+	Labels    string `json:"labels,omitempty"`
+	Name      string `json:"name,omitempty"`
 	Namespace string `json:"namespace,omitempty"`
 }

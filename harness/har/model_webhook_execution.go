@@ -10,15 +10,15 @@ package har
 
 // Harness Registries Webhook Execution
 type WebhookExecution struct {
-	Created int64 `json:"created,omitempty"`
-	Duration int64 `json:"duration,omitempty"`
-	Error_ string `json:"error,omitempty"`
-	Id int64 `json:"id,omitempty"`
-	Request *WebhookExecRequest `json:"request,omitempty"`
-	Response *WebhookExecResponse `json:"response,omitempty"`
-	Result *WebhookExecResult `json:"result,omitempty"`
-	RetriggerOf int64 `json:"retriggerOf,omitempty"`
-	Retriggerable bool `json:"retriggerable,omitempty"`
-	TriggerType *Trigger `json:"triggerType,omitempty"`
-	WebhookId int64 `json:"webhookId,omitempty"`
+	Created       int64                `json:"created,omitempty"`
+	Duration      int64                `json:"duration,omitempty"`
+	Error_        string               `json:"error,omitempty"`
+	Id            int64                `json:"id,omitempty"`
+	Request       *WebhookExecRequest  `json:"request,omitempty"`
+	Response      *WebhookExecResponse `json:"response,omitempty"`
+	Result        *WebhookExecResult   `json:"result,omitempty"`
+	RetriggerOf   int64                `json:"retriggerOf,omitempty"`
+	Retriggerable bool                 `json:"retriggerable,omitempty"`
+	TriggerType   *Trigger             `json:"triggerType,omitempty"`
+	WebhookId     int64                `json:"webhookId,omitempty"`
 }

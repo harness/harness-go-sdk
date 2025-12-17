@@ -10,5 +10,5 @@ package chaos
 
 type ExecutionHelperPodDetails struct {
 	LogStreamID string `json:"logStreamID,omitempty"`
-	Name string `json:"name,omitempty"`
+	Name        string `json:"name,omitempty"`
 }

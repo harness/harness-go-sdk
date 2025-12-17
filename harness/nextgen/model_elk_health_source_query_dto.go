@@ -10,11 +10,11 @@
 package nextgen
 
 type ElkHealthSourceQueryDto struct {
-	Name string `json:"name"`
-	Query string `json:"query"`
-	Index string `json:"index"`
+	Name                      string `json:"name"`
+	Query                     string `json:"query"`
+	Index                     string `json:"index"`
 	ServiceInstanceIdentifier string `json:"serviceInstanceIdentifier"`
-	TimeStampIdentifier string `json:"timeStampIdentifier"`
-	TimeStampFormat string `json:"timeStampFormat"`
-	MessageIdentifier string `json:"messageIdentifier"`
+	TimeStampIdentifier       string `json:"timeStampIdentifier"`
+	TimeStampFormat           string `json:"timeStampFormat"`
+	MessageIdentifier         string `json:"messageIdentifier"`
 }

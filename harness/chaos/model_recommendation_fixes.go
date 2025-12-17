@@ -10,5 +10,5 @@ package chaos
 
 type RecommendationFixes struct {
 	Description string `json:"description,omitempty"`
-	Name string `json:"name,omitempty"`
+	Name        string `json:"name,omitempty"`
 }

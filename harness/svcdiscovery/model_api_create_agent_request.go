@@ -9,10 +9,10 @@
 package svcdiscovery
 
 type ApiCreateAgentRequest struct {
-	Config *DatabaseAgentConfiguration `json:"config"`
-	EnvironmentIdentifier string `json:"environmentIdentifier"`
-	InfraIdentifier string `json:"infraIdentifier"`
-	Name string `json:"name"`
-	PermanentInstallation bool `json:"permanentInstallation,omitempty"`
-	WebhookURL string `json:"webhookURL,omitempty"`
+	Config                *DatabaseAgentConfiguration `json:"config"`
+	EnvironmentIdentifier string                      `json:"environmentIdentifier"`
+	InfraIdentifier       string                      `json:"infraIdentifier"`
+	Name                  string                      `json:"name"`
+	PermanentInstallation bool                        `json:"permanentInstallation,omitempty"`
+	WebhookURL            string                      `json:"webhookURL,omitempty"`
 }

@@ -9,15 +9,15 @@
 package chaos
 
 type GithubComHarnessHceSaasGraphqlServerPkgActionsAction struct {
-	ActionProperties *ActionActionTemplateProperties `json:"actionProperties,omitempty"`
-	ActionsTemplateRef string `json:"actionsTemplateRef,omitempty"`
-	Description string `json:"description,omitempty"`
-	HubRef string `json:"hubRef,omitempty"`
-	Identity string `json:"identity,omitempty"`
-	InfrastructureType *ActionsInfrastructureType `json:"infrastructureType,omitempty"`
-	Name string `json:"name"`
-	RunProperties *ActionActionTemplateRunProperties `json:"runProperties,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	Type_ *ActionsActionType `json:"type,omitempty"`
-	Variables []TemplateVariable `json:"variables,omitempty"`
+	ActionProperties   *ActionActionTemplateProperties    `json:"actionProperties,omitempty"`
+	ActionsTemplateRef string                             `json:"actionsTemplateRef,omitempty"`
+	Description        string                             `json:"description,omitempty"`
+	HubRef             string                             `json:"hubRef,omitempty"`
+	Identity           string                             `json:"identity,omitempty"`
+	InfrastructureType *ActionsInfrastructureType         `json:"infrastructureType,omitempty"`
+	Name               string                             `json:"name"`
+	RunProperties      *ActionActionTemplateRunProperties `json:"runProperties,omitempty"`
+	Tags               []string                           `json:"tags,omitempty"`
+	Type_              *ActionsActionType                 `json:"type,omitempty"`
+	Variables          []TemplateVariable                 `json:"variables,omitempty"`
 }

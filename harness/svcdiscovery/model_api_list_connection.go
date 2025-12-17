@@ -9,6 +9,6 @@
 package svcdiscovery
 
 type ApiListConnection struct {
-	CorrelationID string `json:"correlationID,omitempty"`
-	Items []DatabaseConnectionCollection `json:"items,omitempty"`
+	CorrelationID string                         `json:"correlationID,omitempty"`
+	Items         []DatabaseConnectionCollection `json:"items,omitempty"`
 }

@@ -12,11 +12,11 @@ type TemplateVariableCategory string
 
 // List of template.VariableCategory
 const (
-	FAULT_TARGET_TemplateVariableCategory TemplateVariableCategory = "FaultTarget"
-	FAULT_TUNABLE_TemplateVariableCategory TemplateVariableCategory = "FaultTunable"
-	TARGET_INFRA_TemplateVariableCategory TemplateVariableCategory = "TargetInfra"
+	FAULT_TARGET_TemplateVariableCategory       TemplateVariableCategory = "FaultTarget"
+	FAULT_TUNABLE_TemplateVariableCategory      TemplateVariableCategory = "FaultTunable"
+	TARGET_INFRA_TemplateVariableCategory       TemplateVariableCategory = "TargetInfra"
 	EXPERIMENT_TUNABLE_TemplateVariableCategory TemplateVariableCategory = "ExperimentTunable"
-	ACTION_PROPERTIES_TemplateVariableCategory TemplateVariableCategory = "ActionProperties"
-	PROBE_PROPERTIES_TemplateVariableCategory TemplateVariableCategory = "ProbeProperties"
-	RUN_PROPERTIES_TemplateVariableCategory TemplateVariableCategory = "RunProperties"
+	ACTION_PROPERTIES_TemplateVariableCategory  TemplateVariableCategory = "ActionProperties"
+	PROBE_PROPERTIES_TemplateVariableCategory   TemplateVariableCategory = "ProbeProperties"
+	RUN_PROPERTIES_TemplateVariableCategory     TemplateVariableCategory = "RunProperties"
 )

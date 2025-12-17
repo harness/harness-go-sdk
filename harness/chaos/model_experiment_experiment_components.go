@@ -9,18 +9,18 @@
 package chaos
 
 type ExperimentExperimentComponents struct {
-	ConfigMaps []ExperimentConfigMap `json:"configMaps,omitempty"`
-	Helper *ExperimentHelperConfig `json:"helper,omitempty"`
-	HostFileVolumes []ExperimentHostFile `json:"hostFileVolumes,omitempty"`
-	HostPID bool `json:"hostPID,omitempty"`
-	ImagePullSecrets []V1LocalObjectReference `json:"imagePullSecrets,omitempty"`
-	NodeSelector map[string]string `json:"nodeSelector,omitempty"`
-	ProjectedVolumes []ExperimentProjectedVolumes `json:"projectedVolumes,omitempty"`
-	Resources *V1ResourceRequirements `json:"resources,omitempty"`
-	Secrets []ExperimentSecret `json:"secrets,omitempty"`
-	SecurityContext *ExperimentSecurityContext `json:"securityContext,omitempty"`
-	Sidecar []ExperimentSidecar `json:"sidecar,omitempty"`
-	StatusCheckTimeouts *ExperimentStatusCheckTimeout `json:"statusCheckTimeouts,omitempty"`
-	TerminationGracePeriodSeconds int32 `json:"terminationGracePeriodSeconds,omitempty"`
-	Tolerations []V1Toleration `json:"tolerations,omitempty"`
+	ConfigMaps                    []ExperimentConfigMap         `json:"configMaps,omitempty"`
+	Helper                        *ExperimentHelperConfig       `json:"helper,omitempty"`
+	HostFileVolumes               []ExperimentHostFile          `json:"hostFileVolumes,omitempty"`
+	HostPID                       bool                          `json:"hostPID,omitempty"`
+	ImagePullSecrets              []V1LocalObjectReference      `json:"imagePullSecrets,omitempty"`
+	NodeSelector                  map[string]string             `json:"nodeSelector,omitempty"`
+	ProjectedVolumes              []ExperimentProjectedVolumes  `json:"projectedVolumes,omitempty"`
+	Resources                     *V1ResourceRequirements       `json:"resources,omitempty"`
+	Secrets                       []ExperimentSecret            `json:"secrets,omitempty"`
+	SecurityContext               *ExperimentSecurityContext    `json:"securityContext,omitempty"`
+	Sidecar                       []ExperimentSidecar           `json:"sidecar,omitempty"`
+	StatusCheckTimeouts           *ExperimentStatusCheckTimeout `json:"statusCheckTimeouts,omitempty"`
+	TerminationGracePeriodSeconds int32                         `json:"terminationGracePeriodSeconds,omitempty"`
+	Tolerations                   []V1Toleration                `json:"tolerations,omitempty"`
 }

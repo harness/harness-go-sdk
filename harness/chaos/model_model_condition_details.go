@@ -9,8 +9,8 @@
 package chaos
 
 type ModelConditionDetails struct {
-	ConditionId string `json:"conditionId,omitempty"`
-	ConditionName string `json:"conditionName,omitempty"`
-	Message string `json:"message,omitempty"`
-	Phase *ModelSecurityGovernancePhase `json:"phase,omitempty"`
+	ConditionId   string                        `json:"conditionId,omitempty"`
+	ConditionName string                        `json:"conditionName,omitempty"`
+	Message       string                        `json:"message,omitempty"`
+	Phase         *ModelSecurityGovernancePhase `json:"phase,omitempty"`
 }

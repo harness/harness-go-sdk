@@ -9,6 +9,6 @@
 package chaos
 
 type SecurityGovernanceFaultSpec struct {
-	Faults []SecurityGovernanceFault `json:"faults,omitempty"`
+	Faults   []SecurityGovernanceFault   `json:"faults,omitempty"`
 	Operator *SecurityGovernanceOperator `json:"operator,omitempty"`
 }

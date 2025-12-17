@@ -21,14 +21,14 @@ type Servicev1Application struct {
 	// Project Identifier for the Entity.
 	ProjectIdentifier string `json:"projectIdentifier,omitempty"`
 	// Agent identifier for entity.
-	AgentIdentifier   string                   `json:"agentIdentifier,omitempty"`
-	Name              string                   `json:"name,omitempty"`
-	ClusterIdentifier string                   `json:"clusterIdentifier,omitempty"`
-	RepoIdentifier    string                   `json:"repoIdentifier,omitempty"`
-	App               *ApplicationsApplication `json:"app,omitempty"`
-	CreatedAt         time.Time                `json:"createdAt,omitempty"`
-	LastModifiedAt    time.Time                `json:"lastModifiedAt,omitempty"`
-	Stale             bool                     `json:"stale,omitempty"`
-        SkipRepoValidation bool `json:"skipRepoValidation,omitempty"`
-	RepoIdentifiers []string `json:"repoIdentifiers,omitempty"`
+	AgentIdentifier    string                   `json:"agentIdentifier,omitempty"`
+	Name               string                   `json:"name,omitempty"`
+	ClusterIdentifier  string                   `json:"clusterIdentifier,omitempty"`
+	RepoIdentifier     string                   `json:"repoIdentifier,omitempty"`
+	App                *ApplicationsApplication `json:"app,omitempty"`
+	CreatedAt          time.Time                `json:"createdAt,omitempty"`
+	LastModifiedAt     time.Time                `json:"lastModifiedAt,omitempty"`
+	Stale              bool                     `json:"stale,omitempty"`
+	SkipRepoValidation bool                     `json:"skipRepoValidation,omitempty"`
+	RepoIdentifiers    []string                 `json:"repoIdentifiers,omitempty"`
 }

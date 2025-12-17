@@ -9,6 +9,6 @@
 package chaos
 
 type ModelProbeMap struct {
-	FaultName string `json:"faultName,omitempty"`
+	FaultName string   `json:"faultName,omitempty"`
 	ProbeName []string `json:"probeName,omitempty"`
 }

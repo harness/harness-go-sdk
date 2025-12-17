@@ -12,7 +12,7 @@ type V1AzureDataDiskCachingMode string
 
 // List of v1.AzureDataDiskCachingMode
 const (
-	NONE_V1AzureDataDiskCachingMode V1AzureDataDiskCachingMode = "None"
-	READ_ONLY_V1AzureDataDiskCachingMode V1AzureDataDiskCachingMode = "ReadOnly"
+	NONE_V1AzureDataDiskCachingMode       V1AzureDataDiskCachingMode = "None"
+	READ_ONLY_V1AzureDataDiskCachingMode  V1AzureDataDiskCachingMode = "ReadOnly"
 	READ_WRITE_V1AzureDataDiskCachingMode V1AzureDataDiskCachingMode = "ReadWrite"
 )

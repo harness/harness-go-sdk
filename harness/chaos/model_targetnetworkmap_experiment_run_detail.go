@@ -9,16 +9,16 @@
 package chaos
 
 type TargetnetworkmapExperimentRunDetail struct {
-	Completed bool `json:"completed,omitempty"`
-	CreatedAt int32 `json:"createdAt,omitempty"`
-	CreatedBy string `json:"createdBy,omitempty"`
-	ExperimentRunID string `json:"experimentRunID,omitempty"`
-	IsRemoved bool `json:"isRemoved"`
-	Name string `json:"name,omitempty"`
-	NotifyID string `json:"notifyID,omitempty"`
-	Phase string `json:"phase,omitempty"`
-	ResiliencyScore float64 `json:"resiliencyScore,omitempty"`
-	TargetService []TargetserviceServiceMetadata `json:"targetService,omitempty"`
-	UpdatedAt int32 `json:"updatedAt,omitempty"`
-	UpdatedBy string `json:"updatedBy,omitempty"`
+	Completed       bool                           `json:"completed,omitempty"`
+	CreatedAt       int32                          `json:"createdAt,omitempty"`
+	CreatedBy       string                         `json:"createdBy,omitempty"`
+	ExperimentRunID string                         `json:"experimentRunID,omitempty"`
+	IsRemoved       bool                           `json:"isRemoved"`
+	Name            string                         `json:"name,omitempty"`
+	NotifyID        string                         `json:"notifyID,omitempty"`
+	Phase           string                         `json:"phase,omitempty"`
+	ResiliencyScore float64                        `json:"resiliencyScore,omitempty"`
+	TargetService   []TargetserviceServiceMetadata `json:"targetService,omitempty"`
+	UpdatedAt       int32                          `json:"updatedAt,omitempty"`
+	UpdatedBy       string                         `json:"updatedBy,omitempty"`
 }

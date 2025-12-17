@@ -10,9 +10,9 @@
 package nextgen
 
 type RatioSliMetricSpec struct {
-	EventType string `json:"eventType"`
-	Metric1 string `json:"metric1"`
-	Metric2 string `json:"metric2"`
+	EventType      string  `json:"eventType"`
+	Metric1        string  `json:"metric1"`
+	Metric2        string  `json:"metric2"`
 	ThresholdValue float64 `json:"thresholdValue"`
-	ThresholdType string `json:"thresholdType"`
+	ThresholdType  string  `json:"thresholdType"`
 }

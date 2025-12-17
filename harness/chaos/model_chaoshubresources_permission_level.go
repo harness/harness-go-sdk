@@ -12,6 +12,6 @@ type ChaoshubresourcesPermissionLevel string
 
 // List of chaoshubresources.PermissionLevel
 const (
-	BASIC_ChaoshubresourcesPermissionLevel ChaoshubresourcesPermissionLevel = "basic"
+	BASIC_ChaoshubresourcesPermissionLevel    ChaoshubresourcesPermissionLevel = "basic"
 	ADVANCED_ChaoshubresourcesPermissionLevel ChaoshubresourcesPermissionLevel = "advanced"
 )

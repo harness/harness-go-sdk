@@ -9,7 +9,7 @@
 package chaos
 
 type RecommendationFaultFilters struct {
-	Criticality int32 `json:"criticality,omitempty"`
-	FaultName string `json:"faultName,omitempty"`
-	Targets *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbRecommendationTarget `json:"targets,omitempty"`
+	Criticality int32                                                                       `json:"criticality,omitempty"`
+	FaultName   string                                                                      `json:"faultName,omitempty"`
+	Targets     *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbRecommendationTarget `json:"targets,omitempty"`
 }

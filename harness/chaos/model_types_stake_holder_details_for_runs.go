@@ -9,11 +9,11 @@
 package chaos
 
 type TypesStakeHolderDetailsForRuns struct {
-	ApprovalRequired bool `json:"approvalRequired,omitempty"`
-	ApprovalStatus *Gamedayrunv2ApprovalStatus `json:"approvalStatus,omitempty"`
-	LastUpdatedAt int32 `json:"lastUpdatedAt,omitempty"`
-	LastUpdatedBy *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"lastUpdatedBy,omitempty"`
-	Notes string `json:"notes,omitempty"`
-	Role *Gamedayv2StakeHolderRole `json:"role,omitempty"`
-	User *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"user,omitempty"`
+	ApprovalRequired bool                                                       `json:"approvalRequired,omitempty"`
+	ApprovalStatus   *Gamedayrunv2ApprovalStatus                                `json:"approvalStatus,omitempty"`
+	LastUpdatedAt    int32                                                      `json:"lastUpdatedAt,omitempty"`
+	LastUpdatedBy    *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"lastUpdatedBy,omitempty"`
+	Notes            string                                                     `json:"notes,omitempty"`
+	Role             *Gamedayv2StakeHolderRole                                  `json:"role,omitempty"`
+	User             *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"user,omitempty"`
 }

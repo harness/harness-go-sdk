@@ -10,7 +10,7 @@ package har
 
 // Client Setup Section
 type ClientSetupSection struct {
-	Header string `json:"header,omitempty"`
-	SecHeader string `json:"secHeader,omitempty"`
-	Type_ *SectionType `json:"type"`
+	Header    string       `json:"header,omitempty"`
+	SecHeader string       `json:"secHeader,omitempty"`
+	Type_     *SectionType `json:"type"`
 }

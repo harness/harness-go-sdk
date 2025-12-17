@@ -13,7 +13,7 @@ type InfraV2EnvValueFrom string
 // List of infra_v2.EnvValueFrom
 const (
 	CONFIG_MAP_KEY_REF_InfraV2EnvValueFrom InfraV2EnvValueFrom = "configMapKeyRef"
-	SECRET_KEY_REF_InfraV2EnvValueFrom InfraV2EnvValueFrom = "secretKeyRef"
-	VALUE_InfraV2EnvValueFrom InfraV2EnvValueFrom = "value"
-	VALUE_FROM_InfraV2EnvValueFrom InfraV2EnvValueFrom = "valueFrom"
+	SECRET_KEY_REF_InfraV2EnvValueFrom     InfraV2EnvValueFrom = "secretKeyRef"
+	VALUE_InfraV2EnvValueFrom              InfraV2EnvValueFrom = "value"
+	VALUE_FROM_InfraV2EnvValueFrom         InfraV2EnvValueFrom = "valueFrom"
 )

@@ -10,6 +10,6 @@ package chaos
 
 type InfraV2DeleteKubernetesInfraV2Response struct {
 	CorrelationId string `json:"correlationId,omitempty"`
-	Identity string `json:"identity,omitempty"`
-	Message string `json:"message,omitempty"`
+	Identity      string `json:"identity,omitempty"`
+	Message       string `json:"message,omitempty"`
 }

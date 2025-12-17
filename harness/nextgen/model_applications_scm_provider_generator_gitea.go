@@ -14,9 +14,9 @@ type ApplicationsScmProviderGeneratorGitea struct {
 	// Gitea organization or user to scan. Required.
 	Owner string `json:"owner,omitempty"`
 	// The Gitea URL to talk to. For example https://gitea.mydomain.com/.
-	Api string `json:"api,omitempty"`
+	Api      string                 `json:"api,omitempty"`
 	TokenRef *ApplicationsSecretRef `json:"tokenRef,omitempty"`
 	// Scan all branches instead of just the default branch.
 	AllBranches bool `json:"allBranches,omitempty"`
-	Insecure bool `json:"insecure,omitempty"`
+	Insecure    bool `json:"insecure,omitempty"`
 }

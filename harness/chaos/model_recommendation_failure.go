@@ -9,8 +9,8 @@
 package chaos
 
 type RecommendationFailure struct {
-	ContainerName string `json:"containerName,omitempty"`
+	ContainerName   string `json:"containerName,omitempty"`
 	EventIdentifier string `json:"eventIdentifier,omitempty"`
-	KubernetesDoc string `json:"kubernetesDoc,omitempty"`
-	Text string `json:"text,omitempty"`
+	KubernetesDoc   string `json:"kubernetesDoc,omitempty"`
+	Text            string `json:"text,omitempty"`
 }

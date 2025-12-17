@@ -10,7 +10,7 @@
 package nextgen
 
 type SplunkHealthSourceQueryDto struct {
-	Name string `json:"name"`
-	Query string `json:"query"`
+	Name                      string `json:"name"`
+	Query                     string `json:"query"`
 	ServiceInstanceIdentifier string `json:"serviceInstanceIdentifier"`
 }

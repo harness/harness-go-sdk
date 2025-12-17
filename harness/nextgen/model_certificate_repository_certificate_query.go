@@ -11,6 +11,6 @@ package nextgen
 
 type CertificateRepositoryCertificateQuery struct {
 	HostNamePattern string `json:"hostNamePattern,omitempty"`
-	CertType string `json:"certType,omitempty"`
-	CertSubType string `json:"certSubType,omitempty"`
+	CertType        string `json:"certType,omitempty"`
+	CertSubType     string `json:"certSubType,omitempty"`
 }

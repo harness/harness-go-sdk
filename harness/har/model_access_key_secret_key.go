@@ -9,11 +9,11 @@
 package har
 
 type AccessKeySecretKey struct {
-	AccessKey string `json:"accessKey,omitempty"`
+	AccessKey                 string `json:"accessKey,omitempty"`
 	AccessKeySecretIdentifier string `json:"accessKeySecretIdentifier,omitempty"`
-	AccessKeySecretSpaceId int64 `json:"accessKeySecretSpaceId,omitempty"`
-	AccessKeySecretSpacePath string `json:"accessKeySecretSpacePath,omitempty"`
-	SecretKeyIdentifier string `json:"secretKeyIdentifier"`
-	SecretKeySpaceId int64 `json:"secretKeySpaceId,omitempty"`
-	SecretKeySpacePath string `json:"secretKeySpacePath,omitempty"`
+	AccessKeySecretSpaceId    int64  `json:"accessKeySecretSpaceId,omitempty"`
+	AccessKeySecretSpacePath  string `json:"accessKeySecretSpacePath,omitempty"`
+	SecretKeyIdentifier       string `json:"secretKeyIdentifier"`
+	SecretKeySpaceId          int64  `json:"secretKeySpaceId,omitempty"`
+	SecretKeySpacePath        string `json:"secretKeySpacePath,omitempty"`
 }

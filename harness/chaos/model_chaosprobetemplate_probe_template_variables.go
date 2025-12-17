@@ -9,7 +9,7 @@
 package chaos
 
 type ChaosprobetemplateProbeTemplateVariables struct {
-	ProbeProperties []TemplateVariable `json:"probeProperties,omitempty"`
+	ProbeProperties  []TemplateVariable `json:"probeProperties,omitempty"`
 	ProbeRunProperty []TemplateVariable `json:"probeRunProperty,omitempty"`
-	Variables []TemplateVariable `json:"variables,omitempty"`
+	Variables        []TemplateVariable `json:"variables,omitempty"`
 }

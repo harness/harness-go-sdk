@@ -12,7 +12,7 @@ type ChaosHubConnectorScope string
 
 // List of chaos_hub.ConnectorScope
 const (
-	ACCOUNT_ChaosHubConnectorScope ChaosHubConnectorScope = "ACCOUNT"
-	PROJECT_ChaosHubConnectorScope ChaosHubConnectorScope = "PROJECT"
+	ACCOUNT_ChaosHubConnectorScope      ChaosHubConnectorScope = "ACCOUNT"
+	PROJECT_ChaosHubConnectorScope      ChaosHubConnectorScope = "PROJECT"
 	ORGANISATION_ChaosHubConnectorScope ChaosHubConnectorScope = "ORGANISATION"
 )

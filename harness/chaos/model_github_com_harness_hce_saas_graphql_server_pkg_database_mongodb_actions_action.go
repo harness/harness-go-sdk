@@ -9,20 +9,20 @@
 package chaos
 
 type GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbActionsAction struct {
-	AccountID string `json:"accountID"`
-	ActionProperties *ActionActionTemplateProperties `json:"actionProperties,omitempty"`
-	ActionsRef string `json:"actionsRef,omitempty"`
-	Description string `json:"description,omitempty"`
-	HubRef string `json:"hubRef,omitempty"`
-	Identity string `json:"identity,omitempty"`
-	InfrastructureType *ActionsInfrastructureType `json:"infrastructureType,omitempty"`
-	IsRemoved bool `json:"isRemoved,omitempty"`
-	Name string `json:"name"`
-	OrgID string `json:"orgID,omitempty"`
-	ProjectID string `json:"projectID,omitempty"`
-	RecentExecutions []ActionsRecentExecutions `json:"recentExecutions,omitempty"`
-	RunProperties *ActionActionTemplateRunProperties `json:"runProperties,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	Type_ *ActionsActionType `json:"type,omitempty"`
-	Variables []TemplateVariable `json:"variables,omitempty"`
+	AccountID          string                             `json:"accountID"`
+	ActionProperties   *ActionActionTemplateProperties    `json:"actionProperties,omitempty"`
+	ActionsRef         string                             `json:"actionsRef,omitempty"`
+	Description        string                             `json:"description,omitempty"`
+	HubRef             string                             `json:"hubRef,omitempty"`
+	Identity           string                             `json:"identity,omitempty"`
+	InfrastructureType *ActionsInfrastructureType         `json:"infrastructureType,omitempty"`
+	IsRemoved          bool                               `json:"isRemoved,omitempty"`
+	Name               string                             `json:"name"`
+	OrgID              string                             `json:"orgID,omitempty"`
+	ProjectID          string                             `json:"projectID,omitempty"`
+	RecentExecutions   []ActionsRecentExecutions          `json:"recentExecutions,omitempty"`
+	RunProperties      *ActionActionTemplateRunProperties `json:"runProperties,omitempty"`
+	Tags               []string                           `json:"tags,omitempty"`
+	Type_              *ActionsActionType                 `json:"type,omitempty"`
+	Variables          []TemplateVariable                 `json:"variables,omitempty"`
 }

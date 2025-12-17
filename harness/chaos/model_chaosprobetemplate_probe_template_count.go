@@ -9,6 +9,6 @@
 package chaos
 
 type ChaosprobetemplateProbeTemplateCount struct {
-	Count int32 `json:"count,omitempty"`
+	Count int32           `json:"count,omitempty"`
 	Type_ *ProbeProbeType `json:"type,omitempty"`
 }

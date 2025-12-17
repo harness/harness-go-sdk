@@ -9,6 +9,6 @@
 package chaos
 
 type ExperimentStatusCheckTimeout struct {
-	Delay int32 `json:"delay,omitempty"`
+	Delay   int32 `json:"delay,omitempty"`
 	Timeout int32 `json:"timeout,omitempty"`
 }

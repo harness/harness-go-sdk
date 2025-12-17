@@ -10,6 +10,6 @@
 package nextgen
 
 type Sources struct {
-	HealthSources []HealthSource `json:"healthSources,omitempty"`
+	HealthSources []HealthSource    `json:"healthSources,omitempty"`
 	ChangeSources []ChangeSourceDto `json:"changeSources,omitempty"`
 }

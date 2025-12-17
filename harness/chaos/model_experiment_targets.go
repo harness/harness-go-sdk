@@ -10,5 +10,5 @@ package chaos
 
 type ExperimentTargets struct {
 	Application *ExperimentApplication `json:"application,omitempty"`
-	Selectors *ExperimentSelector `json:"selectors,omitempty"`
+	Selectors   *ExperimentSelector    `json:"selectors,omitempty"`
 }

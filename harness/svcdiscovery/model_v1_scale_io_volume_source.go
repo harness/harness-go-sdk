@@ -16,7 +16,7 @@ type V1ScaleIoVolumeSource struct {
 	// protectionDomain is the name of the ScaleIO Protection Domain for the configured storage. +optional
 	ProtectionDomain string `json:"protectionDomain,omitempty"`
 	// readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. +optional
-	ReadOnly bool `json:"readOnly,omitempty"`
+	ReadOnly  bool                    `json:"readOnly,omitempty"`
 	SecretRef *V1LocalObjectReference `json:"secretRef,omitempty"`
 	// sslEnabled Flag enable/disable SSL communication with Gateway, default false +optional
 	SslEnabled bool `json:"sslEnabled,omitempty"`

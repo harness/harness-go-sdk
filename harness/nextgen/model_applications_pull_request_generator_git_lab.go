@@ -14,10 +14,10 @@ type ApplicationsPullRequestGeneratorGitLab struct {
 	// GitLab project to scan. Required.
 	Project string `json:"project,omitempty"`
 	// The GitLab API URL to talk to. If blank, uses https://gitlab.com/.
-	Api string `json:"api,omitempty"`
-	TokenRef *ApplicationsSecretRef `json:"tokenRef,omitempty"`
-	Labels []string `json:"labels,omitempty"`
-	PullRequestState string `json:"pullRequestState,omitempty"`
-	Insecure bool `json:"insecure,omitempty"`
-	CaRef *ApplicationsConfigMapKeyRef `json:"caRef,omitempty"`
+	Api              string                       `json:"api,omitempty"`
+	TokenRef         *ApplicationsSecretRef       `json:"tokenRef,omitempty"`
+	Labels           []string                     `json:"labels,omitempty"`
+	PullRequestState string                       `json:"pullRequestState,omitempty"`
+	Insecure         bool                         `json:"insecure,omitempty"`
+	CaRef            *ApplicationsConfigMapKeyRef `json:"caRef,omitempty"`
 }

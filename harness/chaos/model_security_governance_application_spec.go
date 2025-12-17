@@ -9,6 +9,6 @@
 package chaos
 
 type SecurityGovernanceApplicationSpec struct {
-	Operator *SecurityGovernanceOperator `json:"operator,omitempty"`
+	Operator  *SecurityGovernanceOperator  `json:"operator,omitempty"`
 	Workloads []SecurityGovernanceWorkload `json:"workloads,omitempty"`
 }

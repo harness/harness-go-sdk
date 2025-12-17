@@ -11,8 +11,8 @@ package nextgen
 
 // ClusterGenerator defines a generator to match against clusters registered with ArgoCD.
 type ApplicationsClusterGenerator struct {
-	Selector *V1LabelSelector `json:"selector,omitempty"`
+	Selector *V1LabelSelector                    `json:"selector,omitempty"`
 	Template *ApplicationsApplicationSetTemplate `json:"template,omitempty"`
-	Values map[string]string `json:"values,omitempty"`
-	FlatList bool `json:"flatList,omitempty"`
+	Values   map[string]string                   `json:"values,omitempty"`
+	FlatList bool                                `json:"flatList,omitempty"`
 }

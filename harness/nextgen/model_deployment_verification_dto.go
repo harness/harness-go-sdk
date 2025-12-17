@@ -10,7 +10,7 @@
 package nextgen
 
 type DeploymentVerificationDto struct {
-	Enabled bool `json:"enabled,omitempty"`
-	ServiceInstanceFieldName string `json:"serviceInstanceFieldName,omitempty"`
+	Enabled                   bool   `json:"enabled,omitempty"`
+	ServiceInstanceFieldName  string `json:"serviceInstanceFieldName,omitempty"`
 	ServiceInstanceMetricPath string `json:"serviceInstanceMetricPath,omitempty"`
 }

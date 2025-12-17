@@ -12,7 +12,7 @@ type ChaosresourcenotesNoteType string
 
 // List of chaosresourcenotes.NoteType
 const (
-	EXPERIMENT_RUN_ChaosresourcenotesNoteType ChaosresourcenotesNoteType = "experiment-run"
-	GAMEDAY_RUN_SUMMARY_ChaosresourcenotesNoteType ChaosresourcenotesNoteType = "gameday-run-summary"
+	EXPERIMENT_RUN_ChaosresourcenotesNoteType         ChaosresourcenotesNoteType = "experiment-run"
+	GAMEDAY_RUN_SUMMARY_ChaosresourcenotesNoteType    ChaosresourcenotesNoteType = "gameday-run-summary"
 	GAMEDAY_RUN_EXPERIMENT_ChaosresourcenotesNoteType ChaosresourcenotesNoteType = "gameday-run-experiment"
 )

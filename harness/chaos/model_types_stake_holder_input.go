@@ -9,7 +9,7 @@
 package chaos
 
 type TypesStakeHolderInput struct {
-	ApprovalRequired bool `json:"approvalRequired,omitempty"`
-	Role *TypesStakeHolderRole `json:"role,omitempty"`
-	UserID string `json:"userID,omitempty"`
+	ApprovalRequired bool                  `json:"approvalRequired,omitempty"`
+	Role             *TypesStakeHolderRole `json:"role,omitempty"`
+	UserID           string                `json:"userID,omitempty"`
 }

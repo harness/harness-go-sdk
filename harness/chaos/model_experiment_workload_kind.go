@@ -12,10 +12,10 @@ type ExperimentWorkloadKind string
 
 // List of experiment.WorkloadKind
 const (
-	DEPLOYMENT_ExperimentWorkloadKind ExperimentWorkloadKind = "deployment"
-	STATEFULSET_ExperimentWorkloadKind ExperimentWorkloadKind = "statefulset"
-	DAEMON_SET_ExperimentWorkloadKind ExperimentWorkloadKind = "daemonSet"
+	DEPLOYMENT_ExperimentWorkloadKind       ExperimentWorkloadKind = "deployment"
+	STATEFULSET_ExperimentWorkloadKind      ExperimentWorkloadKind = "statefulset"
+	DAEMON_SET_ExperimentWorkloadKind       ExperimentWorkloadKind = "daemonSet"
 	DEPLOYMENTCONFIG_ExperimentWorkloadKind ExperimentWorkloadKind = "deploymentconfig"
-	ROLLOUT_ExperimentWorkloadKind ExperimentWorkloadKind = "rollout"
-	POD_ExperimentWorkloadKind ExperimentWorkloadKind = "pod"
+	ROLLOUT_ExperimentWorkloadKind          ExperimentWorkloadKind = "rollout"
+	POD_ExperimentWorkloadKind              ExperimentWorkloadKind = "pod"
 )

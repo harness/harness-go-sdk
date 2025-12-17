@@ -12,5 +12,5 @@ package nextgen
 // Utility struct for a reference to a secret key.
 type ApplicationsSecretRef struct {
 	SecretName string `json:"secretName,omitempty"`
-	Key string `json:"key,omitempty"`
+	Key        string `json:"key,omitempty"`
 }

@@ -9,7 +9,7 @@
 package chaos
 
 type ChaosfaulttemplateGetFaultTemplateResponse struct {
-	CorelationID string `json:"corelationID,omitempty"`
-	Data *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbChaosfaulttemplateChaosFaultTemplate `json:"data,omitempty"`
-	Typed *K8sfaultK8SFault `json:"typed,omitempty"`
+	CorelationID string                                                                                      `json:"corelationID,omitempty"`
+	Data         *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbChaosfaulttemplateChaosFaultTemplate `json:"data,omitempty"`
+	Typed        *K8sfaultK8SFault                                                                           `json:"typed,omitempty"`
 }

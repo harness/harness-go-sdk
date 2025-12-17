@@ -11,9 +11,9 @@ package nextgen
 
 // This entity contains the details of the Service Now Refresh Token
 type ServiceNowRefreshToken struct {
-	TokenUrl string `json:"tokenUrl"`
+	TokenUrl        string `json:"tokenUrl"`
 	RefreshTokenRef string `json:"refreshTokenRef"`
-	ClientIdRef string `json:"clientIdRef"`
+	ClientIdRef     string `json:"clientIdRef"`
 	ClientSecretRef string `json:"clientSecretRef,omitempty"`
-	Scope string `json:"scope,omitempty"`
+	Scope           string `json:"scope,omitempty"`
 }

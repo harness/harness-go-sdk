@@ -9,6 +9,6 @@
 package chaos
 
 type HandlersImageRegistryDetails struct {
-	ImageRegistryRepo string `json:"imageRegistryRepo,omitempty"`
+	ImageRegistryRepo   string `json:"imageRegistryRepo,omitempty"`
 	ImageRegistrySecret string `json:"imageRegistrySecret,omitempty"`
 }

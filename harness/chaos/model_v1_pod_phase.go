@@ -12,9 +12,9 @@ type V1PodPhase string
 
 // List of v1.PodPhase
 const (
-	PENDING_V1PodPhase V1PodPhase = "Pending"
-	RUNNING_V1PodPhase V1PodPhase = "Running"
+	PENDING_V1PodPhase   V1PodPhase = "Pending"
+	RUNNING_V1PodPhase   V1PodPhase = "Running"
 	SUCCEEDED_V1PodPhase V1PodPhase = "Succeeded"
-	FAILED_V1PodPhase V1PodPhase = "Failed"
-	UNKNOWN_V1PodPhase V1PodPhase = "Unknown"
+	FAILED_V1PodPhase    V1PodPhase = "Failed"
+	UNKNOWN_V1PodPhase   V1PodPhase = "Unknown"
 )

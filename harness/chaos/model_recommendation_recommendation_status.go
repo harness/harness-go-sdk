@@ -12,8 +12,8 @@ type RecommendationRecommendationStatus string
 
 // List of recommendation.RecommendationStatus
 const (
-	PENDING_RecommendationRecommendationStatus RecommendationRecommendationStatus = "Pending"
-	IGNORED_RecommendationRecommendationStatus RecommendationRecommendationStatus = "Ignored"
+	PENDING_RecommendationRecommendationStatus      RecommendationRecommendationStatus = "Pending"
+	IGNORED_RecommendationRecommendationStatus      RecommendationRecommendationStatus = "Ignored"
 	ACKNOWLEDGED_RecommendationRecommendationStatus RecommendationRecommendationStatus = "Acknowledged"
-	TRACKING_RecommendationRecommendationStatus RecommendationRecommendationStatus = "Tracking"
+	TRACKING_RecommendationRecommendationStatus     RecommendationRecommendationStatus = "Tracking"
 )

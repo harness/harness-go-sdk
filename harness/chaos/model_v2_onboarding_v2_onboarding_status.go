@@ -13,9 +13,9 @@ type V2OnboardingV2OnboardingStatus string
 // List of v2_onboarding.V2OnboardingStatus
 const (
 	COMPLETED_V2OnboardingV2OnboardingStatus V2OnboardingV2OnboardingStatus = "COMPLETED"
-	RUNNING_V2OnboardingV2OnboardingStatus V2OnboardingV2OnboardingStatus = "RUNNING"
-	PENDING_V2OnboardingV2OnboardingStatus V2OnboardingV2OnboardingStatus = "PENDING"
-	QUEUED_V2OnboardingV2OnboardingStatus V2OnboardingV2OnboardingStatus = "QUEUED"
-	NA_V2OnboardingV2OnboardingStatus V2OnboardingV2OnboardingStatus = "NA"
-	ERRORED_V2OnboardingV2OnboardingStatus V2OnboardingV2OnboardingStatus = "ERRORED"
+	RUNNING_V2OnboardingV2OnboardingStatus   V2OnboardingV2OnboardingStatus = "RUNNING"
+	PENDING_V2OnboardingV2OnboardingStatus   V2OnboardingV2OnboardingStatus = "PENDING"
+	QUEUED_V2OnboardingV2OnboardingStatus    V2OnboardingV2OnboardingStatus = "QUEUED"
+	NA_V2OnboardingV2OnboardingStatus        V2OnboardingV2OnboardingStatus = "NA"
+	ERRORED_V2OnboardingV2OnboardingStatus   V2OnboardingV2OnboardingStatus = "ERRORED"
 )

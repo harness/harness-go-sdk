@@ -10,8 +10,8 @@
 package nextgen
 
 type RiskProfile struct {
-	Category string `json:"category,omitempty"`
-	MetricType string `json:"metricType,omitempty"`
-	RiskCategory string `json:"riskCategory,omitempty"`
+	Category       string   `json:"category,omitempty"`
+	MetricType     string   `json:"metricType,omitempty"`
+	RiskCategory   string   `json:"riskCategory,omitempty"`
 	ThresholdTypes []string `json:"thresholdTypes,omitempty"`
 }

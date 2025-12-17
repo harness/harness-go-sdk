@@ -9,14 +9,14 @@
 package chaos
 
 type ChaosfaulttemplateCreateFaultTemplateRequest struct {
-	Description string `json:"description,omitempty"`
-	Identity string `json:"identity,omitempty"`
-	Infras []string `json:"infras,omitempty"`
-	Keywords []string `json:"keywords,omitempty"`
-	Name string `json:"name,omitempty"`
-	Platforms []string `json:"platforms,omitempty"`
-	Revision int32 `json:"revision,omitempty"`
-	Spec *K8sfaultK8SFaultSpec `json:"spec,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	Variables []TemplateVariable `json:"variables,omitempty"`
+	Description string                `json:"description,omitempty"`
+	Identity    string                `json:"identity,omitempty"`
+	Infras      []string              `json:"infras,omitempty"`
+	Keywords    []string              `json:"keywords,omitempty"`
+	Name        string                `json:"name,omitempty"`
+	Platforms   []string              `json:"platforms,omitempty"`
+	Revision    int32                 `json:"revision,omitempty"`
+	Spec        *K8sfaultK8SFaultSpec `json:"spec,omitempty"`
+	Tags        []string              `json:"tags,omitempty"`
+	Variables   []TemplateVariable    `json:"variables,omitempty"`
 }

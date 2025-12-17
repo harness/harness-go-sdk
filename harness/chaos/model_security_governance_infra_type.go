@@ -12,8 +12,8 @@ type SecurityGovernanceInfraType string
 
 // List of security_governance.InfraType
 const (
-	KUBERNETES_SecurityGovernanceInfraType SecurityGovernanceInfraType = "Kubernetes"
+	KUBERNETES_SecurityGovernanceInfraType    SecurityGovernanceInfraType = "Kubernetes"
 	KUBERNETES_V2_SecurityGovernanceInfraType SecurityGovernanceInfraType = "KubernetesV2"
-	LINUX_SecurityGovernanceInfraType SecurityGovernanceInfraType = "Linux"
-	WINDOWS_SecurityGovernanceInfraType SecurityGovernanceInfraType = "Windows"
+	LINUX_SecurityGovernanceInfraType         SecurityGovernanceInfraType = "Linux"
+	WINDOWS_SecurityGovernanceInfraType       SecurityGovernanceInfraType = "Windows"
 )

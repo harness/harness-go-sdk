@@ -11,6 +11,6 @@ package nextgen
 
 // BasicAuthBitbucketServer defines the username/(password or personal access token) for Basic auth.
 type ApplicationsBasicAuthBitbucketServer struct {
-	Username string `json:"username,omitempty"`
+	Username    string                 `json:"username,omitempty"`
 	PasswordRef *ApplicationsSecretRef `json:"passwordRef,omitempty"`
 }

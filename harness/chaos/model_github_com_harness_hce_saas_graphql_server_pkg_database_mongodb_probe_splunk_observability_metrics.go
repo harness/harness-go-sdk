@@ -10,5 +10,5 @@ package chaos
 
 type GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeSplunkObservabilityMetrics struct {
 	DurationInMin *interface{} `json:"durationInMin,omitempty"`
-	Query string `json:"query,omitempty"`
+	Query         string       `json:"query,omitempty"`
 }

@@ -12,8 +12,8 @@ type V1LabelSelectorOperator string
 
 // List of v1.LabelSelectorOperator
 const (
-	IN_V1LabelSelectorOperator V1LabelSelectorOperator = "In"
-	NOT_IN_V1LabelSelectorOperator V1LabelSelectorOperator = "NotIn"
-	EXISTS_V1LabelSelectorOperator V1LabelSelectorOperator = "Exists"
+	IN_V1LabelSelectorOperator             V1LabelSelectorOperator = "In"
+	NOT_IN_V1LabelSelectorOperator         V1LabelSelectorOperator = "NotIn"
+	EXISTS_V1LabelSelectorOperator         V1LabelSelectorOperator = "Exists"
 	DOES_NOT_EXIST_V1LabelSelectorOperator V1LabelSelectorOperator = "DoesNotExist"
 )

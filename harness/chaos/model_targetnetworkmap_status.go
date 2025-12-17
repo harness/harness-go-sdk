@@ -13,7 +13,7 @@ type TargetnetworkmapStatus string
 // List of targetnetworkmap.Status
 const (
 	COMPLETED_TargetnetworkmapStatus TargetnetworkmapStatus = "COMPLETED"
-	RUNNING_TargetnetworkmapStatus TargetnetworkmapStatus = "RUNNING"
-	PENDING_TargetnetworkmapStatus TargetnetworkmapStatus = "PENDING"
-	ERRORED_TargetnetworkmapStatus TargetnetworkmapStatus = "ERRORED"
+	RUNNING_TargetnetworkmapStatus   TargetnetworkmapStatus = "RUNNING"
+	PENDING_TargetnetworkmapStatus   TargetnetworkmapStatus = "PENDING"
+	ERRORED_TargetnetworkmapStatus   TargetnetworkmapStatus = "ERRORED"
 )

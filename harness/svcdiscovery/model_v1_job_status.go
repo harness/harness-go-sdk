@@ -24,6 +24,6 @@ type V1JobStatus struct {
 	// Represents time when the job controller started processing a job. When a Job is created in the suspended state, this field is not set until the first time it is resumed. This field is reset every time a Job is resumed from suspension. It is represented in RFC3339 form and is in UTC. +optional
 	StartTime string `json:"startTime,omitempty"`
 	// The number of pods which reached phase Succeeded. +optional
-	Succeeded int32 `json:"succeeded,omitempty"`
+	Succeeded               int32                      `json:"succeeded,omitempty"`
 	UncountedTerminatedPods *V1UncountedTerminatedPods `json:"uncountedTerminatedPods,omitempty"`
 }

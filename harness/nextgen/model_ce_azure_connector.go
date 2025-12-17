@@ -11,9 +11,9 @@ package nextgen
 
 // This contains the cost explorer of Azure connector
 type CeAzureConnector struct {
-	FeaturesEnabled   []string           `json:"featuresEnabled,omitempty"`
-	TenantId          string             `json:"tenantId"`
-	SubscriptionId    string             `json:"subscriptionId"`
-	BillingExportSpec *BillingExportSpec `json:"billingExportSpec,omitempty"`
+	FeaturesEnabled    []string           `json:"featuresEnabled,omitempty"`
+	TenantId           string             `json:"tenantId"`
+	SubscriptionId     string             `json:"subscriptionId"`
+	BillingExportSpec  *BillingExportSpec `json:"billingExportSpec,omitempty"`
 	BillingExportSpec2 *BillingExportSpec `json:"billingExportSpec2,omitempty"`
 }

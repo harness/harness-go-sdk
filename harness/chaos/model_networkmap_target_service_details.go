@@ -9,12 +9,12 @@
 package chaos
 
 type NetworkmapTargetServiceDetails struct {
-	AverageResiliencyScore float64 `json:"averageResiliencyScore,omitempty"`
-	Id string `json:"id"`
-	Kind *DatabaseNetworkMapResourceKind `json:"kind"`
-	Kubernetes *DatabaseNetworkMapEntityKubernetesInfo `json:"kubernetes,omitempty"`
-	Name string `json:"name"`
-	Removed bool `json:"removed,omitempty"`
-	ResiliencyCoverage float64 `json:"resiliencyCoverage,omitempty"`
-	ServiceIdentity *DatabaseServiceIdentity `json:"serviceIdentity,omitempty"`
+	AverageResiliencyScore float64                                 `json:"averageResiliencyScore,omitempty"`
+	Id                     string                                  `json:"id"`
+	Kind                   *DatabaseNetworkMapResourceKind         `json:"kind"`
+	Kubernetes             *DatabaseNetworkMapEntityKubernetesInfo `json:"kubernetes,omitempty"`
+	Name                   string                                  `json:"name"`
+	Removed                bool                                    `json:"removed,omitempty"`
+	ResiliencyCoverage     float64                                 `json:"resiliencyCoverage,omitempty"`
+	ServiceIdentity        *DatabaseServiceIdentity                `json:"serviceIdentity,omitempty"`
 }

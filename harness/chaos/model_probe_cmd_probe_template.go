@@ -9,7 +9,7 @@
 package chaos
 
 type ProbeCmdProbeTemplate struct {
-	Command string `json:"command,omitempty"`
+	Command    string                   `json:"command,omitempty"`
 	Comparator *ProbeComparatorTemplate `json:"comparator,omitempty"`
-	Source string `json:"source,omitempty"`
+	Source     string                   `json:"source,omitempty"`
 }

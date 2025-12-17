@@ -9,12 +9,12 @@
 package chaos
 
 type ProbeProbeTemplateProperties struct {
-	ApmProbe *ProbeApmProbeTemplate `json:"apmProbe,omitempty"`
-	CmdProbe *ProbeCmdProbeTemplate `json:"cmdProbe,omitempty"`
-	DatadogProbe *ProbeDatadogProbeTemplate `json:"datadogProbe,omitempty"`
+	ApmProbe       *ProbeApmProbeTemplate       `json:"apmProbe,omitempty"`
+	CmdProbe       *ProbeCmdProbeTemplate       `json:"cmdProbe,omitempty"`
+	DatadogProbe   *ProbeDatadogProbeTemplate   `json:"datadogProbe,omitempty"`
 	DynatraceProbe *ProbeDynatraceProbeTemplate `json:"dynatraceProbe,omitempty"`
-	HttpProbe *ProbeHttpProbeTemplate `json:"httpProbe,omitempty"`
-	K8sProbe *ProbeK8SProbeTemplate `json:"k8sProbe,omitempty"`
-	PromProbe *ProbePromProbeTemplate `json:"promProbe,omitempty"`
-	SloProbe *ProbeSloProbeTemplate `json:"sloProbe,omitempty"`
+	HttpProbe      *ProbeHttpProbeTemplate      `json:"httpProbe,omitempty"`
+	K8sProbe       *ProbeK8SProbeTemplate       `json:"k8sProbe,omitempty"`
+	PromProbe      *ProbePromProbeTemplate      `json:"promProbe,omitempty"`
+	SloProbe       *ProbeSloProbeTemplate       `json:"sloProbe,omitempty"`
 }

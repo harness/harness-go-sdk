@@ -9,8 +9,8 @@
 package svcdiscovery
 
 type DatabaseAgentDetails struct {
-	Cluster *DatabaseAgentPodInfo `json:"cluster,omitempty"`
+	Cluster          *DatabaseAgentPodInfo  `json:"cluster,omitempty"`
 	LifecycleManager []DatabaseAgentPodInfo `json:"lifecycleManager,omitempty"`
-	Node []DatabaseAgentPodInfo `json:"node,omitempty"`
-	Status string `json:"status,omitempty"`
+	Node             []DatabaseAgentPodInfo `json:"node,omitempty"`
+	Status           string                 `json:"status,omitempty"`
 }

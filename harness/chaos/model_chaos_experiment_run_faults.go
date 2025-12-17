@@ -9,6 +9,6 @@
 package chaos
 
 type ChaosExperimentRunFaults struct {
-	FaultName string `json:"faultName,omitempty"`
-	Probes []ChaosExperimentRunAnnotation `json:"probes,omitempty"`
+	FaultName string                         `json:"faultName,omitempty"`
+	Probes    []ChaosExperimentRunAnnotation `json:"probes,omitempty"`
 }

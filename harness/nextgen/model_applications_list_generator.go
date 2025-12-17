@@ -10,7 +10,7 @@
 package nextgen
 
 type ApplicationsListGenerator struct {
-	Elements []V1Json `json:"elements,omitempty"`
-	Template *ApplicationsApplicationSetTemplate `json:"template,omitempty"`
-	ElementsYaml string `json:"elementsYaml,omitempty"`
+	Elements     []V1Json                            `json:"elements,omitempty"`
+	Template     *ApplicationsApplicationSetTemplate `json:"template,omitempty"`
+	ElementsYaml string                              `json:"elementsYaml,omitempty"`
 }

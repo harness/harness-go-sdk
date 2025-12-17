@@ -9,6 +9,6 @@
 package chaos
 
 type SecurityGovernanceInfraSpec struct {
-	InfraIds []string `json:"infraIds,omitempty"`
+	InfraIds []string                    `json:"infraIds,omitempty"`
 	Operator *SecurityGovernanceOperator `json:"operator,omitempty"`
 }

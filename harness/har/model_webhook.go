@@ -10,21 +10,21 @@ package har
 
 // Harness Registries Webhook
 type Webhook struct {
-	CreatedAt string `json:"createdAt,omitempty"`
-	CreatedBy int64 `json:"createdBy,omitempty"`
-	Description string `json:"description,omitempty"`
-	Enabled bool `json:"enabled"`
-	ExtraHeaders []ExtraHeader `json:"extraHeaders,omitempty"`
-	Identifier string `json:"identifier"`
-	Insecure bool `json:"insecure"`
-	Internal bool `json:"internal,omitempty"`
+	CreatedAt             string             `json:"createdAt,omitempty"`
+	CreatedBy             int64              `json:"createdBy,omitempty"`
+	Description           string             `json:"description,omitempty"`
+	Enabled               bool               `json:"enabled"`
+	ExtraHeaders          []ExtraHeader      `json:"extraHeaders,omitempty"`
+	Identifier            string             `json:"identifier"`
+	Insecure              bool               `json:"insecure"`
+	Internal              bool               `json:"internal,omitempty"`
 	LatestExecutionResult *WebhookExecResult `json:"latestExecutionResult,omitempty"`
-	ModifiedAt string `json:"modifiedAt,omitempty"`
-	Name string `json:"name"`
-	SecretIdentifier string `json:"secretIdentifier,omitempty"`
-	SecretSpaceId int64 `json:"secretSpaceId,omitempty"`
-	SecretSpacePath string `json:"secretSpacePath,omitempty"`
-	Triggers []Trigger `json:"triggers,omitempty"`
-	Url string `json:"url"`
-	Version int64 `json:"version,omitempty"`
+	ModifiedAt            string             `json:"modifiedAt,omitempty"`
+	Name                  string             `json:"name"`
+	SecretIdentifier      string             `json:"secretIdentifier,omitempty"`
+	SecretSpaceId         int64              `json:"secretSpaceId,omitempty"`
+	SecretSpacePath       string             `json:"secretSpacePath,omitempty"`
+	Triggers              []Trigger          `json:"triggers,omitempty"`
+	Url                   string             `json:"url"`
+	Version               int64              `json:"version,omitempty"`
 }

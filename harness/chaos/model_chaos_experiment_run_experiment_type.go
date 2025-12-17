@@ -13,7 +13,7 @@ type ChaosExperimentRunExperimentType string
 // List of chaos_experiment_run.ExperimentType
 const (
 	CRONEXPERIMENT_ChaosExperimentRunExperimentType ChaosExperimentRunExperimentType = "cronexperiment"
-	EXPERIMENT_ChaosExperimentRunExperimentType ChaosExperimentRunExperimentType = "experiment"
-	EXPERIMENT_V2_ChaosExperimentRunExperimentType ChaosExperimentRunExperimentType = "experiment_v2"
-	GAMEDAY_ChaosExperimentRunExperimentType ChaosExperimentRunExperimentType = "gameday"
+	EXPERIMENT_ChaosExperimentRunExperimentType     ChaosExperimentRunExperimentType = "experiment"
+	EXPERIMENT_V2_ChaosExperimentRunExperimentType  ChaosExperimentRunExperimentType = "experiment_v2"
+	GAMEDAY_ChaosExperimentRunExperimentType        ChaosExperimentRunExperimentType = "gameday"
 )
