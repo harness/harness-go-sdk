@@ -9,8 +9,8 @@
 package svcdiscovery
 
 type ApiContainer struct {
-	Id string `json:"id"`
+	Id    string `json:"id"`
 	Image string `json:"image"`
-	Name string `json:"name"`
+	Name  string `json:"name"`
 	Type_ string `json:"type"`
 }

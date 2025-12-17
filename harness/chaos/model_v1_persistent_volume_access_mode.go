@@ -13,6 +13,6 @@ type V1PersistentVolumeAccessMode string
 // List of v1.PersistentVolumeAccessMode
 const (
 	READ_WRITE_ONCE_V1PersistentVolumeAccessMode V1PersistentVolumeAccessMode = "ReadWriteOnce"
-	READ_ONLY_MANY_V1PersistentVolumeAccessMode V1PersistentVolumeAccessMode = "ReadOnlyMany"
+	READ_ONLY_MANY_V1PersistentVolumeAccessMode  V1PersistentVolumeAccessMode = "ReadOnlyMany"
 	READ_WRITE_MANY_V1PersistentVolumeAccessMode V1PersistentVolumeAccessMode = "ReadWriteMany"
 )

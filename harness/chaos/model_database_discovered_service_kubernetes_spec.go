@@ -9,10 +9,10 @@
 package chaos
 
 type DatabaseDiscoveredServiceKubernetesSpec struct {
-	Kind string `json:"kind,omitempty"`
-	Name string `json:"name,omitempty"`
-	Namespace string `json:"namespace,omitempty"`
-	Service *DatabaseDiscoveredKubernetesService `json:"service,omitempty"`
-	Uid string `json:"uid,omitempty"`
+	Kind      string                                 `json:"kind,omitempty"`
+	Name      string                                 `json:"name,omitempty"`
+	Namespace string                                 `json:"namespace,omitempty"`
+	Service   *DatabaseDiscoveredKubernetesService   `json:"service,omitempty"`
+	Uid       string                                 `json:"uid,omitempty"`
 	Workloads []DatabaseDiscoveredKubernetesWorkload `json:"workloads,omitempty"`
 }

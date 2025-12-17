@@ -9,6 +9,6 @@
 package har
 
 type ReplicationRegistry struct {
-    LocalReplicationRegistry
-    JfrogReplicationRegistry
+	LocalReplicationRegistry
+	JfrogReplicationRegistry
 }

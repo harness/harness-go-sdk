@@ -9,8 +9,8 @@
 package chaos
 
 type ChaosExperimentRunConditionDetails struct {
-	ConditionID string `json:"conditionID,omitempty"`
+	ConditionID   string `json:"conditionID,omitempty"`
 	ConditionName string `json:"conditionName,omitempty"`
-	Message string `json:"message,omitempty"`
-	Phase string `json:"phase,omitempty"`
+	Message       string `json:"message,omitempty"`
+	Phase         string `json:"phase,omitempty"`
 }

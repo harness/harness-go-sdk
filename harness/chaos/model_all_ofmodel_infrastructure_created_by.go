@@ -10,7 +10,7 @@ package chaos
 
 // User who created the workflow
 type AllOfmodelInfrastructureCreatedBy struct {
-	Email string `json:"email,omitempty"`
-	UserID string `json:"userID,omitempty"`
+	Email    string `json:"email,omitempty"`
+	UserID   string `json:"userID,omitempty"`
 	Username string `json:"username,omitempty"`
 }

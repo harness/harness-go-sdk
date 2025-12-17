@@ -9,9 +9,9 @@
 package chaos
 
 type PipelinesChaosPipelineInput struct {
-	Description string `json:"description,omitempty"`
+	Description    string                    `json:"description,omitempty"`
 	ExperimentSpec []PipelinesExperimentSpec `json:"experimentSpec,omitempty"`
-	Identifier string `json:"identifier,omitempty"`
-	Name string `json:"name,omitempty"`
-	Tags map[string]string `json:"tags,omitempty"`
+	Identifier     string                    `json:"identifier,omitempty"`
+	Name           string                    `json:"name,omitempty"`
+	Tags           map[string]string         `json:"tags,omitempty"`
 }

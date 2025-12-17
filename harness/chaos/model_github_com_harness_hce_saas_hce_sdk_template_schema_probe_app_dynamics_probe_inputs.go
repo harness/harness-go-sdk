@@ -10,5 +10,5 @@ package chaos
 
 type GithubComHarnessHceSaasHceSdkTemplateSchemaProbeAppDynamicsProbeInputs struct {
 	AppdMetrics *GithubComHarnessHceSaasHceSdkTemplateSchemaProbeAppdMetrics `json:"appdMetrics,omitempty"`
-	ConnectorID string `json:"connectorID,omitempty"`
+	ConnectorID string                                                       `json:"connectorID,omitempty"`
 }

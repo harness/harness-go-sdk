@@ -9,10 +9,10 @@
 package chaos
 
 type ActionsExecutedByExperiment struct {
-	ExperimentID string `json:"experimentID,omitempty"`
-	ExperimentName string `json:"experimentName,omitempty"`
-	ExperimentRunID string `json:"experimentRunID,omitempty"`
-	NotifyID string `json:"notifyID,omitempty"`
-	UpdatedAt int32 `json:"updatedAt,omitempty"`
-	UpdatedBy *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"updatedBy,omitempty"`
+	ExperimentID    string                                                     `json:"experimentID,omitempty"`
+	ExperimentName  string                                                     `json:"experimentName,omitempty"`
+	ExperimentRunID string                                                     `json:"experimentRunID,omitempty"`
+	NotifyID        string                                                     `json:"notifyID,omitempty"`
+	UpdatedAt       int32                                                      `json:"updatedAt,omitempty"`
+	UpdatedBy       *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"updatedBy,omitempty"`
 }

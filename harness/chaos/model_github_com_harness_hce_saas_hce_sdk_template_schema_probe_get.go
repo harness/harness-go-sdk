@@ -9,7 +9,7 @@
 package chaos
 
 type GithubComHarnessHceSaasHceSdkTemplateSchemaProbeGet struct {
-	Criteria string `json:"criteria,omitempty"`
+	Criteria     string `json:"criteria,omitempty"`
 	ResponseBody string `json:"responseBody,omitempty"`
 	ResponseCode string `json:"responseCode,omitempty"`
 }

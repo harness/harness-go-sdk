@@ -9,7 +9,7 @@
 package chaos
 
 type ActionCustomScriptActionTemplate struct {
-	Args []string `json:"args,omitempty"`
-	Command string `json:"command,omitempty"`
-	Env *interface{} `json:"env,omitempty"`
+	Args    []string     `json:"args,omitempty"`
+	Command string       `json:"command,omitempty"`
+	Env     *interface{} `json:"env,omitempty"`
 }

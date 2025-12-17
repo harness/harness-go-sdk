@@ -9,6 +9,6 @@
 package chaos
 
 type TemplateChaosExperimentInputsetSpec struct {
-	Experiment []TemplateVariableMinimum `json:"experiment,omitempty"`
-	Tasks map[string][]TemplateVariableMinimum `json:"tasks,omitempty"`
+	Experiment []TemplateVariableMinimum            `json:"experiment,omitempty"`
+	Tasks      map[string][]TemplateVariableMinimum `json:"tasks,omitempty"`
 }

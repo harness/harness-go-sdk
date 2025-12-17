@@ -9,6 +9,6 @@
 package chaos
 
 type ApiListHarnessInfrastructureResponse struct {
-	Items []ApiHarnessInfrastructure `json:"items,omitempty"`
-	Page *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"page,omitempty"`
+	Items []ApiHarnessInfrastructure                         `json:"items,omitempty"`
+	Page  *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"page,omitempty"`
 }

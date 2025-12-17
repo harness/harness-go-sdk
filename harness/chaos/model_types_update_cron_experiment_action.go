@@ -12,7 +12,7 @@ type TypesUpdateCronExperimentAction string
 
 // List of types.UpdateCronExperimentAction
 const (
-	ENABLE_TypesUpdateCronExperimentAction TypesUpdateCronExperimentAction = "Enable"
+	ENABLE_TypesUpdateCronExperimentAction  TypesUpdateCronExperimentAction = "Enable"
 	DISABLE_TypesUpdateCronExperimentAction TypesUpdateCronExperimentAction = "Disable"
-	UPDATE_TypesUpdateCronExperimentAction TypesUpdateCronExperimentAction = "Update"
+	UPDATE_TypesUpdateCronExperimentAction  TypesUpdateCronExperimentAction = "Update"
 )

@@ -11,6 +11,6 @@ package nextgen
 
 type ServiceLevelObjectiveV2Response struct {
 	ServiceLevelObjectiveV2 *ServiceLevelObjectiveV2Dto `json:"serviceLevelObjectiveV2"`
-	CreatedAt int64 `json:"createdAt,omitempty"`
-	LastModifiedAt int64 `json:"lastModifiedAt,omitempty"`
+	CreatedAt               int64                       `json:"createdAt,omitempty"`
+	LastModifiedAt          int64                       `json:"lastModifiedAt,omitempty"`
 }

@@ -10,12 +10,12 @@ package har
 
 // Artifact Detail
 type ArtifactDetail struct {
-	CreatedAt string `json:"createdAt,omitempty"`
-	CreatedBy string `json:"createdBy,omitempty"`
-	DownloadCount int64 `json:"downloadCount,omitempty"`
-	ModifiedAt string `json:"modifiedAt,omitempty"`
-	Name string `json:"name,omitempty"`
-	PackageType *PackageType `json:"packageType"`
-	Size string `json:"size,omitempty"`
-	Version string `json:"version"`
+	CreatedAt     string       `json:"createdAt,omitempty"`
+	CreatedBy     string       `json:"createdBy,omitempty"`
+	DownloadCount int64        `json:"downloadCount,omitempty"`
+	ModifiedAt    string       `json:"modifiedAt,omitempty"`
+	Name          string       `json:"name,omitempty"`
+	PackageType   *PackageType `json:"packageType"`
+	Size          string       `json:"size,omitempty"`
+	Version       string       `json:"version"`
 }

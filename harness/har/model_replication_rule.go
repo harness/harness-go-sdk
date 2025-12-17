@@ -9,14 +9,14 @@
 package har
 
 type ReplicationRule struct {
-	AllowedPatterns []string `json:"allowedPatterns"`
-	BlockedPatterns []string `json:"blockedPatterns"`
-	CreatedAt string `json:"createdAt"`
-	Destination *ReplicationRegistry `json:"destination"`
-	DestinationType string `json:"destinationType"`
-	Identifier string `json:"identifier"`
-	ModifiedAt string `json:"modifiedAt"`
-	ParentRef string `json:"parentRef"`
-	Source *ReplicationRegistry `json:"source"`
-	SourceType string `json:"sourceType"`
+	AllowedPatterns []string             `json:"allowedPatterns"`
+	BlockedPatterns []string             `json:"blockedPatterns"`
+	CreatedAt       string               `json:"createdAt"`
+	Destination     *ReplicationRegistry `json:"destination"`
+	DestinationType string               `json:"destinationType"`
+	Identifier      string               `json:"identifier"`
+	ModifiedAt      string               `json:"modifiedAt"`
+	ParentRef       string               `json:"parentRef"`
+	Source          *ReplicationRegistry `json:"source"`
+	SourceType      string               `json:"sourceType"`
 }

@@ -9,6 +9,6 @@
 package svcdiscovery
 
 type V1ResourceRequirements struct {
-	Limits *map[string]ResourceQuantity `json:"limits,omitempty"`
+	Limits   *map[string]ResourceQuantity `json:"limits,omitempty"`
 	Requests *map[string]ResourceQuantity `json:"requests,omitempty"`
 }

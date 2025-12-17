@@ -10,6 +10,6 @@ package policymgmt
 
 type DashboardMetrics struct {
 	// Aggregate evaluation counts by day
-	Aggregates []AggregateStatus `json:"aggregates"`
-	PolicyHealth *PolicyHealth `json:"policy_health"`
+	Aggregates   []AggregateStatus `json:"aggregates"`
+	PolicyHealth *PolicyHealth     `json:"policy_health"`
 }

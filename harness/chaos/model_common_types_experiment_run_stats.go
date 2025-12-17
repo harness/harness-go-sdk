@@ -9,7 +9,7 @@
 package chaos
 
 type CommonTypesExperimentRunStats struct {
-	Failed int32 `json:"failed,omitempty"`
+	Failed  int32 `json:"failed,omitempty"`
 	Success int32 `json:"success,omitempty"`
-	Time int32 `json:"time,omitempty"`
+	Time    int32 `json:"time,omitempty"`
 }

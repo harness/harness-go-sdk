@@ -9,7 +9,7 @@
 package chaos
 
 type InfraV2ListKubernetesInfraV2Response struct {
-	Infras []InfraV2KubernetesInfrastructureV2Details `json:"infras,omitempty"`
-	Pagination *InfraV2Pagination `json:"pagination,omitempty"`
-	TotalNoOfInfrastructures int32 `json:"totalNoOfInfrastructures,omitempty"`
+	Infras                   []InfraV2KubernetesInfrastructureV2Details `json:"infras,omitempty"`
+	Pagination               *InfraV2Pagination                         `json:"pagination,omitempty"`
+	TotalNoOfInfrastructures int32                                      `json:"totalNoOfInfrastructures,omitempty"`
 }

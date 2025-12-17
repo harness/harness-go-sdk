@@ -12,7 +12,7 @@ type V1TaintEffect string
 
 // List of v1.TaintEffect
 const (
-	NO_SCHEDULE_V1TaintEffect V1TaintEffect = "NoSchedule"
+	NO_SCHEDULE_V1TaintEffect        V1TaintEffect = "NoSchedule"
 	PREFER_NO_SCHEDULE_V1TaintEffect V1TaintEffect = "PreferNoSchedule"
-	NO_EXECUTE_V1TaintEffect V1TaintEffect = "NoExecute"
+	NO_EXECUTE_V1TaintEffect         V1TaintEffect = "NoExecute"
 )

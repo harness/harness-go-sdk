@@ -10,5 +10,5 @@ package svcdiscovery
 
 type ApiUpdateAgentRequest struct {
 	Config *DatabaseAgentConfiguration `json:"config"`
-	Name string `json:"name"`
+	Name   string                      `json:"name"`
 }

@@ -12,7 +12,7 @@ type V1PullPolicy string
 
 // List of v1.PullPolicy
 const (
-	ALWAYS_V1PullPolicy V1PullPolicy = "Always"
-	NEVER_V1PullPolicy V1PullPolicy = "Never"
+	ALWAYS_V1PullPolicy         V1PullPolicy = "Always"
+	NEVER_V1PullPolicy          V1PullPolicy = "Never"
 	IF_NOT_PRESENT_V1PullPolicy V1PullPolicy = "IfNotPresent"
 )

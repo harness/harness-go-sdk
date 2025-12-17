@@ -9,11 +9,11 @@
 package chaos
 
 type Chaoshubv2CreateHubRequest struct {
-	ConnectorRef string `json:"connectorRef,omitempty"`
-	Description string `json:"description,omitempty"`
-	Identity string `json:"identity"`
-	Name string `json:"name"`
-	RepoBranch string `json:"repoBranch,omitempty"`
-	RepoName string `json:"repoName,omitempty"`
-	Tags []string `json:"tags,omitempty"`
+	ConnectorRef string   `json:"connectorRef,omitempty"`
+	Description  string   `json:"description,omitempty"`
+	Identity     string   `json:"identity"`
+	Name         string   `json:"name"`
+	RepoBranch   string   `json:"repoBranch,omitempty"`
+	RepoName     string   `json:"repoName,omitempty"`
+	Tags         []string `json:"tags,omitempty"`
 }

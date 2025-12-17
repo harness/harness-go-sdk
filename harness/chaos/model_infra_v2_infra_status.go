@@ -12,9 +12,9 @@ type InfraV2InfraStatus string
 
 // List of infra_v2.InfraStatus
 const (
-	ACTIVE_InfraV2InfraStatus InfraV2InfraStatus = "ACTIVE"
-	INACTIVE_InfraV2InfraStatus InfraV2InfraStatus = "INACTIVE"
-	PENDING_InfraV2InfraStatus InfraV2InfraStatus = "PENDING"
-	UPGRADING_InfraV2InfraStatus InfraV2InfraStatus = "UPGRADING"
+	ACTIVE_InfraV2InfraStatus           InfraV2InfraStatus = "ACTIVE"
+	INACTIVE_InfraV2InfraStatus         InfraV2InfraStatus = "INACTIVE"
+	PENDING_InfraV2InfraStatus          InfraV2InfraStatus = "PENDING"
+	UPGRADING_InfraV2InfraStatus        InfraV2InfraStatus = "UPGRADING"
 	UPGRADE_REQUIRED_InfraV2InfraStatus InfraV2InfraStatus = "UPGRADE_REQUIRED"
 )

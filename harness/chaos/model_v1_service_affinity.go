@@ -13,5 +13,5 @@ type V1ServiceAffinity string
 // List of v1.ServiceAffinity
 const (
 	CLIENT_IP_V1ServiceAffinity V1ServiceAffinity = "ClientIP"
-	NONE_V1ServiceAffinity V1ServiceAffinity = "None"
+	NONE_V1ServiceAffinity      V1ServiceAffinity = "None"
 )

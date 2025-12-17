@@ -10,7 +10,7 @@
 package nextgen
 
 type AnalysisDto struct {
-	LiveMonitoring *LiveMonitoringDto `json:"liveMonitoring,omitempty"`
+	LiveMonitoring         *LiveMonitoringDto         `json:"liveMonitoring,omitempty"`
 	DeploymentVerification *DeploymentVerificationDto `json:"deploymentVerification,omitempty"`
-	RiskProfile *RiskProfile `json:"riskProfile,omitempty"`
+	RiskProfile            *RiskProfile               `json:"riskProfile,omitempty"`
 }

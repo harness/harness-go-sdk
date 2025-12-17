@@ -9,16 +9,16 @@
 package chaos
 
 type ProbeKubernetesCmdProbe struct {
-	Attempt *interface{} `json:"attempt,omitempty"`
-	Command string `json:"command,omitempty"`
-	Comparator *ProbeComparator `json:"comparator,omitempty"`
-	InitialDelay string `json:"initialDelay,omitempty"`
-	InitialDelaySeconds *interface{} `json:"initialDelaySeconds,omitempty"`
-	Interval string `json:"interval,omitempty"`
-	PollingInterval string `json:"pollingInterval,omitempty"`
-	ProbeTimeout string `json:"probeTimeout,omitempty"`
-	Retry *interface{} `json:"retry,omitempty"`
-	Source *interface{} `json:"source,omitempty"`
-	StopOnFailure bool `json:"stopOnFailure,omitempty"`
-	Verbosity string `json:"verbosity,omitempty"`
+	Attempt             *interface{}     `json:"attempt,omitempty"`
+	Command             string           `json:"command,omitempty"`
+	Comparator          *ProbeComparator `json:"comparator,omitempty"`
+	InitialDelay        string           `json:"initialDelay,omitempty"`
+	InitialDelaySeconds *interface{}     `json:"initialDelaySeconds,omitempty"`
+	Interval            string           `json:"interval,omitempty"`
+	PollingInterval     string           `json:"pollingInterval,omitempty"`
+	ProbeTimeout        string           `json:"probeTimeout,omitempty"`
+	Retry               *interface{}     `json:"retry,omitempty"`
+	Source              *interface{}     `json:"source,omitempty"`
+	StopOnFailure       bool             `json:"stopOnFailure,omitempty"`
+	Verbosity           string           `json:"verbosity,omitempty"`
 }

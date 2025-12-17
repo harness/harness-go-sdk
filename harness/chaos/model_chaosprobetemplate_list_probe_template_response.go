@@ -9,8 +9,8 @@
 package chaos
 
 type ChaosprobetemplateListProbeTemplateResponse struct {
-	CorrelationID string `json:"correlationID,omitempty"`
-	CountDetails []ChaosprobetemplateProbeTemplateCount `json:"countDetails,omitempty"`
-	Data []GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbChaosprobetemplateChaosProbeTemplate `json:"data,omitempty"`
-	Pagination *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
+	CorrelationID string                                                                                       `json:"correlationID,omitempty"`
+	CountDetails  []ChaosprobetemplateProbeTemplateCount                                                       `json:"countDetails,omitempty"`
+	Data          []GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbChaosprobetemplateChaosProbeTemplate `json:"data,omitempty"`
+	Pagination    *GithubComHarnessHceSaasGraphqlServerApiPagination                                           `json:"pagination,omitempty"`
 }

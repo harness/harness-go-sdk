@@ -13,5 +13,5 @@ type V1TolerationOperator string
 // List of v1.TolerationOperator
 const (
 	EXISTS_V1TolerationOperator V1TolerationOperator = "Exists"
-	EQUAL_V1TolerationOperator V1TolerationOperator = "Equal"
+	EQUAL_V1TolerationOperator  V1TolerationOperator = "Equal"
 )

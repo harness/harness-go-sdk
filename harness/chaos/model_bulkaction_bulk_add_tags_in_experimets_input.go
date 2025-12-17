@@ -10,5 +10,5 @@ package chaos
 
 type BulkactionBulkAddTagsInExperimetsInput struct {
 	ExperimentIDs []string `json:"experimentIDs,omitempty"`
-	Tags []string `json:"tags,omitempty"`
+	Tags          []string `json:"tags,omitempty"`
 }

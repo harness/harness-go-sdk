@@ -9,10 +9,10 @@
 package chaos
 
 type TypesListGamedayExperimentResponse struct {
-	EnvironmentID string `json:"environmentID,omitempty"`
-	ExperimentID string `json:"experimentID,omitempty"`
-	ExperimentTemplateName string `json:"experimentTemplateName,omitempty"`
-	HubID string `json:"hubID,omitempty"`
-	InfraID string `json:"infraID,omitempty"`
-	InfraType *ModelInfrastructureType `json:"infraType,omitempty"`
+	EnvironmentID          string                   `json:"environmentID,omitempty"`
+	ExperimentID           string                   `json:"experimentID,omitempty"`
+	ExperimentTemplateName string                   `json:"experimentTemplateName,omitempty"`
+	HubID                  string                   `json:"hubID,omitempty"`
+	InfraID                string                   `json:"infraID,omitempty"`
+	InfraType              *ModelInfrastructureType `json:"infraType,omitempty"`
 }

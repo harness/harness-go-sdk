@@ -10,18 +10,18 @@
 package nextgen
 
 type PrometheusMetricDefinition struct {
-	Identifier string `json:"identifier"`
-	MetricName string `json:"metricName"`
-	RiskProfile *RiskProfile `json:"riskProfile,omitempty"`
-	Analysis *AnalysisDto `json:"analysis,omitempty"`
-	Sli *Slidto `json:"sli,omitempty"`
-	Query string `json:"query,omitempty"`
-	GroupName string `json:"groupName,omitempty"`
-	ServiceInstanceFieldName string `json:"serviceInstanceFieldName,omitempty"`
-	PrometheusMetric string `json:"prometheusMetric,omitempty"`
-	ServiceFilter []PrometheusFilter `json:"serviceFilter,omitempty"`
-	EnvFilter []PrometheusFilter `json:"envFilter,omitempty"`
-	AdditionalFilters []PrometheusFilter `json:"additionalFilters,omitempty"`
-	Aggregation string `json:"aggregation,omitempty"`
-	IsManualQuery bool `json:"isManualQuery,omitempty"`
+	Identifier               string             `json:"identifier"`
+	MetricName               string             `json:"metricName"`
+	RiskProfile              *RiskProfile       `json:"riskProfile,omitempty"`
+	Analysis                 *AnalysisDto       `json:"analysis,omitempty"`
+	Sli                      *Slidto            `json:"sli,omitempty"`
+	Query                    string             `json:"query,omitempty"`
+	GroupName                string             `json:"groupName,omitempty"`
+	ServiceInstanceFieldName string             `json:"serviceInstanceFieldName,omitempty"`
+	PrometheusMetric         string             `json:"prometheusMetric,omitempty"`
+	ServiceFilter            []PrometheusFilter `json:"serviceFilter,omitempty"`
+	EnvFilter                []PrometheusFilter `json:"envFilter,omitempty"`
+	AdditionalFilters        []PrometheusFilter `json:"additionalFilters,omitempty"`
+	Aggregation              string             `json:"aggregation,omitempty"`
+	IsManualQuery            bool               `json:"isManualQuery,omitempty"`
 }

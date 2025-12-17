@@ -9,8 +9,8 @@
 package chaos
 
 type InfraV2Env struct {
-	Key string `json:"key,omitempty"`
-	Name string `json:"name,omitempty"`
-	Value string `json:"value,omitempty"`
+	Key       string               `json:"key,omitempty"`
+	Name      string               `json:"name,omitempty"`
+	Value     string               `json:"value,omitempty"`
 	ValueFrom *InfraV2EnvValueFrom `json:"valueFrom,omitempty"`
 }

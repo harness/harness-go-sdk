@@ -9,14 +9,14 @@
 package chaos
 
 type ChaosprobetemplateProbeTemplate struct {
-	Description string `json:"description,omitempty"`
-	HubRef string `json:"hubRef,omitempty"`
-	Identity string `json:"identity,omitempty"`
-	InfrastructureType *ProbeInfrastructureType `json:"infrastructureType,omitempty"`
-	Name string `json:"name"`
-	ProbeProperties *ProbeProbeTemplateProperties `json:"probeProperties,omitempty"`
-	RunProperties *ProbeProbeTemplateRunProperties `json:"runProperties,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	Type_ *ProbeProbeType `json:"type,omitempty"`
-	Variables []TemplateVariable `json:"variables,omitempty"`
+	Description        string                           `json:"description,omitempty"`
+	HubRef             string                           `json:"hubRef,omitempty"`
+	Identity           string                           `json:"identity,omitempty"`
+	InfrastructureType *ProbeInfrastructureType         `json:"infrastructureType,omitempty"`
+	Name               string                           `json:"name"`
+	ProbeProperties    *ProbeProbeTemplateProperties    `json:"probeProperties,omitempty"`
+	RunProperties      *ProbeProbeTemplateRunProperties `json:"runProperties,omitempty"`
+	Tags               []string                         `json:"tags,omitempty"`
+	Type_              *ProbeProbeType                  `json:"type,omitempty"`
+	Variables          []TemplateVariable               `json:"variables,omitempty"`
 }

@@ -9,6 +9,6 @@
 package chaos
 
 type ActionsListActionTemplateResponse struct {
-	Data []ActionsActionResponse `json:"data,omitempty"`
+	Data       []ActionsActionResponse                            `json:"data,omitempty"`
 	Pagination *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
 }

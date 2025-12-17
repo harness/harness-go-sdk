@@ -9,9 +9,9 @@
 package chaos
 
 type ExperimentSidecar struct {
-	Env []V1EnvVar `json:"env,omitempty"`
-	EnvFrom []V1EnvFromSource `json:"envFrom,omitempty"`
-	Image string `json:"image,omitempty"`
-	ImagePullPolicy *V1PullPolicy `json:"imagePullPolicy,omitempty"`
-	Secrets []ExperimentSecret `json:"secrets,omitempty"`
+	Env             []V1EnvVar         `json:"env,omitempty"`
+	EnvFrom         []V1EnvFromSource  `json:"envFrom,omitempty"`
+	Image           string             `json:"image,omitempty"`
+	ImagePullPolicy *V1PullPolicy      `json:"imagePullPolicy,omitempty"`
+	Secrets         []ExperimentSecret `json:"secrets,omitempty"`
 }

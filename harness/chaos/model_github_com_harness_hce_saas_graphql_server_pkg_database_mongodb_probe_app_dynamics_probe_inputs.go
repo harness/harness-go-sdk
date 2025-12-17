@@ -10,5 +10,5 @@ package chaos
 
 type GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeAppDynamicsProbeInputs struct {
 	AppdMetrics *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeAppdMetrics `json:"appdMetrics,omitempty"`
-	ConnectorID string `json:"connectorID,omitempty"`
+	ConnectorID string                                                                  `json:"connectorID,omitempty"`
 }

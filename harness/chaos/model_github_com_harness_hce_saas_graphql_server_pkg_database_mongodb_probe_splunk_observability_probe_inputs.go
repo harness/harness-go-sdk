@@ -9,6 +9,6 @@
 package chaos
 
 type GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeSplunkObservabilityProbeInputs struct {
-	ConnectorID string `json:"connectorID,omitempty"`
+	ConnectorID                string                                                                                 `json:"connectorID,omitempty"`
 	SplunkObservabilityMetrics *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeSplunkObservabilityMetrics `json:"splunkObservabilityMetrics,omitempty"`
 }

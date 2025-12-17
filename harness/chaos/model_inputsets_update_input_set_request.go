@@ -10,6 +10,6 @@ package chaos
 
 type InputsetsUpdateInputSetRequest struct {
 	Description string `json:"description,omitempty"`
-	Name string `json:"name,omitempty"`
-	Spec string `json:"spec,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Spec        string `json:"spec,omitempty"`
 }

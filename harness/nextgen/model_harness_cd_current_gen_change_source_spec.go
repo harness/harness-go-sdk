@@ -11,6 +11,6 @@ package nextgen
 
 type HarnessCdCurrentGenChangeSourceSpec struct {
 	HarnessApplicationId string `json:"harnessApplicationId"`
-	HarnessServiceId string `json:"harnessServiceId"`
+	HarnessServiceId     string `json:"harnessServiceId"`
 	HarnessEnvironmentId string `json:"harnessEnvironmentId"`
 }

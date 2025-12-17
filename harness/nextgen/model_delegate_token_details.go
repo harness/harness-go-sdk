@@ -10,16 +10,16 @@
 package nextgen
 
 type DelegateTokenDetails struct {
-	Uuid string `json:"uuid,omitempty"`
-	AccountId string `json:"accountId,omitempty"`
-	Name string `json:"name,omitempty"`
-	CreatedBy *EmbeddedUser `json:"createdBy,omitempty"`
-	CreatedByNgUser *Principal `json:"createdByNgUser,omitempty"`
-	CreatedAt int64 `json:"createdAt,omitempty"`
-	Status string `json:"status,omitempty"`
+	Uuid            string        `json:"uuid,omitempty"`
+	AccountId       string        `json:"accountId,omitempty"`
+	Name            string        `json:"name,omitempty"`
+	CreatedBy       *EmbeddedUser `json:"createdBy,omitempty"`
+	CreatedByNgUser *Principal    `json:"createdByNgUser,omitempty"`
+	CreatedAt       int64         `json:"createdAt,omitempty"`
+	Status          string        `json:"status,omitempty"`
 	// Value of delegate token. This is only populated when fetching delegate token by name or the user has edit delegate permission.
-	Value string `json:"value,omitempty"`
+	Value           string `json:"value,omitempty"`
 	OwnerIdentifier string `json:"ownerIdentifier,omitempty"`
-	ParentUniqueId string `json:"parentUniqueId,omitempty"`
-	RevokeAfter int64 `json:"revokeAfter,omitempty"`
+	ParentUniqueId  string `json:"parentUniqueId,omitempty"`
+	RevokeAfter     int64  `json:"revokeAfter,omitempty"`
 }

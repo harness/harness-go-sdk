@@ -10,5 +10,5 @@ package chaos
 
 type ChaosExperimentWeightagesInput struct {
 	FaultName string `json:"faultName,omitempty"`
-	Weightage int32 `json:"weightage,omitempty"`
+	Weightage int32  `json:"weightage,omitempty"`
 }

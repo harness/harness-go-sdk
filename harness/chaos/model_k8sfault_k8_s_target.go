@@ -9,8 +9,8 @@
 package chaos
 
 type K8sfaultK8STarget struct {
-	Kind string `json:"kind,omitempty"`
-	Labels string `json:"labels,omitempty"`
-	Names string `json:"names,omitempty"`
+	Kind      string `json:"kind,omitempty"`
+	Labels    string `json:"labels,omitempty"`
+	Names     string `json:"names,omitempty"`
 	Namespace string `json:"namespace,omitempty"`
 }

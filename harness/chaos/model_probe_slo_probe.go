@@ -9,20 +9,20 @@
 package chaos
 
 type ProbeSloProbe struct {
-	Attempt *interface{} `json:"attempt,omitempty"`
-	Comparator *ProbeComparator `json:"comparator,omitempty"`
-	EvaluationTimeout string `json:"evaluationTimeout,omitempty"`
-	EvaluationWindow *ProbeEvaluationWindow `json:"evaluationWindow,omitempty"`
-	InitialDelay string `json:"initialDelay,omitempty"`
-	InitialDelaySeconds *interface{} `json:"initialDelaySeconds,omitempty"`
-	InsecureSkipVerify bool `json:"insecureSkipVerify,omitempty"`
-	Interval string `json:"interval,omitempty"`
-	PlatformEndpoint string `json:"platformEndpoint,omitempty"`
-	PollingInterval string `json:"pollingInterval,omitempty"`
-	ProbeTimeout string `json:"probeTimeout,omitempty"`
-	Retry *interface{} `json:"retry,omitempty"`
-	SloIdentifier string `json:"sloIdentifier,omitempty"`
-	SloSourceMetadata *ProbeSloSourceMetadata `json:"sloSourceMetadata,omitempty"`
-	StopOnFailure bool `json:"stopOnFailure,omitempty"`
-	Verbosity string `json:"verbosity,omitempty"`
+	Attempt             *interface{}            `json:"attempt,omitempty"`
+	Comparator          *ProbeComparator        `json:"comparator,omitempty"`
+	EvaluationTimeout   string                  `json:"evaluationTimeout,omitempty"`
+	EvaluationWindow    *ProbeEvaluationWindow  `json:"evaluationWindow,omitempty"`
+	InitialDelay        string                  `json:"initialDelay,omitempty"`
+	InitialDelaySeconds *interface{}            `json:"initialDelaySeconds,omitempty"`
+	InsecureSkipVerify  bool                    `json:"insecureSkipVerify,omitempty"`
+	Interval            string                  `json:"interval,omitempty"`
+	PlatformEndpoint    string                  `json:"platformEndpoint,omitempty"`
+	PollingInterval     string                  `json:"pollingInterval,omitempty"`
+	ProbeTimeout        string                  `json:"probeTimeout,omitempty"`
+	Retry               *interface{}            `json:"retry,omitempty"`
+	SloIdentifier       string                  `json:"sloIdentifier,omitempty"`
+	SloSourceMetadata   *ProbeSloSourceMetadata `json:"sloSourceMetadata,omitempty"`
+	StopOnFailure       bool                    `json:"stopOnFailure,omitempty"`
+	Verbosity           string                  `json:"verbosity,omitempty"`
 }

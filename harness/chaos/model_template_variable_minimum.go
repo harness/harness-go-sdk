@@ -9,6 +9,6 @@
 package chaos
 
 type TemplateVariableMinimum struct {
-	Name string `json:"name,omitempty"`
+	Name  string       `json:"name,omitempty"`
 	Value *interface{} `json:"value,omitempty"`
 }

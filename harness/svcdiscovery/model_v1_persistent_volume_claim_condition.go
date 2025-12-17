@@ -18,5 +18,5 @@ type V1PersistentVolumeClaimCondition struct {
 	// reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports \"ResizeStarted\" that means the underlying persistent volume is being resized. +optional
 	Reason string `json:"reason,omitempty"`
 	Status string `json:"status,omitempty"`
-	Type_ string `json:"type,omitempty"`
+	Type_  string `json:"type,omitempty"`
 }

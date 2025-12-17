@@ -9,10 +9,10 @@
 package chaos
 
 type ProbePromProbeTemplate struct {
-	Auth *ProbeAuthorizationTemplate `json:"auth,omitempty"`
-	Comparator *ProbeComparatorTemplate `json:"comparator,omitempty"`
-	Endpoint string `json:"endpoint,omitempty"`
-	Query string `json:"query,omitempty"`
-	QueryPath string `json:"queryPath,omitempty"`
-	TlsConfig *ProbeTlsConfigTemplate `json:"tlsConfig,omitempty"`
+	Auth       *ProbeAuthorizationTemplate `json:"auth,omitempty"`
+	Comparator *ProbeComparatorTemplate    `json:"comparator,omitempty"`
+	Endpoint   string                      `json:"endpoint,omitempty"`
+	Query      string                      `json:"query,omitempty"`
+	QueryPath  string                      `json:"queryPath,omitempty"`
+	TlsConfig  *ProbeTlsConfigTemplate     `json:"tlsConfig,omitempty"`
 }

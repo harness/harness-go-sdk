@@ -13,5 +13,5 @@ type TargetserviceServiceType string
 // List of targetservice.ServiceType
 const (
 	DISCOVERED_SERVICE_TargetserviceServiceType TargetserviceServiceType = "DiscoveredService"
-	UN_ACCOUNTED_TargetserviceServiceType TargetserviceServiceType = "UnAccounted"
+	UN_ACCOUNTED_TargetserviceServiceType       TargetserviceServiceType = "UnAccounted"
 )

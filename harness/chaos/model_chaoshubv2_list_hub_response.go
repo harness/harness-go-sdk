@@ -9,6 +9,6 @@
 package chaos
 
 type Chaoshubv2ListHubResponse struct {
-	Items []Chaoshubv2ChaosHubResponse `json:"items,omitempty"`
+	Items      []Chaoshubv2ChaosHubResponse                       `json:"items,omitempty"`
 	Pagination *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
 }

@@ -9,16 +9,16 @@
 package chaos
 
 type TemplateVariable struct {
-	AllowedValues []interface{} `json:"allowedValues,omitempty"`
-	Category *TemplateVariableCategory `json:"category,omitempty"`
-	Default_ *interface{} `json:"default,omitempty"`
-	Description string `json:"description,omitempty"`
-	Name string `json:"name,omitempty"`
-	Path string `json:"path,omitempty"`
-	Required bool `json:"required,omitempty"`
-	Stringify bool `json:"stringify,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	Type_ *TemplateVariableType `json:"type,omitempty"`
-	Validator string `json:"validator,omitempty"`
-	Value *interface{} `json:"value,omitempty"`
+	AllowedValues []interface{}             `json:"allowedValues,omitempty"`
+	Category      *TemplateVariableCategory `json:"category,omitempty"`
+	Default_      *interface{}              `json:"default,omitempty"`
+	Description   string                    `json:"description,omitempty"`
+	Name          string                    `json:"name,omitempty"`
+	Path          string                    `json:"path,omitempty"`
+	Required      bool                      `json:"required,omitempty"`
+	Stringify     bool                      `json:"stringify,omitempty"`
+	Tags          []string                  `json:"tags,omitempty"`
+	Type_         *TemplateVariableType     `json:"type,omitempty"`
+	Validator     string                    `json:"validator,omitempty"`
+	Value         *interface{}              `json:"value,omitempty"`
 }

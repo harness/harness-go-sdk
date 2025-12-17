@@ -10,6 +10,6 @@ package chaos
 
 type TypesUpdateStakeHolderActionRequest struct {
 	ApprovalStatus *Gamedayrunv2ApprovalStatus `json:"approvalStatus,omitempty"`
-	Notes string `json:"notes,omitempty"`
-	UserID string `json:"userID,omitempty"`
+	Notes          string                      `json:"notes,omitempty"`
+	UserID         string                      `json:"userID,omitempty"`
 }

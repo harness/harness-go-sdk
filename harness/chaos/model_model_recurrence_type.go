@@ -12,9 +12,9 @@ type ModelRecurrenceType string
 
 // List of model.RecurrenceType
 const (
-	YEARLY_ModelRecurrenceType ModelRecurrenceType = "Yearly"
+	YEARLY_ModelRecurrenceType  ModelRecurrenceType = "Yearly"
 	MONTHLY_ModelRecurrenceType ModelRecurrenceType = "Monthly"
-	DAILY_ModelRecurrenceType ModelRecurrenceType = "Daily"
-	WEEKLY_ModelRecurrenceType ModelRecurrenceType = "Weekly"
-	NONE_ModelRecurrenceType ModelRecurrenceType = "None"
+	DAILY_ModelRecurrenceType   ModelRecurrenceType = "Daily"
+	WEEKLY_ModelRecurrenceType  ModelRecurrenceType = "Weekly"
+	NONE_ModelRecurrenceType    ModelRecurrenceType = "None"
 )

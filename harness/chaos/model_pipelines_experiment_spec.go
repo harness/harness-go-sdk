@@ -10,6 +10,6 @@ package chaos
 
 type PipelinesExperimentSpec struct {
 	ExpectedResilienceScore float64 `json:"expectedResilienceScore,omitempty"`
-	ExperimentID string `json:"experimentID,omitempty"`
-	ExperimentName string `json:"experimentName,omitempty"`
+	ExperimentID            string  `json:"experimentID,omitempty"`
+	ExperimentName          string  `json:"experimentName,omitempty"`
 }

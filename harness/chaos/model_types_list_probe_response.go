@@ -9,7 +9,7 @@
 package chaos
 
 type TypesListProbeResponse struct {
-	Data []TypesGetProbeResponse `json:"data,omitempty"`
-	Pagination *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
-	TotalNoOfProbes int32 `json:"totalNoOfProbes,omitempty"`
+	Data            []TypesGetProbeResponse                            `json:"data,omitempty"`
+	Pagination      *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
+	TotalNoOfProbes int32                                              `json:"totalNoOfProbes,omitempty"`
 }

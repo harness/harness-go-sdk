@@ -9,9 +9,9 @@
 package chaos
 
 type ProbeApmProbeTemplate struct {
-	AppDynamicsProbeInputs *GithubComHarnessHceSaasHceSdkTemplateSchemaProbeAppDynamicsProbeInputs `json:"appDynamicsProbeInputs,omitempty"`
-	Comparator *ProbeComparatorTemplate `json:"comparator,omitempty"`
-	PrometheusProbeInputs *GithubComHarnessHceSaasHceSdkTemplateSchemaProbePrometheusProbeInputs `json:"prometheusProbeInputs,omitempty"`
+	AppDynamicsProbeInputs         *GithubComHarnessHceSaasHceSdkTemplateSchemaProbeAppDynamicsProbeInputs         `json:"appDynamicsProbeInputs,omitempty"`
+	Comparator                     *ProbeComparatorTemplate                                                        `json:"comparator,omitempty"`
+	PrometheusProbeInputs          *GithubComHarnessHceSaasHceSdkTemplateSchemaProbePrometheusProbeInputs          `json:"prometheusProbeInputs,omitempty"`
 	SplunkObservabilityProbeInputs *GithubComHarnessHceSaasHceSdkTemplateSchemaProbeSplunkObservabilityProbeInputs `json:"splunkObservabilityProbeInputs,omitempty"`
-	Type_ *ProbeApmProbeType `json:"type,omitempty"`
+	Type_                          *ProbeApmProbeType                                                              `json:"type,omitempty"`
 }

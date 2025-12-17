@@ -9,6 +9,6 @@
 package chaos
 
 type V2OnboardingV2OnboardingList struct {
-	Data []V2OnboardingV2Onboarding `json:"data,omitempty"`
+	Data []V2OnboardingV2Onboarding                         `json:"data,omitempty"`
 	Page *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"page,omitempty"`
 }

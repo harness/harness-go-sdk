@@ -12,10 +12,10 @@ type InfraV2UpgradeStatus string
 
 // List of infra_v2.UpgradeStatus
 const (
-	UPGRADING_INFRA_InfraV2UpgradeStatus InfraV2UpgradeStatus = "UPGRADING_INFRA"
-	UPGRADE_SKIPPED_InfraV2UpgradeStatus InfraV2UpgradeStatus = "UPGRADE_SKIPPED"
+	UPGRADING_INFRA_InfraV2UpgradeStatus    InfraV2UpgradeStatus = "UPGRADING_INFRA"
+	UPGRADE_SKIPPED_InfraV2UpgradeStatus    InfraV2UpgradeStatus = "UPGRADE_SKIPPED"
 	UPGRADE_SUCCESSFUL_InfraV2UpgradeStatus InfraV2UpgradeStatus = "UPGRADE_SUCCESSFUL"
-	UPGRADE_FAILED_InfraV2UpgradeStatus InfraV2UpgradeStatus = "UPGRADE_FAILED"
+	UPGRADE_FAILED_InfraV2UpgradeStatus     InfraV2UpgradeStatus = "UPGRADE_FAILED"
 	DETECTING_UPGRADER_InfraV2UpgradeStatus InfraV2UpgradeStatus = "DETECTING_UPGRADER"
-	UPGRADER_DISABLED_InfraV2UpgradeStatus InfraV2UpgradeStatus = "UPGRADER_DISABLED"
+	UPGRADER_DISABLED_InfraV2UpgradeStatus  InfraV2UpgradeStatus = "UPGRADER_DISABLED"
 )

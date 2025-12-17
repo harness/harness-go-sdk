@@ -9,19 +9,19 @@
 package chaos
 
 type ProbePromProbe struct {
-	Attempt *interface{} `json:"attempt,omitempty"`
-	Auth *ProbeAuthorization `json:"auth,omitempty"`
-	Comparator *ProbeComparator `json:"comparator,omitempty"`
-	Endpoint string `json:"endpoint,omitempty"`
-	InitialDelay string `json:"initialDelay,omitempty"`
-	InitialDelaySeconds *interface{} `json:"initialDelaySeconds,omitempty"`
-	Interval string `json:"interval,omitempty"`
-	PollingInterval string `json:"pollingInterval,omitempty"`
-	ProbeTimeout string `json:"probeTimeout,omitempty"`
-	Query string `json:"query,omitempty"`
-	QueryPath string `json:"queryPath,omitempty"`
-	Retry *interface{} `json:"retry,omitempty"`
-	StopOnFailure bool `json:"stopOnFailure,omitempty"`
-	TlsConfig *ProbeTlsConfig `json:"tlsConfig,omitempty"`
-	Verbosity string `json:"verbosity,omitempty"`
+	Attempt             *interface{}        `json:"attempt,omitempty"`
+	Auth                *ProbeAuthorization `json:"auth,omitempty"`
+	Comparator          *ProbeComparator    `json:"comparator,omitempty"`
+	Endpoint            string              `json:"endpoint,omitempty"`
+	InitialDelay        string              `json:"initialDelay,omitempty"`
+	InitialDelaySeconds *interface{}        `json:"initialDelaySeconds,omitempty"`
+	Interval            string              `json:"interval,omitempty"`
+	PollingInterval     string              `json:"pollingInterval,omitempty"`
+	ProbeTimeout        string              `json:"probeTimeout,omitempty"`
+	Query               string              `json:"query,omitempty"`
+	QueryPath           string              `json:"queryPath,omitempty"`
+	Retry               *interface{}        `json:"retry,omitempty"`
+	StopOnFailure       bool                `json:"stopOnFailure,omitempty"`
+	TlsConfig           *ProbeTlsConfig     `json:"tlsConfig,omitempty"`
+	Verbosity           string              `json:"verbosity,omitempty"`
 }

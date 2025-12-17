@@ -12,10 +12,10 @@ package nextgen
 // PluginGenerator defines connection info specific to Plugin.
 type ApplicationsPluginGenerator struct {
 	ConfigMapRef *ApplicationsPluginConfigMapRef `json:"configMapRef,omitempty"`
-	Input *ApplicationsPluginInput `json:"input,omitempty"`
+	Input        *ApplicationsPluginInput        `json:"input,omitempty"`
 	// RequeueAfterSeconds determines how long the ApplicationSet controller will wait before reconciling the ApplicationSet again.
-	RequeueAfterSeconds string `json:"requeueAfterSeconds,omitempty"`
-	Template *ApplicationsApplicationSetTemplate `json:"template,omitempty"`
+	RequeueAfterSeconds string                              `json:"requeueAfterSeconds,omitempty"`
+	Template            *ApplicationsApplicationSetTemplate `json:"template,omitempty"`
 	// Values contains key/value pairs which are passed directly as parameters to the template. These values will not be sent as parameters to the plugin.
 	Values map[string]string `json:"values,omitempty"`
 }

@@ -9,9 +9,9 @@
 package har
 
 type JfrogReplicationRegistry struct {
-	Namespace string `json:"namespace"`
-	PasswordSecretId string `json:"passwordSecretId,omitempty"`
+	Namespace             string `json:"namespace"`
+	PasswordSecretId      string `json:"passwordSecretId,omitempty"`
 	PasswordSecretSpaceId string `json:"passwordSecretSpaceId,omitempty"`
-	Url string `json:"url"`
-	Username string `json:"username,omitempty"`
+	Url                   string `json:"url"`
+	Username              string `json:"username,omitempty"`
 }

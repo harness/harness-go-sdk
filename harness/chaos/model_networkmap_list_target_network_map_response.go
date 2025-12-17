@@ -9,6 +9,6 @@
 package chaos
 
 type NetworkmapListTargetNetworkMapResponse struct {
-	Data []TargetnetworkmapTargetNetworkMap `json:"data,omitempty"`
+	Data []TargetnetworkmapTargetNetworkMap                 `json:"data,omitempty"`
 	Page *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"page,omitempty"`
 }

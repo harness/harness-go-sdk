@@ -9,6 +9,6 @@
 package svcdiscovery
 
 type V1RollingUpdateDaemonSet struct {
-	MaxSurge *IntstrIntOrString `json:"maxSurge,omitempty"`
+	MaxSurge       *IntstrIntOrString `json:"maxSurge,omitempty"`
 	MaxUnavailable *IntstrIntOrString `json:"maxUnavailable,omitempty"`
 }

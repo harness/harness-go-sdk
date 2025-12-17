@@ -9,6 +9,6 @@
 package chaos
 
 type TypesExperimentRunRequest struct {
-	InputsetIdentity string `json:"inputsetIdentity,omitempty"`
-	RuntimeInputs *TemplateChaosExperimentInputsetSpec `json:"runtimeInputs,omitempty"`
+	InputsetIdentity string                               `json:"inputsetIdentity,omitempty"`
+	RuntimeInputs    *TemplateChaosExperimentInputsetSpec `json:"runtimeInputs,omitempty"`
 }

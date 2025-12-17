@@ -9,12 +9,12 @@
 package chaos
 
 type SecurityGovernanceCondition struct {
-	ConditionId string `json:"conditionId,omitempty"`
-	Description string `json:"description,omitempty"`
-	FaultSpec *SecurityGovernanceFaultSpec `json:"faultSpec,omitempty"`
-	InfraType *SecurityGovernanceInfraType `json:"infraType,omitempty"`
-	K8sSpec *SecurityGovernanceK8sSpec `json:"k8sSpec,omitempty"`
+	ConditionId string                         `json:"conditionId,omitempty"`
+	Description string                         `json:"description,omitempty"`
+	FaultSpec   *SecurityGovernanceFaultSpec   `json:"faultSpec,omitempty"`
+	InfraType   *SecurityGovernanceInfraType   `json:"infraType,omitempty"`
+	K8sSpec     *SecurityGovernanceK8sSpec     `json:"k8sSpec,omitempty"`
 	MachineSpec *SecurityGovernanceMachineSpec `json:"machineSpec,omitempty"`
-	Name string `json:"name,omitempty"`
-	Tags []string `json:"tags,omitempty"`
+	Name        string                         `json:"name,omitempty"`
+	Tags        []string                       `json:"tags,omitempty"`
 }

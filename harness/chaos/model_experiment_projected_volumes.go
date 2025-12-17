@@ -9,8 +9,8 @@
 package chaos
 
 type ExperimentProjectedVolumes struct {
-	MountPath string `json:"mountPath,omitempty"`
-	Name string `json:"name,omitempty"`
+	MountPath string                   `json:"mountPath,omitempty"`
+	Name      string                   `json:"name,omitempty"`
 	Projected *V1ProjectedVolumeSource `json:"projected,omitempty"`
-	ReadOnly bool `json:"readOnly,omitempty"`
+	ReadOnly  bool                     `json:"readOnly,omitempty"`
 }

@@ -11,15 +11,15 @@ package nextgen
 
 // PullRequestGenerator defines a generator that scrapes a PullRequest API to find candidate pull requests.
 type ApplicationsPullRequestGenerator struct {
-	Github *ApplicationsPullRequestGeneratorGithub `json:"github,omitempty"`
-	Gitlab *ApplicationsPullRequestGeneratorGitLab `json:"gitlab,omitempty"`
-	Gitea *ApplicationsPullRequestGeneratorGitea `json:"gitea,omitempty"`
+	Github          *ApplicationsPullRequestGeneratorGithub          `json:"github,omitempty"`
+	Gitlab          *ApplicationsPullRequestGeneratorGitLab          `json:"gitlab,omitempty"`
+	Gitea           *ApplicationsPullRequestGeneratorGitea           `json:"gitea,omitempty"`
 	BitbucketServer *ApplicationsPullRequestGeneratorBitbucketServer `json:"bitbucketServer,omitempty"`
 	// Filters for which pull requests should be considered.
 	Filters []ApplicationsPullRequestGeneratorFilter `json:"filters,omitempty"`
 	// Standard parameters.
-	RequeueAfterSeconds string `json:"requeueAfterSeconds,omitempty"`
-	Template *ApplicationsApplicationSetTemplate `json:"template,omitempty"`
-	Bitbucket *ApplicationsPullRequestGeneratorBitbucket `json:"bitbucket,omitempty"`
-	Azuredevops *ApplicationsPullRequestGeneratorAzureDevOps `json:"azuredevops,omitempty"`
+	RequeueAfterSeconds string                                       `json:"requeueAfterSeconds,omitempty"`
+	Template            *ApplicationsApplicationSetTemplate          `json:"template,omitempty"`
+	Bitbucket           *ApplicationsPullRequestGeneratorBitbucket   `json:"bitbucket,omitempty"`
+	Azuredevops         *ApplicationsPullRequestGeneratorAzureDevOps `json:"azuredevops,omitempty"`
 }

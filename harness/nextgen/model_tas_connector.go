@@ -11,8 +11,8 @@ package nextgen
 
 // This contains details of the Tas connector
 type TasConnector struct {
-	ConnectorType string `json:"connectorType"`
-	Credential *TasCredential `json:"credential"`
-	DelegateSelectors []string `json:"delegateSelectors,omitempty"`
-	ExecuteOnDelegate bool `json:"executeOnDelegate,omitempty"`
+	ConnectorType     string         `json:"connectorType"`
+	Credential        *TasCredential `json:"credential"`
+	DelegateSelectors []string       `json:"delegateSelectors,omitempty"`
+	ExecuteOnDelegate bool           `json:"executeOnDelegate,omitempty"`
 }

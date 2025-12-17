@@ -11,5 +11,5 @@ package nextgen
 
 type NotificationRuleRefDto struct {
 	NotificationRuleRef string `json:"notificationRuleRef"`
-	Enabled bool `json:"enabled"`
+	Enabled             bool   `json:"enabled"`
 }

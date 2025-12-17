@@ -10,6 +10,6 @@ package har
 
 // Tab Setup step
 type TabSetupStep struct {
-	Header string `json:"header,omitempty"`
+	Header   string               `json:"header,omitempty"`
 	Sections []ClientSetupSection `json:"sections,omitempty"`
 }

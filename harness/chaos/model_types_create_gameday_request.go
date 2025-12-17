@@ -9,11 +9,11 @@
 package chaos
 
 type TypesCreateGamedayRequest struct {
-	Experiments []TypesExperimentRequest `json:"experiments,omitempty"`
-	GameDayID string `json:"gameDayID,omitempty"`
-	GamedayDescription string `json:"gamedayDescription,omitempty"`
-	GamedayName string `json:"gamedayName,omitempty"`
-	Objective string `json:"objective,omitempty"`
-	Prerequisites []TypesPrerequisite `json:"prerequisites,omitempty"`
-	Stakeholders []TypesStakeHolderInput `json:"stakeholders,omitempty"`
+	Experiments        []TypesExperimentRequest `json:"experiments,omitempty"`
+	GameDayID          string                   `json:"gameDayID,omitempty"`
+	GamedayDescription string                   `json:"gamedayDescription,omitempty"`
+	GamedayName        string                   `json:"gamedayName,omitempty"`
+	Objective          string                   `json:"objective,omitempty"`
+	Prerequisites      []TypesPrerequisite      `json:"prerequisites,omitempty"`
+	Stakeholders       []TypesStakeHolderInput  `json:"stakeholders,omitempty"`
 }

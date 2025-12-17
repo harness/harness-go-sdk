@@ -10,6 +10,6 @@ package chaos
 
 type GithubComHarnessHceSaasHceSdkTemplateSchemaProbeIdentifier struct {
 	AccountIdentifier string `json:"accountIdentifier,omitempty"`
-	OrgIdentifier string `json:"orgIdentifier,omitempty"`
+	OrgIdentifier     string `json:"orgIdentifier,omitempty"`
 	ProjectIdentifier string `json:"projectIdentifier,omitempty"`
 }

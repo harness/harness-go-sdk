@@ -10,5 +10,5 @@ package chaos
 
 type RecommendationsRunActionResponse struct {
 	ExperimentID string `json:"experimentID,omitempty"`
-	NotifyID string `json:"notifyID,omitempty"`
+	NotifyID     string `json:"notifyID,omitempty"`
 }

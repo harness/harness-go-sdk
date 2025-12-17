@@ -9,16 +9,16 @@
 package chaos
 
 type ChaosfaulttemplateUpdateFaultTemplateResponse struct {
-	CorelationID string `json:"corelationID,omitempty"`
-	Description string `json:"description,omitempty"`
-	HubID string `json:"hubID,omitempty"`
-	Identity string `json:"identity,omitempty"`
-	Infras []string `json:"infras,omitempty"`
-	Keywords []string `json:"keywords,omitempty"`
-	Name string `json:"name,omitempty"`
-	Platforms []string `json:"platforms,omitempty"`
-	Revision int32 `json:"revision,omitempty"`
-	Spec *K8sfaultK8SFaultSpec `json:"spec,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	Variables []TemplateVariable `json:"variables,omitempty"`
+	CorelationID string                `json:"corelationID,omitempty"`
+	Description  string                `json:"description,omitempty"`
+	HubID        string                `json:"hubID,omitempty"`
+	Identity     string                `json:"identity,omitempty"`
+	Infras       []string              `json:"infras,omitempty"`
+	Keywords     []string              `json:"keywords,omitempty"`
+	Name         string                `json:"name,omitempty"`
+	Platforms    []string              `json:"platforms,omitempty"`
+	Revision     int32                 `json:"revision,omitempty"`
+	Spec         *K8sfaultK8SFaultSpec `json:"spec,omitempty"`
+	Tags         []string              `json:"tags,omitempty"`
+	Variables    []TemplateVariable    `json:"variables,omitempty"`
 }

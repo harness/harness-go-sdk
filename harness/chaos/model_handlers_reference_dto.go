@@ -10,8 +10,8 @@ package chaos
 
 type HandlersReferenceDto struct {
 	AccountIdentifier string `json:"accountIdentifier,omitempty"`
-	Identifier string `json:"identifier,omitempty"`
-	Name string `json:"name,omitempty"`
-	OrgIdentifier string `json:"orgIdentifier,omitempty"`
+	Identifier        string `json:"identifier,omitempty"`
+	Name              string `json:"name,omitempty"`
+	OrgIdentifier     string `json:"orgIdentifier,omitempty"`
 	ProjectIdentifier string `json:"projectIdentifier,omitempty"`
 }

@@ -11,8 +11,8 @@ package nextgen
 
 // This contains Oci helm connector details
 type OciHelmConnector struct {
-	ConnectorType string `json:"connectorType"`
-	HelmRepoUrl string `json:"helmRepoUrl"`
-	Auth *OciHelmAuthentication `json:"auth,omitempty"`
-	DelegateSelectors []string `json:"delegateSelectors,omitempty"`
+	ConnectorType     string                 `json:"connectorType"`
+	HelmRepoUrl       string                 `json:"helmRepoUrl"`
+	Auth              *OciHelmAuthentication `json:"auth,omitempty"`
+	DelegateSelectors []string               `json:"delegateSelectors,omitempty"`
 }

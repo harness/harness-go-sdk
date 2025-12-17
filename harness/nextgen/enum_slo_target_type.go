@@ -3,11 +3,11 @@ package nextgen
 type SLOTargetType string
 
 var SLOTargetTypes = struct {
-	Rolling      SLOTargetType
-	Calender     SLOTargetType
+	Rolling  SLOTargetType
+	Calender SLOTargetType
 }{
-	Rolling:     "Rolling",
-	Calender:    "Calender",
+	Rolling:  "Rolling",
+	Calender: "Calender",
 }
 
 var SLOTargetTypesSlice = []string{

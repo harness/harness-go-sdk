@@ -9,23 +9,23 @@
 package chaos
 
 type GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbRecommendationRecommendation struct {
-	AccountID string `json:"accountID"`
-	EnvironmentID string `json:"environmentID,omitempty"`
-	EventIdentifier string `json:"eventIdentifier,omitempty"`
-	ExperimentID string `json:"experimentID,omitempty"`
-	ExperimentName string `json:"experimentName,omitempty"`
-	FaultFilters *RecommendationFaultFilters `json:"faultFilters,omitempty"`
-	InfraID string `json:"infraID,omitempty"`
-	InfraName string `json:"infraName,omitempty"`
-	InfraNamespace string `json:"infraNamespace,omitempty"`
-	InfraType string `json:"infraType,omitempty"`
-	IsRemoved bool `json:"isRemoved,omitempty"`
-	OrgID string `json:"orgID,omitempty"`
-	ProbeFilters *RecommendationProbeFilters `json:"probeFilters,omitempty"`
-	ProjectID string `json:"projectID,omitempty"`
+	AccountID              string                                `json:"accountID"`
+	EnvironmentID          string                                `json:"environmentID,omitempty"`
+	EventIdentifier        string                                `json:"eventIdentifier,omitempty"`
+	ExperimentID           string                                `json:"experimentID,omitempty"`
+	ExperimentName         string                                `json:"experimentName,omitempty"`
+	FaultFilters           *RecommendationFaultFilters           `json:"faultFilters,omitempty"`
+	InfraID                string                                `json:"infraID,omitempty"`
+	InfraName              string                                `json:"infraName,omitempty"`
+	InfraNamespace         string                                `json:"infraNamespace,omitempty"`
+	InfraType              string                                `json:"infraType,omitempty"`
+	IsRemoved              bool                                  `json:"isRemoved,omitempty"`
+	OrgID                  string                                `json:"orgID,omitempty"`
+	ProbeFilters           *RecommendationProbeFilters           `json:"probeFilters,omitempty"`
+	ProjectID              string                                `json:"projectID,omitempty"`
 	RecommendationCategory *RecommendationRecommendationCategory `json:"recommendationCategory,omitempty"`
-	RecommendationID string `json:"recommendationID,omitempty"`
-	Source *RecommendationRecommendationSource `json:"source,omitempty"`
-	Suggestions []RecommendationSuggestions `json:"suggestions,omitempty"`
-	Tags []string `json:"tags,omitempty"`
+	RecommendationID       string                                `json:"recommendationID,omitempty"`
+	Source                 *RecommendationRecommendationSource   `json:"source,omitempty"`
+	Suggestions            []RecommendationSuggestions           `json:"suggestions,omitempty"`
+	Tags                   []string                              `json:"tags,omitempty"`
 }

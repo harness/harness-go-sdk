@@ -10,6 +10,6 @@ package svcdiscovery
 
 type V1TcpSocketAction struct {
 	// Optional: Host name to connect to, defaults to the pod IP. +optional
-	Host string `json:"host,omitempty"`
+	Host string             `json:"host,omitempty"`
 	Port *IntstrIntOrString `json:"port,omitempty"`
 }

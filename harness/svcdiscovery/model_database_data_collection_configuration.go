@@ -9,13 +9,13 @@
 package svcdiscovery
 
 type DatabaseDataCollectionConfiguration struct {
-	BlacklistedNamespaces []string `json:"blacklistedNamespaces,omitempty"`
-	CollectionWindowInMin int32 `json:"collectionWindowInMin,omitempty"`
-	Cron *DatabaseCronConfig `json:"cron,omitempty"`
-	EnableBatchResources bool `json:"enableBatchResources,omitempty"`
-	EnableNodeAgent bool `json:"enableNodeAgent,omitempty"`
-	EnableOrphanedPod bool `json:"enableOrphanedPod,omitempty"`
-	NamespaceSelector string `json:"namespaceSelector,omitempty"`
-	NodeAgentSelector string `json:"nodeAgentSelector,omitempty"`
-	ObservedNamespaces []string `json:"observedNamespaces,omitempty"`
+	BlacklistedNamespaces []string            `json:"blacklistedNamespaces,omitempty"`
+	CollectionWindowInMin int32               `json:"collectionWindowInMin,omitempty"`
+	Cron                  *DatabaseCronConfig `json:"cron,omitempty"`
+	EnableBatchResources  bool                `json:"enableBatchResources,omitempty"`
+	EnableNodeAgent       bool                `json:"enableNodeAgent,omitempty"`
+	EnableOrphanedPod     bool                `json:"enableOrphanedPod,omitempty"`
+	NamespaceSelector     string              `json:"namespaceSelector,omitempty"`
+	NodeAgentSelector     string              `json:"nodeAgentSelector,omitempty"`
+	ObservedNamespaces    []string            `json:"observedNamespaces,omitempty"`
 }

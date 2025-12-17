@@ -9,15 +9,15 @@
 package har
 
 type WebhookRequest struct {
-	Description string `json:"description,omitempty"`
-	Enabled bool `json:"enabled"`
-	ExtraHeaders []ExtraHeader `json:"extraHeaders,omitempty"`
-	Identifier string `json:"identifier"`
-	Insecure bool `json:"insecure"`
-	Name string `json:"name"`
-	SecretIdentifier string `json:"secretIdentifier,omitempty"`
-	SecretSpaceId int64 `json:"secretSpaceId,omitempty"`
-	SecretSpacePath string `json:"secretSpacePath,omitempty"`
-	Triggers []Trigger `json:"triggers,omitempty"`
-	Url string `json:"url"`
+	Description      string        `json:"description,omitempty"`
+	Enabled          bool          `json:"enabled"`
+	ExtraHeaders     []ExtraHeader `json:"extraHeaders,omitempty"`
+	Identifier       string        `json:"identifier"`
+	Insecure         bool          `json:"insecure"`
+	Name             string        `json:"name"`
+	SecretIdentifier string        `json:"secretIdentifier,omitempty"`
+	SecretSpaceId    int64         `json:"secretSpaceId,omitempty"`
+	SecretSpacePath  string        `json:"secretSpacePath,omitempty"`
+	Triggers         []Trigger     `json:"triggers,omitempty"`
+	Url              string        `json:"url"`
 }

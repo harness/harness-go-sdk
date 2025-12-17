@@ -9,15 +9,15 @@
 package chaos
 
 type ExperimentChaosInputs struct {
-	Annotations map[string]string `json:"annotations,omitempty"`
-	Args []string `json:"args,omitempty"`
-	Command []string `json:"command,omitempty"`
-	Components *ExperimentExperimentComponents `json:"components,omitempty"`
-	DefaultHealthCheck bool `json:"defaultHealthCheck,omitempty"`
-	Env []V1EnvVar `json:"env,omitempty"`
-	Fault string `json:"fault,omitempty"`
-	Image string `json:"image,omitempty"`
-	ImagePullPolicy *V1PullPolicy `json:"imagePullPolicy,omitempty"`
-	Labels map[string]string `json:"labels,omitempty"`
-	Probes []GithubComHarnessHceSaasHceSdkCommonProbeV1Probe `json:"probes,omitempty"`
+	Annotations        map[string]string                                 `json:"annotations,omitempty"`
+	Args               []string                                          `json:"args,omitempty"`
+	Command            []string                                          `json:"command,omitempty"`
+	Components         *ExperimentExperimentComponents                   `json:"components,omitempty"`
+	DefaultHealthCheck bool                                              `json:"defaultHealthCheck,omitempty"`
+	Env                []V1EnvVar                                        `json:"env,omitempty"`
+	Fault              string                                            `json:"fault,omitempty"`
+	Image              string                                            `json:"image,omitempty"`
+	ImagePullPolicy    *V1PullPolicy                                     `json:"imagePullPolicy,omitempty"`
+	Labels             map[string]string                                 `json:"labels,omitempty"`
+	Probes             []GithubComHarnessHceSaasHceSdkCommonProbeV1Probe `json:"probes,omitempty"`
 }

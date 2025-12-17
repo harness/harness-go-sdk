@@ -10,6 +10,6 @@
 package nextgen
 
 type MetricThresholdCriteria struct {
-	Type_ string `json:"type,omitempty"`
-	Spec *MetricThresholdCriteriaSpec `json:"spec,omitempty"`
+	Type_ string                       `json:"type,omitempty"`
+	Spec  *MetricThresholdCriteriaSpec `json:"spec,omitempty"`
 }

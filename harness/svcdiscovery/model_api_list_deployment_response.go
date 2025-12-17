@@ -9,7 +9,7 @@
 package svcdiscovery
 
 type ApiListDeploymentResponse struct {
-	CorrelationID string `json:"correlationID,omitempty"`
-	Items []DatabaseDeploymentCollection `json:"items,omitempty"`
-	Page *ApiPagination `json:"page,omitempty"`
+	CorrelationID string                         `json:"correlationID,omitempty"`
+	Items         []DatabaseDeploymentCollection `json:"items,omitempty"`
+	Page          *ApiPagination                 `json:"page,omitempty"`
 }

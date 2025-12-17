@@ -12,6 +12,6 @@ type ActionsActionType string
 
 // List of actions.ActionType
 const (
-	DELAY_ActionsActionType ActionsActionType = "delay"
+	DELAY_ActionsActionType         ActionsActionType = "delay"
 	CUSTOM_SCRIPT_ActionsActionType ActionsActionType = "customScript"
 )

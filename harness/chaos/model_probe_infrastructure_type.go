@@ -12,9 +12,9 @@ type ProbeInfrastructureType string
 
 // List of probe.InfrastructureType
 const (
-	KUBERNETES_ProbeInfrastructureType ProbeInfrastructureType = "Kubernetes"
+	KUBERNETES_ProbeInfrastructureType    ProbeInfrastructureType = "Kubernetes"
 	KUBERNETES_V2_ProbeInfrastructureType ProbeInfrastructureType = "KubernetesV2"
-	WINDOWS_ProbeInfrastructureType ProbeInfrastructureType = "Windows"
-	LINUX_ProbeInfrastructureType ProbeInfrastructureType = "Linux"
+	WINDOWS_ProbeInfrastructureType       ProbeInfrastructureType = "Windows"
+	LINUX_ProbeInfrastructureType         ProbeInfrastructureType = "Linux"
 	CLOUD_FOUNDRY_ProbeInfrastructureType ProbeInfrastructureType = "CloudFoundry"
 )

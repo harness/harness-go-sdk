@@ -21,7 +21,7 @@ type GithubComHarnessHceSaasHceSdkCommonProbeV1Probe struct {
 	DynatraceProbeinputs *AllOfgithubComHarnessHceSaasHceSdkCommonProbeV1ProbeDynatraceProbeinputs `json:"dynatraceProbe/inputs,omitempty"`
 	// inputs needed for the http probe
 	HttpProbeinputs *AllOfgithubComHarnessHceSaasHceSdkCommonProbeV1ProbeHttpProbeinputs `json:"httpProbe/inputs,omitempty"`
-	Id string `json:"id,omitempty"`
+	Id              string                                                               `json:"id,omitempty"`
 	// inputs needed for the k8s probe
 	K8sProbeinputs *AllOfgithubComHarnessHceSaasHceSdkCommonProbeV1ProbeK8sProbeinputs `json:"k8sProbe/inputs,omitempty"`
 	// mode for k8s probe it can be SOT, EOT, Edge

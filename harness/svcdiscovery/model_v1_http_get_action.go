@@ -14,7 +14,7 @@ type V1HttpGetAction struct {
 	// Custom headers to set in the request. HTTP allows repeated headers. +optional
 	HttpHeaders []V1HttpHeader `json:"httpHeaders,omitempty"`
 	// Path to access on the HTTP server. +optional
-	Path string `json:"path,omitempty"`
+	Path string             `json:"path,omitempty"`
 	Port *IntstrIntOrString `json:"port,omitempty"`
 	// Scheme to use for connecting to the host. Defaults to HTTP. +optional
 	Scheme string `json:"scheme,omitempty"`

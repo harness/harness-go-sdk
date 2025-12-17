@@ -16,7 +16,7 @@ type ApplicationsScmProviderGeneratorAzureDevOps struct {
 	// The URL to Azure DevOps. If blank, use https://dev.azure.com.
 	Api string `json:"api,omitempty"`
 	// Azure Devops team project. Required. E.g. \"my-team\".
-	TeamProject string `json:"teamProject,omitempty"`
+	TeamProject    string                 `json:"teamProject,omitempty"`
 	AccessTokenRef *ApplicationsSecretRef `json:"accessTokenRef,omitempty"`
 	// Scan all branches instead of just the default branch.
 	AllBranches bool `json:"allBranches,omitempty"`

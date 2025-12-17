@@ -12,8 +12,8 @@ type Gamedayv2StakeHolderRole string
 
 // List of gamedayv2.StakeHolderRole
 const (
-	COORDINATOR_Gamedayv2StakeHolderRole Gamedayv2StakeHolderRole = "coordinator"
+	COORDINATOR_Gamedayv2StakeHolderRole     Gamedayv2StakeHolderRole = "coordinator"
 	TRIAGE_ENGINEER_Gamedayv2StakeHolderRole Gamedayv2StakeHolderRole = "triage_engineer"
-	ATTENDEE_Gamedayv2StakeHolderRole Gamedayv2StakeHolderRole = "attendee"
-	OTHERS_Gamedayv2StakeHolderRole Gamedayv2StakeHolderRole = "others"
+	ATTENDEE_Gamedayv2StakeHolderRole        Gamedayv2StakeHolderRole = "attendee"
+	OTHERS_Gamedayv2StakeHolderRole          Gamedayv2StakeHolderRole = "others"
 )

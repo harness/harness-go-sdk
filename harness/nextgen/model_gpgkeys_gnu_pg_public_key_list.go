@@ -10,6 +10,6 @@
 package nextgen
 
 type GpgkeysGnuPgPublicKeyList struct {
-	Metadata *V1ListMeta `json:"metadata,omitempty"`
-	Items []GpgkeysGnuPgPublicKey `json:"items,omitempty"`
+	Metadata *V1ListMeta             `json:"metadata,omitempty"`
+	Items    []GpgkeysGnuPgPublicKey `json:"items,omitempty"`
 }

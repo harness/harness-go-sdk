@@ -9,7 +9,7 @@
 package chaos
 
 type V1Authorization struct {
-	Credentials string `json:"credentials,omitempty"`
+	Credentials     string `json:"credentials,omitempty"`
 	CredentialsFile string `json:"credentialsFile,omitempty"`
-	Type_ string `json:"type,omitempty"`
+	Type_           string `json:"type,omitempty"`
 }

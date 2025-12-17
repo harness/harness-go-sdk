@@ -9,11 +9,11 @@
 package chaos
 
 type TypesNotes struct {
-	ExperimentID string `json:"experimentID,omitempty"`
-	ExperimentRunID string `json:"experimentRunID,omitempty"`
-	GamedayRunID string `json:"gamedayRunID,omitempty"`
-	Id string `json:"id,omitempty"`
-	Identifiers *GithubComHarnessHceSaasGraphqlServerGraphModelIdentifiers `json:"identifiers,omitempty"`
-	Notes []TypesNote `json:"notes,omitempty"`
-	Type_ *ChaosresourcenotesNoteType `json:"type,omitempty"`
+	ExperimentID    string                                                     `json:"experimentID,omitempty"`
+	ExperimentRunID string                                                     `json:"experimentRunID,omitempty"`
+	GamedayRunID    string                                                     `json:"gamedayRunID,omitempty"`
+	Id              string                                                     `json:"id,omitempty"`
+	Identifiers     *GithubComHarnessHceSaasGraphqlServerGraphModelIdentifiers `json:"identifiers,omitempty"`
+	Notes           []TypesNote                                                `json:"notes,omitempty"`
+	Type_           *ChaosresourcenotesNoteType                                `json:"type,omitempty"`
 }

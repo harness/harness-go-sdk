@@ -9,6 +9,6 @@
 package chaos
 
 type ModelUpgrade struct {
-	IsAutoUpgradeEnabled bool `json:"isAutoUpgradeEnabled,omitempty"`
-	Status *ModelUpgradeStatus `json:"status,omitempty"`
+	IsAutoUpgradeEnabled bool                `json:"isAutoUpgradeEnabled,omitempty"`
+	Status               *ModelUpgradeStatus `json:"status,omitempty"`
 }

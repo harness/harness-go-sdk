@@ -12,6 +12,6 @@ type ChaosInfrastructureV2InfraType string
 
 // List of chaos_infrastructure_v2.InfraType
 const (
-	KUBERNETES_ChaosInfrastructureV2InfraType ChaosInfrastructureV2InfraType = "KUBERNETES"
+	KUBERNETES_ChaosInfrastructureV2InfraType   ChaosInfrastructureV2InfraType = "KUBERNETES"
 	KUBERNETESV2_ChaosInfrastructureV2InfraType ChaosInfrastructureV2InfraType = "KUBERNETESV2"
 )

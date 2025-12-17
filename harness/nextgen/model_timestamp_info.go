@@ -10,7 +10,7 @@
 package nextgen
 
 type TimestampInfo struct {
-	Placeholder string `json:"placeholder,omitempty"`
-	TimestampFormat string `json:"timestampFormat,omitempty"`
+	Placeholder           string `json:"placeholder,omitempty"`
+	TimestampFormat       string `json:"timestampFormat,omitempty"`
 	CustomTimestampFormat string `json:"customTimestampFormat,omitempty"`
 }

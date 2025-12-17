@@ -11,10 +11,10 @@ package nextgen
 
 // DuckType defines a generator to match against clusters registered with ArgoCD.
 type ApplicationsDuckTypeGenerator struct {
-	ConfigMapRef string `json:"configMapRef,omitempty"`
-	Name string `json:"name,omitempty"`
-	RequeueAfterSeconds string `json:"requeueAfterSeconds,omitempty"`
-	LabelSelector *V1LabelSelector `json:"labelSelector,omitempty"`
-	Template *ApplicationsApplicationSetTemplate `json:"template,omitempty"`
-	Values map[string]string `json:"values,omitempty"`
+	ConfigMapRef        string                              `json:"configMapRef,omitempty"`
+	Name                string                              `json:"name,omitempty"`
+	RequeueAfterSeconds string                              `json:"requeueAfterSeconds,omitempty"`
+	LabelSelector       *V1LabelSelector                    `json:"labelSelector,omitempty"`
+	Template            *ApplicationsApplicationSetTemplate `json:"template,omitempty"`
+	Values              map[string]string                   `json:"values,omitempty"`
 }

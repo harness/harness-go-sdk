@@ -9,7 +9,7 @@
 package svcdiscovery
 
 type DatabaseConnectionKubernetesSpec struct {
-	DestinationPod *V1ObjectReference `json:"destinationPod,omitempty"`
+	DestinationPod     *V1ObjectReference `json:"destinationPod,omitempty"`
 	DestinationService *V1ObjectReference `json:"destinationService,omitempty"`
-	SourcePod *V1ObjectReference `json:"sourcePod,omitempty"`
+	SourcePod          *V1ObjectReference `json:"sourcePod,omitempty"`
 }

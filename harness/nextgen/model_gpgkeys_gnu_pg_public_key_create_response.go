@@ -11,5 +11,5 @@ package nextgen
 
 type GpgkeysGnuPgPublicKeyCreateResponse struct {
 	Created *GpgkeysGnuPgPublicKeyList `json:"created,omitempty"`
-	Skipped []string `json:"skipped,omitempty"`
+	Skipped []string                   `json:"skipped,omitempty"`
 }

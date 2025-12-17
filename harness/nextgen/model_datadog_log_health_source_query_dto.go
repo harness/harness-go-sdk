@@ -10,8 +10,8 @@
 package nextgen
 
 type DatadogLogHealthSourceQueryDto struct {
-	Name string `json:"name"`
-	Query string `json:"query"`
-	Indexes []string `json:"indexes"`
-	ServiceInstanceIdentifier string `json:"serviceInstanceIdentifier"`
+	Name                      string   `json:"name"`
+	Query                     string   `json:"query"`
+	Indexes                   []string `json:"indexes"`
+	ServiceInstanceIdentifier string   `json:"serviceInstanceIdentifier"`
 }

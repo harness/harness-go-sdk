@@ -10,9 +10,9 @@ package har
 
 // File Detail
 type FileDetail struct {
-	Checksums []string `json:"checksums"`
-	CreatedAt string `json:"createdAt"`
-	DownloadCommand string `json:"downloadCommand"`
-	Name string `json:"name"`
-	Size string `json:"size"`
+	Checksums       []string `json:"checksums"`
+	CreatedAt       string   `json:"createdAt"`
+	DownloadCommand string   `json:"downloadCommand"`
+	Name            string   `json:"name"`
+	Size            string   `json:"size"`
 }

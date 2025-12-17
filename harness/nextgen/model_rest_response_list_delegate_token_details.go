@@ -10,7 +10,7 @@
 package nextgen
 
 type RestResponseListDelegateTokenDetails struct {
-	MetaData map[string]interface{} `json:"metaData,omitempty"`
-	Resource []DelegateTokenDetails `json:"resource,omitempty"`
-	ResponseMessages []ResponseMessage `json:"responseMessages,omitempty"`
+	MetaData         map[string]interface{} `json:"metaData,omitempty"`
+	Resource         []DelegateTokenDetails `json:"resource,omitempty"`
+	ResponseMessages []ResponseMessage      `json:"responseMessages,omitempty"`
 }

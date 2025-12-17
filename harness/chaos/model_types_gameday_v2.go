@@ -9,19 +9,19 @@
 package chaos
 
 type TypesGamedayV2 struct {
-	CreatedAt string `json:"createdAt,omitempty"`
-	CreatedBy *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"createdBy,omitempty"`
-	Description string `json:"description,omitempty"`
-	Experiments []TypesListGamedayExperimentResponse `json:"experiments,omitempty"`
-	GameDayID string `json:"gameDayID,omitempty"`
-	Identifiers *GithubComHarnessHceSaasGraphqlServerGraphModelIdentifiers `json:"identifiers,omitempty"`
-	IsRemoved bool `json:"isRemoved,omitempty"`
-	Name string `json:"name,omitempty"`
-	Objective string `json:"objective,omitempty"`
-	Prerequisites []TypesPrerequisite `json:"prerequisites,omitempty"`
-	RecentGamedayRuns []TypesRecentGamedayRun `json:"recentGamedayRuns,omitempty"`
-	Stakeholders []TypesStakeHolderResponse `json:"stakeholders,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	UpdatedAt string `json:"updatedAt,omitempty"`
-	UpdatedBy *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"updatedBy,omitempty"`
+	CreatedAt         string                                                     `json:"createdAt,omitempty"`
+	CreatedBy         *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"createdBy,omitempty"`
+	Description       string                                                     `json:"description,omitempty"`
+	Experiments       []TypesListGamedayExperimentResponse                       `json:"experiments,omitempty"`
+	GameDayID         string                                                     `json:"gameDayID,omitempty"`
+	Identifiers       *GithubComHarnessHceSaasGraphqlServerGraphModelIdentifiers `json:"identifiers,omitempty"`
+	IsRemoved         bool                                                       `json:"isRemoved,omitempty"`
+	Name              string                                                     `json:"name,omitempty"`
+	Objective         string                                                     `json:"objective,omitempty"`
+	Prerequisites     []TypesPrerequisite                                        `json:"prerequisites,omitempty"`
+	RecentGamedayRuns []TypesRecentGamedayRun                                    `json:"recentGamedayRuns,omitempty"`
+	Stakeholders      []TypesStakeHolderResponse                                 `json:"stakeholders,omitempty"`
+	Tags              []string                                                   `json:"tags,omitempty"`
+	UpdatedAt         string                                                     `json:"updatedAt,omitempty"`
+	UpdatedBy         *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"updatedBy,omitempty"`
 }

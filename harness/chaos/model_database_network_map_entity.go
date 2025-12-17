@@ -9,10 +9,10 @@
 package chaos
 
 type DatabaseNetworkMapEntity struct {
-	Id string `json:"id"`
-	Kind *DatabaseNetworkMapResourceKind `json:"kind"`
-	Kubernetes *DatabaseNetworkMapEntityKubernetesInfo `json:"kubernetes,omitempty"`
-	Name string `json:"name"`
-	Removed bool `json:"removed,omitempty"`
-	ServiceIdentity *DatabaseServiceIdentity `json:"serviceIdentity,omitempty"`
+	Id              string                                  `json:"id"`
+	Kind            *DatabaseNetworkMapResourceKind         `json:"kind"`
+	Kubernetes      *DatabaseNetworkMapEntityKubernetesInfo `json:"kubernetes,omitempty"`
+	Name            string                                  `json:"name"`
+	Removed         bool                                    `json:"removed,omitempty"`
+	ServiceIdentity *DatabaseServiceIdentity                `json:"serviceIdentity,omitempty"`
 }

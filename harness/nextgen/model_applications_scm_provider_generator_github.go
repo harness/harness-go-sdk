@@ -14,7 +14,7 @@ type ApplicationsScmProviderGeneratorGithub struct {
 	// GitHub org to scan. Required.
 	Organization string `json:"organization,omitempty"`
 	// The GitHub API URL to talk to. If blank, use https://api.github.com/.
-	Api string `json:"api,omitempty"`
+	Api      string                 `json:"api,omitempty"`
 	TokenRef *ApplicationsSecretRef `json:"tokenRef,omitempty"`
 	// AppSecretName is a reference to a GitHub App repo-creds secret.
 	AppSecretName string `json:"appSecretName,omitempty"`

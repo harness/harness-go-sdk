@@ -10,6 +10,6 @@ package chaos
 
 // Method define the http method, it can be get or post
 type AllOfv1HttpProbeInputsMethod struct {
-	Get *V1GetMethod `json:"get,omitempty"`
+	Get  *V1GetMethod  `json:"get,omitempty"`
 	Post *V1PostMethod `json:"post,omitempty"`
 }

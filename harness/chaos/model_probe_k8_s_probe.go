@@ -9,21 +9,21 @@
 package chaos
 
 type ProbeK8SProbe struct {
-	Attempt *interface{} `json:"attempt,omitempty"`
-	FieldSelector string `json:"fieldSelector,omitempty"`
-	Group string `json:"group,omitempty"`
-	InitialDelay string `json:"initialDelay,omitempty"`
+	Attempt             *interface{} `json:"attempt,omitempty"`
+	FieldSelector       string       `json:"fieldSelector,omitempty"`
+	Group               string       `json:"group,omitempty"`
+	InitialDelay        string       `json:"initialDelay,omitempty"`
 	InitialDelaySeconds *interface{} `json:"initialDelaySeconds,omitempty"`
-	Interval string `json:"interval,omitempty"`
-	LabelSelector string `json:"labelSelector,omitempty"`
-	Namespace string `json:"namespace,omitempty"`
-	Operation string `json:"operation,omitempty"`
-	PollingInterval string `json:"pollingInterval,omitempty"`
-	ProbeTimeout string `json:"probeTimeout,omitempty"`
-	Resource string `json:"resource,omitempty"`
-	ResourceNames string `json:"resourceNames,omitempty"`
-	Retry *interface{} `json:"retry,omitempty"`
-	StopOnFailure bool `json:"stopOnFailure,omitempty"`
-	Verbosity string `json:"verbosity,omitempty"`
-	Version string `json:"version,omitempty"`
+	Interval            string       `json:"interval,omitempty"`
+	LabelSelector       string       `json:"labelSelector,omitempty"`
+	Namespace           string       `json:"namespace,omitempty"`
+	Operation           string       `json:"operation,omitempty"`
+	PollingInterval     string       `json:"pollingInterval,omitempty"`
+	ProbeTimeout        string       `json:"probeTimeout,omitempty"`
+	Resource            string       `json:"resource,omitempty"`
+	ResourceNames       string       `json:"resourceNames,omitempty"`
+	Retry               *interface{} `json:"retry,omitempty"`
+	StopOnFailure       bool         `json:"stopOnFailure,omitempty"`
+	Verbosity           string       `json:"verbosity,omitempty"`
+	Version             string       `json:"version,omitempty"`
 }

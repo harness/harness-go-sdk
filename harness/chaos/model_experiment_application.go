@@ -10,5 +10,5 @@ package chaos
 
 type ExperimentApplication struct {
 	Function string `json:"function,omitempty"`
-	Name string `json:"name,omitempty"`
+	Name     string `json:"name,omitempty"`
 }

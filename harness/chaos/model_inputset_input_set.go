@@ -25,8 +25,8 @@ type InputsetInputSet struct {
 	// TODO: this is not needed, and on delete, input set should be deleted from the DB, makes no sense for storing for audit purpose
 	IsRemoved bool `json:"isRemoved,omitempty"`
 	// Name of the input set
-	Name string `json:"name,omitempty"`
-	OrgID string `json:"orgID,omitempty"`
+	Name      string `json:"name,omitempty"`
+	OrgID     string `json:"orgID,omitempty"`
 	ProjectID string `json:"projectID,omitempty"`
 	// Type of input set Type string `bson:\"type\"` Foreign key to link with probes TODO: not sure if required ProbeID string `bson:\"probe_id\"` For fault level variables, key = step
 	Spec string `json:"spec,omitempty"`

@@ -9,6 +9,6 @@
 package chaos
 
 type TypesStatus struct {
-	Description string `json:"description,omitempty"`
-	Verdict *GithubComHarnessHceSaasGraphqlServerPkgChaosV2ProbesTypesProbeVerdict `json:"verdict,omitempty"`
+	Description string                                                                 `json:"description,omitempty"`
+	Verdict     *GithubComHarnessHceSaasGraphqlServerPkgChaosV2ProbesTypesProbeVerdict `json:"verdict,omitempty"`
 }

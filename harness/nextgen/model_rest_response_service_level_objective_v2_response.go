@@ -10,7 +10,7 @@
 package nextgen
 
 type RestResponseServiceLevelObjectiveV2Response struct {
-	MetaData map[string]interface{} `json:"metaData,omitempty"`
-	Resource *ServiceLevelObjectiveV2Response `json:"resource,omitempty"`
-	ResponseMessages []ResponseMessage `json:"responseMessages,omitempty"`
+	MetaData         map[string]interface{}           `json:"metaData,omitempty"`
+	Resource         *ServiceLevelObjectiveV2Response `json:"resource,omitempty"`
+	ResponseMessages []ResponseMessage                `json:"responseMessages,omitempty"`
 }

@@ -12,9 +12,9 @@ type ActionsInfrastructureType string
 
 // List of actions.InfrastructureType
 const (
-	KUBERNETES_ActionsInfrastructureType ActionsInfrastructureType = "Kubernetes"
-	WINDOWS_ActionsInfrastructureType ActionsInfrastructureType = "Windows"
-	LINUX_ActionsInfrastructureType ActionsInfrastructureType = "Linux"
+	KUBERNETES_ActionsInfrastructureType    ActionsInfrastructureType = "Kubernetes"
+	WINDOWS_ActionsInfrastructureType       ActionsInfrastructureType = "Windows"
+	LINUX_ActionsInfrastructureType         ActionsInfrastructureType = "Linux"
 	CLOUD_FOUNDRY_ActionsInfrastructureType ActionsInfrastructureType = "CloudFoundry"
-	CONTAINER_ActionsInfrastructureType ActionsInfrastructureType = "Container"
+	CONTAINER_ActionsInfrastructureType     ActionsInfrastructureType = "Container"
 )

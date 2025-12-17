@@ -9,7 +9,7 @@
 package svcdiscovery
 
 type ServiceImageRegistrySetting struct {
-	Account string `json:"account,omitempty"`
+	Account string   `json:"account,omitempty"`
 	Secrets []string `json:"secrets,omitempty"`
-	Server string `json:"server,omitempty"`
+	Server  string   `json:"server,omitempty"`
 }

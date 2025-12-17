@@ -9,14 +9,14 @@
 package chaos
 
 type V2OnboardingExperiments struct {
-	Category string `json:"category,omitempty"`
-	DelegateTaskId string `json:"delegateTaskId,omitempty"`
-	Description string `json:"description,omitempty"`
-	ExperimentID string `json:"experimentID,omitempty"`
-	Name string `json:"name,omitempty"`
-	NotifyID string `json:"notifyID,omitempty"`
-	Status *ModelWorkflowRunStatus `json:"status,omitempty"`
-	TargetNetworkMapID string `json:"targetNetworkMapID,omitempty"`
-	TargetNetworkMapName string `json:"targetNetworkMapName,omitempty"`
-	TargetServices []V2OnboardingTargetServiceDetails `json:"targetServices,omitempty"`
+	Category             string                             `json:"category,omitempty"`
+	DelegateTaskId       string                             `json:"delegateTaskId,omitempty"`
+	Description          string                             `json:"description,omitempty"`
+	ExperimentID         string                             `json:"experimentID,omitempty"`
+	Name                 string                             `json:"name,omitempty"`
+	NotifyID             string                             `json:"notifyID,omitempty"`
+	Status               *ModelWorkflowRunStatus            `json:"status,omitempty"`
+	TargetNetworkMapID   string                             `json:"targetNetworkMapID,omitempty"`
+	TargetNetworkMapName string                             `json:"targetNetworkMapName,omitempty"`
+	TargetServices       []V2OnboardingTargetServiceDetails `json:"targetServices,omitempty"`
 }

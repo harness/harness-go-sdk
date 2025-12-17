@@ -10,7 +10,7 @@ package chaos
 
 type RecommendationProbeFilters struct {
 	ExperimentRunID string `json:"experimentRunID,omitempty"`
-	ProbeID string `json:"probeID,omitempty"`
-	ProbeName string `json:"probeName,omitempty"`
-	ProbeType string `json:"probeType,omitempty"`
+	ProbeID         string `json:"probeID,omitempty"`
+	ProbeName       string `json:"probeName,omitempty"`
+	ProbeType       string `json:"probeType,omitempty"`
 }

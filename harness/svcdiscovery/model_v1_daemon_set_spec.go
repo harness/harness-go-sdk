@@ -12,8 +12,8 @@ type V1DaemonSetSpec struct {
 	// The minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready). +optional
 	MinReadySeconds int32 `json:"minReadySeconds,omitempty"`
 	// The number of old history to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10. +optional
-	RevisionHistoryLimit int32 `json:"revisionHistoryLimit,omitempty"`
-	Selector *V1LabelSelector `json:"selector,omitempty"`
-	Template *V1PodTemplateSpec `json:"template,omitempty"`
-	UpdateStrategy *V1DaemonSetUpdateStrategy `json:"updateStrategy,omitempty"`
+	RevisionHistoryLimit int32                      `json:"revisionHistoryLimit,omitempty"`
+	Selector             *V1LabelSelector           `json:"selector,omitempty"`
+	Template             *V1PodTemplateSpec         `json:"template,omitempty"`
+	UpdateStrategy       *V1DaemonSetUpdateStrategy `json:"updateStrategy,omitempty"`
 }

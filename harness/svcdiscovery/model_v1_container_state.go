@@ -9,7 +9,7 @@
 package svcdiscovery
 
 type V1ContainerState struct {
-	Running *V1ContainerStateRunning `json:"running,omitempty"`
+	Running    *V1ContainerStateRunning    `json:"running,omitempty"`
 	Terminated *V1ContainerStateTerminated `json:"terminated,omitempty"`
-	Waiting *V1ContainerStateWaiting `json:"waiting,omitempty"`
+	Waiting    *V1ContainerStateWaiting    `json:"waiting,omitempty"`
 }

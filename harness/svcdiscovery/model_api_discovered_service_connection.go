@@ -9,15 +9,15 @@
 package svcdiscovery
 
 type ApiDiscoveredServiceConnection struct {
-	DestinationID string `json:"destinationID"`
-	DestinationIP string `json:"destinationIP"`
-	DestinationName string `json:"destinationName"`
+	DestinationID        string `json:"destinationID"`
+	DestinationIP        string `json:"destinationIP"`
+	DestinationName      string `json:"destinationName"`
 	DestinationNamespace string `json:"destinationNamespace"`
-	DestinationPort string `json:"destinationPort"`
-	Id string `json:"id"`
-	SourceID string `json:"sourceID"`
-	SourceIP string `json:"sourceIP"`
-	SourceName string `json:"sourceName"`
-	SourceNamespace string `json:"sourceNamespace"`
-	Type_ string `json:"type"`
+	DestinationPort      string `json:"destinationPort"`
+	Id                   string `json:"id"`
+	SourceID             string `json:"sourceID"`
+	SourceIP             string `json:"sourceIP"`
+	SourceName           string `json:"sourceName"`
+	SourceNamespace      string `json:"sourceNamespace"`
+	Type_                string `json:"type"`
 }

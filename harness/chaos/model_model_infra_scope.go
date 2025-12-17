@@ -13,5 +13,5 @@ type ModelInfraScope string
 // List of model.InfraScope
 const (
 	NAMESPACE_ModelInfraScope ModelInfraScope = "namespace"
-	CLUSTER_ModelInfraScope ModelInfraScope = "cluster"
+	CLUSTER_ModelInfraScope   ModelInfraScope = "cluster"
 )

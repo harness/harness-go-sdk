@@ -11,5 +11,5 @@ package chaos
 type ChaosfaulttemplateFaultTemplateVariables struct {
 	FaultTargets []TemplateVariable `json:"faultTargets,omitempty"`
 	FaultTunable []TemplateVariable `json:"faultTunable,omitempty"`
-	Variables []TemplateVariable `json:"variables,omitempty"`
+	Variables    []TemplateVariable `json:"variables,omitempty"`
 }

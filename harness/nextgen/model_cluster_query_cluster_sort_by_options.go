@@ -9,15 +9,14 @@
  */
 package nextgen
 
-
 type ClusterQueryClusterSortByOptions string
 
 // List of ClusterQueryClusterSortByOptions
 const (
-	SORT_BY_NOT_SET_ClusterQueryClusterSortByOptions ClusterQueryClusterSortByOptions = "SORT_BY_NOT_SET"
-	NAME_ClusterQueryClusterSortByOptions ClusterQueryClusterSortByOptions = "NAME"
-	GITOPS_AGENT_ClusterQueryClusterSortByOptions ClusterQueryClusterSortByOptions = "GITOPS_AGENT"
-	URL_ClusterQueryClusterSortByOptions ClusterQueryClusterSortByOptions = "URL"
-	VERSION_ClusterQueryClusterSortByOptions ClusterQueryClusterSortByOptions = "VERSION"
+	SORT_BY_NOT_SET_ClusterQueryClusterSortByOptions     ClusterQueryClusterSortByOptions = "SORT_BY_NOT_SET"
+	NAME_ClusterQueryClusterSortByOptions                ClusterQueryClusterSortByOptions = "NAME"
+	GITOPS_AGENT_ClusterQueryClusterSortByOptions        ClusterQueryClusterSortByOptions = "GITOPS_AGENT"
+	URL_ClusterQueryClusterSortByOptions                 ClusterQueryClusterSortByOptions = "URL"
+	VERSION_ClusterQueryClusterSortByOptions             ClusterQueryClusterSortByOptions = "VERSION"
 	CONNECTIVITY_STATUS_ClusterQueryClusterSortByOptions ClusterQueryClusterSortByOptions = "CONNECTIVITY_STATUS"
 )

@@ -9,9 +9,9 @@
 package chaos
 
 type TypesInternalExperimentRunRequest struct {
-	Email string `json:"email,omitempty"`
-	InputsetIdentity string `json:"inputsetIdentity,omitempty"`
-	RuntimeInputs *TemplateChaosExperimentInputsetSpec `json:"runtimeInputs,omitempty"`
-	UserID string `json:"userID,omitempty"`
-	Username string `json:"username,omitempty"`
+	Email            string                               `json:"email,omitempty"`
+	InputsetIdentity string                               `json:"inputsetIdentity,omitempty"`
+	RuntimeInputs    *TemplateChaosExperimentInputsetSpec `json:"runtimeInputs,omitempty"`
+	UserID           string                               `json:"userID,omitempty"`
+	Username         string                               `json:"username,omitempty"`
 }

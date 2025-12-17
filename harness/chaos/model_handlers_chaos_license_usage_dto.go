@@ -9,8 +9,8 @@
 package chaos
 
 type HandlersChaosLicenseUsageDto struct {
-	AccountIdentifier string `json:"accountIdentifier,omitempty"`
+	AccountIdentifier      string                `json:"accountIdentifier,omitempty"`
 	ExperimentRunsPerMonth *HandlersUsageDataDto `json:"experimentRunsPerMonth,omitempty"`
-	Module string `json:"module,omitempty"`
-	Timestamp int32 `json:"timestamp,omitempty"`
+	Module                 string                `json:"module,omitempty"`
+	Timestamp              int32                 `json:"timestamp,omitempty"`
 }

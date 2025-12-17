@@ -1,4 +1,3 @@
-
 /*
  * Service Discovery API
  *
@@ -11,12 +10,12 @@ package svcdiscovery
 
 import (
 	"context"
+	"fmt"
+	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
-	"fmt"
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -25,6 +24,7 @@ var (
 )
 
 type AgentApiService service
+
 /*
 AgentApiService Create an agent
 Create a new agent
@@ -40,18 +40,18 @@ Create a new agent
 */
 
 type AgentApiCreateAgentOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
-    NoInstallation optional.Bool
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
+	NoInstallation         optional.Bool
 }
 
 func (a *AgentApiService) CreateAgent(ctx context.Context, body ApiCreateAgentRequest, accountIdentifier string, localVarOptionals *AgentApiCreateAgentOpts) (ApiGetAgentResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ApiGetAgentResponse
 	)
 
@@ -104,7 +104,7 @@ func (a *AgentApiService) CreateAgent(ctx context.Context, body ApiCreateAgentRe
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -125,31 +125,31 @@ func (a *AgentApiService) CreateAgent(ctx context.Context, body ApiCreateAgentRe
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 201 {
 			var v ApiGetAgentResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message
@@ -161,6 +161,7 @@ func (a *AgentApiService) CreateAgent(ctx context.Context, body ApiCreateAgentRe
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 AgentApiService Install an agent
 Install agent
@@ -177,17 +178,17 @@ Install agent
 */
 
 type AgentApiCreateInstallationOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
 }
 
 func (a *AgentApiService) CreateInstallation(ctx context.Context, body ApiCreateInstallationRequest, accountIdentifier string, environmentIdentifier string, agentIdentity string, localVarOptionals *AgentApiCreateInstallationOpts) (ApiGetInstallationResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ApiGetInstallationResponse
 	)
 
@@ -239,7 +240,7 @@ func (a *AgentApiService) CreateInstallation(ctx context.Context, body ApiCreate
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -260,31 +261,31 @@ func (a *AgentApiService) CreateInstallation(ctx context.Context, body ApiCreate
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 201 {
 			var v ApiGetInstallationResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message
@@ -296,6 +297,7 @@ func (a *AgentApiService) CreateInstallation(ctx context.Context, body ApiCreate
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 AgentApiService Delete an agent
 Delete an agent
@@ -311,17 +313,17 @@ Delete an agent
 */
 
 type AgentApiDeleteAgentOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
 }
 
 func (a *AgentApiService) DeleteAgent(ctx context.Context, agentIdentity string, accountIdentifier string, environmentIdentifier string, localVarOptionals *AgentApiDeleteAgentOpts) (ApiEmpty, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Delete")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Delete")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ApiEmpty
 	)
 
@@ -371,7 +373,7 @@ func (a *AgentApiService) DeleteAgent(ctx context.Context, agentIdentity string,
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -392,31 +394,31 @@ func (a *AgentApiService) DeleteAgent(ctx context.Context, agentIdentity string,
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ApiEmpty
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message
@@ -428,6 +430,7 @@ func (a *AgentApiService) DeleteAgent(ctx context.Context, agentIdentity string,
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 AgentApiService Get an agent
 Get an agent
@@ -443,17 +446,17 @@ Get an agent
 */
 
 type AgentApiGetAgentOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
 }
 
 func (a *AgentApiService) GetAgent(ctx context.Context, agentIdentity string, accountIdentifier string, environmentIdentifier string, localVarOptionals *AgentApiGetAgentOpts) (ApiGetAgentResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ApiGetAgentResponse
 	)
 
@@ -503,7 +506,7 @@ func (a *AgentApiService) GetAgent(ctx context.Context, agentIdentity string, ac
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -524,31 +527,31 @@ func (a *AgentApiService) GetAgent(ctx context.Context, agentIdentity string, ac
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ApiGetAgentResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message
@@ -560,6 +563,7 @@ func (a *AgentApiService) GetAgent(ctx context.Context, agentIdentity string, ac
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 AgentApiService Get token for agent
 Get token for a given agent
@@ -575,17 +579,17 @@ Get token for a given agent
 */
 
 type AgentApiGetAgentTokenOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
 }
 
 func (a *AgentApiService) GetAgentToken(ctx context.Context, agentIdentity string, accountIdentifier string, environmentIdentifier string, localVarOptionals *AgentApiGetAgentTokenOpts) (ApiGetAgentToken, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ApiGetAgentToken
 	)
 
@@ -635,7 +639,7 @@ func (a *AgentApiService) GetAgentToken(ctx context.Context, agentIdentity strin
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -656,31 +660,31 @@ func (a *AgentApiService) GetAgentToken(ctx context.Context, agentIdentity strin
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ApiGetAgentToken
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message
@@ -692,6 +696,7 @@ func (a *AgentApiService) GetAgentToken(ctx context.Context, agentIdentity strin
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 AgentApiService Get infrastructure details for an agent
 Get infrastructure details for an agent
@@ -707,17 +712,17 @@ Get infrastructure details for an agent
 */
 
 type AgentApiGetInfrastructureForAgentOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
 }
 
 func (a *AgentApiService) GetInfrastructureForAgent(ctx context.Context, agentIdentity string, accountIdentifier string, environmentIdentifier string, localVarOptionals *AgentApiGetInfrastructureForAgentOpts) (ApiGetAgentResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ApiGetAgentResponse
 	)
 
@@ -767,7 +772,7 @@ func (a *AgentApiService) GetInfrastructureForAgent(ctx context.Context, agentId
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -788,31 +793,31 @@ func (a *AgentApiService) GetInfrastructureForAgent(ctx context.Context, agentId
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ApiGetAgentResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message
@@ -824,6 +829,7 @@ func (a *AgentApiService) GetInfrastructureForAgent(ctx context.Context, agentId
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 AgentApiService Get an agent install
 Get an agent install
@@ -840,17 +846,17 @@ Get an agent install
 */
 
 type AgentApiGetInstallationOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
 }
 
 func (a *AgentApiService) GetInstallation(ctx context.Context, agentIdentity string, installationID string, accountIdentifier string, environmentIdentifier string, localVarOptionals *AgentApiGetInstallationOpts) (ApiGetInstallationResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ApiGetInstallationResponse
 	)
 
@@ -901,7 +907,7 @@ func (a *AgentApiService) GetInstallation(ctx context.Context, agentIdentity str
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -922,31 +928,31 @@ func (a *AgentApiService) GetInstallation(ctx context.Context, agentIdentity str
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ApiGetInstallationResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message
@@ -958,6 +964,7 @@ func (a *AgentApiService) GetInstallation(ctx context.Context, agentIdentity str
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 AgentApiService Get list of agents
 Get list of agents
@@ -976,18 +983,18 @@ Get list of agents
 */
 
 type AgentApiListAgentOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
-    Search optional.String
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
+	Search                 optional.String
 }
 
 func (a *AgentApiService) ListAgent(ctx context.Context, accountIdentifier string, environmentIdentifier string, page int32, limit int32, all bool, localVarOptionals *AgentApiListAgentOpts) (ApiListAgentResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ApiListAgentResponse
 	)
 
@@ -1042,7 +1049,7 @@ func (a *AgentApiService) ListAgent(ctx context.Context, accountIdentifier strin
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -1063,31 +1070,31 @@ func (a *AgentApiService) ListAgent(ctx context.Context, accountIdentifier strin
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ApiListAgentResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message
@@ -1099,6 +1106,7 @@ func (a *AgentApiService) ListAgent(ctx context.Context, accountIdentifier strin
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 AgentApiService Get list of infrastructures
 Get list of infrastructures
@@ -1116,18 +1124,18 @@ Get list of infrastructures
 */
 
 type AgentApiListInfrastructureOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
-    Search optional.String
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
+	Search                 optional.String
 }
 
 func (a *AgentApiService) ListInfrastructure(ctx context.Context, accountIdentifier string, environmentIdentifier string, page int32, limit int32, localVarOptionals *AgentApiListInfrastructureOpts) (ApiListInfrastructureResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ApiListInfrastructureResponse
 	)
 
@@ -1181,7 +1189,7 @@ func (a *AgentApiService) ListInfrastructure(ctx context.Context, accountIdentif
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -1202,31 +1210,31 @@ func (a *AgentApiService) ListInfrastructure(ctx context.Context, accountIdentif
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ApiListInfrastructureResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message
@@ -1238,6 +1246,7 @@ func (a *AgentApiService) ListInfrastructure(ctx context.Context, accountIdentif
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 AgentApiService Get list of agent installations
 Get list of agent installations
@@ -1256,17 +1265,17 @@ Get list of agent installations
 */
 
 type AgentApiListInstallationOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
 }
 
 func (a *AgentApiService) ListInstallation(ctx context.Context, agentIdentity string, accountIdentifier string, environmentIdentifier string, page int32, limit int32, all bool, localVarOptionals *AgentApiListInstallationOpts) (ApiListInstallationResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ApiListInstallationResponse
 	)
 
@@ -1319,7 +1328,7 @@ func (a *AgentApiService) ListInstallation(ctx context.Context, agentIdentity st
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -1340,31 +1349,31 @@ func (a *AgentApiService) ListInstallation(ctx context.Context, agentIdentity st
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ApiListInstallationResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message
@@ -1376,6 +1385,7 @@ func (a *AgentApiService) ListInstallation(ctx context.Context, agentIdentity st
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 AgentApiService stops an ongoing discovery
 Stops ongoing discovery
@@ -1392,17 +1402,17 @@ Stops ongoing discovery
 */
 
 type AgentApiStopOngoingDiscoveryOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
 }
 
 func (a *AgentApiService) StopOngoingDiscovery(ctx context.Context, agentIdentity string, installationID string, accountIdentifier string, environmentIdentifier string, localVarOptionals *AgentApiStopOngoingDiscoveryOpts) (ApiGetInstallationResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ApiGetInstallationResponse
 	)
 
@@ -1453,7 +1463,7 @@ func (a *AgentApiService) StopOngoingDiscovery(ctx context.Context, agentIdentit
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -1474,31 +1484,31 @@ func (a *AgentApiService) StopOngoingDiscovery(ctx context.Context, agentIdentit
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ApiGetInstallationResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message
@@ -1510,6 +1520,7 @@ func (a *AgentApiService) StopOngoingDiscovery(ctx context.Context, agentIdentit
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 AgentApiService Update an agent
 Update an agent
@@ -1526,17 +1537,17 @@ Update an agent
 */
 
 type AgentApiUpdateAgentOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
 }
 
 func (a *AgentApiService) UpdateAgent(ctx context.Context, body ApiUpdateAgentRequest, accountIdentifier string, environmentIdentifier string, agentIdentity string, localVarOptionals *AgentApiUpdateAgentOpts) (ApiGetAgentResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Put")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Put")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ApiGetAgentResponse
 	)
 
@@ -1588,7 +1599,7 @@ func (a *AgentApiService) UpdateAgent(ctx context.Context, body ApiUpdateAgentRe
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -1609,31 +1620,31 @@ func (a *AgentApiService) UpdateAgent(ctx context.Context, body ApiUpdateAgentRe
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ApiGetAgentResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message

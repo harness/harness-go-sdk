@@ -9,7 +9,7 @@
 package chaos
 
 type ChaosExperimentRecommendation struct {
-	BySystem bool `json:"bySystem,omitempty"`
-	Reasons []string `json:"reasons,omitempty"`
-	Weightage int32 `json:"weightage,omitempty"`
+	BySystem  bool     `json:"bySystem,omitempty"`
+	Reasons   []string `json:"reasons,omitempty"`
+	Weightage int32    `json:"weightage,omitempty"`
 }

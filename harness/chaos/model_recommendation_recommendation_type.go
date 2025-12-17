@@ -13,6 +13,6 @@ type RecommendationRecommendationType string
 // List of recommendation.RecommendationType
 const (
 	CREATE_RecommendationRecommendationType RecommendationRecommendationType = "CREATE"
-	RUN_RecommendationRecommendationType RecommendationRecommendationType = "RUN"
-	FIX_RecommendationRecommendationType RecommendationRecommendationType = "FIX"
+	RUN_RecommendationRecommendationType    RecommendationRecommendationType = "RUN"
+	FIX_RecommendationRecommendationType    RecommendationRecommendationType = "FIX"
 )

@@ -9,7 +9,7 @@
 package chaos
 
 type TypesDeleteChaosV2ExperimentResponse struct {
-	ExperimentId string `json:"experimentId,omitempty"`
+	ExperimentId   string `json:"experimentId,omitempty"`
 	ExperimentName string `json:"experimentName,omitempty"`
-	IsDeleted bool `json:"isDeleted,omitempty"`
+	IsDeleted      bool   `json:"isDeleted,omitempty"`
 }

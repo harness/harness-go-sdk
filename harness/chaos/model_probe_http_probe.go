@@ -9,18 +9,18 @@
 package chaos
 
 type ProbeHttpProbe struct {
-	Attempt *interface{} `json:"attempt,omitempty"`
-	Auth *ProbeAuthorization `json:"auth,omitempty"`
-	Headers []GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeHeaders `json:"headers,omitempty"`
-	InitialDelay string `json:"initialDelay,omitempty"`
-	InitialDelaySeconds *interface{} `json:"initialDelaySeconds,omitempty"`
-	Interval string `json:"interval,omitempty"`
-	Method *ProbeMethod `json:"method,omitempty"`
-	PollingInterval string `json:"pollingInterval,omitempty"`
-	ProbeTimeout string `json:"probeTimeout,omitempty"`
-	Retry *interface{} `json:"retry,omitempty"`
-	StopOnFailure bool `json:"stopOnFailure,omitempty"`
-	TlsConfig *ProbeTlsConfig `json:"tlsConfig,omitempty"`
-	Url string `json:"url,omitempty"`
-	Verbosity string `json:"verbosity,omitempty"`
+	Attempt             *interface{}                                                         `json:"attempt,omitempty"`
+	Auth                *ProbeAuthorization                                                  `json:"auth,omitempty"`
+	Headers             []GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbeHeaders `json:"headers,omitempty"`
+	InitialDelay        string                                                               `json:"initialDelay,omitempty"`
+	InitialDelaySeconds *interface{}                                                         `json:"initialDelaySeconds,omitempty"`
+	Interval            string                                                               `json:"interval,omitempty"`
+	Method              *ProbeMethod                                                         `json:"method,omitempty"`
+	PollingInterval     string                                                               `json:"pollingInterval,omitempty"`
+	ProbeTimeout        string                                                               `json:"probeTimeout,omitempty"`
+	Retry               *interface{}                                                         `json:"retry,omitempty"`
+	StopOnFailure       bool                                                                 `json:"stopOnFailure,omitempty"`
+	TlsConfig           *ProbeTlsConfig                                                      `json:"tlsConfig,omitempty"`
+	Url                 string                                                               `json:"url,omitempty"`
+	Verbosity           string                                                               `json:"verbosity,omitempty"`
 }

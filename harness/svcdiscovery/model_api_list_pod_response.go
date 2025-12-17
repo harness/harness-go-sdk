@@ -9,7 +9,7 @@
 package svcdiscovery
 
 type ApiListPodResponse struct {
-	CorrelationID string `json:"correlationID,omitempty"`
-	Items []DatabasePodCollection `json:"items,omitempty"`
-	Page *ApiPagination `json:"page,omitempty"`
+	CorrelationID string                  `json:"correlationID,omitempty"`
+	Items         []DatabasePodCollection `json:"items,omitempty"`
+	Page          *ApiPagination          `json:"page,omitempty"`
 }

@@ -9,6 +9,6 @@
 package chaos
 
 type ChaosexperimentpipelineGetChaosPipelineNodesResponse struct {
-	ChaosExecutionNode *ChaosExecutionNodesChaosExecutionNode `json:"chaosExecutionNode,omitempty"`
-	RefEntities *ChaosexperimentpipelineReferenceEntities `json:"refEntities,omitempty"`
+	ChaosExecutionNode *ChaosExecutionNodesChaosExecutionNode    `json:"chaosExecutionNode,omitempty"`
+	RefEntities        *ChaosexperimentpipelineReferenceEntities `json:"refEntities,omitempty"`
 }

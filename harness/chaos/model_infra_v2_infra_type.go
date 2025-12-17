@@ -12,6 +12,6 @@ type InfraV2InfraType string
 
 // List of infra_v2.InfraType
 const (
-	KUBERNETES_InfraV2InfraType InfraV2InfraType = "KUBERNETES"
+	KUBERNETES_InfraV2InfraType   InfraV2InfraType = "KUBERNETES"
 	KUBERNETESV2_InfraV2InfraType InfraV2InfraType = "KUBERNETESV2"
 )

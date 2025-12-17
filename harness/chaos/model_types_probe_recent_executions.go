@@ -10,6 +10,6 @@ package chaos
 
 type TypesProbeRecentExecutions struct {
 	ExecutedByExperiment *TypesExecutedByExperiment `json:"executedByExperiment,omitempty"`
-	FaultName string `json:"faultName,omitempty"`
-	Status *TypesStatus `json:"status,omitempty"`
+	FaultName            string                     `json:"faultName,omitempty"`
+	Status               *TypesStatus               `json:"status,omitempty"`
 }

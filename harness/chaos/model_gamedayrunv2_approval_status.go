@@ -14,5 +14,5 @@ type Gamedayrunv2ApprovalStatus string
 const (
 	APPROVED_Gamedayrunv2ApprovalStatus Gamedayrunv2ApprovalStatus = "approved"
 	REJECTED_Gamedayrunv2ApprovalStatus Gamedayrunv2ApprovalStatus = "rejected"
-	PENDING_Gamedayrunv2ApprovalStatus Gamedayrunv2ApprovalStatus = "pending"
+	PENDING_Gamedayrunv2ApprovalStatus  Gamedayrunv2ApprovalStatus = "pending"
 )

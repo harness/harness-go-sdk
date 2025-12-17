@@ -10,11 +10,11 @@ package chaos
 
 type ProbeK8SProbeTemplate struct {
 	FieldSelector string `json:"fieldSelector,omitempty"`
-	Group string `json:"group,omitempty"`
+	Group         string `json:"group,omitempty"`
 	LabelSelector string `json:"labelSelector,omitempty"`
-	Namespace string `json:"namespace,omitempty"`
-	Operation string `json:"operation,omitempty"`
-	Resource string `json:"resource,omitempty"`
+	Namespace     string `json:"namespace,omitempty"`
+	Operation     string `json:"operation,omitempty"`
+	Resource      string `json:"resource,omitempty"`
 	ResourceNames string `json:"resourceNames,omitempty"`
-	Version string `json:"version,omitempty"`
+	Version       string `json:"version,omitempty"`
 }

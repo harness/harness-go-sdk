@@ -9,7 +9,7 @@
 package chaos
 
 type TypesUpdateGameDayRunRequest struct {
-	ActionItems []string `json:"actionItems,omitempty"`
-	GameDayRunID string `json:"gameDayRunID,omitempty"`
-	Status *Gamedayv2GamedayRunStatus `json:"status,omitempty"`
+	ActionItems  []string                   `json:"actionItems,omitempty"`
+	GameDayRunID string                     `json:"gameDayRunID,omitempty"`
+	Status       *Gamedayv2GamedayRunStatus `json:"status,omitempty"`
 }

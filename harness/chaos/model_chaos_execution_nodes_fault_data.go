@@ -9,8 +9,8 @@
 package chaos
 
 type ChaosExecutionNodesFaultData struct {
-	FaultDetails *ChaosExecutionNodesFaultDetails `json:"faultDetails,omitempty"`
+	FaultDetails     *ChaosExecutionNodesFaultDetails      `json:"faultDetails,omitempty"`
 	HelperPodDetails []ChaosExecutionNodesHelperPodDetails `json:"helperPodDetails,omitempty"`
-	Name string `json:"name,omitempty"`
-	Namespace string `json:"namespace,omitempty"`
+	Name             string                                `json:"name,omitempty"`
+	Namespace        string                                `json:"namespace,omitempty"`
 }

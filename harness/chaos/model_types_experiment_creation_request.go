@@ -9,18 +9,18 @@
 package chaos
 
 type TypesExperimentCreationRequest struct {
-	CronSyntax string `json:"cronSyntax,omitempty"`
-	Description string `json:"description,omitempty"`
-	EventsMetadata []ModelEventMetadata `json:"eventsMetadata,omitempty"`
-	ExperimentType *ModelWorkflowType `json:"experimentType,omitempty"`
-	Id string `json:"id,omitempty"`
-	Identity string `json:"identity,omitempty"`
-	InfraId string `json:"infraId,omitempty"`
-	InfraType *ModelInfrastructureType `json:"infraType,omitempty"`
-	IsSingleRunCronEnabled bool `json:"isSingleRunCronEnabled,omitempty"`
-	Manifest string `json:"manifest,omitempty"`
-	Name string `json:"name,omitempty"`
-	Recommendation *ChaosExperimentRecommendation `json:"recommendation,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	ValidateManifest bool `json:"validateManifest,omitempty"`
+	CronSyntax             string                         `json:"cronSyntax,omitempty"`
+	Description            string                         `json:"description,omitempty"`
+	EventsMetadata         []ModelEventMetadata           `json:"eventsMetadata,omitempty"`
+	ExperimentType         *ModelWorkflowType             `json:"experimentType,omitempty"`
+	Id                     string                         `json:"id,omitempty"`
+	Identity               string                         `json:"identity,omitempty"`
+	InfraId                string                         `json:"infraId,omitempty"`
+	InfraType              *ModelInfrastructureType       `json:"infraType,omitempty"`
+	IsSingleRunCronEnabled bool                           `json:"isSingleRunCronEnabled,omitempty"`
+	Manifest               string                         `json:"manifest,omitempty"`
+	Name                   string                         `json:"name,omitempty"`
+	Recommendation         *ChaosExperimentRecommendation `json:"recommendation,omitempty"`
+	Tags                   []string                       `json:"tags,omitempty"`
+	ValidateManifest       bool                           `json:"validateManifest,omitempty"`
 }

@@ -9,6 +9,6 @@
 package chaos
 
 type TypesExperimentCreationError struct {
-	Error_ string `json:"error,omitempty"`
+	Error_         string `json:"error,omitempty"`
 	ExperimentName string `json:"experimentName,omitempty"`
 }

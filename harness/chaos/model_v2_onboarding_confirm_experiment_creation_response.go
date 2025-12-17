@@ -9,6 +9,6 @@
 package chaos
 
 type V2OnboardingConfirmExperimentCreationResponse struct {
-	Completed bool `json:"completed,omitempty"`
+	Completed              bool                              `json:"completed,omitempty"`
 	TargetNetworkMapStatus map[string]TargetnetworkmapStatus `json:"targetNetworkMapStatus,omitempty"`
 }

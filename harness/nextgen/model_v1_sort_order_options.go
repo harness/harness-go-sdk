@@ -10,9 +10,10 @@
 package nextgen
 
 type V1SortOrderOptions string
+
 // List of v1SortOrderOptions
 const (
 	SORT_ORDER_NOT_SET_V1SortOrderOptions V1SortOrderOptions = "SORT_ORDER_NOT_SET"
-	ASC_V1SortOrderOptions V1SortOrderOptions = "ASC"
-	DESC_V1SortOrderOptions V1SortOrderOptions = "DESC"
+	ASC_V1SortOrderOptions                V1SortOrderOptions = "ASC"
+	DESC_V1SortOrderOptions               V1SortOrderOptions = "DESC"
 )

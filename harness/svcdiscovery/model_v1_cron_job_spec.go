@@ -12,8 +12,8 @@ type V1CronJobSpec struct {
 	// Specifies how to treat concurrent executions of a Job. Valid values are: - \"Allow\" (default): allows CronJobs to run concurrently; - \"Forbid\": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - \"Replace\": cancels currently running job and replaces it with a new one +optional
 	ConcurrencyPolicy string `json:"concurrencyPolicy,omitempty"`
 	// The number of failed finished jobs to retain. Value must be non-negative integer. Defaults to 1. +optional
-	FailedJobsHistoryLimit int32 `json:"failedJobsHistoryLimit,omitempty"`
-	JobTemplate *V1JobTemplateSpec `json:"jobTemplate,omitempty"`
+	FailedJobsHistoryLimit int32              `json:"failedJobsHistoryLimit,omitempty"`
+	JobTemplate            *V1JobTemplateSpec `json:"jobTemplate,omitempty"`
 	// The schedule in Cron format, see https://en.wikipedia.org/wiki/Cron.
 	Schedule string `json:"schedule,omitempty"`
 	// Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones. +optional

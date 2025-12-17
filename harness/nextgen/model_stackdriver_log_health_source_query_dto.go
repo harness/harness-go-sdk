@@ -10,8 +10,8 @@
 package nextgen
 
 type StackdriverLogHealthSourceQueryDto struct {
-	Name string `json:"name"`
-	Query string `json:"query"`
-	MessageIdentifier string `json:"messageIdentifier"`
+	Name                      string `json:"name"`
+	Query                     string `json:"query"`
+	MessageIdentifier         string `json:"messageIdentifier"`
 	ServiceInstanceIdentifier string `json:"serviceInstanceIdentifier"`
 }

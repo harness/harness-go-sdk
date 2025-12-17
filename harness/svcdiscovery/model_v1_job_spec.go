@@ -20,11 +20,11 @@ type V1JobSpec struct {
 	// manualSelector controls generation of pod labels and pod selectors. Leave `manualSelector` unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template.  When true, the user is responsible for picking unique labels and specifying the selector.  Failure to pick a unique label may cause this and other jobs to not function correctly.  However, You may see `manualSelector=true` in jobs that were created with the old `extensions/v1beta1` API. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector +optional
 	ManualSelector bool `json:"manualSelector,omitempty"`
 	// Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ((.spec.completions - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ +optional
-	Parallelism int32 `json:"parallelism,omitempty"`
+	Parallelism      int32               `json:"parallelism,omitempty"`
 	PodFailurePolicy *V1PodFailurePolicy `json:"podFailurePolicy,omitempty"`
-	Selector *V1LabelSelector `json:"selector,omitempty"`
+	Selector         *V1LabelSelector    `json:"selector,omitempty"`
 	// Suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false.  +optional
-	Suspend bool `json:"suspend,omitempty"`
+	Suspend  bool               `json:"suspend,omitempty"`
 	Template *V1PodTemplateSpec `json:"template,omitempty"`
 	// ttlSecondsAfterFinished limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won't be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes. +optional
 	TtlSecondsAfterFinished int32 `json:"ttlSecondsAfterFinished,omitempty"`

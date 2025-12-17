@@ -10,6 +10,6 @@
 package nextgen
 
 type ApplicationsGitDirectoryGeneratorItem struct {
-	Path string `json:"path,omitempty"`
-	Exclude bool `json:"exclude,omitempty"`
+	Path    string `json:"path,omitempty"`
+	Exclude bool   `json:"exclude,omitempty"`
 }

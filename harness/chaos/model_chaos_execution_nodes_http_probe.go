@@ -10,6 +10,6 @@ package chaos
 
 type ChaosExecutionNodesHttpProbe struct {
 	ResponseBody []int32 `json:"responseBody,omitempty"`
-	ResponseTime int32 `json:"responseTime,omitempty"`
-	StatusCode int32 `json:"statusCode,omitempty"`
+	ResponseTime int32   `json:"responseTime,omitempty"`
+	StatusCode   int32   `json:"statusCode,omitempty"`
 }

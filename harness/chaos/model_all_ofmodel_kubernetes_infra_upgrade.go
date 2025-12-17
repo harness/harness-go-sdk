@@ -10,6 +10,6 @@ package chaos
 
 // Upgrade struct for the chaos infrastructure
 type AllOfmodelKubernetesInfraUpgrade struct {
-	IsAutoUpgradeEnabled bool `json:"isAutoUpgradeEnabled,omitempty"`
-	Status *ModelUpgradeStatus `json:"status,omitempty"`
+	IsAutoUpgradeEnabled bool                `json:"isAutoUpgradeEnabled,omitempty"`
+	Status               *ModelUpgradeStatus `json:"status,omitempty"`
 }

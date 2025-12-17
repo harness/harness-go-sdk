@@ -9,7 +9,7 @@
 package svcdiscovery
 
 type V1Affinity struct {
-	NodeAffinity *V1NodeAffinity `json:"nodeAffinity,omitempty"`
-	PodAffinity *V1PodAffinity `json:"podAffinity,omitempty"`
+	NodeAffinity    *V1NodeAffinity    `json:"nodeAffinity,omitempty"`
+	PodAffinity     *V1PodAffinity     `json:"podAffinity,omitempty"`
 	PodAntiAffinity *V1PodAntiAffinity `json:"podAntiAffinity,omitempty"`
 }

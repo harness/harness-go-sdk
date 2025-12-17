@@ -16,6 +16,6 @@ type V1FlexVolumeSource struct {
 	// options is Optional: this field holds extra command options if any. +optional
 	Options map[string]string `json:"options,omitempty"`
 	// readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. +optional
-	ReadOnly bool `json:"readOnly,omitempty"`
+	ReadOnly  bool                    `json:"readOnly,omitempty"`
 	SecretRef *V1LocalObjectReference `json:"secretRef,omitempty"`
 }

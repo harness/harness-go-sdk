@@ -12,6 +12,6 @@ type V2OnboardingNetworkMapCreationMode string
 
 // List of v2_onboarding.NetworkMapCreationMode
 const (
-	MANUAL_V2OnboardingNetworkMapCreationMode V2OnboardingNetworkMapCreationMode = "Manual"
+	MANUAL_V2OnboardingNetworkMapCreationMode    V2OnboardingNetworkMapCreationMode = "Manual"
 	AUTOMATIC_V2OnboardingNetworkMapCreationMode V2OnboardingNetworkMapCreationMode = "Automatic"
 )

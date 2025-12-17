@@ -9,7 +9,7 @@
 package chaos
 
 type V2OnboardingRunSafeExperimentStatus struct {
-	Experiments []V2OnboardingExperiments `json:"experiments,omitempty"`
-	Status *V2OnboardingV2OnboardingStatus `json:"status,omitempty"`
-	TotalSafeExperiment int32 `json:"totalSafeExperiment,omitempty"`
+	Experiments         []V2OnboardingExperiments       `json:"experiments,omitempty"`
+	Status              *V2OnboardingV2OnboardingStatus `json:"status,omitempty"`
+	TotalSafeExperiment int32                           `json:"totalSafeExperiment,omitempty"`
 }

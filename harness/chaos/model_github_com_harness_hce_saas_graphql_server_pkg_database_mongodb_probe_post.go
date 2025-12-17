@@ -9,10 +9,10 @@
 package chaos
 
 type GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbProbePost struct {
-	Body string `json:"body,omitempty"`
-	BodyPath string `json:"bodyPath,omitempty"`
-	ContentType string `json:"contentType,omitempty"`
-	Criteria string `json:"criteria,omitempty"`
+	Body         string `json:"body,omitempty"`
+	BodyPath     string `json:"bodyPath,omitempty"`
+	ContentType  string `json:"contentType,omitempty"`
+	Criteria     string `json:"criteria,omitempty"`
 	ResponseBody string `json:"responseBody,omitempty"`
 	ResponseCode string `json:"responseCode,omitempty"`
 }

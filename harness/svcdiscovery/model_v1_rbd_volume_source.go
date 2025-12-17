@@ -20,7 +20,7 @@ type V1RbdVolumeSource struct {
 	// pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it +optional
 	Pool string `json:"pool,omitempty"`
 	// readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it +optional
-	ReadOnly bool `json:"readOnly,omitempty"`
+	ReadOnly  bool                    `json:"readOnly,omitempty"`
 	SecretRef *V1LocalObjectReference `json:"secretRef,omitempty"`
 	// user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it +optional
 	User string `json:"user,omitempty"`

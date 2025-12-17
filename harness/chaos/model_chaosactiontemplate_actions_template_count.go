@@ -9,6 +9,6 @@
 package chaos
 
 type ChaosactiontemplateActionsTemplateCount struct {
-	Count int32 `json:"count,omitempty"`
+	Count int32              `json:"count,omitempty"`
 	Type_ *ActionsActionType `json:"type,omitempty"`
 }

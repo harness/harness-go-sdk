@@ -10,5 +10,5 @@ package chaos
 
 type InfraV2GetKubernetesInfrastructureV2YamlResponse struct {
 	CorrelationId string `json:"correlationId,omitempty"`
-	Yaml string `json:"yaml,omitempty"`
+	Yaml          string `json:"yaml,omitempty"`
 }

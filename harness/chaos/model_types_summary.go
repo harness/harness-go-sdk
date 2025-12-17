@@ -9,9 +9,9 @@
 package chaos
 
 type TypesSummary struct {
-	ActionItems []TypesActionItem `json:"actionItems,omitempty"`
-	AvgResiliencyScore float64 `json:"avgResiliencyScore,omitempty"`
-	TotalCompletedRuns int32 `json:"totalCompletedRuns,omitempty"`
-	TotalCompletedWithErrRuns int32 `json:"totalCompletedWithErrRuns,omitempty"`
-	TotalSuspendedRuns int32 `json:"totalSuspendedRuns,omitempty"`
+	ActionItems               []TypesActionItem `json:"actionItems,omitempty"`
+	AvgResiliencyScore        float64           `json:"avgResiliencyScore,omitempty"`
+	TotalCompletedRuns        int32             `json:"totalCompletedRuns,omitempty"`
+	TotalCompletedWithErrRuns int32             `json:"totalCompletedWithErrRuns,omitempty"`
+	TotalSuspendedRuns        int32             `json:"totalSuspendedRuns,omitempty"`
 }

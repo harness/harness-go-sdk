@@ -12,8 +12,8 @@ type ChaosExecutionNodesChaosStepType string
 
 // List of chaos_execution_nodes.ChaosStepType
 const (
-	FAULT_ChaosExecutionNodesChaosStepType ChaosExecutionNodesChaosStepType = "FAULT"
-	PROBE_ChaosExecutionNodesChaosStepType ChaosExecutionNodesChaosStepType = "PROBE"
-	ACTION_ChaosExecutionNodesChaosStepType ChaosExecutionNodesChaosStepType = "ACTION"
+	FAULT_ChaosExecutionNodesChaosStepType      ChaosExecutionNodesChaosStepType = "FAULT"
+	PROBE_ChaosExecutionNodesChaosStepType      ChaosExecutionNodesChaosStepType = "PROBE"
+	ACTION_ChaosExecutionNodesChaosStepType     ChaosExecutionNodesChaosStepType = "ACTION"
 	EXPERIMENT_ChaosExecutionNodesChaosStepType ChaosExecutionNodesChaosStepType = "EXPERIMENT"
 )

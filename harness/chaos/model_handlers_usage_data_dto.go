@@ -9,7 +9,7 @@
 package chaos
 
 type HandlersUsageDataDto struct {
-	Count int32 `json:"count,omitempty"`
-	DisplayName string `json:"displayName,omitempty"`
-	References []HandlersReferenceDto `json:"references,omitempty"`
+	Count       int32                  `json:"count,omitempty"`
+	DisplayName string                 `json:"displayName,omitempty"`
+	References  []HandlersReferenceDto `json:"references,omitempty"`
 }

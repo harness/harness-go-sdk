@@ -10,11 +10,11 @@
 package nextgen
 
 type SplunkMetricDefinition struct {
-	GroupName string `json:"groupName"`
-	Query string `json:"query"`
-	Identifier string `json:"identifier"`
-	MetricName string `json:"metricName"`
+	GroupName   string       `json:"groupName"`
+	Query       string       `json:"query"`
+	Identifier  string       `json:"identifier"`
+	MetricName  string       `json:"metricName"`
 	RiskProfile *RiskProfile `json:"riskProfile,omitempty"`
-	Analysis *AnalysisDto `json:"analysis,omitempty"`
-	Sli *Slidto `json:"sli,omitempty"`
+	Analysis    *AnalysisDto `json:"analysis,omitempty"`
+	Sli         *Slidto      `json:"sli,omitempty"`
 }

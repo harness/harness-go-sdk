@@ -9,7 +9,7 @@
 package chaos
 
 type NetworkmapGetTargetServiceResponse struct {
-	ChaosDetails *TargetserviceTargetService `json:"chaosDetails,omitempty"`
-	DiscoveryDetails *DatabaseServiceCollection `json:"discoveryDetails,omitempty"`
-	WorkloadDetails *DatabaseDiscoveredServiceKubernetesSpec `json:"workloadDetails,omitempty"`
+	ChaosDetails     *TargetserviceTargetService              `json:"chaosDetails,omitempty"`
+	DiscoveryDetails *DatabaseServiceCollection               `json:"discoveryDetails,omitempty"`
+	WorkloadDetails  *DatabaseDiscoveredServiceKubernetesSpec `json:"workloadDetails,omitempty"`
 }

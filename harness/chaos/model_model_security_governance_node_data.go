@@ -9,7 +9,7 @@
 package chaos
 
 type ModelSecurityGovernanceNodeData struct {
-	FailedRules []ModelRuleDetails `json:"failedRules,omitempty"`
-	PassedRules []ModelRuleDetails `json:"passedRules,omitempty"`
+	FailedRules  []ModelRuleDetails `json:"failedRules,omitempty"`
+	PassedRules  []ModelRuleDetails `json:"passedRules,omitempty"`
 	SkippedRules []ModelRuleDetails `json:"skippedRules,omitempty"`
 }

@@ -10,7 +10,7 @@
 package nextgen
 
 type RepositoriesRepoQuery struct {
-	Repo string `json:"repo,omitempty"`
-	ForceRefresh bool `json:"forceRefresh,omitempty"`
-	Project string `json:"project,omitempty"`
+	Repo         string `json:"repo,omitempty"`
+	ForceRefresh bool   `json:"forceRefresh,omitempty"`
+	Project      string `json:"project,omitempty"`
 }

@@ -9,7 +9,7 @@
 package chaos
 
 type GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbRecommendationTarget struct {
-	Node *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbRecommendationNode `json:"node,omitempty"`
-	Type_ *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbRecommendationRecommendationTargetType `json:"type,omitempty"`
-	Workload *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbRecommendationWorkload `json:"workload,omitempty"`
+	Node     *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbRecommendationNode                     `json:"node,omitempty"`
+	Type_    *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbRecommendationRecommendationTargetType `json:"type,omitempty"`
+	Workload *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbRecommendationWorkload                 `json:"workload,omitempty"`
 }

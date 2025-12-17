@@ -9,10 +9,10 @@
 package chaos
 
 type PipelinesCreatePipelineResponse struct {
-	Code string `json:"code,omitempty"`
-	CorrelationId string `json:"correlationId,omitempty"`
-	Data *PipelinesCreatePipelineResponseData `json:"data,omitempty"`
-	Message string `json:"message,omitempty"`
-	MetaData *interface{} `json:"metaData,omitempty"`
-	Status string `json:"status,omitempty"`
+	Code          string                               `json:"code,omitempty"`
+	CorrelationId string                               `json:"correlationId,omitempty"`
+	Data          *PipelinesCreatePipelineResponseData `json:"data,omitempty"`
+	Message       string                               `json:"message,omitempty"`
+	MetaData      *interface{}                         `json:"metaData,omitempty"`
+	Status        string                               `json:"status,omitempty"`
 }

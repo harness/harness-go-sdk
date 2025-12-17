@@ -10,6 +10,6 @@
 package nextgen
 
 type PrometheusFilter struct {
-	LabelName string `json:"labelName,omitempty"`
+	LabelName  string `json:"labelName,omitempty"`
 	LabelValue string `json:"labelValue,omitempty"`
 }

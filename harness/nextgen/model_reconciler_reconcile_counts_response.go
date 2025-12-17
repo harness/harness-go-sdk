@@ -10,13 +10,13 @@
 package nextgen
 
 type ReconcilerReconcileCountsResponse struct {
-	ApplicationCount int32 `json:"applicationCount,omitempty"`
-	ClusterCount int32 `json:"clusterCount,omitempty"`
-	RepositoryCount int32 `json:"repositoryCount,omitempty"`
-	RepositoryCertificateCount int32 `json:"repositoryCertificateCount,omitempty"`
-	GnuPGPublicKeyCount int32 `json:"gnuPGPublicKeyCount,omitempty"`
-	RepoCredsCount int32 `json:"repoCredsCount,omitempty"`
+	ApplicationCount           int32            `json:"applicationCount,omitempty"`
+	ClusterCount               int32            `json:"clusterCount,omitempty"`
+	RepositoryCount            int32            `json:"repositoryCount,omitempty"`
+	RepositoryCertificateCount int32            `json:"repositoryCertificateCount,omitempty"`
+	GnuPGPublicKeyCount        int32            `json:"gnuPGPublicKeyCount,omitempty"`
+	RepoCredsCount             int32            `json:"repoCredsCount,omitempty"`
 	ApplicationPerProjectCount map[string]int32 `json:"applicationPerProjectCount,omitempty"`
-	ClusterPerProjectCount map[string]int32 `json:"clusterPerProjectCount,omitempty"`
-	RepositoryPerProjectCount map[string]int32 `json:"repositoryPerProjectCount,omitempty"`
+	ClusterPerProjectCount     map[string]int32 `json:"clusterPerProjectCount,omitempty"`
+	RepositoryPerProjectCount  map[string]int32 `json:"repositoryPerProjectCount,omitempty"`
 }

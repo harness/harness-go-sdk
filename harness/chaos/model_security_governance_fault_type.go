@@ -13,5 +13,5 @@ type SecurityGovernanceFaultType string
 // List of security_governance.FaultType
 const (
 	GROUP_SecurityGovernanceFaultType SecurityGovernanceFaultType = "FAULT_GROUP"
-	NAME_SecurityGovernanceFaultType SecurityGovernanceFaultType = "FAULT_NAME"
+	NAME_SecurityGovernanceFaultType  SecurityGovernanceFaultType = "FAULT_NAME"
 )

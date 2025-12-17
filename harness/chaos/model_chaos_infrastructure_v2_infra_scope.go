@@ -13,5 +13,5 @@ type ChaosInfrastructureV2InfraScope string
 // List of chaos_infrastructure_v2.InfraScope
 const (
 	NAMESPACE_ChaosInfrastructureV2InfraScope ChaosInfrastructureV2InfraScope = "NAMESPACE"
-	CLUSTER_ChaosInfrastructureV2InfraScope ChaosInfrastructureV2InfraScope = "CLUSTER"
+	CLUSTER_ChaosInfrastructureV2InfraScope   ChaosInfrastructureV2InfraScope = "CLUSTER"
 )

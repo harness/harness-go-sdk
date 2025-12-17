@@ -10,6 +10,6 @@
 package nextgen
 
 type TemplateDto struct {
-	TemplateRef string `json:"templateRef"`
+	TemplateRef  string `json:"templateRef"`
 	VersionLabel string `json:"versionLabel"`
 }

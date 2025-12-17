@@ -9,6 +9,6 @@
 package har
 
 type InlineResponse20019 struct {
-	Data *ListWebhooks `json:"data"`
-	Status *Status `json:"status"`
+	Data   *ListWebhooks `json:"data"`
+	Status *Status       `json:"status"`
 }

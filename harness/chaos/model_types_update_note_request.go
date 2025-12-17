@@ -9,11 +9,11 @@
 package chaos
 
 type TypesUpdateNoteRequest struct {
-	Comment string `json:"comment,omitempty"`
-	ExperimentID string `json:"experimentID,omitempty"`
-	ExperimentRunID string `json:"experimentRunID,omitempty"`
-	GamedayRunID string `json:"gamedayRunID,omitempty"`
-	NoteId string `json:"noteId,omitempty"`
-	Operation *TypesUpdateOperation `json:"operation,omitempty"`
-	Type_ *ChaosresourcenotesNoteType `json:"type,omitempty"`
+	Comment         string                      `json:"comment,omitempty"`
+	ExperimentID    string                      `json:"experimentID,omitempty"`
+	ExperimentRunID string                      `json:"experimentRunID,omitempty"`
+	GamedayRunID    string                      `json:"gamedayRunID,omitempty"`
+	NoteId          string                      `json:"noteId,omitempty"`
+	Operation       *TypesUpdateOperation       `json:"operation,omitempty"`
+	Type_           *ChaosresourcenotesNoteType `json:"type,omitempty"`
 }

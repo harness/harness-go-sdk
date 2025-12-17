@@ -12,8 +12,8 @@ type V1ServiceType string
 
 // List of v1.ServiceType
 const (
-	CLUSTER_IP_V1ServiceType V1ServiceType = "ClusterIP"
-	NODE_PORT_V1ServiceType V1ServiceType = "NodePort"
+	CLUSTER_IP_V1ServiceType    V1ServiceType = "ClusterIP"
+	NODE_PORT_V1ServiceType     V1ServiceType = "NodePort"
 	LOAD_BALANCER_V1ServiceType V1ServiceType = "LoadBalancer"
 	EXTERNAL_NAME_V1ServiceType V1ServiceType = "ExternalName"
 )

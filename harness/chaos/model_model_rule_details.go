@@ -9,11 +9,11 @@
 package chaos
 
 type ModelRuleDetails struct {
-	Conditions []ModelConditionDetails `json:"conditions,omitempty"`
-	Description string `json:"description,omitempty"`
-	Message string `json:"message,omitempty"`
-	RuleId string `json:"ruleId,omitempty"`
-	RuleName string `json:"ruleName,omitempty"`
-	TimeWindow *ModelTimeWindow `json:"timeWindow,omitempty"`
-	UserGroupIds []string `json:"userGroupIds,omitempty"`
+	Conditions   []ModelConditionDetails `json:"conditions,omitempty"`
+	Description  string                  `json:"description,omitempty"`
+	Message      string                  `json:"message,omitempty"`
+	RuleId       string                  `json:"ruleId,omitempty"`
+	RuleName     string                  `json:"ruleName,omitempty"`
+	TimeWindow   *ModelTimeWindow        `json:"timeWindow,omitempty"`
+	UserGroupIds []string                `json:"userGroupIds,omitempty"`
 }

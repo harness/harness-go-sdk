@@ -10,7 +10,7 @@
 package nextgen
 
 type RepositoriesRepoAppDetailsQuery struct {
-	Source *ApplicationsApplicationSource `json:"source,omitempty"`
-	AppName string `json:"appName,omitempty"`
-	AppProject string `json:"appProject,omitempty"`
+	Source     *ApplicationsApplicationSource `json:"source,omitempty"`
+	AppName    string                         `json:"appName,omitempty"`
+	AppProject string                         `json:"appProject,omitempty"`
 }

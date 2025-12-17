@@ -9,13 +9,13 @@
 package chaos
 
 type ActionsImportActionTemplateRequest struct {
-	AccountID string `json:"accountID"`
-	ActionRef string `json:"actionRef,omitempty"`
-	Description string `json:"description,omitempty"`
-	HubRef string `json:"hubRef,omitempty"`
-	Identity string `json:"identity,omitempty"`
-	Name string `json:"name"`
-	OrgID string `json:"orgID,omitempty"`
-	ProjectID string `json:"projectID,omitempty"`
-	Tags []string `json:"tags,omitempty"`
+	AccountID   string   `json:"accountID"`
+	ActionRef   string   `json:"actionRef,omitempty"`
+	Description string   `json:"description,omitempty"`
+	HubRef      string   `json:"hubRef,omitempty"`
+	Identity    string   `json:"identity,omitempty"`
+	Name        string   `json:"name"`
+	OrgID       string   `json:"orgID,omitempty"`
+	ProjectID   string   `json:"projectID,omitempty"`
+	Tags        []string `json:"tags,omitempty"`
 }

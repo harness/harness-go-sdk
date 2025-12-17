@@ -9,7 +9,7 @@
 package chaos
 
 type TypesPrerequisite struct {
-	ActionItem string `json:"actionItem,omitempty"`
+	ActionItem  string `json:"actionItem,omitempty"`
 	Description string `json:"description,omitempty"`
-	Id string `json:"id,omitempty"`
+	Id          string `json:"id,omitempty"`
 }

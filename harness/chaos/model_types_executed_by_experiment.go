@@ -9,11 +9,11 @@
 package chaos
 
 type TypesExecutedByExperiment struct {
-	ExperimentID string `json:"experimentID,omitempty"`
-	ExperimentName string `json:"experimentName,omitempty"`
-	ExperimentRunID string `json:"experimentRunID,omitempty"`
-	ExperimentType *TypesScenarioType `json:"experimentType,omitempty"`
-	NotifyID string `json:"notifyID,omitempty"`
-	UpdatedAt int32 `json:"updatedAt,omitempty"`
-	UpdatedBy *TypesUserDetails `json:"updatedBy,omitempty"`
+	ExperimentID    string             `json:"experimentID,omitempty"`
+	ExperimentName  string             `json:"experimentName,omitempty"`
+	ExperimentRunID string             `json:"experimentRunID,omitempty"`
+	ExperimentType  *TypesScenarioType `json:"experimentType,omitempty"`
+	NotifyID        string             `json:"notifyID,omitempty"`
+	UpdatedAt       int32              `json:"updatedAt,omitempty"`
+	UpdatedBy       *TypesUserDetails  `json:"updatedBy,omitempty"`
 }

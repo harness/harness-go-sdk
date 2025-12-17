@@ -13,5 +13,5 @@ type RecommendationRecommendationSource string
 // List of recommendation.RecommendationSource
 const (
 	CONFIG_SCANNER_RecommendationRecommendationSource RecommendationRecommendationSource = "ConfigScanner"
-	K8S_WATCHER_RecommendationRecommendationSource RecommendationRecommendationSource = "K8sWatcher"
+	K8S_WATCHER_RecommendationRecommendationSource    RecommendationRecommendationSource = "K8sWatcher"
 )

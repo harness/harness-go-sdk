@@ -9,13 +9,13 @@
 package chaos
 
 type TypesImportProbeTemplateRequest struct {
-	AccountID string `json:"accountID"`
-	Description string `json:"description,omitempty"`
-	HubRef string `json:"hubRef,omitempty"`
-	Identity string `json:"identity,omitempty"`
-	Name string `json:"name"`
-	OrgID string `json:"orgID,omitempty"`
-	ProbeRef string `json:"probeRef,omitempty"`
-	ProjectID string `json:"projectID,omitempty"`
-	Tags []string `json:"tags,omitempty"`
+	AccountID   string   `json:"accountID"`
+	Description string   `json:"description,omitempty"`
+	HubRef      string   `json:"hubRef,omitempty"`
+	Identity    string   `json:"identity,omitempty"`
+	Name        string   `json:"name"`
+	OrgID       string   `json:"orgID,omitempty"`
+	ProbeRef    string   `json:"probeRef,omitempty"`
+	ProjectID   string   `json:"projectID,omitempty"`
+	Tags        []string `json:"tags,omitempty"`
 }

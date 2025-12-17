@@ -9,6 +9,6 @@
 package chaos
 
 type TemplateRunTimeVariables struct {
-	Experiment []TemplateVariable `json:"experiment,omitempty"`
-	Tasks map[string][]TemplateVariable `json:"tasks,omitempty"`
+	Experiment []TemplateVariable            `json:"experiment,omitempty"`
+	Tasks      map[string][]TemplateVariable `json:"tasks,omitempty"`
 }

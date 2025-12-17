@@ -9,13 +9,13 @@
 package chaos
 
 type DatabaseKubernetesAgentConfiguration struct {
-	ImagePullPolicy *V1PullPolicy `json:"imagePullPolicy,omitempty"`
-	Namespace string `json:"namespace,omitempty"`
-	Namespaced bool `json:"namespaced,omitempty"`
-	NodeSelector map[string]string `json:"nodeSelector,omitempty"`
-	Resources *DatabaseResourceRequirements `json:"resources,omitempty"`
-	RunAsGroup int32 `json:"runAsGroup,omitempty"`
-	RunAsUser int32 `json:"runAsUser,omitempty"`
-	ServiceAccount string `json:"serviceAccount,omitempty"`
-	Tolerations []V1Toleration `json:"tolerations,omitempty"`
+	ImagePullPolicy *V1PullPolicy                 `json:"imagePullPolicy,omitempty"`
+	Namespace       string                        `json:"namespace,omitempty"`
+	Namespaced      bool                          `json:"namespaced,omitempty"`
+	NodeSelector    map[string]string             `json:"nodeSelector,omitempty"`
+	Resources       *DatabaseResourceRequirements `json:"resources,omitempty"`
+	RunAsGroup      int32                         `json:"runAsGroup,omitempty"`
+	RunAsUser       int32                         `json:"runAsUser,omitempty"`
+	ServiceAccount  string                        `json:"serviceAccount,omitempty"`
+	Tolerations     []V1Toleration                `json:"tolerations,omitempty"`
 }

@@ -10,5 +10,5 @@ package chaos
 
 type V2OnboardingConfirmNetworkMapResponse struct {
 	NetworkMapCount int32 `json:"networkMapCount,omitempty"`
-	ServiceCount int32 `json:"serviceCount,omitempty"`
+	ServiceCount    int32 `json:"serviceCount,omitempty"`
 }

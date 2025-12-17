@@ -9,7 +9,7 @@
 package chaos
 
 type Chaoshubv2UpdateHubRequest struct {
-	Description string `json:"description,omitempty"`
-	Name string `json:"name"`
-	Tags []string `json:"tags,omitempty"`
+	Description string   `json:"description,omitempty"`
+	Name        string   `json:"name"`
+	Tags        []string `json:"tags,omitempty"`
 }

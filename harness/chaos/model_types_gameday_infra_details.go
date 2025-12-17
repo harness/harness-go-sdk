@@ -9,8 +9,8 @@
 package chaos
 
 type TypesGamedayInfraDetails struct {
-	EnvironmentID string `json:"environmentID,omitempty"`
-	InfraID string `json:"infraID,omitempty"`
-	InfraType *ModelInfrastructureType `json:"infraType,omitempty"`
-	Name string `json:"name,omitempty"`
+	EnvironmentID string                   `json:"environmentID,omitempty"`
+	InfraID       string                   `json:"infraID,omitempty"`
+	InfraType     *ModelInfrastructureType `json:"infraType,omitempty"`
+	Name          string                   `json:"name,omitempty"`
 }

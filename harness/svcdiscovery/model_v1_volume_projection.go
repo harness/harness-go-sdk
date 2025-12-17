@@ -9,8 +9,8 @@
 package svcdiscovery
 
 type V1VolumeProjection struct {
-	ConfigMap *V1ConfigMapProjection `json:"configMap,omitempty"`
-	DownwardAPI *V1DownwardApiProjection `json:"downwardAPI,omitempty"`
-	Secret *V1SecretProjection `json:"secret,omitempty"`
+	ConfigMap           *V1ConfigMapProjection           `json:"configMap,omitempty"`
+	DownwardAPI         *V1DownwardApiProjection         `json:"downwardAPI,omitempty"`
+	Secret              *V1SecretProjection              `json:"secret,omitempty"`
 	ServiceAccountToken *V1ServiceAccountTokenProjection `json:"serviceAccountToken,omitempty"`
 }

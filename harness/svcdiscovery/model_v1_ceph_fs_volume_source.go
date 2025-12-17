@@ -16,8 +16,8 @@ type V1CephFsVolumeSource struct {
 	// readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it +optional
 	ReadOnly bool `json:"readOnly,omitempty"`
 	// secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it +optional
-	SecretFile string `json:"secretFile,omitempty"`
-	SecretRef *V1LocalObjectReference `json:"secretRef,omitempty"`
+	SecretFile string                  `json:"secretFile,omitempty"`
+	SecretRef  *V1LocalObjectReference `json:"secretRef,omitempty"`
 	// user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it +optional
 	User string `json:"user,omitempty"`
 }

@@ -12,7 +12,7 @@ type InfraV2InstallationType string
 
 // List of infra_v2.InstallationType
 const (
-	CONNECTOR_InfraV2InstallationType InfraV2InstallationType = "CONNECTOR"
-	MANIFEST_InfraV2InstallationType InfraV2InstallationType = "MANIFEST"
+	CONNECTOR_InfraV2InstallationType    InfraV2InstallationType = "CONNECTOR"
+	MANIFEST_InfraV2InstallationType     InfraV2InstallationType = "MANIFEST"
 	CONNECTOR_V2_InfraV2InstallationType InfraV2InstallationType = "CONNECTOR_V2"
 )

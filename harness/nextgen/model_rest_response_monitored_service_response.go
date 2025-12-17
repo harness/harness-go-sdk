@@ -10,7 +10,7 @@
 package nextgen
 
 type RestResponseMonitoredServiceResponse struct {
-	MetaData map[string]interface{} `json:"metaData,omitempty"`
-	Resource *MonitoredServiceResponse `json:"resource,omitempty"`
-	ResponseMessages []ResponseMessage `json:"responseMessages,omitempty"`
+	MetaData         map[string]interface{}    `json:"metaData,omitempty"`
+	Resource         *MonitoredServiceResponse `json:"resource,omitempty"`
+	ResponseMessages []ResponseMessage         `json:"responseMessages,omitempty"`
 }

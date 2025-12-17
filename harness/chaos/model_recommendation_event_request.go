@@ -9,11 +9,11 @@
 package chaos
 
 type RecommendationEventRequest struct {
-	EnvironmentID string `json:"environmentID,omitempty"`
-	FaultPayload *RecommendationFaultPayload `json:"faultPayload,omitempty"`
-	Identifiers *RecommendationIdentifiers `json:"identifiers,omitempty"`
-	InfraID string `json:"infraID,omitempty"`
-	ProbePayload *RecommendationProbePayload `json:"probePayload,omitempty"`
-	Source string `json:"source,omitempty"`
-	Type_ string `json:"type,omitempty"`
+	EnvironmentID string                      `json:"environmentID,omitempty"`
+	FaultPayload  *RecommendationFaultPayload `json:"faultPayload,omitempty"`
+	Identifiers   *RecommendationIdentifiers  `json:"identifiers,omitempty"`
+	InfraID       string                      `json:"infraID,omitempty"`
+	ProbePayload  *RecommendationProbePayload `json:"probePayload,omitempty"`
+	Source        string                      `json:"source,omitempty"`
+	Type_         string                      `json:"type,omitempty"`
 }

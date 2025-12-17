@@ -10,7 +10,7 @@
 package nextgen
 
 type RepositoriesAwsSecretRef struct {
-	AwsAccessKeyID string `json:"awsAccessKeyID,omitempty"`
+	AwsAccessKeyID     string `json:"awsAccessKeyID,omitempty"`
 	AwsSecretAccessKey string `json:"awsSecretAccessKey,omitempty"`
-	AwsSessionToken string `json:"awsSessionToken,omitempty"`
+	AwsSessionToken    string `json:"awsSessionToken,omitempty"`
 }

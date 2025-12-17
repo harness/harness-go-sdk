@@ -10,6 +10,6 @@ package chaos
 
 type ExecutionChaosData struct {
 	ActionData *ExecutionActionData `json:"actionData,omitempty"`
-	FaultData *ExecutionFaultData `json:"faultData,omitempty"`
-	ProbeData *ExecutionProbeData `json:"probeData,omitempty"`
+	FaultData  *ExecutionFaultData  `json:"faultData,omitempty"`
+	ProbeData  *ExecutionProbeData  `json:"probeData,omitempty"`
 }

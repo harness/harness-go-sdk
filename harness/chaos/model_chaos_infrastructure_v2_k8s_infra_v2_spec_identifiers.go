@@ -9,12 +9,12 @@
 package chaos
 
 type ChaosInfrastructureV2K8sInfraV2SpecIdentifiers struct {
-	AiEnabled bool `json:"aiEnabled,omitempty"`
-	DiscoveryAgentId string `json:"discoveryAgentId,omitempty"`
-	EmissaryURL string `json:"emissaryURL,omitempty"`
-	Namespace string `json:"namespace,omitempty"`
-	Scope *ChaosInfrastructureV2InfraScope `json:"scope,omitempty"`
-	ServiceAccount string `json:"serviceAccount,omitempty"`
-	Type_ *ChaosInfrastructureV2InfraType `json:"type,omitempty"`
-	Version string `json:"version,omitempty"`
+	AiEnabled        bool                             `json:"aiEnabled,omitempty"`
+	DiscoveryAgentId string                           `json:"discoveryAgentId,omitempty"`
+	EmissaryURL      string                           `json:"emissaryURL,omitempty"`
+	Namespace        string                           `json:"namespace,omitempty"`
+	Scope            *ChaosInfrastructureV2InfraScope `json:"scope,omitempty"`
+	ServiceAccount   string                           `json:"serviceAccount,omitempty"`
+	Type_            *ChaosInfrastructureV2InfraType  `json:"type,omitempty"`
+	Version          string                           `json:"version,omitempty"`
 }

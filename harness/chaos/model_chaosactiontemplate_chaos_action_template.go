@@ -12,28 +12,28 @@ type ChaosactiontemplateChaosActionTemplate struct {
 	AccountID string `json:"accountID"`
 	// Needed for API response *not to be stored in DB*
 	ActionProperties *AllOfchaosactiontemplateChaosActionTemplateActionProperties `json:"actionProperties,omitempty"`
-	CreatedAt int32 `json:"createdAt,omitempty"`
-	CreatedBy string `json:"createdBy,omitempty"`
-	Description string `json:"description,omitempty"`
-	HubRef string `json:"hubRef,omitempty"`
-	Id string `json:"id,omitempty"`
+	CreatedAt        int32                                                        `json:"createdAt,omitempty"`
+	CreatedBy        string                                                       `json:"createdBy,omitempty"`
+	Description      string                                                       `json:"description,omitempty"`
+	HubRef           string                                                       `json:"hubRef,omitempty"`
+	Id               string                                                       `json:"id,omitempty"`
 	// Unique identifier (human-readable) immutable Initially it will be same as name
-	Identity string `json:"identity,omitempty"`
+	Identity           string                     `json:"identity,omitempty"`
 	InfrastructureType *ActionsInfrastructureType `json:"infrastructureType,omitempty"`
 	// isDefault indicates if it is the default version for predefined faults, latest should be set as default
 	IsDefault bool `json:"isDefault,omitempty"`
 	IsRemoved bool `json:"isRemoved"`
 	// Fault name to sync the changes from the hub HubRef + Name should be unique
-	Name string `json:"name"`
-	OrgID string `json:"orgID,omitempty"`
+	Name      string `json:"name"`
+	OrgID     string `json:"orgID,omitempty"`
 	ProjectID string `json:"projectID,omitempty"`
 	// it increments every time a new version of fault is published
-	Revision int32 `json:"revision,omitempty"`
+	Revision      int32                              `json:"revision,omitempty"`
 	RunProperties *ActionActionTemplateRunProperties `json:"runProperties,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	Template string `json:"template,omitempty"`
-	Type_ *ActionsActionType `json:"type,omitempty"`
-	UpdatedAt int32 `json:"updatedAt,omitempty"`
-	UpdatedBy string `json:"updatedBy,omitempty"`
-	Variables []TemplateVariable `json:"variables,omitempty"`
+	Tags          []string                           `json:"tags,omitempty"`
+	Template      string                             `json:"template,omitempty"`
+	Type_         *ActionsActionType                 `json:"type,omitempty"`
+	UpdatedAt     int32                              `json:"updatedAt,omitempty"`
+	UpdatedBy     string                             `json:"updatedBy,omitempty"`
+	Variables     []TemplateVariable                 `json:"variables,omitempty"`
 }

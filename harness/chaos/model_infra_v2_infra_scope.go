@@ -13,5 +13,5 @@ type InfraV2InfraScope string
 // List of infra_v2.InfraScope
 const (
 	NAMESPACE_InfraV2InfraScope InfraV2InfraScope = "NAMESPACE"
-	CLUSTER_InfraV2InfraScope InfraV2InfraScope = "CLUSTER"
+	CLUSTER_InfraV2InfraScope   InfraV2InfraScope = "CLUSTER"
 )

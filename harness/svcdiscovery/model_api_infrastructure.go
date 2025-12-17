@@ -9,15 +9,15 @@
 package svcdiscovery
 
 type ApiInfrastructure struct {
-	AgentName string `json:"agentName,omitempty"`
-	ConnectorRef string `json:"connectorRef,omitempty"`
-	EnvironmentRef string `json:"environmentRef,omitempty"`
-	Identifier string `json:"identifier,omitempty"`
-	IsCompatible bool `json:"isCompatible,omitempty"`
-	IsUsed bool `json:"isUsed,omitempty"`
-	Name string `json:"name,omitempty"`
-	Namespace string `json:"namespace,omitempty"`
-	OrgIdentifier string `json:"orgIdentifier,omitempty"`
+	AgentName         string `json:"agentName,omitempty"`
+	ConnectorRef      string `json:"connectorRef,omitempty"`
+	EnvironmentRef    string `json:"environmentRef,omitempty"`
+	Identifier        string `json:"identifier,omitempty"`
+	IsCompatible      bool   `json:"isCompatible,omitempty"`
+	IsUsed            bool   `json:"isUsed,omitempty"`
+	Name              string `json:"name,omitempty"`
+	Namespace         string `json:"namespace,omitempty"`
+	OrgIdentifier     string `json:"orgIdentifier,omitempty"`
 	ProjectIdentifier string `json:"projectIdentifier,omitempty"`
-	Type_ string `json:"type,omitempty"`
+	Type_             string `json:"type,omitempty"`
 }

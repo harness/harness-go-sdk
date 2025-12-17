@@ -9,11 +9,11 @@
 package chaos
 
 type ChaosExperimentWorkflowRevision struct {
-	ChaosFaultEvents []ChaosExperimentFaultEventMetadata `json:"chaosFaultEvents,omitempty"`
-	ExperimentManifest string `json:"experimentManifest,omitempty"`
-	FaultsWithProbes []ChaosExperimentRunFaults `json:"faultsWithProbes,omitempty"`
-	RevisionID string `json:"revisionID,omitempty"`
-	TargetedServices []TargetserviceServiceMetadata `json:"targetedServices,omitempty"`
-	UpdatedAt int32 `json:"updatedAt,omitempty"`
-	Weightages []ChaosExperimentWeightagesInput `json:"weightages,omitempty"`
+	ChaosFaultEvents   []ChaosExperimentFaultEventMetadata `json:"chaosFaultEvents,omitempty"`
+	ExperimentManifest string                              `json:"experimentManifest,omitempty"`
+	FaultsWithProbes   []ChaosExperimentRunFaults          `json:"faultsWithProbes,omitempty"`
+	RevisionID         string                              `json:"revisionID,omitempty"`
+	TargetedServices   []TargetserviceServiceMetadata      `json:"targetedServices,omitempty"`
+	UpdatedAt          int32                               `json:"updatedAt,omitempty"`
+	Weightages         []ChaosExperimentWeightagesInput    `json:"weightages,omitempty"`
 }

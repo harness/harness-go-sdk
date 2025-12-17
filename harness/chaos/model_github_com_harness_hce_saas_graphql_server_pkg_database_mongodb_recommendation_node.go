@@ -10,5 +10,5 @@ package chaos
 
 type GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbRecommendationNode struct {
 	Labels string `json:"labels,omitempty"`
-	Name string `json:"name,omitempty"`
+	Name   string `json:"name,omitempty"`
 }

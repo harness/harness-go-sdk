@@ -10,6 +10,6 @@ package svcdiscovery
 
 type V1ServiceStatus struct {
 	// Current service state +optional +patchMergeKey=type +patchStrategy=merge +listType=map +listMapKey=type
-	Conditions []V1Condition `json:"conditions,omitempty"`
+	Conditions   []V1Condition         `json:"conditions,omitempty"`
 	LoadBalancer *V1LoadBalancerStatus `json:"loadBalancer,omitempty"`
 }

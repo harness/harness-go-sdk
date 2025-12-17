@@ -9,6 +9,6 @@
 package chaos
 
 type DatabaseResourceRequirements struct {
-	Limits *DatabaseResourceList `json:"limits,omitempty"`
+	Limits   *DatabaseResourceList `json:"limits,omitempty"`
 	Requests *DatabaseResourceList `json:"requests,omitempty"`
 }

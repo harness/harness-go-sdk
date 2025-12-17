@@ -9,8 +9,8 @@
 package chaos
 
 type V2OnboardingTargetNetworkMapStatus struct {
-	Status *V2OnboardingV2OnboardingStatus `json:"status,omitempty"`
-	TargetNetworkMapStatus map[string]TargetnetworkmapStatus `json:"targetNetworkMapStatus,omitempty"`
-	TotalTargetNetworkMaps int32 `json:"totalTargetNetworkMaps,omitempty"`
-	TotalTargetNetworkMapsExperiments int32 `json:"totalTargetNetworkMapsExperiments,omitempty"`
+	Status                            *V2OnboardingV2OnboardingStatus   `json:"status,omitempty"`
+	TargetNetworkMapStatus            map[string]TargetnetworkmapStatus `json:"targetNetworkMapStatus,omitempty"`
+	TotalTargetNetworkMaps            int32                             `json:"totalTargetNetworkMaps,omitempty"`
+	TotalTargetNetworkMapsExperiments int32                             `json:"totalTargetNetworkMapsExperiments,omitempty"`
 }

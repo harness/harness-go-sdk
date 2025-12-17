@@ -9,10 +9,10 @@
 package chaos
 
 type TypesGetGamedayExperimentResponse struct {
-	ExperimentCsv string `json:"experimentCsv,omitempty"`
-	ExperimentID string `json:"experimentID,omitempty"`
-	ExperimentManifest string `json:"experimentManifest,omitempty"`
-	ExperimentTemplateName string `json:"experimentTemplateName,omitempty"`
-	HubID string `json:"hubID,omitempty"`
-	Infra *TypesGamedayInfraDetails `json:"infra,omitempty"`
+	ExperimentCsv          string                    `json:"experimentCsv,omitempty"`
+	ExperimentID           string                    `json:"experimentID,omitempty"`
+	ExperimentManifest     string                    `json:"experimentManifest,omitempty"`
+	ExperimentTemplateName string                    `json:"experimentTemplateName,omitempty"`
+	HubID                  string                    `json:"hubID,omitempty"`
+	Infra                  *TypesGamedayInfraDetails `json:"infra,omitempty"`
 }

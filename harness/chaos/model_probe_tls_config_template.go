@@ -9,8 +9,8 @@
 package chaos
 
 type ProbeTlsConfigTemplate struct {
-	CaFile string `json:"caFile,omitempty"`
-	CertFile string `json:"certFile,omitempty"`
-	InsecureSkipVerify bool `json:"insecureSkipVerify,omitempty"`
-	KeyFile string `json:"keyFile,omitempty"`
+	CaFile             string `json:"caFile,omitempty"`
+	CertFile           string `json:"certFile,omitempty"`
+	InsecureSkipVerify bool   `json:"insecureSkipVerify,omitempty"`
+	KeyFile            string `json:"keyFile,omitempty"`
 }

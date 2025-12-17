@@ -18,8 +18,8 @@ type V1DeploymentSpec struct {
 	// Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1. +optional
 	Replicas int32 `json:"replicas,omitempty"`
 	// The number of old ReplicaSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10. +optional
-	RevisionHistoryLimit int32 `json:"revisionHistoryLimit,omitempty"`
-	Selector *V1LabelSelector `json:"selector,omitempty"`
-	Strategy *V1DeploymentStrategy `json:"strategy,omitempty"`
-	Template *V1PodTemplateSpec `json:"template,omitempty"`
+	RevisionHistoryLimit int32                 `json:"revisionHistoryLimit,omitempty"`
+	Selector             *V1LabelSelector      `json:"selector,omitempty"`
+	Strategy             *V1DeploymentStrategy `json:"strategy,omitempty"`
+	Template             *V1PodTemplateSpec    `json:"template,omitempty"`
 }

@@ -9,17 +9,17 @@
 package chaos
 
 type TypesProbeRequest struct {
-	Description string `json:"description,omitempty"`
-	Identity string `json:"identity,omitempty"`
-	InfrastructureType *TypesInfrastructureType `json:"infrastructureType,omitempty"`
-	IsEnabled bool `json:"isEnabled,omitempty"`
-	Name string `json:"name,omitempty"`
-	ProbeId string `json:"probeId,omitempty"`
-	ProbeProperties *ProbeProbeTemplateProperties `json:"probeProperties,omitempty"`
-	ProbeReferenceCount int32 `json:"probeReferenceCount,omitempty"`
-	RecentProbeRuns []TypesProbeRecentExecutions `json:"recentProbeRuns,omitempty"`
-	RunProperties *ProbeProbeTemplateRunProperties `json:"runProperties,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	Type_ *TypesProbeType `json:"type,omitempty"`
-	Variables []TemplateVariable `json:"variables,omitempty"`
+	Description         string                           `json:"description,omitempty"`
+	Identity            string                           `json:"identity,omitempty"`
+	InfrastructureType  *TypesInfrastructureType         `json:"infrastructureType,omitempty"`
+	IsEnabled           bool                             `json:"isEnabled,omitempty"`
+	Name                string                           `json:"name,omitempty"`
+	ProbeId             string                           `json:"probeId,omitempty"`
+	ProbeProperties     *ProbeProbeTemplateProperties    `json:"probeProperties,omitempty"`
+	ProbeReferenceCount int32                            `json:"probeReferenceCount,omitempty"`
+	RecentProbeRuns     []TypesProbeRecentExecutions     `json:"recentProbeRuns,omitempty"`
+	RunProperties       *ProbeProbeTemplateRunProperties `json:"runProperties,omitempty"`
+	Tags                []string                         `json:"tags,omitempty"`
+	Type_               *TypesProbeType                  `json:"type,omitempty"`
+	Variables           []TemplateVariable               `json:"variables,omitempty"`
 }

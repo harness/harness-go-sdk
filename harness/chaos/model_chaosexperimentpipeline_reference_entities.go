@@ -10,7 +10,7 @@ package chaos
 
 type ChaosexperimentpipelineReferenceEntities struct {
 	ActionRef *ExperimentActionRef `json:"actionRef,omitempty"`
-	FaultRef *ExperimentFaultRef `json:"faultRef,omitempty"`
-	ProbeRef *ExperimentProbeRef `json:"probeRef,omitempty"`
-	Variables []TemplateVariable `json:"variables,omitempty"`
+	FaultRef  *ExperimentFaultRef  `json:"faultRef,omitempty"`
+	ProbeRef  *ExperimentProbeRef  `json:"probeRef,omitempty"`
+	Variables []TemplateVariable   `json:"variables,omitempty"`
 }

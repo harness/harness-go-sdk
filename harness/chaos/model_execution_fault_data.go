@@ -9,9 +9,9 @@
 package chaos
 
 type ExecutionFaultData struct {
-	HelperPodDetails []ExecutionHelperPodDetails `json:"helperPodDetails,omitempty"`
-	Name string `json:"name,omitempty"`
-	Namespace string `json:"namespace,omitempty"`
-	TargetChaosStatus []V1alpha1TargetDetails `json:"targetChaosStatus,omitempty"`
-	Targets []V1alpha1Targets `json:"targets,omitempty"`
+	HelperPodDetails  []ExecutionHelperPodDetails `json:"helperPodDetails,omitempty"`
+	Name              string                      `json:"name,omitempty"`
+	Namespace         string                      `json:"namespace,omitempty"`
+	TargetChaosStatus []V1alpha1TargetDetails     `json:"targetChaosStatus,omitempty"`
+	Targets           []V1alpha1Targets           `json:"targets,omitempty"`
 }

@@ -9,12 +9,12 @@
 package chaos
 
 type ChaosExecutionNodesProbeData struct {
-	Description string `json:"description,omitempty"`
-	FaultName string `json:"faultName,omitempty"`
-	Iterations []ChaosExecutionNodesProbeIterations `json:"iterations,omitempty"`
-	Name string `json:"name,omitempty"`
-	ProbeDetails *GithubComHarnessHceSaasHceSdkCommonProbeV1Probe `json:"probeDetails,omitempty"`
-	ProbeType string `json:"probeType,omitempty"`
-	ResiliencyScore int32 `json:"resiliencyScore,omitempty"`
-	Weightage int32 `json:"weightage,omitempty"`
+	Description     string                                           `json:"description,omitempty"`
+	FaultName       string                                           `json:"faultName,omitempty"`
+	Iterations      []ChaosExecutionNodesProbeIterations             `json:"iterations,omitempty"`
+	Name            string                                           `json:"name,omitempty"`
+	ProbeDetails    *GithubComHarnessHceSaasHceSdkCommonProbeV1Probe `json:"probeDetails,omitempty"`
+	ProbeType       string                                           `json:"probeType,omitempty"`
+	ResiliencyScore int32                                            `json:"resiliencyScore,omitempty"`
+	Weightage       int32                                            `json:"weightage,omitempty"`
 }

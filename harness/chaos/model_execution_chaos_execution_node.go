@@ -9,19 +9,19 @@
 package chaos
 
 type ExecutionChaosExecutionNode struct {
-	ChaosData *ExecutionChaosData `json:"chaosData,omitempty"`
-	ErrorData *ExecutionErrorData `json:"errorData,omitempty"`
-	EstimatedTime int32 `json:"estimatedTime,omitempty"`
-	ExperimentID string `json:"experimentID,omitempty"`
-	ExperimentRunID string `json:"experimentRunID,omitempty"`
-	FinishedAt int32 `json:"finishedAt,omitempty"`
-	InfraType *ExecutionInfraType `json:"infraType,omitempty"`
-	IsRemoved bool `json:"isRemoved,omitempty"`
-	LastUpdatedAt int32 `json:"lastUpdatedAt,omitempty"`
-	Spec string `json:"spec,omitempty"`
-	StartedAt int32 `json:"startedAt,omitempty"`
-	Status *ExecutionChaosStepStatus `json:"status,omitempty"`
-	StepName string `json:"stepName,omitempty"`
-	StepType *ExecutionChaosStepType `json:"stepType,omitempty"`
-	StreamID string `json:"streamID,omitempty"`
+	ChaosData       *ExecutionChaosData       `json:"chaosData,omitempty"`
+	ErrorData       *ExecutionErrorData       `json:"errorData,omitempty"`
+	EstimatedTime   int32                     `json:"estimatedTime,omitempty"`
+	ExperimentID    string                    `json:"experimentID,omitempty"`
+	ExperimentRunID string                    `json:"experimentRunID,omitempty"`
+	FinishedAt      int32                     `json:"finishedAt,omitempty"`
+	InfraType       *ExecutionInfraType       `json:"infraType,omitempty"`
+	IsRemoved       bool                      `json:"isRemoved,omitempty"`
+	LastUpdatedAt   int32                     `json:"lastUpdatedAt,omitempty"`
+	Spec            string                    `json:"spec,omitempty"`
+	StartedAt       int32                     `json:"startedAt,omitempty"`
+	Status          *ExecutionChaosStepStatus `json:"status,omitempty"`
+	StepName        string                    `json:"stepName,omitempty"`
+	StepType        *ExecutionChaosStepType   `json:"stepType,omitempty"`
+	StreamID        string                    `json:"streamID,omitempty"`
 }

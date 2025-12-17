@@ -9,8 +9,8 @@
 package chaos
 
 type ImageRegistryCustomImagesRequest struct {
-	Ddcr string `json:"ddcr,omitempty"`
-	DdcrFault string `json:"ddcrFault,omitempty"`
-	DdcrLib string `json:"ddcrLib,omitempty"`
+	Ddcr       string `json:"ddcr,omitempty"`
+	DdcrFault  string `json:"ddcrFault,omitempty"`
+	DdcrLib    string `json:"ddcrLib,omitempty"`
 	LogWatcher string `json:"logWatcher,omitempty"`
 }

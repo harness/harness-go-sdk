@@ -9,6 +9,6 @@
 package har
 
 type InlineResponse20022 struct {
-	Data *ListReplicationRule `json:"data"`
-	Status *Status `json:"status"`
+	Data   *ListReplicationRule `json:"data"`
+	Status *Status              `json:"status"`
 }

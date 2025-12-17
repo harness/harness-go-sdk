@@ -10,9 +10,9 @@
 package nextgen
 
 type Throwable struct {
-	Cause *Throwable `json:"cause,omitempty"`
-	StackTrace []StackTraceElement `json:"stackTrace,omitempty"`
-	Message string `json:"message,omitempty"`
-	Suppressed []Throwable `json:"suppressed,omitempty"`
-	LocalizedMessage string `json:"localizedMessage,omitempty"`
+	Cause            *Throwable          `json:"cause,omitempty"`
+	StackTrace       []StackTraceElement `json:"stackTrace,omitempty"`
+	Message          string              `json:"message,omitempty"`
+	Suppressed       []Throwable         `json:"suppressed,omitempty"`
+	LocalizedMessage string              `json:"localizedMessage,omitempty"`
 }

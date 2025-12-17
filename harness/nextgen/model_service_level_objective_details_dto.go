@@ -10,9 +10,9 @@
 package nextgen
 
 type ServiceLevelObjectiveDetailsDto struct {
-	AccountId string `json:"accountId"`
-	OrgIdentifier string `json:"orgIdentifier"`
-	ProjectIdentifier string `json:"projectIdentifier"`
-	ServiceLevelObjectiveRef string `json:"serviceLevelObjectiveRef"`
-	WeightagePercentage float64 `json:"weightagePercentage"`
+	AccountId                string  `json:"accountId"`
+	OrgIdentifier            string  `json:"orgIdentifier"`
+	ProjectIdentifier        string  `json:"projectIdentifier"`
+	ServiceLevelObjectiveRef string  `json:"serviceLevelObjectiveRef"`
+	WeightagePercentage      float64 `json:"weightagePercentage"`
 }

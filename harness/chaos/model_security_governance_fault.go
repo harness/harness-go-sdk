@@ -10,5 +10,5 @@ package chaos
 
 type SecurityGovernanceFault struct {
 	FaultType *SecurityGovernanceFaultType `json:"faultType,omitempty"`
-	Name string `json:"name,omitempty"`
+	Name      string                       `json:"name,omitempty"`
 }

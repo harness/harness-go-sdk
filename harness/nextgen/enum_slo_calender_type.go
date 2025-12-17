@@ -3,13 +3,13 @@ package nextgen
 type SLOCalenderType string
 
 var SLOCalenderTypes = struct {
-	Weekly      SLOCalenderType
-	Monthly     SLOCalenderType
-	Quarterly   SLOCalenderType
+	Weekly    SLOCalenderType
+	Monthly   SLOCalenderType
+	Quarterly SLOCalenderType
 }{
-	Weekly:     "Weekly",
-	Monthly:    "Monthly",
-	Quarterly:  "Quarterly",
+	Weekly:    "Weekly",
+	Monthly:   "Monthly",
+	Quarterly: "Quarterly",
 }
 
 var SLOCalenderTypesSlice = []string{

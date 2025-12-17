@@ -9,7 +9,7 @@ var ServiceNowAuthTypes = struct {
 }{
 	ServiceNowUserNamePassword: "UsernamePassword",
 	ServiceNowAdfs:             "AdfsClientCredentialsWithCertificate",
-	ServiceNowRefreshToken:     "RefreshTokenGrantType",  
+	ServiceNowRefreshToken:     "RefreshTokenGrantType",
 }
 
 var ServiceNowAuthTypeValues = []string{

@@ -13,5 +13,5 @@ type DatabaseNetworkMapResourceKind string
 // List of database.NetworkMapResourceKind
 const (
 	K8_S_CUSTOM_SERVICE_DatabaseNetworkMapResourceKind DatabaseNetworkMapResourceKind = "K8SCustomService"
-	DISCOVEREDSERVICE_DatabaseNetworkMapResourceKind DatabaseNetworkMapResourceKind = "discoveredservice"
+	DISCOVEREDSERVICE_DatabaseNetworkMapResourceKind   DatabaseNetworkMapResourceKind = "discoveredservice"
 )

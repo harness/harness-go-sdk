@@ -16,7 +16,7 @@ type ApplicationsPullRequestGeneratorBitbucket struct {
 	// Repo name to scan. Required.
 	Repo string `json:"repo,omitempty"`
 	// The Bitbucket REST API URL to talk to. If blank, uses https://api.bitbucket.org/2.0.
-	Api string `json:"api,omitempty"`
-	BasicAuth *ApplicationsBasicAuthBitbucketServer `json:"basicAuth,omitempty"`
+	Api         string                                 `json:"api,omitempty"`
+	BasicAuth   *ApplicationsBasicAuthBitbucketServer  `json:"basicAuth,omitempty"`
 	BearerToken *ApplicationsBearerTokenBitbucketCloud `json:"bearerToken,omitempty"`
 }

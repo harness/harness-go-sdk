@@ -1,4 +1,3 @@
-
 /*
  * Service Discovery API
  *
@@ -11,11 +10,11 @@ package svcdiscovery
 
 import (
 	"context"
+	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -24,6 +23,7 @@ var (
 )
 
 type SettingApiService service
+
 /*
 SettingApiService Gat setting
 Get setting
@@ -37,17 +37,17 @@ Get setting
 */
 
 type SettingApiGetSettingOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
 }
 
 func (a *SettingApiService) GetSetting(ctx context.Context, accountIdentifier string, localVarOptionals *SettingApiGetSettingOpts) (ServiceGetSettingResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ServiceGetSettingResponse
 	)
 
@@ -95,7 +95,7 @@ func (a *SettingApiService) GetSetting(ctx context.Context, accountIdentifier st
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -116,31 +116,31 @@ func (a *SettingApiService) GetSetting(ctx context.Context, accountIdentifier st
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 201 {
 			var v ServiceGetSettingResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message
@@ -152,6 +152,7 @@ func (a *SettingApiService) GetSetting(ctx context.Context, accountIdentifier st
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 SettingApiService Reset image registry setting
 Reset image registry setting
@@ -166,17 +167,17 @@ Reset image registry setting
 */
 
 type SettingApiResetImageRegistrySettingOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
 }
 
 func (a *SettingApiService) ResetImageRegistrySetting(ctx context.Context, body ServiceEmpty, accountIdentifier string, localVarOptionals *SettingApiResetImageRegistrySettingOpts) (ServiceGetSettingResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ServiceGetSettingResponse
 	)
 
@@ -226,7 +227,7 @@ func (a *SettingApiService) ResetImageRegistrySetting(ctx context.Context, body 
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -247,31 +248,31 @@ func (a *SettingApiService) ResetImageRegistrySetting(ctx context.Context, body 
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 201 {
 			var v ServiceGetSettingResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message
@@ -283,6 +284,7 @@ func (a *SettingApiService) ResetImageRegistrySetting(ctx context.Context, body 
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 SettingApiService Save setting
 Save setting
@@ -297,17 +299,17 @@ Save setting
 */
 
 type SettingApiSaveSettingOpts struct {
-    CorrelationID optional.String
-    OrganizationIdentifier optional.String
-    ProjectIdentifier optional.String
+	CorrelationID          optional.String
+	OrganizationIdentifier optional.String
+	ProjectIdentifier      optional.String
 }
 
 func (a *SettingApiService) SaveSetting(ctx context.Context, body ServiceSaveSettingRequest, accountIdentifier string, localVarOptionals *SettingApiSaveSettingOpts) (ServiceGetSettingResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue ServiceGetSettingResponse
 	)
 
@@ -357,7 +359,7 @@ func (a *SettingApiService) SaveSetting(ctx context.Context, body ServiceSaveSet
 				key = auth.Key
 			}
 			localVarHeaderParams["X-API-Key"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -378,31 +380,31 @@ func (a *SettingApiService) SaveSetting(ctx context.Context, body ServiceSaveSet
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 201 {
 			var v ServiceGetSettingResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		// Handle 4xx and 5xx errors
 		if localVarHttpResponse.StatusCode >= 400 {
 			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err == nil {
 				newErr.model = v
 				newErr.error = v.Message

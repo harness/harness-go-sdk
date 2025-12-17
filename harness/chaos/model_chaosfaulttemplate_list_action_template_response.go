@@ -9,8 +9,8 @@
 package chaos
 
 type ChaosfaulttemplateListActionTemplateResponse struct {
-	CorrelationID string `json:"correlationID,omitempty"`
-	CountDetails []ChaosactiontemplateActionsTemplateCount `json:"countDetails,omitempty"`
-	Data []ChaosactiontemplateChaosActionTemplate `json:"data,omitempty"`
-	Pagination *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
+	CorrelationID string                                             `json:"correlationID,omitempty"`
+	CountDetails  []ChaosactiontemplateActionsTemplateCount          `json:"countDetails,omitempty"`
+	Data          []ChaosactiontemplateChaosActionTemplate           `json:"data,omitempty"`
+	Pagination    *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
 }

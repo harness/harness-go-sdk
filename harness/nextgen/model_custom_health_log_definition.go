@@ -10,9 +10,9 @@
 package nextgen
 
 type CustomHealthLogDefinition struct {
-	RequestDefinition *CustomHealthRequestDefinition `json:"requestDefinition,omitempty"`
-	LogMessageJsonPath string `json:"logMessageJsonPath,omitempty"`
-	TimestampJsonPath string `json:"timestampJsonPath,omitempty"`
-	ServiceInstanceJsonPath string `json:"serviceInstanceJsonPath,omitempty"`
-	QueryName string `json:"queryName,omitempty"`
+	RequestDefinition       *CustomHealthRequestDefinition `json:"requestDefinition,omitempty"`
+	LogMessageJsonPath      string                         `json:"logMessageJsonPath,omitempty"`
+	TimestampJsonPath       string                         `json:"timestampJsonPath,omitempty"`
+	ServiceInstanceJsonPath string                         `json:"serviceInstanceJsonPath,omitempty"`
+	QueryName               string                         `json:"queryName,omitempty"`
 }

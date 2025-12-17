@@ -9,9 +9,9 @@
 package svcdiscovery
 
 type DatabaseProxyConfiguration struct {
-	HttpProxy string `json:"httpProxy,omitempty"`
+	HttpProxy  string `json:"httpProxy,omitempty"`
 	HttpsProxy string `json:"httpsProxy,omitempty"`
 	// SecretName string `bson:\"secretName\" json:\"secretName\"` CAPath     string `bson:\"caPath\" json:\"caPath\"`
 	NoProxy string `json:"noProxy,omitempty"`
-	Url string `json:"url,omitempty"`
+	Url     string `json:"url,omitempty"`
 }

@@ -9,7 +9,7 @@
 package chaos
 
 type SecurityGovernanceK8sSpec struct {
-	ApplicationSpec *SecurityGovernanceApplicationSpec `json:"applicationSpec,omitempty"`
+	ApplicationSpec         *SecurityGovernanceApplicationSpec         `json:"applicationSpec,omitempty"`
 	ChaosServiceAccountSpec *SecurityGovernanceChaosServiceAccountSpec `json:"chaosServiceAccountSpec,omitempty"`
-	InfraSpec *SecurityGovernanceInfraSpec `json:"infraSpec,omitempty"`
+	InfraSpec               *SecurityGovernanceInfraSpec               `json:"infraSpec,omitempty"`
 }

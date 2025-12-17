@@ -9,10 +9,10 @@
 package chaos
 
 type V2OnboardingV2OnboardingRequest struct {
-	ChaosAdvanceConfiguration *V2OnboardingChaosInfraAdvanceConfiguration `json:"chaosAdvanceConfiguration,omitempty"`
-	DiscoveryAdvanceConfiguration *DatabaseAgentConfiguration `json:"discoveryAdvanceConfiguration,omitempty"`
-	EnvironmentRef string `json:"environmentRef"`
-	InfrastructureRef string `json:"infrastructureRef"`
-	Mode *V2OnboardingOnboardingMode `json:"mode"`
-	ServiceAccount string `json:"serviceAccount,omitempty"`
+	ChaosAdvanceConfiguration     *V2OnboardingChaosInfraAdvanceConfiguration `json:"chaosAdvanceConfiguration,omitempty"`
+	DiscoveryAdvanceConfiguration *DatabaseAgentConfiguration                 `json:"discoveryAdvanceConfiguration,omitempty"`
+	EnvironmentRef                string                                      `json:"environmentRef"`
+	InfrastructureRef             string                                      `json:"infrastructureRef"`
+	Mode                          *V2OnboardingOnboardingMode                 `json:"mode"`
+	ServiceAccount                string                                      `json:"serviceAccount,omitempty"`
 }

@@ -9,6 +9,6 @@
 package chaos
 
 type InfraV2Upgrade struct {
-	IsAutoUpgradeEnabled bool `json:"isAutoUpgradeEnabled,omitempty"`
-	Status *InfraV2UpgradeStatus `json:"status,omitempty"`
+	IsAutoUpgradeEnabled bool                  `json:"isAutoUpgradeEnabled,omitempty"`
+	Status               *InfraV2UpgradeStatus `json:"status,omitempty"`
 }

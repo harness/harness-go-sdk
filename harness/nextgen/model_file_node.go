@@ -22,7 +22,7 @@ type FileNode struct {
 	// Path of the file or folder
 	Path string `json:"path,omitempty"`
 	// Last modified time for the File Store Node
-	LastModifiedAt int64 `json:"lastModifiedAt,omitempty"`
+	LastModifiedAt int64                   `json:"lastModifiedAt,omitempty"`
 	LastModifiedBy *EmbeddedUserDetailsDto `json:"lastModifiedBy,omitempty"`
 	// File usage of the File Store Node
 	FileUsage string `json:"fileUsage"`

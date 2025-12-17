@@ -10,6 +10,6 @@
 package nextgen
 
 type MetricThresholdCriteriaSpec struct {
-	LessThan float64 `json:"lessThan,omitempty"`
+	LessThan    float64 `json:"lessThan,omitempty"`
 	GreaterThan float64 `json:"greaterThan,omitempty"`
 }

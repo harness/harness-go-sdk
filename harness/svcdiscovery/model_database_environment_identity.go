@@ -9,9 +9,9 @@
 package svcdiscovery
 
 type DatabaseEnvironmentIdentity struct {
-	AccountIdentifier string `json:"accountIdentifier,omitempty"`
-	Identifier string `json:"identifier,omitempty"`
-	InfraIdentifier string `json:"infraIdentifier,omitempty"`
+	AccountIdentifier      string `json:"accountIdentifier,omitempty"`
+	Identifier             string `json:"identifier,omitempty"`
+	InfraIdentifier        string `json:"infraIdentifier,omitempty"`
 	OrganizationIdentifier string `json:"organizationIdentifier,omitempty"`
-	ProjectIdentifier string `json:"projectIdentifier,omitempty"`
+	ProjectIdentifier      string `json:"projectIdentifier,omitempty"`
 }

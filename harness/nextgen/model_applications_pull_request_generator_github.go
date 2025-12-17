@@ -16,9 +16,9 @@ type ApplicationsPullRequestGeneratorGithub struct {
 	// GitHub repo name to scan. Required.
 	Repo string `json:"repo,omitempty"`
 	// The GitHub API URL to talk to. If blank, use https://api.github.com/.
-	Api string `json:"api,omitempty"`
+	Api      string                 `json:"api,omitempty"`
 	TokenRef *ApplicationsSecretRef `json:"tokenRef,omitempty"`
 	// AppSecretName is a reference to a GitHub App repo-creds secret with permission to access pull requests.
-	AppSecretName string `json:"appSecretName,omitempty"`
-	Labels []string `json:"labels,omitempty"`
+	AppSecretName string   `json:"appSecretName,omitempty"`
+	Labels        []string `json:"labels,omitempty"`
 }

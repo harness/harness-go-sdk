@@ -9,9 +9,9 @@
 package chaos
 
 type ProbeHttpProbeTemplate struct {
-	Auth *ProbeAuthorizationTemplate `json:"auth,omitempty"`
-	Headers []GithubComHarnessHceSaasHceSdkTemplateSchemaProbeHeaders `json:"headers,omitempty"`
-	Method *ProbeMethodTemplate `json:"method,omitempty"`
-	TlsConfig *ProbeTlsConfigTemplate `json:"tlsConfig,omitempty"`
-	Url string `json:"url,omitempty"`
+	Auth      *ProbeAuthorizationTemplate                               `json:"auth,omitempty"`
+	Headers   []GithubComHarnessHceSaasHceSdkTemplateSchemaProbeHeaders `json:"headers,omitempty"`
+	Method    *ProbeMethodTemplate                                      `json:"method,omitempty"`
+	TlsConfig *ProbeTlsConfigTemplate                                   `json:"tlsConfig,omitempty"`
+	Url       string                                                    `json:"url,omitempty"`
 }

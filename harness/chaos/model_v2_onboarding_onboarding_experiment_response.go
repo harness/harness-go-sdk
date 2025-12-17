@@ -9,7 +9,7 @@
 package chaos
 
 type V2OnboardingOnboardingExperimentResponse struct {
-	Data []V2OnboardingOnboardingTargetExperiment `json:"data,omitempty"`
-	IsProcessed bool `json:"isProcessed,omitempty"`
-	Pagination *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
+	Data        []V2OnboardingOnboardingTargetExperiment           `json:"data,omitempty"`
+	IsProcessed bool                                               `json:"isProcessed,omitempty"`
+	Pagination  *GithubComHarnessHceSaasGraphqlServerApiPagination `json:"pagination,omitempty"`
 }

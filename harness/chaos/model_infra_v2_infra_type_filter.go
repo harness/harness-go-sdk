@@ -12,7 +12,7 @@ type InfraV2InfraTypeFilter string
 
 // List of infra_v2.InfraTypeFilter
 const (
-	KUBERNETES_InfraV2InfraTypeFilter InfraV2InfraTypeFilter = "KUBERNETES"
+	KUBERNETES_InfraV2InfraTypeFilter   InfraV2InfraTypeFilter = "KUBERNETES"
 	KUBERNETESV2_InfraV2InfraTypeFilter InfraV2InfraTypeFilter = "KUBERNETESV2"
-	ALL_InfraV2InfraTypeFilter InfraV2InfraTypeFilter = "ALL"
+	ALL_InfraV2InfraTypeFilter          InfraV2InfraTypeFilter = "ALL"
 )

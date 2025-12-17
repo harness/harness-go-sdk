@@ -876,11 +876,11 @@ Retrieves Harness-Argo project mapping for the given identifier.
 */
 
 type ProjectMappingsApiAppProjectMappingServiceGetAppProjectMappingV2Opts struct {
-    AccountIdentifier optional.String
-    OrgIdentifier optional.String
-    ProjectIdentifier optional.String
-    ArgoProjectName optional.String
-    AutoCreateServiceEnv optional.Bool
+	AccountIdentifier    optional.String
+	OrgIdentifier        optional.String
+	ProjectIdentifier    optional.String
+	ArgoProjectName      optional.String
+	AutoCreateServiceEnv optional.Bool
 }
 
 func (a *ProjectMappingsApiService) AppProjectMappingServiceGetAppProjectMappingV2(ctx context.Context, agentIdentifier string, identifier string, localVarOptionals *ProjectMappingsApiAppProjectMappingServiceGetAppProjectMappingV2Opts) (V1AppProjectMappingV2, *http.Response, error) {
@@ -1026,18 +1026,18 @@ Retrieves Harness-Argo project mappings list by agent.
      * @param "AccountIdentifier" (optional.String) -  Account Identifier for the Entity.
      * @param "OrgIdentifier" (optional.String) -  Organization Identifier for the Entity.
      * @param "ProjectIdentifier" (optional.String) -  Project Identifier for the Entity.
-     * @param "ArgoProjectName" (optional.String) - 
+     * @param "ArgoProjectName" (optional.String) -
      * @param "AutoCreateServiceEnv" (optional.Bool) -  Enable automated creation of service,environment and cluster-env link. Defaults to false.
 @return V1AppProjectMappingV2List
 */
 
 type ProjectMappingsApiAppProjectMappingServiceGetAppProjectMappingsListByAgentV2Opts struct {
-    Identifier optional.String
-    AccountIdentifier optional.String
-    OrgIdentifier optional.String
-    ProjectIdentifier optional.String
-    ArgoProjectName optional.String
-    AutoCreateServiceEnv optional.Bool
+	Identifier           optional.String
+	AccountIdentifier    optional.String
+	OrgIdentifier        optional.String
+	ProjectIdentifier    optional.String
+	ArgoProjectName      optional.String
+	AutoCreateServiceEnv optional.Bool
 }
 
 func (a *ProjectMappingsApiService) AppProjectMappingServiceGetAppProjectMappingsListByAgentV2(ctx context.Context, agentIdentifier string, localVarOptionals *ProjectMappingsApiAppProjectMappingServiceGetAppProjectMappingsListByAgentV2Opts) (V1AppProjectMappingV2List, *http.Response, error) {

@@ -36,8 +36,8 @@ type File struct {
 	// The path of the File or Folder
 	Path string `json:"path,omitempty"`
 	// Whether File is draft or not
-	Draft bool `json:"draft,omitempty"`
-	CreatedBy *EmbeddedUserDetailsDto `json:"createdBy,omitempty"`
+	Draft          bool                    `json:"draft,omitempty"`
+	CreatedBy      *EmbeddedUserDetailsDto `json:"createdBy,omitempty"`
 	LastModifiedBy *EmbeddedUserDetailsDto `json:"lastModifiedBy,omitempty"`
 	// Last modified time for the File or Folder
 	LastModifiedAt int64 `json:"lastModifiedAt,omitempty"`

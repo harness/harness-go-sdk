@@ -16,8 +16,8 @@ type IacmEvaluationDetail struct {
 	// Time the policy set was created
 	Created int64 `json:"created"`
 	// Description of the policy set
-	Description string `json:"description,omitempty"`
-	Details []IacmEvaluatedPolicy `json:"details"`
+	Description string                `json:"description,omitempty"`
+	Details     []IacmEvaluatedPolicy `json:"details"`
 	// Only enabled policy sets are evaluated when evaluating by type/action
 	Enabled bool `json:"enabled"`
 	// Identifier of the policy set

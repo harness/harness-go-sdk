@@ -11,11 +11,11 @@ package nextgen
 
 type StackTraceElement struct {
 	ClassLoaderName string `json:"classLoaderName,omitempty"`
-	ModuleName string `json:"moduleName,omitempty"`
-	ModuleVersion string `json:"moduleVersion,omitempty"`
-	MethodName string `json:"methodName,omitempty"`
-	FileName string `json:"fileName,omitempty"`
-	LineNumber int32 `json:"lineNumber,omitempty"`
-	ClassName string `json:"className,omitempty"`
-	NativeMethod bool `json:"nativeMethod,omitempty"`
+	ModuleName      string `json:"moduleName,omitempty"`
+	ModuleVersion   string `json:"moduleVersion,omitempty"`
+	MethodName      string `json:"methodName,omitempty"`
+	FileName        string `json:"fileName,omitempty"`
+	LineNumber      int32  `json:"lineNumber,omitempty"`
+	ClassName       string `json:"className,omitempty"`
+	NativeMethod    bool   `json:"nativeMethod,omitempty"`
 }

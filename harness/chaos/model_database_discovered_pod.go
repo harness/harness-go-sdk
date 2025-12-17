@@ -10,5 +10,5 @@ package chaos
 
 type DatabaseDiscoveredPod struct {
 	Identity *V1ObjectReference `json:"identity,omitempty"`
-	Phase *V1PodPhase `json:"phase,omitempty"`
+	Phase    *V1PodPhase        `json:"phase,omitempty"`
 }

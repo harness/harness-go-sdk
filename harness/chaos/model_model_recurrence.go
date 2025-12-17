@@ -9,6 +9,6 @@
 package chaos
 
 type ModelRecurrence struct {
-	Spec *ModelRecurrenceSpec `json:"spec,omitempty"`
+	Spec  *ModelRecurrenceSpec `json:"spec,omitempty"`
 	Type_ *ModelRecurrenceType `json:"type,omitempty"`
 }

@@ -11,7 +11,7 @@ package nextgen
 
 // This entity contains the details of the Jira Username and Password
 type JiraUserNamePassword struct {
-	Username string `json:"username,omitempty"`
+	Username    string `json:"username,omitempty"`
 	UsernameRef string `json:"usernameRef,omitempty"`
 	PasswordRef string `json:"passwordRef"`
 }

@@ -10,6 +10,6 @@ package chaos
 
 type ActionActionTemplateProperties struct {
 	CustomScriptAction *ActionCustomScriptActionTemplate `json:"customScriptAction,omitempty"`
-	DelayAction *ActionDelayActionTemplate `json:"delayAction,omitempty"`
-	SourceAction *ActionSourceActionTemplate `json:"sourceAction,omitempty"`
+	DelayAction        *ActionDelayActionTemplate        `json:"delayAction,omitempty"`
+	SourceAction       *ActionSourceActionTemplate       `json:"sourceAction,omitempty"`
 }

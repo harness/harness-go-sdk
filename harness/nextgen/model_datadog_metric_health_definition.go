@@ -10,20 +10,20 @@
 package nextgen
 
 type DatadogMetricHealthDefinition struct {
-	Identifier string `json:"identifier"`
-	MetricName string `json:"metricName"`
-	RiskProfile *RiskProfile `json:"riskProfile,omitempty"`
-	Analysis *AnalysisDto `json:"analysis,omitempty"`
-	Sli *Slidto `json:"sli,omitempty"`
-	DashboardId string `json:"dashboardId,omitempty"`
-	DashboardName string `json:"dashboardName,omitempty"`
-	MetricPath string `json:"metricPath,omitempty"`
-	Query string `json:"query,omitempty"`
-	GroupingQuery string `json:"groupingQuery,omitempty"`
-	Metric string `json:"metric,omitempty"`
-	Aggregation string `json:"aggregation,omitempty"`
-	ServiceInstanceIdentifierTag string `json:"serviceInstanceIdentifierTag,omitempty"`
-	MetricTags []string `json:"metricTags,omitempty"`
-	IsCustomCreatedMetric bool `json:"isCustomCreatedMetric,omitempty"`
-	IsManualQuery bool `json:"isManualQuery,omitempty"`
+	Identifier                   string       `json:"identifier"`
+	MetricName                   string       `json:"metricName"`
+	RiskProfile                  *RiskProfile `json:"riskProfile,omitempty"`
+	Analysis                     *AnalysisDto `json:"analysis,omitempty"`
+	Sli                          *Slidto      `json:"sli,omitempty"`
+	DashboardId                  string       `json:"dashboardId,omitempty"`
+	DashboardName                string       `json:"dashboardName,omitempty"`
+	MetricPath                   string       `json:"metricPath,omitempty"`
+	Query                        string       `json:"query,omitempty"`
+	GroupingQuery                string       `json:"groupingQuery,omitempty"`
+	Metric                       string       `json:"metric,omitempty"`
+	Aggregation                  string       `json:"aggregation,omitempty"`
+	ServiceInstanceIdentifierTag string       `json:"serviceInstanceIdentifierTag,omitempty"`
+	MetricTags                   []string     `json:"metricTags,omitempty"`
+	IsCustomCreatedMetric        bool         `json:"isCustomCreatedMetric,omitempty"`
+	IsManualQuery                bool         `json:"isManualQuery,omitempty"`
 }

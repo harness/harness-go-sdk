@@ -9,14 +9,14 @@
 package chaos
 
 type DatabaseDiscoveredKubernetesService struct {
-	Annotations map[string]string `json:"annotations,omitempty"`
-	ClusterIP string `json:"clusterIP,omitempty"`
-	ClusterIPs []string `json:"clusterIPs,omitempty"`
-	ExternalIPs []string `json:"externalIPs,omitempty"`
-	ExternalName string `json:"externalName,omitempty"`
-	Identity *V1ObjectReference `json:"identity,omitempty"`
-	Labels map[string]string `json:"labels,omitempty"`
-	LoadBalancerIP string `json:"loadBalancerIP,omitempty"`
-	Ports []V1ServicePort `json:"ports,omitempty"`
-	Type_ *V1ServiceType `json:"type,omitempty"`
+	Annotations    map[string]string  `json:"annotations,omitempty"`
+	ClusterIP      string             `json:"clusterIP,omitempty"`
+	ClusterIPs     []string           `json:"clusterIPs,omitempty"`
+	ExternalIPs    []string           `json:"externalIPs,omitempty"`
+	ExternalName   string             `json:"externalName,omitempty"`
+	Identity       *V1ObjectReference `json:"identity,omitempty"`
+	Labels         map[string]string  `json:"labels,omitempty"`
+	LoadBalancerIP string             `json:"loadBalancerIP,omitempty"`
+	Ports          []V1ServicePort    `json:"ports,omitempty"`
+	Type_          *V1ServiceType     `json:"type,omitempty"`
 }

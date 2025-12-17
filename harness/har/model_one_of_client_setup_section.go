@@ -9,6 +9,6 @@
 package har
 
 type OneOfClientSetupSection struct {
-    ClientSetupStepConfig
-    TabSetupStepConfig
+	ClientSetupStepConfig
+	TabSetupStepConfig
 }

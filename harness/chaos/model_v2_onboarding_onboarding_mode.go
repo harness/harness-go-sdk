@@ -12,6 +12,6 @@ type V2OnboardingOnboardingMode string
 
 // List of v2_onboarding.OnboardingMode
 const (
-	MANUAL_V2OnboardingOnboardingMode V2OnboardingOnboardingMode = "Manual"
+	MANUAL_V2OnboardingOnboardingMode    V2OnboardingOnboardingMode = "Manual"
 	AUTOMATIC_V2OnboardingOnboardingMode V2OnboardingOnboardingMode = "Automatic"
 )

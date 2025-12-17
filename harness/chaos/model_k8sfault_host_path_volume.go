@@ -9,8 +9,8 @@
 package chaos
 
 type K8sfaultHostPathVolume struct {
-	HostPath string `json:"hostPath,omitempty"`
-	MountPath string `json:"mountPath,omitempty"`
-	Name string `json:"name,omitempty"`
-	Type_ *V1HostPathType `json:"type,omitempty"`
+	HostPath  string          `json:"hostPath,omitempty"`
+	MountPath string          `json:"mountPath,omitempty"`
+	Name      string          `json:"name,omitempty"`
+	Type_     *V1HostPathType `json:"type,omitempty"`
 }

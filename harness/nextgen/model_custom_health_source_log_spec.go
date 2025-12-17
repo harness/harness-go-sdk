@@ -10,6 +10,6 @@
 package nextgen
 
 type CustomHealthSourceLogSpec struct {
-	ConnectorRef string `json:"connectorRef"`
+	ConnectorRef   string                      `json:"connectorRef"`
 	LogDefinitions []CustomHealthLogDefinition `json:"logDefinitions,omitempty"`
 }

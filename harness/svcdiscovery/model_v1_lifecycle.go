@@ -10,5 +10,5 @@ package svcdiscovery
 
 type V1Lifecycle struct {
 	PostStart *V1LifecycleHandler `json:"postStart,omitempty"`
-	PreStop *V1LifecycleHandler `json:"preStop,omitempty"`
+	PreStop   *V1LifecycleHandler `json:"preStop,omitempty"`
 }

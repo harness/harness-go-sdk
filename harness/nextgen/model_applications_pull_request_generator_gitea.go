@@ -14,8 +14,8 @@ type ApplicationsPullRequestGeneratorGitea struct {
 	// Gitea org or user to scan. Required.
 	Owner string `json:"owner,omitempty"`
 	// Gitea repo name to scan. Required.
-	Repo string `json:"repo,omitempty"`
-	Api string `json:"api,omitempty"`
+	Repo     string                 `json:"repo,omitempty"`
+	Api      string                 `json:"api,omitempty"`
 	TokenRef *ApplicationsSecretRef `json:"tokenRef,omitempty"`
 	// Allow insecure tls, for self-signed certificates; default: false.
 	Insecure bool `json:"insecure,omitempty"`

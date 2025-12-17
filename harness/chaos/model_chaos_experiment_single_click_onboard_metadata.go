@@ -9,6 +9,6 @@
 package chaos
 
 type ChaosExperimentSingleClickOnboardMetadata struct {
-	Faults []string `json:"faults,omitempty"`
-	OnboardingID string `json:"onboardingID,omitempty"`
+	Faults       []string `json:"faults,omitempty"`
+	OnboardingID string   `json:"onboardingID,omitempty"`
 }

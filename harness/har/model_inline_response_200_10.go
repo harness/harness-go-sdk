@@ -10,6 +10,6 @@ package har
 
 type InlineResponse20010 struct {
 	// download url of artifact
-	DownloadUrl string `json:"downloadUrl"`
-	Status *Status `json:"status"`
+	DownloadUrl string  `json:"downloadUrl"`
+	Status      *Status `json:"status"`
 }

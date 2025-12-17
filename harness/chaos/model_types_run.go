@@ -9,20 +9,20 @@
 package chaos
 
 type TypesRun struct {
-	CreatedAt string `json:"createdAt,omitempty"`
-	CreatedBy *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"createdBy,omitempty"`
-	Experiments []TypesExperimentRuns `json:"experiments,omitempty"`
-	GameDayID string `json:"gameDayID,omitempty"`
-	GameDayRunID string `json:"gameDayRunID,omitempty"`
-	Identifiers *GithubComHarnessHceSaasGraphqlServerGraphModelIdentifiers `json:"identifiers,omitempty"`
-	IsRemoved bool `json:"isRemoved,omitempty"`
-	Name string `json:"name,omitempty"`
-	Prerequisites []TypesPrerequisiteForRun `json:"prerequisites,omitempty"`
-	StakeHolders []TypesStakeHolderDetailsForRuns `json:"stakeHolders,omitempty"`
+	CreatedAt     string                                                     `json:"createdAt,omitempty"`
+	CreatedBy     *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"createdBy,omitempty"`
+	Experiments   []TypesExperimentRuns                                      `json:"experiments,omitempty"`
+	GameDayID     string                                                     `json:"gameDayID,omitempty"`
+	GameDayRunID  string                                                     `json:"gameDayRunID,omitempty"`
+	Identifiers   *GithubComHarnessHceSaasGraphqlServerGraphModelIdentifiers `json:"identifiers,omitempty"`
+	IsRemoved     bool                                                       `json:"isRemoved,omitempty"`
+	Name          string                                                     `json:"name,omitempty"`
+	Prerequisites []TypesPrerequisiteForRun                                  `json:"prerequisites,omitempty"`
+	StakeHolders  []TypesStakeHolderDetailsForRuns                           `json:"stakeHolders,omitempty"`
 	// after approval
-	StartTime int32 `json:"startTime,omitempty"`
-	Status *Gamedayv2GamedayRunStatus `json:"status,omitempty"`
-	Summary *TypesSummary `json:"summary,omitempty"`
-	UpdatedAt string `json:"updatedAt,omitempty"`
+	StartTime int32                                                      `json:"startTime,omitempty"`
+	Status    *Gamedayv2GamedayRunStatus                                 `json:"status,omitempty"`
+	Summary   *TypesSummary                                              `json:"summary,omitempty"`
+	UpdatedAt string                                                     `json:"updatedAt,omitempty"`
 	UpdatedBy *GithubComHarnessHceSaasGraphqlServerGraphModelUserDetails `json:"updatedBy,omitempty"`
 }

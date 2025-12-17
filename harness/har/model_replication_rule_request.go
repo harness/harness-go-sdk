@@ -9,10 +9,10 @@
 package har
 
 type ReplicationRuleRequest struct {
-	AllowedPatterns []string `json:"allowedPatterns"`
-	BlockedPatterns []string `json:"blockedPatterns"`
-	Destination *ReplicationRegistry `json:"destination"`
-	DestinationType string `json:"destinationType"`
-	Source *ReplicationRegistry `json:"source"`
-	SourceType string `json:"sourceType"`
+	AllowedPatterns []string             `json:"allowedPatterns"`
+	BlockedPatterns []string             `json:"blockedPatterns"`
+	Destination     *ReplicationRegistry `json:"destination"`
+	DestinationType string               `json:"destinationType"`
+	Source          *ReplicationRegistry `json:"source"`
+	SourceType      string               `json:"sourceType"`
 }

@@ -12,6 +12,6 @@ type V1ServiceExternalTrafficPolicyType string
 
 // List of v1.ServiceExternalTrafficPolicyType
 const (
-	LOCAL_V1ServiceExternalTrafficPolicyType V1ServiceExternalTrafficPolicyType = "Local"
+	LOCAL_V1ServiceExternalTrafficPolicyType   V1ServiceExternalTrafficPolicyType = "Local"
 	CLUSTER_V1ServiceExternalTrafficPolicyType V1ServiceExternalTrafficPolicyType = "Cluster"
 )

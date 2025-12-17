@@ -10,8 +10,8 @@ package svcdiscovery
 
 type V1ResourceFieldSelector struct {
 	// Container name: required for volumes, optional for env vars +optional
-	ContainerName string `json:"containerName,omitempty"`
-	Divisor *ResourceQuantity `json:"divisor,omitempty"`
+	ContainerName string            `json:"containerName,omitempty"`
+	Divisor       *ResourceQuantity `json:"divisor,omitempty"`
 	// Required: resource to select
 	Resource string `json:"resource,omitempty"`
 }

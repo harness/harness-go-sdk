@@ -9,6 +9,6 @@
 package chaos
 
 type ChaosprobetemplateGetProbeTemplateResponse struct {
-	CorrelationID string `json:"correlationID,omitempty"`
-	Data *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbChaosprobetemplateChaosProbeTemplate `json:"data,omitempty"`
+	CorrelationID string                                                                                      `json:"correlationID,omitempty"`
+	Data          *GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbChaosprobetemplateChaosProbeTemplate `json:"data,omitempty"`
 }

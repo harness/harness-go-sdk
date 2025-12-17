@@ -12,21 +12,21 @@ package nextgen
 import "encoding/json"
 
 type ServiceLevelObjectiveV2Dto struct {
-	OrgIdentifier string `json:"orgIdentifier,omitempty"`
-	ProjectIdentifier string `json:"projectIdentifier,omitempty"`
-	Identifier string `json:"identifier"`
-	Name string `json:"name"`
-	Description string `json:"description,omitempty"`
-	Tags map[string]string `json:"tags,omitempty"`
-	UserJourneyRefs []string `json:"userJourneyRefs"`
+	OrgIdentifier     string            `json:"orgIdentifier,omitempty"`
+	ProjectIdentifier string            `json:"projectIdentifier,omitempty"`
+	Identifier        string            `json:"identifier"`
+	Name              string            `json:"name"`
+	Description       string            `json:"description,omitempty"`
+	Tags              map[string]string `json:"tags,omitempty"`
+	UserJourneyRefs   []string          `json:"userJourneyRefs"`
 
 	SloTarget *SloTargetDto `json:"sloTarget"`
 
-	Type_              SLOType                                `json:"type,omitempty"`
-	Simple             *SimpleServiceLevelObjectiveSpec       `json:"-"`
-	Composite          *CompositeServiceLevelObjectiveSpec    `json:"-"`
+	Type_     SLOType                             `json:"type,omitempty"`
+	Simple    *SimpleServiceLevelObjectiveSpec    `json:"-"`
+	Composite *CompositeServiceLevelObjectiveSpec `json:"-"`
 
-	Spec               json.RawMessage                        `json:"spec"`
+	Spec json.RawMessage `json:"spec"`
 
 	NotificationRuleRefs []NotificationRuleRefDto `json:"notificationRuleRefs,omitempty"`
 }

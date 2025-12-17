@@ -9,6 +9,6 @@
 package chaos
 
 type NetworkmapListTargetService struct {
-	ChaosDetails *TargetserviceTargetService `json:"chaosDetails,omitempty"`
+	ChaosDetails     *TargetserviceTargetService          `json:"chaosDetails,omitempty"`
 	DiscoveryDetails *DatabaseDiscoveredServiceCollection `json:"discoveryDetails,omitempty"`
 }

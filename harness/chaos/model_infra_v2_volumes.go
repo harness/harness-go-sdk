@@ -9,6 +9,6 @@
 package chaos
 
 type InfraV2Volumes struct {
-	Name string `json:"name,omitempty"`
+	Name      string `json:"name,omitempty"`
 	SizeLimit string `json:"sizeLimit,omitempty"`
 }

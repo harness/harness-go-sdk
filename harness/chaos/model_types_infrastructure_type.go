@@ -12,10 +12,10 @@ type TypesInfrastructureType string
 
 // List of types.InfrastructureType
 const (
-	KUBERNETES_TypesInfrastructureType TypesInfrastructureType = "Kubernetes"
+	KUBERNETES_TypesInfrastructureType    TypesInfrastructureType = "Kubernetes"
 	KUBERNETES_V2_TypesInfrastructureType TypesInfrastructureType = "KubernetesV2"
-	WINDOWS_TypesInfrastructureType TypesInfrastructureType = "Windows"
-	LINUX_TypesInfrastructureType TypesInfrastructureType = "Linux"
+	WINDOWS_TypesInfrastructureType       TypesInfrastructureType = "Windows"
+	LINUX_TypesInfrastructureType         TypesInfrastructureType = "Linux"
 	CLOUD_FOUNDRY_TypesInfrastructureType TypesInfrastructureType = "CloudFoundry"
-	CONTAINER_TypesInfrastructureType TypesInfrastructureType = "Container"
+	CONTAINER_TypesInfrastructureType     TypesInfrastructureType = "Container"
 )

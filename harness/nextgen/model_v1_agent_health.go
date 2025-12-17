@@ -14,11 +14,11 @@ import (
 )
 
 type V1AgentHealth struct {
-	LastHeartbeat      time.Time               `json:"lastHeartbeat,omitempty"`
-	ArgoRepoServer     *V1AgentComponentHealth `json:"argoRepoServer,omitempty"`
-	ArgoAppController  *V1AgentComponentHealth `json:"argoAppController,omitempty"`
-	ArgoRedisServer    *V1AgentComponentHealth `json:"argoRedisServer,omitempty"`
-	HarnessGitopsAgent *V1AgentComponentHealth `json:"harnessGitopsAgent,omitempty"`
-	ConnectionStatus   *V1ConnectedStatus      `json:"connectionStatus,omitempty"`
+	LastHeartbeat        time.Time               `json:"lastHeartbeat,omitempty"`
+	ArgoRepoServer       *V1AgentComponentHealth `json:"argoRepoServer,omitempty"`
+	ArgoAppController    *V1AgentComponentHealth `json:"argoAppController,omitempty"`
+	ArgoRedisServer      *V1AgentComponentHealth `json:"argoRedisServer,omitempty"`
+	HarnessGitopsAgent   *V1AgentComponentHealth `json:"harnessGitopsAgent,omitempty"`
+	ConnectionStatus     *V1ConnectedStatus      `json:"connectionStatus,omitempty"`
 	ArgoAppSetController *V1AgentComponentHealth `json:"argoAppSetController,omitempty"`
 }

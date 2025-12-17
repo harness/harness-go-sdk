@@ -9,7 +9,7 @@
 package chaos
 
 type RecommendationIdentifiers struct {
-	AccountID string `json:"accountID,omitempty"`
+	AccountID      string `json:"accountID,omitempty"`
 	OrganizationID string `json:"organizationID,omitempty"`
-	ProjectID string `json:"projectID,omitempty"`
+	ProjectID      string `json:"projectID,omitempty"`
 }

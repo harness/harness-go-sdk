@@ -9,7 +9,7 @@
 package chaos
 
 type TypesStopChaosV2ExperimentResponse struct {
-	ExperimentId string `json:"experimentId,omitempty"`
+	ExperimentId   string `json:"experimentId,omitempty"`
 	ExperimentName string `json:"experimentName,omitempty"`
-	IsStopped bool `json:"isStopped,omitempty"`
+	IsStopped      bool   `json:"isStopped,omitempty"`
 }

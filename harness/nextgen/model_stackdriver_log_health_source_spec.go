@@ -10,7 +10,7 @@
 package nextgen
 
 type StackdriverLogHealthSourceSpec struct {
-	ConnectorRef string `json:"connectorRef"`
-	Feature string `json:"feature"`
-	Queries []StackdriverLogHealthSourceQueryDto `json:"queries"`
+	ConnectorRef string                               `json:"connectorRef"`
+	Feature      string                               `json:"feature"`
+	Queries      []StackdriverLogHealthSourceQueryDto `json:"queries"`
 }

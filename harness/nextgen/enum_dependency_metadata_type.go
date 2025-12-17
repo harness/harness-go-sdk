@@ -3,9 +3,9 @@ package nextgen
 type DependencyMetadataType string
 
 var DependencyMetadataTypes = struct {
-	KUBERNETES    DependencyMetadataType
+	KUBERNETES DependencyMetadataType
 }{
-	KUBERNETES:   "KUBERNETES",
+	KUBERNETES: "KUBERNETES",
 }
 
 var DependencyMetadataTypesSlice = []string{

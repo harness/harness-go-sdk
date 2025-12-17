@@ -12,7 +12,7 @@ type ModelInstallationType string
 
 // List of model.InstallationType
 const (
-	CONNECTOR_ModelInstallationType ModelInstallationType = "CONNECTOR"
-	MANIFEST_ModelInstallationType ModelInstallationType = "MANIFEST"
+	CONNECTOR_ModelInstallationType   ModelInstallationType = "CONNECTOR"
+	MANIFEST_ModelInstallationType    ModelInstallationType = "MANIFEST"
 	CONNECTORV2_ModelInstallationType ModelInstallationType = "CONNECTORV2"
 )

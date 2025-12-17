@@ -9,7 +9,7 @@
 package svcdiscovery
 
 type DatabaseNetworkMapEntityKubernetesInfo struct {
-	HasWorkload bool `json:"hasWorkload,omitempty"`
-	Kind string `json:"kind,omitempty"`
-	Namespace string `json:"namespace,omitempty"`
+	HasWorkload bool   `json:"hasWorkload,omitempty"`
+	Kind        string `json:"kind,omitempty"`
+	Namespace   string `json:"namespace,omitempty"`
 }

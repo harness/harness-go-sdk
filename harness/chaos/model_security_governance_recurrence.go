@@ -9,6 +9,6 @@
 package chaos
 
 type SecurityGovernanceRecurrence struct {
-	Spec *SecurityGovernanceRecurrenceSpec `json:"spec,omitempty"`
-	Type_ string `json:"type,omitempty"`
+	Spec  *SecurityGovernanceRecurrenceSpec `json:"spec,omitempty"`
+	Type_ string                            `json:"type,omitempty"`
 }

@@ -9,6 +9,6 @@
 package svcdiscovery
 
 type DatabaseResourceList struct {
-	Cpu string `json:"cpu,omitempty"`
+	Cpu    string `json:"cpu,omitempty"`
 	Memory string `json:"memory,omitempty"`
 }

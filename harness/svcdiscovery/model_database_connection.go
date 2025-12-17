@@ -9,10 +9,10 @@
 package svcdiscovery
 
 type DatabaseConnection struct {
-	From *DatabaseNetworkMapEntity `json:"from,omitempty"`
-	Manual bool `json:"manual,omitempty"`
-	Params map[string]string `json:"params,omitempty"`
-	Port string `json:"port,omitempty"`
-	To *DatabaseNetworkMapEntity `json:"to,omitempty"`
-	Type_ string `json:"type,omitempty"`
+	From   *DatabaseNetworkMapEntity `json:"from,omitempty"`
+	Manual bool                      `json:"manual,omitempty"`
+	Params map[string]string         `json:"params,omitempty"`
+	Port   string                    `json:"port,omitempty"`
+	To     *DatabaseNetworkMapEntity `json:"to,omitempty"`
+	Type_  string                    `json:"type,omitempty"`
 }

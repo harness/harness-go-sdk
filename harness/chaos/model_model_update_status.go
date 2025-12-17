@@ -12,7 +12,7 @@ type ModelUpdateStatus string
 
 // List of model.UpdateStatus
 const (
-	AVAILABLE_ModelUpdateStatus ModelUpdateStatus = "AVAILABLE"
-	MANDATORY_ModelUpdateStatus ModelUpdateStatus = "MANDATORY"
+	AVAILABLE_ModelUpdateStatus    ModelUpdateStatus = "AVAILABLE"
+	MANDATORY_ModelUpdateStatus    ModelUpdateStatus = "MANDATORY"
 	NOT_REQUIRED_ModelUpdateStatus ModelUpdateStatus = "NOT_REQUIRED"
 )

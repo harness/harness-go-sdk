@@ -10,12 +10,12 @@
 package nextgen
 
 type ApplicationsGitGenerator struct {
-	RepoURL string `json:"repoURL,omitempty"`
-	Directories []ApplicationsGitDirectoryGeneratorItem `json:"directories,omitempty"`
-	Files []ApplicationsGitFileGeneratorItem `json:"files,omitempty"`
-	Revision string `json:"revision,omitempty"`
-	RequeueAfterSeconds string `json:"requeueAfterSeconds,omitempty"`
-	Template *ApplicationsApplicationSetTemplate `json:"template,omitempty"`
-	PathParamPrefix string `json:"pathParamPrefix,omitempty"`
-	Values map[string]string `json:"values,omitempty"`
+	RepoURL             string                                  `json:"repoURL,omitempty"`
+	Directories         []ApplicationsGitDirectoryGeneratorItem `json:"directories,omitempty"`
+	Files               []ApplicationsGitFileGeneratorItem      `json:"files,omitempty"`
+	Revision            string                                  `json:"revision,omitempty"`
+	RequeueAfterSeconds string                                  `json:"requeueAfterSeconds,omitempty"`
+	Template            *ApplicationsApplicationSetTemplate     `json:"template,omitempty"`
+	PathParamPrefix     string                                  `json:"pathParamPrefix,omitempty"`
+	Values              map[string]string                       `json:"values,omitempty"`
 }

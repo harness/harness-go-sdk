@@ -18,5 +18,5 @@ type SloTargetDto struct {
 
 	SloTargetPercentage float64 `json:"sloTargetPercentage"`
 
-	Spec     json.RawMessage        `json:"spec"`
+	Spec json.RawMessage `json:"spec"`
 }
