@@ -12,8 +12,22 @@ package nextgen
 type CreateModuleRequestBody struct {
 	// description of the module
 	Description string `json:"description,omitempty"`
+	// Git Tag Style
+	GitTagStyle string `json:"git_tag_style,omitempty"`
 	// module name
 	Name string `json:"name"`
+	// Onboarding Pipeline
+	OnboardingPipeline string `json:"onboarding_pipeline,omitempty"`
+	// Onboarding Pipeline Org
+	OnboardingPipelineOrg string `json:"onboarding_pipeline_org,omitempty"`
+	// Onboarding Pipeline Project
+	OnboardingPipelineProject string `json:"onboarding_pipeline_project,omitempty"`
+	// Sync the project automatically
+	OnboardingPipelineSync bool `json:"onboarding_pipeline_sync,omitempty"`
+	// connector org
+	Org string `json:"org,omitempty"`
+	// connector project
+	Project string `json:"project,omitempty"`
 	// Repository is the name of the repository to use.
 	Repository string `json:"repository,omitempty"`
 	// Repository Branch in which the code should be accessed.
@@ -24,6 +38,8 @@ type CreateModuleRequestBody struct {
 	RepositoryConnector string `json:"repository_connector,omitempty"`
 	// Repository Path is the path in which the infra code resides.
 	RepositoryPath string `json:"repository_path,omitempty"`
+	// How to storage the artifact
+	StorageType string `json:"storage_type,omitempty"`
 	// system name
 	System string `json:"system"`
 	// tags defining the module

@@ -14,6 +14,8 @@ type ModuleMetadata struct {
 	Account string `json:"account"`
 	// Dependencies of the module
 	Dependencies []DependenciesMetadata `json:"dependencies,omitempty"`
+	// error while retrieving the module
+	MetadataError string `json:"metadata_error,omitempty"`
 	// module version
 	ModuleVersion string `json:"module_version"`
 	// module name
@@ -24,6 +26,10 @@ type ModuleMetadata struct {
 	Providers []ProviderMetadata `json:"providers"`
 	// Resources of the module
 	Resources []ResourceMetadata `json:"resources"`
+	// org name
+	ScopeOrg string `json:"scope_org,omitempty"`
+	// project name
+	ScopeProject string `json:"scope_project,omitempty"`
 	// Submodules of the module
 	Submodule []string `json:"submodule,omitempty"`
 	// system name

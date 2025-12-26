@@ -10,8 +10,18 @@
 package nextgen
 
 type PostModuleTagsRequestBody struct {
+	// account that owns the module
+	Account string `json:"account"`
 	// error from the tag operation
 	Error_ map[string]string `json:"error,omitempty"`
+	// module name
+	Name string `json:"name"`
+	// org of the module
+	ScopeOrg string `json:"scope_org,omitempty"`
+	// project of the module
+	ScopeProject string `json:"scope_project,omitempty"`
+	// system name
+	System string `json:"system"`
 	// tags defining the module
 	Tags []string `json:"tags,omitempty"`
 }
