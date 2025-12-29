@@ -1,0 +1,2284 @@
+openapi: 3.0.0
+info:
+  title: API Specification
+  version: 0.0.0
+servers:
+- url: /gateway/v1
+tags:
+- name: Entities
+  description: This contains APIs for Entities.
+  x-displayName: Entities
+paths:
+  /v1/entities:
+    get:
+      tags:
+      - Entities
+      summary: Get Entities
+      description: Get Entities.
+      operationId: get-entities
+      parameters:
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: "Pagination page number strategy: Specify the page number within\
+          \ the paginated collection related to the number of items in each page\t"
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: "Pagination: Number of items to return"
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 100
+          type: integer
+          default: 10
+      - name: sort
+        in: query
+        description: Parameter on the basis of which sorting is done.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: search_term
+        in: query
+        description: This would be used to filter resources having attributes matching
+          the search term.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: resolve_placeholders
+        in: query
+        description: This is used to return entities response with resolved placeholders
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+          default: false
+      - name: scopes
+        in: query
+        description: Filter entities on the scopes
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: entity_refs
+        in: query
+        description: Entity refs on which the Entities are filtered.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: owned_by_me
+        in: query
+        description: Filter entities owned by the user and the groups that the user
+          is part of.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      - name: favorites
+        in: query
+        description: Filter entities that are marked as favorites for the user.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      - name: kind
+        in: query
+        description: Kinds on which the Entities are filtered.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: Types on which the Entities are filtered.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: owner
+        in: query
+        description: Owners on which the Entities are filtered.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: lifecycle
+        in: query
+        description: Lifecycles on which the Entities are filtered.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: tags
+        in: query
+        description: Tags on which the Entities are filtered.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: Filter sets that get matched against each entity
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: List of Entity response body
+          headers:
+            X-Total-Elements:
+              description: Total number of elements returned in Paginated response.
+              style: simple
+              explode: false
+              schema:
+                type: integer
+            X-Page-Number:
+              description: Page number in Paginated response.
+              style: simple
+              explode: false
+              schema:
+                type: integer
+            X-Page-Size:
+              description: Maximum page size in Paginated response.
+              style: simple
+              explode: false
+              schema:
+                type: integer
+            Total-Owned:
+              description: Total number of owned entities.
+              style: simple
+              explode: false
+              schema:
+                type: integer
+            Total-Starred:
+              description: Total number of starred entities.
+              style: simple
+              explode: false
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EntityResponse"
+                x-content-type: application/json
+            application/yaml:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EntityResponse"
+      security:
+      - x-api-key: []
+    post:
+      tags:
+      - Entities
+      summary: Create a Entity
+      description: Create an Entity.
+      operationId: create-entity
+      parameters:
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: convert
+        in: query
+        description: Converts Backstage style YAML to Harness entity YAML
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+          default: false
+      - name: dry_run
+        in: query
+        description: Dry run validation of entity creation
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        $ref: "#/components/requestBodies/EntityCreateRequestBody"
+      responses:
+        "201":
+          description: Entity response body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityResponse"
+            application/yaml:
+              schema:
+                $ref: "#/components/schemas/EntityResponse"
+      security:
+      - x-api-key: []
+  /v1/entities/{scope}/{kind}/{identifier}:
+    get:
+      tags:
+      - Entities
+      summary: Get Entity
+      description: Get Entity.
+      operationId: get-entity
+      parameters:
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: scope
+        in: path
+        description: Scope
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: kind
+        in: path
+        description: Kind
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        description: Identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: branch_name
+        in: query
+        description: Name of the branch (for Git Experience).
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: connector_ref
+        in: query
+        description: Identifier of the Harness Connector used for CRUD operations
+          on the Entity (for Git Experience).
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: repo_name
+        in: query
+        description: Name of the repository (for Git Experience).
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: Load-From-Cache
+        in: header
+        description: Flag to enable loading the remote pipeline from git or git cache
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+          default: "false"
+      - name: load_from_fallback_branch
+        in: query
+        description: Flag to load the pipeline from the created non default branch
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+          default: false
+      - name: resolve_placeholders
+        in: query
+        description: This is used to return entities response with resolved placeholders
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+          default: false
+      responses:
+        "200":
+          description: Entity response body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityResponse"
+            application/yaml:
+              schema:
+                $ref: "#/components/schemas/EntityResponse"
+      security:
+      - x-api-key: []
+    put:
+      tags:
+      - Entities
+      summary: Update a Entity
+      description: Update an Entity.
+      operationId: update-entity
+      parameters:
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: scope
+        in: path
+        description: Scope
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: kind
+        in: path
+        description: Kind
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        description: Identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        $ref: "#/components/requestBodies/EntityUpdateRequestBody"
+      responses:
+        "200":
+          description: Entity response body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityResponse"
+            application/yaml:
+              schema:
+                $ref: "#/components/schemas/EntityResponse"
+      security:
+      - x-api-key: []
+    delete:
+      tags:
+      - Entities
+      summary: Delete a Entity
+      description: Delete an Entity.
+      operationId: delete-entity
+      parameters:
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: scope
+        in: path
+        description: Scope
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: kind
+        in: path
+        description: Kind
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        description: Identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+      security:
+      - x-api-key: []
+  /v1/entities/versions:
+    post:
+      tags:
+      - Entities
+      summary: Create an EntityVersion
+      description: Create an EntityVersion.
+      operationId: create-entity-version
+      parameters:
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        $ref: "#/components/requestBodies/EntityVersionCreateRequestBody"
+      responses:
+        "201":
+          description: Entity Version response body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityVersionResponse"
+            application/yaml:
+              schema:
+                $ref: "#/components/schemas/EntityVersionResponse"
+      security:
+      - x-api-key: []
+  /v1/entities/{scope}/{kind}/{identifier}/versions:
+    get:
+      tags:
+      - Entities
+      summary: Get Entity Versions
+      description: Get Entity Versions.
+      operationId: get-entity-versions
+      parameters:
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: scope
+        in: path
+        description: Scope
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: kind
+        in: path
+        description: Kind
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        description: Identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: "Pagination page number strategy: Specify the page number within\
+          \ the paginated collection related to the number of items in each page\t"
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: "Pagination: Number of items to return"
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 100
+          type: integer
+          default: 10
+      - name: search_term
+        in: query
+        description: This would be used to filter resources having attributes matching
+          the search term.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: deprecated
+        in: query
+        description: Filter versions that are deprecated or not.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      responses:
+        "200":
+          description: List of Entity Version response body
+          headers:
+            X-Total-Elements:
+              description: Total number of elements returned in Paginated response.
+              style: simple
+              explode: false
+              schema:
+                type: integer
+            X-Page-Number:
+              description: Page number in Paginated response.
+              style: simple
+              explode: false
+              schema:
+                type: integer
+            X-Page-Size:
+              description: Maximum page size in Paginated response.
+              style: simple
+              explode: false
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EntityVersionResponse"
+                x-content-type: application/json
+            application/yaml:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EntityVersionResponse"
+      security:
+      - x-api-key: []
+  /v1/entities/{scope}/{kind}/{identifier}/versions/{version}:
+    get:
+      tags:
+      - Entities
+      summary: Get Entity Version
+      description: Get Entity Version.
+      operationId: get-entity-version
+      parameters:
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: scope
+        in: path
+        description: Scope
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: kind
+        in: path
+        description: Kind
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        description: Identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: version
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Entity Version response body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityVersionResponse"
+            application/yaml:
+              schema:
+                $ref: "#/components/schemas/EntityVersionResponse"
+      security:
+      - x-api-key: []
+    put:
+      tags:
+      - Entities
+      summary: Update an EntityVersion
+      description: Update the mutable fields of an EntityVersion.
+      operationId: update-entity-version
+      parameters:
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: scope
+        in: path
+        description: Scope
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: kind
+        in: path
+        description: Kind
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        description: Identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: version
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        $ref: "#/components/requestBodies/EntityVersionUpdateRequestBody"
+      responses:
+        "200":
+          description: Entity Version response body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityVersionResponse"
+            application/yaml:
+              schema:
+                $ref: "#/components/schemas/EntityVersionResponse"
+      security:
+      - x-api-key: []
+    delete:
+      tags:
+      - Entities
+      summary: Delete an EntityVersion
+      description: Delete an EntityVersion
+      operationId: delete-entity-version
+      parameters:
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: scope
+        in: path
+        description: Scope
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: kind
+        in: path
+        description: Kind
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        description: Identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: version
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+      security:
+      - x-api-key: []
+  /v1/idp-environments:
+    post:
+      tags:
+      - EnvironmentProxy
+      summary: Create Compile And Execute Environment
+      operationId: create-compile-and-execute-environment
+      parameters:
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnvironmentProxyCreateRequest"
+        required: true
+      responses:
+        "200":
+          description: Environment execute response body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvironmentExecuteResponse"
+            application/yaml:
+              schema:
+                $ref: "#/components/schemas/EnvironmentExecuteResponse"
+      security:
+      - x-api-key: []
+      x-stoplight:
+        id: ve9qj9hgiro5a
+      x-internal: false
+  /v1/idp-environments/{environment-id}:
+    put:
+      tags:
+      - EnvironmentProxy
+      summary: Update Compile And Execute Environment
+      operationId: update-compile-and-execute-environment
+      parameters:
+      - name: environment-id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnvironmentProxyUpdateRequest"
+        required: true
+      responses:
+        "200":
+          description: Environment execute response body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvironmentExecuteResponse"
+            application/yaml:
+              schema:
+                $ref: "#/components/schemas/EnvironmentExecuteResponse"
+      security:
+      - x-api-key: []
+      x-stoplight:
+        id: j5gxzay5ncy66
+    delete:
+      tags:
+      - EnvironmentProxy
+      summary: Delete Environment
+      operationId: delete-environment
+      parameters:
+      - name: environment-id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+      security:
+      - x-api-key: []
+      x-stoplight:
+        id: g5au3w8dvrhxk
+components:
+  schemas:
+    EntityCreateRequest:
+      title: Entity Create Request Body
+      required:
+      - yaml
+      type: object
+      properties:
+        yaml:
+          type: string
+          description: Entity YAML (to be passed as a String).
+        git_details:
+          $ref: "#/components/schemas/GitCreateDetails"
+      description: Entity Create Request Body
+    EntityUpdateRequest:
+      title: Entity Update Request Body
+      required:
+      - yaml
+      type: object
+      properties:
+        yaml:
+          type: string
+          description: Entity YAML (to be passed as a String).
+        git_details:
+          $ref: "#/components/schemas/GitUpdateDetails"
+      description: Entity Update Request Body
+    EntityVersionCreateRequest:
+      title: Entity Version Create Request Body
+      required:
+      - version
+      - yaml
+      type: object
+      properties:
+        yaml:
+          type: string
+          description: Entity YAML (to be passed as a String).
+        version:
+          type: string
+          description: Version of the Entity.
+        description:
+          type: string
+          description: Description of the EntityVersion. Will inherit the description
+            from the Entity if not provided.
+        deprecated:
+          type: boolean
+          description: Is the EntityVersion deprecated.
+          default: false
+        stable:
+          type: boolean
+          description: Is the EntityVersion stable. Only one EntityVersion can be
+            stable at a time.
+          default: false
+      description: Entity Version Create Request Body
+    EntityVersionUpdateRequest:
+      title: Entity Version Update Request Body
+      type: object
+      properties:
+        description:
+          type: string
+          description: Description of the EntityVersion.
+        deprecated:
+          type: boolean
+          description: Is the EntityVersion deprecated.
+        stable:
+          type: boolean
+          description: Is the EntityVersion stable. Only one EntityVersion can be
+            stable at a time.
+        yaml:
+          type: string
+          description: (to be passed as a String).
+      description: Entity Version Update Request Body
+    EnvironmentProxyCreateRequest:
+      title: EnvironmentProxyCreateRequest
+      required:
+      - environment_blueprint_identifier
+      - environment_blueprint_version
+      - environment_identifier
+      - environment_name
+      - overrides
+      - owner
+      type: object
+      properties:
+        environment_name:
+          type: string
+          x-stoplight:
+            id: 5s137p3i9fgql
+        environment_identifier:
+          type: string
+          x-stoplight:
+            id: 6pmebr31waga3
+        owner:
+          type: string
+          x-stoplight:
+            id: 9z7etkk6xkx0f
+        environment_blueprint_identifier:
+          type: string
+          x-stoplight:
+            id: 0viiddkxmp9tf
+        environment_blueprint_version:
+          type: string
+          description: "Version of the environment blueprint (e.g., v1.0.0)"
+          x-stoplight:
+            id: env_bp_version
+        based_on_identifier:
+          type: string
+          description: Reference to the environment this is based on in format environment:account.orgIdentifier.projectIdentifier/identifier
+          x-stoplight:
+            id: based_on_id
+        overrides:
+          type: string
+          x-stoplight:
+            id: or7liwjgk3ytj
+        target_state:
+          type: string
+          description: Target state for the environment
+          enum:
+          - running
+          - inactive
+          - paused
+          x-stoplight:
+            id: target_state_create
+        inputs:
+          type: string
+          description: "Inputs for the environment as YAML/JSON string (e.g., ttl,\
+            \ resources)"
+          x-stoplight:
+            id: env_inputs
+        type:
+          type: string
+          description: "Type of the environment (e.g., ephemeral, persistent)"
+          x-stoplight:
+            id: env_type
+        tags:
+          type: array
+          items:
+            type: string
+            x-stoplight:
+              id: 2eo499jnlwm1g
+          x-stoplight:
+            id: 2oos0v1c5l74z
+        description:
+          type: string
+          x-stoplight:
+            id: ojutyvaelfa6y
+      x-stoplight:
+        id: s9ja1fpx8qh9l
+    EnvironmentProxyUpdateRequest:
+      title: EnvironmentProxyUpdateRequest
+      type: object
+      properties:
+        environment_blueprint_version:
+          type: string
+          description: "Version of the environment blueprint (e.g., v1.0.0)"
+          x-stoplight:
+            id: env_blueprint_version_update
+        based_on_identifier:
+          type: string
+          description: Reference to the environment this is based on in format environment:account.orgIdentifier.projectIdentifier/identifier
+          x-stoplight:
+            id: based_on_id_update
+        overrides:
+          type: string
+          x-stoplight:
+            id: 16pk3frz1hxht
+        target_state:
+          type: string
+          description: Target state for the environment
+          enum:
+          - running
+          - inactive
+          - paused
+          x-stoplight:
+            id: vf9ks00g6mrhn
+        inputs:
+          type: string
+          description: "Inputs for the environment as YAML/JSON string (e.g., ttl,\
+            \ resources)"
+          x-stoplight:
+            id: env_inputs_update
+      x-stoplight:
+        id: 9adjz79py8fu0
+    GitCreateDetails:
+      title: Create Git Details
+      type: object
+      properties:
+        branch_name:
+          type: string
+          description: Name of the branch.
+        file_path:
+          type: string
+          description: File path of the Entity in the repository.
+        commit_message:
+          type: string
+          description: Commit message used for the merge commit.
+        base_branch:
+          type: string
+          description: Name of the default branch (this checks out a new branch titled
+            by branch_name).
+        connector_ref:
+          type: string
+          description: Identifier of the Harness Connector used for CRUD operations
+            on the Entity.
+        store_type:
+          type: string
+          description: Specifies whether the Entity is to be stored in Git or not.
+          enum:
+          - INLINE
+          - REMOTE
+        repo_name:
+          type: string
+          description: Name of the repository.
+        is_harness_code_repo:
+          type: boolean
+          description: Is Git Experience repo harness code.
+      description: Contains parameters related to creating an Entity for Git Experience.
+      x-stoplight:
+        id: p1h9vvkuks7kq
+      x-examples:
+        example-create-git:
+          branch_name: branch
+          file_path: /folder/file.json
+          commit_message: Added Harness Git Experience
+          base_branch: old_branch
+          connector_ref: git_connector
+          store_type: REMOTE
+          repo_name: example_repository
+          is_harness_code_repo: false
+    GitUpdateDetails:
+      title: Update Git Details
+      type: object
+      properties:
+        branch_name:
+          type: string
+          description: Name of the branch.
+        commit_message:
+          type: string
+          description: Commit message used for the merge commit.
+        last_object_id:
+          type: string
+          description: Last object identifier (for Github only).
+        base_branch:
+          type: string
+          description: Name of the default branch (this checks out a new branch titled
+            by branch_name).
+        last_commit_id:
+          type: string
+          description: Last commit identifier.
+        connector_ref:
+          type: string
+          description: Identifier of the Harness Connector used for CRUD operations
+            on the Entity.
+        store_type:
+          type: string
+          description: Specifies whether the Entity is to be stored in Git or not.
+          enum:
+          - INLINE
+          - REMOTE
+        repo_name:
+          type: string
+          description: Name of the repository.
+        file_path:
+          type: string
+        is_harness_code_repo:
+          type: boolean
+          description: Is Git Experience repo harness code.
+      description: Contains parameters related to updating an Entity for Git Experience.
+      x-stoplight:
+        id: w2ue8wampbxe3
+      x-examples:
+        example-update-git:
+          branch_name: branch
+          commit_message: Added Harness Git Experience
+          last_object_id: abcdXYZ
+          base_branch: old_branch
+          last_commit_id: abcdXYZ
+          connector_ref: git_connector
+          store_type: REMOTE
+          repo_name: example_repository
+          file_path: /folder/file.json
+          is_harness_code_repo: false
+    EntityResponse:
+      title: Entity Response Body
+      required:
+      - entity_ref
+      - identifier
+      - kind
+      - referenceType
+      - scope
+      - yaml
+      type: object
+      properties:
+        identifier:
+          type: string
+        entity_ref:
+          type: string
+        orgIdentifier:
+          type: string
+        org_name:
+          type: string
+        projectIdentifier:
+          type: string
+        project_name:
+          type: string
+        scope:
+          type: string
+          enum:
+          - ACCOUNT
+          - ORGANIZATION
+          - PROJECT
+        referenceType:
+          type: string
+          enum:
+          - INLINE
+          - GIT
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        kind:
+          type: string
+          enum:
+          - api
+          - component
+          - group
+          - resource
+          - user
+          - workflow
+          - environmentblueprint
+          - environment
+          - system
+        type:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        owner:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        lifecycle:
+          type: string
+        metadata:
+          type: object
+        spec:
+          type: object
+        relations:
+          type: object
+        decorator:
+          type: string
+        git_details:
+          $ref: "#/components/schemas/GitDetails"
+        cache_response_data:
+          $ref: "#/components/schemas/CacheResponseData"
+        entity_validity_details:
+          $ref: "#/components/schemas/EntityResponse_entity_validity_details"
+        scorecards:
+          $ref: "#/components/schemas/EntityResponse_scorecards"
+        sto_details:
+          $ref: "#/components/schemas/EntityResponse_sto_details"
+        yaml:
+          type: string
+        starred:
+          type: boolean
+        status:
+          type: array
+          items:
+            $ref: "#/components/schemas/EntityResponse_status"
+        groups:
+          type: array
+          items:
+            $ref: "#/components/schemas/EntityResponse_groups"
+      description: Entity Response Body
+      example:
+        entity_validity_details:
+          is_valid: true
+          error_messages:
+          - error_messages
+          - error_messages
+        metadata: {}
+        decorator: decorator
+        scorecards:
+          average: 5.637376656633329
+          scores:
+          - passed_checks: 9.301444243932576
+            score: 2.3021358869347655
+            total_checks: 7.061401241503109
+            scorecard: scorecard
+            scorecard_name: scorecard_name
+          - passed_checks: 9.301444243932576
+            score: 2.3021358869347655
+            total_checks: 7.061401241503109
+            scorecard: scorecard
+            scorecard_name: scorecard_name
+        referenceType: INLINE
+        description: description
+        project_name: project_name
+        type: type
+        cache_response_data:
+          cache_state: VALID_CACHE
+          last_updated_at: 5
+          is_sync_enabled: true
+          ttl_left: 1
+        spec: {}
+        lifecycle: lifecycle
+        starred: true
+        entity_ref: entity_ref
+        scope: ACCOUNT
+        git_details:
+          file_path: file_path
+          file_url: file_url
+          repo_url: repo_url
+          base_branch: base_branch
+          is_harness_code_repo: true
+          branch_name: branch_name
+          connector_ref: connector_ref
+          repo_name: repo_name
+          commit_message: commit_message
+          store_type: INLINE
+          object_id: object_id
+          commit_id: commit_id
+        org_name: org_name
+        yaml: yaml
+        owner: owner
+        identifier: identifier
+        orgIdentifier: orgIdentifier
+        created: 0
+        kind: api
+        sto_details:
+          test_targets:
+          - scope: scope
+            name: name
+            variant: variant
+            org_name: org_name
+            project_name: project_name
+          - scope: scope
+            name: name
+            variant: variant
+            org_name: org_name
+            project_name: project_name
+        groups:
+        - group_name: group_name
+          group_icon: group_icon
+          org_identifier: org_identifier
+          scope: ACCOUNT
+          group_identifier: group_identifier
+          org_name: org_name
+          project_name: project_name
+          project_identifier: project_identifier
+          group_description: group_description
+        - group_name: group_name
+          group_icon: group_icon
+          org_identifier: org_identifier
+          scope: ACCOUNT
+          group_identifier: group_identifier
+          org_name: org_name
+          project_name: project_name
+          project_identifier: project_identifier
+          group_description: group_description
+        tags:
+        - tags
+        - tags
+        name: name
+        projectIdentifier: projectIdentifier
+        relations: {}
+        updated: 6
+        status:
+        - level: level
+          type: type
+          message: message
+        - level: level
+          type: type
+          message: message
+    EntityVersionResponse:
+      title: Entity Version Response Body
+      required:
+      - identifier
+      - kind
+      - version
+      - yaml
+      type: object
+      properties:
+        identifier:
+          type: string
+        orgIdentifier:
+          type: string
+        org_name:
+          type: string
+        projectIdentifier:
+          type: string
+        project_name:
+          type: string
+        scope:
+          type: string
+          enum:
+          - ACCOUNT
+          - ORGANIZATION
+          - PROJECT
+        kind:
+          type: string
+          enum:
+          - api
+          - component
+          - group
+          - resource
+          - user
+          - workflow
+          - environmentblueprint
+          - environment
+          - system
+        yaml:
+          type: string
+        version:
+          type: string
+        description:
+          type: string
+        deprecated:
+          type: boolean
+        deprecatedAt:
+          type: integer
+          format: int64
+        stable:
+          type: boolean
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+      description: Entity Version Response Body
+      example:
+        identifier: identifier
+        orgIdentifier: orgIdentifier
+        kind: api
+        created: 6
+        deprecated: true
+        description: description
+        project_name: project_name
+        version: version
+        stable: true
+        scope: ACCOUNT
+        deprecatedAt: 0
+        org_name: org_name
+        projectIdentifier: projectIdentifier
+        updated: 1
+        yaml: yaml
+    EnvironmentExecuteResponse:
+      title: Environment Execute Response
+      required:
+      - change
+      - dotGraph
+      type: object
+      properties:
+        change:
+          $ref: "#/components/schemas/InfrastructureChange"
+        dotGraph:
+          type: string
+          description: DOT graph of the infrastructure changes
+      example:
+        change:
+          instances:
+          - "{}"
+          - "{}"
+        dotGraph: dotGraph
+    InfrastructureChange:
+      required:
+      - instances
+      type: object
+      properties:
+        instances:
+          type: array
+          description: Instances to be changed
+          items:
+            $ref: "#/components/schemas/InstanceChange"
+      example:
+        instances:
+        - "{}"
+        - "{}"
+    InstanceChange:
+      required:
+      - currentState
+      - id
+      - targetState
+      type: object
+      properties:
+        currentState:
+          type: string
+          description: Current State of the instance
+        id:
+          type: string
+          description: ID of the instance
+        targetState:
+          type: string
+          description: Target State of the instance
+    GitDetails:
+      title: Git Details
+      type: object
+      properties:
+        branch_name:
+          type: string
+          description: Name of the branch.
+        file_path:
+          type: string
+          description: File path of the Entity in the repository.
+        file_url:
+          type: string
+          description: File URL of the Entity.
+        commit_message:
+          type: string
+          description: Commit message used for the merge commit.
+        object_id:
+          type: string
+          description: Object identifier (for Github only).
+        base_branch:
+          type: string
+          description: Name of the default branch (this checks out a new branch titled
+            by branch_name).
+        commit_id:
+          type: string
+          description: Commit identifier.
+        connector_ref:
+          type: string
+          description: Identifier of the Harness Connector used for CRUD operations
+            on the Entity.
+        store_type:
+          type: string
+          description: Specifies whether the Entity is to be stored in Git or not.
+          enum:
+          - INLINE
+          - REMOTE
+        repo_name:
+          type: string
+          description: Name of the repository.
+        repo_url:
+          type: string
+          description: Repository URL of the Entity.
+        is_harness_code_repo:
+          type: boolean
+          description: Is Git Experience repo harness code.
+      description: Git Experience related details of the Entity.
+      example:
+        file_path: file_path
+        file_url: file_url
+        repo_url: repo_url
+        base_branch: base_branch
+        is_harness_code_repo: true
+        branch_name: branch_name
+        connector_ref: connector_ref
+        repo_name: repo_name
+        commit_message: commit_message
+        store_type: INLINE
+        object_id: object_id
+        commit_id: commit_id
+      x-stoplight:
+        id: p1h9vvkuks7kq
+      x-examples:
+        example-create-git:
+          branch_name: branch
+          file_path: /folder/file.json
+          commit_message: Added Harness Git Experience
+          object_id: abcdXYZ
+          base_branch: old_branch
+          commit_id: abcdXYZ
+          connector_ref: git_connector
+          store_type: REMOTE
+          repo_name: example_repository
+          is_harness_code_repo: false
+    CacheResponseData:
+      title: CacheResponseData
+      type: object
+      properties:
+        cache_state:
+          type: string
+          description: Tells the state of cache.
+          enum:
+          - VALID_CACHE
+          - STALE_CACHE
+          - UNKNOWN
+        ttl_left:
+          type: integer
+          description: Time left till cache expriry.
+          format: int64
+        last_updated_at:
+          type: integer
+          description: Time when the cache was last updated at.
+          format: int64
+        is_sync_enabled:
+          type: boolean
+      example:
+        cache_state: VALID_CACHE
+        last_updated_at: 5
+        is_sync_enabled: true
+        ttl_left: 1
+      x-stoplight:
+        id: 5twby12bhyems
+      x-examples:
+        example-1:
+          cache_state: VALID_CACHE
+          ttl_left: 9223372036854776000
+          last_updated_at: 9223372036854776000
+    EntityResponse_entity_validity_details:
+      type: object
+      properties:
+        is_valid:
+          type: boolean
+        error_messages:
+          type: array
+          items:
+            type: string
+      example:
+        is_valid: true
+        error_messages:
+        - error_messages
+        - error_messages
+    EntityResponse_scorecards_scores:
+      type: object
+      properties:
+        scorecard:
+          type: string
+        scorecard_name:
+          type: string
+        score:
+          type: number
+        total_checks:
+          type: number
+        passed_checks:
+          type: number
+      example:
+        passed_checks: 9.301444243932576
+        score: 2.3021358869347655
+        total_checks: 7.061401241503109
+        scorecard: scorecard
+        scorecard_name: scorecard_name
+    EntityResponse_scorecards:
+      type: object
+      properties:
+        average:
+          type: number
+        scores:
+          type: array
+          items:
+            $ref: "#/components/schemas/EntityResponse_scorecards_scores"
+      example:
+        average: 5.637376656633329
+        scores:
+        - passed_checks: 9.301444243932576
+          score: 2.3021358869347655
+          total_checks: 7.061401241503109
+          scorecard: scorecard
+          scorecard_name: scorecard_name
+        - passed_checks: 9.301444243932576
+          score: 2.3021358869347655
+          total_checks: 7.061401241503109
+          scorecard: scorecard
+          scorecard_name: scorecard_name
+    EntityResponse_sto_details_test_targets:
+      type: object
+      properties:
+        name:
+          type: string
+        variant:
+          type: string
+        scope:
+          type: string
+        org_name:
+          type: string
+        project_name:
+          type: string
+      example:
+        scope: scope
+        name: name
+        variant: variant
+        org_name: org_name
+        project_name: project_name
+    EntityResponse_sto_details:
+      type: object
+      properties:
+        test_targets:
+          type: array
+          items:
+            $ref: "#/components/schemas/EntityResponse_sto_details_test_targets"
+      example:
+        test_targets:
+        - scope: scope
+          name: name
+          variant: variant
+          org_name: org_name
+          project_name: project_name
+        - scope: scope
+          name: name
+          variant: variant
+          org_name: org_name
+          project_name: project_name
+    EntityResponse_status:
+      type: object
+      properties:
+        type:
+          type: string
+        level:
+          type: string
+        message:
+          type: string
+      example:
+        level: level
+        type: type
+        message: message
+    EntityResponse_groups:
+      type: object
+      properties:
+        org_identifier:
+          type: string
+        org_name:
+          type: string
+        project_identifier:
+          type: string
+        project_name:
+          type: string
+        scope:
+          type: string
+          enum:
+          - ACCOUNT
+          - ORGANIZATION
+          - PROJECT
+        group_identifier:
+          type: string
+        group_name:
+          type: string
+        group_description:
+          type: string
+        group_icon:
+          type: string
+      example:
+        group_name: group_name
+        group_icon: group_icon
+        org_identifier: org_identifier
+        scope: ACCOUNT
+        group_identifier: group_identifier
+        org_name: org_name
+        project_name: project_name
+        project_identifier: project_identifier
+        group_description: group_description
+  responses:
+    EntityResponseBody:
+      description: Entity response body
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/EntityResponse"
+        application/yaml:
+          schema:
+            $ref: "#/components/schemas/EntityResponse"
+    EntityResponseBodyList:
+      description: List of Entity response body
+      headers:
+        X-Total-Elements:
+          description: Total number of elements returned in Paginated response.
+          style: simple
+          explode: false
+          schema:
+            type: integer
+        X-Page-Number:
+          description: Page number in Paginated response.
+          style: simple
+          explode: false
+          schema:
+            type: integer
+        X-Page-Size:
+          description: Maximum page size in Paginated response.
+          style: simple
+          explode: false
+          schema:
+            type: integer
+        Total-Owned:
+          description: Total number of owned entities.
+          style: simple
+          explode: false
+          schema:
+            type: integer
+        Total-Starred:
+          description: Total number of starred entities.
+          style: simple
+          explode: false
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/EntityResponse"
+            x-content-type: application/json
+        application/yaml:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/EntityResponse"
+    EntityVersionResponseBody:
+      description: Entity Version response body
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/EntityVersionResponse"
+        application/yaml:
+          schema:
+            $ref: "#/components/schemas/EntityVersionResponse"
+    EntityVersionResponseBodyList:
+      description: List of Entity Version response body
+      headers:
+        X-Total-Elements:
+          description: Total number of elements returned in Paginated response.
+          style: simple
+          explode: false
+          schema:
+            type: integer
+        X-Page-Number:
+          description: Page number in Paginated response.
+          style: simple
+          explode: false
+          schema:
+            type: integer
+        X-Page-Size:
+          description: Maximum page size in Paginated response.
+          style: simple
+          explode: false
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/EntityVersionResponse"
+            x-content-type: application/json
+        application/yaml:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/EntityVersionResponse"
+  parameters:
+    AccountHeader:
+      name: Harness-Account
+      in: header
+      description: "Identifier field of the account the resource is scoped to. This\
+        \ is required for Authorization methods other than the x-api-key header. If\
+        \ you are using the x-api-key header, this can be skipped."
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: string
+    OrgIdentifierQueryParam:
+      name: orgIdentifier
+      in: query
+      description: Organization identifier
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: string
+    ProjectIdentifierQueryParam:
+      name: projectIdentifier
+      in: query
+      description: Project identifier
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: string
+    KindQueryParam:
+      name: kind
+      in: query
+      description: Kinds on which the Entities are filtered.
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: string
+    KindParam:
+      name: kind
+      in: path
+      description: Kind
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    IdentifierParam:
+      name: identifier
+      in: path
+      description: Identifier
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    ScopeParam:
+      name: scope
+      in: path
+      description: Scope
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    VersionParam:
+      name: version
+      in: path
+      description: version
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    LimitWithRestriction:
+      name: limit
+      in: query
+      description: "Pagination: Number of items to return"
+      required: false
+      style: form
+      explode: true
+      schema:
+        maximum: 100
+        type: integer
+        default: 10
+    Page:
+      name: page
+      in: query
+      description: "Pagination page number strategy: Specify the page number within\
+        \ the paginated collection related to the number of items in each page\t"
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: integer
+    Sort:
+      name: sort
+      in: query
+      description: Parameter on the basis of which sorting is done.
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: string
+    SearchTerm:
+      name: search_term
+      in: query
+      description: This would be used to filter resources having attributes matching
+        the search term.
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: string
+    ResolvePlaceholdersQueryParam:
+      name: resolve_placeholders
+      in: query
+      description: This is used to return entities response with resolved placeholders
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: boolean
+        default: false
+  requestBodies:
+    EntityCreateRequestBody:
+      description: Entity Create Request Body
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/EntityCreateRequest"
+          examples:
+            example-entity:
+              value:
+                yaml: |
+                  apiVersion: harness.io/v1
+                  kind: component
+                  type: Service
+                  identifier: my-sample-service
+                  name: my-sample-service
+                  owner: sample-owner
+                  spec:
+                    lifecycle: experimental
+                    ownedBy:
+                      - group/sample-group
+                  metadata:
+                    description: My Sample service.
+                    annotations:
+                      backstage.io/source-location: url:https://github.com/sample/sample/tree/main/harness/sample/
+                      backstage.io/techdocs-ref: dir:.
+                    links:
+                      - title: Website
+                        url: http://my-sample-website.com
+                    tags:
+                      - my-sample
+                git_details:
+                  branch_name: branch
+                  file_path: /folder/file.json
+                  commit_message: Added Harness Git Experience
+                  base_branch: old_branch
+                  connector_ref: git_connector
+                  store_type: REMOTE
+                  repo_name: example_repository
+                  is_harness_code_repo: false
+      required: true
+    EntityUpdateRequestBody:
+      description: Entity Update Request Body
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/EntityUpdateRequest"
+          examples:
+            example-entity:
+              value:
+                yaml: |
+                  apiVersion: harness.io/v1
+                  kind: component
+                  type: Service
+                  identifier: my-sample-service
+                  name: my-sample-service
+                  owner: sample-owner
+                  spec:
+                    lifecycle: experimental
+                    ownedBy:
+                      - group/sample-group
+                  metadata:
+                    description: My Sample service.
+                    annotations:
+                      backstage.io/source-location: url:https://github.com/sample/sample/tree/main/harness/sample/
+                      backstage.io/techdocs-ref: dir:.
+                    links:
+                      - title: Website
+                        url: http://my-sample-website.com
+                    tags:
+                      - my-sample
+                git_details:
+                  branch_name: branch
+                  commit_message: Added Harness Git Experience
+                  last_object_id: abcdXYZ
+                  base_branch: old_branch
+                  last_commit_id: abcdXYZ
+                  connector_ref: git_connector
+                  store_type: REMOTE
+                  repo_name: example_repository
+                  is_harness_code_repo: false
+      required: true
+    EntityVersionCreateRequestBody:
+      description: Entity Version Create Request Body
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/EntityVersionCreateRequest"
+          examples:
+            example-entity:
+              value:
+                version: v1.0.0
+                description: Sample entity version
+                deprecated: false
+                stable: false
+                yaml: |
+                  apiVersion: harness.io/v1
+                  kind: component
+                  type: Service
+                  identifier: my-sample-service
+                  name: my-sample-service
+                  owner: sample-owner
+                  spec:
+                    lifecycle: experimental
+                    ownedBy:
+                      - group/sample-group
+                  metadata:
+                    description: My Sample service.
+                    annotations:
+                      backstage.io/source-location: url:https://github.com/sample/sample/tree/main/harness/sample/
+                      backstage.io/techdocs-ref: dir:.
+                    links:
+                      - title: Website
+                        url: http://my-sample-website.com
+                    tags:
+                      - my-sample
+      required: true
+    EntityVersionUpdateRequestBody:
+      description: Entity Version Update Request Body
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/EntityVersionUpdateRequest"
+      required: true
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header
