@@ -93,6 +93,7 @@ type ClusterOrchConfig struct {
 
 type ClusterOrchestratorUserConfig struct {
 	ClusterEndPoint string `json:"cluster_endpoint"`
+	Region          string `json:"region,omitempty"`
 }
 
 type ClusterOrchestrator struct {
