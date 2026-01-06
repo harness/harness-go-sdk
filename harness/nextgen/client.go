@@ -204,6 +204,8 @@ type APIClient struct {
 
 	SecretManagersApi *SecretManagersApiService
 
+	GcpProjectsApi *GcpProjectsApiService
+
 	SecretsApi *SecretsApiService
 
 	ServiceAccountApi *ServiceAccountApiService
@@ -349,6 +351,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SCMApi = (*SCMApiService)(&c.common)
 	c.SMTPApi = (*SMTPApiService)(&c.common)
 	c.SecretManagersApi = (*SecretManagersApiService)(&c.common)
+	c.GcpProjectsApi = (*GcpProjectsApiService)(&c.common)
 	c.SecretsApi = (*SecretsApiService)(&c.common)
 	c.ServiceAccountApi = (*ServiceAccountApiService)(&c.common)
 	c.ServicesApi = (*ServicesApiService)(&c.common)
