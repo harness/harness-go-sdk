@@ -1,0 +1,1169 @@
+openapi: 3.0.3
+info:
+  title: API Specification
+  version: 0.0.0
+servers:
+- url: /gateway/po
+tags:
+- name: Infrastructure
+  description: The infrastructure service for working with infrastructures
+paths:
+  /api/infrastructures/{id}:
+    get:
+      tags:
+      - Infrastructure
+      summary: Get Infrastructure
+      description: Endpoint for retrieving a specific infrastructure.
+      operationId: Infrastructure#Get
+      parameters:
+      - name: orgIdentifier
+        in: query
+        description: Org is the organization identifier.
+        required: false
+        allowEmptyValue: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          description: Org is the organization identifier.
+      - name: projectIdentifier
+        in: query
+        description: Project is the project identifier.
+        required: false
+        allowEmptyValue: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          description: Project is the project identifier.
+      - name: id
+        in: path
+        description: ID of the infrastructure
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          description: ID of the infrastructure
+      - name: Harness-Account
+        in: header
+        description: Account is the internal customer account ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          maxLength: 128
+          minLength: 1
+          type: string
+          description: Account is the internal customer account ID.
+      responses:
+        "200":
+          description: OK response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InfrastructureOutput"
+        "400":
+          description: "bad_request: Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "not_found: Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: "already_exists: Already Exists"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "internal_error: Internal Server Error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "501":
+          description: "unimplemented: Not Implemented"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+      - x-api-key_header_Authorization: []
+components:
+  schemas:
+    InfrastructureOutput:
+      required:
+      - activeExecutions
+      - identifier
+      - state
+      type: object
+      properties:
+        activeExecutions:
+          type: array
+          items:
+            $ref: "#/components/schemas/InfrastructureExecution"
+        identifier:
+          type: string
+          description: ID of the infrastructure
+        spec:
+          $ref: "#/components/schemas/InfrastructureSpec"
+        state:
+          $ref: "#/components/schemas/InfrastructureState"
+      example:
+        identifier: identifier
+        activeExecutions:
+        - outputs:
+            key:
+              description: description
+              value: ""
+          stoppedAtMs: 1
+          startedAt: startedAt
+          completedInstanceIds:
+          - completedInstanceIds
+          - completedInstanceIds
+          message: message
+          pipelineUrl: pipelineUrl
+          specRevision: 0
+          spec:
+            outputs:
+              key: null
+            identifier: identifier
+            metadata: ""
+            instances:
+            - outputs:
+                key:
+                  description: description
+                  type: string
+                  value: ""
+              identifier: identifier
+              metadata: ""
+              targetState:
+                state: unknown
+              implementation:
+                values: ""
+                backend: backend
+                steps:
+                  resume: ""
+                  apply: ""
+                  create: ""
+                  destroy: ""
+                  delete: ""
+                  pause: ""
+              dependencies:
+                key:
+                  identifier: identifier
+                  optional: true
+            - outputs:
+                key:
+                  description: description
+                  type: string
+                  value: ""
+              identifier: identifier
+              metadata: ""
+              targetState:
+                state: unknown
+              implementation:
+                values: ""
+                backend: backend
+                steps:
+                  resume: ""
+                  apply: ""
+                  create: ""
+                  destroy: ""
+                  delete: ""
+                  pause: ""
+              dependencies:
+                key:
+                  identifier: identifier
+                  optional: true
+            targetState: null
+            ttl: ttl
+          stoppedAt: stoppedAt
+          infrastructureId: infrastructureId
+          createdBy:
+            name: name
+            email: email
+          instanceIds:
+          - instanceIds
+          - instanceIds
+          targetState: null
+          approvals:
+          - pipelineApprovals:
+            - pipelineExecutionId: pipelineExecutionId
+              approvalID: approvalID
+              deadline: deadline
+              message: message
+              pipelineUrl: pipelineUrl
+              projectID: projectID
+              orgID: orgID
+              pipelineId: pipelineId
+            - pipelineExecutionId: pipelineExecutionId
+              approvalID: approvalID
+              deadline: deadline
+              message: message
+              pipelineUrl: pipelineUrl
+              projectID: projectID
+              orgID: orgID
+              pipelineId: pipelineId
+            instanceId: instanceId
+          - pipelineApprovals:
+            - pipelineExecutionId: pipelineExecutionId
+              approvalID: approvalID
+              deadline: deadline
+              message: message
+              pipelineUrl: pipelineUrl
+              projectID: projectID
+              orgID: orgID
+              pipelineId: pipelineId
+            - pipelineExecutionId: pipelineExecutionId
+              approvalID: approvalID
+              deadline: deadline
+              message: message
+              pipelineUrl: pipelineUrl
+              projectID: projectID
+              orgID: orgID
+              pipelineId: pipelineId
+            instanceId: instanceId
+          progress: null
+          id: id
+          events:
+          - createdAt: createdAt
+            event:
+              progress: unknown
+            message: message
+          - createdAt: createdAt
+            event:
+              progress: unknown
+            message: message
+          startedAtMs: 6
+        - outputs:
+            key:
+              description: description
+              value: ""
+          stoppedAtMs: 1
+          startedAt: startedAt
+          completedInstanceIds:
+          - completedInstanceIds
+          - completedInstanceIds
+          message: message
+          pipelineUrl: pipelineUrl
+          specRevision: 0
+          spec:
+            outputs:
+              key: null
+            identifier: identifier
+            metadata: ""
+            instances:
+            - outputs:
+                key:
+                  description: description
+                  type: string
+                  value: ""
+              identifier: identifier
+              metadata: ""
+              targetState:
+                state: unknown
+              implementation:
+                values: ""
+                backend: backend
+                steps:
+                  resume: ""
+                  apply: ""
+                  create: ""
+                  destroy: ""
+                  delete: ""
+                  pause: ""
+              dependencies:
+                key:
+                  identifier: identifier
+                  optional: true
+            - outputs:
+                key:
+                  description: description
+                  type: string
+                  value: ""
+              identifier: identifier
+              metadata: ""
+              targetState:
+                state: unknown
+              implementation:
+                values: ""
+                backend: backend
+                steps:
+                  resume: ""
+                  apply: ""
+                  create: ""
+                  destroy: ""
+                  delete: ""
+                  pause: ""
+              dependencies:
+                key:
+                  identifier: identifier
+                  optional: true
+            targetState: null
+            ttl: ttl
+          stoppedAt: stoppedAt
+          infrastructureId: infrastructureId
+          createdBy:
+            name: name
+            email: email
+          instanceIds:
+          - instanceIds
+          - instanceIds
+          targetState: null
+          approvals:
+          - pipelineApprovals:
+            - pipelineExecutionId: pipelineExecutionId
+              approvalID: approvalID
+              deadline: deadline
+              message: message
+              pipelineUrl: pipelineUrl
+              projectID: projectID
+              orgID: orgID
+              pipelineId: pipelineId
+            - pipelineExecutionId: pipelineExecutionId
+              approvalID: approvalID
+              deadline: deadline
+              message: message
+              pipelineUrl: pipelineUrl
+              projectID: projectID
+              orgID: orgID
+              pipelineId: pipelineId
+            instanceId: instanceId
+          - pipelineApprovals:
+            - pipelineExecutionId: pipelineExecutionId
+              approvalID: approvalID
+              deadline: deadline
+              message: message
+              pipelineUrl: pipelineUrl
+              projectID: projectID
+              orgID: orgID
+              pipelineId: pipelineId
+            - pipelineExecutionId: pipelineExecutionId
+              approvalID: approvalID
+              deadline: deadline
+              message: message
+              pipelineUrl: pipelineUrl
+              projectID: projectID
+              orgID: orgID
+              pipelineId: pipelineId
+            instanceId: instanceId
+          progress: null
+          id: id
+          events:
+          - createdAt: createdAt
+            event:
+              progress: unknown
+            message: message
+          - createdAt: createdAt
+            event:
+              progress: unknown
+            message: message
+          startedAtMs: 6
+        state:
+          createdAt: createdAt
+          driftState:
+            driftExecution:
+              pipelineApprovals:
+              - null
+              - null
+              stoppedAt: stoppedAt
+              startedBy: null
+              executionState:
+                state: unknown
+              startedAt: startedAt
+              message: message
+              pipelineUrl: pipelineUrl
+            drifted: true
+          createdAtMs: 7
+          updatedAtMs: 4
+          sessionStartedAt: sessionStartedAt
+          blueprintState:
+            stable: true
+            deprecated: true
+            deprecatedAt: deprecatedAt
+            changed: true
+            deprecatedAtMs: 2
+          expiresAtMs: 9
+          sessionEndedAt: sessionEndedAt
+          sessionEndedAtMs: 3
+          sessionStartedAtMs: 2
+          expiresAt: expiresAt
+          updatedAt: updatedAt
+        spec:
+          createdAt: createdAt
+          createdAtMs: 5
+          infrastructure: null
+          revision: 5
+    InfrastructureSpec:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          description: "DEPRECATED: Use createdAtMs instead. RFC3339 timestamp when\
+            \ spec was created"
+        createdAtMs:
+          type: integer
+          description: Unix timestamp in milliseconds when spec was created
+          format: int64
+        infrastructure:
+          $ref: "#/components/schemas/Infrastructure"
+        revision:
+          type: integer
+          format: int64
+      example:
+        createdAt: createdAt
+        createdAtMs: 5
+        infrastructure: null
+        revision: 5
+    InfrastructureState:
+      type: object
+      properties:
+        blueprintState:
+          $ref: "#/components/schemas/BlueprintState"
+        createdAt:
+          type: string
+          description: "DEPRECATED: Use createdAtMs instead. RFC3339 date when spec\
+            \ was created"
+        createdAtMs:
+          type: integer
+          description: Unix timestamp in milliseconds when spec was created
+          format: int64
+        driftState:
+          $ref: "#/components/schemas/Drift"
+        expiresAt:
+          type: string
+          description: "DEPRECATED: Use expiresAtMs instead. RFC3339 timestamp when\
+            \ spec expires"
+        expiresAtMs:
+          type: integer
+          description: Unix timestamp in milliseconds when spec expires
+          format: int64
+        sessionEndedAt:
+          type: string
+          description: "DEPRECATED: Use sessionEndedAtMs instead. RFC3339 timestamp\
+            \ when session ended"
+        sessionEndedAtMs:
+          type: integer
+          description: Unix timestamp in milliseconds when session ended
+          format: int64
+        sessionStartedAt:
+          type: string
+          description: "DEPRECATED: Use sessionStartedAtMs instead. RFC3339 timestamp\
+            \ when session started"
+        sessionStartedAtMs:
+          type: integer
+          description: Unix timestamp in milliseconds when session started
+          format: int64
+        updatedAt:
+          type: string
+          description: "DEPRECATED: Use updatedAtMs instead. RFC3339 date when spec\
+            \ was updated"
+        updatedAtMs:
+          type: integer
+          description: Unix timestamp in milliseconds when spec was updated
+          format: int64
+      example:
+        createdAt: createdAt
+        driftState:
+          driftExecution:
+            pipelineApprovals:
+            - null
+            - null
+            stoppedAt: stoppedAt
+            startedBy: null
+            executionState:
+              state: unknown
+            startedAt: startedAt
+            message: message
+            pipelineUrl: pipelineUrl
+          drifted: true
+        createdAtMs: 7
+        updatedAtMs: 4
+        sessionStartedAt: sessionStartedAt
+        blueprintState:
+          stable: true
+          deprecated: true
+          deprecatedAt: deprecatedAt
+          changed: true
+          deprecatedAtMs: 2
+        expiresAtMs: 9
+        sessionEndedAt: sessionEndedAt
+        sessionEndedAtMs: 3
+        sessionStartedAtMs: 2
+        expiresAt: expiresAt
+        updatedAt: updatedAt
+    InfrastructureExecution:
+      required:
+      - completedInstanceIds
+      - id
+      - infrastructureId
+      - instanceIds
+      - progress
+      - spec
+      - specRevision
+      - startedAt
+      - startedAtMs
+      - targetState
+      type: object
+      properties:
+        approvals:
+          type: array
+          items:
+            $ref: "#/components/schemas/InstanceApproval"
+        completedInstanceIds:
+          type: array
+          description: Instances fully updated by the execution
+          items:
+            type: string
+        createdBy:
+          $ref: "#/components/schemas/UserInfo"
+        events:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExecutionEvent"
+        id:
+          type: string
+        infrastructureId:
+          type: string
+        instanceIds:
+          type: array
+          description: Instances updated by the execution
+          items:
+            type: string
+        message:
+          type: string
+          description: Message associated with the execution
+        outputs:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/ExecutionOutput"
+          description: Outputs of the infrastructure execution
+        pipelineUrl:
+          type: string
+        progress:
+          $ref: "#/components/schemas/InfrastructureProgress"
+        spec:
+          $ref: "#/components/schemas/Infrastructure"
+        specRevision:
+          type: integer
+          format: int64
+        startedAt:
+          type: string
+          description: "DEPRECATED: Use startedAtMs instead. RFC3339 timestamp when\
+            \ execution started"
+        startedAtMs:
+          type: integer
+          description: Unix timestamp in milliseconds when execution started
+          format: int64
+        stoppedAt:
+          type: string
+          description: "DEPRECATED: Use stoppedAtMs instead. RFC3339 timestamp when\
+            \ execution stopped"
+        stoppedAtMs:
+          type: integer
+          description: Unix timestamp in milliseconds when execution stopped
+          format: int64
+        targetState:
+          $ref: "#/components/schemas/State"
+      example:
+        outputs:
+          key:
+            description: description
+            value: ""
+        stoppedAtMs: 1
+        startedAt: startedAt
+        completedInstanceIds:
+        - completedInstanceIds
+        - completedInstanceIds
+        message: message
+        pipelineUrl: pipelineUrl
+        specRevision: 0
+        spec:
+          outputs:
+            key: null
+          identifier: identifier
+          metadata: ""
+          instances:
+          - outputs:
+              key:
+                description: description
+                type: string
+                value: ""
+            identifier: identifier
+            metadata: ""
+            targetState:
+              state: unknown
+            implementation:
+              values: ""
+              backend: backend
+              steps:
+                resume: ""
+                apply: ""
+                create: ""
+                destroy: ""
+                delete: ""
+                pause: ""
+            dependencies:
+              key:
+                identifier: identifier
+                optional: true
+          - outputs:
+              key:
+                description: description
+                type: string
+                value: ""
+            identifier: identifier
+            metadata: ""
+            targetState:
+              state: unknown
+            implementation:
+              values: ""
+              backend: backend
+              steps:
+                resume: ""
+                apply: ""
+                create: ""
+                destroy: ""
+                delete: ""
+                pause: ""
+            dependencies:
+              key:
+                identifier: identifier
+                optional: true
+          targetState: null
+          ttl: ttl
+        stoppedAt: stoppedAt
+        infrastructureId: infrastructureId
+        createdBy:
+          name: name
+          email: email
+        instanceIds:
+        - instanceIds
+        - instanceIds
+        targetState: null
+        approvals:
+        - pipelineApprovals:
+          - pipelineExecutionId: pipelineExecutionId
+            approvalID: approvalID
+            deadline: deadline
+            message: message
+            pipelineUrl: pipelineUrl
+            projectID: projectID
+            orgID: orgID
+            pipelineId: pipelineId
+          - pipelineExecutionId: pipelineExecutionId
+            approvalID: approvalID
+            deadline: deadline
+            message: message
+            pipelineUrl: pipelineUrl
+            projectID: projectID
+            orgID: orgID
+            pipelineId: pipelineId
+          instanceId: instanceId
+        - pipelineApprovals:
+          - pipelineExecutionId: pipelineExecutionId
+            approvalID: approvalID
+            deadline: deadline
+            message: message
+            pipelineUrl: pipelineUrl
+            projectID: projectID
+            orgID: orgID
+            pipelineId: pipelineId
+          - pipelineExecutionId: pipelineExecutionId
+            approvalID: approvalID
+            deadline: deadline
+            message: message
+            pipelineUrl: pipelineUrl
+            projectID: projectID
+            orgID: orgID
+            pipelineId: pipelineId
+          instanceId: instanceId
+        progress: null
+        id: id
+        events:
+        - createdAt: createdAt
+          event:
+            progress: unknown
+          message: message
+        - createdAt: createdAt
+          event:
+            progress: unknown
+          message: message
+        startedAtMs: 6
+    Infrastructure:
+      required:
+      - identifier
+      - targetState
+      type: object
+      properties:
+        identifier:
+          type: string
+        instances:
+          type: array
+          items:
+            $ref: "#/components/schemas/InfraInstance"
+        metadata:
+          type: object
+          additionalProperties: true
+        outputs:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/Output"
+        targetState:
+          $ref: "#/components/schemas/State"
+        ttl:
+          type: string
+      additionalProperties: false
+      example:
+        outputs:
+          key: null
+        identifier: identifier
+        metadata: ""
+        instances:
+        - outputs:
+            key:
+              description: description
+              type: string
+              value: ""
+          identifier: identifier
+          metadata: ""
+          targetState:
+            state: unknown
+          implementation:
+            values: ""
+            backend: backend
+            steps:
+              resume: ""
+              apply: ""
+              create: ""
+              destroy: ""
+              delete: ""
+              pause: ""
+          dependencies:
+            key:
+              identifier: identifier
+              optional: true
+        - outputs:
+            key:
+              description: description
+              type: string
+              value: ""
+          identifier: identifier
+          metadata: ""
+          targetState:
+            state: unknown
+          implementation:
+            values: ""
+            backend: backend
+            steps:
+              resume: ""
+              apply: ""
+              create: ""
+              destroy: ""
+              delete: ""
+              pause: ""
+          dependencies:
+            key:
+              identifier: identifier
+              optional: true
+        targetState: null
+        ttl: ttl
+    Error:
+      required:
+      - message
+      - name
+      type: object
+      properties:
+        code:
+          type: string
+        details:
+          type: object
+          additionalProperties:
+            type: string
+        message:
+          type: string
+        name:
+          type: string
+    BlueprintState:
+      type: object
+      properties:
+        changed:
+          type: boolean
+          description: true if the blueprint yaml has changed
+        deprecated:
+          type: boolean
+          description: true if the blueprint is deprecated
+        deprecatedAt:
+          type: string
+          description: "DEPRECATED: Use deprecatedAtMs instead. RFC3339 timestamp\
+            \ when blueprint was deprecated"
+        deprecatedAtMs:
+          type: integer
+          description: Unix timestamp in milliseconds when blueprint was deprecated
+          format: int64
+        stable:
+          type: boolean
+          description: true if the blueprint yaml is stable
+      example:
+        stable: true
+        deprecated: true
+        deprecatedAt: deprecatedAt
+        changed: true
+        deprecatedAtMs: 2
+    Drift:
+      required:
+      - drifted
+      type: object
+      properties:
+        driftExecution:
+          $ref: "#/components/schemas/DriftExecution"
+        drifted:
+          type: boolean
+          description: true if the infrastructure is drifted
+      example:
+        driftExecution:
+          pipelineApprovals:
+          - null
+          - null
+          stoppedAt: stoppedAt
+          startedBy: null
+          executionState:
+            state: unknown
+          startedAt: startedAt
+          message: message
+          pipelineUrl: pipelineUrl
+        drifted: true
+    InstanceApproval:
+      required:
+      - instanceId
+      - pipelineApprovals
+      type: object
+      properties:
+        instanceId:
+          type: string
+        pipelineApprovals:
+          type: array
+          items:
+            $ref: "#/components/schemas/PipelineApproval"
+      example:
+        pipelineApprovals:
+        - pipelineExecutionId: pipelineExecutionId
+          approvalID: approvalID
+          deadline: deadline
+          message: message
+          pipelineUrl: pipelineUrl
+          projectID: projectID
+          orgID: orgID
+          pipelineId: pipelineId
+        - pipelineExecutionId: pipelineExecutionId
+          approvalID: approvalID
+          deadline: deadline
+          message: message
+          pipelineUrl: pipelineUrl
+          projectID: projectID
+          orgID: orgID
+          pipelineId: pipelineId
+        instanceId: instanceId
+    PipelineApproval:
+      required:
+      - approvalID
+      - message
+      - orgID
+      - pipelineExecutionId
+      - projectID
+      type: object
+      properties:
+        approvalID:
+          type: string
+        deadline:
+          type: string
+        message:
+          type: string
+        orgID:
+          type: string
+        pipelineExecutionId:
+          type: string
+        pipelineId:
+          type: string
+        pipelineUrl:
+          type: string
+        projectID:
+          type: string
+      example:
+        pipelineExecutionId: pipelineExecutionId
+        approvalID: approvalID
+        deadline: deadline
+        message: message
+        pipelineUrl: pipelineUrl
+        projectID: projectID
+        orgID: orgID
+        pipelineId: pipelineId
+    UserInfo:
+      type: object
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+      example:
+        name: name
+        email: email
+    ExecutionEvent:
+      required:
+      - createdAt
+      - event
+      type: object
+      properties:
+        createdAt:
+          type: string
+        event:
+          $ref: "#/components/schemas/InfrastructureProgress"
+        message:
+          type: string
+          description: Message associated with the event
+      example:
+        createdAt: createdAt
+        event:
+          progress: unknown
+        message: message
+    ExecutionOutput:
+      required:
+      - value
+      type: object
+      properties:
+        description:
+          type: string
+          description: Description of the output
+        value:
+          description: Value of the output
+      additionalProperties: false
+      example:
+        description: description
+        value: ""
+    InfrastructureProgress:
+      required:
+      - progress
+      type: object
+      properties:
+        progress:
+          type: string
+          enum:
+          - unknown
+          - pending
+          - processing
+          - done
+          - failed
+          - aborted
+          - deleted
+          - replaced
+      example:
+        progress: unknown
+    State:
+      required:
+      - state
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - unknown
+          - inactive
+          - instantiated
+          - running
+          - paused
+      example:
+        state: unknown
+    InfraInstance:
+      required:
+      - identifier
+      type: object
+      properties:
+        dependencies:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/Dependency"
+        identifier:
+          type: string
+        implementation:
+          $ref: "#/components/schemas/Implementation"
+        metadata:
+          type: object
+          additionalProperties: true
+        outputs:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/Output"
+        targetState:
+          $ref: "#/components/schemas/State"
+      additionalProperties: false
+      example:
+        outputs:
+          key:
+            description: description
+            type: string
+            value: ""
+        identifier: identifier
+        metadata: ""
+        targetState:
+          state: unknown
+        implementation:
+          values: ""
+          backend: backend
+          steps:
+            resume: ""
+            apply: ""
+            create: ""
+            destroy: ""
+            delete: ""
+            pause: ""
+        dependencies:
+          key:
+            identifier: identifier
+            optional: true
+    Output:
+      required:
+      - value
+      type: object
+      properties:
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - string
+          - integer
+          - number
+          - object
+          - boolean
+          - array
+        value: {}
+      additionalProperties: false
+      example:
+        description: description
+        type: string
+        value: ""
+    DriftExecution:
+      required:
+      - executionState
+      - startedAt
+      type: object
+      properties:
+        executionState:
+          $ref: "#/components/schemas/PipelineExecutionState"
+        message:
+          type: string
+        pipelineApprovals:
+          type: array
+          items:
+            $ref: "#/components/schemas/PipelineApproval"
+        pipelineUrl:
+          type: string
+        startedAt:
+          type: string
+        startedBy:
+          $ref: "#/components/schemas/UserInfo"
+        stoppedAt:
+          type: string
+      example:
+        pipelineApprovals:
+        - null
+        - null
+        stoppedAt: stoppedAt
+        startedBy: null
+        executionState:
+          state: unknown
+        startedAt: startedAt
+        message: message
+        pipelineUrl: pipelineUrl
+    Dependency:
+      required:
+      - identifier
+      type: object
+      properties:
+        identifier:
+          type: string
+        optional:
+          type: boolean
+      additionalProperties: false
+      example:
+        identifier: identifier
+        optional: true
+    Implementation:
+      required:
+      - backend
+      - steps
+      type: object
+      properties:
+        backend:
+          type: string
+        steps:
+          $ref: "#/components/schemas/Steps"
+        values:
+          type: object
+          additionalProperties: true
+      additionalProperties: false
+      example:
+        values: ""
+        backend: backend
+        steps:
+          resume: ""
+          apply: ""
+          create: ""
+          destroy: ""
+          delete: ""
+          pause: ""
+    PipelineExecutionState:
+      required:
+      - state
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - unknown
+          - pending
+          - running
+          - aborted
+          - failed
+          - succeeded
+      example:
+        state: unknown
+    Steps:
+      required:
+      - apply
+      - destroy
+      type: object
+      properties:
+        apply:
+          type: object
+          additionalProperties: true
+        create:
+          type: object
+          additionalProperties: true
+        delete:
+          type: object
+          additionalProperties: true
+        destroy:
+          type: object
+          additionalProperties: true
+        pause:
+          type: object
+          additionalProperties: true
+        resume:
+          type: object
+          additionalProperties: true
+      additionalProperties: false
+      example:
+        resume: ""
+        apply: ""
+        create: ""
+        destroy: ""
+        delete: ""
+        pause: ""
