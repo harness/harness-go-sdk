@@ -634,11 +634,10 @@ Updates the specified IP Allowlist config
 */
 
 type IPAllowlistApiUpdateIpAllowlistConfigOpts struct {
-	Body           optional.Interface
 	HarnessAccount optional.String
 }
 
-func (a *IPAllowlistApiService) UpdateIpAllowlistConfig(ctx context.Context, ipConfigIdentifier string, localVarOptionals *IPAllowlistApiUpdateIpAllowlistConfigOpts) (IpAllowlistConfigResponse, *http.Response, error) {
+func (a *IPAllowlistApiService) UpdateIpAllowlistConfig(ctx context.Context, ipConfigIdentifier string, body IpAllowlistConfigRequest, localVarOptionals *IPAllowlistApiUpdateIpAllowlistConfigOpts) (IpAllowlistConfigResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Put")
 		localVarPostBody    interface{}
@@ -676,11 +675,8 @@ func (a *IPAllowlistApiService) UpdateIpAllowlistConfig(ctx context.Context, ipC
 		localVarHeaderParams["Harness-Account"] = parameterToString(localVarOptionals.HarnessAccount.Value(), "")
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
+	localVarPostBody = &body
 
-		localVarOptionalBody := localVarOptionals.Body.Value()
-		localVarPostBody = &localVarOptionalBody
-	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
