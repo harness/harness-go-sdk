@@ -1214,7 +1214,7 @@ func (a *ExecuteApiService) PostPipelineExecuteWithInputSetYaml(ctx context.Cont
 		localVarQueryParams.Add("useFQNIfError", parameterToString(localVarOptionals.UseFQNIfError.Value(), ""))
 	}
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{"application/json", "application/yaml"}
+	localVarHttpContentTypes := []string{"application/yaml"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
@@ -1663,7 +1663,8 @@ func (a *ExecuteApiService) RePostPipelineExecuteWithInputSetYaml(ctx context.Co
 		localVarQueryParams.Add("useFQNIfError", parameterToString(localVarOptionals.UseFQNIfError.Value(), ""))
 	}
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{"application/json", "application/yaml"}
+	// For YAML InputSets, we must use application/yaml
+	localVarHttpContentTypes := []string{"application/yaml"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)

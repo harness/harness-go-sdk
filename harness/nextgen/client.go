@@ -681,6 +681,11 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 		bodyBuf = &bytes.Buffer{}
 	}
 
+	// Dereference pointer to interface if needed
+	if ptr, ok := body.(*interface{}); ok && ptr != nil {
+		body = *ptr
+	}
+
 	if reader, ok := body.(io.Reader); ok {
 		_, err = bodyBuf.ReadFrom(reader)
 	} else if b, ok := body.([]byte); ok {
