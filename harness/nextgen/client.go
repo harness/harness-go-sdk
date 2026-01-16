@@ -156,6 +156,8 @@ type APIClient struct {
 
 	InviteApi *InviteApiService
 
+	IPAllowlistApiService *IPAllowlistApiService
+
 	LicensesApi *LicensesApiService
 
 	MonitoredServiceApi *MonitoredServiceApiService
@@ -324,6 +326,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.InfrastructuresApi = (*InfrastructuresApiService)(&c.common)
 	c.InputSetsApi = (*InputSetsApiService)(&c.common)
 	c.InviteApi = (*InviteApiService)(&c.common)
+	c.IPAllowlistApiService = (*IPAllowlistApiService)(&c.common)
 	c.LicensesApi = (*LicensesApiService)(&c.common)
 	c.MonitoredServiceApi = (*MonitoredServiceApiService)(&c.common)
 	c.NotificationAttachmentsApi = (*NotificationAttachmentsApiService)(&c.common)
