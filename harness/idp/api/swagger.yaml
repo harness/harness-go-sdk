@@ -521,6 +521,190 @@ paths:
           description: No Content
       security:
       - x-api-key: []
+  /v1/entities/import:
+    post:
+      tags:
+      - Entities
+      summary: Import an Entity
+      description: Import an Entity.
+      operationId: import-entity
+      parameters:
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        $ref: "#/components/requestBodies/GitImportRequestBody"
+      responses:
+        "201":
+          description: Entity response body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityResponse"
+            application/yaml:
+              schema:
+                $ref: "#/components/schemas/EntityResponse"
+      security:
+      - x-api-key: []
+  /v1/entities/move/{scope}/{kind}/{identifier}:
+    post:
+      tags:
+      - Entities
+      summary: Move an Entity
+      description: Move an Entity.
+      operationId: move-entity
+      parameters:
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: scope
+        in: path
+        description: Scope
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: kind
+        in: path
+        description: Kind
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        description: Identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        $ref: "#/components/requestBodies/EntityMoveRequestBody"
+      responses:
+        "201":
+          description: 'Default response for Save/Edit operations '
+          x-stoplight:
+            id: 4dbdqgfzqv8nz
+      security:
+      - x-api-key: []
+  /v1/entities/git-metadata/{scope}/{kind}/{identifier}:
+    put:
+      tags:
+      - Entities
+      summary: Update GitMetadata for Remote Entities
+      description: Update GitMetadata for Remote Entities
+      operationId: update-git-metadata
+      parameters:
+      - name: orgIdentifier
+        in: query
+        description: Organization identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: scope
+        in: path
+        description: Scope
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: kind
+        in: path
+        description: Kind
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        description: Identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: "Identifier field of the account the resource is scoped to. This\
+          \ is required for Authorization methods other than the x-api-key header.\
+          \ If you are using the x-api-key header, this can be skipped."
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        $ref: "#/components/requestBodies/GitMetadataUpdateRequestBody"
+      responses:
+        "200":
+          description: 'Default response for Save/Edit operations '
+          x-stoplight:
+            id: 4dbdqgfzqv8nz
+      security:
+      - x-api-key: []
+      x-stoplight:
+        id: 2uv1mspdrbzvj
   /v1/entities/versions:
     post:
       tags:
@@ -1931,6 +2115,104 @@ components:
         project_name: project_name
         project_identifier: project_identifier
         group_description: group_description
+    GitImportDetails:
+      title: Import Git Details
+      type: object
+      properties:
+        connector_ref:
+          type: string
+        repo_name:
+          type: string
+        branch_name:
+          type: string
+        file_path:
+          type: string
+        is_harness_code_repo:
+          type: boolean
+      description: Parameters related to importing an entity for Git.
+      x-stoplight:
+        id: 2ij8fppk6n5pq
+    EntityMoveRequest:
+      title: EntityMoveRequest
+      required:
+      - entity_move_operation_type
+      - git_details
+      type: object
+      properties:
+        git_details:
+          $ref: "#/components/schemas/GitMoveDetails"
+        entity_move_operation_type:
+          $ref: "#/components/schemas/EntityMoveOperationType"
+      description: Request body for moving an entity
+    EntityMoveOperationType:
+      type: string
+      description: Operation type to move the entity
+      enum:
+      - INLINE_TO_REMOTE
+      - REMOTE_TO_INLINE
+      x-stoplight:
+        id: 2x10v7rnqfd1z
+    GitMoveDetails:
+      title: Move Git Details
+      required:
+      - branch_name
+      - connector_ref
+      - file_path
+      - repo_name
+      type: object
+      properties:
+        branch_name:
+          type: string
+          description: "Name of the branch. When moving an inline pipeline or a remote\
+            \ pipeline, this branch is where the remote entity is created or fetched."
+        file_path:
+          type: string
+          description: File path of the entity in the repository.
+        commit_message:
+          type: string
+          description: Merge commit message.
+        base_branch:
+          type: string
+          description: Default branch name. This checks out the branch titled branch_name
+        connector_ref:
+          type: string
+          description: Harness connector id used for entity CRUD operations
+        repo_name:
+          type: string
+          description: Name of the repository.
+        is_harness_code_repo:
+          type: boolean
+          description: Is Git Experience repo harness code.
+      description: Parameters related to moving an entity for Git Experience.
+      x-stoplight:
+        id: ua9qwi7im72e0
+      x-examples:
+        example-create-git:
+          branch_name: branch
+          file_path: /folder/file.json
+          commit_message: Added Harness Git Experience
+          base_branch: old_branch
+          connector_ref: git_connector
+          repo_name: example_repository
+          is_harness_code_repo: false
+    GitMetadataUpdateRequest:
+      title: GitMetadataUpdateRequest
+      type: object
+      properties:
+        connector_ref:
+          type: string
+          description: Harness connector id used for entity CRUD operations
+        repo_name:
+          type: string
+          description: Name of the repository.
+        file_path:
+          type: string
+          description: File path of the entity in the repository.
+        branch_name:
+          type: string
+          description: Name of the branch.
+      x-stoplight:
+        id: bpd31demfes1n
   responses:
     EntityResponseBody:
       description: Entity response body
@@ -2028,6 +2310,10 @@ components:
             type: array
             items:
               $ref: "#/components/schemas/EntityVersionResponse"
+    DefaultSaveResponse:
+      description: 'Default response for Save/Edit operations '
+      x-stoplight:
+        id: 4dbdqgfzqv8nz
   parameters:
     AccountHeader:
       name: Harness-Account
@@ -2154,6 +2440,44 @@ components:
         type: boolean
         default: false
   requestBodies:
+    GitMetadataUpdateRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/GitMetadataUpdateRequest"
+          x-examples:
+            example-git-metadata-update:
+              branch_name: branch
+              file_path: /folder/file.json
+              connector_ref: git_connector
+              repo_name: example_repository
+      required: true
+    EntityMoveRequestBody:
+      description: Entity Move Request Body
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/EntityMoveRequest"
+          examples:
+            example-move-entity:
+              value:
+                git_details:
+                  branch_name: branch
+                  file_path: /folder/file.json
+                  commit_message: Added Harness Git Experience
+                  base_branch: old_branch
+                  connector_ref: git_connector
+                  repo_name: example_repository
+                  is_harness_code_repo: false
+                entity_move_operation_type: INLINE_TO_REMOTE
+      required: true
+    GitImportRequestBody:
+      description: Git Import Request Body
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/GitImportDetails"
+      required: true
     EntityCreateRequestBody:
       description: Entity Create Request Body
       content:

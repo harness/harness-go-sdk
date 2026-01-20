@@ -29,8 +29,11 @@ Class | Method | HTTP request | Description
 *EntitiesApi* | [**GetEntity**](docs/EntitiesApi.md#getentity) | **Get** /v1/entities/{scope}/{kind}/{identifier} | Get Entity
 *EntitiesApi* | [**GetEntityVersion**](docs/EntitiesApi.md#getentityversion) | **Get** /v1/entities/{scope}/{kind}/{identifier}/versions/{version} | Get Entity Version
 *EntitiesApi* | [**GetEntityVersions**](docs/EntitiesApi.md#getentityversions) | **Get** /v1/entities/{scope}/{kind}/{identifier}/versions | Get Entity Versions
+*EntitiesApi* | [**ImportEntity**](docs/EntitiesApi.md#importentity) | **Post** /v1/entities/import | Import an Entity
+*EntitiesApi* | [**MoveEntity**](docs/EntitiesApi.md#moveentity) | **Post** /v1/entities/move/{scope}/{kind}/{identifier} | Move an Entity
 *EntitiesApi* | [**UpdateEntity**](docs/EntitiesApi.md#updateentity) | **Put** /v1/entities/{scope}/{kind}/{identifier} | Update a Entity
 *EntitiesApi* | [**UpdateEntityVersion**](docs/EntitiesApi.md#updateentityversion) | **Put** /v1/entities/{scope}/{kind}/{identifier}/versions/{version} | Update an EntityVersion
+*EntitiesApi* | [**UpdateGitMetadata**](docs/EntitiesApi.md#updategitmetadata) | **Put** /v1/entities/git-metadata/{scope}/{kind}/{identifier} | Update GitMetadata for Remote Entities
 *EnvironmentProxyApi* | [**CreateCompileAndExecuteEnvironment**](docs/EnvironmentProxyApi.md#createcompileandexecuteenvironment) | **Post** /v1/idp-environments | Create Compile And Execute Environment
 *EnvironmentProxyApi* | [**DeleteEnvironment**](docs/EnvironmentProxyApi.md#deleteenvironment) | **Delete** /v1/idp-environments/{environment-id} | Delete Environment
 *EnvironmentProxyApi* | [**UpdateCompileAndExecuteEnvironment**](docs/EnvironmentProxyApi.md#updatecompileandexecuteenvironment) | **Put** /v1/idp-environments/{environment-id} | Update Compile And Execute Environment
@@ -39,6 +42,8 @@ Class | Method | HTTP request | Description
 
  - [CacheResponseData](docs/CacheResponseData.md)
  - [EntityCreateRequest](docs/EntityCreateRequest.md)
+ - [EntityMoveOperationType](docs/EntityMoveOperationType.md)
+ - [EntityMoveRequest](docs/EntityMoveRequest.md)
  - [EntityResponse](docs/EntityResponse.md)
  - [EntityResponseEntityValidityDetails](docs/EntityResponseEntityValidityDetails.md)
  - [EntityResponseGroups](docs/EntityResponseGroups.md)
@@ -56,6 +61,9 @@ Class | Method | HTTP request | Description
  - [EnvironmentProxyUpdateRequest](docs/EnvironmentProxyUpdateRequest.md)
  - [GitCreateDetails](docs/GitCreateDetails.md)
  - [GitDetails](docs/GitDetails.md)
+ - [GitImportDetails](docs/GitImportDetails.md)
+ - [GitMetadataUpdateRequest](docs/GitMetadataUpdateRequest.md)
+ - [GitMoveDetails](docs/GitMoveDetails.md)
  - [GitUpdateDetails](docs/GitUpdateDetails.md)
  - [InfrastructureChange](docs/InfrastructureChange.md)
  - [InstanceChange](docs/InstanceChange.md)

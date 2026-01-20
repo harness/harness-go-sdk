@@ -12,8 +12,11 @@ Method | HTTP request | Description
 [**GetEntity**](EntitiesApi.md#GetEntity) | **Get** /v1/entities/{scope}/{kind}/{identifier} | Get Entity
 [**GetEntityVersion**](EntitiesApi.md#GetEntityVersion) | **Get** /v1/entities/{scope}/{kind}/{identifier}/versions/{version} | Get Entity Version
 [**GetEntityVersions**](EntitiesApi.md#GetEntityVersions) | **Get** /v1/entities/{scope}/{kind}/{identifier}/versions | Get Entity Versions
+[**ImportEntity**](EntitiesApi.md#ImportEntity) | **Post** /v1/entities/import | Import an Entity
+[**MoveEntity**](EntitiesApi.md#MoveEntity) | **Post** /v1/entities/move/{scope}/{kind}/{identifier} | Move an Entity
 [**UpdateEntity**](EntitiesApi.md#UpdateEntity) | **Put** /v1/entities/{scope}/{kind}/{identifier} | Update a Entity
 [**UpdateEntityVersion**](EntitiesApi.md#UpdateEntityVersion) | **Put** /v1/entities/{scope}/{kind}/{identifier}/versions/{version} | Update an EntityVersion
+[**UpdateGitMetadata**](EntitiesApi.md#UpdateGitMetadata) | **Put** /v1/entities/git-metadata/{scope}/{kind}/{identifier} | Update GitMetadata for Remote Entities
 
 # **CreateEntity**
 > EntityResponse CreateEntity(ctx, body, optional)
@@ -366,6 +369,88 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ImportEntity**
+> EntityResponse ImportEntity(ctx, body, optional)
+Import an Entity
+
+Import an Entity.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**GitImportDetails**](GitImportDetails.md)| Git Import Request Body | 
+ **optional** | ***EntitiesApiImportEntityOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a EntitiesApiImportEntityOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **orgIdentifier** | **optional.**| Organization identifier | 
+ **projectIdentifier** | **optional.**| Project identifier | 
+ **harnessAccount** | **optional.**| Identifier field of the account the resource is scoped to. This is required for Authorization methods other than the x-api-key header. If you are using the x-api-key header, this can be skipped. | 
+
+### Return type
+
+[**EntityResponse**](EntityResponse.md)
+
+### Authorization
+
+[x-api-key](../README.md#x-api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, application/yaml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **MoveEntity**
+> MoveEntity(ctx, body, scope, kind, identifier, optional)
+Move an Entity
+
+Move an Entity.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**EntityMoveRequest**](EntityMoveRequest.md)| Entity Move Request Body | 
+  **scope** | **string**| Scope | 
+  **kind** | **string**| Kind | 
+  **identifier** | **string**| Identifier | 
+ **optional** | ***EntitiesApiMoveEntityOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a EntitiesApiMoveEntityOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+ **orgIdentifier** | **optional.**| Organization identifier | 
+ **projectIdentifier** | **optional.**| Project identifier | 
+ **harnessAccount** | **optional.**| Identifier field of the account the resource is scoped to. This is required for Authorization methods other than the x-api-key header. If you are using the x-api-key header, this can be skipped. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[x-api-key](../README.md#x-api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **UpdateEntity**
 > EntityResponse UpdateEntity(ctx, body, scope, kind, identifier, optional)
 Update a Entity
@@ -453,6 +538,50 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json, application/yaml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UpdateGitMetadata**
+> UpdateGitMetadata(ctx, body, scope, kind, identifier, optional)
+Update GitMetadata for Remote Entities
+
+Update GitMetadata for Remote Entities
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**GitMetadataUpdateRequest**](GitMetadataUpdateRequest.md)|  | 
+  **scope** | **string**| Scope | 
+  **kind** | **string**| Kind | 
+  **identifier** | **string**| Identifier | 
+ **optional** | ***EntitiesApiUpdateGitMetadataOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a EntitiesApiUpdateGitMetadataOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+ **orgIdentifier** | **optional.**| Organization identifier | 
+ **projectIdentifier** | **optional.**| Project identifier | 
+ **harnessAccount** | **optional.**| Identifier field of the account the resource is scoped to. This is required for Authorization methods other than the x-api-key header. If you are using the x-api-key header, this can be skipped. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[x-api-key](../README.md#x-api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
