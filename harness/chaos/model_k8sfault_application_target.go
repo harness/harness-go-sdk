@@ -10,5 +10,5 @@ package chaos
 
 type K8sfaultApplicationTarget struct {
 	Application string `json:"application,omitempty"`
-	Entrypoint string `json:"entrypoint,omitempty"`
+	Entrypoint  string `json:"entrypoint,omitempty"`
 }

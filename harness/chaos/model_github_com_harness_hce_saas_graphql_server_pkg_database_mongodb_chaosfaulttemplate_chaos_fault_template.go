@@ -25,8 +25,8 @@ type GithubComHarnessHceSaasGraphqlServerPkgDatabaseMongodbChaosfaulttemplateCha
 	// isRemoved indicates if the document is deleted
 	IsRemoved bool `json:"isRemoved,omitempty"`
 	// Fault name to sync the changes from the hub HubRef + Name should be unique
-	Name string `json:"name,omitempty"`
-	OrgID string `json:"orgID,omitempty"`
+	Name      string `json:"name,omitempty"`
+	OrgID     string `json:"orgID,omitempty"`
 	ProjectID string `json:"projectID,omitempty"`
 	// Revision is the version of fault template, it increments every time a new version of fault is published
 	Revision int32 `json:"revision,omitempty"`
