@@ -123,9 +123,11 @@ func TestDelegateTokenCreateRevokeDelete(t *testing.T) {
 	var deleteHTTPResp *http.Response
 
 	for i := 0; i < maxRetry; i++ {
-		deleteResp, httpResp, err := client.DelegateTokenResourceApi.DeleteCgDelegateToken(ctx, *accountID, tokenName, deleteTokenOpts())
+		httpResp, err := client.DelegateTokenResourceApi.DeleteCgDelegateToken(ctx, *accountID, tokenName, deleteTokenOpts())
 		if err == nil && httpResp != nil && httpResp.StatusCode < 300 {
-			checkDelegateTokenTest(t, "delete", deleteResp, httpResp, err)
+			require.NoError(t, err)
+			require.NotNil(t, httpResp)
+			require.Less(t, httpResp.StatusCode, 300, "delete")
 			lastErr = nil
 			break
 		}
