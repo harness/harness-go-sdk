@@ -205,7 +205,7 @@ func (a *DelegateSetupResourceApiService) ListDelegates(ctx context.Context, bod
 		localVarQueryParams.Add("all", parameterToString(localVarOptionals.FetchAll.Value(), ""))
 	}
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{}
+	localVarHttpContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
@@ -221,6 +221,8 @@ func (a *DelegateSetupResourceApiService) ListDelegates(ctx context.Context, bod
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
+	// body params
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
