@@ -29,6 +29,7 @@ import (
 	"time"
 	"unicode/utf8"
 
+	"github.com/hashicorp/go-retryablehttp"
 	"golang.org/x/oauth2"
 )
 
@@ -37,15 +38,49 @@ var (
 	xmlCheck  = regexp.MustCompile("(?i:[application|text]/xml)")
 )
 
-// APIClient manages communication with the Lightwing APIs API v1.0.0
+// APIClient manages communication with the Harness NextGen Software Delivery Platform API Reference API v3.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
+	AccountId string
+	ApiKey    string
+	Endpoint  string
+
 	// API Services
 
+	APIKeysApi *APIKeysApiService
+
+	AccessControlListApi *AccessControlListApiService
+
+	AccountDataSinksApi *AccountDataSinksApiService
+
+	AccountDefaultNotificationTemplateSetApi *AccountDefaultNotificationTemplateSetApiService
+
+	AccountSettingApi *AccountSettingApiService
+
+	AccountsApi *AccountsApiService
+
+	AgentApi *AgentsApiService
+
+	ApiKeyApi *ApiKeyApiService
+
+	ApplicationsApiService *ApplicationsApiService
+
+	ApplicationsetApiService *ApplicationSetApiService
+
+	AuditApi *AuditApiService
+
+	AuditFiltersApi *AuditFiltersApiService
+
+	AuthenticationSettingsApi *AuthenticationSettingsApiService
+
 	AutoStoppingAlertsApi *AutoStoppingAlertsApiService
+
+	ClustersApi *ClustersApiService
+
+	CloudCostAnomaliesApi *CloudCostAnomaliesApiService
 
 	CloudCostAutoStoppingFixedSchedulesApi *CloudCostAutoStoppingFixedSchedulesApiService
 
@@ -55,7 +90,175 @@ type APIClient struct {
 
 	CloudCostAutoStoppingRulesV2Api *CloudCostAutoStoppingRulesV2ApiService
 
+	CloudCostBudgetsApi *CloudCostBudgetsApiService
+
+	CloudCostDetailsApi *CloudCostDetailsApiService
+
+	CloudCostPerspectiveReportsApi *CloudCostPerspectiveReportsApiService
+
+	CloudCostPerspectivesApi *CloudCostPerspectivesApiService
+
+	CloudCostRecommendationsApi *CloudCostRecommendationsApiService
+
+	CloudCostRecommendationsDetailsApi *CloudCostRecommendationsDetailsApiService
+
 	CloudCostClusterOrchestratorApi *CloudCostClusterOrchestratorApiService
+
+	ConnectorsApi *ConnectorsApiService
+
+	DashboardsApi *DashboardsApiService
+
+	DashboardsFilterApi *DashboardsFilterApiService
+
+	DashboardsFolderApi *DashboardsFolderApiService
+
+	DelegateGroupTagsResourceApi *DelegateGroupTagsResourceApiService
+
+	DelegateSetupResourceApi *DelegateSetupResourceApiService
+
+	DelegateTokenResourceApi *DelegateTokenResourceApiService
+
+	EnvironmentsApi *EnvironmentsApiService
+
+	EnvironmentGroupApi *EnvironmentGroupApiService
+
+	ExecuteApi *ExecuteApiService
+
+	ExecutionDetailsApi *ExecutionDetailsApiService
+
+	FeatureFlagsApi *FeatureFlagsApiService
+
+	FileStoreApi *FileStoreApiService
+
+	GitOpsFiltersApi *FiltersApiService
+
+	FilterApi *FilterApiService
+
+	FreezeCRUDApi *FreezeCRUDApiService
+
+	GitBranchesApi *GitBranchesApiService
+
+	GitFullSyncApi *GitFullSyncApiService
+
+	GitSyncApi *GitSyncApiService
+
+	GitSyncErrorsApi *GitSyncErrorsApiService
+
+	GitSyncSettingsApi *GitSyncSettingsApiService
+
+	GnuPGPKeysApi *GnuPGPKeysApiService
+
+	HarnessResourceGroupApi *HarnessResourceGroupApiService
+
+	HarnessResourceTypeApi *HarnessResourceTypeApiService
+
+	HostsApi *HostsApiService
+
+	InfrastructuresApi *InfrastructuresApiService
+
+	InputSetsApi *InputSetsApiService
+
+	InviteApi *InviteApiService
+
+	IPAllowlistApiService *IPAllowlistApiService
+
+	LicensesApi *LicensesApiService
+
+	MonitoredServiceApi *MonitoredServiceApiService
+
+	NotificationAttachmentsApi               *NotificationAttachmentsApiService
+	NotificationChannelsApi                  *NotificationChannelsApiService
+	NotificationRulesApi                     *NotificationRulesApiService
+	OrgDefaultNotificationTemplateSetApi     *OrgDefaultNotificationTemplateSetApiService
+	ProjectDefaultNotificationTemplateSetApi *ProjectDefaultNotificationTemplateSetApiService
+
+	OrganizationApi *OrganizationApiService
+
+	PermissionsApi *PermissionsApiService
+
+	PipelinesApi *PipelinesApiService
+
+	PipelinesDashboardApi *PipelinesDashboardApiService
+
+	ProjectApi *ProjectApiService
+
+	ProjectGitOpsApi *ProjectsApiService
+
+	ProjectMappingsApi *ProjectMappingsApiService
+
+	RepositoriesApiService *RepositoriesApiService
+
+	RepositoryCertificatesApi *RepositoryCertificatesApiService
+
+	RepositoryCredentialsApi *RepositoryCredentialsApiService
+
+	RoleAssignmentsApi *RoleAssignmentsApiService
+
+	RolesApi *RolesApiService
+
+	RuleApi *RuleApiService
+
+	RuleSetsApi *RuleSetsApiService
+
+	RuleEnforcementApi *RuleEnforcementApiService
+
+	SCIMApi *SCIMApiService
+
+	SCMApi *SCMApiService
+
+	SMTPApi *SMTPApiService
+
+	SecretManagersApi *SecretManagersApiService
+
+	GcpProjectsApi *GcpProjectsApiService
+
+	SecretsApi *SecretsApiService
+
+	ServiceAccountApi *ServiceAccountApiService
+
+	ServicesApi *ServicesApiService
+
+	ServiceOverridesApi *ServiceOverridesApiService
+	OverridesApi        *OverridesApiService
+	ProviderApi         *ProviderApiService
+
+	SettingsApi *SettingsApiService
+
+	SloApi *SloApiService
+
+	SrmNotificationApiService *SrmNotificationApiService
+
+	SourceCodeManagerApi *SourceCodeManagerApiService
+
+	TargetGroupsApi *TargetGroupsApiService
+
+	TargetsApi *TargetsApiService
+
+	TokenApi *TokenApiService
+
+	TriggersApi *TriggersApiService
+
+	UsageApi *UsageApiService
+
+	UserApi *UserApiService
+
+	UserGroupApi *UserGroupApiService
+
+	ValidateHostApi *ValidateHostApiService
+
+	VariablesApi *VariablesApiService
+
+	WebhookEventHandlerApi *WebhookEventHandlerApiService
+
+	WebhookTriggersApi *WebhookTriggersApiService
+
+	WorkspaceApi                  *WorkspacesApiService
+	GitXWebhooksApiService        *GitXWebhooksApiService
+	ProjectGitxWebhooksApiService *ProjectGitxWebhooksApiService
+	OrgGitxWebhooksApiService     *OrgGitxWebhooksApiService
+	ModuleRegistryApi             *ModuleRegistryApiService
+	ProviderRegistryApi           *ProviderRegistryApiService
+	VariableSetsApi               *VariableSetsApiService
 }
 
 type service struct {
@@ -65,22 +268,128 @@ type service struct {
 // NewAPIClient creates a new API client. Requires a userAgent string describing your application.
 // optionally a custom http.Client to allow for advanced features such as caching.
 func NewAPIClient(cfg *Configuration) *APIClient {
-	if cfg.HTTPClient == nil {
-		cfg.HTTPClient = http.DefaultClient
-	}
-
 	c := &APIClient{}
 	c.cfg = cfg
 	c.common.client = c
 
+	// Api Config
+	c.ApiKey = cfg.ApiKey
+	c.AccountId = cfg.AccountId
+	c.Endpoint = cfg.BasePath
+
 	// API Services
+	c.APIKeysApi = (*APIKeysApiService)(&c.common)
+	c.AccessControlListApi = (*AccessControlListApiService)(&c.common)
+	c.AccountDataSinksApi = (*AccountDataSinksApiService)(&c.common)
+	c.AccountDefaultNotificationTemplateSetApi = (*AccountDefaultNotificationTemplateSetApiService)(&c.common)
+	c.AccountSettingApi = (*AccountSettingApiService)(&c.common)
+	c.AccountsApi = (*AccountsApiService)(&c.common)
+	c.AgentApi = (*AgentsApiService)(&c.common)
+	c.ApiKeyApi = (*ApiKeyApiService)(&c.common)
+	c.ApplicationsApiService = (*ApplicationsApiService)(&c.common)
+	c.ApplicationsetApiService = (*ApplicationSetApiService)(&c.common)
+	c.AuditApi = (*AuditApiService)(&c.common)
+	c.AuditFiltersApi = (*AuditFiltersApiService)(&c.common)
+	c.AuthenticationSettingsApi = (*AuthenticationSettingsApiService)(&c.common)
 	c.AutoStoppingAlertsApi = (*AutoStoppingAlertsApiService)(&c.common)
+	c.ClustersApi = (*ClustersApiService)(&c.common)
+	c.CloudCostAnomaliesApi = (*CloudCostAnomaliesApiService)(&c.common)
 	c.CloudCostAutoStoppingFixedSchedulesApi = (*CloudCostAutoStoppingFixedSchedulesApiService)(&c.common)
 	c.CloudCostAutoStoppingLoadBalancersApi = (*CloudCostAutoStoppingLoadBalancersApiService)(&c.common)
 	c.CloudCostAutoStoppingRulesApi = (*CloudCostAutoStoppingRulesApiService)(&c.common)
 	c.CloudCostAutoStoppingRulesV2Api = (*CloudCostAutoStoppingRulesV2ApiService)(&c.common)
+	c.CloudCostBudgetsApi = (*CloudCostBudgetsApiService)(&c.common)
+	c.CloudCostDetailsApi = (*CloudCostDetailsApiService)(&c.common)
+	c.CloudCostPerspectiveReportsApi = (*CloudCostPerspectiveReportsApiService)(&c.common)
+	c.CloudCostPerspectivesApi = (*CloudCostPerspectivesApiService)(&c.common)
+	c.CloudCostRecommendationsApi = (*CloudCostRecommendationsApiService)(&c.common)
+	c.CloudCostRecommendationsDetailsApi = (*CloudCostRecommendationsDetailsApiService)(&c.common)
 	c.CloudCostClusterOrchestratorApi = (*CloudCostClusterOrchestratorApiService)(&c.common)
+	c.ConnectorsApi = (*ConnectorsApiService)(&c.common)
+	c.DashboardsApi = (*DashboardsApiService)(&c.common)
+	c.DashboardsFilterApi = (*DashboardsFilterApiService)(&c.common)
+	c.DashboardsFolderApi = (*DashboardsFolderApiService)(&c.common)
+	c.DelegateGroupTagsResourceApi = (*DelegateGroupTagsResourceApiService)(&c.common)
+	c.DelegateSetupResourceApi = (*DelegateSetupResourceApiService)(&c.common)
+	c.DelegateTokenResourceApi = (*DelegateTokenResourceApiService)(&c.common)
+	c.EnvironmentsApi = (*EnvironmentsApiService)(&c.common)
+	c.EnvironmentGroupApi = (*EnvironmentGroupApiService)(&c.common)
+	c.ExecuteApi = (*ExecuteApiService)(&c.common)
+	c.ExecutionDetailsApi = (*ExecutionDetailsApiService)(&c.common)
+	c.FeatureFlagsApi = (*FeatureFlagsApiService)(&c.common)
+	c.FileStoreApi = (*FileStoreApiService)(&c.common)
+	c.GitOpsFiltersApi = (*FiltersApiService)(&c.common)
+	c.FilterApi = (*FilterApiService)(&c.common)
+	c.FreezeCRUDApi = (*FreezeCRUDApiService)(&c.common)
+	c.GitBranchesApi = (*GitBranchesApiService)(&c.common)
+	c.GitFullSyncApi = (*GitFullSyncApiService)(&c.common)
+	c.GitSyncApi = (*GitSyncApiService)(&c.common)
+	c.GitSyncErrorsApi = (*GitSyncErrorsApiService)(&c.common)
+	c.GitSyncSettingsApi = (*GitSyncSettingsApiService)(&c.common)
+	c.GnuPGPKeysApi = (*GnuPGPKeysApiService)(&c.common)
+	c.HarnessResourceGroupApi = (*HarnessResourceGroupApiService)(&c.common)
+	c.HarnessResourceTypeApi = (*HarnessResourceTypeApiService)(&c.common)
+	c.HostsApi = (*HostsApiService)(&c.common)
+	c.InfrastructuresApi = (*InfrastructuresApiService)(&c.common)
+	c.InputSetsApi = (*InputSetsApiService)(&c.common)
+	c.InviteApi = (*InviteApiService)(&c.common)
+	c.IPAllowlistApiService = (*IPAllowlistApiService)(&c.common)
+	c.LicensesApi = (*LicensesApiService)(&c.common)
+	c.MonitoredServiceApi = (*MonitoredServiceApiService)(&c.common)
+	c.NotificationAttachmentsApi = (*NotificationAttachmentsApiService)(&c.common)
+	c.NotificationChannelsApi = (*NotificationChannelsApiService)(&c.common)
+	c.NotificationRulesApi = (*NotificationRulesApiService)(&c.common)
+	c.OrganizationApi = (*OrganizationApiService)(&c.common)
+	c.OrgDefaultNotificationTemplateSetApi = (*OrgDefaultNotificationTemplateSetApiService)(&c.common)
 
+	c.PermissionsApi = (*PermissionsApiService)(&c.common)
+	c.PipelinesApi = (*PipelinesApiService)(&c.common)
+	c.PipelinesDashboardApi = (*PipelinesDashboardApiService)(&c.common)
+	c.ProjectApi = (*ProjectApiService)(&c.common)
+	c.ProjectDefaultNotificationTemplateSetApi = (*ProjectDefaultNotificationTemplateSetApiService)(&c.common)
+	c.ProjectGitOpsApi = (*ProjectsApiService)(&c.common)
+	c.ProjectMappingsApi = (*ProjectMappingsApiService)(&c.common)
+	c.RepositoriesApiService = (*RepositoriesApiService)(&c.common)
+	c.RepositoryCertificatesApi = (*RepositoryCertificatesApiService)(&c.common)
+	c.RepositoryCredentialsApi = (*RepositoryCredentialsApiService)(&c.common)
+	c.RoleAssignmentsApi = (*RoleAssignmentsApiService)(&c.common)
+	c.RolesApi = (*RolesApiService)(&c.common)
+	c.RuleApi = (*RuleApiService)(&c.common)
+	c.RuleSetsApi = (*RuleSetsApiService)(&c.common)
+	c.RuleEnforcementApi = (*RuleEnforcementApiService)(&c.common)
+	c.SCIMApi = (*SCIMApiService)(&c.common)
+	c.SCMApi = (*SCMApiService)(&c.common)
+	c.SMTPApi = (*SMTPApiService)(&c.common)
+	c.SecretManagersApi = (*SecretManagersApiService)(&c.common)
+	c.GcpProjectsApi = (*GcpProjectsApiService)(&c.common)
+	c.SecretsApi = (*SecretsApiService)(&c.common)
+	c.ServiceAccountApi = (*ServiceAccountApiService)(&c.common)
+	c.ServicesApi = (*ServicesApiService)(&c.common)
+	c.ServiceOverridesApi = (*ServiceOverridesApiService)(&c.common)
+	c.OverridesApi = (*OverridesApiService)(&c.common)
+	c.ProviderApi = (*ProviderApiService)(&c.common)
+	c.SettingsApi = (*SettingsApiService)(&c.common)
+	c.SloApi = (*SloApiService)(&c.common)
+	c.SrmNotificationApiService = (*SrmNotificationApiService)(&c.common)
+	c.SourceCodeManagerApi = (*SourceCodeManagerApiService)(&c.common)
+	c.TargetGroupsApi = (*TargetGroupsApiService)(&c.common)
+	c.TargetsApi = (*TargetsApiService)(&c.common)
+	c.TokenApi = (*TokenApiService)(&c.common)
+	c.TriggersApi = (*TriggersApiService)(&c.common)
+	c.UsageApi = (*UsageApiService)(&c.common)
+	c.UserApi = (*UserApiService)(&c.common)
+	c.UserGroupApi = (*UserGroupApiService)(&c.common)
+	c.ValidateHostApi = (*ValidateHostApiService)(&c.common)
+	c.VariablesApi = (*VariablesApiService)(&c.common)
+	c.WebhookEventHandlerApi = (*WebhookEventHandlerApiService)(&c.common)
+	c.WebhookTriggersApi = (*WebhookTriggersApiService)(&c.common)
+	c.WorkspaceApi = (*WorkspacesApiService)(&c.common)
+	c.GitXWebhooksApiService = (*GitXWebhooksApiService)(&c.common)
+	c.ProjectGitxWebhooksApiService = (*ProjectGitxWebhooksApiService)(&c.common)
+	c.OrgGitxWebhooksApiService = (*OrgGitxWebhooksApiService)(&c.common)
+	c.ModuleRegistryApi = (*ModuleRegistryApiService)(&c.common)
+	c.ProviderRegistryApi = (*ProviderRegistryApiService)(&c.common)
+	c.VariableSetsApi = (*VariableSetsApiService)(&c.common)
 	return c
 }
 
@@ -158,8 +467,25 @@ func parameterToString(obj interface{}, collectionFormat string) string {
 	return fmt.Sprintf("%v", obj)
 }
 
+// addQueryParam adds a query parameter, handling "multi" collection format correctly.
+// For "multi" format, each element of a slice is added as a separate query parameter.
+// This generates URLs like: ?status=val1&status=val2 instead of ?status=val1val2
+func addQueryParam(params url.Values, key string, value interface{}, collectionFormat string) {
+	if collectionFormat == "multi" {
+		v := reflect.ValueOf(value)
+		if v.Kind() == reflect.Slice {
+			for i := 0; i < v.Len(); i++ {
+				params.Add(key, fmt.Sprintf("%v", v.Index(i).Interface()))
+			}
+			return
+		}
+	}
+	// For all other formats or non-slice values, use parameterToString
+	params.Add(key, parameterToString(value, collectionFormat))
+}
+
 // callAPI do the request.
-func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
+func (c *APIClient) callAPI(request *retryablehttp.Request) (*http.Response, error) {
 	return c.cfg.HTTPClient.Do(request)
 }
 
@@ -177,7 +503,7 @@ func (c *APIClient) prepareRequest(
 	queryParams url.Values,
 	formParams url.Values,
 	fileName string,
-	fileBytes []byte) (localVarRequest *http.Request, err error) {
+	fileBytes []byte) (localVarRequest *retryablehttp.Request, err error) {
 
 	var body *bytes.Buffer
 
@@ -188,7 +514,6 @@ func (c *APIClient) prepareRequest(
 			contentType = detectContentType(postBody)
 			headerParams["Content-Type"] = contentType
 		}
-
 		body, err = setBody(postBody, contentType)
 		if err != nil {
 			return nil, err
@@ -226,9 +551,9 @@ func (c *APIClient) prepareRequest(
 			if err != nil {
 				return nil, err
 			}
-			// Set the Boundary in the Content-Type
-			headerParams["Content-Type"] = w.FormDataContentType()
 		}
+		// Set the Boundary in the Content-Type
+		headerParams["Content-Type"] = w.FormDataContentType()
 
 		// Set Content-Length
 		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
@@ -260,13 +585,13 @@ func (c *APIClient) prepareRequest(
 	}
 
 	// Encode the parameters.
-	url.RawQuery = query.Encode()
+	url.RawQuery = strings.ReplaceAll(query.Encode(), "+", "%20")
 
 	// Generate a new request
 	if body != nil {
-		localVarRequest, err = http.NewRequest(method, url.String(), body)
+		localVarRequest, err = retryablehttp.NewRequest(method, url.String(), body)
 	} else {
-		localVarRequest, err = http.NewRequest(method, url.String(), nil)
+		localVarRequest, err = retryablehttp.NewRequest(method, url.String(), nil)
 	}
 	if err != nil {
 		return nil, err
@@ -303,7 +628,7 @@ func (c *APIClient) prepareRequest(
 				return nil, err
 			}
 
-			latestToken.SetAuthHeader(localVarRequest)
+			latestToken.SetAuthHeader(localVarRequest.Request)
 		}
 
 		// Basic HTTP Authentication
@@ -367,6 +692,11 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 		bodyBuf = &bytes.Buffer{}
 	}
 
+	// Dereference pointer to interface if needed
+	if ptr, ok := body.(*interface{}); ok && ptr != nil {
+		body = *ptr
+	}
+
 	if reader, ok := body.(io.Reader); ok {
 		_, err = bodyBuf.ReadFrom(reader)
 	} else if b, ok := body.([]byte); ok {
@@ -384,7 +714,6 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 	if err != nil {
 		return nil, err
 	}
-
 	if bodyBuf.Len() == 0 {
 		err = fmt.Errorf("Invalid body type %s\n", contentType)
 		return nil, err
@@ -475,7 +804,44 @@ type GenericSwaggerError struct {
 
 // Error returns non-empty string if there was an error.
 func (e GenericSwaggerError) Error() string {
-	return e.error
+	if e.model == nil {
+		return e.error
+	}
+
+	failure, ok := e.model.(Failure)
+	if ok {
+		if failure.Message != "" {
+			return failure.Message
+		}
+	} else {
+		failure, ok := e.model.(AuthzFailure)
+		if ok {
+			if failure.Message != "" {
+				return failure.Message
+			}
+		} else {
+			failure, ok := e.model.(ModelError)
+			if ok {
+				if failure.Message != "" {
+					return failure.Message
+				}
+			}
+		}
+	}
+
+	// if len(failure.ResponseMessages) > 0 {
+	// 	return failure.ResponseMessages[0].Message
+	// }
+
+	if len(failure.Errors) > 0 {
+		return fmt.Sprintf("%s %s", failure.Errors[0].FieldId, failure.Errors[0].Error_)
+	}
+
+	return failure.Code
+}
+
+func (e GenericSwaggerError) Code() ErrorCode {
+	return ErrorCode(e.model.(Failure).Code)
 }
 
 // Body returns the raw bytes of the response
