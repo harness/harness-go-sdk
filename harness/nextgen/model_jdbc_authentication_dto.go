@@ -13,8 +13,9 @@ import "encoding/json"
 
 // This entity contains the details for JDBC Authentication
 type JdbcAuthenticationDto struct {
-	Type_            JDBCAuthType             `json:"type"`
-	UsernamePassword *JdbcUserNamePasswordDto `json:"-"`
-	ServiceAccount   *JdbcServiceAccountDto   `json:"-"`
-	Spec             json.RawMessage          `json:"spec,omitempty"`
+	Type_            JDBCAuthType              `json:"type"`
+	UsernamePassword *JdbcUserNamePasswordDto  `json:"-"`
+	ServiceAccount   *JdbcServiceAccountDto    `json:"-"`
+	KeyPair          *JdbcKeyPairDto           `json:"-"`
+	Spec             json.RawMessage           `json:"spec,omitempty"`
 }

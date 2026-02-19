@@ -25,6 +25,8 @@ func (a *JdbcAuthenticationDto) UnmarshalJSON(data []byte) error {
 		err = json.Unmarshal(aux.Spec, &a.UsernamePassword)
 	case JDBCAuthTypes.ServiceAccount:
 		err = json.Unmarshal(aux.Spec, &a.ServiceAccount)
+	case JDBCAuthTypes.KeyPair:
+		err = json.Unmarshal(aux.Spec, &a.KeyPair)
 	default:
 		panic(fmt.Sprintf("unknown jdbc auth method type %s", a.Type_))
 	}
@@ -43,6 +45,8 @@ func (a *JdbcAuthenticationDto) MarshalJSON() ([]byte, error) {
 		spec, err = json.Marshal(a.UsernamePassword)
 	case JDBCAuthTypes.ServiceAccount:
 		spec, err = json.Marshal(a.ServiceAccount)
+	case JDBCAuthTypes.KeyPair:
+		spec, err = json.Marshal(a.KeyPair)
 	default:
 		panic(fmt.Sprintf("unknown jdbc auth method type %s", a.Type_))
 	}
