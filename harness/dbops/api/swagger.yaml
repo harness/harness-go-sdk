@@ -1594,6 +1594,12 @@ components:
           $ref: "#/components/schemas/ChangeLogScript"
         migrationType:
           $ref: "#/components/schemas/MigrationType"
+        usePercona:
+          type: boolean
+          description: if percona-toolkit to be enabled
+          default: false
+          x-stoplight:
+            id: gub746l5qctru
       description: 'Database Schema Request '
       x-examples:
         Example 1:
@@ -1616,6 +1622,7 @@ components:
       - migrationType
       - name
       - type
+      - usePercona
       type: object
       properties:
         identifier:
@@ -1662,6 +1669,12 @@ components:
           $ref: "#/components/schemas/DBSchemaType"
         migrationType:
           $ref: "#/components/schemas/MigrationType"
+        usePercona:
+          type: boolean
+          description: if percona-toolkit is enabled
+          default: false
+          x-stoplight:
+            id: dnfipv17ffs3v
       description: Database Schema Response
       example:
         identifier: identifier
@@ -2872,6 +2885,11 @@ components:
                       id: 91yj4mcke8jds
                 x-stoplight:
                   id: 3g0zmfv118ub8
+              usePercona:
+                type: boolean
+                description: if percona-tookit is enabled
+                x-stoplight:
+                  id: 008kgy34odsaf
       required: true
     DBInstanceCreateRequest:
       content:

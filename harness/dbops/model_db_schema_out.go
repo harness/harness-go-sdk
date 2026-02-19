@@ -30,4 +30,6 @@ type DbSchemaOut struct {
 	ChangeLogScript  *ChangeLogScript `json:"changeLogScript,omitempty"`
 	Type_            *DbSchemaType    `json:"type"`
 	MigrationType    *MigrationType   `json:"migrationType"`
+	// if percona-toolkit is enabled
+	UsePercona bool `json:"usePercona"`
 }

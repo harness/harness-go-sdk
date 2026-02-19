@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Type_** | [***DbSchemaType**](DBSchemaType.md) |  | [optional] [default to null]
 **ChangeLogScript** | [***ChangeLogScript**](ChangeLogScript.md) |  | [optional] [default to null]
 **MigrationType** | [***MigrationType**](MigrationType.md) |  | [optional] [default to null]
+**UsePercona** | **bool** | if percona-toolkit to be enabled | [optional] [default to false]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
