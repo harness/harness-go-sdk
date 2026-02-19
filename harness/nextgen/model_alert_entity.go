@@ -11,6 +11,6 @@ package nextgen
 
 // Defines which entities (AutoStopping rules) the alert applies to. Use 'all' to apply to all rules, or 'specific' with entity_id to target specific rules.
 type AlertEntity struct {
-    AlertEntityAll
-    AlertEntitySpecific
+	AlertEntityAll
+	AlertEntitySpecific
 }
