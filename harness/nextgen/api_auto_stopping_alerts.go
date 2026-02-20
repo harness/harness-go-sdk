@@ -45,7 +45,7 @@ func (a *AutoStoppingAlertsApiService) CreateAlert(ctx context.Context, body Ale
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/accounts/{account_id}/alerts"
+	localVarPath := a.client.cfg.BasePath + "/lw/api/accounts/{account_id}/alerts"
 	localVarPath = strings.Replace(localVarPath, "{"+"account_id"+"}", fmt.Sprintf("%v", accountId), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -137,7 +137,7 @@ func (a *AutoStoppingAlertsApiService) DeleteAlert(ctx context.Context, accountI
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/accounts/{account_id}/alerts/{alert_id}"
+	localVarPath := a.client.cfg.BasePath + "/lw/api/accounts/{account_id}/alerts/{alert_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"account_id"+"}", fmt.Sprintf("%v", accountId), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"alert_id"+"}", fmt.Sprintf("%v", alertId), -1)
 
@@ -228,7 +228,7 @@ func (a *AutoStoppingAlertsApiService) GetAlert(ctx context.Context, accountId s
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/accounts/{account_id}/alerts/{alert_id}"
+	localVarPath := a.client.cfg.BasePath + "/lw/api/accounts/{account_id}/alerts/{alert_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"account_id"+"}", fmt.Sprintf("%v", accountId), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"alert_id"+"}", fmt.Sprintf("%v", alertId), -1)
 
@@ -319,7 +319,7 @@ func (a *AutoStoppingAlertsApiService) ListAlerts(ctx context.Context, body Aler
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/accounts/{account_id}/alerts/list"
+	localVarPath := a.client.cfg.BasePath + "/lw/api/accounts/{account_id}/alerts/list"
 	localVarPath = strings.Replace(localVarPath, "{"+"account_id"+"}", fmt.Sprintf("%v", accountId), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -411,7 +411,7 @@ func (a *AutoStoppingAlertsApiService) UpdateAlert(ctx context.Context, body Ale
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/accounts/{account_id}/alerts"
+	localVarPath := a.client.cfg.BasePath + "/lw/api/accounts/{account_id}/alerts"
 	localVarPath = strings.Replace(localVarPath, "{"+"account_id"+"}", fmt.Sprintf("%v", accountId), -1)
 
 	localVarHeaderParams := make(map[string]string)
