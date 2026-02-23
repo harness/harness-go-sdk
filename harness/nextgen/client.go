@@ -76,6 +76,8 @@ type APIClient struct {
 
 	AuthenticationSettingsApi *AuthenticationSettingsApiService
 
+	AutoStoppingAlertsApi *AutoStoppingAlertsApiService
+
 	ClustersApi *ClustersApiService
 
 	CloudCostAnomaliesApi *CloudCostAnomaliesApiService
@@ -289,6 +291,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AuditApi = (*AuditApiService)(&c.common)
 	c.AuditFiltersApi = (*AuditFiltersApiService)(&c.common)
 	c.AuthenticationSettingsApi = (*AuthenticationSettingsApiService)(&c.common)
+	c.AutoStoppingAlertsApi = (*AutoStoppingAlertsApiService)(&c.common)
 	c.ClustersApi = (*ClustersApiService)(&c.common)
 	c.CloudCostAnomaliesApi = (*CloudCostAnomaliesApiService)(&c.common)
 	c.CloudCostAutoStoppingFixedSchedulesApi = (*CloudCostAutoStoppingFixedSchedulesApiService)(&c.common)
