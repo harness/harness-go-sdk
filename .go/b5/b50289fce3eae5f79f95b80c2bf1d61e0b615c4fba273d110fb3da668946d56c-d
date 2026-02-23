@@ -1,0 +1,12 @@
+./confirm.go
+./editor.go
+./filter.go
+./input.go
+./multiline.go
+./multiselect.go
+./password.go
+./renderer.go
+./select.go
+./survey.go
+./transform.go
+./validate.go
