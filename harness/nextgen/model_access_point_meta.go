@@ -30,4 +30,6 @@ type AccessPointMeta struct {
 	AllocateStaticIp bool                `json:"allocate_static_ip,omitempty"`
 	Keypair          string              `json:"keypair,omitempty"`
 	Certificates     []CertificatesData  `json:"certificates,omitempty"`
+	ExternalIP       string              `json:"externalIP,omitempty"`
+	PrivateIP        string              `json:"privateIP,omitempty"`
 }
