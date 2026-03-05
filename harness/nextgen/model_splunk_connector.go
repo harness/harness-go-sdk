@@ -12,8 +12,19 @@ package nextgen
 // This contains the Splunk Connector configuration
 type SplunkConnector struct {
 	SplunkUrl         string   `json:"splunkUrl"`
-	Username          string   `json:"username,omitempty"`
 	AccountId         string   `json:"accountId"`
 	DelegateSelectors []string `json:"delegateSelectors,omitempty"`
-	PasswordRef       string   `json:"passwordRef"`
+
+	// Authentication type - defaults to UsernamePassword if not specified for backward compatibility
+	AuthType SplunkAuthType `json:"authType,omitempty"`
+
+	// Username/Password authentication (requires both fields)
+	Username    string `json:"username,omitempty"`
+	PasswordRef string `json:"passwordRef,omitempty"`
+
+	// Bearer Token authentication (requires one field)
+	BearerTokenRef string `json:"bearerTokenRef,omitempty"`
+
+	// HEC Token authentication (requires one field)
+	HecTokenRef string `json:"hecTokenRef,omitempty"`
 }
