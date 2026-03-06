@@ -78,6 +78,8 @@ type APIClient struct {
 
 	AutoStoppingAlertsApi *AutoStoppingAlertsApiService
 
+	CiExecutionConfigApi *CiExecutionConfigApiService // https://developer.harness.io/docs/continuous-integration/use-ci/set-up-build-infrastructure/harness-ci
+
 	ClustersApi *ClustersApiService
 
 	CloudCostAnomaliesApi *CloudCostAnomaliesApiService
@@ -153,6 +155,8 @@ type APIClient struct {
 	HarnessResourceTypeApi *HarnessResourceTypeApiService
 
 	HostsApi *HostsApiService
+
+	IacmExecutionConfigApi *IacmExecutionConfigApiService // https://developer.harness.io/docs/infrastructure-as-code-management
 
 	InfrastructuresApi *InfrastructuresApiService
 
@@ -292,6 +296,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AuditFiltersApi = (*AuditFiltersApiService)(&c.common)
 	c.AuthenticationSettingsApi = (*AuthenticationSettingsApiService)(&c.common)
 	c.AutoStoppingAlertsApi = (*AutoStoppingAlertsApiService)(&c.common)
+	c.CiExecutionConfigApi = (*CiExecutionConfigApiService)(&c.common)
 	c.ClustersApi = (*ClustersApiService)(&c.common)
 	c.CloudCostAnomaliesApi = (*CloudCostAnomaliesApiService)(&c.common)
 	c.CloudCostAutoStoppingFixedSchedulesApi = (*CloudCostAutoStoppingFixedSchedulesApiService)(&c.common)
@@ -330,6 +335,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.HarnessResourceGroupApi = (*HarnessResourceGroupApiService)(&c.common)
 	c.HarnessResourceTypeApi = (*HarnessResourceTypeApiService)(&c.common)
 	c.HostsApi = (*HostsApiService)(&c.common)
+	c.IacmExecutionConfigApi = (*IacmExecutionConfigApiService)(&c.common)
 	c.InfrastructuresApi = (*InfrastructuresApiService)(&c.common)
 	c.InputSetsApi = (*InputSetsApiService)(&c.common)
 	c.InviteApi = (*InviteApiService)(&c.common)
