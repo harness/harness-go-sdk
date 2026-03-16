@@ -16,7 +16,7 @@ import (
 const (
 	headerRateLimitResetOrg = "X-RateLimit-Reset-Seconds-Org"
 	headerRateLimitResetIP  = "X-RateLimit-Reset-Seconds-IP"
-	defaultResetSeconds     = 1
+	defaultResetSeconds     = 5
 	max429Retries           = 3
 	max5xxRetries           = 3
 )
