@@ -8,7 +8,7 @@
 //
 // The Split client handles 429 rate limiting by reading X-RateLimit-Reset-Seconds-Org
 // and X-RateLimit-Reset-Seconds-IP, waiting, and retrying. It also retries on 5xx
-// with exponential backoff. Authentication uses the x-api-key header (Harness SAT or
+// with exponential backoff. Authentication uses the x-api-key header (Harness SAT, PAT or
 // Split Admin API key).
 //
 // # Getting Started
