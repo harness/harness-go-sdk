@@ -43,6 +43,9 @@ func NewConfiguration() *Configuration {
 	cfg := NewDefaultConfiguration()
 	cfg.AccountId = helpers.EnvVars.AccountId.Get()
 	cfg.ApiKey = helpers.EnvVars.PlatformApiKey.Get()
+	if cfg.ApiKey != "" {
+		cfg.AddDefaultHeader("x-api-key", cfg.ApiKey)
+	}
 	return cfg
 }
 

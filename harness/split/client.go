@@ -21,6 +21,7 @@ type APIClient struct {
 	HTTPClient *http.Client
 
 	// AccountId and ApiKey are copied from config for use by services.
+	// Pass AccountId on relevant Split API endpoints (e.g. query param or header per https://docs.split.io/reference/).
 	AccountId string
 	ApiKey    string
 	BasePath  string

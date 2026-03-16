@@ -27,6 +27,12 @@
 // For custom settings (no env vars), use NewDefaultConfiguration() and set ApiKey
 // and BasePath as needed.
 //
+// # Account ID
+//
+// Pass the client's AccountId on relevant Split API endpoints (e.g. as query parameter
+// or header per the Split API reference). Future services (Workspaces, Segments, etc.)
+// will use client.AccountId when building requests.
+//
 // # Documentation
 //
 // Split API reference: https://docs.split.io/reference/
