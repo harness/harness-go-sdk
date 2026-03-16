@@ -33,6 +33,16 @@
 // or header per the Split API reference). Future services (Workspaces, Segments, etc.)
 // will use client.AccountId when building requests.
 //
+// # Integration tests
+//
+// Integration tests live in split_sdk_test.go and are skipped when credentials
+// are missing or when running with -short. Set HARNESS_ACCOUNT_ID and
+// HARNESS_PLATFORM_API_KEY (or pass -account and -api-key to the test binary)
+// to run them. Example:
+//
+//	go test -v ./harness/split/... -run TestSplitSDK
+//	go test -short ./harness/split/...   # skip integration tests
+//
 // # Documentation
 //
 // Split API reference: https://docs.split.io/reference/
