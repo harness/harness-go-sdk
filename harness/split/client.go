@@ -25,6 +25,9 @@ type APIClient struct {
 	AccountId string
 	ApiKey    string
 	BasePath  string
+
+	// Environments provides access to environments in a workspace.
+	Environments *EnvironmentsService
 }
 
 // NewAPIClient creates a new Split API client from the given configuration.
@@ -51,6 +54,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 		ApiKey:     cfg.ApiKey,
 		BasePath:   cfg.BasePath,
 	}
+	c.Environments = &EnvironmentsService{client: c}
 	return c
 }
 
