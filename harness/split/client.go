@@ -34,6 +34,9 @@ type APIClient struct {
 
 	// Attributes provides access to schema attributes for a traffic type.
 	Attributes *AttributesService
+
+	// FlagSets provides access to flag sets (API v3).
+	FlagSets *FlagSetsService
 }
 
 // NewAPIClient creates a new Split API client from the given configuration.
@@ -63,6 +66,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.Environments = &EnvironmentsService{client: c}
 	c.TrafficTypes = &TrafficTypesService{client: c}
 	c.Attributes = &AttributesService{client: c}
+	c.FlagSets = &FlagSetsService{client: c}
 	return c
 }
 
