@@ -40,6 +40,9 @@ type APIClient struct {
 
 	// Segments provides access to segments in a workspace.
 	Segments *SegmentsService
+
+	// Splits provides access to splits and split definitions.
+	Splits *SplitsService
 }
 
 // NewAPIClient creates a new Split API client from the given configuration.
@@ -71,6 +74,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.Attributes = &AttributesService{client: c}
 	c.FlagSets = &FlagSetsService{client: c}
 	c.Segments = &SegmentsService{client: c}
+	c.Splits = &SplitsService{client: c}
 	return c
 }
 
