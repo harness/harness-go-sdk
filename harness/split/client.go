@@ -26,6 +26,9 @@ type APIClient struct {
 	ApiKey    string
 	BasePath  string
 
+	// Workspaces provides read-only access to Split workspaces (projects).
+	Workspaces *WorkspacesService
+
 	// Environments provides access to environments in a workspace.
 	Environments *EnvironmentsService
 
@@ -75,6 +78,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 		ApiKey:     cfg.ApiKey,
 		BasePath:   cfg.BasePath,
 	}
+	c.Workspaces = &WorkspacesService{client: c}
 	c.Environments = &EnvironmentsService{client: c}
 	c.TrafficTypes = &TrafficTypesService{client: c}
 	c.Attributes = &AttributesService{client: c}
