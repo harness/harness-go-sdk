@@ -37,6 +37,9 @@ type APIClient struct {
 
 	// FlagSets provides access to flag sets (API v3).
 	FlagSets *FlagSetsService
+
+	// Segments provides access to segments in a workspace.
+	Segments *SegmentsService
 }
 
 // NewAPIClient creates a new Split API client from the given configuration.
@@ -67,6 +70,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.TrafficTypes = &TrafficTypesService{client: c}
 	c.Attributes = &AttributesService{client: c}
 	c.FlagSets = &FlagSetsService{client: c}
+	c.Segments = &SegmentsService{client: c}
 	return c
 }
 
