@@ -46,6 +46,9 @@ type APIClient struct {
 
 	// Tags provides tag association for objects (e.g. AssociateTags for feature flags).
 	Tags *TagsService
+
+	// ApiKeys provides access to API key create/delete.
+	ApiKeys *ApiKeysService
 }
 
 // NewAPIClient creates a new Split API client from the given configuration.
@@ -79,6 +82,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.Segments = &SegmentsService{client: c}
 	c.Splits = &SplitsService{client: c}
 	c.Tags = &TagsService{client: c}
+	c.ApiKeys = &ApiKeysService{client: c}
 	return c
 }
 
