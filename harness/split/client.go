@@ -55,6 +55,9 @@ type APIClient struct {
 
 	// RuleBasedSegments provides access to rule-based segments (HSF-40; distinct from Segments).
 	RuleBasedSegments *RuleBasedSegmentsService
+
+	// LargeSegments provides access to large segments (HSF-41).
+	LargeSegments *LargeSegmentsService
 }
 
 // NewAPIClient creates a new Split API client from the given configuration.
@@ -91,6 +94,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.Tags = &TagsService{client: c}
 	c.ApiKeys = &ApiKeysService{client: c}
 	c.RuleBasedSegments = &RuleBasedSegmentsService{client: c}
+	c.LargeSegments = &LargeSegmentsService{client: c}
 	return c
 }
 
