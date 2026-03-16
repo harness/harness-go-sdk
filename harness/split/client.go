@@ -28,6 +28,9 @@ type APIClient struct {
 
 	// Environments provides access to environments in a workspace.
 	Environments *EnvironmentsService
+
+	// TrafficTypes provides access to traffic types in a workspace.
+	TrafficTypes *TrafficTypesService
 }
 
 // NewAPIClient creates a new Split API client from the given configuration.
@@ -55,6 +58,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 		BasePath:   cfg.BasePath,
 	}
 	c.Environments = &EnvironmentsService{client: c}
+	c.TrafficTypes = &TrafficTypesService{client: c}
 	return c
 }
 
