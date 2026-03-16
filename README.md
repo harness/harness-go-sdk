@@ -32,6 +32,7 @@ The SDK is organized into the following packages:
 | [`harness/cd`](https://pkg.go.dev/github.com/harness/harness-go-sdk/harness/cd) | FirstGen Continuous Delivery APIs | [FirstGen Docs](https://developer.harness.io/docs/first-gen/) |
 | [`harness/chaos`](https://pkg.go.dev/github.com/harness/harness-go-sdk/harness/chaos) | Chaos Engineering APIs | [Chaos Docs](https://developer.harness.io/docs/chaos-engineering/) |
 | [`harness/code`](https://pkg.go.dev/github.com/harness/harness-go-sdk/harness/code) | Code Repository APIs | [Code Docs](https://developer.harness.io/docs/code-repository/) |
+| [`harness/split`](https://pkg.go.dev/github.com/harness/harness-go-sdk/harness/split) | Split Admin API (Feature Flags / FME) with rate-limit retry | [Split API Reference](https://docs.split.io/reference/) |
 | [`harness/helpers`](https://pkg.go.dev/github.com/harness/harness-go-sdk/harness/helpers) | Common helper utilities | - |
 | [`harness/utils`](https://pkg.go.dev/github.com/harness/harness-go-sdk/harness/utils) | Utility functions | - |
 | [`logging`](https://pkg.go.dev/github.com/harness/harness-go-sdk/logging) | Logging utilities | - |
