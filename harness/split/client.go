@@ -52,6 +52,9 @@ type APIClient struct {
 
 	// ApiKeys provides access to API key create/delete.
 	ApiKeys *ApiKeysService
+
+	// RuleBasedSegments provides access to rule-based segments (HSF-40; distinct from Segments).
+	RuleBasedSegments *RuleBasedSegmentsService
 }
 
 // NewAPIClient creates a new Split API client from the given configuration.
@@ -87,6 +90,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.Splits = &SplitsService{client: c}
 	c.Tags = &TagsService{client: c}
 	c.ApiKeys = &ApiKeysService{client: c}
+	c.RuleBasedSegments = &RuleBasedSegmentsService{client: c}
 	return c
 }
 
