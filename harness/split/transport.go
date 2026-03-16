@@ -138,18 +138,22 @@ func (t *rateLimitRetryTransport) cloneRequest(req *http.Request, bodyBytes []by
 }
 
 // parseResetSeconds returns the number of seconds to wait from 429 response headers.
-// Uses max of X-RateLimit-Reset-Seconds-Org and X-RateLimit-Reset-Seconds-IP; default 1 if missing.
+// Uses max of X-RateLimit-Reset-Seconds-Org and X-RateLimit-Reset-Seconds-IP.
+// When both headers are present, their max is used (0 means retry immediately).
+// defaultResetSeconds is used only when both headers are missing.
 func (t *rateLimitRetryTransport) parseResetSeconds(resp *http.Response) int {
-	org := parseResetHeader(resp.Header.Get(headerRateLimitResetOrg))
-	ip := parseResetHeader(resp.Header.Get(headerRateLimitResetIP))
-	if org > ip {
-		return org
-	}
-	if ip > 0 {
+	orgStr := resp.Header.Get(headerRateLimitResetOrg)
+	ipStr := resp.Header.Get(headerRateLimitResetIP)
+	org := parseResetHeader(orgStr)
+	ip := parseResetHeader(ipStr)
+	orgPresent := orgStr != ""
+	ipPresent := ipStr != ""
+
+	if orgPresent || ipPresent {
+		if org > ip {
+			return org
+		}
 		return ip
-	}
-	if org > 0 {
-		return org
 	}
 	return defaultResetSeconds
 }
