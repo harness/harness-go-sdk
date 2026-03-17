@@ -73,7 +73,7 @@ func (s *AttributesService) List(workspaceID, trafficTypeID string, opts *Attrib
 		return nil, err
 	}
 	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
 		body, _ := io.ReadAll(resp.Body)
 		return nil, fmt.Errorf("attributes list: %d %s: %s", resp.StatusCode, resp.Status, string(body))
 	}
@@ -135,7 +135,7 @@ func (s *AttributesService) Create(workspaceID, trafficTypeID string, req Attrib
 		return nil, err
 	}
 	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusCreated {
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
 		b, _ := io.ReadAll(resp.Body)
 		return nil, fmt.Errorf("attribute create: %d %s: %s", resp.StatusCode, resp.Status, string(b))
 	}
@@ -160,7 +160,7 @@ func (s *AttributesService) Update(workspaceID, trafficTypeID, attributeID strin
 		return nil, err
 	}
 	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
 		b, _ := io.ReadAll(resp.Body)
 		return nil, fmt.Errorf("attribute update: %d %s: %s", resp.StatusCode, resp.Status, string(b))
 	}
@@ -184,7 +184,7 @@ func (s *AttributesService) Delete(workspaceID, trafficTypeID, attributeID strin
 		return err
 	}
 	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusNoContent && resp.StatusCode != http.StatusNotFound {
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
 		body, _ := io.ReadAll(resp.Body)
 		return fmt.Errorf("attribute delete: %d %s: %s", resp.StatusCode, resp.Status, string(body))
 	}
