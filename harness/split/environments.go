@@ -16,10 +16,20 @@ import (
 const environmentsPath = "/internal/api/v2/environments/ws"
 
 // Environment represents a Split environment in a workspace.
+// Create response may include ApiTokens (auto-created keys); use their ID with ApiKeys.Delete before deleting the environment.
 type Environment struct {
+	ID         string         `json:"id"`
+	Name       string         `json:"name"`
+	Production bool           `json:"production"`
+	ApiTokens  []EnvApiToken  `json:"apiTokens,omitempty"`
+}
+
+// EnvApiToken is an API key reference returned when creating an environment (id is used for ApiKeys.Delete).
+type EnvApiToken struct {
 	ID         string `json:"id"`
 	Name       string `json:"name"`
-	Production bool   `json:"production"`
+	Type       string `json:"type"`
+	ApiKeyType string `json:"apiKeyType"`
 }
 
 // EnvironmentsService provides access to environments in a workspace.
