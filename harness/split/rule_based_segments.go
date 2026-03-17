@@ -147,10 +147,11 @@ func (s *RuleBasedSegmentsService) EnableInEnvironment(environmentID, segmentNam
 }
 
 // UpdateDefinition updates the rule-based segment definition in an environment (PUT).
-func (s *RuleBasedSegmentsService) UpdateDefinition(environmentID, segmentName string, def RuleBasedSegmentDefinition) (*RuleBasedSegmentDefinition, error) {
+// Path: /internal/api/v2/rule-based-segments/ws/{workspace-id}/{rb-segment-name}/environments/{environment-id}
+func (s *RuleBasedSegmentsService) UpdateDefinition(workspaceID, environmentID, segmentName string, def RuleBasedSegmentDefinition) (*RuleBasedSegmentDefinition, error) {
 	body, _ := json.Marshal(def)
 	encodedName := url.QueryEscape(segmentName)
-	u := s.client.BasePath + ruleBasedSegmentsPath + "/" + environmentID + "/" + encodedName
+	u := s.client.BasePath + ruleBasedSegmentsPath + "/ws/" + workspaceID + "/" + encodedName + "/environments/" + environmentID
 	req, err := http.NewRequest(http.MethodPut, u, bytes.NewReader(body))
 	if err != nil {
 		return nil, err
