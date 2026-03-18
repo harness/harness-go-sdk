@@ -17,9 +17,9 @@ const (
 	headerRateLimitResetOrg = "X-RateLimit-Reset-Seconds-Org"
 	headerRateLimitResetIP  = "X-RateLimit-Reset-Seconds-IP"
 	headerRetryAfter        = "Retry-After"
-	defaultResetSeconds     = 5  // used when no X-RateLimit-Reset-Seconds-* or Retry-After (e.g. Harness platform may omit them)
-	minResetSeconds         = 2  // minimum wait when server says 0 to avoid retry storm
-	max429Retries           = 5  // retry up to 5 times (6 attempts total) before returning 429 to caller
+	defaultResetSeconds     = 5 // used when no X-RateLimit-Reset-Seconds-* or Retry-After (e.g. Harness platform may omit them)
+	minResetSeconds         = 2 // minimum wait when server says 0 to avoid retry storm
+	max429Retries           = 5 // retry up to 5 times (6 attempts total) before returning 429 to caller
 	max5xxRetries           = 3
 )
 
