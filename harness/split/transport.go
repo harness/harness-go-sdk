@@ -17,9 +17,9 @@ const (
 	headerRateLimitResetOrg = "X-RateLimit-Reset-Seconds-Org"
 	headerRateLimitResetIP  = "X-RateLimit-Reset-Seconds-IP"
 	headerRetryAfter        = "Retry-After"
-	defaultResetSeconds     = 5 // used when no X-RateLimit-Reset-Seconds-* or Retry-After (e.g. Harness platform may omit them)
-	minResetSeconds         = 2 // minimum wait when server says 0 to avoid retry storm
-	max429Retries           = 5 // retry up to 5 times (6 attempts total) before returning 429 to caller
+	defaultResetSeconds     = 5  // used when no X-RateLimit-Reset-Seconds-* or Retry-After (e.g. Harness platform may omit them)
+	minResetSeconds         = 2  // minimum wait when server says 0 to avoid retry storm
+	max429Retries           = 5  // retry up to 5 times (6 attempts total) before returning 429 to caller
 	max5xxRetries           = 3
 )
 
@@ -76,8 +76,12 @@ func (t *rateLimitRetryTransport) RoundTrip(req *http.Request) (*http.Response, 
 	}
 
 	// 429: retry after reset seconds (honor X-RateLimit-Reset-Seconds-* or Retry-After, then wait and retry)
+	// 429: retry after reset seconds (honor X-RateLimit-Reset-Seconds-* or Retry-After, then wait and retry)
 	for i := 0; resp.StatusCode == http.StatusTooManyRequests && i < max429Retries; i++ {
 		resetSec := t.parseResetSeconds(resp)
+		if resetSec < minResetSeconds {
+			resetSec = minResetSeconds
+		}
 		if resetSec < minResetSeconds {
 			resetSec = minResetSeconds
 		}
@@ -118,6 +122,13 @@ func (t *rateLimitRetryTransport) applyHeaders(req *http.Request) {
 	if req.Header.Get("Accept") == "" {
 		req.Header.Set("Accept", "application/json")
 	}
+	// Only set defaults if not already set by caller (e.g. CSV uploads use Content-Type: text/csv).
+	if req.Header.Get("Content-Type") == "" {
+		req.Header.Set("Content-Type", "application/json")
+	}
+	if req.Header.Get("Accept") == "" {
+		req.Header.Set("Accept", "application/json")
+	}
 	if t.cfg.ApiKey != "" {
 		req.Header.Set("x-api-key", t.cfg.ApiKey)
 	}
@@ -146,16 +157,26 @@ func (t *rateLimitRetryTransport) cloneRequest(req *http.Request, bodyBytes []by
 // Prefers X-RateLimit-Reset-Seconds-Org and X-RateLimit-Reset-Seconds-IP (max of the two).
 // Falls back to Retry-After (delay-seconds or HTTP-date) when present.
 // defaultResetSeconds is used when no header is present (e.g. Harness platform endpoints may omit them).
+// Prefers X-RateLimit-Reset-Seconds-Org and X-RateLimit-Reset-Seconds-IP (max of the two).
+// Falls back to Retry-After (delay-seconds or HTTP-date) when present.
+// defaultResetSeconds is used when no header is present (e.g. Harness platform endpoints may omit them).
 func (t *rateLimitRetryTransport) parseResetSeconds(resp *http.Response) int {
 	orgStr := resp.Header.Get(headerRateLimitResetOrg)
 	ipStr := resp.Header.Get(headerRateLimitResetIP)
 	org := parseResetHeader(orgStr)
 	ip := parseResetHeader(ipStr)
 	if orgStr != "" || ipStr != "" {
+	if orgStr != "" || ipStr != "" {
 		if org > ip {
 			return org
 		}
 		return ip
+	}
+	// Retry-After: optional fallback (RFC 7231)
+	if s := resp.Header.Get(headerRetryAfter); s != "" {
+		if sec := parseRetryAfter(s); sec >= 0 {
+			return sec
+		}
 	}
 	// Retry-After: optional fallback (RFC 7231)
 	if s := resp.Header.Get(headerRetryAfter); s != "" {
@@ -176,6 +197,27 @@ func parseResetHeader(v string) int {
 		return 0
 	}
 	return n
+}
+
+// parseRetryAfter parses Retry-After (delay-seconds or HTTP-date). Returns seconds to wait or -1 if unparseable.
+func parseRetryAfter(v string) int {
+	v = strings.TrimSpace(v)
+	if v == "" {
+		return -1
+	}
+	// delay-seconds (integer)
+	if n, err := strconv.Atoi(v); err == nil && n >= 0 {
+		return n
+	}
+	// HTTP-date: parse and subtract now (best-effort)
+	if t, err := http.ParseTime(v); err == nil {
+		sec := int(time.Until(t).Seconds())
+		if sec < 0 {
+			return 0
+		}
+		return sec
+	}
+	return -1
 }
 
 // parseRetryAfter parses Retry-After (delay-seconds or HTTP-date). Returns seconds to wait or -1 if unparseable.
