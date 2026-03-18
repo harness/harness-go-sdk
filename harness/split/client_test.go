@@ -3,6 +3,7 @@ package split_test
 import (
 	"net/http"
 	"net/http/httptest"
+	"net/url"
 	"testing"
 
 	"github.com/harness/harness-go-sdk/harness/split"
@@ -60,4 +61,35 @@ func TestClient_429Retry(t *testing.T) {
 
 	require.Equal(t, http.StatusOK, resp.StatusCode, "client should succeed after retry")
 	require.Equal(t, 2, requestCount, "server should receive 2 requests (first 429, then retry)")
+}
+
+func TestClient_XApiKeyAndAccountId(t *testing.T) {
+	var captured *http.Request
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		captured = r
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{}`))
+	}))
+	defer server.Close()
+
+	cfg := split.NewDefaultConfiguration()
+	cfg.BasePath = server.URL
+	cfg.ApiKey = "test-api-key"
+	cfg.AccountId = "test-account-id"
+	client := split.NewAPIClient(cfg)
+
+	reqURL, _ := url.Parse(server.URL + "/test")
+	reqURL.RawQuery = url.Values{"accountId": {client.AccountId}}.Encode()
+	req, err := http.NewRequest(http.MethodGet, reqURL.String(), nil)
+	require.NoError(t, err)
+
+	resp, err := client.Do(req)
+	require.NoError(t, err)
+	defer func() { _ = resp.Body.Close() }()
+
+	require.Equal(t, http.StatusOK, resp.StatusCode)
+	require.NotNil(t, captured, "server should have captured the request")
+	require.Equal(t, "test-api-key", captured.Header.Get("x-api-key"), "x-api-key header should be set from config")
+	require.Equal(t, "test-account-id", captured.URL.Query().Get("accountId"), "accountId should be passed on the request")
 }
