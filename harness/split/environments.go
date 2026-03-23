@@ -173,7 +173,27 @@ func (s *EnvironmentsService) Delete(workspaceID, environmentID string) error {
 
 const segmentsPath = "/internal/api/v2/segments"
 
-// ListSegments returns segment IDs/names for the environment. Uses GET /segments/ws/{workspaceID}/environments/{environmentID}.
+// segmentEnvListEntry is the subset of each element in GET .../segments/ws/{ws}/environments/{env}
+// we need for identifiers. Live FME responses often look like:
+//
+//	{"objects":[{"name":"qa_accounts","environment":{...},"trafficType":{...},"creationTime":...}],"offset":0,"limit":20,"totalCount":N}
+//
+// There is typically no top-level segment "id"; name is what Activate/Deactivate use in paths.
+type segmentEnvListEntry struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
+func segmentEnvIdentifier(e segmentEnvListEntry) string {
+	if e.ID != "" {
+		return e.ID
+	}
+	return e.Name
+}
+
+// ListSegments returns segment identifiers for the environment (prefer id, else name).
+// Uses GET /segments/ws/{workspaceID}/environments/{environmentID}.
+// Pagination fields offset, limit, and totalCount are returned by the API; totalCount is surfaced as the second return value.
 func (s *EnvironmentsService) ListSegments(workspaceID, environmentID string, offset, limit int) ([]string, int, error) {
 	if limit <= 0 {
 		limit = 50
@@ -193,15 +213,28 @@ func (s *EnvironmentsService) ListSegments(workspaceID, environmentID string, of
 		return nil, 0, fmt.Errorf("list segments: %d %s: %s", resp.StatusCode, resp.Status, string(b))
 	}
 	var out struct {
-		Objects   []struct{ ID string `json:"id"` } `json:"objects"`
-		TotalCount int `json:"totalCount"`
+		Objects    []segmentEnvListEntry `json:"objects"`
+		Items      []segmentEnvListEntry `json:"items"`
+		Data       []segmentEnvListEntry `json:"data"`
+		TotalCount int                   `json:"totalCount"`
 	}
 	if err := json.NewDecoder(resp.Body).Decode(&out); err != nil {
 		return nil, 0, err
 	}
-	ids := make([]string, 0, len(out.Objects))
-	for _, o := range out.Objects {
-		ids = append(ids, o.ID)
+	var page []segmentEnvListEntry
+	switch {
+	case len(out.Items) > 0:
+		page = out.Items
+	case len(out.Data) > 0:
+		page = out.Data
+	case len(out.Objects) > 0:
+		page = out.Objects
+	}
+	ids := make([]string, 0, len(page))
+	for _, e := range page {
+		if id := segmentEnvIdentifier(e); id != "" {
+			ids = append(ids, id)
+		}
 	}
 	return ids, out.TotalCount, nil
 }
@@ -240,7 +273,7 @@ func (s *EnvironmentsService) GetSegmentKeys(workspaceID, environmentID, segment
 	return keys, out.TotalCount, nil
 }
 
-// ListSegmentsAll returns all segment IDs in the environment by fetching every page (offset/limit).
+// ListSegmentsAll returns all segment identifiers in the environment by fetching every page (offset/limit).
 func (s *EnvironmentsService) ListSegmentsAll(workspaceID, environmentID string) ([]string, error) {
 	const pageSize = 50
 	var all []string
@@ -251,6 +284,9 @@ func (s *EnvironmentsService) ListSegmentsAll(workspaceID, environmentID string)
 			return nil, err
 		}
 		all = append(all, ids...)
+		// When totalCount is 0 but the API still returns a full page, requiring a "short page"
+		// to stop would loop forever (offset advances but each response stays at pageSize).
+		// Using offset+len(ids) >= total stops after one page when total==0 (since >= 0 is true).
 		if len(ids) == 0 || offset+len(ids) >= total {
 			break
 		}

@@ -1,6 +1,8 @@
 package split_test
 
 import (
+	"bytes"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -104,6 +106,122 @@ func TestEnvironmentsService_ListSegmentsAll(t *testing.T) {
 	require.Len(t, all, 3)
 	require.Equal(t, []string{"seg-a", "seg-b", "seg-c"}, all)
 	require.Equal(t, 2, callCount)
+}
+
+func TestEnvironmentsService_ListSegmentsAll_totalZeroFullPageSingleRequest(t *testing.T) {
+	callCount := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		callCount++
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		var b bytes.Buffer
+		b.WriteString(`{"objects":[`)
+		for i := 0; i < 50; i++ {
+			if i > 0 {
+				b.WriteByte(',')
+			}
+			_, _ = fmt.Fprintf(&b, `{"name":"seg_%d"}`, i)
+		}
+		b.WriteString(`],"totalCount":0}`)
+		_, _ = w.Write(b.Bytes())
+	}))
+	defer server.Close()
+
+	cfg := split.NewDefaultConfiguration()
+	cfg.BasePath = server.URL
+	client := split.NewAPIClient(cfg)
+
+	all, err := client.Environments.ListSegmentsAll("ws-1", "env-1")
+	require.NoError(t, err)
+	require.Len(t, all, 50)
+	require.Equal(t, 1, callCount, "totalCount=0 with full page must not paginate forever")
+}
+
+func TestEnvironmentsService_ListSegments_nameOnlyObjects(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Contains(t, r.URL.Path, "/segments/ws/ws-1/environments/env-1")
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{"objects":[{"name":"alpha"},{"name":"beta"}],"totalCount":2}`))
+	}))
+	defer server.Close()
+
+	cfg := split.NewDefaultConfiguration()
+	cfg.BasePath = server.URL
+	client := split.NewAPIClient(cfg)
+
+	ids, total, err := client.Environments.ListSegments("ws-1", "env-1", 0, 50)
+	require.NoError(t, err)
+	require.Equal(t, 2, total)
+	require.Equal(t, []string{"alpha", "beta"}, ids)
+}
+
+func TestEnvironmentsService_ListSegments_itemsShape(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{"items":[{"id":"id-1","name":"n1"}],"totalCount":1}`))
+	}))
+	defer server.Close()
+
+	cfg := split.NewDefaultConfiguration()
+	cfg.BasePath = server.URL
+	client := split.NewAPIClient(cfg)
+
+	ids, total, err := client.Environments.ListSegments("ws-1", "env-1", 0, 50)
+	require.NoError(t, err)
+	require.Equal(t, 1, total)
+	require.Equal(t, []string{"id-1"}, ids)
+}
+
+func TestEnvironmentsService_ListSegments_FMEObjectsWithNestedFields(t *testing.T) {
+	// Shape from live FME (name + nested environment/trafficType; no segment id).
+	body := `{
+  "objects": [
+    {
+      "name": "qa_accounts",
+      "environment": {
+        "id": "9367b3a0-c70b-11f0-9243-aa89d0eb095e",
+        "name": "Production-FME"
+      },
+      "trafficType": {
+        "id": "7e042930-d79b-11f0-a575-5259b3e62aa3",
+        "name": "account"
+      },
+      "creationTime": 1765572368827
+    },
+    {
+      "name": "qa_user",
+      "environment": {
+        "id": "9367b3a0-c70b-11f0-9243-aa89d0eb095e",
+        "name": "Production-FME"
+      },
+      "trafficType": {
+        "id": "93079240-c70b-11f0-9243-aa89d0eb095e",
+        "name": "user"
+      },
+      "creationTime": 1764950097892
+    }
+  ],
+  "offset": 0,
+  "limit": 20,
+  "totalCount": 2
+}`
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(body))
+	}))
+	defer server.Close()
+
+	cfg := split.NewDefaultConfiguration()
+	cfg.BasePath = server.URL
+	client := split.NewAPIClient(cfg)
+
+	ids, total, err := client.Environments.ListSegments("ws-1", "env-1", 0, 20)
+	require.NoError(t, err)
+	require.Equal(t, 2, total)
+	require.Equal(t, []string{"qa_accounts", "qa_user"}, ids)
 }
 
 func TestEnvironmentsService_GetSegmentKeysAll(t *testing.T) {
