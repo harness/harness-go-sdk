@@ -31,6 +31,25 @@ func TestFlagSetsService_List(t *testing.T) {
 	require.Equal(t, "fs-2", list[1].ID)
 }
 
+func TestFlagSetsService_List_itemsShape(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{"count":1,"limit":200,"nextMarker":"","previousMarker":"","items":[{"id":"fs-1","name":"from_items"}]}`))
+	}))
+	defer server.Close()
+
+	cfg := split.NewDefaultConfiguration()
+	cfg.BasePath = server.URL
+	client := split.NewAPIClient(cfg)
+
+	list, err := client.FlagSets.List("ws-any")
+	require.NoError(t, err)
+	require.Len(t, list, 1)
+	require.Equal(t, "fs-1", list[0].ID)
+	require.Equal(t, "from_items", list[0].Name)
+}
+
 func TestFlagSetsService_FindByID(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "/api/v3/flag-sets/fs-1", r.URL.Path)
@@ -68,6 +87,24 @@ func TestFlagSetsService_FindByName(t *testing.T) {
 	require.NotNil(t, fs)
 	require.Equal(t, "fs-1", fs.ID)
 	require.Equal(t, "Target", fs.Name)
+}
+
+func TestFlagSetsService_FindByName_itemsShape(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{"items":[{"id":"fs-9","name":"Target"}],"nextMarker":""}`))
+	}))
+	defer server.Close()
+
+	cfg := split.NewDefaultConfiguration()
+	cfg.BasePath = server.URL
+	client := split.NewAPIClient(cfg)
+
+	fs, err := client.FlagSets.FindByName("ws-1", "Target")
+	require.NoError(t, err)
+	require.NotNil(t, fs)
+	require.Equal(t, "fs-9", fs.ID)
 }
 
 func TestFlagSetsService_Create(t *testing.T) {

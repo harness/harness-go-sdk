@@ -63,18 +63,32 @@ func (s *FlagSetsService) List(workspaceID string) ([]FlagSet, error) {
 			resp.Body.Close()
 			return nil, fmt.Errorf("flag sets list: %d %s: %s", resp.StatusCode, resp.Status, string(body))
 		}
+		// API returns marker-paginated JSON; the flag-set array key has varied across
+		// Split Admin API versions (e.g. "items" per OpenAPI list example, "data" in
+		// composite schemas, "objects" in older responses).
 		var result struct {
 			Objects        []FlagSet `json:"objects"`
-			NextMarker      *string  `json:"nextMarker"`
-			PreviousMarker  *string  `json:"previousMarker"`
+			Items          []FlagSet `json:"items"`
+			Data           []FlagSet `json:"data"`
+			NextMarker     *string   `json:"nextMarker"`
+			PreviousMarker *string   `json:"previousMarker"`
 		}
 		if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
 			resp.Body.Close()
 			return nil, err
 		}
 		resp.Body.Close()
-		if len(result.Objects) > 0 {
-			all = append(all, result.Objects...)
+		var page []FlagSet
+		switch {
+		case len(result.Items) > 0:
+			page = result.Items
+		case len(result.Data) > 0:
+			page = result.Data
+		case len(result.Objects) > 0:
+			page = result.Objects
+		}
+		if len(page) > 0 {
+			all = append(all, page...)
 		}
 		if result.NextMarker == nil || *result.NextMarker == "" {
 			break
