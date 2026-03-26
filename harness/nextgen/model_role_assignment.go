@@ -13,6 +13,7 @@ type RoleAssignment struct {
 	Identifier              string          `json:"identifier,omitempty"`
 	ResourceGroupIdentifier string          `json:"resourceGroupIdentifier,omitempty"`
 	RoleIdentifier          string          `json:"roleIdentifier,omitempty"`
+	RoleReference           *RoleReference  `json:"roleReference,omitempty"`
 	Principal               *AuthzPrincipal `json:"principal,omitempty"`
 	Disabled                bool            `json:"disabled,omitempty"`
 	Managed                 bool            `json:"managed,omitempty"`
