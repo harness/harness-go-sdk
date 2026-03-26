@@ -45,8 +45,14 @@ func main() {
 		tt := ""
 		if s.TrafficType != nil {
 			tt = " (" + s.TrafficType.Name + ")"
+		} else if s.TrafficTypeID != "" {
+			tt = fmt.Sprintf(" [trafficTypeId=%s]", s.TrafficTypeID)
 		}
-		fmt.Printf("  %s%s\n", s.Name, tt)
+		id := s.ID
+		if id == "" {
+			id = "—"
+		}
+		fmt.Printf("  %s  id=%s  status=%s%s\n", s.Name, id, s.Status, tt)
 	}
 	if len(list) > 0 {
 		name := list[0].Name

@@ -16,6 +16,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"slices"
 	"strconv"
 	"time"
 
@@ -429,6 +430,13 @@ func main() {
 				if err != nil {
 					return err
 				}
+			}
+			inEnv, err := client.RuleBasedSegments.ListInEnvironment(workspaceID, envID)
+			if err != nil {
+				return err
+			}
+			if !slices.ContainsFunc(inEnv, func(e split.RuleBasedSegmentEnvironmentEntry) bool { return e.Name == rbsName }) {
+				return fmt.Errorf("ListInEnvironment: expected rule-based segment %q", rbsName)
 			}
 			err = client.RuleBasedSegments.DeleteInEnvironment(envID, rbsName)
 			if err != nil {
