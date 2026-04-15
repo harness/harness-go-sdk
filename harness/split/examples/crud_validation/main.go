@@ -135,7 +135,40 @@ func main() {
 		if err != nil {
 			return err
 		}
-		_, err = client.Environments.Update(workspaceID, created.ID, split.CreateEnvironmentRequest{Name: envName + "_updated", Production: false})
+		updatedName := envName + "_updated"
+		updatedProd := false
+		_, err = client.Environments.Update(workspaceID, created.ID, split.UpdateEnvironmentRequest{Name: &updatedName, Production: &updatedProd})
+		if err != nil {
+			return err
+		}
+		// Exercise change permissions: enable approvals, then read back.
+		boolTrue := true
+		boolFalse := false
+		updated, err := client.Environments.Update(workspaceID, created.ID, split.UpdateEnvironmentRequest{
+			ChangePermissions: &split.ChangePermissions{
+				AreApprovalsRequired:   &boolTrue,
+				AreApproversRestricted: &boolFalse,
+				Approvers:              []split.PermissionEntity{},
+				AreEditorsRestricted:   &boolFalse,
+				Editors:                []split.PermissionEntity{},
+			},
+		})
+		if err != nil {
+			return err
+		}
+		if updated.ChangePermissions != nil && updated.ChangePermissions.AreApprovalsRequired != nil {
+			fmt.Printf("    changePermissions.areApprovalsRequired = %v\n", *updated.ChangePermissions.AreApprovalsRequired)
+		}
+		// Disable approvals before cleanup.
+		_, err = client.Environments.Update(workspaceID, created.ID, split.UpdateEnvironmentRequest{
+			ChangePermissions: &split.ChangePermissions{
+				AreApprovalsRequired:   &boolFalse,
+				AreApproversRestricted: &boolFalse,
+				Approvers:              []split.PermissionEntity{},
+				AreEditorsRestricted:   &boolFalse,
+				Editors:                []split.PermissionEntity{},
+			},
+		})
 		if err != nil {
 			return err
 		}

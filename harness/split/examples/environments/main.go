@@ -46,6 +46,45 @@ func main() {
 		if e.Production {
 			prod = "yes"
 		}
-		fmt.Printf("  %s: %s (production=%s)\n", e.ID, e.Name, prod)
+		fmt.Printf("  %s: %s (production=%s, type=%s, status=%s)\n", e.ID, e.Name, prod, e.EnvironmentType, e.Status)
+		if cp := e.ChangePermissions; cp != nil {
+			if cp.AreApprovalsRequired != nil {
+				fmt.Printf("    approvals_required=%v", *cp.AreApprovalsRequired)
+				if cp.AreApproversRestricted != nil {
+					fmt.Printf("  approvers_restricted=%v", *cp.AreApproversRestricted)
+				}
+				fmt.Println()
+			}
+			if len(cp.Approvers) > 0 {
+				fmt.Printf("    approvers:")
+				for _, a := range cp.Approvers {
+					fmt.Printf(" %s(%s/%s)", a.Name, a.Type, a.ID)
+				}
+				fmt.Println()
+			}
+			if len(cp.ApprovalSkippableBy) > 0 {
+				fmt.Printf("    approval_skippable_by:")
+				for _, a := range cp.ApprovalSkippableBy {
+					fmt.Printf(" %s(%s/%s)", a.Name, a.Type, a.ID)
+				}
+				fmt.Println()
+			}
+			if cp.AreEditorsRestricted != nil && *cp.AreEditorsRestricted {
+				fmt.Printf("    editors_restricted=true")
+				for _, ed := range cp.Editors {
+					fmt.Printf(" %s(%s/%s)", ed.Name, ed.Type, ed.ID)
+				}
+				fmt.Println()
+			}
+		}
+		if dp := e.DataExportPermissions; dp != nil {
+			if dp.AreExportersRestricted != nil && *dp.AreExportersRestricted {
+				fmt.Printf("    exporters_restricted=true")
+				for _, ex := range dp.Exporters {
+					fmt.Printf(" %s(%s/%s)", ex.Name, ex.Type, ex.ID)
+				}
+				fmt.Println()
+			}
+		}
 	}
 }
