@@ -76,30 +76,13 @@ type EnvironmentsService struct {
 	client *APIClient
 }
 
-// Get returns a single environment by ID. Returns core fields (id, name, production)
-// but does NOT include ChangePermissions or DataExportPermissions; those are only
-// returned by Create and Update. Terraform providers should preserve permission
-// state from Create/Update responses rather than reading it back via Get.
+// Get returns a single environment by ID, or nil if not found.
+// Delegates to FindByID (list endpoint) because the Split API does not expose a
+// single-resource GET on /environments/ws/{ws}/{id} (returns 405 Method Not Allowed).
+// ChangePermissions and DataExportPermissions are NOT returned; those are only
+// populated by Create and Update responses.
 func (s *EnvironmentsService) Get(workspaceID, environmentID string) (*Environment, error) {
-	u := s.client.BasePath + environmentsPath + "/" + workspaceID + "/" + environmentID
-	req, err := http.NewRequest(http.MethodGet, u, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := s.client.Do(req)
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		body, _ := io.ReadAll(resp.Body)
-		return nil, fmt.Errorf("environment get: %d %s: %s", resp.StatusCode, resp.Status, string(body))
-	}
-	var out Environment
-	if err := json.NewDecoder(resp.Body).Decode(&out); err != nil {
-		return nil, err
-	}
-	return &out, nil
+	return s.FindByID(workspaceID, environmentID)
 }
 
 // List returns all environments for the given workspace ID.

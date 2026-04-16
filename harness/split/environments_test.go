@@ -14,13 +14,13 @@ import (
 )
 
 func TestEnvironmentsService_Get(t *testing.T) {
-	// The live API returns only core fields (no permissions).
+	// Get delegates to FindByID which uses the list endpoint.
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, http.MethodGet, r.Method)
-		require.Equal(t, "/internal/api/v2/environments/ws/ws-1/env-1", r.URL.Path)
+		require.Equal(t, "/internal/api/v2/environments/ws/ws-1", r.URL.Path)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		_, _ = w.Write([]byte(`{"id":"env-1","name":"Production","production":true}`))
+		_, _ = w.Write([]byte(`[{"id":"env-1","name":"Production","production":true},{"id":"env-2","name":"Staging","production":false}]`))
 	}))
 	defer server.Close()
 
@@ -39,9 +39,11 @@ func TestEnvironmentsService_Get(t *testing.T) {
 }
 
 func TestEnvironmentsService_Get_NotFound(t *testing.T) {
+	// Get delegates to FindByID; returns nil when ID is not in the list.
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusNotFound)
-		_, _ = w.Write([]byte(`{"code":404}`))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`[{"id":"env-1","name":"Production","production":true}]`))
 	}))
 	defer server.Close()
 
@@ -49,9 +51,9 @@ func TestEnvironmentsService_Get_NotFound(t *testing.T) {
 	cfg.BasePath = server.URL
 	client := split.NewAPIClient(cfg)
 
-	_, err := client.Environments.Get("ws-1", "nonexistent")
-	require.Error(t, err)
-	require.Contains(t, err.Error(), "404")
+	env, err := client.Environments.Get("ws-1", "nonexistent")
+	require.NoError(t, err)
+	require.Nil(t, env)
 }
 
 func TestEnvironmentsService_List(t *testing.T) {
