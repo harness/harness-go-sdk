@@ -15,13 +15,52 @@ import (
 
 const environmentsPath = "/internal/api/v2/environments/ws"
 
+// PermissionEntity represents a user, group, or API key in permission settings.
+type PermissionEntity struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+	Type string `json:"type"`
+}
+
+// ChangePermissions controls who can make changes in an environment and whether approvals are required.
+type ChangePermissions struct {
+	AllowKills             *bool              `json:"allowKills,omitempty"`
+	AreApprovalsRequired   *bool              `json:"areApprovalsRequired,omitempty"`
+	AreApproversRestricted *bool              `json:"areApproversRestricted,omitempty"`
+	Approvers              []PermissionEntity `json:"approvers,omitempty"`
+	AreEditorsRestricted   *bool              `json:"areEditorsRestricted,omitempty"`
+	Editors                []PermissionEntity `json:"editors,omitempty"`
+	ApprovalSkippableBy    []PermissionEntity `json:"approvalSkippableBy,omitempty"`
+}
+
+// DataExportPermissions controls who can export data from an environment.
+type DataExportPermissions struct {
+	AreExportersRestricted *bool              `json:"areExportersRestricted,omitempty"`
+	Exporters              []PermissionEntity `json:"exporters,omitempty"`
+}
+
 // Environment represents a Split environment in a workspace.
+//
+// The List and Get endpoints return only basic fields (id, name, production).
+// ChangePermissions and DataExportPermissions are only populated by Create and Update.
+// Terraform providers should preserve permission state from Create/Update responses
+// rather than expecting it from read operations.
+//
 // Create response may include ApiTokens (auto-created keys); use their ID with ApiKeys.Delete before deleting the environment.
 type Environment struct {
-	ID         string         `json:"id"`
-	Name       string         `json:"name"`
-	Production bool           `json:"production"`
-	ApiTokens  []EnvApiToken  `json:"apiTokens,omitempty"`
+	ID                    string                 `json:"id"`
+	Type                  string                 `json:"type,omitempty"`
+	Name                  string                 `json:"name"`
+	Production            bool                   `json:"production"`
+	EnvironmentType       string                 `json:"environmentType,omitempty"`
+	OrgId                 string                 `json:"orgId,omitempty"`
+	Status                string                 `json:"status,omitempty"`
+	WorkspaceIds          []string               `json:"workspaceIds,omitempty"`
+	CreationTime          int64                  `json:"creationTime,omitempty"`
+	PermissioningEnabled  bool                   `json:"permissioningEnabled,omitempty"`
+	ChangePermissions     *ChangePermissions     `json:"changePermissions,omitempty"`
+	DataExportPermissions *DataExportPermissions `json:"dataExportPermissions,omitempty"`
+	ApiTokens             []EnvApiToken          `json:"apiTokens,omitempty"`
 }
 
 // EnvApiToken is an API key reference returned when creating an environment (id is used for ApiKeys.Delete).
@@ -37,7 +76,34 @@ type EnvironmentsService struct {
 	client *APIClient
 }
 
+// Get returns a single environment by ID. Returns core fields (id, name, production)
+// but does NOT include ChangePermissions or DataExportPermissions; those are only
+// returned by Create and Update. Terraform providers should preserve permission
+// state from Create/Update responses rather than reading it back via Get.
+func (s *EnvironmentsService) Get(workspaceID, environmentID string) (*Environment, error) {
+	u := s.client.BasePath + environmentsPath + "/" + workspaceID + "/" + environmentID
+	req, err := http.NewRequest(http.MethodGet, u, nil)
+	if err != nil {
+		return nil, err
+	}
+	resp, err := s.client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode != http.StatusOK {
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf("environment get: %d %s: %s", resp.StatusCode, resp.Status, string(body))
+	}
+	var out Environment
+	if err := json.NewDecoder(resp.Body).Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 // List returns all environments for the given workspace ID.
+// Note: the list endpoint returns sparse data (id and name only).
 func (s *EnvironmentsService) List(workspaceID string) ([]Environment, error) {
 	u := s.client.BasePath + environmentsPath + "/" + workspaceID
 	req, err := http.NewRequest(http.MethodGet, u, nil)
@@ -90,8 +156,10 @@ func (s *EnvironmentsService) FindByName(workspaceID, name string) (*Environment
 
 // CreateEnvironmentRequest is the body for creating an environment.
 type CreateEnvironmentRequest struct {
-	Name       string `json:"name"`
-	Production bool   `json:"production"`
+	Name                  string                 `json:"name"`
+	Production            bool                   `json:"production"`
+	ChangePermissions     *ChangePermissions     `json:"changePermissions,omitempty"`
+	DataExportPermissions *DataExportPermissions `json:"dataExportPermissions,omitempty"`
 }
 
 // Create creates an environment in the workspace.
@@ -120,16 +188,38 @@ func (s *EnvironmentsService) Create(workspaceID string, req CreateEnvironmentRe
 
 // envPatchOp is one JSON Patch operation (RFC 6902) for environment update.
 type envPatchOp struct {
-	Op    string `json:"op"`
-	Path  string `json:"path"`
-	Value string `json:"value"`
+	Op    string      `json:"op"`
+	Path  string      `json:"path"`
+	Value interface{} `json:"value"`
 }
 
-// Update updates an environment (e.g. name or production flag). Uses PATCH with JSON patch body per Split API.
-func (s *EnvironmentsService) Update(workspaceID, environmentID string, req CreateEnvironmentRequest) (*Environment, error) {
+// UpdateEnvironmentRequest contains the fields that can be updated on an environment.
+// Nil pointer fields are not included in the patch; set a pointer to explicitly patch a field.
+type UpdateEnvironmentRequest struct {
+	Name                  *string                `json:"name,omitempty"`
+	Production            *bool                  `json:"production,omitempty"`
+	ChangePermissions     *ChangePermissions     `json:"changePermissions,omitempty"`
+	DataExportPermissions *DataExportPermissions `json:"dataExportPermissions,omitempty"`
+}
+
+// Update updates an environment using JSON Patch (RFC 6902). Only non-nil fields in the request are patched.
+func (s *EnvironmentsService) Update(workspaceID, environmentID string, req UpdateEnvironmentRequest) (*Environment, error) {
 	var patch []envPatchOp
-	patch = append(patch, envPatchOp{Op: "replace", Path: "/name", Value: req.Name})
-	patch = append(patch, envPatchOp{Op: "replace", Path: "/production", Value: strconv.FormatBool(req.Production)})
+	if req.Name != nil {
+		patch = append(patch, envPatchOp{Op: "replace", Path: "/name", Value: *req.Name})
+	}
+	if req.Production != nil {
+		patch = append(patch, envPatchOp{Op: "replace", Path: "/production", Value: *req.Production})
+	}
+	if req.ChangePermissions != nil {
+		patch = append(patch, envPatchOp{Op: "replace", Path: "/changePermissions", Value: req.ChangePermissions})
+	}
+	if req.DataExportPermissions != nil {
+		patch = append(patch, envPatchOp{Op: "replace", Path: "/dataExportPermissions", Value: req.DataExportPermissions})
+	}
+	if len(patch) == 0 {
+		return nil, fmt.Errorf("environments update: no fields to update")
+	}
 	body, _ := json.Marshal(patch)
 	u := s.client.BasePath + environmentsPath + "/" + workspaceID + "/" + environmentID
 	httpReq, err := http.NewRequest(http.MethodPatch, u, bytes.NewReader(body))
@@ -260,7 +350,9 @@ func (s *EnvironmentsService) GetSegmentKeys(workspaceID, environmentID, segment
 	}
 	// API may return keys as []string or []{ "key": "..." }; support object form per terraform-provider-split.
 	var out struct {
-		Keys       []struct{ Key string `json:"key"` } `json:"keys"`
+		Keys []struct {
+			Key string `json:"key"`
+		} `json:"keys"`
 		TotalCount int `json:"totalCount"`
 	}
 	if err := json.NewDecoder(resp.Body).Decode(&out); err != nil {
@@ -316,9 +408,9 @@ func (s *EnvironmentsService) GetSegmentKeysAll(workspaceID, environmentID, segm
 
 // AddSegmentKeysRequest is the body for add/remove segment keys (comment/title optional).
 type AddSegmentKeysRequest struct {
-	Keys   []string `json:"keys"`
-	Comment string `json:"comment,omitempty"`
-	Title  string `json:"title,omitempty"`
+	Keys    []string `json:"keys"`
+	Comment string   `json:"comment,omitempty"`
+	Title   string   `json:"title,omitempty"`
 }
 
 // AddSegmentKeys adds keys to a segment in an environment. Uses PUT /segments/{environmentID}/{segmentName}/uploadKeys?replace={bool}.
