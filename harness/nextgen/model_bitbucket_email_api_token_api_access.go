@@ -9,13 +9,9 @@
  */
 package nextgen
 
-import "encoding/json"
-
-// This contains details of the information needed for Bitbucket API access
-type BitbucketApiAccess struct {
-	Type_         BitBucketApiAccessType           `json:"type"`
-	UsernameToken *BitbucketUsernameTokenApiAccess `json:"-"`
-	AccessToken   *BitbucketAccessTokenApiAccess   `json:"-"`
-	EmailApiToken *BitbucketEmailApiTokenApiAccess `json:"-"`
-	Spec          json.RawMessage                  `json:"spec"`
+// This contains details of the Bitbucket Email and Api Token for Bearer token authentication
+type BitbucketEmailApiTokenApiAccess struct {
+	Email    string `json:"email,omitempty"`
+	EmailRef string `json:"emailRef,omitempty"`
+	TokenRef string `json:"tokenRef"`
 }
