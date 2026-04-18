@@ -3709,6 +3709,7 @@ components:
           NUGET: "#/components/schemas/NugetArtifactDetailConfig"
           PYTHON: "#/components/schemas/PythonArtifactDetailConfig"
           RPM: "#/components/schemas/RpmArtifactDetailConfig"
+          RAW: "#/components/schemas/RawArtifactDetailConfig"
       oneOf:
       - $ref: "#/components/schemas/DockerArtifactDetailConfig"
       - $ref: "#/components/schemas/HelmArtifactDetailConfig"
@@ -3719,6 +3720,7 @@ components:
       - $ref: "#/components/schemas/RpmArtifactDetailConfig"
       - $ref: "#/components/schemas/NugetArtifactDetailConfig"
       - $ref: "#/components/schemas/CargoArtifactDetailConfig"
+      - $ref: "#/components/schemas/RawArtifactDetailConfig"
     ArtifactLabelRequest:
       required:
       - labels
@@ -3948,6 +3950,12 @@ components:
           type: object
           additionalProperties: true
       description: Config for Cargo artifact details
+    RawArtifactDetailConfig:
+      type: object
+      properties:
+        description:
+          type: string
+      description: Config for Raw artifact details
     CleanupPolicy:
       type: object
       properties:
