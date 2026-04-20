@@ -18,4 +18,5 @@ type OneOfArtifactDetail struct {
     RpmArtifactDetailConfig
     NugetArtifactDetailConfig
     CargoArtifactDetailConfig
+    RawArtifactDetailConfig
 }

@@ -21,4 +21,5 @@ const (
 	NPM_PackageType PackageType = "NPM"
 	RPM_PackageType PackageType = "RPM"
 	CARGO_PackageType PackageType = "CARGO"
+	RAW_PackageType PackageType = "RAW"
 )
