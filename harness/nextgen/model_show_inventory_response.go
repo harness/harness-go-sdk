@@ -8,13 +8,17 @@
  */
 package nextgen
 
+import "encoding/json"
+
 type ShowInventoryResponse struct {
 	// Account is the internal customer account ID.
 	Account string `json:"account"`
 	// Timestamp when the resource was created.
 	Created int64 `json:"created"`
-	// The data representing the inventory
-	Data string `json:"data"`
+	// The data representing the inventory. Shape is discriminated by Type_:
+	// ManualInventory when type=manual, DynamicInventory when type=dynamic,
+	// PluginInventory when type=plugin.
+	Data json.RawMessage `json:"data"`
 	// The unique identifier for this inventory
 	Identifier string `json:"identifier"`
 	// Name is the human readable name
