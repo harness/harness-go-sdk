@@ -10,8 +10,10 @@ package har
 
 // Configuration for Harness Artifact UpstreamProxies
 type UpstreamConfig struct {
-	Auth     *OneOfUpstreamConfigAuth `json:"auth,omitempty"`
-	AuthType *AuthType                `json:"authType"`
-	Source   string                   `json:"source,omitempty"`
-	Url      string                   `json:"url"`
+	Auth            *OneOfUpstreamConfigAuth        `json:"auth,omitempty"`
+	AuthType        *AuthType                       `json:"authType"`
+	Source          string                          `json:"source,omitempty"`
+	Url             string                          `json:"url"`
+	RemoteUrlSuffix string                          `json:"remoteUrlSuffix,omitempty"`
+	FirewallMode    *UpstreamProxyConfigFirewallMode `json:"firewallMode,omitempty"`
 }

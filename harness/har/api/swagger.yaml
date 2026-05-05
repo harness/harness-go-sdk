@@ -5118,6 +5118,20 @@ components:
       - NPM
       - RPM
       - CARGO
+      - COMPOSER
+      - GO
+      - HUGGINGFACE
+      - CONDA
+      - DART
+      - SWIFT
+      - PUPPET
+      - RAW
+    ArtifactType:
+      type: string
+      description: refers to artifact type
+      enum:
+      - model
+      - dataset
     PythonArtifactDetailConfig:
       type: object
       properties:
@@ -5625,8 +5639,19 @@ components:
           - NpmJs
           - NugetOrg
           - Crates
+          - GoProxy
+          - HuggingFace
+          - Anaconda
+          - Pubdev
+          - Packagist
+          - PuppetForge
         url:
           type: string
+        remoteUrlSuffix:
+          type: string
+          description: Optional path suffix appended to the remote URL for this registry.
+        firewallMode:
+          $ref: "#/components/schemas/UpstreamProxyConfigFirewallMode"
       description: Configuration for Harness Artifact UpstreamProxies
       x-discriminator-value: UPSTREAM
     UserPassword:
@@ -5642,6 +5667,13 @@ components:
           type: string
         userName:
           type: string
+    UpstreamProxyConfigFirewallMode:
+      type: string
+      description: Firewall mode applied to an upstream proxy.
+      enum:
+      - ALLOW
+      - ENABLED
+      - QUARANTINE
     VirtualConfig:
       type: object
       properties:

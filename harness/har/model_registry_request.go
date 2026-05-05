@@ -9,14 +9,16 @@
 package har
 
 type RegistryRequest struct {
-	AllowedPattern []string `json:"allowedPattern,omitempty"`
-	BlockedPattern []string `json:"blockedPattern,omitempty"`
-	CleanupPolicy []CleanupPolicy `json:"cleanupPolicy,omitempty"`
-	Config *RegistryConfig `json:"config,omitempty"`
-	Description string `json:"description,omitempty"`
-	Identifier string `json:"identifier"`
-	Labels []string `json:"labels,omitempty"`
-	PackageType *PackageType `json:"packageType"`
-	ParentRef string `json:"parentRef,omitempty"`
-	Scanners []Scanner `json:"scanners,omitempty"`
+	Identifier     string          `json:"identifier"`
+	PackageType    *PackageType    `json:"packageType"`
+	Description    string          `json:"description,omitempty"`
+	AllowedPattern []string        `json:"allowedPattern,omitempty"`
+	BlockedPattern []string        `json:"blockedPattern,omitempty"`
+	CleanupPolicy  []CleanupPolicy `json:"cleanupPolicy,omitempty"`
+	Labels         []string        `json:"labels,omitempty"`
+	Config         *RegistryConfig `json:"config,omitempty"`
+	ParentRef      string          `json:"parentRef,omitempty"`
+	Scanners       []Scanner       `json:"scanners,omitempty"`
+	PolicyRefs     []string        `json:"policyRefs,omitempty"`
+	IsPublic       bool            `json:"isPublic,omitempty"`
 }
