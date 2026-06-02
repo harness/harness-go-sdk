@@ -27,6 +27,11 @@ func (a *JdbcAuthenticationDto) UnmarshalJSON(data []byte) error {
 		err = json.Unmarshal(aux.Spec, &a.ServiceAccount)
 	case JDBCAuthTypes.KeyPair:
 		err = json.Unmarshal(aux.Spec, &a.KeyPair)
+	case JDBCAuthTypes.InheritFromDelegate:
+		a.InheritFromDelegate = &JdbcDelegateAccessDto{}
+		if len(aux.Spec) > 0 {
+			err = json.Unmarshal(aux.Spec, a.InheritFromDelegate)
+		}
 	case JDBCAuthTypes.Oidc:
 		err = json.Unmarshal(aux.Spec, &a.Oidc)
 	default:
@@ -49,6 +54,12 @@ func (a *JdbcAuthenticationDto) MarshalJSON() ([]byte, error) {
 		spec, err = json.Marshal(a.ServiceAccount)
 	case JDBCAuthTypes.KeyPair:
 		spec, err = json.Marshal(a.KeyPair)
+	case JDBCAuthTypes.InheritFromDelegate:
+		if a.InheritFromDelegate != nil {
+			spec, err = json.Marshal(a.InheritFromDelegate)
+		} else {
+			spec = []byte("{}")
+		}
 	case JDBCAuthTypes.Oidc:
 		spec, err = json.Marshal(a.Oidc)
 	default:
