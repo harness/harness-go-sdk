@@ -3710,6 +3710,7 @@ components:
           PYTHON: "#/components/schemas/PythonArtifactDetailConfig"
           RPM: "#/components/schemas/RpmArtifactDetailConfig"
           RAW: "#/components/schemas/RawArtifactDetailConfig"
+          PUPPET: "#/components/schemas/PuppetArtifactDetailConfig"
       oneOf:
       - $ref: "#/components/schemas/DockerArtifactDetailConfig"
       - $ref: "#/components/schemas/HelmArtifactDetailConfig"
@@ -3721,6 +3722,7 @@ components:
       - $ref: "#/components/schemas/NugetArtifactDetailConfig"
       - $ref: "#/components/schemas/CargoArtifactDetailConfig"
       - $ref: "#/components/schemas/RawArtifactDetailConfig"
+      - $ref: "#/components/schemas/PuppetArtifactDetailConfig"
     ArtifactLabelRequest:
       required:
       - labels
@@ -3956,6 +3958,13 @@ components:
         description:
           type: string
       description: Config for Raw artifact details
+    PuppetArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for puppet artifact details
     CleanupPolicy:
       type: object
       properties:

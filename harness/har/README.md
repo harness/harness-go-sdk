@@ -164,6 +164,7 @@ Class | Method | HTTP request | Description
  - [OneOfRegistryConfig](docs/OneOfRegistryConfig.md)
  - [OneOfUpstreamConfigAuth](docs/OneOfUpstreamConfigAuth.md)
  - [PackageType](docs/PackageType.md)
+ - [PuppetArtifactDetailConfig](docs/PuppetArtifactDetailConfig.md)
  - [PythonArtifactDetailConfig](docs/PythonArtifactDetailConfig.md)
  - [RawArtifactDetailConfig](docs/RawArtifactDetailConfig.md)
  - [Registry](docs/Registry.md)
