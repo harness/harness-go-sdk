@@ -1163,6 +1163,7 @@ Update the fault templates in a hub based on tag
  * @param organizationIdentifier organization id that want to access the resource
  * @param projectIdentifier project id that want to access the resource
  * @param hubIdentity chaos hub identity
+ * @param body update fault request
  * @param identity identity of the fault
  * @param optional nil or *FaulttemplateApiUpdateFaultTemplateOpts - Optional Parameters:
      * @param "CorrelationID" (optional.String) -  correlation id is used to debug micro svc communication
@@ -1173,7 +1174,7 @@ type FaulttemplateApiUpdateFaultTemplateOpts struct {
 	CorrelationID optional.String
 }
 
-func (a *FaulttemplateApiService) UpdateFaultTemplate(ctx context.Context, accountIdentifier string, organizationIdentifier string, projectIdentifier string, hubIdentity string, identity string, localVarOptionals *FaulttemplateApiUpdateFaultTemplateOpts) (ChaosfaulttemplateUpdateFaultTemplateResponse, *http.Response, error) {
+func (a *FaulttemplateApiService) UpdateFaultTemplate(ctx context.Context, body ChaosfaulttemplateCreateFaultTemplateRequest, accountIdentifier string, organizationIdentifier string, projectIdentifier string, hubIdentity string, identity string, localVarOptionals *FaulttemplateApiUpdateFaultTemplateOpts) (ChaosfaulttemplateUpdateFaultTemplateResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Put")
 		localVarPostBody    interface{}
@@ -1198,7 +1199,7 @@ func (a *FaulttemplateApiService) UpdateFaultTemplate(ctx context.Context, accou
 		localVarQueryParams.Add("correlationID", parameterToString(localVarOptionals.CorrelationID.Value(), ""))
 	}
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{}
+	localVarHttpContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
@@ -1214,6 +1215,8 @@ func (a *FaulttemplateApiService) UpdateFaultTemplate(ctx context.Context, accou
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
+	// body params
+	localVarPostBody = &body
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

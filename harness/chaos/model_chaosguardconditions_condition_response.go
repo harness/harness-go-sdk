@@ -20,6 +20,6 @@ type ChaosguardconditionsConditionResponse struct {
 	Name string `json:"name"`
 	Rules []ChaosguardconditionsRule `json:"rules,omitempty"`
 	Tags []string `json:"tags,omitempty"`
-	UpdatedAt int32 `json:"updatedAt,omitempty"`
+	UpdatedAt int64 `json:"updatedAt,omitempty"`
 	UpdatedBy *HcesdkUserDetails `json:"updatedBy,omitempty"`
 }

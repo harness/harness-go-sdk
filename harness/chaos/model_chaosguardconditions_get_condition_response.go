@@ -9,18 +9,18 @@
 package chaos
 
 type ChaosguardconditionsGetConditionResponse struct {
-	ConditionId string `json:"conditionId"`
-	CorrelationID string `json:"correlationID,omitempty"`
-	CreatedAt int32 `json:"createdAt,omitempty"`
-	CreatedBy *HcesdkUserDetails `json:"createdBy,omitempty"`
-	Description string `json:"description,omitempty"`
-	FaultSpec *SecurityGovernanceFaultSpec `json:"faultSpec"`
-	InfraType *SecurityGovernanceInfraType `json:"infraType"`
-	K8sSpec *SecurityGovernanceK8sSpec `json:"k8sSpec,omitempty"`
-	MachineSpec *SecurityGovernanceMachineSpec `json:"machineSpec,omitempty"`
-	Name string `json:"name"`
-	Rules []ChaosguardconditionsRule `json:"rules,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	UpdatedAt int32 `json:"updatedAt,omitempty"`
-	UpdatedBy *HcesdkUserDetails `json:"updatedBy,omitempty"`
+	ConditionId   string                         `json:"conditionId"`
+	CorrelationID string                         `json:"correlationID,omitempty"`
+	CreatedAt     int64                          `json:"createdAt,omitempty"`
+	CreatedBy     *HcesdkUserDetails             `json:"createdBy,omitempty"`
+	Description   string                         `json:"description,omitempty"`
+	FaultSpec     *SecurityGovernanceFaultSpec   `json:"faultSpec"`
+	InfraType     *SecurityGovernanceInfraType   `json:"infraType"`
+	K8sSpec       *SecurityGovernanceK8sSpec     `json:"k8sSpec,omitempty"`
+	MachineSpec   *SecurityGovernanceMachineSpec `json:"machineSpec,omitempty"`
+	Name          string                         `json:"name"`
+	Rules         []ChaosguardconditionsRule     `json:"rules,omitempty"`
+	Tags          []string                       `json:"tags,omitempty"`
+	UpdatedAt     int64                          `json:"updatedAt,omitempty"`
+	UpdatedBy     *HcesdkUserDetails             `json:"updatedBy,omitempty"`
 }

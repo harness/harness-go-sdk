@@ -61,6 +61,7 @@ func (c *SecurityGovernanceConditionClient) Get(
                                     name
                                     value
                                 }
+                                namespaceLabels
                             }
                         }
                         chaosServiceAccountSpec {

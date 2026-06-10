@@ -9,18 +9,18 @@
 package chaos
 
 type ChaosguardrulesGetRuleResponse struct {
-	ConditionIds []string `json:"conditionIds"`
-	Conditions []SecurityGovernanceCondition `json:"conditions,omitempty"`
-	CorrelationID string `json:"correlationID,omitempty"`
-	CreatedAt int32 `json:"createdAt,omitempty"`
-	CreatedBy *HcesdkUserDetails `json:"createdBy,omitempty"`
-	Description string `json:"description,omitempty"`
-	IsEnabled bool `json:"isEnabled,omitempty"`
-	Name string `json:"name"`
-	RuleId string `json:"ruleId"`
-	Tags []string `json:"tags,omitempty"`
-	TimeWindows []SecurityGovernanceTimeWindow `json:"timeWindows"`
-	UpdatedAt int32 `json:"updatedAt,omitempty"`
-	UpdatedBy *HcesdkUserDetails `json:"updatedBy,omitempty"`
-	UserGroupIds []string `json:"userGroupIds"`
+	ConditionIds  []string                       `json:"conditionIds"`
+	Conditions    []SecurityGovernanceCondition  `json:"conditions,omitempty"`
+	CorrelationID string                         `json:"correlationID,omitempty"`
+	CreatedAt     int64                          `json:"createdAt,omitempty"`
+	CreatedBy     *HcesdkUserDetails             `json:"createdBy,omitempty"`
+	Description   string                         `json:"description,omitempty"`
+	IsEnabled     bool                           `json:"isEnabled,omitempty"`
+	Name          string                         `json:"name"`
+	RuleId        string                         `json:"ruleId"`
+	Tags          []string                       `json:"tags,omitempty"`
+	TimeWindows   []SecurityGovernanceTimeWindow `json:"timeWindows"`
+	UpdatedAt     int64                          `json:"updatedAt,omitempty"`
+	UpdatedBy     *HcesdkUserDetails             `json:"updatedBy,omitempty"`
+	UserGroupIds  []string                       `json:"userGroupIds"`
 }

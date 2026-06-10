@@ -9,10 +9,11 @@
 package chaos
 
 type SecurityGovernanceWorkload struct {
-	ApplicationMapId string `json:"applicationMapId,omitempty"`
-	Env []SecurityGovernanceEnv `json:"env,omitempty"`
-	Kind string `json:"kind,omitempty"`
-	Label string `json:"label,omitempty"`
-	Namespace string `json:"namespace,omitempty"`
-	Services []string `json:"services,omitempty"`
+	ApplicationMapId string                  `json:"applicationMapId,omitempty"`
+	Env              []SecurityGovernanceEnv `json:"env,omitempty"`
+	Kind             string                  `json:"kind,omitempty"`
+	Label            string                  `json:"label,omitempty"`
+	Namespace        string                  `json:"namespace,omitempty"`
+	NamespaceLabels  map[string]string       `json:"namespaceLabels,omitempty"`
+	Services         []string                `json:"services,omitempty"`
 }

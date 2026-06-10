@@ -9,7 +9,7 @@
 package chaos
 
 type SecurityGovernanceRecurrenceSpec struct {
-	Until int32 `json:"until,omitempty"`
+	Until int64 `json:"until,omitempty"`
 	// set if recurrenceType is Monthly
 	Value int32 `json:"value,omitempty"`
 }
