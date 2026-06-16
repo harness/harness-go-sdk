@@ -1750,6 +1750,18 @@ components:
           description: |
             branch where the instance is stored
           example: main
+        commitSha:
+          type: string
+          description: |
+            Commit SHA to pin the changelog to a specific revision.
+            Mutually exclusive with branch and gitTag. Supports Harness expressions (e.g. <+trigger.commitSha>).
+          example: abc123def456
+        gitTag:
+          type: string
+          description: |
+            Git tag to pin the changelog to a specific tagged revision.
+            Mutually exclusive with branch and commitSha. Supports Harness expressions (e.g. <+trigger.tag>).
+          example: v1.2.0
         connector:
           minLength: 1
           type: string
@@ -1803,6 +1815,12 @@ components:
         branch:
           type: string
           description: branch where the instance is stored
+        commitSha:
+          type: string
+          description: commit SHA to pin the changelog to a specific revision
+        gitTag:
+          type: string
+          description: Git tag to pin the changelog to a specific tagged revision
         connector:
           type: string
           description: DB Connector
@@ -2920,6 +2938,16 @@ components:
               branch:
                 type: string
                 description: branch where the instance is stored
+              commitSha:
+                type: string
+                description: |
+                  Commit SHA to pin the changelog to a specific revision.
+                  Mutually exclusive with branch and gitTag.
+              gitTag:
+                type: string
+                description: |
+                  Git tag to pin the changelog to a specific tagged revision.
+                  Mutually exclusive with branch and commitSha.
               connector:
                 type: string
                 description: DB Connector

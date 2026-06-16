@@ -19,6 +19,10 @@ type DbInstanceIn struct {
 	Tags map[string]string `json:"tags,omitempty"`
 	// branch where the instance is stored
 	Branch string `json:"branch,omitempty"`
+	// Commit SHA to pin the changelog to a specific revision. Mutually exclusive with branch and gitTag. Supports Harness expressions (e.g. <+trigger.commitSha>).
+	CommitSha string `json:"commitSha,omitempty"`
+	// Git tag to pin the changelog to a specific tagged revision. Mutually exclusive with branch and commitSha. Supports Harness expressions (e.g. <+trigger.tag>).
+	GitTag string `json:"gitTag,omitempty"`
 	// DB Connector
 	Connector string `json:"connector"`
 	// Liquibase context

@@ -23,6 +23,10 @@ type DbInstanceOut struct {
 	Tags map[string]string `json:"tags,omitempty"`
 	// branch where the instance is stored
 	Branch string `json:"branch,omitempty"`
+	// commit SHA to pin the changelog to a specific revision
+	CommitSha string `json:"commitSha,omitempty"`
+	// Git tag to pin the changelog to a specific tagged revision
+	GitTag string `json:"gitTag,omitempty"`
 	// DB Connector
 	Connector string `json:"connector"`
 	// Liquibase context
