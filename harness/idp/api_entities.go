@@ -738,6 +738,9 @@ func (a *EntitiesApiService) GetEntity(ctx context.Context, scope string, kind s
 	if localVarOptionals != nil && localVarOptionals.ResolvePlaceholders.IsSet() {
 		localVarQueryParams.Add("resolve_placeholders", parameterToString(localVarOptionals.ResolvePlaceholders.Value(), ""))
 	}
+	if localVarOptionals != nil && localVarOptionals.HarnessAccount.IsSet() {
+		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.HarnessAccount.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
