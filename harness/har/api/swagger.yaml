@@ -5123,6 +5123,7 @@ components:
       - PYTHON
       - GENERIC
       - HELM
+      - HELM_HTTP
       - NUGET
       - NPM
       - RPM
@@ -5654,6 +5655,7 @@ components:
           - Pubdev
           - Packagist
           - PuppetForge
+          - HelmChartRepo
         url:
           type: string
         remoteUrlSuffix:
