@@ -25,4 +25,6 @@ type AppprojectsAppProjectSpec struct {
 	PermitOnlyProjectScopedClusters bool                                         `json:"permitOnlyProjectScopedClusters,omitempty"`
 	// DestinationServiceAccounts holds information about the service accounts to be impersonated for the application sync operation for each destination.
 	DestinationServiceAccounts []AppprojectsApplicationDestinationServiceAccount `json:"destinationServiceAccounts,omitempty"`
+	// SupportedNamespaces defines the namespaces where Application CRs are permitted to reside for this project.
+	SupportedNamespaces []string `json:"supportedNamespaces,omitempty"`
 }

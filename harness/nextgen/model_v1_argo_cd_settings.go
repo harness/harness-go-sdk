@@ -12,4 +12,6 @@ package nextgen
 type V1ArgoCdSettings struct {
 	// Controls the Environment variable HELM_SECRETS_VALUES_ALLOW_PATH_TRAVERSAL to allow or deny dot-dot-slash values file paths. Disabled by default for security reasons. This config is pushed as an env variable to the repo-server.
 	EnableHelmPathTraversal bool `json:"enableHelmPathTraversal,omitempty"`
+	// Comma-separated list of namespaces where Application CRs are permitted to reside. Use "*" for all namespaces.
+	ApplicationNamespaces string `json:"applicationNamespaces,omitempty"`
 }
