@@ -837,9 +837,9 @@ func (e GenericSwaggerError) Error() string {
 		}
 	}
 
-	// if len(failure.ResponseMessages) > 0 {
-	// 	return failure.ResponseMessages[0].Message
-	// }
+	if len(failure.ResponseMessages) > 0 {
+		return failure.ResponseMessages[0].Message
+	}
 
 	if len(failure.Errors) > 0 {
 		return fmt.Sprintf("%s %s", failure.Errors[0].FieldId, failure.Errors[0].Error_)
