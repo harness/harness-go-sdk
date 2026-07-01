@@ -40,13 +40,13 @@ type RuleEnforcement struct {
 	// targetRegions
 	TargetRegions []string `json:"targetRegions,omitempty"`
 	// isDryRun
-	IsDryRun bool `json:"isDryRun,omitempty"`
+	IsDryRun bool `json:"isDryRun"`
 	// deleted
 	Deleted bool `json:"deleted,omitempty"`
 	// runCount
 	RunCount int32 `json:"runCount,omitempty"`
 	// isEnabled
-	IsEnabled bool `json:"isEnabled,omitempty"`
+	IsEnabled bool `json:"isEnabled"`
 	// Time at which the entity was created
 	CreatedAt int64 `json:"createdAt,omitempty"`
 	// Time at which the entity was last updated

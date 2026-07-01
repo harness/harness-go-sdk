@@ -29,9 +29,10 @@ type InviteApiService service
 
 /*
 InviteApiService Delete an Invite by Identifier
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountIdentifier Account Identifier for the Entity.
- * @param inviteId Invite Id
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param accountIdentifier Account Identifier for the Entity.
+  - @param inviteId Invite Id
+
 @return ResponseDtoOptionalInvite
 */
 func (a *InviteApiService) DeleteInvite(ctx context.Context, accountIdentifier string, inviteId string) (ResponseDtoOptionalInvite, *http.Response, error) {
@@ -331,7 +332,7 @@ func (a *InviteApiService) GetInvites(ctx context.Context, accountIdentifier str
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -486,7 +487,7 @@ func (a *InviteApiService) GetPendingUsersAggregated(ctx context.Context, accoun
 		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SortOrders.IsSet() {
-		localVarQueryParams.Add("sortOrders", parameterToString(localVarOptionals.SortOrders.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sortOrders", localVarOptionals.SortOrders.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "text/yaml"}
@@ -727,10 +728,11 @@ func (a *InviteApiService) SendInvite(ctx context.Context, body CreateInvite, ac
 
 /*
 InviteApiService Resend the Invite email
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param body Details of the Updated Invite
- * @param accountIdentifier Account Identifier for the Entity.
- * @param inviteId Invite id
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param body Details of the Updated Invite
+  - @param accountIdentifier Account Identifier for the Entity.
+  - @param inviteId Invite id
+
 @return ResponseDtoOptionalInvite
 */
 func (a *InviteApiService) UpdateInvite(ctx context.Context, body Invite, accountIdentifier string, inviteId string) (ResponseDtoOptionalInvite, *http.Response, error) {

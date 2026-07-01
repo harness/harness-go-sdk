@@ -9,7 +9,7 @@
  */
 package nextgen
 
-type DelegateSetupDetails struct {
+type DelegateSetupHelmDetails struct {
 	OrgIdentifier           string            `json:"orgIdentifier,omitempty"`
 	ProjectIdentifier       string            `json:"projectIdentifier,omitempty"`
 	Name                    string            `json:"name"`
@@ -23,4 +23,75 @@ type DelegateSetupDetails struct {
 	DelegateType            string            `json:"delegateType"`
 	TokenName               string            `json:"tokenName,omitempty"`
 	RunAsRoot               bool              `json:"runAsRoot,omitempty"`
+}
+
+type DelegateStatus string
+
+const (
+	StatusConnected          DelegateStatus = "CONNECTED"
+	StatusDisconnected       DelegateStatus = "DISCONNECTED"
+	StatusEnabled            DelegateStatus = "ENABLED"
+	StatusDisabled           DelegateStatus = "DISABLED"
+	StatusWaitingForApproval DelegateStatus = "WAITING_FOR_APPROVAL"
+	StatusDeleted            DelegateStatus = "DELETED"
+)
+
+type DelegateVersionStatus string
+
+const (
+	VersionStatusActive      DelegateVersionStatus = "ACTIVE"
+	VersionStatusExpired     DelegateVersionStatus = "EXPIRED"
+	VersionStatusExpiring    DelegateVersionStatus = "EXPIRING"
+	VersionStatusUnsupported DelegateVersionStatus = "UNSUPPORTED"
+)
+
+type DelegateInstanceFilter string
+
+const (
+	InstanceFilterAvailable DelegateInstanceFilter = "AVAILABLE"
+	InstanceFilterExpired   DelegateInstanceFilter = "EXPIRED"
+)
+
+type DelegateFilterType string
+
+const (
+	FilterTypeConnector         DelegateFilterType = "Connector"
+	FilterTypeSecret            DelegateFilterType = "Secret"
+	FilterTypeDelegateProfile   DelegateFilterType = "DelegateProfile"
+	FilterTypeDelegate          DelegateFilterType = "Delegate"
+	FilterTypePipelineSetup     DelegateFilterType = "PipelineSetup"
+	FilterTypePipelineExecution DelegateFilterType = "PipelineExecution"
+	FilterTypeDeployment        DelegateFilterType = "Deployment"
+	FilterTypeAudit             DelegateFilterType = "Audit"
+	FilterTypeTemplate          DelegateFilterType = "Template"
+	FilterTypeTrigger           DelegateFilterType = "Trigger"
+	FilterTypeEnvironmentGroup  DelegateFilterType = "EnvironmentGroup"
+	FilterTypeFileStore         DelegateFilterType = "FileStore"
+	FilterTypeCCMRecommendation DelegateFilterType = "CCMRecommendation"
+	FilterTypeAnomaly           DelegateFilterType = "Anomaly"
+	FilterTypeRIInventory       DelegateFilterType = "RIInventory"
+	FilterTypeSPInventory       DelegateFilterType = "SPInventory"
+	FilterTypeAutocud           DelegateFilterType = "Autocud"
+	FilterTypeCCMConnector      DelegateFilterType = "CCMConnector"
+	FilterTypeCCMK8sConnector   DelegateFilterType = "CCMK8sConnector"
+	FilterTypeEnvironment       DelegateFilterType = "Environment"
+	FilterTypeRuleExecution     DelegateFilterType = "RuleExecution"
+	FilterTypeOverride          DelegateFilterType = "Override"
+	FilterTypeInputSet          DelegateFilterType = "InputSet"
+	FilterTypeWebhook           DelegateFilterType = "Webhook"
+	FilterTypeCCMBudget         DelegateFilterType = "CCMBudget"
+)
+
+type DelegateSetupListDetails struct {
+	Status                  DelegateStatus         `json:"status,omitempty"`
+	Description             string                 `json:"description,omitempty"`
+	HostName                string                 `json:"hostName,omitempty"`
+	DelegateName            string                 `json:"delegateName,omitempty"`
+	DelegateGroupIdentifier string                 `json:"delegateGroupIdentifier,omitempty"`
+	DelegateTags            []string               `json:"delegateTags,omitempty"`
+	DelegateInstanceFilter  DelegateInstanceFilter `json:"delegateInstanceFilter,omitempty"`
+	AutoUpgrade             string                 `json:"autoUpgrade,omitempty"`
+	VersionStatus           DelegateVersionStatus  `json:"versionStatus,omitempty"`
+	Tags                    map[string]string      `json:"tags,omitempty"`
+	FilterType              DelegateFilterType     `json:"filterType,omitempty"`
 }

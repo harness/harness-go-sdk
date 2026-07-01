@@ -263,6 +263,7 @@ Name | Type | Description  | Notes
  **orgIdentifier** | **optional.String**| Organization Identifier for the Entity. | 
  **projectIdentifier** | **optional.String**| Project Identifier for the Entity. | 
  **argoProjectName** | **optional.String**|  | 
+ **autoCreateServiceEnv** | **optional.Bool**| Enable automated creation of service,environment and cluster-env link. Defaults to false. | 
 
 ### Return type
 
@@ -303,6 +304,7 @@ Name | Type | Description  | Notes
  **orgIdentifier** | **optional.String**| Organization Identifier for the Entity. | 
  **projectIdentifier** | **optional.String**| Project Identifier for the Entity. | 
  **argoProjectName** | **optional.String**|  | 
+ **autoCreateServiceEnv** | **optional.Bool**| Enable automated creation of service,environment and cluster-env link. Defaults to false. | 
 
 ### Return type
 

@@ -61,6 +61,7 @@ func (c *SecurityGovernanceConditionClient) Get(
                                     name
                                     value
                                 }
+                                namespaceLabels
                             }
                         }
                         chaosServiceAccountSpec {
@@ -92,7 +93,7 @@ func (c *SecurityGovernanceConditionClient) Get(
 
 	variables := map[string]interface{}{
 		"identifiers": identifiers,
-		"conditionId":  conditionID,
+		"conditionId": conditionID,
 	}
 
 	var response struct {
@@ -230,7 +231,7 @@ func (c *SecurityGovernanceConditionClient) Delete(
 
 	variables := map[string]interface{}{
 		"identifiers": identifiers,
-		"conditionId":  conditionID,
+		"conditionId": conditionID,
 	}
 
 	var response struct {

@@ -58,6 +58,7 @@ type Configuration struct {
 	AccountId     string            `json:"accountId,omitempty"`
 	ApiKey        string            `json:"apiKey,omitempty"`
 	BasePath      string            `json:"basePath,omitempty"`
+	BasePathV3    string            `json:"basePathV3,omitempty"`
 	Host          string            `json:"host,omitempty"`
 	Scheme        string            `json:"scheme,omitempty"`
 	DefaultHeader map[string]string `json:"defaultHeader,omitempty"`
@@ -72,10 +73,12 @@ func NewConfiguration() *Configuration {
 	if helpers.EnvVars.TfLog.Get() == "DEBUG" {
 		logger.SetLevel(log.DebugLevel)
 	}
+	endpoint := helpers.EnvVars.Endpoint.GetWithDefault(utils.BaseUrl)
 	cfg := &Configuration{
 		AccountId:     helpers.EnvVars.AccountId.Get(),
 		ApiKey:        helpers.EnvVars.PlatformApiKey.Get(),
-		BasePath:      helpers.EnvVars.Endpoint.GetWithDefault(utils.BaseUrl) + "/har/api/v1",
+		BasePath:      endpoint + "/har/api/v1",
+		BasePathV3:    endpoint + "/har/api/v3",
 		DefaultHeader: make(map[string]string),
 		HTTPClient:    utils.GetDefaultHttpClient(logger),
 		Logger:        logger,

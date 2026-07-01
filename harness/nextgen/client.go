@@ -54,6 +54,8 @@ type APIClient struct {
 
 	AccessControlListApi *AccessControlListApiService
 
+	AccountDataSinksApi *AccountDataSinksApiService
+
 	AccountDefaultNotificationTemplateSetApi *AccountDefaultNotificationTemplateSetApiService
 
 	AccountSettingApi *AccountSettingApiService
@@ -73,6 +75,10 @@ type APIClient struct {
 	AuditFiltersApi *AuditFiltersApiService
 
 	AuthenticationSettingsApi *AuthenticationSettingsApiService
+
+	AutoStoppingAlertsApi *AutoStoppingAlertsApiService
+
+	CiExecutionConfigApi *CiExecutionConfigApiService // https://developer.harness.io/docs/continuous-integration/use-ci/set-up-build-infrastructure/harness-ci
 
 	ClustersApi *ClustersApiService
 
@@ -109,6 +115,8 @@ type APIClient struct {
 	DashboardsFolderApi *DashboardsFolderApiService
 
 	DelegateGroupTagsResourceApi *DelegateGroupTagsResourceApiService
+
+	DelegateSetupResourceApi *DelegateSetupResourceApiService
 
 	DelegateTokenResourceApi *DelegateTokenResourceApiService
 
@@ -148,11 +156,15 @@ type APIClient struct {
 
 	HostsApi *HostsApiService
 
+	IacmExecutionConfigApi *IacmExecutionConfigApiService // https://developer.harness.io/docs/infrastructure-as-code-management
+
 	InfrastructuresApi *InfrastructuresApiService
 
 	InputSetsApi *InputSetsApiService
 
 	InviteApi *InviteApiService
+
+	IPAllowlistApiService *IPAllowlistApiService
 
 	LicensesApi *LicensesApiService
 
@@ -202,6 +214,8 @@ type APIClient struct {
 
 	SecretManagersApi *SecretManagersApiService
 
+	GcpProjectsApi *GcpProjectsApiService
+
 	SecretsApi *SecretsApiService
 
 	ServiceAccountApi *ServiceAccountApiService
@@ -247,7 +261,9 @@ type APIClient struct {
 	ProjectGitxWebhooksApiService *ProjectGitxWebhooksApiService
 	OrgGitxWebhooksApiService     *OrgGitxWebhooksApiService
 	ModuleRegistryApi             *ModuleRegistryApiService
+	ProviderRegistryApi           *ProviderRegistryApiService
 	VariableSetsApi               *VariableSetsApiService
+	AnsibleApi                    *AnsibleApiService
 }
 
 type service struct {
@@ -269,6 +285,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.APIKeysApi = (*APIKeysApiService)(&c.common)
 	c.AccessControlListApi = (*AccessControlListApiService)(&c.common)
+	c.AccountDataSinksApi = (*AccountDataSinksApiService)(&c.common)
 	c.AccountDefaultNotificationTemplateSetApi = (*AccountDefaultNotificationTemplateSetApiService)(&c.common)
 	c.AccountSettingApi = (*AccountSettingApiService)(&c.common)
 	c.AccountsApi = (*AccountsApiService)(&c.common)
@@ -279,6 +296,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AuditApi = (*AuditApiService)(&c.common)
 	c.AuditFiltersApi = (*AuditFiltersApiService)(&c.common)
 	c.AuthenticationSettingsApi = (*AuthenticationSettingsApiService)(&c.common)
+	c.AutoStoppingAlertsApi = (*AutoStoppingAlertsApiService)(&c.common)
+	c.CiExecutionConfigApi = (*CiExecutionConfigApiService)(&c.common)
 	c.ClustersApi = (*ClustersApiService)(&c.common)
 	c.CloudCostAnomaliesApi = (*CloudCostAnomaliesApiService)(&c.common)
 	c.CloudCostAutoStoppingFixedSchedulesApi = (*CloudCostAutoStoppingFixedSchedulesApiService)(&c.common)
@@ -297,6 +316,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DashboardsFilterApi = (*DashboardsFilterApiService)(&c.common)
 	c.DashboardsFolderApi = (*DashboardsFolderApiService)(&c.common)
 	c.DelegateGroupTagsResourceApi = (*DelegateGroupTagsResourceApiService)(&c.common)
+	c.DelegateSetupResourceApi = (*DelegateSetupResourceApiService)(&c.common)
 	c.DelegateTokenResourceApi = (*DelegateTokenResourceApiService)(&c.common)
 	c.EnvironmentsApi = (*EnvironmentsApiService)(&c.common)
 	c.EnvironmentGroupApi = (*EnvironmentGroupApiService)(&c.common)
@@ -316,9 +336,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.HarnessResourceGroupApi = (*HarnessResourceGroupApiService)(&c.common)
 	c.HarnessResourceTypeApi = (*HarnessResourceTypeApiService)(&c.common)
 	c.HostsApi = (*HostsApiService)(&c.common)
+	c.IacmExecutionConfigApi = (*IacmExecutionConfigApiService)(&c.common)
 	c.InfrastructuresApi = (*InfrastructuresApiService)(&c.common)
 	c.InputSetsApi = (*InputSetsApiService)(&c.common)
 	c.InviteApi = (*InviteApiService)(&c.common)
+	c.IPAllowlistApiService = (*IPAllowlistApiService)(&c.common)
 	c.LicensesApi = (*LicensesApiService)(&c.common)
 	c.MonitoredServiceApi = (*MonitoredServiceApiService)(&c.common)
 	c.NotificationAttachmentsApi = (*NotificationAttachmentsApiService)(&c.common)
@@ -346,6 +368,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SCMApi = (*SCMApiService)(&c.common)
 	c.SMTPApi = (*SMTPApiService)(&c.common)
 	c.SecretManagersApi = (*SecretManagersApiService)(&c.common)
+	c.GcpProjectsApi = (*GcpProjectsApiService)(&c.common)
 	c.SecretsApi = (*SecretsApiService)(&c.common)
 	c.ServiceAccountApi = (*ServiceAccountApiService)(&c.common)
 	c.ServicesApi = (*ServicesApiService)(&c.common)
@@ -372,7 +395,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ProjectGitxWebhooksApiService = (*ProjectGitxWebhooksApiService)(&c.common)
 	c.OrgGitxWebhooksApiService = (*OrgGitxWebhooksApiService)(&c.common)
 	c.ModuleRegistryApi = (*ModuleRegistryApiService)(&c.common)
+	c.ProviderRegistryApi = (*ProviderRegistryApiService)(&c.common)
 	c.VariableSetsApi = (*VariableSetsApiService)(&c.common)
+	c.AnsibleApi = (*AnsibleApiService)(&c.common)
 	return c
 }
 
@@ -448,6 +473,23 @@ func parameterToString(obj interface{}, collectionFormat string) string {
 	}
 
 	return fmt.Sprintf("%v", obj)
+}
+
+// addQueryParam adds a query parameter, handling "multi" collection format correctly.
+// For "multi" format, each element of a slice is added as a separate query parameter.
+// This generates URLs like: ?status=val1&status=val2 instead of ?status=val1val2
+func addQueryParam(params url.Values, key string, value interface{}, collectionFormat string) {
+	if collectionFormat == "multi" {
+		v := reflect.ValueOf(value)
+		if v.Kind() == reflect.Slice {
+			for i := 0; i < v.Len(); i++ {
+				params.Add(key, fmt.Sprintf("%v", v.Index(i).Interface()))
+			}
+			return
+		}
+	}
+	// For all other formats or non-slice values, use parameterToString
+	params.Add(key, parameterToString(value, collectionFormat))
 }
 
 // callAPI do the request.
@@ -656,6 +698,11 @@ func reportError(format string, a ...interface{}) error {
 func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err error) {
 	if bodyBuf == nil {
 		bodyBuf = &bytes.Buffer{}
+	}
+
+	// Dereference pointer to interface if needed
+	if ptr, ok := body.(*interface{}); ok && ptr != nil {
+		body = *ptr
 	}
 
 	if reader, ok := body.(io.Reader); ok {

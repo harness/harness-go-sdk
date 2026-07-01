@@ -12,7 +12,8 @@ type EnumMergeMethod string
 
 // List of EnumMergeMethod
 const (
-	MERGE_EnumMergeMethod  EnumMergeMethod = "merge"
-	REBASE_EnumMergeMethod EnumMergeMethod = "rebase"
-	SQUASH_EnumMergeMethod EnumMergeMethod = "squash"
+	MERGE_EnumMergeMethod        EnumMergeMethod = "merge"
+	REBASE_EnumMergeMethod       EnumMergeMethod = "rebase"
+	SQUASH_EnumMergeMethod       EnumMergeMethod = "squash"
+	FAST_FORWARD_EnumMergeMethod EnumMergeMethod = "fast-forward"
 )

@@ -10,15 +10,30 @@ package har
 
 // Artifact Metadata
 type ArtifactMetadata struct {
-	DeploymentMetadata *DeploymentMetadata `json:"deploymentMetadata,omitempty"`
-	DownloadsCount int64 `json:"downloadsCount,omitempty"`
-	Labels []string `json:"labels,omitempty"`
-	LastModified string `json:"lastModified,omitempty"`
-	LatestVersion string `json:"latestVersion"`
-	Name string `json:"name"`
-	PackageType *PackageType `json:"packageType,omitempty"`
-	PullCommand string `json:"pullCommand,omitempty"`
-	RegistryIdentifier string `json:"registryIdentifier"`
-	RegistryPath string `json:"registryPath"`
-	Version string `json:"version"`
+	Name               string              `json:"name"`
+	Version            string              `json:"version"`
+	RegistryIdentifier string              `json:"registryIdentifier"`
+	RegistryPath       string              `json:"registryPath"`
+	Labels             []string            `json:"labels,omitempty"`
+	FileCount          int                 `json:"fileCount,omitempty"`
+	DigestCount        int                 `json:"digestCount,omitempty"`
+	PullCommand        string              `json:"pullCommand,omitempty"`
+	DownloadsCount     int64               `json:"downloadsCount,omitempty"`
+	IsQuarantined      bool                `json:"isQuarantined,omitempty"`
+	QuarantineReason   string              `json:"quarantineReason,omitempty"`
+	DeploymentMetadata *DeploymentMetadata  `json:"deploymentMetadata,omitempty"`
+	LatestVersion      string              `json:"latestVersion"`
+	LastModified       string              `json:"lastModified,omitempty"`
+	PackageType        *PackageType        `json:"packageType,omitempty"`
+	ArtifactType       *ArtifactType       `json:"artifactType,omitempty"`
+	Metadata           map[string]interface{} `json:"metadata,omitempty"`
+	RegistryUUID       string              `json:"registryUUID,omitempty"`
+	Uuid               string              `json:"uuid,omitempty"`
+	DeletedAt          string              `json:"deletedAt,omitempty"`
+	ScanStatus         string              `json:"scanStatus,omitempty"`
+	LastScannedAt      string              `json:"lastScannedAt,omitempty"`
+	FirewallMode       string              `json:"firewallMode,omitempty"`
+	ScanId             string              `json:"scanId,omitempty"`
+	RegistryType       *RegistryType       `json:"registryType,omitempty"`
+	Purl               string              `json:"purl,omitempty"`
 }

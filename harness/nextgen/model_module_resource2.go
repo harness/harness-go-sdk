@@ -20,6 +20,10 @@ type ModuleResource2 struct {
 	Id string `json:"id"`
 	// module name
 	Name string `json:"name"`
+	// connector org
+	Org string `json:"org,omitempty"`
+	// connector project
+	Project string `json:"project,omitempty"`
 	// Repository is the name of the repository to use.
 	Repository string `json:"repository,omitempty"`
 	// Repository Branch in which the code should be accessed.
@@ -32,6 +36,12 @@ type ModuleResource2 struct {
 	RepositoryPath string `json:"repository_path,omitempty"`
 	// Repository url.
 	RepositoryUrl string `json:"repository_url,omitempty"`
+	// org of the module
+	ScopeOrg string `json:"scope_org,omitempty"`
+	// project of the module
+	ScopeProject string `json:"scope_project,omitempty"`
+	// How to storage the artifact
+	StorageType string `json:"storage_type,omitempty"`
 	// Synced is the unix timestamp at which the resource was synced for the last time in milliseconds.
 	Synced int64 `json:"synced"`
 	// system name

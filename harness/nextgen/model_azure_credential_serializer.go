@@ -24,6 +24,8 @@ func (a *AzureCredential) UnmarshalJSON(data []byte) error {
 		err = json.Unmarshal(aux.Spec, &a.AzureInheritFromDelegateDetails)
 	case AzureCredentialTypes.ManualConfig:
 		err = json.Unmarshal(aux.Spec, &a.AzureManualDetails)
+	case AzureCredentialTypes.OidcAuthentication:
+		err = json.Unmarshal(aux.Spec, &a.AzureOidcSpec)
 	default:
 		panic(fmt.Sprintf("unknown azure credential type %s", a.Type_))
 	}
@@ -42,6 +44,8 @@ func (a *AzureCredential) MarshalJSON() ([]byte, error) {
 		spec, err = json.Marshal(a.AzureInheritFromDelegateDetails)
 	case AzureCredentialTypes.ManualConfig:
 		spec, err = json.Marshal(a.AzureManualDetails)
+	case AzureCredentialTypes.OidcAuthentication:
+		spec, err = json.Marshal(a.AzureOidcSpec)
 	default:
 		panic(fmt.Sprintf("unknown azure credential type %s", a.Type_))
 	}

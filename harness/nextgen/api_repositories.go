@@ -636,7 +636,7 @@ func (a *RepositoriesApiService) AgentRepositoryServiceGetAppDetails(ctx context
 		localVarQueryParams.Add("query.source.targetRevision", parameterToString(localVarOptionals.QuerySourceTargetRevision.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.QuerySourceHelmValueFiles.IsSet() {
-		localVarQueryParams.Add("query.source.helm.valueFiles", parameterToString(localVarOptionals.QuerySourceHelmValueFiles.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "query.source.helm.valueFiles", localVarOptionals.QuerySourceHelmValueFiles.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.QuerySourceHelmReleaseName.IsSet() {
 		localVarQueryParams.Add("query.source.helm.releaseName", parameterToString(localVarOptionals.QuerySourceHelmReleaseName.Value(), ""))
@@ -666,7 +666,7 @@ func (a *RepositoriesApiService) AgentRepositoryServiceGetAppDetails(ctx context
 		localVarQueryParams.Add("query.source.helm.kubeVersion", parameterToString(localVarOptionals.QuerySourceHelmKubeVersion.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.QuerySourceHelmApiVersions.IsSet() {
-		localVarQueryParams.Add("query.source.helm.apiVersions", parameterToString(localVarOptionals.QuerySourceHelmApiVersions.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "query.source.helm.apiVersions", localVarOptionals.QuerySourceHelmApiVersions.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.QuerySourceHelmSkipTests.IsSet() {
 		localVarQueryParams.Add("query.source.helm.skipTests", parameterToString(localVarOptionals.QuerySourceHelmSkipTests.Value(), ""))
@@ -681,7 +681,7 @@ func (a *RepositoriesApiService) AgentRepositoryServiceGetAppDetails(ctx context
 		localVarQueryParams.Add("query.source.kustomize.nameSuffix", parameterToString(localVarOptionals.QuerySourceKustomizeNameSuffix.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.QuerySourceKustomizeImages.IsSet() {
-		localVarQueryParams.Add("query.source.kustomize.images", parameterToString(localVarOptionals.QuerySourceKustomizeImages.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "query.source.kustomize.images", localVarOptionals.QuerySourceKustomizeImages.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.QuerySourceKustomizeVersion.IsSet() {
 		localVarQueryParams.Add("query.source.kustomize.version", parameterToString(localVarOptionals.QuerySourceKustomizeVersion.Value(), ""))
@@ -696,7 +696,7 @@ func (a *RepositoriesApiService) AgentRepositoryServiceGetAppDetails(ctx context
 		localVarQueryParams.Add("query.source.kustomize.namespace", parameterToString(localVarOptionals.QuerySourceKustomizeNamespace.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.QuerySourceKustomizeComponents.IsSet() {
-		localVarQueryParams.Add("query.source.kustomize.components", parameterToString(localVarOptionals.QuerySourceKustomizeComponents.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "query.source.kustomize.components", localVarOptionals.QuerySourceKustomizeComponents.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.QuerySourceKustomizeLabelWithoutSelector.IsSet() {
 		localVarQueryParams.Add("query.source.kustomize.labelWithoutSelector", parameterToString(localVarOptionals.QuerySourceKustomizeLabelWithoutSelector.Value(), ""))
@@ -705,7 +705,7 @@ func (a *RepositoriesApiService) AgentRepositoryServiceGetAppDetails(ctx context
 		localVarQueryParams.Add("query.source.kustomize.kubeVersion", parameterToString(localVarOptionals.QuerySourceKustomizeKubeVersion.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.QuerySourceKustomizeApiVersions.IsSet() {
-		localVarQueryParams.Add("query.source.kustomize.apiVersions", parameterToString(localVarOptionals.QuerySourceKustomizeApiVersions.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "query.source.kustomize.apiVersions", localVarOptionals.QuerySourceKustomizeApiVersions.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.QuerySourceKsonnetEnvironment.IsSet() {
 		localVarQueryParams.Add("query.source.ksonnet.environment", parameterToString(localVarOptionals.QuerySourceKsonnetEnvironment.Value(), ""))
@@ -714,7 +714,7 @@ func (a *RepositoriesApiService) AgentRepositoryServiceGetAppDetails(ctx context
 		localVarQueryParams.Add("query.source.directory.recurse", parameterToString(localVarOptionals.QuerySourceDirectoryRecurse.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.QuerySourceDirectoryJsonnetLibs.IsSet() {
-		localVarQueryParams.Add("query.source.directory.jsonnet.libs", parameterToString(localVarOptionals.QuerySourceDirectoryJsonnetLibs.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "query.source.directory.jsonnet.libs", localVarOptionals.QuerySourceDirectoryJsonnetLibs.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.QuerySourceDirectoryExclude.IsSet() {
 		localVarQueryParams.Add("query.source.directory.exclude", parameterToString(localVarOptionals.QuerySourceDirectoryExclude.Value(), ""))

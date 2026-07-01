@@ -10,12 +10,14 @@ package har
 
 // Harness Artifact Layers
 type DockerManifestDetails struct {
-	CreatedAt string `json:"createdAt,omitempty"`
-	Digest string `json:"digest"`
-	DownloadsCount int64 `json:"downloadsCount,omitempty"`
-	OsArch string `json:"osArch"`
-	Size string `json:"size,omitempty"`
-	StoDetails *StoDetails `json:"stoDetails,omitempty"`
-	StoExecutionId string `json:"stoExecutionId,omitempty"`
-	StoPipelineId string `json:"stoPipelineId,omitempty"`
+	OsArch           string      `json:"osArch"`
+	Digest           string      `json:"digest"`
+	Size             string      `json:"size,omitempty"`
+	CreatedAt        string      `json:"createdAt,omitempty"`
+	StoExecutionId   string      `json:"stoExecutionId,omitempty"`
+	StoPipelineId    string      `json:"stoPipelineId,omitempty"`
+	DownloadsCount   int64       `json:"downloadsCount,omitempty"`
+	IsQuarantined    bool        `json:"isQuarantined,omitempty"`
+	QuarantineReason string      `json:"quarantineReason,omitempty"`
+	StoDetails       *StoDetails `json:"stoDetails,omitempty"`
 }

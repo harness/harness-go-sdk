@@ -23,6 +23,10 @@ func (a *BitbucketApiAccess) UnmarshalJSON(data []byte) error {
 	switch a.Type_ {
 	case BitBucketApiAccessTypes.UsernameToken:
 		err = json.Unmarshal(aux.Spec, &a.UsernameToken)
+	case BitBucketApiAccessTypes.AccessToken:
+		err = json.Unmarshal(aux.Spec, &a.AccessToken)
+	case BitBucketApiAccessTypes.EmailAndApiToken:
+		err = json.Unmarshal(aux.Spec, &a.EmailApiToken)
 	default:
 		panic(fmt.Sprintf("unknown BitBucket api auth method type %s", a.Type_))
 	}
@@ -39,6 +43,10 @@ func (a *BitbucketApiAccess) MarshalJSON() ([]byte, error) {
 	switch a.Type_ {
 	case BitBucketApiAccessTypes.UsernameToken:
 		spec, err = json.Marshal(a.UsernameToken)
+	case BitBucketApiAccessTypes.AccessToken:
+		spec, err = json.Marshal(a.AccessToken)
+	case BitBucketApiAccessTypes.EmailAndApiToken:
+		spec, err = json.Marshal(a.EmailApiToken)
 	default:
 		panic(fmt.Sprintf("unknown BitBucket api auth method type %s", a.Type_))
 	}

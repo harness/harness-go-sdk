@@ -21,4 +21,5 @@ type FixedSchedule struct {
 	// List of resources to be controlled by the schedule
 	Resources []StaticScheduleResource `json:"resources,omitempty"`
 	Details   *OccurrenceSchedule      `json:"details,omitempty"`
+	Priority  int                      `json:"priority,omitempty"`
 }

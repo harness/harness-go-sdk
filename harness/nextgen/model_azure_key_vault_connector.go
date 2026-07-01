@@ -12,10 +12,10 @@ package nextgen
 // Returns configuration details for the Azure Key Vault Secret Manager.
 type AzureKeyVaultConnector struct {
 	// Application ID of the Azure App.
-	ClientId  string `json:"clientId"`
-	SecretKey string `json:"secretKey"`
+	ClientId  string `json:"clientId,omitempty"`
+	SecretKey string `json:"secretKey,omitempty"`
 	// The Azure Active Directory (AAD) directory ID where you created your application.
-	TenantId string `json:"tenantId"`
+	TenantId string `json:"tenantId,omitempty"`
 	// The Azure Active Directory (AAD) directory ID where you created your application.
 	VaultName string `json:"vaultName"`
 	// Azure Subscription ID.
@@ -27,4 +27,12 @@ type AzureKeyVaultConnector struct {
 	// List of Delegate Selectors that belong to the same Delegate and are used to connect to the Secret Manager.
 	DelegateSelectors []string `json:"delegateSelectors,omitempty"`
 	Default_          bool     `json:"default,omitempty"`
+	// Boolean value to indicate if managed identity is used.
+	UseManagedIdentity bool `json:"useManagedIdentity,omitempty"`
+	// Managed Identity Type: SystemAssignedManagedIdentity or UserAssignedManagedIdentity.
+	AzureManagedIdentityType string `json:"azureManagedIdentityType,omitempty"`
+	// Client Id of the ManagedIdentity resource (required for UserAssignedManagedIdentity).
+	ManagedClientId string `json:"managedClientId,omitempty"`
+	// Boolean value to indicate if purge is enabled.
+	EnablePurge bool `json:"enablePurge,omitempty"`
 }

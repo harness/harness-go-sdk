@@ -11,6 +11,7 @@ var InfrastructureDeploymenTypes = struct {
 	AZURE_WEBAPP          InfrastructureDeploymenType
 	CUSTOM                InfrastructureDeploymenType
 	ECS                   InfrastructureDeploymenType
+	GOOGLE_MIG            InfrastructureDeploymenType
 }{
 	KUBERNETES:            "Kubernetes",
 	NATIVE_HELM:           "NativeHelm",
@@ -20,6 +21,7 @@ var InfrastructureDeploymenTypes = struct {
 	AZURE_WEBAPP:          "AzureWebApp",
 	CUSTOM:                "Custom",
 	ECS:                   "ECS",
+	GOOGLE_MIG:            "GoogleManagedInstanceGroup",
 }
 
 var InfrastructureDeploymentypeValues = []string{
@@ -31,6 +33,7 @@ var InfrastructureDeploymentypeValues = []string{
 	InfrastructureDeploymenTypes.AZURE_WEBAPP.String(),
 	InfrastructureDeploymenTypes.CUSTOM.String(),
 	InfrastructureDeploymenTypes.ECS.String(),
+	InfrastructureDeploymenTypes.GOOGLE_MIG.String(),
 }
 
 func (e InfrastructureDeploymenType) String() string {

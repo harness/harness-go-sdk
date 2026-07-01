@@ -64,6 +64,7 @@ Class | Method | HTTP request | Description
  - [MigrationStateInstance](docs/MigrationStateInstance.md)
  - [MigrationStateInstanceIn](docs/MigrationStateInstanceIn.md)
  - [MigrationStateOut](docs/MigrationStateOut.md)
+ - [MigrationType](docs/MigrationType.md)
  - [ModelError](docs/ModelError.md)
  - [NgTag](docs/NgTag.md)
  - [OrderInstance](docs/OrderInstance.md)

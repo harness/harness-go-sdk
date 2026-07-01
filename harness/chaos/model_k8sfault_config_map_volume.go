@@ -9,7 +9,7 @@
 package chaos
 
 type K8sfaultConfigMapVolume struct {
-	MountMode int32 `json:"mountMode,omitempty"`
+	MountMode int32  `json:"mountMode,omitempty"`
 	MountPath string `json:"mountPath,omitempty"`
-	Name string `json:"name,omitempty"`
+	Name      string `json:"name,omitempty"`
 }

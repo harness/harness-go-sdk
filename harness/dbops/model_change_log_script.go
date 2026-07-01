@@ -19,4 +19,6 @@ type ChangeLogScript struct {
 	Shell string `json:"shell"`
 	// location of the changelog file
 	Location string `json:"location"`
+	// config file for Flyway migration type
+	Toml string `json:"toml,omitempty"`
 }

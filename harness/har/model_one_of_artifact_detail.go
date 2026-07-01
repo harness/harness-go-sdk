@@ -18,4 +18,12 @@ type OneOfArtifactDetail struct {
     RpmArtifactDetailConfig
     NugetArtifactDetailConfig
     CargoArtifactDetailConfig
+    GoArtifactDetailConfig
+    HuggingFaceArtifactDetailConfig
+    CondaArtifactDetailConfig
+    DartArtifactDetailConfig
+    ComposerArtifactDetailConfig
+    SwiftArtifactDetailConfig
+    PuppetArtifactDetailConfig
+    RawArtifactDetailConfig
 }

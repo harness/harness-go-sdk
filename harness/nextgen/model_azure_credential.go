@@ -16,5 +16,6 @@ type AzureCredential struct {
 	Type_                           AzureCredentialType              `json:"type"`
 	AzureManualDetails              *AzureManualDetails              `json:"-"`
 	AzureInheritFromDelegateDetails *AzureInheritFromDelegateDetails `json:"-"`
+	AzureOidcSpec                   *AzureOidcSpec                   `json:"-"`
 	Spec                            json.RawMessage                  `json:"spec,omitempty"`
 }

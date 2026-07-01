@@ -21,6 +21,10 @@ type CreateModuleResponseBody struct {
 	Id string `json:"id"`
 	// module name
 	Name string `json:"name"`
+	// connector org
+	Org string `json:"org,omitempty"`
+	// connector project
+	Project string `json:"project,omitempty"`
 	// Repository is the name of the repository to use.
 	Repository string `json:"repository,omitempty"`
 	// Repository Branch in which the code should be accessed.
@@ -31,6 +35,12 @@ type CreateModuleResponseBody struct {
 	RepositoryConnector string `json:"repository_connector,omitempty"`
 	// Repository Path is the path in which the infra code resides.
 	RepositoryPath string `json:"repository_path,omitempty"`
+	// org of the module
+	ScopeOrg string `json:"scope_org,omitempty"`
+	// project of the module
+	ScopeProject string `json:"scope_project,omitempty"`
+	// How to storage the artifact
+	StorageType string `json:"storage_type,omitempty"`
 	// system name
 	System string `json:"system"`
 	// tags defining the module

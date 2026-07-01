@@ -9,9 +9,13 @@
  */
 package nextgen
 
+import "encoding/json"
+
 // This is the WinRm Authentication specification defined in Harness.
 type WinRmAuth struct {
-	Spec *BaseWinRmSpec `json:"spec"`
+	NtlmConfig     *NtlmConfig             `json:"-"`
+	KerberosConfig *KerberosWinRmConfigDto `json:"-"`
+	Spec           json.RawMessage         `json:"spec"`
 	// Specifies authentication scheme, NTLM or Kerberos
 	Type_ string `json:"type"`
 }

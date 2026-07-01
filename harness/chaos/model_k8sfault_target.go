@@ -10,5 +10,5 @@ package chaos
 
 type K8sfaultTarget struct {
 	ApplicationSDK *K8sfaultApplicationTarget `json:"applicationSDK,omitempty"`
-	K8sResource []K8sfaultK8STarget `json:"k8sResource,omitempty"`
+	K8sResource    []K8sfaultK8STarget        `json:"k8sResource,omitempty"`
 }

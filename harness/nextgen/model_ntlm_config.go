@@ -17,10 +17,10 @@ type NtlmConfig struct {
 	// This is the NTLM user name.
 	Username string `json:"username"`
 	// This is the NTLM either to use SSL/https .
-	UseSSL bool `json:"useSSL,omitempty"`
+	UseSSL bool `json:"useSSL"`
 	// This is the NTLM either to skip certificate checks .
-	SkipCertChecks bool `json:"skipCertChecks,omitempty"`
+	SkipCertChecks bool `json:"skipCertChecks"`
 	// This is the NTLM powershell runs without loading profile .
-	UseNoProfile bool   `json:"useNoProfile,omitempty"`
+	UseNoProfile bool   `json:"useNoProfile"`
 	Password     string `json:"password"`
 }

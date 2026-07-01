@@ -3637,6 +3637,7 @@ type Workload struct {
 	Services         []string `json:"services"`
 	ApplicationMapID *string  `json:"applicationMapId"`
 	Env              []*Env   `json:"env"`
+	NamespaceLabels  *string  `json:"namespaceLabels,omitempty"`
 }
 
 type WorkloadInput struct {
@@ -3646,6 +3647,7 @@ type WorkloadInput struct {
 	Services         []string    `json:"services"`
 	ApplicationMapID *string     `json:"applicationMapId"`
 	Env              []*EnvInput `json:"env"`
+	NamespaceLabels  *string     `json:"namespaceLabels,omitempty"`
 }
 
 type ChaosHubAuthType string

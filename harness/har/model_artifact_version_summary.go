@@ -10,11 +10,23 @@ package har
 
 // Docker Artifact Version Summary
 type ArtifactVersionSummary struct {
-	ImageName string `json:"imageName"`
-	PackageType *PackageType `json:"packageType"`
-	SscaArtifactId string `json:"sscaArtifactId,omitempty"`
-	SscaArtifactSourceId string `json:"sscaArtifactSourceId,omitempty"`
-	StoExecutionId string `json:"stoExecutionId,omitempty"`
-	StoPipelineId string `json:"stoPipelineId,omitempty"`
-	Version string `json:"version"`
+	ImageName            string        `json:"imageName"`
+	Version              string        `json:"version"`
+	PackageType          *PackageType  `json:"packageType"`
+	ArtifactType         *ArtifactType `json:"artifactType,omitempty"`
+	SscaArtifactId       string        `json:"sscaArtifactId,omitempty"`
+	SscaArtifactSourceId string        `json:"sscaArtifactSourceId,omitempty"`
+	StoExecutionId       string        `json:"stoExecutionId,omitempty"`
+	StoPipelineId        string        `json:"stoPipelineId,omitempty"`
+	IsQuarantined        bool          `json:"isQuarantined,omitempty"`
+	ScanStatus           string        `json:"scanStatus,omitempty"`
+	LastScannedAt        string        `json:"lastScannedAt,omitempty"`
+	FirewallMode         string        `json:"firewallMode,omitempty"`
+	RegistryType         *RegistryType `json:"registryType,omitempty"`
+	ScanId               string        `json:"scanId,omitempty"`
+	QuarantineReason     string        `json:"quarantineReason,omitempty"`
+	Uuid                 string        `json:"uuid,omitempty"`
+	RegistryUUID         string        `json:"registryUUID,omitempty"`
+	DeletedAt            string        `json:"deletedAt,omitempty"`
+	Purl                 string        `json:"purl,omitempty"`
 }

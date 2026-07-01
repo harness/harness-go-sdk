@@ -10,16 +10,20 @@ package har
 
 // Harness Artifact Registry
 type Registry struct {
-	AllowedPattern []string `json:"allowedPattern,omitempty"`
-	BlockedPattern []string `json:"blockedPattern,omitempty"`
-	CleanupPolicy []CleanupPolicy `json:"cleanupPolicy,omitempty"`
-	Config *RegistryConfig `json:"config,omitempty"`
-	CreatedAt string `json:"createdAt,omitempty"`
-	Description string `json:"description,omitempty"`
-	Identifier string `json:"identifier"`
-	Labels []string `json:"labels,omitempty"`
-	ModifiedAt string `json:"modifiedAt,omitempty"`
-	PackageType *PackageType `json:"packageType"`
-	Scanners []Scanner `json:"scanners,omitempty"`
-	Url string `json:"url"`
+	CleanupPolicy  []CleanupPolicy `json:"cleanupPolicy,omitempty"`
+	Identifier     string          `json:"identifier"`
+	PackageType    *PackageType    `json:"packageType"`
+	Description    string          `json:"description,omitempty"`
+	Url            string          `json:"url"`
+	AllowedPattern []string        `json:"allowedPattern,omitempty"`
+	BlockedPattern []string        `json:"blockedPattern,omitempty"`
+	Labels         []string        `json:"labels,omitempty"`
+	Config         *RegistryConfig `json:"config,omitempty"`
+	CreatedAt      string          `json:"createdAt,omitempty"`
+	ModifiedAt     string          `json:"modifiedAt,omitempty"`
+	Scanners       []Scanner       `json:"scanners,omitempty"`
+	PolicyRefs     []string        `json:"policyRefs,omitempty"`
+	IsPublic       bool            `json:"isPublic,omitempty"`
+	Uuid           string          `json:"uuid,omitempty"`
+	DeletedAt      string          `json:"deletedAt,omitempty"`
 }

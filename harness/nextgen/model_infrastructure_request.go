@@ -22,7 +22,7 @@ type InfrastructureRequest struct {
 	// name of the infrastructure
 	Name string `json:"name,omitempty"`
 	// description of the infrastructure
-	Description string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// tags associated with the infrastructure
 	Tags map[string]string `json:"tags,omitempty"`
 	// type of the infrastructure

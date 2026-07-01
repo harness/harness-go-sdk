@@ -210,6 +210,7 @@ Delete deletes an application.
      * @param "RequestAppNamespace" (optional.String) -
      * @param "RequestProject" (optional.String) -
      * @param "OptionsRemoveExistingFinalizers" (optional.Bool) -
+     * @param "OptionsForceDelete" (optional.Bool) -
 @return ApplicationsApplicationResponse
 */
 
@@ -222,6 +223,7 @@ type ApplicationsApiAgentApplicationServiceDeleteOpts struct {
 	RequestAppNamespace             optional.String
 	RequestProject                  optional.String
 	OptionsRemoveExistingFinalizers optional.Bool
+	OptionsForceDelete              optional.Bool
 }
 
 func (a *ApplicationsApiService) AgentApplicationServiceDelete(ctx context.Context, agentIdentifier string, requestName string, localVarOptionals *ApplicationsApiAgentApplicationServiceDeleteOpts) (ApplicationsApplicationResponse, *http.Response, error) {
@@ -266,6 +268,9 @@ func (a *ApplicationsApiService) AgentApplicationServiceDelete(ctx context.Conte
 	}
 	if localVarOptionals != nil && localVarOptionals.OptionsRemoveExistingFinalizers.IsSet() {
 		localVarQueryParams.Add("options.removeExistingFinalizers", parameterToString(localVarOptionals.OptionsRemoveExistingFinalizers.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.OptionsForceDelete.IsSet() {
+		localVarQueryParams.Add("options.forceDelete", parameterToString(localVarOptionals.OptionsForceDelete.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -601,7 +606,7 @@ func (a *ApplicationsApiService) AgentApplicationServiceGet(ctx context.Context,
 		localVarQueryParams.Add("query.refresh", parameterToString(localVarOptionals.QueryRefresh.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.QueryProject.IsSet() {
-		localVarQueryParams.Add("query.project", parameterToString(localVarOptionals.QueryProject.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "query.project", localVarOptionals.QueryProject.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.QueryResourceVersion.IsSet() {
 		localVarQueryParams.Add("query.resourceVersion", parameterToString(localVarOptionals.QueryResourceVersion.Value(), ""))
@@ -1183,7 +1188,7 @@ func (a *ApplicationsApiService) AgentApplicationServiceList(ctx context.Context
 		localVarQueryParams.Add("query.refresh", parameterToString(localVarOptionals.QueryRefresh.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.QueryProject.IsSet() {
-		localVarQueryParams.Add("query.project", parameterToString(localVarOptionals.QueryProject.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "query.project", localVarOptionals.QueryProject.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.QueryResourceVersion.IsSet() {
 		localVarQueryParams.Add("query.resourceVersion", parameterToString(localVarOptionals.QueryResourceVersion.Value(), ""))
@@ -3498,7 +3503,7 @@ func (a *ApplicationsApiService) AgentApplicationServiceWatch(ctx context.Contex
 		localVarQueryParams.Add("query.refresh", parameterToString(localVarOptionals.QueryRefresh.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.QueryProject.IsSet() {
-		localVarQueryParams.Add("query.project", parameterToString(localVarOptionals.QueryProject.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "query.project", localVarOptionals.QueryProject.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.QueryResourceVersion.IsSet() {
 		localVarQueryParams.Add("query.resourceVersion", parameterToString(localVarOptionals.QueryResourceVersion.Value(), ""))

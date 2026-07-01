@@ -15,5 +15,7 @@ import "encoding/json"
 type BitbucketApiAccess struct {
 	Type_         BitBucketApiAccessType           `json:"type"`
 	UsernameToken *BitbucketUsernameTokenApiAccess `json:"-"`
+	AccessToken   *BitbucketAccessTokenApiAccess   `json:"-"`
+	EmailApiToken *BitbucketEmailApiTokenApiAccess `json:"-"`
 	Spec          json.RawMessage                  `json:"spec"`
 }

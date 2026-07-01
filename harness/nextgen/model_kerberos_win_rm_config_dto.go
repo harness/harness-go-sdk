@@ -9,18 +9,24 @@
  */
 package nextgen
 
+import "encoding/json"
+
 type KerberosWinRmConfigDto struct {
 	Type_ string `json:"type"`
 	// This is the authorization role, the user/service has in the realm.
 	Principal string `json:"principal"`
 	// Name of the Realm.
-	Realm               string                `json:"realm"`
-	TgtGenerationMethod string                `json:"tgtGenerationMethod,omitempty"`
-	Spec                *TgtGenerationSpecDto `json:"spec,omitempty"`
+	Realm               string `json:"realm"`
+	TgtGenerationMethod string `json:"tgtGenerationMethod,omitempty"`
+	// Helper fields for typed access (not serialized directly)
+	KeyTabFilePathSpec *TgtKeyTabFilePathSpecDto `json:"-"`
+	PasswordSpec       *TgtPasswordSpecDto       `json:"-"`
+	// This gets serialized as "spec" in JSON
+	Spec json.RawMessage `json:"spec,omitempty"`
 	// This is the Kerberos either to use SSL/https .
-	UseSSL bool `json:"useSSL,omitempty"`
+	UseSSL bool `json:"useSSL"`
 	// This is the Kerberos either to skip certificate checks .
-	SkipCertChecks bool `json:"skipCertChecks,omitempty"`
+	SkipCertChecks bool `json:"skipCertChecks"`
 	// This is the Kerberos powershell runs without loading profile .
-	UseNoProfile bool `json:"useNoProfile,omitempty"`
+	UseNoProfile bool `json:"useNoProfile"`
 }

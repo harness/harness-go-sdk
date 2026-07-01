@@ -22,4 +22,7 @@ type DbSchemaIn struct {
 	Service         string           `json:"service,omitempty"`
 	Type_           *DbSchemaType    `json:"type,omitempty"`
 	ChangeLogScript *ChangeLogScript `json:"changeLogScript,omitempty"`
+	MigrationType   *MigrationType   `json:"migrationType,omitempty"`
+	// if percona-toolkit to be enabled
+	UsePercona bool `json:"usePercona,omitempty"`
 }

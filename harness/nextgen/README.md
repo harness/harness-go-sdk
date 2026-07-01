@@ -27,6 +27,12 @@ Class | Method | HTTP request | Description
 *APIKeysApi* | [**GetAllAPIKeys**](docs/APIKeysApi.md#getallapikeys) | **Get** /cf/admin/apikey | Returns API Keys for an Environment
 *APIKeysApi* | [**UpdateAPIKey**](docs/APIKeysApi.md#updateapikey) | **Put** /cf/admin/apikey/{identifier} | Updates an API Key
 *AccessControlListApi* | [**GetAccessControlList**](docs/AccessControlListApi.md#getaccesscontrollist) | **Post** /authz/api/acl | Check for permission on resource(s) for a principal
+*AccountDataSinksApi* | [**CreateAccountScopedDataSinks**](docs/AccountDataSinksApi.md#createaccountscopeddatasinks) | **Post** /v1/data-sinks | Create Data Sink
+*AccountDataSinksApi* | [**DeleteAccountScopedDataSink**](docs/AccountDataSinksApi.md#deleteaccountscopeddatasink) | **Delete** /v1/data-sinks/{data-sink} | Delete Data Sink
+*AccountDataSinksApi* | [**GetAccountScopedDataSink**](docs/AccountDataSinksApi.md#getaccountscopeddatasink) | **Get** /v1/data-sinks/{data-sink} | Get Data Sink
+*AccountDataSinksApi* | [**GetAccountScopedDataSinks**](docs/AccountDataSinksApi.md#getaccountscopeddatasinks) | **Get** /v1/data-sinks | Get Data Sinks
+*AccountDataSinksApi* | [**UpdateAccountScopedDataSink**](docs/AccountDataSinksApi.md#updateaccountscopeddatasink) | **Put** /v1/data-sinks/{data-sink} | Update Data Sink
+*AccountDataSinksApi* | [**ValidateAccountScopedDataSinkIdentifier**](docs/AccountDataSinksApi.md#validateaccountscopeddatasinkidentifier) | **Get** /v1/data-sinks/validate-unique-identifier/{data-sink} | Your GET endpoint
 *AccountSettingApi* | [**Get**](docs/AccountSettingApi.md#get) | **Get** /ng/api/account-setting | 
 *AccountSettingApi* | [**List**](docs/AccountSettingApi.md#list) | **Get** /ng/api/account-setting/list | 
 *AccountSettingApi* | [**UpdateAccountSetting**](docs/AccountSettingApi.md#updateaccountsetting) | **Put** /ng/api/account-setting | Updates account settings
@@ -712,6 +718,10 @@ Class | Method | HTTP request | Description
  - [DatadogLogHealthSourceSpec](docs/DatadogLogHealthSourceSpec.md)
  - [DatadogMetricHealthDefinition](docs/DatadogMetricHealthDefinition.md)
  - [DatadogMetricHealthSourceSpec](docs/DatadogMetricHealthSourceSpec.md)
+ - [DataSinkDto](docs/DataSinkDto.md)
+ - [DataSinkResponseDto](docs/DataSinkResponseDto.md)
+ - [DataSinkSpecDto](docs/DataSinkSpecDto.md)
+ - [DataSinkType](docs/DataSinkType.md)
  - [DelegateConnectionDetails](docs/DelegateConnectionDetails.md)
  - [DelegateGroupDetails](docs/DelegateGroupDetails.md)
  - [DelegateGroupDto](docs/DelegateGroupDto.md)

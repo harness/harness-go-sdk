@@ -1,0 +1,151 @@
+package nextgen
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/url"
+)
+
+// ExecutionConfigData is a map of image field names to string values. It uses a
+// custom JSON unmarshaler so that non-string API response values (e.g. booleans
+// returned by IACM update-config) are silently coerced to their string
+// representation rather than causing an unmarshal error.
+type ExecutionConfigData map[string]string
+
+// ExecutionConfigResponse is the shared API response wrapper for execution config endpoints
+// (CI, IACM). Data is a dynamic map of image field names to image tags,
+// e.g. {"liteEngineTag": "harness/ci-lite-engine:1.0.0"}.
+type ExecutionConfigResponse struct {
+	Status        string              `json:"status,omitempty"`
+	Data          ExecutionConfigData `json:"data,omitempty"`
+	MetaData      interface{}         `json:"metaData,omitempty"`
+	CorrelationId string              `json:"correlationId,omitempty"`
+}
+
+// ExecutionConfigUpdate represents a single image field update for the update-config endpoint
+type ExecutionConfigUpdate struct {
+	Field string `json:"field"`
+	Value string `json:"value,omitempty"`
+}
+
+func (d *ExecutionConfigData) UnmarshalJSON(b []byte) error {
+	// API endpoints like reset-config may return "data": true instead of an object.
+	// Treat any non-object value as empty data rather than an error.
+	if len(b) == 0 || b[0] != '{' {
+		*d = make(ExecutionConfigData)
+		return nil
+	}
+	var raw map[string]json.RawMessage
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	*d = make(ExecutionConfigData, len(raw))
+	for k, v := range raw {
+		var s string
+		if err := json.Unmarshal(v, &s); err == nil {
+			(*d)[k] = s
+		} else {
+			(*d)[k] = fmt.Sprintf("%s", v)
+		}
+	}
+	return nil
+}
+
+// runExecutionConfigRequest is the shared HTTP execution function for all execution
+// config services in this package. Each service passes its URL-specific path and
+// params; everything else is identical.
+func runExecutionConfigRequest(client *APIClient, ctx context.Context,
+	httpMethod, path string, extraQueryParams url.Values,
+	contentTypes []string, body interface{}) (ExecutionConfigResponse, error) {
+
+	var (
+		localVarPostBody  interface{}
+		localVarFileName  string
+		localVarFileBytes []byte
+		localVarResult    ExecutionConfigResponse
+	)
+
+	localVarPath := client.cfg.BasePath + path
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	localVarQueryParams.Add("accountIdentifier", parameterToString(client.AccountId, ""))
+	for k, vs := range extraQueryParams {
+		for _, v := range vs {
+			localVarQueryParams.Add(k, v)
+		}
+	}
+
+	localVarHttpContentType := selectHeaderContentType(contentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	localVarHttpHeaderAccept := selectHeaderAccept([]string{"application/json"})
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+
+	if ctx != nil {
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+		}
+	}
+
+	if body != nil {
+		localVarPostBody = body
+	}
+
+	r, err := client.prepareRequest(ctx, localVarPath, httpMethod, localVarPostBody, localVarHeaderParams,
+		localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarResult, err
+	}
+
+	httpResp, err := client.callAPI(r)
+	if err != nil {
+		return localVarResult, err
+	}
+	if httpResp == nil {
+		return localVarResult, nil
+	}
+	defer func() {
+		_ = httpResp.Body.Close()
+	}()
+
+	respBody, err := io.ReadAll(httpResp.Body)
+	if err != nil {
+		return localVarResult, err
+	}
+
+	if httpResp.StatusCode >= 300 {
+		return localVarResult, GenericSwaggerError{
+			body:  respBody,
+			error: httpResp.Status,
+		}
+	}
+
+	err = client.decode(&localVarResult, respBody, httpResp.Header.Get("Content-Type"))
+	return localVarResult, err
+}
+
+// executionConfigQueryParams builds the common infra + overridesOnly query parameters
+// used by all execution config GET endpoints.
+func executionConfigQueryParams(infraType string, overridesOnly *bool) url.Values {
+	params := url.Values{}
+	params.Add("infra", parameterToString(infraType, ""))
+	if overridesOnly != nil {
+		params.Add("overridesOnly", parameterToString(*overridesOnly, ""))
+	}
+	return params
+}

@@ -3709,6 +3709,8 @@ components:
           NUGET: "#/components/schemas/NugetArtifactDetailConfig"
           PYTHON: "#/components/schemas/PythonArtifactDetailConfig"
           RPM: "#/components/schemas/RpmArtifactDetailConfig"
+          RAW: "#/components/schemas/RawArtifactDetailConfig"
+          PUPPET: "#/components/schemas/PuppetArtifactDetailConfig"
       oneOf:
       - $ref: "#/components/schemas/DockerArtifactDetailConfig"
       - $ref: "#/components/schemas/HelmArtifactDetailConfig"
@@ -3719,6 +3721,8 @@ components:
       - $ref: "#/components/schemas/RpmArtifactDetailConfig"
       - $ref: "#/components/schemas/NugetArtifactDetailConfig"
       - $ref: "#/components/schemas/CargoArtifactDetailConfig"
+      - $ref: "#/components/schemas/RawArtifactDetailConfig"
+      - $ref: "#/components/schemas/PuppetArtifactDetailConfig"
     ArtifactLabelRequest:
       required:
       - labels
@@ -3948,6 +3952,19 @@ components:
           type: object
           additionalProperties: true
       description: Config for Cargo artifact details
+    RawArtifactDetailConfig:
+      type: object
+      properties:
+        description:
+          type: string
+      description: Config for Raw artifact details
+    PuppetArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for puppet artifact details
     CleanupPolicy:
       type: object
       properties:
@@ -5106,10 +5123,25 @@ components:
       - PYTHON
       - GENERIC
       - HELM
+      - HELM_HTTP
       - NUGET
       - NPM
       - RPM
       - CARGO
+      - COMPOSER
+      - GO
+      - HUGGINGFACE
+      - CONDA
+      - DART
+      - SWIFT
+      - PUPPET
+      - RAW
+    ArtifactType:
+      type: string
+      description: refers to artifact type
+      enum:
+      - model
+      - dataset
     PythonArtifactDetailConfig:
       type: object
       properties:
@@ -5617,8 +5649,20 @@ components:
           - NpmJs
           - NugetOrg
           - Crates
+          - GoProxy
+          - HuggingFace
+          - Anaconda
+          - Pubdev
+          - Packagist
+          - PuppetForge
+          - HelmChartRepo
         url:
           type: string
+        remoteUrlSuffix:
+          type: string
+          description: Optional path suffix appended to the remote URL for this registry.
+        firewallMode:
+          $ref: "#/components/schemas/UpstreamProxyConfigFirewallMode"
       description: Configuration for Harness Artifact UpstreamProxies
       x-discriminator-value: UPSTREAM
     UserPassword:
@@ -5634,6 +5678,13 @@ components:
           type: string
         userName:
           type: string
+    UpstreamProxyConfigFirewallMode:
+      type: string
+      description: Firewall mode applied to an upstream proxy.
+      enum:
+      - ALLOW
+      - ENABLED
+      - QUARANTINE
     VirtualConfig:
       type: object
       properties:

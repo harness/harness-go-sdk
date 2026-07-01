@@ -23,6 +23,10 @@ type DbInstanceOut struct {
 	Tags map[string]string `json:"tags,omitempty"`
 	// branch where the instance is stored
 	Branch string `json:"branch,omitempty"`
+	// commit SHA to pin the changelog to a specific revision
+	CommitSha string `json:"commitSha,omitempty"`
+	// Git tag to pin the changelog to a specific tagged revision
+	GitTag string `json:"gitTag,omitempty"`
 	// DB Connector
 	Connector string `json:"connector"`
 	// Liquibase context
@@ -32,6 +36,6 @@ type DbInstanceOut struct {
 	ToOnboard      bool   `json:"toOnboard,omitempty"`
 	// Tag on last deployed changeSet
 	LastDeployedChangeSetTag string `json:"lastDeployedChangeSetTag"`
-	// properties to substitute in liquibase changelog
-	LiquibaseSubstituteProperties map[string]string `json:"liquibaseSubstituteProperties,omitempty"`
+	// Placeholder replacement in migration scripts.
+	SubstituteProperties map[string]string `json:"substituteProperties,omitempty"`
 }

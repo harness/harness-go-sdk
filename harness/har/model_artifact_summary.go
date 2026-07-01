@@ -10,10 +10,14 @@ package har
 
 // Harness Artifact Summary
 type ArtifactSummary struct {
-	CreatedAt string `json:"createdAt,omitempty"`
-	DownloadsCount int64 `json:"downloadsCount,omitempty"`
-	ImageName string `json:"imageName"`
-	Labels []string `json:"labels,omitempty"`
-	ModifiedAt string `json:"modifiedAt,omitempty"`
-	PackageType *PackageType `json:"packageType"`
+	ImageName      string        `json:"imageName"`
+	PackageType    *PackageType  `json:"packageType"`
+	Labels         []string      `json:"labels,omitempty"`
+	DownloadsCount int64         `json:"downloadsCount,omitempty"`
+	CreatedAt      string        `json:"createdAt,omitempty"`
+	ModifiedAt     string        `json:"modifiedAt,omitempty"`
+	ArtifactType   *ArtifactType `json:"artifactType,omitempty"`
+	Uuid           string        `json:"uuid,omitempty"`
+	RegistryUUID   string        `json:"registryUUID,omitempty"`
+	DeletedAt      string        `json:"deletedAt,omitempty"`
 }

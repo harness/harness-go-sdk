@@ -639,7 +639,7 @@ func (a *ExecutionDetailsApiService) GetListOfExecutions(ctx context.Context, ac
 		localVarQueryParams.Add("size", parameterToString(localVarOptionals.Size.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Sort.IsSet() {
-		localVarQueryParams.Add("sort", parameterToString(localVarOptionals.Sort.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "sort", localVarOptionals.Sort.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.FilterIdentifier.IsSet() {
 		localVarQueryParams.Add("filterIdentifier", parameterToString(localVarOptionals.FilterIdentifier.Value(), ""))
@@ -648,7 +648,7 @@ func (a *ExecutionDetailsApiService) GetListOfExecutions(ctx context.Context, ac
 		localVarQueryParams.Add("module", parameterToString(localVarOptionals.Module.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Status.IsSet() {
-		localVarQueryParams.Add("status", parameterToString(localVarOptionals.Status.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "status", localVarOptionals.Status.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.MyDeployments.IsSet() {
 		localVarQueryParams.Add("myDeployments", parameterToString(localVarOptionals.MyDeployments.Value(), ""))

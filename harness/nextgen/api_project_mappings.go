@@ -871,14 +871,16 @@ Retrieves Harness-Argo project mapping for the given identifier.
      * @param "OrgIdentifier" (optional.String) -  Organization Identifier for the Entity.
      * @param "ProjectIdentifier" (optional.String) -  Project Identifier for the Entity.
      * @param "ArgoProjectName" (optional.String) -
+     * @param "AutoCreateServiceEnv" (optional.Bool) -  Enable automated creation of service,environment and cluster-env link. Defaults to false.
 @return V1AppProjectMappingV2
 */
 
 type ProjectMappingsApiAppProjectMappingServiceGetAppProjectMappingV2Opts struct {
-	AccountIdentifier optional.String
-	OrgIdentifier     optional.String
-	ProjectIdentifier optional.String
-	ArgoProjectName   optional.String
+    AccountIdentifier optional.String
+    OrgIdentifier optional.String
+    ProjectIdentifier optional.String
+    ArgoProjectName optional.String
+    AutoCreateServiceEnv optional.Bool
 }
 
 func (a *ProjectMappingsApiService) AppProjectMappingServiceGetAppProjectMappingV2(ctx context.Context, agentIdentifier string, identifier string, localVarOptionals *ProjectMappingsApiAppProjectMappingServiceGetAppProjectMappingV2Opts) (V1AppProjectMappingV2, *http.Response, error) {
@@ -911,6 +913,9 @@ func (a *ProjectMappingsApiService) AppProjectMappingServiceGetAppProjectMapping
 	}
 	if localVarOptionals != nil && localVarOptionals.ArgoProjectName.IsSet() {
 		localVarQueryParams.Add("argoProjectName", parameterToString(localVarOptionals.ArgoProjectName.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.AutoCreateServiceEnv.IsSet() {
+		localVarQueryParams.Add("autoCreateServiceEnv", parameterToString(localVarOptionals.AutoCreateServiceEnv.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -1021,16 +1026,18 @@ Retrieves Harness-Argo project mappings list by agent.
      * @param "AccountIdentifier" (optional.String) -  Account Identifier for the Entity.
      * @param "OrgIdentifier" (optional.String) -  Organization Identifier for the Entity.
      * @param "ProjectIdentifier" (optional.String) -  Project Identifier for the Entity.
-     * @param "ArgoProjectName" (optional.String) -
+     * @param "ArgoProjectName" (optional.String) - 
+     * @param "AutoCreateServiceEnv" (optional.Bool) -  Enable automated creation of service,environment and cluster-env link. Defaults to false.
 @return V1AppProjectMappingV2List
 */
 
 type ProjectMappingsApiAppProjectMappingServiceGetAppProjectMappingsListByAgentV2Opts struct {
-	Identifier        optional.String
-	AccountIdentifier optional.String
-	OrgIdentifier     optional.String
-	ProjectIdentifier optional.String
-	ArgoProjectName   optional.String
+    Identifier optional.String
+    AccountIdentifier optional.String
+    OrgIdentifier optional.String
+    ProjectIdentifier optional.String
+    ArgoProjectName optional.String
+    AutoCreateServiceEnv optional.Bool
 }
 
 func (a *ProjectMappingsApiService) AppProjectMappingServiceGetAppProjectMappingsListByAgentV2(ctx context.Context, agentIdentifier string, localVarOptionals *ProjectMappingsApiAppProjectMappingServiceGetAppProjectMappingsListByAgentV2Opts) (V1AppProjectMappingV2List, *http.Response, error) {
@@ -1065,6 +1072,9 @@ func (a *ProjectMappingsApiService) AppProjectMappingServiceGetAppProjectMapping
 	}
 	if localVarOptionals != nil && localVarOptionals.ArgoProjectName.IsSet() {
 		localVarQueryParams.Add("argoProjectName", parameterToString(localVarOptionals.ArgoProjectName.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.AutoCreateServiceEnv.IsSet() {
+		localVarQueryParams.Add("autoCreateServiceEnv", parameterToString(localVarOptionals.AutoCreateServiceEnv.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}

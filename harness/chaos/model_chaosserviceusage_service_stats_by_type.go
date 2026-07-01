@@ -9,11 +9,11 @@
 package chaos
 
 type ChaosserviceusageServiceStatsByType struct {
-	CloudResources float64 `json:"Cloud Resources,omitempty"`
+	CloudResources    float64 `json:"Cloud Resources,omitempty"`
 	ContainerServices float64 `json:"Container Services,omitempty"`
-	Kubernetes float64 `json:"Kubernetes,omitempty"`
-	Linux float64 `json:"Linux,omitempty"`
-	Others float64 `json:"Others,omitempty"`
-	Serverless float64 `json:"Serverless,omitempty"`
-	Windows float64 `json:"Windows,omitempty"`
+	Kubernetes        float64 `json:"Kubernetes,omitempty"`
+	Linux             float64 `json:"Linux,omitempty"`
+	Others            float64 `json:"Others,omitempty"`
+	Serverless        float64 `json:"Serverless,omitempty"`
+	Windows           float64 `json:"Windows,omitempty"`
 }

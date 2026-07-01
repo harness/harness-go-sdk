@@ -19,4 +19,6 @@ type Changelog struct {
 	Repo string `json:"repo,omitempty"`
 	// path excluding the repo till the archive file
 	ArchivePath string `json:"archivePath,omitempty"`
+	// config file for Flyway migration type
+	Toml string `json:"toml,omitempty"`
 }

@@ -1592,6 +1592,14 @@ components:
           $ref: "#/components/schemas/DBSchemaType"
         changeLogScript:
           $ref: "#/components/schemas/ChangeLogScript"
+        migrationType:
+          $ref: "#/components/schemas/MigrationType"
+        usePercona:
+          type: boolean
+          description: if percona-toolkit to be enabled
+          default: false
+          x-stoplight:
+            id: gub746l5qctru
       description: 'Database Schema Request '
       x-examples:
         Example 1:
@@ -1611,8 +1619,10 @@ components:
       - created
       - identifier
       - instanceCount
+      - migrationType
       - name
       - type
+      - usePercona
       type: object
       properties:
         identifier:
@@ -1657,6 +1667,14 @@ components:
           $ref: "#/components/schemas/ChangeLogScript"
         type:
           $ref: "#/components/schemas/DBSchemaType"
+        migrationType:
+          $ref: "#/components/schemas/MigrationType"
+        usePercona:
+          type: boolean
+          description: if percona-toolkit is enabled
+          default: false
+          x-stoplight:
+            id: dnfipv17ffs3v
       description: Database Schema Response
       example:
         identifier: identifier
@@ -1732,6 +1750,18 @@ components:
           description: |
             branch where the instance is stored
           example: main
+        commitSha:
+          type: string
+          description: |
+            Commit SHA to pin the changelog to a specific revision.
+            Mutually exclusive with branch and gitTag. Supports Harness expressions (e.g. <+trigger.commitSha>).
+          example: abc123def456
+        gitTag:
+          type: string
+          description: |
+            Git tag to pin the changelog to a specific tagged revision.
+            Mutually exclusive with branch and commitSha. Supports Harness expressions (e.g. <+trigger.tag>).
+          example: v1.2.0
         connector:
           minLength: 1
           type: string
@@ -1740,13 +1770,13 @@ components:
         context:
           type: string
           description: Liquibase context
-        liquibaseSubstituteProperties:
+        substituteProperties:
           type: object
           additionalProperties:
             type: string
             x-stoplight:
               id: lq57gp08jqckf
-          description: properties to substitute in liquibase changelog
+          description: Placeholder replacement in migration scripts.
           x-stoplight:
             id: ylfffbh8lhcwr
       description: Database Instance Request
@@ -1785,6 +1815,12 @@ components:
         branch:
           type: string
           description: branch where the instance is stored
+        commitSha:
+          type: string
+          description: commit SHA to pin the changelog to a specific revision
+        gitTag:
+          type: string
+          description: Git tag to pin the changelog to a specific tagged revision
         connector:
           type: string
           description: DB Connector
@@ -1803,13 +1839,13 @@ components:
           description: Tag on last deployed changeSet
           x-stoplight:
             id: dlbvh5adtk2de
-        liquibaseSubstituteProperties:
+        substituteProperties:
           type: object
           additionalProperties:
             type: string
             x-stoplight:
               id: szxsmt48sj6o2
-          description: properties to substitute in liquibase changelog
+          description: Placeholder replacement in migration scripts.
           x-stoplight:
             id: zk5v0mxn7p4ns
       description: Database Instance Response
@@ -1870,6 +1906,11 @@ components:
           description: path excluding the repo till the archive file
           x-stoplight:
             id: 53mqhpfa5038m
+        toml:
+          type: string
+          description: config file for Flyway migration type
+          x-stoplight:
+            id: 7m9n0umenjjhf
       additionalProperties: false
       description: |
         location of the changelog file containing schema changes in a git repository
@@ -2487,6 +2528,11 @@ components:
           example: folder/changelog.yaml
           x-stoplight:
             id: sn916ihq297p3
+        toml:
+          type: string
+          description: config file for Flyway migration type
+          x-stoplight:
+            id: s0cp5j17j45dk
       description: if schemaType is Script location of the changelog file after using
         a custom script to download
       example:
@@ -2506,6 +2552,15 @@ components:
       - Script
       x-stoplight:
         id: 21ikm27shlnsf
+    MigrationType:
+      title: MigrationType
+      type: string
+      description: DB Migration tool type
+      enum:
+      - Liquibase
+      - Flyway
+      x-stoplight:
+        id: 2vj413xlt5qrp
   responses:
     DBSchemaListResponse:
       description: Response body for List Database Schema
@@ -2848,6 +2903,11 @@ components:
                       id: 91yj4mcke8jds
                 x-stoplight:
                   id: 3g0zmfv118ub8
+              usePercona:
+                type: boolean
+                description: if percona-tookit is enabled
+                x-stoplight:
+                  id: 008kgy34odsaf
       required: true
     DBInstanceCreateRequest:
       content:
@@ -2878,6 +2938,16 @@ components:
               branch:
                 type: string
                 description: branch where the instance is stored
+              commitSha:
+                type: string
+                description: |
+                  Commit SHA to pin the changelog to a specific revision.
+                  Mutually exclusive with branch and gitTag.
+              gitTag:
+                type: string
+                description: |
+                  Git tag to pin the changelog to a specific tagged revision.
+                  Mutually exclusive with branch and commitSha.
               connector:
                 type: string
                 description: DB Connector
@@ -2887,13 +2957,13 @@ components:
               version:
                 type: string
                 description: version of the changelog applied to the database
-              liquibaseSubstituteProperties:
+              substituteProperties:
                 type: object
                 additionalProperties:
                   type: string
                   x-stoplight:
                     id: j2at4cjqe9em3
-                description: properties to substitute in liquibase changelog
+                description: Placeholder replacement in migration scripts.
                 x-stoplight:
                   id: 411rxl6wqmjnm
           examples:

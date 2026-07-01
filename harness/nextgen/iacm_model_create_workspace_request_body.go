@@ -35,6 +35,8 @@ type IacmCreateWorkspaceRequestBody struct {
 	ProvidersJson string `json:"providers_json,omitempty"`
 	// Provisioner defines the provisioning tool to use.
 	Provisioner string `json:"provisioner"`
+	// Provisioner Configuration defines the language and package manager settings for the provisioner.
+	ProvisionerConfiguration *IacmProvisionerConfiguration `json:"provisioner_configuration,omitempty"`
 	// Provisioner Version defines the tool version to use.
 	ProvisionerVersion string `json:"provisioner_version,omitempty"`
 	// prune_sensitive_data is a flag to enable or disable pruning of sensitive data
@@ -71,6 +73,8 @@ type IacmCreateWorkspaceRequestBody struct {
 	TerraformVariableFiles []IacmWorkspaceTerraformVariableFiles `json:"terraform_variable_files,omitempty"`
 	// list of terraform variables configured on the workspace.
 	TerraformVariables map[string]IacmVariable `json:"terraform_variables"`
+	// Terragrunt Provider to use when provisioner is terragrunt.
+	TerragruntProvider bool `json:"terragrunt_provider,omitempty"`
 	// Terragrunt Version to use when provisioner is terragrunt.
 	TerragruntVersion string `json:"terragrunt_version,omitempty"`
 	// Optional Variable Sets as references

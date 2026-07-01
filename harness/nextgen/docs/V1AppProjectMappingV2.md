@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **AgentIdentifier** | **string** |  | [optional] [default to null]
 **CreatedAt** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 **LastModifiedAt** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
+**AutoCreateServiceEnv** | **bool** |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

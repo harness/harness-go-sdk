@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **OrgIdentifier** | **string** | Organization Identifier for the Entity. | [optional] [default to null]
 **ProjectIdentifier** | **string** | Project Identifier for the Entity. | [optional] [default to null]
 **ArgoProjectName** | **string** |  | [optional] [default to null]
+**AutoCreateServiceEnv** | **bool** | Enable automated creation of service,environment and cluster-env link. Defaults to false. | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

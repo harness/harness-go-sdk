@@ -1555,7 +1555,7 @@ func (a *RepositoryApiService) DiffStats(ctx context.Context, accountIdentifier 
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Path.IsSet() {
-		localVarQueryParams.Add("path", parameterToString(localVarOptionals.Path.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "path", localVarOptionals.Path.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -3709,7 +3709,7 @@ func (a *RepositoryApiService) MergeCheck(ctx context.Context, accountIdentifier
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Path.IsSet() {
-		localVarQueryParams.Add("path", parameterToString(localVarOptionals.Path.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "path", localVarOptionals.Path.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -4330,7 +4330,7 @@ func (a *RepositoryApiService) RawDiff(ctx context.Context, accountIdentifier st
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Path.IsSet() {
-		localVarQueryParams.Add("path", parameterToString(localVarOptionals.Path.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "path", localVarOptionals.Path.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}

@@ -61,6 +61,8 @@ type APIClient struct {
 	SpacesApi *SpacesApiService
 
 	WebhooksApi *WebhooksApiService
+
+	MetadataApi *MetadataApiService
 }
 
 type service struct {
@@ -87,6 +89,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ReplicationApi = (*ReplicationApiService)(&c.common)
 	c.SpacesApi = (*SpacesApiService)(&c.common)
 	c.WebhooksApi = (*WebhooksApiService)(&c.common)
+	c.MetadataApi = (*MetadataApiService)(&c.common)
 
 	return c
 }
@@ -163,6 +166,23 @@ func parameterToString(obj interface{}, collectionFormat string) string {
 	}
 
 	return fmt.Sprintf("%v", obj)
+}
+
+// addQueryParam adds a query parameter, handling "multi" collection format correctly.
+// For "multi" format, each element of a slice is added as a separate query parameter.
+// This generates URLs like: ?status=val1&status=val2 instead of ?status=val1val2
+func addQueryParam(params url.Values, key string, value interface{}, collectionFormat string) {
+	if collectionFormat == "multi" {
+		v := reflect.ValueOf(value)
+		if v.Kind() == reflect.Slice {
+			for i := 0; i < v.Len(); i++ {
+				params.Add(key, fmt.Sprintf("%v", v.Index(i).Interface()))
+			}
+			return
+		}
+	}
+	// For all other formats or non-slice values, use parameterToString
+	params.Add(key, parameterToString(value, collectionFormat))
 }
 
 // callAPI do the request.

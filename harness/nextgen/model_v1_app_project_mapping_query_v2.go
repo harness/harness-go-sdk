@@ -20,5 +20,7 @@ type V1AppProjectMappingQueryV2 struct {
 	OrgIdentifier string `json:"orgIdentifier,omitempty"`
 	// Project Identifier for the Entity.
 	ProjectIdentifier string `json:"projectIdentifier,omitempty"`
-	ArgoProjectName   string `json:"argoProjectName,omitempty"`
+	ArgoProjectName string `json:"argoProjectName,omitempty"`
+	// Enable automated creation of service,environment and cluster-env link. Defaults to false.
+	AutoCreateServiceEnv bool `json:"autoCreateServiceEnv,omitempty"`
 }

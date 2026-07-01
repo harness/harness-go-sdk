@@ -9,9 +9,16 @@
  */
 package nextgen
 
+import "encoding/json"
+
 type NotificationEventConfigDto struct {
-	NotificationEntity    string                      `json:"notification_entity,omitempty"`
-	NotificationEventData *NotificationEventParamsDto `json:"notification_event_data,omitempty"`
-	NotificationEvent     string                      `json:"notification_event,omitempty"`
-	EntityIdentifiers     []string                    `json:"entity_identifiers,omitempty"`
+	NotificationEntity                        string                                     `json:"notification_entity,omitempty"`
+	NotificationEventData                     json.RawMessage                            `json:"notification_event_data"`
+	NotificationEvent                         string                                     `json:"notification_event,omitempty"`
+	EntityIdentifiers                         []string                                   `json:"entity_identifiers,omitempty"`
+	PipelineEventNotificationParamsDto        *PipelineEventNotificationParamsDto        `json:"-"`
+	ChaosExperimentEventNotificationParamsDto *ChaosExperimentEventNotificationParamsDto `json:"-"`
+	SloEventNotificationParamsDto             *SloEventNotificationParamsDto             `json:"-"`
+	StoExemptionEventNotificationParamsDto    *StoExemptionEventNotificationParamsDto    `json:"-"`
+	DelegateEventNotificationParamsDto        *DelegateEventNotificationParamsDto        `json:"-"`
 }

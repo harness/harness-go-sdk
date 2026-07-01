@@ -10,12 +10,16 @@ package har
 
 // Artifact Detail
 type ArtifactDetail struct {
-	CreatedAt string `json:"createdAt,omitempty"`
-	CreatedBy string `json:"createdBy,omitempty"`
-	DownloadCount int64 `json:"downloadCount,omitempty"`
-	ModifiedAt string `json:"modifiedAt,omitempty"`
-	Name string `json:"name,omitempty"`
-	PackageType *PackageType `json:"packageType"`
-	Size string `json:"size,omitempty"`
-	Version string `json:"version"`
+	Name             string        `json:"name,omitempty"`
+	Version          string        `json:"version"`
+	Size             string        `json:"size,omitempty"`
+	DownloadCount    int64         `json:"downloadCount,omitempty"`
+	CreatedAt        string        `json:"createdAt,omitempty"`
+	ModifiedAt       string        `json:"modifiedAt,omitempty"`
+	CreatedBy        string        `json:"createdBy,omitempty"`
+	IsQuarantined    bool          `json:"isQuarantined,omitempty"`
+	QuarantineReason string        `json:"quarantineReason,omitempty"`
+	PackageType      *PackageType  `json:"packageType"`
+	ArtifactType     *ArtifactType `json:"artifactType,omitempty"`
+	DeletedAt        string        `json:"deletedAt,omitempty"`
 }

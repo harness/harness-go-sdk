@@ -217,7 +217,7 @@ func (a *AgentsApiService) AgentServiceForServerDelete(ctx context.Context, iden
 		localVarQueryParams.Add("type", parameterToString(localVarOptionals.Type_.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Tags.IsSet() {
-		localVarQueryParams.Add("tags", parameterToString(localVarOptionals.Tags.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "tags", localVarOptionals.Tags.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.SearchTerm.IsSet() {
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))
@@ -391,7 +391,7 @@ func (a *AgentsApiService) AgentServiceForServerGet(ctx context.Context, identif
 		localVarQueryParams.Add("type", parameterToString(localVarOptionals.Type_.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Tags.IsSet() {
-		localVarQueryParams.Add("tags", parameterToString(localVarOptionals.Tags.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "tags", localVarOptionals.Tags.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.SearchTerm.IsSet() {
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))
@@ -1161,7 +1161,7 @@ func (a *AgentsApiService) AgentServiceForServerList(ctx context.Context, accoun
 	}
 	localVarQueryParams.Add("type", parameterToString(type_, ""))
 	if localVarOptionals != nil && localVarOptionals.Tags.IsSet() {
-		localVarQueryParams.Add("tags", parameterToString(localVarOptionals.Tags.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "tags", localVarOptionals.Tags.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.SearchTerm.IsSet() {
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))
@@ -1556,7 +1556,7 @@ func (a *AgentsApiService) AgentServiceForServerUnique(ctx context.Context, iden
 		localVarQueryParams.Add("type", parameterToString(localVarOptionals.Type_.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Tags.IsSet() {
-		localVarQueryParams.Add("tags", parameterToString(localVarOptionals.Tags.Value(), "multi"))
+		addQueryParam(localVarQueryParams, "tags", localVarOptionals.Tags.Value(), "multi")
 	}
 	if localVarOptionals != nil && localVarOptionals.SearchTerm.IsSet() {
 		localVarQueryParams.Add("searchTerm", parameterToString(localVarOptionals.SearchTerm.Value(), ""))

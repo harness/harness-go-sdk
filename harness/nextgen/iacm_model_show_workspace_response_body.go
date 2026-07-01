@@ -87,6 +87,8 @@ type IacmShowWorkspaceResponseBody struct {
 	TerraformVariableFiles []IacmWorkspaceTerraformVariableFiles `json:"terraform_variable_files,omitempty"`
 	// list of terraform variables configured on the workspace.
 	TerraformVariables map[string]IacmVariableResource `json:"terraform_variables"`
+	// Terragrunt Provider to use when provisioner is terragrunt.
+	TerragruntProvider bool `json:"terragrunt_provider,omitempty"`
 	// Terragrunt Version to use when provisioner is terragrunt.
 	TerragruntVersion string `json:"terragrunt_version,omitempty"`
 	// Modified is the unix timestamp at which the resource was last modified in milliseconds.
