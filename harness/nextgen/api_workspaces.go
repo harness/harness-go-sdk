@@ -2136,3 +2136,196 @@ func (a *WorkspacesApiService) WorkspacesUpdateWorkspace(ctx context.Context, bo
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
+/*
+WorkspacesApiService list-associated-workspaces workspaces
+Retrieves all workspaces that are associated with a given template ID.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param harnessAccount Account is the internal customer account ID.
+ * @param templateId Template identifier to filter workspaces.
+ * @param optional nil or *WorkspacesApiWorkspacesListAssociatedWorkspacesOpts - Optional Parameters:
+     * @param "Org" (optional.String) -  Organization identifier (required for 'org' and 'project' scope).
+     * @param "Project" (optional.String) -  Project identifier (required for 'project' scope).
+     * @param "Version" (optional.String) -  Template version associated with the workspace.
+@return []IacmWorkspaceTemplateResource
+*/
+
+type WorkspacesApiWorkspacesListAssociatedWorkspacesOpts struct {
+	Org     optional.String
+	Project optional.String
+	Version optional.String
+}
+
+func (a *WorkspacesApiService) WorkspacesListAssociatedWorkspaces(ctx context.Context, harnessAccount string, templateId string, localVarOptionals *WorkspacesApiWorkspacesListAssociatedWorkspacesOpts) ([]IacmWorkspaceTemplateResource, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue []IacmWorkspaceTemplateResource
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/iacm/api/workspace/templates/{template_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"template_id"+"}", fmt.Sprintf("%v", templateId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(harnessAccount) < 1 {
+		return localVarReturnValue, nil, reportError("harnessAccount must have at least 1 elements")
+	}
+	if strlen(harnessAccount) > 128 {
+		return localVarReturnValue, nil, reportError("harnessAccount must have less than 128 elements")
+	}
+	if strlen(templateId) < 1 {
+		return localVarReturnValue, nil, reportError("templateId must have at least 1 elements")
+	}
+	if strlen(templateId) > 128 {
+		return localVarReturnValue, nil, reportError("templateId must have less than 128 elements")
+	}
+
+	if localVarOptionals != nil && localVarOptionals.Org.IsSet() {
+		localVarQueryParams.Add("org", parameterToString(localVarOptionals.Org.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Project.IsSet() {
+		localVarQueryParams.Add("project", parameterToString(localVarOptionals.Project.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Version.IsSet() {
+		localVarQueryParams.Add("version", parameterToString(localVarOptionals.Version.Value(), ""))
+	}
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json", "application/vnd.goa.error"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	localVarHeaderParams["Harness-Account"] = parameterToString(harnessAccount, "")
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+		if localVarHttpResponse.StatusCode == 200 {
+			var v []IacmWorkspaceTemplateResource
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 400 {
+			var v IacmError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 401 {
+			var v IacmError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 403 {
+			var v IacmError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 404 {
+			var v IacmError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 409 {
+			var v IacmError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 500 {
+			var v IacmError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}

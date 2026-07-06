@@ -95,4 +95,6 @@ type IacmShowWorkspaceResponseBody struct {
 	Updated int64 `json:"updated"`
 	// Attached Variable Sets references
 	VariableSets []string `json:"variable_sets,omitempty"`
+	// Optional associated template details.
+	AssociatedTemplate *IacmAssociatedTemplate `json:"associated_template,omitempty"`
 }

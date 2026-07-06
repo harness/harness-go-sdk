@@ -81,4 +81,6 @@ type IacmCreateWorkspaceRequestBody struct {
 	VariableSets []string `json:"variable_sets,omitempty"`
 	// define an array of provider connectors that belong to Workspace
 	ProviderConnectors []VariableSetConnector `json:"provider_connectors"`
+	// Optional associated template details.
+	AssociatedTemplate *IacmAssociatedTemplate `json:"associated_template,omitempty"`
 }
