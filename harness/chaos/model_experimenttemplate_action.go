@@ -9,11 +9,12 @@
 package chaos
 
 type ExperimenttemplateAction struct {
-	ContinueOnCompletion bool `json:"continueOnCompletion,omitempty"`
-	Identity string `json:"identity,omitempty"`
-	InfraId string `json:"infraId,omitempty"`
-	IsEnterprise bool `json:"isEnterprise,omitempty"`
-	Name string `json:"name,omitempty"`
-	Revision int32 `json:"revision,omitempty"`
-	Values []TemplateVariableMinimum `json:"values,omitempty"`
+	ConditionsV2         *ExperimentConditions     `json:"conditionsV2,omitempty"`
+	ContinueOnCompletion bool                      `json:"continueOnCompletion,omitempty"`
+	Identity             string                    `json:"identity,omitempty"`
+	InfraId              string                    `json:"infraId,omitempty"`
+	IsEnterprise         bool                      `json:"isEnterprise,omitempty"`
+	Name                 string                    `json:"name,omitempty"`
+	Revision             int32                     `json:"revision,omitempty"`
+	Values               []TemplateVariableMinimum `json:"values,omitempty"`
 }

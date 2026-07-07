@@ -9,14 +9,15 @@
 package chaos
 
 type ExperimenttemplateProbe struct {
-	Conditions []ExperimenttemplateProbeConditions `json:"conditions,omitempty"`
-	Duration string `json:"duration,omitempty"`
-	EnableDataCollection bool `json:"enableDataCollection,omitempty"`
-	Identity string `json:"identity,omitempty"`
-	InfraId string `json:"infraId,omitempty"`
-	IsEnterprise bool `json:"isEnterprise,omitempty"`
-	Name string `json:"name,omitempty"`
-	Revision int32 `json:"revision,omitempty"`
-	Values []TemplateVariableMinimum `json:"values,omitempty"`
-	Weightage int32 `json:"weightage,omitempty"`
+	Conditions           []ExperimenttemplateProbeConditions `json:"conditions,omitempty"`
+	ConditionsV2         *ExperimentConditions               `json:"conditionsV2,omitempty"`
+	Duration             string                              `json:"duration,omitempty"`
+	EnableDataCollection bool                                `json:"enableDataCollection,omitempty"`
+	Identity             string                              `json:"identity,omitempty"`
+	InfraId              string                              `json:"infraId,omitempty"`
+	IsEnterprise         bool                                `json:"isEnterprise,omitempty"`
+	Name                 string                              `json:"name,omitempty"`
+	Revision             int32                               `json:"revision,omitempty"`
+	Values               []TemplateVariableMinimum           `json:"values,omitempty"`
+	Weightage            int32                               `json:"weightage,omitempty"`
 }

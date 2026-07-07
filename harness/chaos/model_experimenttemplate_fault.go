@@ -9,11 +9,12 @@
 package chaos
 
 type ExperimenttemplateFault struct {
-	AuthEnabled bool `json:"authEnabled,omitempty"`
-	Identity string `json:"identity,omitempty"`
-	InfraId string `json:"infraId,omitempty"`
-	IsEnterprise bool `json:"isEnterprise,omitempty"`
-	Name string `json:"name,omitempty"`
-	Revision string `json:"revision,omitempty"`
-	Values []TemplateVariableMinimum `json:"values,omitempty"`
+	AuthEnabled  bool                      `json:"authEnabled,omitempty"`
+	ConditionsV2 *ExperimentConditions     `json:"conditionsV2,omitempty"`
+	Identity     string                    `json:"identity,omitempty"`
+	InfraId      string                    `json:"infraId,omitempty"`
+	IsEnterprise bool                      `json:"isEnterprise,omitempty"`
+	Name         string                    `json:"name,omitempty"`
+	Revision     string                    `json:"revision,omitempty"`
+	Values       []TemplateVariableMinimum `json:"values,omitempty"`
 }
