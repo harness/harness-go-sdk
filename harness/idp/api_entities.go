@@ -318,6 +318,9 @@ func (a *EntitiesApiService) DeleteEntity(ctx context.Context, scope string, kin
 	if localVarOptionals != nil && localVarOptionals.ProjectIdentifier.IsSet() {
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
 	}
+	if localVarOptionals != nil && localVarOptionals.HarnessAccount.IsSet() {
+		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.HarnessAccount.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -424,6 +427,9 @@ func (a *EntitiesApiService) DeleteEntityVersion(ctx context.Context, scope stri
 	}
 	if localVarOptionals != nil && localVarOptionals.ProjectIdentifier.IsSet() {
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.HarnessAccount.IsSet() {
+		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.HarnessAccount.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -1360,6 +1366,9 @@ func (a *EntitiesApiService) UpdateEntity(ctx context.Context, body EntityUpdate
 	if localVarOptionals != nil && localVarOptionals.ProjectIdentifier.IsSet() {
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
 	}
+	if localVarOptionals != nil && localVarOptionals.HarnessAccount.IsSet() {
+		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.HarnessAccount.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
 
@@ -1486,6 +1495,9 @@ func (a *EntitiesApiService) UpdateEntityVersion(ctx context.Context, body Entit
 	}
 	if localVarOptionals != nil && localVarOptionals.ProjectIdentifier.IsSet() {
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.HarnessAccount.IsSet() {
+		localVarQueryParams.Add("accountIdentifier", parameterToString(localVarOptionals.HarnessAccount.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
