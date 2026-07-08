@@ -10,7 +10,8 @@
 package nextgen
 
 type ClustersClusterCreateRequest struct {
-	Cluster *ClustersCluster  `json:"cluster,omitempty"`
-	Upsert  bool              `json:"upsert,omitempty"`
-	Tags    map[string]string `json:"tags,omitempty"`
+	Cluster            *ClustersCluster  `json:"cluster,omitempty"`
+	Upsert             bool              `json:"upsert,omitempty"`
+	Tags               map[string]string `json:"tags,omitempty"`
+	SecretExpressions  map[string]string `json:"secretExpressions,omitempty"`
 }

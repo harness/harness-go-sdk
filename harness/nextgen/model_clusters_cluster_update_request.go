@@ -10,9 +10,10 @@
 package nextgen
 
 type ClustersClusterUpdateRequest struct {
-	Cluster       *ClustersCluster   `json:"cluster,omitempty"`
-	UpdatedFields []string           `json:"updatedFields,omitempty"`
-	UpdateMask    *ProtobufFieldMask `json:"updateMask,omitempty"`
-	Tags          map[string]string  `json:"tags,omitempty"`
-	Id            *ClustersClusterId `json:"id,omitempty"`
+	Cluster           *ClustersCluster   `json:"cluster,omitempty"`
+	UpdatedFields     []string           `json:"updatedFields,omitempty"`
+	UpdateMask        *ProtobufFieldMask `json:"updateMask,omitempty"`
+	Tags              map[string]string  `json:"tags,omitempty"`
+	Id                *ClustersClusterId `json:"id,omitempty"`
+	SecretExpressions map[string]string  `json:"secretExpressions,omitempty"`
 }
