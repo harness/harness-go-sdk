@@ -63,6 +63,8 @@ type APIClient struct {
 	WebhooksApi *WebhooksApiService
 
 	MetadataApi *MetadataApiService
+
+	LifecycleApi *LifecycleApiService
 }
 
 type service struct {
@@ -90,6 +92,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SpacesApi = (*SpacesApiService)(&c.common)
 	c.WebhooksApi = (*WebhooksApiService)(&c.common)
 	c.MetadataApi = (*MetadataApiService)(&c.common)
+	c.LifecycleApi = (*LifecycleApiService)(&c.common)
 
 	return c
 }
