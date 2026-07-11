@@ -5136,6 +5136,7 @@ components:
       - SWIFT
       - PUPPET
       - RAW
+      - RUBY
     ArtifactType:
       type: string
       description: refers to artifact type
@@ -5656,6 +5657,7 @@ components:
           - Packagist
           - PuppetForge
           - HelmChartRepo
+          - Ruby
         url:
           type: string
         remoteUrlSuffix:

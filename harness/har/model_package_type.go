@@ -31,4 +31,5 @@ const (
 	SWIFT_PackageType       PackageType = "SWIFT"
 	PUPPET_PackageType      PackageType = "PUPPET"
 	RAW_PackageType         PackageType = "RAW"
+	RUBY_PackageType        PackageType = "RUBY"
 )
