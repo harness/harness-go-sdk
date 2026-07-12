@@ -5136,6 +5136,7 @@ components:
       - SWIFT
       - PUPPET
       - RAW
+      - DEBIAN
     ArtifactType:
       type: string
       description: refers to artifact type
