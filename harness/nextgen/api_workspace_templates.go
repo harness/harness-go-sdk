@@ -411,6 +411,183 @@ func (a *WorkspaceTemplatesApiService) WorkspaceTemplatesUpdateWorkspaceTemplate
 }
 
 /*
+WorkspaceTemplatesApiService remove-workspace-template workspace_templates
+Removes the association between a template and a workspace.
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param harnessAccount Account is the internal customer account ID.
+  - @param org Org is the organisation identifier.
+  - @param project Project is the project identifier.
+  - @param templateId Template identifier.
+  - @param workspaceId Workspace identifier.
+*/
+func (a *WorkspaceTemplatesApiService) WorkspaceTemplatesRemoveWorkspaceTemplate(ctx context.Context, harnessAccount string, org string, project string, templateId string, workspaceId string) (*http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Delete")
+		localVarPostBody   interface{}
+		localVarFileName   string
+		localVarFileBytes  []byte
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/iacm/api/orgs/{org}/projects/{project}/workspace/templates/{template_id}/{workspace_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", fmt.Sprintf("%v", org), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project"+"}", fmt.Sprintf("%v", project), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"template_id"+"}", fmt.Sprintf("%v", templateId), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_id"+"}", fmt.Sprintf("%v", workspaceId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(harnessAccount) < 1 {
+		return nil, reportError("harnessAccount must have at least 1 elements")
+	}
+	if strlen(harnessAccount) > 128 {
+		return nil, reportError("harnessAccount must have less than 128 elements")
+	}
+	if strlen(org) < 1 {
+		return nil, reportError("org must have at least 1 elements")
+	}
+	if strlen(org) > 128 {
+		return nil, reportError("org must have less than 128 elements")
+	}
+	if strlen(project) < 1 {
+		return nil, reportError("project must have at least 1 elements")
+	}
+	if strlen(project) > 128 {
+		return nil, reportError("project must have less than 128 elements")
+	}
+	if strlen(templateId) < 1 {
+		return nil, reportError("templateId must have at least 1 elements")
+	}
+	if strlen(templateId) > 128 {
+		return nil, reportError("templateId must have less than 128 elements")
+	}
+	if strlen(workspaceId) < 1 {
+		return nil, reportError("workspaceId must have at least 1 elements")
+	}
+	if strlen(workspaceId) > 128 {
+		return nil, reportError("workspaceId must have less than 128 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/vnd.goa.error"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	localVarHeaderParams["Harness-Account"] = parameterToString(harnessAccount, "")
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+		if localVarHttpResponse.StatusCode == 400 {
+			var v IacmError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 401 {
+			var v IacmError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 403 {
+			var v IacmError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 404 {
+			var v IacmError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 409 {
+			var v IacmError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 500 {
+			var v IacmError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarHttpResponse, newErr
+		}
+		return localVarHttpResponse, newErr
+	}
+
+	return localVarHttpResponse, nil
+}
+
+/*
 WorkspaceTemplatesApiService get-workspaces-by-template-id workspace_templates
 Retrieves all workspaces that are associated with a given template ID for a given scope.
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
