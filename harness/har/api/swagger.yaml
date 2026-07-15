@@ -3711,6 +3711,7 @@ components:
           RPM: "#/components/schemas/RpmArtifactDetailConfig"
           RAW: "#/components/schemas/RawArtifactDetailConfig"
           PUPPET: "#/components/schemas/PuppetArtifactDetailConfig"
+          CONAN: "#/components/schemas/ConanArtifactDetailConfig"
       oneOf:
       - $ref: "#/components/schemas/DockerArtifactDetailConfig"
       - $ref: "#/components/schemas/HelmArtifactDetailConfig"
@@ -3723,6 +3724,7 @@ components:
       - $ref: "#/components/schemas/CargoArtifactDetailConfig"
       - $ref: "#/components/schemas/RawArtifactDetailConfig"
       - $ref: "#/components/schemas/PuppetArtifactDetailConfig"
+      - $ref: "#/components/schemas/ConanArtifactDetailConfig"
     ArtifactLabelRequest:
       required:
       - labels
@@ -3958,6 +3960,13 @@ components:
         description:
           type: string
       description: Config for Raw artifact details
+    ConanArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for conan artifact details
     PuppetArtifactDetailConfig:
       type: object
       properties:
@@ -5137,6 +5146,7 @@ components:
       - PUPPET
       - RAW
       - DEBIAN
+      - CONAN
     ArtifactType:
       type: string
       description: refers to artifact type
@@ -5657,6 +5667,7 @@ components:
           - Packagist
           - PuppetForge
           - HelmChartRepo
+          - ConanCenter
         url:
           type: string
         remoteUrlSuffix:

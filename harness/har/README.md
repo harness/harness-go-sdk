@@ -94,6 +94,7 @@ Class | Method | HTTP request | Description
  - [ClientSetupStepCommand](docs/ClientSetupStepCommand.md)
  - [ClientSetupStepConfig](docs/ClientSetupStepConfig.md)
  - [ClientSetupStepType](docs/ClientSetupStepType.md)
+ - [ConanArtifactDetailConfig](docs/ConanArtifactDetailConfig.md)
  - [DeploymentDetails](docs/DeploymentDetails.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)
  - [DeploymentStats](docs/DeploymentStats.md)

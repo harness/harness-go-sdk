@@ -32,4 +32,5 @@ const (
 	PUPPET_PackageType      PackageType = "PUPPET"
 	RAW_PackageType         PackageType = "RAW"
 	DEBIAN_PackageType      PackageType = "DEBIAN"
+	CONAN_PackageType       PackageType = "CONAN"
 )

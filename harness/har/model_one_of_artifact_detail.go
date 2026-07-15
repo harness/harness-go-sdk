@@ -25,5 +25,6 @@ type OneOfArtifactDetail struct {
     ComposerArtifactDetailConfig
     SwiftArtifactDetailConfig
     PuppetArtifactDetailConfig
+    ConanArtifactDetailConfig
     RawArtifactDetailConfig
 }
