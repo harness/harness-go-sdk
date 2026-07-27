@@ -27,4 +27,5 @@ type OneOfArtifactDetail struct {
     PuppetArtifactDetailConfig
     ConanArtifactDetailConfig
     RawArtifactDetailConfig
+    TerraformArtifactDetailConfig
 }

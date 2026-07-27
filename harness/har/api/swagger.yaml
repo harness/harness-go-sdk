@@ -3712,6 +3712,7 @@ components:
           RAW: "#/components/schemas/RawArtifactDetailConfig"
           PUPPET: "#/components/schemas/PuppetArtifactDetailConfig"
           CONAN: "#/components/schemas/ConanArtifactDetailConfig"
+          TERRAFORM: "#/components/schemas/TerraformArtifactDetailConfig"
       oneOf:
       - $ref: "#/components/schemas/DockerArtifactDetailConfig"
       - $ref: "#/components/schemas/HelmArtifactDetailConfig"
@@ -3725,6 +3726,7 @@ components:
       - $ref: "#/components/schemas/RawArtifactDetailConfig"
       - $ref: "#/components/schemas/PuppetArtifactDetailConfig"
       - $ref: "#/components/schemas/ConanArtifactDetailConfig"
+      - $ref: "#/components/schemas/TerraformArtifactDetailConfig"
     ArtifactLabelRequest:
       required:
       - labels
@@ -3974,6 +3976,13 @@ components:
           type: object
           additionalProperties: true
       description: Config for puppet artifact details
+    TerraformArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for terraform artifact details
     CleanupPolicy:
       type: object
       properties:
@@ -5147,6 +5156,7 @@ components:
       - RAW
       - DEBIAN
       - CONAN
+      - TERRAFORM
     ArtifactType:
       type: string
       description: refers to artifact type
