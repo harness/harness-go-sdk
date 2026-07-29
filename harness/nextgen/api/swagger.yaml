@@ -30040,6 +30040,9 @@ components:
           type: string
         s3Prefix:
           type: string
+        reportType:
+          type: string
+          description: CUR format version. Use CUR2.0 for AWS Data Exports (CUR 2.0); omit for legacy CUR 1.0.
       description: This contains AWS cost and usage reports attributes
     AwsKmsConnector:
       type: object

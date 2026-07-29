@@ -15,4 +15,7 @@ type AwsCurAttributes struct {
 	S3BucketName string `json:"s3BucketName"`
 	Region       string `json:"region,omitempty"`
 	S3Prefix     string `json:"s3Prefix,omitempty"`
+	// ReportType is the CUR format version. Use "CUR2.0" for AWS Data Exports (CUR 2.0)
+	// or omit / leave empty for legacy CUR 1.0.
+	ReportType string `json:"reportType,omitempty"`
 }
