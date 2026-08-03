@@ -95,6 +95,7 @@ Class | Method | HTTP request | Description
  - [ClientSetupStepConfig](docs/ClientSetupStepConfig.md)
  - [ClientSetupStepType](docs/ClientSetupStepType.md)
  - [ConanArtifactDetailConfig](docs/ConanArtifactDetailConfig.md)
+ - [RubyArtifactDetailConfig](docs/RubyArtifactDetailConfig.md)
  - [TerraformArtifactDetailConfig](docs/TerraformArtifactDetailConfig.md)
  - [DeploymentDetails](docs/DeploymentDetails.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)

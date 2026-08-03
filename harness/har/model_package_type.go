@@ -33,5 +33,6 @@ const (
 	RAW_PackageType         PackageType = "RAW"
 	DEBIAN_PackageType      PackageType = "DEBIAN"
 	CONAN_PackageType       PackageType = "CONAN"
+	RUBY_PackageType        PackageType = "RUBY"
 	TERRAFORM_PackageType   PackageType = "TERRAFORM"
 )
