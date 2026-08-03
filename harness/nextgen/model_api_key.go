@@ -31,4 +31,5 @@ type ApiKey struct {
 	ProjectIdentifier string `json:"projectIdentifier,omitempty"`
 	// Organization Identifier for the Entity.
 	OrgIdentifier string `json:"orgIdentifier,omitempty"`
+	GovernanceMetadata *GovernanceMetadata `json:"governanceMetadata,omitempty"`
 }

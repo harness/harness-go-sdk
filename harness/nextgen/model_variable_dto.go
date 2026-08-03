@@ -23,4 +23,5 @@ type VariableDto struct {
 	// Type of the Variable.
 	Type_ string                   `json:"type"`
 	Spec  *StringVariableConfigDto `json:"spec"`
+	GovernanceMetadata *GovernanceMetadata `json:"governanceMetadata,omitempty"`
 }

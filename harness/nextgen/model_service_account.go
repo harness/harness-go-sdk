@@ -27,4 +27,5 @@ type ServiceAccount struct {
 	OrgIdentifier string `json:"orgIdentifier,omitempty"`
 	// Project Identifier for the Entity.
 	ProjectIdentifier string `json:"projectIdentifier,omitempty"`
+	GovernanceMetadata *GovernanceMetadata `json:"governanceMetadata,omitempty"`
 }

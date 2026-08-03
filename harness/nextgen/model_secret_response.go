@@ -15,6 +15,7 @@ type SecretResponse struct {
 	// This is the time at which the Secret was created.
 	CreatedAt int64 `json:"createdAt,omitempty"`
 	// This is the time at which the Secret was last updated.
-	UpdatedAt int64 `json:"updatedAt,omitempty"`
-	Draft     bool  `json:"draft,omitempty"`
+	UpdatedAt          int64               `json:"updatedAt,omitempty"`
+	Draft              bool                `json:"draft,omitempty"`
+	GovernanceMetadata *GovernanceMetadata `json:"governanceMetadata,omitempty"`
 }

@@ -9,5 +9,6 @@
 package nextgen
 
 type InfrastructureImportResponse struct {
-	Identifier string `json:"identifier,omitempty"`
+	Identifier         string              `json:"identifier,omitempty"`
+	GovernanceMetadata *GovernanceMetadata `json:"governanceMetadata,omitempty"`
 }

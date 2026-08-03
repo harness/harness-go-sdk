@@ -9,5 +9,6 @@
 package nextgen
 
 type EnvironmentImportResponseDto struct {
-	EnvIdentifier string `json:"envIdentifier,omitempty"`
+	EnvIdentifier      string              `json:"envIdentifier,omitempty"`
+	GovernanceMetadata *GovernanceMetadata `json:"governanceMetadata,omitempty"`
 }

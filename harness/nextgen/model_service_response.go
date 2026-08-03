@@ -13,4 +13,6 @@ type ServiceResponse struct {
 	Service        *ServiceResponseDetails `json:"service,omitempty"`
 	CreatedAt      int64                   `json:"createdAt,omitempty"`
 	LastModifiedAt int64                   `json:"lastModifiedAt,omitempty"`
+	EntityValidityDetails *EntityGitDetails   `json:"entityValidityDetails,omitempty"`
+	GovernanceMetadata    *GovernanceMetadata `json:"governanceMetadata,omitempty"`
 }
