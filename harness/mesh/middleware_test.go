@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/require"
 )
@@ -78,6 +79,67 @@ func TestMiddlewareDelegatedUser(t *testing.T) {
 	require.Equal(t, PrincipalTypeUser, got.Type)
 	require.Equal(t, "user@harness.io", got.Name)
 	require.Equal(t, "acc1", got.AccountID)
+}
+
+func TestMiddlewareRejectsDelegatedActMismatch(t *testing.T) {
+	spiffeURI := "spiffe://test.harness.io/qa/NextGenManager"
+	svid, bundle, key := newTestCA(t, spiffeURI)
+	td := TrustDomainFromSPIFFE(spiffeURI)
+	src := &StaticSource{SVID: svid, Bundles: map[string]*BundleRef{td: bundle}}
+	cfg := Config{InboundEnabled: true, FallbackEnabled: false, Audience: ServiceAccessControlService}
+	h := testHolder(t, cfg, src)
+
+	now := time.Now()
+	token := mintCustom(t, svid.Chain[0], key, svid.Chain, nil, map[string]any{
+		"iss": spiffeURI,
+		"sub": "user@harness.io",
+		"aud": ServiceAccessControlService,
+		"iat": now.Unix(),
+		"exp": now.Add(time.Minute).Unix(),
+		"type": string(PrincipalTypeUser),
+		"name": "user@harness.io",
+		"act":  map[string]any{"sub": "spiffe://test.harness.io/qa/Impostor"},
+	})
+
+	handler := Middleware(h, nil)(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		t.Fatal("handler should not run")
+	}))
+	req := httptest.NewRequest(http.MethodGet, "http://example/api", nil)
+	req.Header.Set(IdentityHeader, token)
+	rr := httptest.NewRecorder()
+	handler.ServeHTTP(rr, req)
+	require.Equal(t, http.StatusUnauthorized, rr.Code)
+	require.Contains(t, rr.Body.String(), ErrInvalidMeshToken.Error())
+}
+
+func TestMiddlewareRejectsDelegatedMissingAct(t *testing.T) {
+	spiffeURI := "spiffe://test.harness.io/qa/NextGenManager"
+	svid, bundle, key := newTestCA(t, spiffeURI)
+	td := TrustDomainFromSPIFFE(spiffeURI)
+	src := &StaticSource{SVID: svid, Bundles: map[string]*BundleRef{td: bundle}}
+	cfg := Config{InboundEnabled: true, FallbackEnabled: false, Audience: ServiceAccessControlService}
+	h := testHolder(t, cfg, src)
+
+	now := time.Now()
+	token := mintCustom(t, svid.Chain[0], key, svid.Chain, nil, map[string]any{
+		"iss": spiffeURI,
+		"sub": "user@harness.io",
+		"aud": ServiceAccessControlService,
+		"iat": now.Unix(),
+		"exp": now.Add(time.Minute).Unix(),
+		"type": string(PrincipalTypeUser),
+		"name": "user@harness.io",
+	})
+
+	handler := Middleware(h, nil)(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		t.Fatal("handler should not run")
+	}))
+	req := httptest.NewRequest(http.MethodGet, "http://example/api", nil)
+	req.Header.Set(IdentityHeader, token)
+	rr := httptest.NewRecorder()
+	handler.ServeHTTP(rr, req)
+	require.Equal(t, http.StatusUnauthorized, rr.Code)
+	require.Contains(t, rr.Body.String(), ErrInvalidMeshToken.Error())
 }
 
 func TestMiddlewareFallbackOnInvalidToken(t *testing.T) {
