@@ -3714,6 +3714,7 @@ components:
           CONAN: "#/components/schemas/ConanArtifactDetailConfig"
           RUBY: "#/components/schemas/RubyArtifactDetailConfig"
           TERRAFORM: "#/components/schemas/TerraformArtifactDetailConfig"
+          CRAN: "#/components/schemas/CranArtifactDetailConfig"
       oneOf:
       - $ref: "#/components/schemas/DockerArtifactDetailConfig"
       - $ref: "#/components/schemas/HelmArtifactDetailConfig"
@@ -3729,6 +3730,7 @@ components:
       - $ref: "#/components/schemas/ConanArtifactDetailConfig"
       - $ref: "#/components/schemas/RubyArtifactDetailConfig"
       - $ref: "#/components/schemas/TerraformArtifactDetailConfig"
+      - $ref: "#/components/schemas/CranArtifactDetailConfig"
     ArtifactLabelRequest:
       required:
       - labels
@@ -3992,6 +3994,13 @@ components:
           type: object
           additionalProperties: true
       description: Config for terraform artifact details
+    CranArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for cran artifact details
     CleanupPolicy:
       type: object
       properties:
@@ -5167,6 +5176,7 @@ components:
       - CONAN
       - RUBY
       - TERRAFORM
+      - CRAN
     ArtifactType:
       type: string
       description: refers to artifact type
@@ -5688,6 +5698,7 @@ components:
           - PuppetForge
           - HelmChartRepo
           - ConanCenter
+          - CRAN
         url:
           type: string
         remoteUrlSuffix:

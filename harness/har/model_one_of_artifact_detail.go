@@ -29,4 +29,5 @@ type OneOfArtifactDetail struct {
     RawArtifactDetailConfig
     RubyArtifactDetailConfig
     TerraformArtifactDetailConfig
+    CranArtifactDetailConfig
 }

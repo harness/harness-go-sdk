@@ -97,6 +97,7 @@ Class | Method | HTTP request | Description
  - [ConanArtifactDetailConfig](docs/ConanArtifactDetailConfig.md)
  - [RubyArtifactDetailConfig](docs/RubyArtifactDetailConfig.md)
  - [TerraformArtifactDetailConfig](docs/TerraformArtifactDetailConfig.md)
+ - [CranArtifactDetailConfig](docs/CranArtifactDetailConfig.md)
  - [DeploymentDetails](docs/DeploymentDetails.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)
  - [DeploymentStats](docs/DeploymentStats.md)

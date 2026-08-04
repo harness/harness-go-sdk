@@ -35,4 +35,5 @@ const (
 	CONAN_PackageType       PackageType = "CONAN"
 	RUBY_PackageType        PackageType = "RUBY"
 	TERRAFORM_PackageType   PackageType = "TERRAFORM"
+	CRAN_PackageType        PackageType = "CRAN"
 )
