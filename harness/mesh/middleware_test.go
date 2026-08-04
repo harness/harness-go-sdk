@@ -142,6 +142,31 @@ func TestMiddlewareRejectsDelegatedMissingAct(t *testing.T) {
 	require.Contains(t, rr.Body.String(), ErrInvalidMeshToken.Error())
 }
 
+func TestMiddlewareNilFallbackRejectsInvalidMeshToken(t *testing.T) {
+	// FallbackEnabled (default) + nil FallbackAuth must not fail-open on a garbage mesh header.
+	spiffeURI := "spiffe://test.harness.io/qa/NextGenManager"
+	svid, bundle, _ := newTestCA(t, spiffeURI)
+	td := TrustDomainFromSPIFFE(spiffeURI)
+	src := &StaticSource{SVID: svid, Bundles: map[string]*BundleRef{td: bundle}}
+
+	cfg := Config{
+		InboundEnabled:  true,
+		FallbackEnabled: true,
+		Audience:        ServiceAccessControlService,
+	}
+	h := testHolder(t, cfg, src)
+
+	handler := Middleware(h, nil)(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		t.Fatal("handler must not run unauthenticated after invalid mesh token")
+	}))
+	req := httptest.NewRequest(http.MethodGet, "http://example/api", nil)
+	req.Header.Set(IdentityHeader, "not.a.valid.jwt")
+	rr := httptest.NewRecorder()
+	handler.ServeHTTP(rr, req)
+	require.Equal(t, http.StatusUnauthorized, rr.Code)
+	require.Contains(t, rr.Body.String(), ErrInvalidMeshToken.Error())
+}
+
 func TestMiddlewareFallbackOnInvalidToken(t *testing.T) {
 	spiffeURI := "spiffe://test.harness.io/qa/NextGenManager"
 	svid, bundle, _ := newTestCA(t, spiffeURI)

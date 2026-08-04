@@ -5,8 +5,11 @@ Go SDK for Harness SPIRE-based service-to-service identity. Parity with Java
 metric names/labels, inbound dispatch matrix, and outbound `X-Harness-Identity` header.
 
 **HMAC is not included.** Plug your existing HMAC (or other) auth through `FallbackAuth`.
+When inbound is enabled and `FallbackEnabled` is true (default), always supply a
+`FallbackAuth` — a nil fallback rejects invalid mesh tokens with 401 rather than
+failing open (Java always has an HMAC filter behind mesh).
 
-Epic: [PL-72879](https://harness.atlassian.net/browse/PL-72879) · Story: [PL-73509](https://harness.atlassian.net/browse/PL-73509)
+Epic: [PL-72879](https://harness.atlassian.net/browse/PL-72879) · Story: [PL-73568](https://harness.atlassian.net/browse/PL-73568)
 
 ## Install
 

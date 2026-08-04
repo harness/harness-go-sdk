@@ -7,6 +7,8 @@
 // HMAC is not reimplemented. Services plug existing HMAC (or other) auth through
 // FallbackAuth. The mesh middleware calls it when the mesh header is absent (and
 // reject-without-header is off) or when mesh validation fails and FallbackEnabled is true.
+// If FallbackEnabled is true but FallbackAuth is nil, a failed mesh token yields 401
+// (never unauthenticated pass-through).
 //
 // Getting started:
 //

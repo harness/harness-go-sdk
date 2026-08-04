@@ -23,7 +23,14 @@ func (f FallbackAuthFunc) Authenticate(r *http.Request) (Principal, error) {
 }
 
 // Middleware returns stdlib middleware implementing the Java MeshJWTAuthenticationFilter dispatch matrix.
+//
 // When holder is noop / inbound disabled, it only invokes fallback (or passes through if fallback is nil).
+// When inbound is enabled and a present mesh header fails validation with FallbackEnabled:
+//   - if fallback is non-nil → call FallbackAuth (Java super.filter HMAC path)
+//   - if fallback is nil → 401 "Invalid mesh token" (never fail-open; Java always has an HMAC filter)
+//
+// A nil fallback with no mesh header (and RejectWithoutMeshHeader off) still passes through so
+// services can opt into mesh-only on selected routes; supply FallbackAuth whenever HMAC must run.
 func Middleware(h *Holder, fallback FallbackAuth) func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -46,15 +53,22 @@ func Middleware(h *Holder, fallback FallbackAuth) func(http.Handler) http.Handle
 					next.ServeHTTP(w, r.WithContext(ctx))
 					return
 				}
-				if cfg.FallbackEnabled {
-					log.Printf("mesh: JWT validation failed; falling back to HMAC: %v", err)
-					metrics.RecordHMACFallback(ReasonFrom(err))
-					// fall through to HMAC
-				} else {
+				if !cfg.FallbackEnabled {
 					log.Printf("mesh: JWT rejected (fallback disabled): %v", err)
 					writeUnauthorized(w, ErrInvalidMeshToken.Error())
 					return
 				}
+				// Fallback enabled but no HMAC hook — reject rather than serving unauthenticated.
+				// Java always falls through to JWTAuthenticationFilter; a nil FallbackAuth here
+				// would otherwise let an attacker bypass auth with a garbage mesh header.
+				if fallback == nil {
+					log.Printf("mesh: JWT validation failed and no FallbackAuth configured; rejecting: %v", err)
+					metrics.RecordHMACFallback(ReasonFrom(err))
+					writeUnauthorized(w, ErrInvalidMeshToken.Error())
+					return
+				}
+				log.Printf("mesh: JWT validation failed; falling back to HMAC: %v", err)
+				metrics.RecordHMACFallback(ReasonFrom(err))
 			} else if cfg.RejectWithoutMeshHeader {
 				log.Printf("mesh: rejecting request without %s header", IdentityHeader)
 				writeUnauthorized(w, ErrMeshHeaderRequired.Error())
