@@ -12,8 +12,8 @@ import (
 	"net/http"
 )
 
-// Flag set API uses v3 base path (not internal/api/v2).
-const flagSetsPath = "/api/v3/flag-sets"
+// Flag set API uses the internal v3 base path.
+const flagSetsPath = "/internal/api/v3/flag-sets"
 
 // FlagSet represents a flag set grouping feature flags.
 type FlagSet struct {
@@ -36,8 +36,8 @@ type FlagSetsService struct {
 
 // FlagSetRequest is the body for create.
 type FlagSetRequest struct {
-	Name        string         `json:"name,omitempty"`
-	Description string         `json:"description,omitempty"`
+	Name        string          `json:"name,omitempty"`
+	Description string          `json:"description,omitempty"`
 	Workspace   *WorkspaceIDRef `json:"workspace,omitempty"`
 }
 

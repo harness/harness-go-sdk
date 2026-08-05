@@ -11,7 +11,7 @@ import (
 
 func TestFlagSetsService_List(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		require.Equal(t, "/api/v3/flag-sets", r.URL.Path)
+		require.Equal(t, "/internal/api/v3/flag-sets", r.URL.Path)
 		require.Equal(t, "ws-1", r.URL.Query().Get("workspace_id"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
@@ -33,6 +33,7 @@ func TestFlagSetsService_List(t *testing.T) {
 
 func TestFlagSetsService_List_itemsShape(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "/internal/api/v3/flag-sets", r.URL.Path)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write([]byte(`{"count":1,"limit":200,"nextMarker":"","previousMarker":"","items":[{"id":"fs-1","name":"from_items"}]}`))
@@ -52,7 +53,7 @@ func TestFlagSetsService_List_itemsShape(t *testing.T) {
 
 func TestFlagSetsService_FindByID(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		require.Equal(t, "/api/v3/flag-sets/fs-1", r.URL.Path)
+		require.Equal(t, "/internal/api/v3/flag-sets/fs-1", r.URL.Path)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write([]byte(`{"id":"fs-1","name":"My Flags","description":"Desc"}`))
@@ -72,6 +73,7 @@ func TestFlagSetsService_FindByID(t *testing.T) {
 
 func TestFlagSetsService_FindByName(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "/internal/api/v3/flag-sets", r.URL.Path)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write([]byte(`{"objects":[{"id":"fs-1","name":"Target"}],"nextMarker":null}`))
@@ -91,6 +93,7 @@ func TestFlagSetsService_FindByName(t *testing.T) {
 
 func TestFlagSetsService_FindByName_itemsShape(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "/internal/api/v3/flag-sets", r.URL.Path)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write([]byte(`{"items":[{"id":"fs-9","name":"Target"}],"nextMarker":""}`))
@@ -110,7 +113,7 @@ func TestFlagSetsService_FindByName_itemsShape(t *testing.T) {
 func TestFlagSetsService_Create(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, http.MethodPost, r.Method)
-		require.Equal(t, "/api/v3/flag-sets", r.URL.Path)
+		require.Equal(t, "/internal/api/v3/flag-sets", r.URL.Path)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusCreated)
 		_, _ = w.Write([]byte(`{"id":"fs-new","name":"New Set","description":""}`))
@@ -135,7 +138,7 @@ func TestFlagSetsService_Create(t *testing.T) {
 func TestFlagSetsService_Delete(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, http.MethodDelete, r.Method)
-		require.Equal(t, "/api/v3/flag-sets/fs-1", r.URL.Path)
+		require.Equal(t, "/internal/api/v3/flag-sets/fs-1", r.URL.Path)
 		w.WriteHeader(http.StatusNoContent)
 	}))
 	defer server.Close()
