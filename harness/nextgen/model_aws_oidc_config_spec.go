@@ -11,5 +11,6 @@ package nextgen
 
 // This contains AWS manual credentials connector spec
 type AwsOidcConfigSpec struct {
-	IamRoleArn string `json:"iamRoleArn"`
+	IamRoleArn          string   `json:"iamRoleArn"`
+	OidcSessionTagKeys  []string `json:"oidcSessionTagKeys,omitempty"`
 }
