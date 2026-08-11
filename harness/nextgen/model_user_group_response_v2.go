@@ -45,4 +45,5 @@ type UserGroupResponseV2 struct {
 	// Specifies whether or not the userGroup is managed by harness.
 	HarnessManaged bool `json:"harnessManaged,omitempty"`
 	SsoLinked      bool `json:"ssoLinked,omitempty"`
+	GovernanceMetadata *UserGroupGovernanceMetadata `json:"governanceMetadata,omitempty"`
 }
