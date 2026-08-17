@@ -5735,7 +5735,29 @@ components:
           type: array
           items:
             type: string
+        debianConfig:
+          $ref: "#/components/schemas/DebianConfig"
       description: Configuration for Harness Virtual Artifact Registries
+    DebianConfig:
+      type: object
+      description: Debian-specific configuration, applicable only when packageType is DEBIAN.
+      properties:
+        remoteIndexedArchitectures:
+          type: array
+          description: Architectures to index when building metadata from linked remote (upstream) registries.
+          items:
+            type: string
+          default:
+            - amd64
+            - i386
+            - arm64
+        optionalIndexCompressionFormats:
+          type: array
+          description: Optional additional compression formats to generate for index/metadata files.
+          items:
+            type: string
+            enum:
+              - .xz
     Webhook:
       required:
       - enabled

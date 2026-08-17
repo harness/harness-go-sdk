@@ -11,4 +11,6 @@ package har
 // Configuration for Harness Virtual Artifact Registries
 type VirtualConfig struct {
 	UpstreamProxies []string `json:"upstreamProxies,omitempty"`
+	// Debian-specific configuration, applicable only when packageType is DEBIAN.
+	DebianConfig *DebianConfig `json:"debianConfig,omitempty"`
 }
