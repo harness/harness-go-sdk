@@ -894,6 +894,7 @@ List all inventories.
      * @param "SearchTerm" (optional.String) -  Filter results by partial name match
      * @param "Sort" (optional.String) -  Sort order for results
      * @param "IncludeDetails" (optional.Bool) -  Include inventory details
+     * @param "Tags" (optional.Interface of []string) -  Filter results by tags (OR logic, exact match)
 @return []HarnessIacmInventoryDetail
 */
 
@@ -903,6 +904,7 @@ type AnsibleApiAnsibleListInventoryOpts struct {
 	SearchTerm     optional.String
 	Sort           optional.String
 	IncludeDetails optional.Bool
+	Tags           optional.Interface
 }
 
 func (a *AnsibleApiService) AnsibleListInventory(ctx context.Context, org string, project string, harnessAccount string, localVarOptionals *AnsibleApiAnsibleListInventoryOpts) ([]HarnessIacmInventoryDetail, *http.Response, error) {
@@ -955,6 +957,11 @@ func (a *AnsibleApiService) AnsibleListInventory(ctx context.Context, org string
 	}
 	if localVarOptionals != nil && localVarOptionals.IncludeDetails.IsSet() {
 		localVarQueryParams.Add("includeDetails", parameterToString(localVarOptionals.IncludeDetails.Value(), ""))
+	}
+	// The API reads tags from repeated query params, so each tag is sent as its
+	// own tags= pair rather than a single joined value.
+	if localVarOptionals != nil && localVarOptionals.Tags.IsSet() {
+		addQueryParam(localVarQueryParams, "tags", localVarOptionals.Tags.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -1144,6 +1151,7 @@ List all playbooks.
      * @param "Page" (optional.Int64) -  Page is the page number to return relative to the page &#x27;limit&#x27;.
      * @param "SearchTerm" (optional.String) -  Filter results by partial name match
      * @param "Sort" (optional.String) -  Sort order for results
+     * @param "Tags" (optional.Interface of []string) -  Filter results by tags (OR logic, exact match)
 @return []HarnessIacmPlaybook
 */
 
@@ -1152,6 +1160,7 @@ type AnsibleApiAnsibleListPlaybooksOpts struct {
 	Page       optional.Int64
 	SearchTerm optional.String
 	Sort       optional.String
+	Tags       optional.Interface
 }
 
 func (a *AnsibleApiService) AnsibleListPlaybooks(ctx context.Context, org string, project string, harnessAccount string, localVarOptionals *AnsibleApiAnsibleListPlaybooksOpts) ([]HarnessIacmPlaybook, *http.Response, error) {
@@ -1201,6 +1210,11 @@ func (a *AnsibleApiService) AnsibleListPlaybooks(ctx context.Context, org string
 	}
 	if localVarOptionals != nil && localVarOptionals.Sort.IsSet() {
 		localVarQueryParams.Add("sort", parameterToString(localVarOptionals.Sort.Value(), ""))
+	}
+	// The API reads tags from repeated query params, so each tag is sent as its
+	// own tags= pair rather than a single joined value.
+	if localVarOptionals != nil && localVarOptionals.Tags.IsSet() {
+		addQueryParam(localVarQueryParams, "tags", localVarOptionals.Tags.Value(), "multi")
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}

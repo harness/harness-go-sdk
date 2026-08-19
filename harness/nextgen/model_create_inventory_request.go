@@ -9,6 +9,8 @@
 package nextgen
 
 type CreateInventoryRequest struct {
+	// Description documents the inventory purpose and usage
+	Description string `json:"description,omitempty"`
 	// Groups is the list of dynamic groups to use.
 	DynamicGroups []CreateDynamicGroup `json:"dynamic_groups,omitempty"`
 	// Groups is the list of manual groups to use.

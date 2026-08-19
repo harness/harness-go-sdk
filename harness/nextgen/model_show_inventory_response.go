@@ -19,6 +19,8 @@ type ShowInventoryResponse struct {
 	// ManualInventory when type=manual, DynamicInventory when type=dynamic,
 	// PluginInventory when type=plugin.
 	Data json.RawMessage `json:"data"`
+	// Description documents the inventory purpose and usage
+	Description string `json:"description,omitempty"`
 	// The unique identifier for this inventory
 	Identifier string `json:"identifier"`
 	// Name is the human readable name

@@ -13,6 +13,8 @@ type CreateInventoryResponse struct {
 	Account string `json:"account"`
 	// Timestamp when the resource was created.
 	Created int64 `json:"created"`
+	// Description documents the inventory purpose and usage
+	Description string `json:"description,omitempty"`
 	// The unique identifier for this inventory
 	Identifier string `json:"identifier"`
 	// Name is the human readable name

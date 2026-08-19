@@ -8,9 +8,22 @@
  */
 package nextgen
 
+import "encoding/json"
+
 type UpdateInventoryRequest struct {
-	// The data representing the inventory
-	Data string `json:"data"`
+	// The data representing the inventory. The API takes a JSON object here, not
+	// a string: the published spec says "string" only because the design declares
+	// the attribute without a type argument, while the server binds it to
+	// encoding/json.RawMessage. Shape is discriminated by the inventory's type:
+	// ManualInventory when type=manual, DynamicInventory when type=dynamic,
+	// PluginInventory when type=plugin.
+	Data json.RawMessage `json:"data"`
+	// Description documents the inventory purpose and usage. Update is a PUT, so
+	// the description sent here replaces the stored one outright and this field
+	// is serialized even when empty: with omitempty a caller that cleared the
+	// description would drop the field from the body, and the server writes SQL
+	// NULL rather than an empty string for an absent description.
+	Description string `json:"description"`
 	// Name is the human readable name
 	Name string `json:"name"`
 	// Tags associated with the inventory. Update is a PUT: the tags sent here
