@@ -27,8 +27,11 @@ type UpdatePlaybookRequest struct {
 	RepositoryConnector string `json:"repository_connector,omitempty"`
 	// Repository Path is the path in which the playbook resides.
 	RepositoryPath string `json:"repository_path"`
-	// Tags associated with the playbook
-	Tags string `json:"tags,omitempty"`
+	// Tags associated with the playbook. Update is a PUT: the tags sent here
+	// replace the stored set outright, so this field is serialized even when
+	// empty. With omitempty a caller that removed every tag would drop the
+	// field from the body and could not express "no tags" at all.
+	Tags []string `json:"tags"`
 	// The vars in the playbook
 	Vars map[string]AnsibleVariable `json:"vars,omitempty"`
 }

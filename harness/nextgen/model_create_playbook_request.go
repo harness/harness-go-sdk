@@ -30,7 +30,7 @@ type CreatePlaybookRequest struct {
 	// Repository Path is the path in which the playbook resides.
 	RepositoryPath string `json:"repository_path"`
 	// Tags associated with the playbook
-	Tags string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// The vars in the playbook
 	Vars map[string]AnsibleVariable `json:"vars,omitempty"`
 }

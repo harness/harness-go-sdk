@@ -38,7 +38,7 @@ type HarnessIacmPlaybook struct {
 	// Repository Path is the path in which the playbook resides.
 	RepositoryPath string `json:"repository_path"`
 	// Tags associated with the playbook
-	Tags string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// Timestamp when the resource was last updated.
 	Updated int64 `json:"updated"`
 	// The vars in the playbook
