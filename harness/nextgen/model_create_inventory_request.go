@@ -16,10 +16,10 @@ type CreateInventoryRequest struct {
 	// The unique identifier for this inventory
 	Identifier string `json:"identifier"`
 	// Name is the human readable name
-	Name string `json:"name"`
+	Name          string         `json:"name"`
 	PluginOptions *PluginOptions `json:"plugin_options,omitempty"`
 	// Tags associated with the inventory
-	Tags string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// Type indicates what kind of inventory this is
 	Type_ string `json:"type"`
 	// Vars is the list of manual variables to use.

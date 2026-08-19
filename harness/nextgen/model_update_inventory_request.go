@@ -13,6 +13,9 @@ type UpdateInventoryRequest struct {
 	Data string `json:"data"`
 	// Name is the human readable name
 	Name string `json:"name"`
-	// Tags associated with the inventory
-	Tags string `json:"tags,omitempty"`
+	// Tags associated with the inventory. Update is a PUT: the tags sent here
+	// replace the stored set outright, so this field is serialized even when
+	// empty. With omitempty a caller that removed every tag would drop the
+	// field from the body and could not express "no tags" at all.
+	Tags []string `json:"tags"`
 }

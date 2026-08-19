@@ -22,7 +22,7 @@ type CreateInventoryResponse struct {
 	// Project is the project identifier.
 	Project string `json:"project"`
 	// Tags associated with the inventory
-	Tags string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// Type indicates what kind of inventory this is
 	Type_ string `json:"type"`
 	// Timestamp when the resource was last updated.
