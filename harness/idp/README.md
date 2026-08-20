@@ -37,10 +37,25 @@ Class | Method | HTTP request | Description
 *EnvironmentProxyApi* | [**CreateCompileAndExecuteEnvironment**](docs/EnvironmentProxyApi.md#createcompileandexecuteenvironment) | **Post** /v1/idp-environments | Create Compile And Execute Environment
 *EnvironmentProxyApi* | [**DeleteEnvironment**](docs/EnvironmentProxyApi.md#deleteenvironment) | **Delete** /v1/idp-environments/{environment-id} | Delete Environment
 *EnvironmentProxyApi* | [**UpdateCompileAndExecuteEnvironment**](docs/EnvironmentProxyApi.md#updatecompileandexecuteenvironment) | **Put** /v1/idp-environments/{environment-id} | Update Compile And Execute Environment
+*ScorecardsApi* | [**GetScorecards**](docs/ScorecardsApi.md#getscorecards) | **Get** /v1/scorecards | Get all scorecards available
+*ScorecardsApi* | [**CreateScorecard**](docs/ScorecardsApi.md#createscorecard) | **Post** /v1/scorecards | Create scorecard
+*ScorecardsApi* | [**GetScorecard**](docs/ScorecardsApi.md#getscorecard) | **Get** /v1/scorecards/{scorecard-id} | Get scorecard details
+*ScorecardsApi* | [**UpdateScorecard**](docs/ScorecardsApi.md#updatescorecard) | **Put** /v1/scorecards/{scorecard-id} | Update scorecard
+*ScorecardsApi* | [**DeleteScorecard**](docs/ScorecardsApi.md#deletescorecard) | **Delete** /v1/scorecards/{scorecard-id} | Delete scorecard
+*ChecksApi* | [**GetChecks**](docs/ChecksApi.md#getchecks) | **Get** /v1/checks | Get all checks available
+*ChecksApi* | [**CreateCheck**](docs/ChecksApi.md#createcheck) | **Post** /v1/checks | Create a custom check
+*ChecksApi* | [**GetCheck**](docs/ChecksApi.md#getcheck) | **Get** /v1/checks/{check-id} | Get check details
+*ChecksApi* | [**UpdateCheck**](docs/ChecksApi.md#updatecheck) | **Put** /v1/checks/{check-id} | Update check
+*ChecksApi* | [**DeleteCheck**](docs/ChecksApi.md#deletecheck) | **Delete** /v1/checks/{check-id} | Delete check
 
 ## Documentation For Models
 
  - [CacheResponseData](docs/CacheResponseData.md)
+ - [CheckDetails](docs/CheckDetails.md)
+ - [CheckDetailsResponse](docs/CheckDetailsResponse.md)
+ - [CheckListItem](docs/CheckListItem.md)
+ - [CheckRequest](docs/CheckRequest.md)
+ - [CheckRule](docs/CheckRule.md)
  - [EntityCreateRequest](docs/EntityCreateRequest.md)
  - [EntityMoveOperationType](docs/EntityMoveOperationType.md)
  - [EntityMoveRequest](docs/EntityMoveRequest.md)
@@ -66,7 +81,16 @@ Class | Method | HTTP request | Description
  - [GitMoveDetails](docs/GitMoveDetails.md)
  - [GitUpdateDetails](docs/GitUpdateDetails.md)
  - [InfrastructureChange](docs/InfrastructureChange.md)
+ - [InputValue](docs/InputValue.md)
  - [InstanceChange](docs/InstanceChange.md)
+ - [SaveOperationResponse](docs/SaveOperationResponse.md)
+ - [Scorecard](docs/Scorecard.md)
+ - [ScorecardCheck](docs/ScorecardCheck.md)
+ - [ScorecardDetailsResponse](docs/ScorecardDetailsResponse.md)
+ - [ScorecardFilter](docs/ScorecardFilter.md)
+ - [ScorecardListItem](docs/ScorecardListItem.md)
+ - [ScorecardRequest](docs/ScorecardRequest.md)
+ - [ScorecardTierAnalytics](docs/ScorecardTierAnalytics.md)
 
 ## Documentation For Authorization
 

@@ -54,6 +54,10 @@ type APIClient struct {
 	EnvironmentProxyApi *EnvironmentProxyApiService
 
 	ExecutionConfigApi *ExecutionConfigApiService // https://developer.harness.io/docs/internal-developer-portal
+
+	ScorecardsApi *ScorecardsApiService
+
+	ChecksApi *ChecksApiService
 }
 
 type service struct {
@@ -70,11 +74,14 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ApiKey = cfg.ApiKey
 	c.AccountId = cfg.AccountId
 	c.Endpoint = cfg.BasePath
+	applyIDPRetryPolicy(cfg.HTTPClient)
 
 	// API Services
 	c.EntitiesApi = (*EntitiesApiService)(&c.common)
 	c.EnvironmentProxyApi = (*EnvironmentProxyApiService)(&c.common)
 	c.ExecutionConfigApi = (*ExecutionConfigApiService)(&c.common)
+	c.ScorecardsApi = (*ScorecardsApiService)(&c.common)
+	c.ChecksApi = (*ChecksApiService)(&c.common)
 
 	return c
 }
