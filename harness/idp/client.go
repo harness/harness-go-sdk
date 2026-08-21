@@ -54,6 +54,8 @@ type APIClient struct {
 	EnvironmentProxyApi *EnvironmentProxyApiService
 
 	ExecutionConfigApi *ExecutionConfigApiService // https://developer.harness.io/docs/internal-developer-portal
+
+	PluginAppConfigApi *PluginAppConfigApiService
 }
 
 type service struct {
@@ -75,6 +77,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.EntitiesApi = (*EntitiesApiService)(&c.common)
 	c.EnvironmentProxyApi = (*EnvironmentProxyApiService)(&c.common)
 	c.ExecutionConfigApi = (*ExecutionConfigApiService)(&c.common)
+	c.PluginAppConfigApi = (*PluginAppConfigApiService)(&c.common)
 
 	return c
 }
