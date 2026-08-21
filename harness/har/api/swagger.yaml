@@ -5704,6 +5704,24 @@ components:
         remoteUrlSuffix:
           type: string
           description: Optional path suffix appended to the remote URL for this registry.
+        metadataCacheTTL:
+          type: integer
+          format: int64
+          description: >
+            Time-to-live in seconds for cached FOUND metadata entries. Honoured only for UPSTREAM
+            registries with package types that support resource cache (currently Maven).
+            Must be between 0 and 604800 (7 days). Rejected for unsupported package types.
+          minimum: 0
+          maximum: 604800
+        negativeCacheTTL:
+          type: integer
+          format: int64
+          description: >
+            Time-to-live in seconds for cached NOT_FOUND entries. Honoured only for UPSTREAM
+            registries with package types that support resource cache (currently Maven).
+            Must be between 0 and 604800 (7 days). Rejected for unsupported package types.
+          minimum: 0
+          maximum: 604800
         firewallMode:
           $ref: "#/components/schemas/UpstreamProxyConfigFirewallMode"
       description: Configuration for Harness Artifact UpstreamProxies
