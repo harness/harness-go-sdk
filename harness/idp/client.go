@@ -477,6 +477,12 @@ type GenericSwaggerError struct {
 
 // Error returns non-empty string if there was an error.
 func (e GenericSwaggerError) Error() string {
+	var response struct {
+		Message string `json:"message"`
+	}
+	if len(e.body) > 0 && json.Unmarshal(e.body, &response) == nil && response.Message != "" {
+		return fmt.Sprintf("%s: %s", e.error, response.Message)
+	}
 	return e.error
 }
 

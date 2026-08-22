@@ -40,7 +40,9 @@ func isNonRetryableIDPError(resp *http.Response) bool {
 
 	msg := strings.ToLower(string(body))
 	return strings.Contains(msg, "not found") ||
+		strings.Contains(msg, "could not find check") ||
 		strings.Contains(msg, "invalidrequest") ||
 		strings.Contains(msg, "already created") ||
+		strings.Contains(msg, "already exists") ||
 		strings.Contains(msg, "referenced by")
 }
