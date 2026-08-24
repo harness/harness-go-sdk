@@ -8,6 +8,12 @@ tags:
 - name: Entities
   description: This contains APIs for Entities.
   x-displayName: Entities
+- name: Scorecards
+  description: This contains APIs for Scorecards.
+  x-displayName: Scorecards
+- name: Checks
+  description: This contains APIs for Scorecard Checks.
+  x-displayName: Checks
 paths:
   /v1/entities:
     get:
@@ -1270,6 +1276,318 @@ paths:
       - x-api-key: []
       x-stoplight:
         id: g5au3w8dvrhxk
+  /v1/scorecards:
+    get:
+      tags:
+      - Scorecards
+      summary: Get all scorecards available
+      description: Get all scorecards available.
+      operationId: get-scorecards
+      parameters:
+      - name: Harness-Account
+        in: header
+        description: Identifier field of the account the resource is scoped to.
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Response for all scorecards available
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ScorecardListItem"
+      security:
+      - x-api-key: []
+    post:
+      tags:
+      - Scorecards
+      summary: Create scorecard
+      description: Create scorecard
+      operationId: create-scorecard
+      parameters:
+      - name: Harness-Account
+        in: header
+        description: Identifier field of the account the resource is scoped to.
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ScorecardRequest"
+      responses:
+        "201":
+          description: Default response for Save/Edit operations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SaveOperationResponse"
+      security:
+      - x-api-key: []
+  /v1/scorecards/{scorecard-id}:
+    get:
+      tags:
+      - Scorecards
+      summary: Get scorecard details for given scorecardId
+      description: Get scorecard details for given scorecardId
+      operationId: get-scorecard
+      parameters:
+      - name: scorecard-id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: Identifier field of the account the resource is scoped to.
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Response for scorecard details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScorecardDetailsResponse"
+      security:
+      - x-api-key: []
+    put:
+      tags:
+      - Scorecards
+      summary: Update scorecard details for given scorecardId
+      description: Update scorecard details for given scorecardId
+      operationId: update-scorecard
+      parameters:
+      - name: scorecard-id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: Identifier field of the account the resource is scoped to.
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ScorecardRequest"
+      responses:
+        "200":
+          description: Default response for Save/Edit operations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SaveOperationResponse"
+      security:
+      - x-api-key: []
+    delete:
+      tags:
+      - Scorecards
+      summary: Delete scorecard details for given scorecardId
+      description: Delete scorecard details for given scorecardId
+      operationId: delete-scorecard
+      parameters:
+      - name: scorecard-id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: Identifier field of the account the resource is scoped to.
+        required: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+      security:
+      - x-api-key: []
+  /v1/checks:
+    get:
+      tags:
+      - Checks
+      summary: Get all checks available
+      description: Get all checks available.
+      operationId: get-checks
+      parameters:
+      - name: Harness-Account
+        in: header
+        description: Identifier field of the account the resource is scoped to.
+        required: false
+        schema:
+          type: string
+      - name: custom
+        in: query
+        description: Type of checks to be returned
+        required: false
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: search_term
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Response for all checks available
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CheckListItem"
+      security:
+      - x-api-key: []
+    post:
+      tags:
+      - Checks
+      summary: Create a custom check
+      description: Create a custom check
+      operationId: create-check
+      parameters:
+      - name: Harness-Account
+        in: header
+        description: Identifier field of the account the resource is scoped to.
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CheckRequest"
+      responses:
+        "201":
+          description: Default response for Save/Edit operations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SaveOperationResponse"
+      security:
+      - x-api-key: []
+  /v1/checks/{check-id}:
+    get:
+      tags:
+      - Checks
+      summary: Get check details for given checkId
+      description: Get check details for given checkId
+      operationId: get-check
+      parameters:
+      - name: check-id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: Identifier field of the account the resource is scoped to.
+        required: false
+        schema:
+          type: string
+      - name: custom
+        in: query
+        description: Type of checks to be returned
+        required: false
+        schema:
+          type: boolean
+      responses:
+        "200":
+          description: Response for check details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CheckDetailsResponse"
+      security:
+      - x-api-key: []
+    put:
+      tags:
+      - Checks
+      summary: Update check details for given checkId
+      description: Update check details for given checkId
+      operationId: update-check
+      parameters:
+      - name: check-id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: Identifier field of the account the resource is scoped to.
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CheckRequest"
+      responses:
+        "200":
+          description: Default response for Save/Edit operations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SaveOperationResponse"
+      security:
+      - x-api-key: []
+    delete:
+      tags:
+      - Checks
+      summary: Delete check details for given checkId
+      description: Delete check details for given checkId
+      operationId: delete-check
+      parameters:
+      - name: check-id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Harness-Account
+        in: header
+        description: Identifier field of the account the resource is scoped to.
+        required: false
+        schema:
+          type: string
+      - name: force_delete
+        in: query
+        description: This is used if an entity need to be force deleted
+        required: false
+        schema:
+          type: boolean
+      responses:
+        "204":
+          description: No Content
+      security:
+      - x-api-key: []
 components:
   schemas:
     EntityCreateRequest:
@@ -2213,6 +2531,250 @@ components:
           description: Name of the branch.
       x-stoplight:
         id: bpd31demfes1n
+    SaveOperationResponse:
+      title: Save Operation Response
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    ScorecardFilter:
+      title: Scorecard Filter
+      type: object
+      required:
+      - kind
+      properties:
+        kind:
+          type: string
+        type:
+          type: string
+        owners:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        lifecycle:
+          type: array
+          items:
+            type: string
+        scopes:
+          type: array
+          items:
+            type: string
+    ScorecardCheck:
+      title: Scorecard Check
+      type: object
+      required:
+      - identifier
+      - custom
+      properties:
+        identifier:
+          type: string
+        weightage:
+          type: number
+          format: double
+        custom:
+          type: boolean
+        name:
+          type: string
+        description:
+          type: string
+    ScorecardTierAnalytics:
+      title: Scorecard Tier Analytics
+      type: object
+      properties:
+        tier_name:
+          type: string
+        min_score:
+          type: integer
+        max_score:
+          type: integer
+        tier_colour:
+          type: string
+        component_count:
+          type: integer
+        percentage:
+          type: number
+          format: double
+    Scorecard:
+      title: Scorecard
+      type: object
+      required:
+      - name
+      - identifier
+      - filter
+      - published
+      properties:
+        name:
+          type: string
+        identifier:
+          type: string
+        description:
+          type: string
+        filter:
+          $ref: "#/components/schemas/ScorecardFilter"
+        weightage_strategy:
+          type: string
+          enum:
+          - EQUAL_WEIGHTS
+          - CUSTOM
+        published:
+          type: boolean
+        on_demand:
+          type: boolean
+        checks_missing:
+          type: array
+          items:
+            type: string
+        components:
+          type: integer
+        percentage:
+          type: number
+          format: double
+        tier_group_identifier:
+          type: string
+        tier_analytics:
+          type: array
+          items:
+            $ref: "#/components/schemas/ScorecardTierAnalytics"
+    ScorecardRequest:
+      title: Scorecard Request
+      type: object
+      required:
+      - scorecard
+      - checks
+      properties:
+        scorecard:
+          $ref: "#/components/schemas/Scorecard"
+        checks:
+          type: array
+          items:
+            $ref: "#/components/schemas/ScorecardCheck"
+    ScorecardDetailsResponse:
+      title: Scorecard Details Response
+      type: object
+      properties:
+        scorecard:
+          $ref: "#/components/schemas/Scorecard"
+        checks:
+          type: array
+          items:
+            $ref: "#/components/schemas/ScorecardCheck"
+    ScorecardListItem:
+      title: Scorecard List Item
+      type: object
+      properties:
+        scorecard:
+          $ref: "#/components/schemas/Scorecard"
+    InputValue:
+      title: Input Value
+      type: object
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    CheckRule:
+      title: Check Rule
+      type: object
+      required:
+      - data_source_identifier
+      - data_point_identifier
+      - operator
+      properties:
+        identifier:
+          type: string
+        data_source_identifier:
+          type: string
+        data_point_identifier:
+          type: string
+        operator:
+          type: string
+        value:
+          type: string
+        input_values:
+          type: array
+          items:
+            $ref: "#/components/schemas/InputValue"
+        rule_description:
+          type: string
+    CheckDetails:
+      title: Check Details
+      type: object
+      required:
+      - identifier
+      - name
+      - custom
+      - rule_strategy
+      - default_behaviour
+      properties:
+        identifier:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        expression:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        custom:
+          type: boolean
+        rule_description:
+          type: string
+        rule_strategy:
+          type: string
+          enum:
+          - ALL_OF
+          - ANY_OF
+          - ADVANCED
+        rules:
+          type: array
+          items:
+            $ref: "#/components/schemas/CheckRule"
+        harness_managed:
+          type: boolean
+        default_behaviour:
+          type: string
+          enum:
+          - PASS
+          - FAIL
+        fail_message:
+          type: string
+        percentage:
+          type: number
+          format: double
+        data_source:
+          type: array
+          items:
+            type: string
+    CheckRequest:
+      title: Check Request
+      type: object
+      properties:
+        check_details:
+          $ref: "#/components/schemas/CheckDetails"
+    CheckDetailsResponse:
+      title: Check Details Response
+      type: object
+      properties:
+        check_details:
+          $ref: "#/components/schemas/CheckDetails"
+    CheckListItem:
+      title: Check List Item
+      type: object
+      properties:
+        check:
+          $ref: "#/components/schemas/CheckDetails"
   responses:
     EntityResponseBody:
       description: Entity response body

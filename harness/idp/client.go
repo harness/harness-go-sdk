@@ -56,6 +56,10 @@ type APIClient struct {
 	ExecutionConfigApi *ExecutionConfigApiService // https://developer.harness.io/docs/internal-developer-portal
 
 	PluginAppConfigApi *PluginAppConfigApiService
+
+	ScorecardsApi *ScorecardsApiService
+
+	ChecksApi *ChecksApiService
 }
 
 type service struct {
@@ -72,12 +76,15 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ApiKey = cfg.ApiKey
 	c.AccountId = cfg.AccountId
 	c.Endpoint = cfg.BasePath
+	applyIDPRetryPolicy(cfg.HTTPClient)
 
 	// API Services
 	c.EntitiesApi = (*EntitiesApiService)(&c.common)
 	c.EnvironmentProxyApi = (*EnvironmentProxyApiService)(&c.common)
 	c.ExecutionConfigApi = (*ExecutionConfigApiService)(&c.common)
 	c.PluginAppConfigApi = (*PluginAppConfigApiService)(&c.common)
+	c.ScorecardsApi = (*ScorecardsApiService)(&c.common)
+	c.ChecksApi = (*ChecksApiService)(&c.common)
 
 	return c
 }
@@ -473,6 +480,12 @@ type GenericSwaggerError struct {
 
 // Error returns non-empty string if there was an error.
 func (e GenericSwaggerError) Error() string {
+	var response struct {
+		Message string `json:"message"`
+	}
+	if len(e.body) > 0 && json.Unmarshal(e.body, &response) == nil && response.Message != "" {
+		return fmt.Sprintf("%s: %s", e.error, response.Message)
+	}
 	return e.error
 }
 
