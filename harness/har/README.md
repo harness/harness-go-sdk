@@ -98,6 +98,8 @@ Class | Method | HTTP request | Description
  - [RubyArtifactDetailConfig](docs/RubyArtifactDetailConfig.md)
  - [TerraformArtifactDetailConfig](docs/TerraformArtifactDetailConfig.md)
  - [CranArtifactDetailConfig](docs/CranArtifactDetailConfig.md)
+ - [AlpineArtifactDetailConfig](docs/AlpineArtifactDetailConfig.md)
+ - [WolfiArtifactDetailConfig](docs/WolfiArtifactDetailConfig.md)
  - [DebianConfig](docs/DebianConfig.md)
  - [DeploymentDetails](docs/DeploymentDetails.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)

@@ -3715,6 +3715,8 @@ components:
           RUBY: "#/components/schemas/RubyArtifactDetailConfig"
           TERRAFORM: "#/components/schemas/TerraformArtifactDetailConfig"
           CRAN: "#/components/schemas/CranArtifactDetailConfig"
+          ALPINE: "#/components/schemas/AlpineArtifactDetailConfig"
+          WOLFI: "#/components/schemas/WolfiArtifactDetailConfig"
       oneOf:
       - $ref: "#/components/schemas/DockerArtifactDetailConfig"
       - $ref: "#/components/schemas/HelmArtifactDetailConfig"
@@ -3731,6 +3733,8 @@ components:
       - $ref: "#/components/schemas/RubyArtifactDetailConfig"
       - $ref: "#/components/schemas/TerraformArtifactDetailConfig"
       - $ref: "#/components/schemas/CranArtifactDetailConfig"
+      - $ref: "#/components/schemas/AlpineArtifactDetailConfig"
+      - $ref: "#/components/schemas/WolfiArtifactDetailConfig"
     ArtifactLabelRequest:
       required:
       - labels
@@ -4001,6 +4005,20 @@ components:
           type: object
           additionalProperties: true
       description: Config for cran artifact details
+    AlpineArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for alpine artifact details
+    WolfiArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for wolfi artifact details
     CleanupPolicy:
       type: object
       properties:
@@ -5177,6 +5195,8 @@ components:
       - RUBY
       - TERRAFORM
       - CRAN
+      - ALPINE
+      - WOLFI
     ArtifactType:
       type: string
       description: refers to artifact type
@@ -5699,11 +5719,31 @@ components:
           - HelmChartRepo
           - ConanCenter
           - CRAN
+          - ALPINE
+          - WOLFI
         url:
           type: string
         remoteUrlSuffix:
           type: string
           description: Optional path suffix appended to the remote URL for this registry.
+        metadataCacheTTL:
+          type: integer
+          format: int64
+          description: >
+            Time-to-live in seconds for cached FOUND metadata entries. Honoured only for UPSTREAM
+            registries with package types that support resource cache (currently Maven).
+            Must be between 0 and 604800 (7 days). Rejected for unsupported package types.
+          minimum: 0
+          maximum: 604800
+        negativeCacheTTL:
+          type: integer
+          format: int64
+          description: >
+            Time-to-live in seconds for cached NOT_FOUND entries. Honoured only for UPSTREAM
+            registries with package types that support resource cache (currently Maven).
+            Must be between 0 and 604800 (7 days). Rejected for unsupported package types.
+          minimum: 0
+          maximum: 604800
         firewallMode:
           $ref: "#/components/schemas/UpstreamProxyConfigFirewallMode"
       description: Configuration for Harness Artifact UpstreamProxies
