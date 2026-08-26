@@ -13,4 +13,5 @@ type AddUsersDto struct {
 	Emails []string `json:"emails"`
 	RoleBindings []RoleBinding `json:"roleBindings"`
 	UserGroups []string `json:"userGroups,omitempty"`
+	GovernanceMetadata *GovernanceMetadata `json:"governanceMetadata,omitempty"`
 }

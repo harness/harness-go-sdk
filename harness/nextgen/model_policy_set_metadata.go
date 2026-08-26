@@ -18,6 +18,7 @@ type PolicySetMetadata struct {
 	PolicySetId                 string                    `json:"policySetId,omitempty"`
 	PolicySetIdBytes            *ByteString               `json:"policySetIdBytes,omitempty"`
 	PolicyMetadataList          []PolicyMetadata          `json:"policyMetadataList,omitempty"`
+	PolicyMetadata              []PolicyMetadata          `json:"policyMetadata,omitempty"`
 	PolicyMetadataOrBuilderList []PolicyMetadataOrBuilder `json:"policyMetadataOrBuilderList,omitempty"`
 	PolicyMetadataCount         int32                     `json:"policyMetadataCount,omitempty"`
 	PolicySetName               string                    `json:"policySetName,omitempty"`

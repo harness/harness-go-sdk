@@ -28,5 +28,5 @@ type UserGroup struct {
 	Description          string                         `json:"description,omitempty"`
 	Tags                 map[string]string              `json:"tags,omitempty"`
 	SsoLinked            bool                           `json:"ssoLinked,omitempty"`
-	GovernanceMetadata   *UserGroupGovernanceMetadata    `json:"governanceMetadata,omitempty"`
+	GovernanceMetadata   *GovernanceMetadata             `json:"governanceMetadata,omitempty"`
 }

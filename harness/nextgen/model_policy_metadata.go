@@ -25,6 +25,7 @@ type PolicyMetadata struct {
 	PolicyNameBytes           *ByteString            `json:"policyNameBytes,omitempty"`
 	SeverityBytes             *ByteString            `json:"severityBytes,omitempty"`
 	DenyMessagesList          []string               `json:"denyMessagesList,omitempty"`
+	DenyMessages              []string               `json:"denyMessages,omitempty"`
 	DenyMessagesCount         int32                  `json:"denyMessagesCount,omitempty"`
 	StatusBytes               *ByteString            `json:"statusBytes,omitempty"`
 	AccountId                 string                 `json:"accountId,omitempty"`

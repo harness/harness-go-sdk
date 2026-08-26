@@ -35,6 +35,7 @@ type GovernanceMetadata struct {
 	OrgId                     string                       `json:"orgId,omitempty"`
 	IdBytes                   *ByteString                  `json:"idBytes,omitempty"`
 	DetailsList               []PolicySetMetadata          `json:"detailsList,omitempty"`
+	Details                   []PolicySetMetadata          `json:"details,omitempty"`
 	DetailsOrBuilderList      []PolicySetMetadataOrBuilder `json:"detailsOrBuilderList,omitempty"`
 	Message                   string                       `json:"message,omitempty"`
 	Id                        string                       `json:"id,omitempty"`

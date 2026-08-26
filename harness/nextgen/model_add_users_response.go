@@ -10,5 +10,6 @@
 package nextgen
 
 type AddUsersResponse struct {
-	AddUserResponseMap map[string]string `json:"addUserResponseMap,omitempty"`
+	AddUserResponseMap map[string]string   `json:"addUserResponseMap,omitempty"`
+	GovernanceMetadata *GovernanceMetadata `json:"governanceMetadata,omitempty"`
 }
