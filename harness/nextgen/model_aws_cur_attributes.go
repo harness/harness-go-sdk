@@ -15,4 +15,6 @@ type AwsCurAttributes struct {
 	S3BucketName string `json:"s3BucketName"`
 	Region       string `json:"region,omitempty"`
 	S3Prefix     string `json:"s3Prefix,omitempty"`
+	// ReportType: CUR2.0 for CUR 2.0 data exports, CUR1.0 for legacy.
+	ReportType string `json:"reportType,omitempty"`
 }

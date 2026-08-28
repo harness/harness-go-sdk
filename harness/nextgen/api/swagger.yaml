@@ -30040,6 +30040,12 @@ components:
           type: string
         s3Prefix:
           type: string
+        reportType:
+          type: string
+          enum:
+          - CUR1.0
+          - CUR2.0
+          description: CUR2.0 for CUR 2.0 data exports, CUR1.0 for legacy. Null defaults to CUR1.0.
       description: This contains AWS cost and usage reports attributes
     AwsKmsConnector:
       type: object
