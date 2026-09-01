@@ -12,6 +12,7 @@ package nextgen
 // Returns secret reference access key and secret key of AWS Secret Manager.
 type AwsSmCredentialSpecOidcConfig struct {
 	// List of Delegate Selectors that belong to the same Delegate and are used to connect to the Secret Manager.
-	DelegateSelectors []string `json:"delegateSelectors"`
-	IamRoleArn        string   `json:"iamRoleArn,omitempty"`
+	DelegateSelectors  []string `json:"delegateSelectors"`
+	IamRoleArn         string   `json:"iamRoleArn,omitempty"`
+	OidcSessionTagKeys []string `json:"oidcSessionTagKeys,omitempty"`
 }
