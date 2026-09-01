@@ -1,0 +1,12 @@
+./chglog.go
+./commit_extractor.go
+./commit_filter.go
+./commit_parser.go
+./errors.go
+./fields.go
+./jira.go
+./logger.go
+./processor.go
+./tag_reader.go
+./tag_selector.go
+./utils.go
