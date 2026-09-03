@@ -14,4 +14,5 @@ type StackdriverMetricHealthSource struct {
 	ConnectorRef      string                    `json:"connectorRef"`
 	MetricPacks       []TimeSeriesMetricPackDto `json:"metricPacks,omitempty"`
 	MetricDefinitions []StackdriverDefinition   `json:"metricDefinitions,omitempty"`
+	GcpProjectId      string                    `json:"gcpProjectId,omitempty"`
 }
