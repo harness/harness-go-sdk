@@ -386690,6 +386690,8 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/StackdriverDefinition'
+          gcpProjectId:
+            type: string
     TemplateDTO:
       required:
       - templateRef
