@@ -147,6 +147,7 @@ Name | Type | Description  | Notes
  **accountIdentifier** | **optional.String**| Account Identifier for the Entity. | 
  **orgIdentifier** | **optional.String**| Organization Identifier for the Entity. | 
  **projectIdentifier** | **optional.String**| Project Identifier for the Entity. | 
+ **blockIfReferenced** | **optional.Bool**| If true, fails the delete with an error if any Applications/Clusters/Repositories/ApplicationSets still reference this Argo project. Defaults to false, which cascades the delete unconditionally. | 
 
 ### Return type
 
