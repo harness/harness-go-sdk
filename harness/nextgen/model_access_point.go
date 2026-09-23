@@ -26,4 +26,5 @@ type AccessPoint struct {
 	Subnets        []string         `json:"subnets,omitempty"`
 	SecurityGroups []string         `json:"security_groups,omitempty"`
 	Editables      []string         `json:"editables,omitempty"`
+	AccessToken    string           `json:"access_token,omitempty"`
 }
