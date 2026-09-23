@@ -10,5 +10,6 @@
 package nextgen
 
 type Proxy struct {
-	Id string `json:"id,omitempty"`
+	Id             string `json:"id,omitempty"`
+	CloudAccountId string `json:"cloud_account_id,omitempty"`
 }
