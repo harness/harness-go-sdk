@@ -27429,6 +27429,251 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RestResponseBoolean'
+  /ng/api/settings/{identifier}:
+    get:
+      tags:
+      - Setting
+      summary: Get a setting value by identifier
+      operationId: getSettingValue
+      parameters:
+      - name: identifier
+        in: path
+        description: This is the Identifier of the Entity
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: accountIdentifier
+        in: query
+        description: Account Identifier for the Entity.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: orgIdentifier
+        in: query
+        description: Organization Identifier for the Entity.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project Identifier for the Entity.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Failure'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/Failure'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: This returns a setting value by the Identifier
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTOSettingValueResponseDTO'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/ResponseDTOSettingValueResponseDTO'
+  /ng/api/settings:
+    get:
+      tags:
+      - Setting
+      summary: Get list of settings under the specified category
+      operationId: getSettingsList
+      parameters:
+      - name: accountIdentifier
+        in: query
+        description: Account Identifier for the Entity.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: orgIdentifier
+        in: query
+        description: Organization Identifier for the Entity.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project Identifier for the Entity.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: Category of the Setting.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - CD
+          - CI
+          - CE
+          - CV
+          - CF
+          - STO
+          - CORE
+          - PMS
+          - TEMPLATESERVICE
+          - GOVERNANCE
+          - CHAOS
+          - SCIM
+          - GIT_EXPERIENCE
+          - CONNECTORS
+          - EULA
+          - NOTIFICATIONS
+          - SUPPLY_CHAIN_ASSURANCE
+          - USER
+          - MODULES_VISIBILITY
+          - DBOPS
+          - IR
+          - AR
+      - name: group
+        in: query
+        description: Group Id of the setting
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: includeParentScopes
+        in: query
+        description: Flag to include the settings which only exist at the parent scopes
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Failure'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/Failure'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: This contains a list of Settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTOListSettingResponseDTO'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/ResponseDTOListSettingResponseDTO'
+    put:
+      tags:
+      - Setting
+      summary: Update settings
+      operationId: updateSettingValue
+      parameters:
+      - name: accountIdentifier
+        in: query
+        description: Account Identifier for the Entity.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: orgIdentifier
+        in: query
+        description: Organization Identifier for the Entity.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: projectIdentifier
+        in: query
+        description: Project Identifier for the Entity.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      requestBody:
+        description: List of update requests for settings
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SettingRequestDTO'
+          application/yaml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SettingRequestDTO'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Failure'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/Failure'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: This updates the settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTOListSettingUpdateResponseDTO'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/ResponseDTOListSettingUpdateResponseDTO'
 components:
   schemas:
     NotificationChannelListResponse:
@@ -387313,6 +387558,222 @@ components:
             - Fri
             - Sat
             - Sun
+    SettingRequestDTO:
+      required:
+      - allowOverrides
+      - identifier
+      - updateType
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: Identifier of the Setting.
+        value:
+          type: string
+          description: Value of the setting
+        allowOverrides:
+          type: boolean
+          description: Allow override of the Setting in sub-scopes.
+        updateType:
+          type: string
+          description: "Type of the update operation. When update type is RESTORE, field\
+            \ [value] is ignored"
+          enum:
+          - UPDATE
+          - RESTORE
+    SettingDTO:
+      required:
+      - allowOverrides
+      - allowedScopes
+      - category
+      - groupIdentifier
+      - identifier
+      - isSettingEditable
+      - name
+      - valueType
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: Identifier of the Setting.
+        name:
+          type: string
+          description: Name of the Setting.
+        orgIdentifier:
+          type: string
+          description: Organization Identifier for the Entity.
+        projectIdentifier:
+          type: string
+          description: Project Identifier for the Entity.
+        category:
+          type: string
+          description: Category of the Setting.
+          enum:
+          - CD
+          - CI
+          - CE
+          - CV
+          - CF
+          - STO
+          - CORE
+          - PMS
+          - TEMPLATESERVICE
+          - GOVERNANCE
+          - CHAOS
+          - SCIM
+          - GIT_EXPERIENCE
+          - CONNECTORS
+          - EULA
+          - NOTIFICATIONS
+          - SUPPLY_CHAIN_ASSURANCE
+          - USER
+          - MODULES_VISIBILITY
+          - DBOPS
+          - IR
+          - AR
+        groupIdentifier:
+          type: string
+          description: Group Id of the setting
+        valueType:
+          type: string
+          description: Type of Value of the Setting.
+          enum:
+          - String
+          - Boolean
+          - Number
+        allowedValues:
+          uniqueItems: true
+          type: array
+          description: Set of Values allowed for the Setting.
+          items:
+            type: string
+        allowOverrides:
+          type: boolean
+          description: Allow override of the Setting in sub-scopes.
+        value:
+          type: string
+          description: Value of the setting
+        defaultValue:
+          type: string
+          description: Default Value of the Setting.
+        settingSource:
+          type: string
+          description: Source of the setting value
+          enum:
+          - ACCOUNT
+          - ORG
+          - PROJECT
+          - DEFAULT
+        isSettingEditable:
+          type: boolean
+          description: Is the setting editable at the current scope
+        allowedScopes:
+          uniqueItems: true
+          type: array
+          description: List of scopes where the setting is available
+          items:
+            type: string
+            enum:
+            - ACCOUNT
+            - ORGANIZATION
+            - PROJECT
+    SettingResponseDTO:
+      required:
+      - setting
+      type: object
+      properties:
+        setting:
+          $ref: '#/components/schemas/SettingDTO'
+        lastModifiedAt:
+          type: integer
+          description: Time when the Setting was last modified.
+          format: int64
+    SettingUpdateResponseDTO:
+      required:
+      - identifier
+      - setting
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: Identifier of the Setting.
+        setting:
+          $ref: '#/components/schemas/SettingDTO'
+        lastModifiedAt:
+          type: integer
+          description: Time when the Setting was last modified.
+          format: int64
+        updateStatus:
+          type: boolean
+          description: Request status for the corresponding item in batch request
+        errorMessage:
+          type: string
+          description: Error message
+    SettingValueResponseDTO:
+      required:
+      - value
+      - valueType
+      type: object
+      properties:
+        valueType:
+          type: string
+          description: Type of Value of the Setting.
+          enum:
+          - String
+          - Boolean
+          - Number
+        value:
+          type: string
+          description: Value of the setting
+    ResponseDTOListSettingResponseDTO:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILURE
+          - ERROR
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SettingResponseDTO'
+        metaData:
+          type: object
+        correlationId:
+          type: string
+    ResponseDTOListSettingUpdateResponseDTO:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILURE
+          - ERROR
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SettingUpdateResponseDTO'
+        metaData:
+          type: object
+        correlationId:
+          type: string
+    ResponseDTOSettingValueResponseDTO:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILURE
+          - ERROR
+        data:
+          $ref: '#/components/schemas/SettingValueResponseDTO'
+        metaData:
+          type: object
+        correlationId:
+          type: string
   securitySchemes:
     ApiKey:
       type: apiKey
