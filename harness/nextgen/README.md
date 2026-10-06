@@ -409,6 +409,9 @@ Class | Method | HTTP request | Description
 *ServiceOverridesApi* | [**GetServiceOverridesV2**](docs/ServiceOverridesApi.md#getserviceoverridesv2) | **Get** /serviceOverrides/get-with-yaml/{identifier} | Gets Service Overrides by Identifier
 *ServiceOverridesApi* | [**UpdateServiceOverrideV2**](docs/ServiceOverridesApi.md#updateserviceoverridev2) | **Put** /serviceOverrides | Update an ServiceOverride Entity
 *ServiceOverridesApi* | [**ImportServiceOverrides**](docs/ServiceOverridesApi.md#importserviceoverrides) | **Post** /serviceOverrides/import | import Service Overrides from remote
+*SettingApi* | [**GetSettingValue**](docs/SettingApi.md#getsettingvalue) | **Get** /ng/api/settings/{identifier} | Get a setting value by identifier
+*SettingApi* | [**GetSettingsList**](docs/SettingApi.md#getsettingslist) | **Get** /ng/api/settings | Get list of settings under the specified category
+*SettingApi* | [**UpdateSettingValue**](docs/SettingApi.md#updatesettingvalue) | **Put** /ng/api/settings | Update settings
 *SloApi* | [**DeleteSLODataNg**](docs/SloApi.md#deleteslodatang) | **Delete** /account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/slo/v2/identifier/{identifier} | delete slo data
 *SloApi* | [**GetServiceLevelObjectiveNg**](docs/SloApi.md#getservicelevelobjectiveng) | **Get** /account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/slo/v2/identifier/{identifier} | get service level objective data
 *SloApi* | [**SaveSLODataNg**](docs/SloApi.md#saveslodatang) | **Post** /account/{accountIdentifier}/org/{orgIdentifier}/project/{projectIdentifier}/slo/v2 | saves slo data
@@ -1272,6 +1275,8 @@ Class | Method | HTTP request | Description
  - [ResponseDtoListRoleAssignmentResponse](docs/ResponseDtoListRoleAssignmentResponse.md)
  - [ResponseDtoListServiceAccount](docs/ResponseDtoListServiceAccount.md)
  - [ResponseDtoListServiceResponse](docs/ResponseDtoListServiceResponse.md)
+ - [ResponseDtoListSettingResponseDto](docs/ResponseDtoListSettingResponseDto.md)
+ - [ResponseDtoListSettingUpdateResponseDto](docs/ResponseDtoListSettingUpdateResponseDto.md)
  - [ResponseDtoListSourceCodeManager](docs/ResponseDtoListSourceCodeManager.md)
  - [ResponseDtoListStageExecutionResponse](docs/ResponseDtoListStageExecutionResponse.md)
  - [ResponseDtoListString](docs/ResponseDtoListString.md)
@@ -1343,6 +1348,7 @@ Class | Method | HTTP request | Description
  - [ResponseDtoServiceResponse](docs/ResponseDtoServiceResponse.md)
  - [ResponseDtoServiceUsageDto](docs/ResponseDtoServiceUsageDto.md)
  - [ResponseDtoSetString](docs/ResponseDtoSetString.md)
+ - [ResponseDtoSettingValueResponseDto](docs/ResponseDtoSettingValueResponseDto.md)
  - [ResponseDtoSourceCodeManager](docs/ResponseDtoSourceCodeManager.md)
  - [ResponseDtoStepCategory](docs/ResponseDtoStepCategory.md)
  - [ResponseDtoString](docs/ResponseDtoString.md)
@@ -1456,6 +1462,11 @@ Class | Method | HTTP request | Description
  - [ServiceOverrideRequestDtov2](docs/ServiceOverrideRequestDtov2.md)
  - [ServiceOverridesResponseDtov2](docs/ServiceOverridesResponseDtov2.md)
  - [ServiceRequest](docs/ServiceRequest.md)
+ - [SettingDto](docs/SettingDto.md)
+ - [SettingRequestDto](docs/SettingRequestDto.md)
+ - [SettingResponseDto](docs/SettingResponseDto.md)
+ - [SettingUpdateResponseDto](docs/SettingUpdateResponseDto.md)
+ - [SettingValueResponseDto](docs/SettingValueResponseDto.md)
  - [SloEventNotificationParamsDto](docs/SloEventNotificationParamsDto.md)
  - [ServiceResponse](docs/ServiceResponse.md)
  - [ServiceResponseDetails](docs/ServiceResponseDetails.md)
