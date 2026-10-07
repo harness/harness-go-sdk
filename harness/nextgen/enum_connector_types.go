@@ -50,6 +50,7 @@ var ConnectorTypes = struct {
 	Pdc                 ConnectorType
 	CustomSecretManager ConnectorType
 	AzureRepo           ConnectorType
+	OpenAIModel         ConnectorType
 	AnthropicModel      ConnectorType
 }{
 	K8sCluster:          "K8sCluster",
@@ -99,6 +100,7 @@ var ConnectorTypes = struct {
 	Pdc:                 "Pdc",
 	CustomSecretManager: "CustomSecretManager",
 	AzureRepo:           "AzureRepo",
+	OpenAIModel:         "OpenAI",
 	AnthropicModel:      "Anthropic",
 }
 
@@ -150,6 +152,7 @@ var ConnectorTypesSlice = []string{
 	ConnectorTypes.Pdc.String(),
 	ConnectorTypes.CustomSecretManager.String(),
 	ConnectorTypes.AzureRepo.String(),
+	ConnectorTypes.OpenAIModel.String(),
 	ConnectorTypes.AnthropicModel.String(),
 }
 
