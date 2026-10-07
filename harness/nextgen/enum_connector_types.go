@@ -50,6 +50,7 @@ var ConnectorTypes = struct {
 	Pdc                 ConnectorType
 	CustomSecretManager ConnectorType
 	AzureRepo           ConnectorType
+	AnthropicModel      ConnectorType
 }{
 	K8sCluster:          "K8sCluster",
 	Git:                 "Git",
@@ -98,6 +99,7 @@ var ConnectorTypes = struct {
 	Pdc:                 "Pdc",
 	CustomSecretManager: "CustomSecretManager",
 	AzureRepo:           "AzureRepo",
+	AnthropicModel:      "Anthropic",
 }
 
 var ConnectorTypesSlice = []string{
@@ -148,6 +150,7 @@ var ConnectorTypesSlice = []string{
 	ConnectorTypes.Pdc.String(),
 	ConnectorTypes.CustomSecretManager.String(),
 	ConnectorTypes.AzureRepo.String(),
+	ConnectorTypes.AnthropicModel.String(),
 }
 
 func (c ConnectorType) String() string {

@@ -76,4 +76,5 @@ type ConnectorInfo struct {
 	CustomHealth        *CustomHealthConnectorDto       `json:"-"`
 	Pdc                 *PhysicalDataCenterConnectorDto `json:"-"`
 	AzureRepo           *AzureRepoConfig                `json:"-"`
+	AnthropicModel      *AnthropicModelConnector        `json:"-"`
 }

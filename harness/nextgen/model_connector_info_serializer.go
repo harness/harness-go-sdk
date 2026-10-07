@@ -113,6 +113,8 @@ func (a *ConnectorInfo) UnmarshalJSON(data []byte) error {
 		err = json.Unmarshal(aux.Spec, &a.CustomSecretManager)
 	case ConnectorTypes.GcpKms:
 		err = json.Unmarshal(aux.Spec, &a.GcpKms)
+	case ConnectorTypes.AnthropicModel:
+		err = json.Unmarshal(aux.Spec, &a.AnthropicModel)
 	default:
 		panic(fmt.Sprintf("unknown connector type %s", a.Type_))
 	}
@@ -217,6 +219,8 @@ func (a *ConnectorInfo) MarshalJSON() ([]byte, error) {
 		spec, err = json.Marshal(a.Pdc)
 	case ConnectorTypes.CustomSecretManager:
 		spec, err = json.Marshal(a.CustomSecretManager)
+	case ConnectorTypes.AnthropicModel:
+		spec, err = json.Marshal(a.AnthropicModel)
 	default:
 		panic(fmt.Sprintf("unknown connector type %s", a.Type_))
 	}
