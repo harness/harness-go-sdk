@@ -3717,6 +3717,15 @@ components:
           CRAN: "#/components/schemas/CranArtifactDetailConfig"
           ALPINE: "#/components/schemas/AlpineArtifactDetailConfig"
           WOLFI: "#/components/schemas/WolfiArtifactDetailConfig"
+          GO: "#/components/schemas/GoArtifactDetailConfig"
+          HUGGINGFACE: "#/components/schemas/HuggingFaceArtifactDetailConfig"
+          CONDA: "#/components/schemas/CondaArtifactDetailConfig"
+          DART: "#/components/schemas/DartArtifactDetailConfig"
+          COMPOSER: "#/components/schemas/ComposerArtifactDetailConfig"
+          SWIFT: "#/components/schemas/SwiftArtifactDetailConfig"
+          DEBIAN: "#/components/schemas/DebianArtifactDetailConfig"
+          HELM_HTTP: "#/components/schemas/HelmHttpArtifactDetailConfig"
+          TERRAFORM_BACKEND: "#/components/schemas/TerraformBackendArtifactDetailConfig"
       oneOf:
       - $ref: "#/components/schemas/DockerArtifactDetailConfig"
       - $ref: "#/components/schemas/HelmArtifactDetailConfig"
@@ -3735,6 +3744,15 @@ components:
       - $ref: "#/components/schemas/CranArtifactDetailConfig"
       - $ref: "#/components/schemas/AlpineArtifactDetailConfig"
       - $ref: "#/components/schemas/WolfiArtifactDetailConfig"
+      - $ref: "#/components/schemas/GoArtifactDetailConfig"
+      - $ref: "#/components/schemas/HuggingFaceArtifactDetailConfig"
+      - $ref: "#/components/schemas/CondaArtifactDetailConfig"
+      - $ref: "#/components/schemas/DartArtifactDetailConfig"
+      - $ref: "#/components/schemas/ComposerArtifactDetailConfig"
+      - $ref: "#/components/schemas/SwiftArtifactDetailConfig"
+      - $ref: "#/components/schemas/DebianArtifactDetailConfig"
+      - $ref: "#/components/schemas/HelmHttpArtifactDetailConfig"
+      - $ref: "#/components/schemas/TerraformBackendArtifactDetailConfig"
     ArtifactLabelRequest:
       required:
       - labels
@@ -4019,6 +4037,69 @@ components:
           type: object
           additionalProperties: true
       description: Config for wolfi artifact details
+    GoArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for Go artifact details
+    HuggingFaceArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for huggingface artifact details
+    CondaArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for conda artifact details
+    DartArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for dart artifact details
+    ComposerArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for composer artifact details
+    SwiftArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for swift artifact details
+    DebianArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for debian artifact details
+    HelmHttpArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for helm http artifact details
+    TerraformBackendArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for terraform backend artifact details
     CleanupPolicy:
       type: object
       properties:
@@ -5197,6 +5278,7 @@ components:
       - CRAN
       - ALPINE
       - WOLFI
+      - TERRAFORM_BACKEND
     ArtifactType:
       type: string
       description: refers to artifact type

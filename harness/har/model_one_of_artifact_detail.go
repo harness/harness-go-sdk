@@ -32,4 +32,7 @@ type OneOfArtifactDetail struct {
 	CranArtifactDetailConfig
 	AlpineArtifactDetailConfig
 	WolfiArtifactDetailConfig
+	DebianArtifactDetailConfig
+	HelmHttpArtifactDetailConfig
+	TerraformBackendArtifactDetailConfig
 }
