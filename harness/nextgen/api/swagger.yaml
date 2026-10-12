@@ -30285,6 +30285,9 @@ components:
           type: string
         s3Prefix:
           type: string
+        reportType:
+          type: string
+          description: Cost and usage report type. Set to CUR2.0 for AWS Data Exports. Omit for legacy CUR 1.0.
       description: This contains AWS cost and usage reports attributes
     AwsKmsConnector:
       type: object
