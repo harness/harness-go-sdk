@@ -57,6 +57,90 @@
                 }
             }
         },
+      "/v3/risk-rules/{identity}": {
+        "get": {
+          "description": "gets a risk rule by its identity",
+          "produces": [
+            "application/json"
+          ],
+          "tags": [
+            "riskrules"
+          ],
+          "summary": "gets a risk rule",
+          "operationId": "getRiskRule",
+          "parameters": [
+            {
+              "type": "string",
+              "description": "risk rule identity",
+              "name": "identity",
+              "in": "path",
+              "required": true
+            },
+            {
+              "type": "string",
+              "description": "account id to access the resource",
+              "name": "accountIdentifier",
+              "in": "query",
+              "required": true
+            },
+            {
+              "type": "string",
+              "description": "correlation id is used to debug micro svc communication",
+              "name": "correlationID",
+              "in": "query"
+            },
+            {
+              "type": "boolean",
+              "name": "isSystem",
+              "in": "query"
+            },
+            {
+              "type": "string",
+              "description": "organization id to access the resource",
+              "name": "organizationIdentifier",
+              "in": "query"
+            },
+            {
+              "type": "string",
+              "description": "resolved parent scope unique ID (from scope-info API or query param)",
+              "name": "parentUniqueId",
+              "in": "query"
+            },
+            {
+              "type": "string",
+              "description": "project id to access the resource",
+              "name": "projectIdentifier",
+              "in": "query"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/riskrules.RiskRuleResponse"
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "schema": {
+                "$ref": "#/definitions/shared.Error"
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "schema": {
+                "$ref": "#/definitions/shared.Error"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/definitions/shared.Error"
+              }
+            }
+          }
+        }
+      },
         "/experimentHelperImageVersion": {
             "get": {
                 "description": "Get experiment helper image version",
