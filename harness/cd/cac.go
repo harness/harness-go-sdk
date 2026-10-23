@@ -376,7 +376,7 @@ func (c *ConfigAsCodeClient) FindObjectById(applicationId string, objectId strin
 
 	i := FindConfigAsCodeItemByUUID(rootItem, objectId)
 	if i == nil {
-		c.ApiClient.Log.Debugf("cannot find obj with id: " + objectId)
+		c.ApiClient.Log.Debugf("cannot find obj with id: %s", objectId)
 		return nil
 	}
 

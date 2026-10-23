@@ -113,7 +113,7 @@ func (c *ConfigAsCodeClient) GetCloudProviderById(providerId string, out interfa
 
 	i := FindConfigAsCodeItemByUUID(rootItem, providerId)
 	if i == nil {
-		c.ApiClient.Log.Debugf("cannot find cloud provider with id: " + providerId)
+		c.ApiClient.Log.Debugf("cannot find cloud provider with id: %s", providerId)
 		return nil
 	}
 
