@@ -18,6 +18,7 @@ type TypesRepository struct {
 	GitUrl         string `json:"git_url,omitempty"`
 	Id             int32  `json:"id,omitempty"`
 	Identifier     string `json:"identifier,omitempty"`
+	ImportFailed   bool   `json:"import_failed,omitempty"`
 	Importing      bool   `json:"importing,omitempty"`
 	IsPublic       bool   `json:"is_public,omitempty"`
 	NumClosedPulls int32  `json:"num_closed_pulls,omitempty"`

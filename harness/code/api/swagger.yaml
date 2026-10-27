@@ -8379,6 +8379,8 @@ components:
           type: integer
         identifier:
           type: string
+        import_failed:
+          type: boolean
         importing:
           type: boolean
         is_public:

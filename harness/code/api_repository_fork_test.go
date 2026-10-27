@@ -113,3 +113,10 @@ func TestRepositoryApiService_ForkCreate_ErrorKeepsStatusAndBody(t *testing.T) {
 	require.True(t, ok, "error must be a code.GenericSwaggerError so provider helpers can classify it")
 	require.Contains(t, string(swaggerErr.Body()), "Can not fork an empty repository.")
 }
+
+func TestTypesRepository_DecodesImportFailed(t *testing.T) {
+	var repo TypesRepository
+	require.NoError(t, json.Unmarshal([]byte(`{"identifier":"f","importing":false,"import_failed":true}`), &repo))
+	require.True(t, repo.ImportFailed)
+	require.False(t, repo.Importing)
+}
