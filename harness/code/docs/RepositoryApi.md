@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**DeleteRepository**](RepositoryApi.md#DeleteRepository) | **Delete** /repos/{repo_identifier} | Soft delete repository
 [**DeleteTag**](RepositoryApi.md#DeleteTag) | **Delete** /repos/{repo_identifier}/tags/{tag_name} | Delete tag
 [**DiffStats**](RepositoryApi.md#DiffStats) | **Get** /repos/{repo_identifier}/diff-stats/{range} | Get diff stats
+[**ForkCreate**](RepositoryApi.md#ForkCreate) | **Post** /repos/{repo_identifier}/fork | Fork repository
 [**GetBlame**](RepositoryApi.md#GetBlame) | **Get** /repos/{repo_identifier}/blame/{path} | Get git blame
 [**GetBranch**](RepositoryApi.md#GetBranch) | **Get** /repos/{repo_identifier}/branches/{branch_name} | Get branch
 [**GetCommit**](RepositoryApi.md#GetCommit) | **Get** /repos/{repo_identifier}/commits/{commit_sha} | Get commit
@@ -419,6 +420,44 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ForkCreate**
+> TypesRepository ForkCreate(ctx, accountIdentifier, repoIdentifier, optional)
+Fork repository
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **accountIdentifier** | **string**| Account Identifier for the Entity.. | 
+  **repoIdentifier** | **string**| Identifier of the upstream repository to fork. | 
+ **optional** | ***RepositoryApiForkCreateOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a RepositoryApiForkCreateOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **body** | [**optional.Interface of RepoIdentifierForkBody**](RepoIdentifierForkBody.md)|  | 
+ **orgIdentifier** | **optional.**| Organization Identifier for the Entity.. | 
+ **projectIdentifier** | **optional.**| Project Identifier for the Entity.. | 
+
+### Return type
+
+[**TypesRepository**](TypesRepository.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [x-api-key](../README.md#x-api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
