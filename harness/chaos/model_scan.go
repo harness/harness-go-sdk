@@ -15,9 +15,13 @@ const (
 	// ScanTypeProbeExecution is a probe-execution scan. The public API accepts
 	// it; the Terraform scan resource does not expose it yet.
 	ScanTypeProbeExecution = "ProbeExecution"
+	// ScanTypeCodeRepository is a code-repository scan. The public scan resource
+	// does not create this type; it is decoded when the API returns one.
+	ScanTypeCodeRepository = "CodeRepository"
 
 	DetectionMethodAI           = "AI"
 	DetectionMethodRiskAnalyzer = "RiskAnalyzer"
+	DetectionMethodExternal     = "External"
 
 	ScanStatusQueued     = "QUEUED"
 	ScanStatusCollecting = "COLLECTING"
@@ -100,17 +104,18 @@ type Scan struct {
 	DetectionMethod string     `json:"detectionMethod,omitempty"`
 	Source          ScanSource `json:"source"`
 
-	CollectedData *CollectionSummary `json:"collectedData,omitempty"`
-	RiskSummary   *RiskSummary       `json:"riskSummary,omitempty"`
-	Report        *ReportInfo        `json:"report,omitempty"`
-	Summary       *HeatmapSummary    `json:"summary,omitempty"`
-	ErrorMessage  string             `json:"errorMessage,omitempty"`
-	RetryCount    int                `json:"retryCount,omitempty"`
-	CreatedAt     int64              `json:"createdAt,omitempty"`
-	UpdatedAt     int64              `json:"updatedAt,omitempty"`
-	CompletedAt   int64              `json:"completedAt,omitempty"`
-	CreatedBy     UserRef            `json:"createdBy,omitempty"`
-	UpdatedBy     UserRef            `json:"updatedBy,omitempty"`
+	CollectedData        *CollectionSummary    `json:"collectedData,omitempty"`
+	RiskSummary          *RiskSummary          `json:"riskSummary,omitempty"`
+	RecommendationCounts *RecommendationCounts `json:"recommendationCounts,omitempty"`
+	Report               *ReportInfo           `json:"report,omitempty"`
+	Summary              *HeatmapSummary       `json:"summary,omitempty"`
+	ErrorMessage         string                `json:"errorMessage,omitempty"`
+	RetryCount           int                   `json:"retryCount,omitempty"`
+	CreatedAt            int64                 `json:"createdAt,omitempty"`
+	UpdatedAt            int64                 `json:"updatedAt,omitempty"`
+	CompletedAt          int64                 `json:"completedAt,omitempty"`
+	CreatedBy            UserRef               `json:"createdBy,omitempty"`
+	UpdatedBy            UserRef               `json:"updatedBy,omitempty"`
 }
 
 // ScanSource is the origin of a scan. Exactly one of Pipeline, Infrastructure,
@@ -119,6 +124,36 @@ type ScanSource struct {
 	Pipeline       *PipelineScan       `json:"pipeline,omitempty"`
 	Infrastructure *InfrastructureScan `json:"discoveryAgent,omitempty"`
 	ProbeExecution *ProbeExecutionScan `json:"probeExecution,omitempty"`
+	CodeRepository *CodeRepositoryScan `json:"codeRepository,omitempty"`
+}
+
+// CodeRepositoryScan is a code-repository scan source. The public scan resource
+// does not create this type; it is decoded when the API returns one.
+type CodeRepositoryScan struct {
+	RepoURL        string          `json:"repoURL,omitempty"`
+	Branch         string          `json:"branch,omitempty"`
+	CommitSHA      string          `json:"commitSHA,omitempty"`
+	Provider       string          `json:"provider,omitempty"`
+	LinkedServices []LinkedService `json:"linkedServices,omitempty"`
+}
+
+// LinkedService is a service attached to a code-repository scan.
+type LinkedService struct {
+	Module               string `json:"module,omitempty"`
+	ChaosServiceIdentity string `json:"chaosServiceIdentity,omitempty"`
+}
+
+// RecommendationCounts is the recommendation rollup on a scan.
+type RecommendationCounts struct {
+	Total int `json:"total,omitempty"`
+}
+
+// CodeLocation is a file range attached to an occurrence.
+type CodeLocation struct {
+	File      string `json:"file,omitempty"`
+	Snippet   string `json:"snippet,omitempty"`
+	StartLine int    `json:"startLine,omitempty"`
+	EndLine   int    `json:"endLine,omitempty"`
 }
 
 // PipelineScan identifies the pipeline execution being scanned.
@@ -168,6 +203,33 @@ type ProbeExperimentSource struct {
 type ProbePipelineStepSource struct {
 	PipelineID    string `json:"pipelineID,omitempty"`
 	PipelineRunID string `json:"pipelineRunID,omitempty"`
+}
+
+// PipelineScanRequest creates a pipeline scan from a successful execution.
+// DetectionMethod accepts ai, ruleBased, AI, and RiskAnalyzer.
+type PipelineScanRequest struct {
+	Identity            string
+	Name                string
+	Description         string
+	Tags                []string
+	DetectionMethod     string
+	PipelineIdentity    string
+	PipelineExecutionID string
+	NotifyID            string
+}
+
+// InfrastructureScanRequest creates an infrastructure scan from a chaos
+// infrastructure. InfrastructureID and EnvironmentID are both required.
+// DetectionMethod is ai or ruleBased. The client fills the agent, environment,
+// and parent id from that infrastructure's discovery agent.
+type InfrastructureScanRequest struct {
+	Identity         string
+	Name             string
+	Description      string
+	Tags             []string
+	DetectionMethod  string
+	InfrastructureID string
+	EnvironmentID    string
 }
 
 // ScanCreateRequest is the body for POST /v3/risk-scans.
@@ -327,8 +389,7 @@ type ReportSummary struct {
 }
 
 // ScanRisk is one risk embedded in a scan report, including the occurrences
-// found by that scan. Identity matches ScannedRisk.Identity so a later risk
-// resource can address the same object.
+// found by that scan.
 type ScanRisk struct {
 	Identity        string                 `json:"identity,omitempty"`
 	Name            string                 `json:"name,omitempty"`
@@ -361,7 +422,8 @@ type ScanRiskOccurrence struct {
 
 // OccurrenceContext holds the evidence and guidance shown for an occurrence.
 type OccurrenceContext struct {
-	Evidence              []string `json:"evidence,omitempty"`
-	Remediation           []string `json:"remediation,omitempty"`
-	ResilienceTestingReco []string `json:"resilienceTestingRec,omitempty"`
+	Evidence              []string       `json:"evidence,omitempty"`
+	Remediation           []string       `json:"remediation,omitempty"`
+	ResilienceTestingReco []string       `json:"resilienceTestingRec,omitempty"`
+	CodeLocations         []CodeLocation `json:"codeLocations,omitempty"`
 }

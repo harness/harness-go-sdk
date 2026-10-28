@@ -38,6 +38,15 @@ func (c *APIClient) doChaosJSON(ctx context.Context, method, path string, query 
 	if c == nil || c.cfg == nil {
 		return nil, fmt.Errorf("chaos API client is not configured")
 	}
+	return c.doAbsoluteJSON(ctx, method, c.cfg.BasePath+path, query, body, out)
+}
+
+// doAbsoluteJSON is doChaosJSON for a full URL. Service discovery is a sibling
+// of the chaos manager base path, so infrastructure scans call it directly.
+func (c *APIClient) doAbsoluteJSON(ctx context.Context, method, rawURL string, query url.Values, body interface{}, out interface{}) (*http.Response, error) {
+	if c == nil || c.cfg == nil {
+		return nil, fmt.Errorf("chaos API client is not configured")
+	}
 
 	headers := map[string]string{
 		"Accept": "application/json",
@@ -57,7 +66,7 @@ func (c *APIClient) doChaosJSON(ctx context.Context, method, path string, query 
 		}
 	}
 
-	req, err := c.prepareRequest(ctx, c.cfg.BasePath+path, strings.ToUpper(method), body, headers, query, url.Values{}, "", nil)
+	req, err := c.prepareRequest(ctx, rawURL, strings.ToUpper(method), body, headers, query, url.Values{}, "", nil)
 	if err != nil {
 		return nil, err
 	}
