@@ -42,3 +42,7 @@ website/vendor
 example.tf
 terraform.tfplan
 terraform.tfstate
+
+# Coverage reports
+coverage.out
+*.cov
