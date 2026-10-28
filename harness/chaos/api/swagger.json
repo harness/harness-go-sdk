@@ -1,5 +1,8 @@
 {
-    "schemes": ["http","https"],
+    "schemes": [
+        "http",
+        "https"
+    ],
     "swagger": "2.0",
     "info": {
         "description": "ChaosManager serves as the primary API server for the chaos module, responsible for transferring and handling requests to their respective operations",
@@ -15041,6 +15044,697 @@
                     }
                 }
             }
+        },
+        "/v3/risk-scans": {
+            "get": {
+                "description": "lists risk scans with optional filtering",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "riskscans"
+                ],
+                "summary": "lists risk scans",
+                "operationId": "listRiskScans",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "account id to access the resource",
+                        "name": "accountIdentifier",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "agentIdentity",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "correlation id is used to debug micro svc communication",
+                        "name": "correlationID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "endTime",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "environmentIdentity",
+                        "in": "query"
+                    },
+                    {
+                        "maximum": 100,
+                        "minimum": 1,
+                        "type": "integer",
+                        "default": 15,
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "organization id to access the resource",
+                        "name": "organizationIdentifier",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 0,
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "resolved parent scope unique ID (from scope-info API or query param)",
+                        "name": "parentUniqueId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "pipelineIdentity",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "project id to access the resource",
+                        "name": "projectIdentifier",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "scanType",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "name that you want to search",
+                        "name": "search",
+                        "in": "query"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "if sort order ascending or not",
+                        "name": "sortAscending",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "name",
+                            "lastUpdated",
+                            "experimentName",
+                            "lastExecuted",
+                            "createdAt"
+                        ],
+                        "type": "string",
+                        "description": "field  name that you want to sort",
+                        "name": "sortField",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "startTime",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "tags",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/riskscans.ListResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "creates a new risk scan",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "riskscans"
+                ],
+                "summary": "creates a risk scan",
+                "operationId": "createRiskScan",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "account id to access the resource",
+                        "name": "accountIdentifier",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "correlation id is used to debug micro svc communication",
+                        "name": "correlationID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "organization id to access the resource",
+                        "name": "organizationIdentifier",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "resolved parent scope unique ID (from scope-info API or query param)",
+                        "name": "parentUniqueId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "project id to access the resource",
+                        "name": "projectIdentifier",
+                        "in": "query"
+                    },
+                    {
+                        "description": "risk scan details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/riskscans.CreateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/riskscans.RiskScanResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/v3/risk-scans/{identity}": {
+            "get": {
+                "description": "gets a risk scan by its identity",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "riskscans"
+                ],
+                "summary": "gets a risk scan",
+                "operationId": "getRiskScan",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "risk scan identity",
+                        "name": "identity",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "account id to access the resource",
+                        "name": "accountIdentifier",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "correlation id is used to debug micro svc communication",
+                        "name": "correlationID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "organization id to access the resource",
+                        "name": "organizationIdentifier",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "resolved parent scope unique ID (from scope-info API or query param)",
+                        "name": "parentUniqueId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "project id to access the resource",
+                        "name": "projectIdentifier",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/riskscans.RiskScanResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "updates an existing risk scan's metadata",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "riskscans"
+                ],
+                "summary": "updates a risk scan",
+                "operationId": "updateRiskScan",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "risk scan identity",
+                        "name": "identity",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "account id to access the resource",
+                        "name": "accountIdentifier",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "correlation id is used to debug micro svc communication",
+                        "name": "correlationID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "organization id to access the resource",
+                        "name": "organizationIdentifier",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "resolved parent scope unique ID (from scope-info API or query param)",
+                        "name": "parentUniqueId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "project id to access the resource",
+                        "name": "projectIdentifier",
+                        "in": "query"
+                    },
+                    {
+                        "description": "risk scan update details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/riskscans.UpdateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "deletes a risk scan by its identity",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "riskscans"
+                ],
+                "summary": "deletes a risk scan",
+                "operationId": "deleteRiskScan",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "risk scan identity",
+                        "name": "identity",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "account id to access the resource",
+                        "name": "accountIdentifier",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "correlation id is used to debug micro svc communication",
+                        "name": "correlationID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "organization id to access the resource",
+                        "name": "organizationIdentifier",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "resolved parent scope unique ID (from scope-info API or query param)",
+                        "name": "parentUniqueId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "project id to access the resource",
+                        "name": "projectIdentifier",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/v3/risk-scans/{identity}/abort": {
+            "post": {
+                "description": "aborts a running risk scan by its identity",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "riskscans"
+                ],
+                "summary": "aborts a risk scan",
+                "operationId": "abortRiskScan",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "risk scan identity",
+                        "name": "identity",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "account id to access the resource",
+                        "name": "accountIdentifier",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "correlation id is used to debug micro svc communication",
+                        "name": "correlationID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "organization id to access the resource",
+                        "name": "organizationIdentifier",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "resolved parent scope unique ID (from scope-info API or query param)",
+                        "name": "parentUniqueId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "project id to access the resource",
+                        "name": "projectIdentifier",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/v3/risk-scans/{identity}/retry": {
+            "post": {
+                "description": "retries an errored risk scan by its identity",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "riskscans"
+                ],
+                "summary": "retries a risk scan",
+                "operationId": "retryRiskScan",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "risk scan identity",
+                        "name": "identity",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "account id to access the resource",
+                        "name": "accountIdentifier",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "correlation id is used to debug micro svc communication",
+                        "name": "correlationID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "organization id to access the resource",
+                        "name": "organizationIdentifier",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "resolved parent scope unique ID (from scope-info API or query param)",
+                        "name": "parentUniqueId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "project id to access the resource",
+                        "name": "projectIdentifier",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/v3/risk-scans/{identity}/report": {
+            "get": {
+                "description": "generates a comprehensive report including scan details and all scanned risks with embedded occurrences",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "riskscans"
+                ],
+                "summary": "generates a risk scan report",
+                "operationId": "getRiskScanReport",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "risk scan identity",
+                        "name": "identity",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "account id to access the resource",
+                        "name": "accountIdentifier",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "correlation id is used to debug micro svc communication",
+                        "name": "correlationID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "organization id to access the resource",
+                        "name": "organizationIdentifier",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "resolved parent scope unique ID (from scope-info API or query param)",
+                        "name": "parentUniqueId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "project id to access the resource",
+                        "name": "projectIdentifier",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/riskscans.ReportResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/shared.Error"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -23538,7 +24232,7 @@
             "type": "object",
             "properties": {
                 "criteria": {
-                    "description": "Criteria for matching data\nit supports \u003e=, \u003c=, ==, \u003e, \u003c, != for int and float\nit supports equal, notEqual, contains for string",
+                    "description": "Criteria for matching data\nit supports >=, <=, ==, >, <, != for int and float\nit supports equal, notEqual, contains for string",
                     "type": "string"
                 },
                 "type": {
@@ -32519,7 +33213,7 @@
             "type": "object",
             "properties": {
                 "timeoutSeconds": {
-                    "description": "timeoutSeconds specifies the seconds of ClientIP type session sticky time.\nThe value must be \u003e0 \u0026\u0026 \u003c=86400(for 1 day) if ServiceAffinity == \"ClientIP\".\nDefault value is 10800(for 3 hours).\n+optional",
+                    "description": "timeoutSeconds specifies the seconds of ClientIP type session sticky time.\nThe value must be >0 && <=86400(for 1 day) if ServiceAffinity == \"ClientIP\".\nDefault value is 10800(for 3 hours).\n+optional",
                     "type": "integer"
                 }
             }
@@ -32916,7 +33610,7 @@
                     ]
                 },
                 "fieldRef": {
-                    "description": "Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['\u003cKEY\u003e']`, `metadata.annotations['\u003cKEY\u003e']`,\nspec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.\n+optional",
+                    "description": "Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`,\nspec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.\n+optional",
                     "allOf": [
                         {
                             "$ref": "#/definitions/v1.ObjectFieldSelector"
@@ -32945,7 +33639,7 @@
             "type": "object",
             "properties": {
                 "volumeClaimTemplate": {
-                    "description": "Will be used to create a stand-alone PVC to provision the volume.\nThe pod in which this EphemeralVolumeSource is embedded will be the\nowner of the PVC, i.e. the PVC will be deleted together with the\npod.  The name of the PVC will be `\u003cpod name\u003e-\u003cvolume name\u003e` where\n`\u003cvolume name\u003e` is the name from the `PodSpec.Volumes` array\nentry. Pod validation will reject the pod if the concatenated name\nis not valid for a PVC (for example, too long).\n\nAn existing PVC with that name that is not owned by the pod\nwill *not* be used for the pod to avoid using an unrelated\nvolume by mistake. Starting the pod is then blocked until\nthe unrelated PVC is removed. If such a pre-created PVC is\nmeant to be used by the pod, the PVC has to updated with an\nowner reference to the pod once the pod exists. Normally\nthis should not be necessary, but it may be useful when\nmanually reconstructing a broken cluster.\n\nThis field is read-only and no changes will be made by Kubernetes\nto the PVC after it has been created.\n\nRequired, must not be nil.",
+                    "description": "Will be used to create a stand-alone PVC to provision the volume.\nThe pod in which this EphemeralVolumeSource is embedded will be the\nowner of the PVC, i.e. the PVC will be deleted together with the\npod.  The name of the PVC will be `<pod name>-<volume name>` where\n`<volume name>` is the name from the `PodSpec.Volumes` array\nentry. Pod validation will reject the pod if the concatenated name\nis not valid for a PVC (for example, too long).\n\nAn existing PVC with that name that is not owned by the pod\nwill *not* be used for the pod to avoid using an unrelated\nvolume by mistake. Starting the pod is then blocked until\nthe unrelated PVC is removed. If such a pre-created PVC is\nmeant to be used by the pod, the PVC has to updated with an\nowner reference to the pod once the pod exists. Normally\nthis should not be necessary, but it may be useful when\nmanually reconstructing a broken cluster.\n\nThis field is read-only and no changes will be made by Kubernetes\nto the PVC after it has been created.\n\nRequired, must not be nil.",
                     "allOf": [
                         {
                             "$ref": "#/definitions/v1.PersistentVolumeClaimTemplate"
@@ -33037,7 +33731,7 @@
             "type": "object",
             "properties": {
                 "datasetName": {
-                    "description": "Name of the dataset stored as metadata -\u003e name on the dataset for Flocker\nshould be considered as deprecated\n+optional",
+                    "description": "Name of the dataset stored as metadata -> name on the dataset for Flocker\nshould be considered as deprecated\n+optional",
                     "type": "string"
                 },
                 "datasetUUID": {
@@ -33197,7 +33891,7 @@
                     "type": "string"
                 },
                 "initiatorName": {
-                    "description": "Custom iSCSI Initiator Name.\nIf initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface\n\u003ctarget portal\u003e:\u003cvolume name\u003e will be created for the connection.\n+optional",
+                    "description": "Custom iSCSI Initiator Name.\nIf initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface\n<target portal>:<volume name> will be created for the connection.\n+optional",
                     "type": "string"
                 },
                 "iqn": {
@@ -34512,7 +35206,7 @@
                     ]
                 },
                 "seccompProfile": {
-                    "description": "The seccomp options to use by this container. If seccomp options are\nprovided at both the pod \u0026 container level, the container options\noverride the pod options.\n+optional",
+                    "description": "The seccomp options to use by this container. If seccomp options are\nprovided at both the pod & container level, the container options\noverride the pod options.\n+optional",
                     "allOf": [
                         {
                             "$ref": "#/definitions/v1.SeccompProfile"
@@ -34933,7 +35627,7 @@
             "x-enum-comments": {
                 "StorageMediumDefault": "use whatever the default is for the node, assume anything we don't explicitly handle is this",
                 "StorageMediumHugePages": "use hugepages",
-                "StorageMediumHugePagesPrefix": "prefix for full medium notation HugePages-\u003csize\u003e",
+                "StorageMediumHugePagesPrefix": "prefix for full medium notation HugePages-<size>",
                 "StorageMediumMemory": "use memory (e.g. tmpfs on linux)"
             },
             "x-enum-varnames": [
@@ -35867,6 +36561,9 @@
                 },
                 "updatedBy": {
                     "type": "string"
+                },
+                "manualMethod": {
+                    "$ref": "#/definitions/v2_onboarding.ManualMethod"
                 }
             }
         },
@@ -35912,6 +36609,9 @@
                 },
                 "serviceAccount": {
                     "type": "string"
+                },
+                "manualMethod": {
+                    "$ref": "#/definitions/v2_onboarding.ManualMethod"
                 }
             }
         },
@@ -35959,6 +36659,745 @@
                 }
             }
         },
+        "risk.CollectionError": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                }
+            }
+        },
+        "risk.CollectionSummary": {
+            "type": "object",
+            "properties": {
+                "collectedAt": {
+                    "type": "integer"
+                },
+                "dependentResources": {
+                    "type": "integer"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/risk.CollectionError"
+                    }
+                },
+                "namespaces": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "primaryResources": {
+                    "type": "integer"
+                },
+                "scanType": {
+                    "$ref": "#/definitions/risk.ScanType"
+                },
+                "serviceGroups": {
+                    "type": "integer"
+                },
+                "totalResources": {
+                    "type": "integer"
+                }
+            }
+        },
+        "risk.DetectionMethod": {
+            "type": "string",
+            "enum": [
+                "AI",
+                "RiskAnalyzer",
+                "External"
+            ],
+            "x-enum-varnames": [
+                "DetectionMethodAI",
+                "DetectionMethodRiskAnalyzer",
+                "DetectionMethodExternal"
+            ]
+        },
+        "risk.PipelineInfrastructure": {
+            "type": "object",
+            "properties": {
+                "chaosOnboarded": {
+                    "type": "boolean"
+                },
+                "chaosSupported": {
+                    "type": "boolean"
+                },
+                "environmentRef": {
+                    "type": "string"
+                },
+                "infrastructureIdentity": {
+                    "type": "string"
+                }
+            }
+        },
+        "risk.ProbeExecutionExperimentSource": {
+            "type": "object",
+            "properties": {
+                "experimentID": {
+                    "type": "string"
+                },
+                "experimentRunID": {
+                    "type": "string"
+                }
+            }
+        },
+        "risk.ProbeExecutionPipelineStepSource": {
+            "type": "object",
+            "properties": {
+                "pipelineID": {
+                    "type": "string"
+                },
+                "pipelineRunID": {
+                    "type": "string"
+                }
+            }
+        },
+        "risk.ProbeExecutionSource": {
+            "type": "object",
+            "properties": {
+                "experiment": {
+                    "$ref": "#/definitions/risk.ProbeExecutionExperimentSource"
+                },
+                "pipelineStep": {
+                    "$ref": "#/definitions/risk.ProbeExecutionPipelineStepSource"
+                }
+            }
+        },
+        "risk.ReportInfo": {
+            "type": "object",
+            "properties": {
+                "errorMessage": {
+                    "type": "string"
+                },
+                "expiresAt": {
+                    "type": "integer"
+                },
+                "generatedAt": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "risk.RiskSummary": {
+            "type": "object",
+            "properties": {
+                "analysedAt": {
+                    "type": "integer"
+                },
+                "categoryCounts": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer"
+                    }
+                },
+                "riskCount": {
+                    "type": "integer"
+                },
+                "score": {
+                    "type": "integer"
+                },
+                "scoreMax": {
+                    "type": "integer"
+                },
+                "servicesAnalysed": {
+                    "type": "integer"
+                },
+                "servicesAtRisk": {
+                    "type": "integer"
+                },
+                "severityCounts": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "risk.Scan": {
+            "type": "object",
+            "properties": {
+                "accountID": {
+                    "type": "string"
+                },
+                "collectedData": {
+                    "$ref": "#/definitions/risk.CollectionSummary"
+                },
+                "completedAt": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "integer"
+                },
+                "createdBy": {
+                    "description": "Audit",
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "detectionMethod": {
+                    "$ref": "#/definitions/risk.DetectionMethod"
+                },
+                "errorMessage": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "identity": {
+                    "type": "string"
+                },
+                "name": {
+                    "description": "User-facing metadata",
+                    "type": "string"
+                },
+                "orgID": {
+                    "type": "string"
+                },
+                "parentUniqueID": {
+                    "description": "Harness RBAC identity hierarchy",
+                    "type": "string"
+                },
+                "projectID": {
+                    "type": "string"
+                },
+                "report": {
+                    "$ref": "#/definitions/risk.ReportInfo"
+                },
+                "result": {
+                    "$ref": "#/definitions/risk.ScanResult"
+                },
+                "retryCount": {
+                    "type": "integer"
+                },
+                "riskSummary": {
+                    "$ref": "#/definitions/risk.RiskSummary"
+                },
+                "scanType": {
+                    "$ref": "#/definitions/risk.ScanType"
+                },
+                "source": {
+                    "$ref": "#/definitions/risk.ScanSource"
+                },
+                "status": {
+                    "$ref": "#/definitions/risk.ScanStatus"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "uniqueID": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "integer"
+                },
+                "updatedBy": {
+                    "type": "string"
+                }
+            }
+        },
+        "risk.ScanResult": {
+            "type": "string",
+            "enum": [
+                "SUCCESS",
+                "NO_RESOURCES_FOUND"
+            ],
+            "x-enum-varnames": [
+                "ScanResultSuccess",
+                "ScanResultNoResourcesFound"
+            ]
+        },
+        "risk.ScanSource": {
+            "type": "object",
+            "properties": {
+                "discoveryAgent": {
+                    "$ref": "#/definitions/risk.ScanSourceServiceDiscovery"
+                },
+                "pipeline": {
+                    "$ref": "#/definitions/risk.ScanSourcePipeline"
+                },
+                "probeExecution": {
+                    "$ref": "#/definitions/risk.ScanSourceProbeExecution"
+                },
+                "codeRepository": {
+                    "$ref": "#/definitions/risk.ScanSourceCodeRepository"
+                }
+            }
+        },
+        "risk.ScanSourcePipeline": {
+            "type": "object",
+            "properties": {
+                "infrastructures": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/risk.PipelineInfrastructure"
+                    }
+                },
+                "notifyID": {
+                    "type": "string"
+                },
+                "pipelineExecutionID": {
+                    "type": "string"
+                },
+                "pipelineIdentity": {
+                    "type": "string"
+                }
+            }
+        },
+        "risk.ScanSourceProbeExecution": {
+            "type": "object",
+            "properties": {
+                "executionSource": {
+                    "$ref": "#/definitions/risk.ProbeExecutionSource"
+                },
+                "probeIdentity": {
+                    "type": "string"
+                },
+                "probeName": {
+                    "type": "string"
+                }
+            }
+        },
+        "risk.ScanSourceServiceDiscovery": {
+            "type": "object",
+            "properties": {
+                "agentIdentity": {
+                    "type": "string"
+                },
+                "environmentIdentity": {
+                    "type": "string"
+                },
+                "environmentParentUniqueId": {
+                    "type": "string"
+                }
+            }
+        },
+        "risk.ScanStatus": {
+            "type": "string",
+            "enum": [
+                "QUEUED",
+                "COLLECTING",
+                "COLLECTED",
+                "ANALYSING",
+                "COMPLETED",
+                "ERRORED",
+                "ABORTED"
+            ],
+            "x-enum-varnames": [
+                "ScanStatusQueued",
+                "ScanStatusCollecting",
+                "ScanStatusCollected",
+                "ScanStatusAnalysing",
+                "ScanStatusCompleted",
+                "ScanStatusErrored",
+                "ScanStatusAborted"
+            ]
+        },
+        "risk.ScanType": {
+            "type": "string",
+            "enum": [
+                "PipelineExecution",
+                "DiscoveryAgent",
+                "ProbeExecution",
+                "CodeRepository"
+            ],
+            "x-enum-varnames": [
+                "ScanTypePipeline",
+                "ScanTypeServiceDiscovery",
+                "ScanTypeProbeExecution",
+                "ScanTypeCodeRepository"
+            ]
+        },
+        "riskoccurrences.ProbeExecutionSource": {
+            "type": "object",
+            "properties": {
+                "experiment": {
+                    "$ref": "#/definitions/risk.ProbeExecutionExperimentSource"
+                },
+                "pipelineStep": {
+                    "$ref": "#/definitions/risk.ProbeExecutionPipelineStepSource"
+                },
+                "probeId": {
+                    "type": "string"
+                },
+                "probeName": {
+                    "type": "string"
+                },
+                "status": {
+                    "description": "Status captures the probe execution status from the chaos execution node.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/execution.ChaosStepStatus"
+                        }
+                    ]
+                }
+            }
+        },
+        "riskscans.CreateRequest": {
+            "type": "object",
+            "required": [
+                "identity",
+                "name",
+                "scanType",
+                "source"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "detectionMethod": {
+                    "$ref": "#/definitions/risk.DetectionMethod"
+                },
+                "identity": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "scanType": {
+                    "$ref": "#/definitions/risk.ScanType"
+                },
+                "source": {
+                    "$ref": "#/definitions/risk.ScanSource"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "riskscans.HeatmapSummary": {
+            "type": "object",
+            "properties": {
+                "critical": {
+                    "type": "integer"
+                },
+                "high": {
+                    "type": "integer"
+                },
+                "low": {
+                    "type": "integer"
+                },
+                "maxScore": {
+                    "type": "integer"
+                },
+                "medium": {
+                    "type": "integer"
+                },
+                "ruleCount": {
+                    "type": "integer"
+                },
+                "score": {
+                    "type": "integer"
+                },
+                "servicesScanned": {
+                    "type": "integer"
+                },
+                "totalRisks": {
+                    "type": "integer"
+                }
+            }
+        },
+        "riskscans.ListResponse": {
+            "type": "object",
+            "properties": {
+                "correlationID": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/riskscans.RiskScanResponse"
+                    }
+                },
+                "pagination": {
+                    "$ref": "#/definitions/shared.PaginationResponse"
+                }
+            }
+        },
+        "riskscans.OccurrenceContext": {
+            "type": "object",
+            "properties": {
+                "codeLocations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/risk.CodeLocation"
+                    }
+                },
+                "evidence": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "remediation": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "resilienceTestingRec": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "riskscans.OccurrenceDetails": {
+            "type": "object",
+            "properties": {
+                "context": {
+                    "$ref": "#/definitions/riskscans.OccurrenceContext"
+                },
+                "detectedAt": {
+                    "type": "integer"
+                },
+                "occurrenceId": {
+                    "type": "string"
+                },
+                "probeExecutionSource": {
+                    "$ref": "#/definitions/riskoccurrences.ProbeExecutionSource"
+                },
+                "resolutionId": {
+                    "type": "string"
+                },
+                "resolutionMsg": {
+                    "type": "string"
+                },
+                "resolvedAt": {
+                    "type": "integer"
+                },
+                "resolvedBy": {
+                    "type": "string"
+                },
+                "serviceName": {
+                    "type": "string"
+                },
+                "sourceId": {
+                    "type": "string"
+                },
+                "sourceType": {
+                    "type": "string"
+                }
+            }
+        },
+        "riskscans.ReportResponse": {
+            "type": "object",
+            "properties": {
+                "scan": {
+                    "$ref": "#/definitions/risk.Scan"
+                },
+                "scannedRisks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/riskscans.ScannedRiskWithOccurrences"
+                    }
+                },
+                "summary": {
+                    "$ref": "#/definitions/riskscans.ReportSummary"
+                }
+            }
+        },
+        "riskscans.ReportSummary": {
+            "type": "object",
+            "properties": {
+                "bySeverity": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer"
+                    }
+                },
+                "byStatus": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer"
+                    }
+                },
+                "totalOccurrences": {
+                    "type": "integer"
+                },
+                "totalRisks": {
+                    "type": "integer"
+                }
+            }
+        },
+        "riskscans.RecommendationCounts": {
+            "type": "object",
+            "properties": {
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "riskscans.RiskScanResponse": {
+            "type": "object",
+            "properties": {
+                "accountID": {
+                    "type": "string"
+                },
+                "collectedData": {
+                    "$ref": "#/definitions/risk.CollectionSummary"
+                },
+                "completedAt": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "integer"
+                },
+                "createdBy": {
+                    "$ref": "#/definitions/hcesdk.UserDetails"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "detectionMethod": {
+                    "$ref": "#/definitions/risk.DetectionMethod"
+                },
+                "errorMessage": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "identity": {
+                    "type": "string"
+                },
+                "name": {
+                    "description": "User-facing metadata",
+                    "type": "string"
+                },
+                "orgID": {
+                    "type": "string"
+                },
+                "parentUniqueID": {
+                    "description": "Harness RBAC identity hierarchy",
+                    "type": "string"
+                },
+                "projectID": {
+                    "type": "string"
+                },
+                "recommendationCounts": {
+                    "$ref": "#/definitions/riskscans.RecommendationCounts"
+                },
+                "report": {
+                    "$ref": "#/definitions/risk.ReportInfo"
+                },
+                "result": {
+                    "$ref": "#/definitions/risk.ScanResult"
+                },
+                "retryCount": {
+                    "type": "integer"
+                },
+                "riskSummary": {
+                    "$ref": "#/definitions/risk.RiskSummary"
+                },
+                "scanType": {
+                    "$ref": "#/definitions/risk.ScanType"
+                },
+                "source": {
+                    "$ref": "#/definitions/risk.ScanSource"
+                },
+                "status": {
+                    "$ref": "#/definitions/risk.ScanStatus"
+                },
+                "summary": {
+                    "$ref": "#/definitions/riskscans.HeatmapSummary"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "uniqueID": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "integer"
+                },
+                "updatedBy": {
+                    "$ref": "#/definitions/hcesdk.UserDetails"
+                }
+            }
+        },
+        "riskscans.ScannedRiskWithOccurrences": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "fingerprint": {
+                    "type": "string"
+                },
+                "identity": {
+                    "type": "string"
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "name": {
+                    "type": "string"
+                },
+                "occurrences": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/riskscans.OccurrenceDetails"
+                    }
+                },
+                "serviceIdentity": {
+                    "type": "string"
+                },
+                "serviceName": {
+                    "type": "string"
+                },
+                "serviceType": {
+                    "type": "string"
+                },
+                "severity": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "riskscans.UpdateRequest": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
         "v3.ListExperimentOrTemplateResponse": {
             "type": "object",
             "properties": {
@@ -35979,6 +37418,80 @@
                     "items": {
                         "$ref": "#/definitions/experimenttemplate.ListExperimentTemplateData"
                     }
+                }
+            }
+        },
+        "v2_onboarding.ManualMethod": {
+            "type": "string",
+            "enum": [
+                "NetworkMap",
+                "Service"
+            ],
+            "x-enum-varnames": [
+                "ManualMethodNetworkMap",
+                "ManualMethodService"
+            ]
+        },
+        "risk.ScanSourceCodeRepository": {
+            "type": "object",
+            "properties": {
+                "branch": {
+                    "type": "string"
+                },
+                "commitSHA": {
+                    "type": "string"
+                },
+                "linkedServices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/risk.LinkedService"
+                    }
+                },
+                "provider": {
+                    "type": "string"
+                },
+                "repoURL": {
+                    "description": "RepoURL is normalised to host/org/repo (no scheme, credentials or .git).",
+                    "type": "string"
+                }
+            }
+        },
+        "risk.LinkedService": {
+            "type": "object",
+            "properties": {
+                "chaosServiceIdentity": {
+                    "type": "string"
+                },
+                "module": {
+                    "type": "string"
+                }
+            }
+        },
+        "risk.CodeRepository": {
+            "type": "object",
+            "properties": {
+                "module": {
+                    "type": "string"
+                },
+                "repoURL": {
+                    "type": "string"
+                }
+            }
+        },
+        "risk.CodeLocation": {
+            "type": "object",
+            "properties": {
+                "endLine": {
+                    "type": "integer"
+                },
+                "file": {
+                    "type": "string"
+                },
+                "snippet": {
+                    "type": "string"
+                },
+                "startLine": {
+                    "type": "integer"
                 }
             }
         }
