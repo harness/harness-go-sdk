@@ -227,70 +227,175 @@ func TestScanClientCreateError(t *testing.T) {
 	}
 }
 
-func TestScannedRiskClientRead(t *testing.T) {
+func TestAPIDetectionMethod(t *testing.T) {
+	cases := map[string]string{
+		"ai":           DetectionMethodAI,
+		"AI":           DetectionMethodAI,
+		"ruleBased":    DetectionMethodRiskAnalyzer,
+		"RiskAnalyzer": DetectionMethodRiskAnalyzer,
+	}
+	for in, want := range cases {
+		got, err := APIDetectionMethod(in)
+		if err != nil || got != want {
+			t.Fatalf("APIDetectionMethod(%q) = %q, %v", in, got, err)
+		}
+	}
+	if got, err := APIDetectionMethod(""); err != nil || got != "" {
+		t.Fatalf("empty method = %q, %v", got, err)
+	}
+	if _, err := APIDetectionMethod("rule"); err == nil || !strings.Contains(err.Error(), "ai or ruleBased") {
+		t.Fatalf("error = %v", err)
+	}
+}
+
+func TestCreatePipelineScanSendsRuleBasedAsRiskAnalyzer(t *testing.T) {
+	var gotBody map[string]interface{}
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		body, _ := io.ReadAll(r.Body)
+		if err := json.Unmarshal(body, &gotBody); err != nil {
+			t.Errorf("decode body: %v", err)
+		}
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"identity":"scan-1","scanType":"PipelineExecution","status":"QUEUED"}`))
+	}))
+	defer server.Close()
+
+	client := NewAPIClient(&Configuration{BasePath: server.URL, HTTPClient: server.Client()})
+	_, _, err := NewScanClient(client).CreatePipelineScan(context.Background(), Scope{AccountID: "acc"}, PipelineScanRequest{
+		Identity:            "scan-1",
+		Name:                "Cart",
+		DetectionMethod:     "ruleBased",
+		PipelineIdentity:    "cart_deploy",
+		PipelineExecutionID: "exec-1",
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if gotBody["detectionMethod"] != DetectionMethodRiskAnalyzer || gotBody["scanType"] != ScanTypePipelineExecution {
+		t.Fatalf("body = %#v", gotBody)
+	}
+}
+
+func TestCreateInfrastructureScanReadsLinkedAgent(t *testing.T) {
+	var gotBody map[string]interface{}
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		switch r.URL.Path {
-		case "/v3/scanned-risks/risk-1":
-			_, _ = w.Write([]byte(`{"scannedRisk":{"identity":"risk-1","name":"No replicas","spec":{"severity":"High","status":"Open","fingerprint":"fp","targetService":{"identity":"svc-1","type":"DiscoveredService"}}}}`))
-		case "/v3/scanned-risks":
-			query := r.URL.Query()
-			if query.Get("source") != ScanTypeDiscoveryAgent || query.Get("serviceFilterV2Kind") != "DiscoveredService" || query.Get("serviceFilterV2DiscoveredServiceAgentID") != "agent-1" {
-				t.Errorf("list query = %s", r.URL.RawQuery)
+		switch {
+		case r.Method == http.MethodGet && r.URL.Path == "/chaos/manager/api/rest/v2/infrastructure/payments-infra":
+			_, _ = w.Write([]byte(`{"identity":"payments-infra","name":"payments","discoveryAgentID":"payments-agent"}`))
+		case r.Method == http.MethodGet && r.URL.Path == "/servicediscovery/api/v1/agents/payments-agent":
+			if r.URL.Query().Get("environmentIdentifier") != "prod" {
+				t.Errorf("agent query = %s", r.URL.RawQuery)
 			}
-			_, _ = w.Write([]byte(`{"data":[{"identity":"risk-1","name":"No replicas"}],"pagination":{"totalItems":1}}`))
-		case "/v3/scanned-risks/risk-1/occurrences":
-			query := r.URL.Query()
-			if query.Get("source") != ScanTypeDiscoveryAgent || query.Get("scanType") != ScanTypeDiscoveryAgent || query.Get("validationType") != "Passive" || query.Get("search") != "replica" {
-				t.Errorf("occurrences query = %s", r.URL.RawQuery)
+			_, _ = w.Write([]byte(`{"identity":"payments-agent","name":"payments","environmentIdentifier":"prod","parentUniqueId":"parent-1"}`))
+		case r.Method == http.MethodPost && r.URL.Path == "/chaos/manager/api/v3/risk-scans":
+			body, _ := io.ReadAll(r.Body)
+			if err := json.Unmarshal(body, &gotBody); err != nil {
+				t.Errorf("decode body: %v", err)
 			}
-			_, _ = w.Write([]byte(`{"data":[{"scanId":"scan-1","scanType":"DiscoveryAgent","validationType":"Passive"}],"pagination":{"totalItems":1}}`))
+			_, _ = w.Write([]byte(`{"identity":"scan-1","scanType":"DiscoveryAgent","status":"QUEUED","detectionMethod":"AI"}`))
 		default:
 			http.NotFound(w, r)
 		}
 	}))
 	defer server.Close()
 
-	client := NewAPIClient(&Configuration{BasePath: server.URL, HTTPClient: server.Client()})
-	risks := NewScannedRiskClient(client)
-	scope := Scope{AccountID: "acc", OrgID: "org", ProjectID: "proj"}
-
-	risk, _, err := risks.Get(context.Background(), scope, "risk-1")
-	if err != nil {
-		t.Fatal(err)
-	}
-	if risk.Identity != "risk-1" || risk.Spec.Status != ScannedRiskStatusOpen || risk.Spec.TargetService.Identity != "svc-1" {
-		t.Fatalf("risk = %+v", risk)
-	}
-
-	list, _, err := risks.List(context.Background(), ScannedRiskListRequest{
-		Scope:  scope,
-		Source: ScanTypeDiscoveryAgent,
-		Limit:  20,
-		ServiceFilter: ScannedRiskServiceFilter{
-			Kind:                     "DiscoveredService",
-			DiscoveredServiceAgentID: "agent-1",
-		},
+	client := NewAPIClient(&Configuration{BasePath: server.URL + "/chaos/manager/api", HTTPClient: server.Client()})
+	created, _, err := NewScanClient(client).CreateInfrastructureScan(context.Background(), Scope{AccountID: "acc", OrgID: "org", ProjectID: "proj"}, InfrastructureScanRequest{
+		Identity:         "scan-1",
+		Name:             "Infra",
+		DetectionMethod:  "ai",
+		InfrastructureID: "payments-infra",
+		EnvironmentID:    "prod",
 	})
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(list.Data) != 1 || list.Pagination.TotalItems != 1 {
-		t.Fatalf("list = %+v", list)
+	if created.ScanType != ScanTypeDiscoveryAgent {
+		t.Fatalf("scan = %+v", created)
 	}
+	source := gotBody["source"].(map[string]interface{})
+	agent := source["discoveryAgent"].(map[string]interface{})
+	if agent["agentIdentity"] != "payments-agent" || agent["environmentIdentity"] != "prod" || agent["environmentParentUniqueId"] != "parent-1" {
+		t.Fatalf("source = %#v", source)
+	}
+	if gotBody["detectionMethod"] != DetectionMethodAI {
+		t.Fatalf("detection method = %#v", gotBody["detectionMethod"])
+	}
+}
 
-	occurrences, _, err := risks.ListOccurrences(context.Background(), "risk-1", ScannedRiskOccurrencesRequest{
-		Scope:          scope,
-		Limit:          10,
-		Search:         "replica",
-		Source:         ScanTypeDiscoveryAgent,
-		ScanType:       ScanTypeDiscoveryAgent,
-		ValidationType: "Passive",
+func TestCreateInfrastructureScanUsesOnboardingAgentIdentity(t *testing.T) {
+	var gotBody map[string]interface{}
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		switch {
+		case r.Method == http.MethodGet && r.URL.Path == "/chaos/manager/api/rest/v2/infrastructure/payments-infra":
+			_, _ = w.Write([]byte(`{"identity":"payments-infra","name":"payments","environmentID":"prod"}`))
+		case r.Method == http.MethodGet && r.URL.Path == "/servicediscovery/api/v1/agents/payments-infra":
+			if r.URL.Query().Get("environmentIdentifier") != "prod" {
+				t.Errorf("agent query = %s", r.URL.RawQuery)
+			}
+			_, _ = w.Write([]byte(`{"identity":"payments-infra","name":"Discovery payments-infra","environmentIdentifier":"prod","parentUniqueId":"parent-1"}`))
+		case r.Method == http.MethodPost && r.URL.Path == "/chaos/manager/api/v3/risk-scans":
+			body, _ := io.ReadAll(r.Body)
+			if err := json.Unmarshal(body, &gotBody); err != nil {
+				t.Errorf("decode body: %v", err)
+			}
+			_, _ = w.Write([]byte(`{"identity":"scan-1","scanType":"DiscoveryAgent","status":"QUEUED"}`))
+		default:
+			http.NotFound(w, r)
+		}
+	}))
+	defer server.Close()
+
+	client := NewAPIClient(&Configuration{BasePath: server.URL + "/chaos/manager/api", HTTPClient: server.Client()})
+	_, _, err := NewScanClient(client).CreateInfrastructureScan(context.Background(), Scope{AccountID: "acc", OrgID: "org", ProjectID: "proj"}, InfrastructureScanRequest{
+		Identity:         "scan-1",
+		Name:             "Infra",
+		InfrastructureID: "payments-infra",
+		EnvironmentID:    "prod",
 	})
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(occurrences.Data) != 1 || occurrences.Data[0].ScanID != "scan-1" {
-		t.Fatalf("occurrences = %+v", occurrences)
+	source := gotBody["source"].(map[string]interface{})
+	agent := source["discoveryAgent"].(map[string]interface{})
+	if agent["agentIdentity"] != "payments-infra" || agent["environmentIdentity"] != "prod" || agent["environmentParentUniqueId"] != "parent-1" {
+		t.Fatalf("source = %#v", source)
+	}
+}
+
+func TestCreateInfrastructureScanRejectsMissingDiscoveryAgent(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		if r.URL.Path == "/chaos/manager/api/rest/v2/infrastructure/payments-infra" {
+			_, _ = w.Write([]byte(`{"identity":"payments-infra","name":"payments","discoveryAgentID":""}`))
+			return
+		}
+		http.NotFound(w, r)
+	}))
+	defer server.Close()
+
+	client := NewAPIClient(&Configuration{BasePath: server.URL + "/chaos/manager/api", HTTPClient: server.Client()})
+	_, _, err := NewScanClient(client).CreateInfrastructureScan(context.Background(), Scope{AccountID: "acc", OrgID: "org", ProjectID: "proj"}, InfrastructureScanRequest{
+		Identity:         "scan-1",
+		Name:             "Infra",
+		InfrastructureID: "payments-infra",
+		EnvironmentID:    "prod",
+	})
+	if err == nil || !strings.Contains(err.Error(), "no discovery agent") {
+		t.Fatalf("error = %v", err)
+	}
+}
+
+func TestCreateInfrastructureScanRequiresEnvironment(t *testing.T) {
+	client := NewAPIClient(&Configuration{BasePath: "https://app.harness.io/gateway/chaos/manager/api", HTTPClient: http.DefaultClient})
+	_, _, err := NewScanClient(client).CreateInfrastructureScan(context.Background(), Scope{AccountID: "acc"}, InfrastructureScanRequest{
+		Identity:         "scan-1",
+		Name:             "Payments",
+		InfrastructureID: "payments",
+	})
+	if err == nil || !strings.Contains(err.Error(), "environment id") {
+		t.Fatalf("error = %v", err)
 	}
 }

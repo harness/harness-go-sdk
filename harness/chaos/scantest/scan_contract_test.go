@@ -43,6 +43,10 @@ func TestScanContractMatchesHCESaaSSwagger(t *testing.T) {
 		{"riskscans.UpdateRequest", []string{"name", "description", "tags"}},
 		{"riskscans.RiskScanResponse", Scan{}},
 		{"risk.ScanSource", ScanSource{}},
+		{"risk.ScanSourceCodeRepository", CodeRepositoryScan{}},
+		{"risk.LinkedService", LinkedService{}},
+		{"risk.CodeLocation", CodeLocation{}},
+		{"riskscans.RecommendationCounts", RecommendationCounts{}},
 		{"risk.ScanSourcePipeline", PipelineScan{}},
 		{"risk.ScanSourceServiceDiscovery", InfrastructureScan{}},
 		{"risk.ScanSourceProbeExecution", ProbeExecutionScan{}},
@@ -63,30 +67,16 @@ func TestScanContractMatchesHCESaaSSwagger(t *testing.T) {
 		{"riskscans.OccurrenceDetails", ScanRiskOccurrence{}},
 		{"riskscans.OccurrenceContext", OccurrenceContext{}},
 		{"hcesdk.UserDetails", UserRef{}},
-		{"scannedrisks.ScannedRisk", ScannedRisk{}},
-		{"scannedrisks.ScannedRiskSpec", ScannedRiskSpec{}},
-		{"risk.TargetService", TargetService{}},
-		{"risk.ServiceDetails", ServiceDetails{}},
-		{"risk.DiscoveredService", DiscoveredServiceRef{}},
-		{"risk.ChaosService", ChaosServiceRef{}},
-		{"risk.CDService", CDServiceRef{}},
-		{"scannedrisks.GetResponse", ScannedRiskGetResponse{}},
-		{"scannedrisks.ListResponse", ScannedRiskListResponse{}},
-		{"scannedrisks.OccurrenceDetail", ScannedRiskOccurrence{}},
-		{"risk.EvidenceResource", EvidenceResource{}},
-		{"scannedrisks.OccurrencesResponse", ScannedRiskOccurrencesResponse{}},
 	} {
 		assertJSONFields(t, doc, model.definition, model.value)
 		assertSwaggerPropertiesPresent(t, doc, model.definition, model.value)
 	}
 
-	assertEnumCovers(t, doc, "risk.ScanType", ScanTypePipelineExecution, ScanTypeDiscoveryAgent, ScanTypeProbeExecution)
-	assertEnumCovers(t, doc, "risk.DetectionMethod", DetectionMethodAI, DetectionMethodRiskAnalyzer)
+	assertEnumCovers(t, doc, "risk.ScanType", ScanTypePipelineExecution, ScanTypeDiscoveryAgent, ScanTypeProbeExecution, ScanTypeCodeRepository)
+	assertEnumCovers(t, doc, "risk.DetectionMethod", DetectionMethodAI, DetectionMethodRiskAnalyzer, DetectionMethodExternal)
 	assertEnumCovers(t, doc, "risk.ScanStatus",
 		ScanStatusQueued, ScanStatusCollecting, ScanStatusCollected, ScanStatusAnalysing,
 		ScanStatusCompleted, ScanStatusErrored, ScanStatusAborted)
-	assertEnumCovers(t, doc, "scannedrisks.RiskStatus",
-		ScannedRiskStatusOpen, ScannedRiskStatusInProgress, ScannedRiskStatusResolved, ScannedRiskStatusIgnored)
 }
 
 // TestScanResponseFixtures unmarshals chaos-manager JSON shapes that the
@@ -133,14 +123,6 @@ func TestScanResponseFixtures(t *testing.T) {
 	}
 	if report.ScannedRisks == nil || len(report.ScannedRisks) != 0 {
 		t.Fatalf("empty report = %+v", report)
-	}
-
-	var got ScannedRiskGetResponse
-	if err := json.Unmarshal([]byte(`{"scannedRisk":{"identity":"risk-1","parentUniqueId":"parent","spec":{"severity":"High","status":"Open","targetService":{"type":"DiscoveredService","details":{"discoveredService":{"agentIdentity":"agent-1"}}}}}}`), &got); err != nil {
-		t.Fatal(err)
-	}
-	if got.ScannedRisk.ParentUniqueID != "parent" || got.ScannedRisk.Spec.TargetService.Details.DiscoveredService.AgentIdentity != "agent-1" {
-		t.Fatalf("scanned risk = %+v", got.ScannedRisk)
 	}
 }
 

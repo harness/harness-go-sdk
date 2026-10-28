@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"strings"
 )
 
 // ScanClient calls the risk scan API (POST/GET/PUT/DELETE /v3/risk-scans).
@@ -23,6 +24,11 @@ func NewScanClient(client *APIClient) *ScanClient {
 // Create starts a scan. The returned scan is usually still running; risks
 // appear on a later GetReport once status is terminal.
 func (c *ScanClient) Create(ctx context.Context, scope Scope, req ScanCreateRequest) (*Scan, *http.Response, error) {
+	method, err := APIDetectionMethod(req.DetectionMethod)
+	if err != nil {
+		return nil, nil, err
+	}
+	req.DetectionMethod = method
 	api, err := c.api()
 	if err != nil {
 		return nil, nil, err
@@ -33,6 +39,49 @@ func (c *ScanClient) Create(ctx context.Context, scope Scope, req ScanCreateRequ
 		return nil, resp, err
 	}
 	return &out, resp, nil
+}
+
+// CreatePipelineScan starts the scan the UI creates from a successful pipeline execution.
+func (c *ScanClient) CreatePipelineScan(ctx context.Context, scope Scope, req PipelineScanRequest) (*Scan, *http.Response, error) {
+	if req.PipelineIdentity == "" || req.PipelineExecutionID == "" {
+		return nil, nil, fmt.Errorf("pipeline identity and pipeline execution id are required")
+	}
+	return c.Create(ctx, scope, ScanCreateRequest{
+		Identity:        req.Identity,
+		Name:            req.Name,
+		Description:     req.Description,
+		Tags:            req.Tags,
+		ScanType:        ScanTypePipelineExecution,
+		DetectionMethod: req.DetectionMethod,
+		Source: ScanSource{Pipeline: &PipelineScan{
+			PipelineIdentity:    req.PipelineIdentity,
+			PipelineExecutionID: req.PipelineExecutionID,
+			NotifyID:            req.NotifyID,
+		}},
+	})
+}
+
+// CreateInfrastructureScan starts a scan of the Kubernetes resources known to
+// the discovery agent for a chaos infrastructure. InfrastructureID and
+// EnvironmentID identify that chaos infrastructure. DetectionMethod is ai or
+// ruleBased. The client reads the infrastructure, then its discovery agent, and
+// sends the agent id, environment, and parent id. Onboarding leaves
+// discoveryAgentID empty and creates the discovery agent with the same identity
+// as the infrastructure.
+func (c *ScanClient) CreateInfrastructureScan(ctx context.Context, scope Scope, req InfrastructureScanRequest) (*Scan, *http.Response, error) {
+	source, err := c.infrastructureSource(ctx, scope, req)
+	if err != nil {
+		return nil, nil, err
+	}
+	return c.Create(ctx, scope, ScanCreateRequest{
+		Identity:        req.Identity,
+		Name:            req.Name,
+		Description:     req.Description,
+		Tags:            req.Tags,
+		ScanType:        ScanTypeDiscoveryAgent,
+		DetectionMethod: req.DetectionMethod,
+		Source:          ScanSource{Infrastructure: source},
+	})
 }
 
 // Get returns one scan by identity.
@@ -135,6 +184,101 @@ func (c *ScanClient) api() (*APIClient, error) {
 		return nil, fmt.Errorf("scan client is not configured")
 	}
 	return c.client, nil
+}
+
+// APIDetectionMethod maps the user-facing scan method to the API value.
+// ai and AI are the UI AI Scan. ruleBased and RiskAnalyzer are the UI Rule-based Scan.
+// An empty value lets the API choose AI Scan.
+func APIDetectionMethod(method string) (string, error) {
+	switch {
+	case method == "":
+		return "", nil
+	case strings.EqualFold(method, "ai"):
+		return DetectionMethodAI, nil
+	case strings.EqualFold(method, "ruleBased"), strings.EqualFold(method, DetectionMethodRiskAnalyzer):
+		return DetectionMethodRiskAnalyzer, nil
+	default:
+		return "", fmt.Errorf("detection method %q must be ai or ruleBased", method)
+	}
+}
+
+type discoveryAgent struct {
+	Identity              string `json:"identity"`
+	Name                  string `json:"name"`
+	EnvironmentIdentifier string `json:"environmentIdentifier"`
+	ParentUniqueID        string `json:"parentUniqueId"`
+}
+
+func (c *ScanClient) infrastructureSource(ctx context.Context, scope Scope, req InfrastructureScanRequest) (*InfrastructureScan, error) {
+	if req.InfrastructureID == "" || req.EnvironmentID == "" {
+		return nil, fmt.Errorf("infrastructure id and environment id are required")
+	}
+	api, err := c.api()
+	if err != nil {
+		return nil, err
+	}
+	if api.ChaosSdkApi == nil {
+		return nil, fmt.Errorf("chaos infrastructure client is not configured")
+	}
+
+	infra, _, infraErr := api.ChaosSdkApi.GetInfraV2(ctx, req.InfrastructureID, scope.AccountID, scope.OrgID, scope.ProjectID, req.EnvironmentID)
+	if infraErr != nil {
+		return nil, fmt.Errorf("get infrastructure %s in environment %s: %w", req.InfrastructureID, req.EnvironmentID, infraErr)
+	}
+	agentID := infra.DiscoveryAgentID
+	if agentID == "" {
+		agentID = req.InfrastructureID
+	}
+	agent, err := c.getDiscoveryAgent(ctx, scope, agentID, req.EnvironmentID)
+	if err != nil {
+		if infra.DiscoveryAgentID == "" {
+			return nil, fmt.Errorf("infrastructure %s in environment %s has no discovery agent", req.InfrastructureID, req.EnvironmentID)
+		}
+		return nil, fmt.Errorf("infrastructure %s in environment %s: %w", req.InfrastructureID, req.EnvironmentID, err)
+	}
+	return discoveryScanSource(agent, req.EnvironmentID), nil
+}
+
+func (c *ScanClient) getDiscoveryAgent(ctx context.Context, scope Scope, agentID, environmentID string) (discoveryAgent, error) {
+	api, err := c.api()
+	if err != nil {
+		return discoveryAgent{}, err
+	}
+	base, err := serviceDiscoveryAgentsURL(api.cfg.BasePath)
+	if err != nil {
+		return discoveryAgent{}, err
+	}
+	q := scopeQuery(scope)
+	q.Set("environmentIdentifier", environmentID)
+	var agent discoveryAgent
+	if _, err = api.doAbsoluteJSON(ctx, http.MethodGet, base+"/"+url.PathEscape(agentID), q, nil, &agent); err != nil {
+		return discoveryAgent{}, fmt.Errorf("get discovery agent %s: %w", agentID, err)
+	}
+	if agent.Identity == "" {
+		return discoveryAgent{}, fmt.Errorf("discovery agent %s was not found", agentID)
+	}
+	return agent, nil
+}
+
+func discoveryScanSource(agent discoveryAgent, environmentID string) *InfrastructureScan {
+	environment := agent.EnvironmentIdentifier
+	if environment == "" {
+		environment = environmentID
+	}
+	return &InfrastructureScan{
+		AgentIdentity:             agent.Identity,
+		EnvironmentIdentity:       environment,
+		EnvironmentParentUniqueID: agent.ParentUniqueID,
+	}
+}
+
+func serviceDiscoveryAgentsURL(basePath string) (string, error) {
+	const suffix = "/chaos/manager/api"
+	trimmed := strings.TrimRight(basePath, "/")
+	if !strings.HasSuffix(trimmed, suffix) {
+		return "", fmt.Errorf("chaos base path %q must end with %s", basePath, suffix)
+	}
+	return strings.TrimSuffix(trimmed, suffix) + "/servicediscovery/api/v1/agents", nil
 }
 
 func scanPath(identity string) string {

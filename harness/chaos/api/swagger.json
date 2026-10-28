@@ -1,5 +1,8 @@
 {
-    "schemes": ["http","https"],
+    "schemes": [
+        "http",
+        "https"
+    ],
     "swagger": "2.0",
     "info": {
         "description": "ChaosManager serves as the primary API server for the chaos module, responsible for transferring and handling requests to their respective operations",
@@ -57,90 +60,6 @@
                 }
             }
         },
-      "/v3/risk-rules/{identity}": {
-        "get": {
-          "description": "gets a risk rule by its identity",
-          "produces": [
-            "application/json"
-          ],
-          "tags": [
-            "riskrules"
-          ],
-          "summary": "gets a risk rule",
-          "operationId": "getRiskRule",
-          "parameters": [
-            {
-              "type": "string",
-              "description": "risk rule identity",
-              "name": "identity",
-              "in": "path",
-              "required": true
-            },
-            {
-              "type": "string",
-              "description": "account id to access the resource",
-              "name": "accountIdentifier",
-              "in": "query",
-              "required": true
-            },
-            {
-              "type": "string",
-              "description": "correlation id is used to debug micro svc communication",
-              "name": "correlationID",
-              "in": "query"
-            },
-            {
-              "type": "boolean",
-              "name": "isSystem",
-              "in": "query"
-            },
-            {
-              "type": "string",
-              "description": "organization id to access the resource",
-              "name": "organizationIdentifier",
-              "in": "query"
-            },
-            {
-              "type": "string",
-              "description": "resolved parent scope unique ID (from scope-info API or query param)",
-              "name": "parentUniqueId",
-              "in": "query"
-            },
-            {
-              "type": "string",
-              "description": "project id to access the resource",
-              "name": "projectIdentifier",
-              "in": "query"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "OK",
-              "schema": {
-                "$ref": "#/definitions/riskrules.RiskRuleResponse"
-              }
-            },
-            "400": {
-              "description": "Bad Request",
-              "schema": {
-                "$ref": "#/definitions/shared.Error"
-              }
-            },
-            "404": {
-              "description": "Not Found",
-              "schema": {
-                "$ref": "#/definitions/shared.Error"
-              }
-            },
-            "500": {
-              "description": "Internal Server Error",
-              "schema": {
-                "$ref": "#/definitions/shared.Error"
-              }
-            }
-          }
-        }
-      },
         "/experimentHelperImageVersion": {
             "get": {
                 "description": "Get experiment helper image version",
@@ -24313,7 +24232,7 @@
             "type": "object",
             "properties": {
                 "criteria": {
-                    "description": "Criteria for matching data\nit supports \u003e=, \u003c=, ==, \u003e, \u003c, != for int and float\nit supports equal, notEqual, contains for string",
+                    "description": "Criteria for matching data\nit supports >=, <=, ==, >, <, != for int and float\nit supports equal, notEqual, contains for string",
                     "type": "string"
                 },
                 "type": {
@@ -33294,7 +33213,7 @@
             "type": "object",
             "properties": {
                 "timeoutSeconds": {
-                    "description": "timeoutSeconds specifies the seconds of ClientIP type session sticky time.\nThe value must be \u003e0 \u0026\u0026 \u003c=86400(for 1 day) if ServiceAffinity == \"ClientIP\".\nDefault value is 10800(for 3 hours).\n+optional",
+                    "description": "timeoutSeconds specifies the seconds of ClientIP type session sticky time.\nThe value must be >0 && <=86400(for 1 day) if ServiceAffinity == \"ClientIP\".\nDefault value is 10800(for 3 hours).\n+optional",
                     "type": "integer"
                 }
             }
@@ -33691,7 +33610,7 @@
                     ]
                 },
                 "fieldRef": {
-                    "description": "Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['\u003cKEY\u003e']`, `metadata.annotations['\u003cKEY\u003e']`,\nspec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.\n+optional",
+                    "description": "Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`,\nspec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.\n+optional",
                     "allOf": [
                         {
                             "$ref": "#/definitions/v1.ObjectFieldSelector"
@@ -33720,7 +33639,7 @@
             "type": "object",
             "properties": {
                 "volumeClaimTemplate": {
-                    "description": "Will be used to create a stand-alone PVC to provision the volume.\nThe pod in which this EphemeralVolumeSource is embedded will be the\nowner of the PVC, i.e. the PVC will be deleted together with the\npod.  The name of the PVC will be `\u003cpod name\u003e-\u003cvolume name\u003e` where\n`\u003cvolume name\u003e` is the name from the `PodSpec.Volumes` array\nentry. Pod validation will reject the pod if the concatenated name\nis not valid for a PVC (for example, too long).\n\nAn existing PVC with that name that is not owned by the pod\nwill *not* be used for the pod to avoid using an unrelated\nvolume by mistake. Starting the pod is then blocked until\nthe unrelated PVC is removed. If such a pre-created PVC is\nmeant to be used by the pod, the PVC has to updated with an\nowner reference to the pod once the pod exists. Normally\nthis should not be necessary, but it may be useful when\nmanually reconstructing a broken cluster.\n\nThis field is read-only and no changes will be made by Kubernetes\nto the PVC after it has been created.\n\nRequired, must not be nil.",
+                    "description": "Will be used to create a stand-alone PVC to provision the volume.\nThe pod in which this EphemeralVolumeSource is embedded will be the\nowner of the PVC, i.e. the PVC will be deleted together with the\npod.  The name of the PVC will be `<pod name>-<volume name>` where\n`<volume name>` is the name from the `PodSpec.Volumes` array\nentry. Pod validation will reject the pod if the concatenated name\nis not valid for a PVC (for example, too long).\n\nAn existing PVC with that name that is not owned by the pod\nwill *not* be used for the pod to avoid using an unrelated\nvolume by mistake. Starting the pod is then blocked until\nthe unrelated PVC is removed. If such a pre-created PVC is\nmeant to be used by the pod, the PVC has to updated with an\nowner reference to the pod once the pod exists. Normally\nthis should not be necessary, but it may be useful when\nmanually reconstructing a broken cluster.\n\nThis field is read-only and no changes will be made by Kubernetes\nto the PVC after it has been created.\n\nRequired, must not be nil.",
                     "allOf": [
                         {
                             "$ref": "#/definitions/v1.PersistentVolumeClaimTemplate"
@@ -33812,7 +33731,7 @@
             "type": "object",
             "properties": {
                 "datasetName": {
-                    "description": "Name of the dataset stored as metadata -\u003e name on the dataset for Flocker\nshould be considered as deprecated\n+optional",
+                    "description": "Name of the dataset stored as metadata -> name on the dataset for Flocker\nshould be considered as deprecated\n+optional",
                     "type": "string"
                 },
                 "datasetUUID": {
@@ -33972,7 +33891,7 @@
                     "type": "string"
                 },
                 "initiatorName": {
-                    "description": "Custom iSCSI Initiator Name.\nIf initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface\n\u003ctarget portal\u003e:\u003cvolume name\u003e will be created for the connection.\n+optional",
+                    "description": "Custom iSCSI Initiator Name.\nIf initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface\n<target portal>:<volume name> will be created for the connection.\n+optional",
                     "type": "string"
                 },
                 "iqn": {
@@ -35287,7 +35206,7 @@
                     ]
                 },
                 "seccompProfile": {
-                    "description": "The seccomp options to use by this container. If seccomp options are\nprovided at both the pod \u0026 container level, the container options\noverride the pod options.\n+optional",
+                    "description": "The seccomp options to use by this container. If seccomp options are\nprovided at both the pod & container level, the container options\noverride the pod options.\n+optional",
                     "allOf": [
                         {
                             "$ref": "#/definitions/v1.SeccompProfile"
@@ -35708,7 +35627,7 @@
             "x-enum-comments": {
                 "StorageMediumDefault": "use whatever the default is for the node, assume anything we don't explicitly handle is this",
                 "StorageMediumHugePages": "use hugepages",
-                "StorageMediumHugePagesPrefix": "prefix for full medium notation HugePages-\u003csize\u003e",
+                "StorageMediumHugePagesPrefix": "prefix for full medium notation HugePages-<size>",
                 "StorageMediumMemory": "use memory (e.g. tmpfs on linux)"
             },
             "x-enum-varnames": [
@@ -36642,6 +36561,9 @@
                 },
                 "updatedBy": {
                     "type": "string"
+                },
+                "manualMethod": {
+                    "$ref": "#/definitions/v2_onboarding.ManualMethod"
                 }
             }
         },
@@ -36687,6 +36609,9 @@
                 },
                 "serviceAccount": {
                     "type": "string"
+                },
+                "manualMethod": {
+                    "$ref": "#/definitions/v2_onboarding.ManualMethod"
                 }
             }
         },
@@ -36784,11 +36709,13 @@
             "type": "string",
             "enum": [
                 "AI",
-                "RiskAnalyzer"
+                "RiskAnalyzer",
+                "External"
             ],
             "x-enum-varnames": [
                 "DetectionMethodAI",
-                "DetectionMethodRiskAnalyzer"
+                "DetectionMethodRiskAnalyzer",
+                "DetectionMethodExternal"
             ]
         },
         "risk.PipelineInfrastructure": {
@@ -37001,6 +36928,9 @@
                 },
                 "probeExecution": {
                     "$ref": "#/definitions/risk.ScanSourceProbeExecution"
+                },
+                "codeRepository": {
+                    "$ref": "#/definitions/risk.ScanSourceCodeRepository"
                 }
             }
         },
@@ -37078,12 +37008,14 @@
             "enum": [
                 "PipelineExecution",
                 "DiscoveryAgent",
-                "ProbeExecution"
+                "ProbeExecution",
+                "CodeRepository"
             ],
             "x-enum-varnames": [
                 "ScanTypePipeline",
                 "ScanTypeServiceDiscovery",
-                "ScanTypeProbeExecution"
+                "ScanTypeProbeExecution",
+                "ScanTypeCodeRepository"
             ]
         },
         "riskoccurrences.ProbeExecutionSource": {
@@ -37198,6 +37130,12 @@
         "riskscans.OccurrenceContext": {
             "type": "object",
             "properties": {
+                "codeLocations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/risk.CodeLocation"
+                    }
+                },
                 "evidence": {
                     "type": "array",
                     "items": {
@@ -37296,6 +37234,14 @@
                 }
             }
         },
+        "riskscans.RecommendationCounts": {
+            "type": "object",
+            "properties": {
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
         "riskscans.RiskScanResponse": {
             "type": "object",
             "properties": {
@@ -37342,6 +37288,9 @@
                 },
                 "projectID": {
                     "type": "string"
+                },
+                "recommendationCounts": {
+                    "$ref": "#/definitions/riskscans.RecommendationCounts"
                 },
                 "report": {
                     "$ref": "#/definitions/risk.ReportInfo"
@@ -37469,6 +37418,80 @@
                     "items": {
                         "$ref": "#/definitions/experimenttemplate.ListExperimentTemplateData"
                     }
+                }
+            }
+        },
+        "v2_onboarding.ManualMethod": {
+            "type": "string",
+            "enum": [
+                "NetworkMap",
+                "Service"
+            ],
+            "x-enum-varnames": [
+                "ManualMethodNetworkMap",
+                "ManualMethodService"
+            ]
+        },
+        "risk.ScanSourceCodeRepository": {
+            "type": "object",
+            "properties": {
+                "branch": {
+                    "type": "string"
+                },
+                "commitSHA": {
+                    "type": "string"
+                },
+                "linkedServices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/risk.LinkedService"
+                    }
+                },
+                "provider": {
+                    "type": "string"
+                },
+                "repoURL": {
+                    "description": "RepoURL is normalised to host/org/repo (no scheme, credentials or .git).",
+                    "type": "string"
+                }
+            }
+        },
+        "risk.LinkedService": {
+            "type": "object",
+            "properties": {
+                "chaosServiceIdentity": {
+                    "type": "string"
+                },
+                "module": {
+                    "type": "string"
+                }
+            }
+        },
+        "risk.CodeRepository": {
+            "type": "object",
+            "properties": {
+                "module": {
+                    "type": "string"
+                },
+                "repoURL": {
+                    "type": "string"
+                }
+            }
+        },
+        "risk.CodeLocation": {
+            "type": "object",
+            "properties": {
+                "endLine": {
+                    "type": "integer"
+                },
+                "file": {
+                    "type": "string"
+                },
+                "snippet": {
+                    "type": "string"
+                },
+                "startLine": {
+                    "type": "integer"
                 }
             }
         }
