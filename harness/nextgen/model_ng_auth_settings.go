@@ -12,4 +12,8 @@ package nextgen
 // This has the details of Authentication Settings supported in NG.
 type NgAuthSettings struct {
 	SettingsType string `json:"settingsType,omitempty"`
+	// Login settings of the account. Present only when settingsType is USER_PASSWORD.
+	// Not part of the generated spec; added to expose the login settings document
+	// embedded in the authentication settings response.
+	LoginSettings *LoginSettings `json:"loginSettings,omitempty"`
 }
