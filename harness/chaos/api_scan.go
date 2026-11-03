@@ -9,20 +9,14 @@ import (
 	"strings"
 )
 
-// ScanClient calls the risk scan API (POST/GET/PUT/DELETE /v3/risk-scans).
-// Construct it with NewScanClient. It is intentionally not wired into the
-// generated APIClient struct, so swagger regeneration does not have to know about it.
 type ScanClient struct {
 	client *APIClient
 }
 
-// NewScanClient returns a client for pipeline and infrastructure scans.
 func NewScanClient(client *APIClient) *ScanClient {
 	return &ScanClient{client: client}
 }
 
-// Create starts a scan. The returned scan is usually still running; risks
-// appear on a later GetReport once status is terminal.
 func (c *ScanClient) Create(ctx context.Context, scope Scope, req ScanCreateRequest) (*Scan, *http.Response, error) {
 	method, err := APIDetectionMethod(req.DetectionMethod)
 	if err != nil {
@@ -41,7 +35,6 @@ func (c *ScanClient) Create(ctx context.Context, scope Scope, req ScanCreateRequ
 	return &out, resp, nil
 }
 
-// CreatePipelineScan starts the scan the UI creates from a successful pipeline execution.
 func (c *ScanClient) CreatePipelineScan(ctx context.Context, scope Scope, req PipelineScanRequest) (*Scan, *http.Response, error) {
 	if req.PipelineIdentity == "" || req.PipelineExecutionID == "" {
 		return nil, nil, fmt.Errorf("pipeline identity and pipeline execution id are required")
@@ -61,13 +54,6 @@ func (c *ScanClient) CreatePipelineScan(ctx context.Context, scope Scope, req Pi
 	})
 }
 
-// CreateInfrastructureScan starts a scan of the Kubernetes resources known to
-// the discovery agent for a chaos infrastructure. InfrastructureID and
-// EnvironmentID identify that chaos infrastructure. DetectionMethod is ai or
-// ruleBased. The client reads the infrastructure, then its discovery agent, and
-// sends the agent id, environment, and parent id. Onboarding leaves
-// discoveryAgentID empty and creates the discovery agent with the same identity
-// as the infrastructure.
 func (c *ScanClient) CreateInfrastructureScan(ctx context.Context, scope Scope, req InfrastructureScanRequest) (*Scan, *http.Response, error) {
 	source, err := c.infrastructureSource(ctx, scope, req)
 	if err != nil {
@@ -84,7 +70,6 @@ func (c *ScanClient) CreateInfrastructureScan(ctx context.Context, scope Scope, 
 	})
 }
 
-// Get returns one scan by identity.
 func (c *ScanClient) Get(ctx context.Context, scope Scope, identity string) (*Scan, *http.Response, error) {
 	api, err := c.api()
 	if err != nil {
@@ -98,7 +83,6 @@ func (c *ScanClient) Get(ctx context.Context, scope Scope, identity string) (*Sc
 	return &out, resp, nil
 }
 
-// Update changes name, description, and tags. Scan type and source cannot be updated.
 func (c *ScanClient) Update(ctx context.Context, scope Scope, identity string, req ScanUpdateRequest) (*http.Response, error) {
 	api, err := c.api()
 	if err != nil {
@@ -107,7 +91,6 @@ func (c *ScanClient) Update(ctx context.Context, scope Scope, identity string, r
 	return api.doChaosJSON(ctx, http.MethodPut, scanPath(identity), scopeQuery(scope), &req, nil)
 }
 
-// Delete removes a scan.
 func (c *ScanClient) Delete(ctx context.Context, scope Scope, identity string) (*http.Response, error) {
 	api, err := c.api()
 	if err != nil {
@@ -116,7 +99,6 @@ func (c *ScanClient) Delete(ctx context.Context, scope Scope, identity string) (
 	return api.doChaosJSON(ctx, http.MethodDelete, scanPath(identity), scopeQuery(scope), nil, nil)
 }
 
-// GetReport returns the risks this scan produced, with their occurrences.
 func (c *ScanClient) GetReport(ctx context.Context, scope Scope, identity string) (*ScanReport, *http.Response, error) {
 	api, err := c.api()
 	if err != nil {
@@ -130,7 +112,6 @@ func (c *ScanClient) GetReport(ctx context.Context, scope Scope, identity string
 	return &out, resp, nil
 }
 
-// List returns scans in the scope.
 func (c *ScanClient) List(ctx context.Context, req ScanListRequest) (*ScanListResponse, *http.Response, error) {
 	q := scopeQuery(req.Scope)
 	addIntQuery(q, "page", req.Page)
@@ -161,7 +142,6 @@ func (c *ScanClient) List(ctx context.Context, req ScanListRequest) (*ScanListRe
 	return &out, resp, nil
 }
 
-// Abort stops a running scan.
 func (c *ScanClient) Abort(ctx context.Context, scope Scope, identity string) (*http.Response, error) {
 	api, err := c.api()
 	if err != nil {
@@ -170,7 +150,6 @@ func (c *ScanClient) Abort(ctx context.Context, scope Scope, identity string) (*
 	return api.doChaosJSON(ctx, http.MethodPost, scanPath(identity)+"/abort", scopeQuery(scope), nil, nil)
 }
 
-// Retry requeues a scan.
 func (c *ScanClient) Retry(ctx context.Context, scope Scope, identity string) (*http.Response, error) {
 	api, err := c.api()
 	if err != nil {
@@ -186,9 +165,6 @@ func (c *ScanClient) api() (*APIClient, error) {
 	return c.client, nil
 }
 
-// APIDetectionMethod maps the user-facing scan method to the API value.
-// ai and AI are the UI AI Scan. ruleBased and RiskAnalyzer are the UI Rule-based Scan.
-// An empty value lets the API choose AI Scan.
 func APIDetectionMethod(method string) (string, error) {
 	switch {
 	case method == "":
@@ -227,6 +203,7 @@ func (c *ScanClient) infrastructureSource(ctx context.Context, scope Scope, req 
 	}
 	agentID := infra.DiscoveryAgentID
 	if agentID == "" {
+		// Onboarding names the discovery agent with the infrastructure id.
 		agentID = req.InfrastructureID
 	}
 	agent, err := c.getDiscoveryAgent(ctx, scope, agentID, req.EnvironmentID)

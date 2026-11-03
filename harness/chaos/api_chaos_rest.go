@@ -10,7 +10,6 @@ import (
 	"strings"
 )
 
-// scopeQuery builds the account/org/project query string used by chaos manager v3 APIs.
 func scopeQuery(scope Scope) url.Values {
 	q := url.Values{}
 	if scope.AccountID != "" {
@@ -31,9 +30,6 @@ func scopeQuery(scope Scope) url.Values {
 	return q
 }
 
-// doChaosJSON performs a JSON request against the chaos manager base path.
-// Generated swagger clients keep using their own methods; this helper exists
-// only for hand-written clients so those generated files stay untouched.
 func (c *APIClient) doChaosJSON(ctx context.Context, method, path string, query url.Values, body interface{}, out interface{}) (*http.Response, error) {
 	if c == nil || c.cfg == nil {
 		return nil, fmt.Errorf("chaos API client is not configured")
@@ -41,8 +37,6 @@ func (c *APIClient) doChaosJSON(ctx context.Context, method, path string, query 
 	return c.doAbsoluteJSON(ctx, method, c.cfg.BasePath+path, query, body, out)
 }
 
-// doAbsoluteJSON is doChaosJSON for a full URL. Service discovery is a sibling
-// of the chaos manager base path, so infrastructure scans call it directly.
 func (c *APIClient) doAbsoluteJSON(ctx context.Context, method, rawURL string, query url.Values, body interface{}, out interface{}) (*http.Response, error) {
 	if c == nil || c.cfg == nil {
 		return nil, fmt.Errorf("chaos API client is not configured")
@@ -95,9 +89,7 @@ func (c *APIClient) doAbsoluteJSON(ctx context.Context, method, rawURL string, q
 	return resp, nil
 }
 
-// decodeChaosJSON accepts application/json, an empty content type, and text/plain.
-// The generated decode helper rejects anything that is not exactly a json or xml
-// content type, which drops valid chaos-manager bodies behind some gateways.
+// decodeChaosJSON accepts a JSON body when the content type is empty or text/plain.
 func decodeChaosJSON(out interface{}, body []byte, contentType string) error {
 	ct := strings.ToLower(contentType)
 	if strings.Contains(ct, "xml") || strings.Contains(ct, "html") {

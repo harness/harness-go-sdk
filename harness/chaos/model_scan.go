@@ -6,18 +6,10 @@ import (
 )
 
 const (
-	// ScanTypePipelineExecution is a pipeline scan. The UI creates one of these
-	// from a successful pipeline execution.
 	ScanTypePipelineExecution = "PipelineExecution"
-	// ScanTypeDiscoveryAgent is an infrastructure scan. The UI creates one of
-	// these from a service-discovery agent watching a Kubernetes infrastructure.
-	ScanTypeDiscoveryAgent = "DiscoveryAgent"
-	// ScanTypeProbeExecution is a probe-execution scan. The public API accepts
-	// it; the Terraform scan resource does not expose it yet.
-	ScanTypeProbeExecution = "ProbeExecution"
-	// ScanTypeCodeRepository is a code-repository scan. The public scan resource
-	// does not create this type; it is decoded when the API returns one.
-	ScanTypeCodeRepository = "CodeRepository"
+	ScanTypeDiscoveryAgent    = "DiscoveryAgent"
+	ScanTypeProbeExecution    = "ProbeExecution"
+	ScanTypeCodeRepository    = "CodeRepository"
 
 	DetectionMethodAI           = "AI"
 	DetectionMethodRiskAnalyzer = "RiskAnalyzer"
@@ -32,7 +24,6 @@ const (
 	ScanStatusAborted    = "ABORTED"
 )
 
-// Scope identifies the Harness account, and optionally org and project, for a chaos API call.
 type Scope struct {
 	AccountID      string
 	OrgID          string
@@ -41,15 +32,13 @@ type Scope struct {
 	CorrelationID  string
 }
 
-// UserRef is a user on a scan response. The API returns either a user object
-// or, when user lookup is skipped, a plain user id string.
+// UserRef is a user object or a plain user id.
 type UserRef struct {
 	UserID   string `json:"userID,omitempty"`
 	Username string `json:"username,omitempty"`
 	Email    string `json:"email,omitempty"`
 }
 
-// UnmarshalJSON accepts both {"userID":"..."} and "user-id".
 func (u *UserRef) UnmarshalJSON(data []byte) error {
 	*u = UserRef{}
 	data = bytes.TrimSpace(data)
@@ -73,7 +62,6 @@ func (u *UserRef) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// DisplayName prefers a human-readable user label.
 func (u UserRef) DisplayName() string {
 	if u.Username != "" {
 		return u.Username
@@ -84,8 +72,6 @@ func (u UserRef) DisplayName() string {
 	return u.UserID
 }
 
-// Scan is a risk scan. Pipeline and infrastructure scans are the same object;
-// ScanType plus Source selects which one it is.
 type Scan struct {
 	ID             string   `json:"id,omitempty"`
 	AccountID      string   `json:"accountID,omitempty"`
@@ -118,9 +104,6 @@ type Scan struct {
 	UpdatedBy            UserRef               `json:"updatedBy,omitempty"`
 }
 
-// ScanSource is the origin of a scan. Exactly one of Pipeline, DiscoveryAgent,
-// or ProbeExecution is set for a valid create request. CodeRepository is decoded
-// when the API returns one; the public scan resource does not create it.
 type ScanSource struct {
 	Pipeline       *PipelineScan       `json:"pipeline,omitempty"`
 	DiscoveryAgent *DiscoveryAgentScan `json:"discoveryAgent,omitempty"`
@@ -128,8 +111,6 @@ type ScanSource struct {
 	CodeRepository *CodeRepositoryScan `json:"codeRepository,omitempty"`
 }
 
-// CodeRepositoryScan is a code-repository scan source. The public scan resource
-// does not create this type; it is decoded when the API returns one.
 type CodeRepositoryScan struct {
 	RepoURL        string          `json:"repoURL,omitempty"`
 	Branch         string          `json:"branch,omitempty"`
@@ -138,8 +119,6 @@ type CodeRepositoryScan struct {
 	LinkedServices []LinkedService `json:"linkedServices,omitempty"`
 }
 
-// LinkedService is a service attached to a code-repository scan.
-// The name and link fields are filled when a scan is read. Create does not send them.
 type LinkedService struct {
 	Module                    string                   `json:"module,omitempty"`
 	ChaosServiceIdentity      string                   `json:"chaosServiceIdentity,omitempty"`
@@ -149,7 +128,6 @@ type LinkedService struct {
 	LinkedDiscoveredService   *LinkedDiscoveredService `json:"linkedDiscoveredService,omitempty"`
 }
 
-// LinkedDiscoveredService is the discovered service linked to a code-repository chaos service.
 type LinkedDiscoveredService struct {
 	Identity            string `json:"identity,omitempty"`
 	EnvironmentIdentity string `json:"environmentIdentity,omitempty"`
@@ -157,12 +135,10 @@ type LinkedDiscoveredService struct {
 	ExternalID          string `json:"externalID,omitempty"`
 }
 
-// RecommendationCounts is the recommendation rollup on a scan.
 type RecommendationCounts struct {
 	Total int `json:"total,omitempty"`
 }
 
-// CodeLocation is a file range attached to an occurrence.
 type CodeLocation struct {
 	File      string `json:"file,omitempty"`
 	Snippet   string `json:"snippet,omitempty"`
@@ -170,7 +146,6 @@ type CodeLocation struct {
 	EndLine   int    `json:"endLine,omitempty"`
 }
 
-// PipelineScan identifies the pipeline execution being scanned.
 type PipelineScan struct {
 	PipelineIdentity    string                   `json:"pipelineIdentity"`
 	PipelineExecutionID string                   `json:"pipelineExecutionID,omitempty"`
@@ -178,7 +153,6 @@ type PipelineScan struct {
 	Infrastructures     []PipelineInfrastructure `json:"infrastructures,omitempty"`
 }
 
-// PipelineInfrastructure is a CD environment and infrastructure pair observed on collected manifests.
 type PipelineInfrastructure struct {
 	EnvironmentRef         string `json:"environmentRef,omitempty"`
 	InfrastructureIdentity string `json:"infrastructureIdentity,omitempty"`
@@ -186,41 +160,33 @@ type PipelineInfrastructure struct {
 	ChaosSupported         bool   `json:"chaosSupported"`
 }
 
-// DiscoveryAgentScan identifies the discovery agent whose Kubernetes infrastructure is scanned.
-// The API field name is discoveryAgent; the product surface calls this an infrastructure scan.
 type DiscoveryAgentScan struct {
 	AgentIdentity             string `json:"agentIdentity"`
 	EnvironmentIdentity       string `json:"environmentIdentity"`
 	EnvironmentParentUniqueID string `json:"environmentParentUniqueId,omitempty"`
 }
 
-// ProbeExecutionScan identifies a probe execution that triggered a scan.
 type ProbeExecutionScan struct {
 	ProbeIdentity   string                `json:"probeIdentity,omitempty"`
 	ProbeName       string                `json:"probeName,omitempty"`
 	ExecutionSource *ProbeExecutionSource `json:"executionSource,omitempty"`
 }
 
-// ProbeExecutionSource is a union: experiment or pipeline step.
 type ProbeExecutionSource struct {
 	Experiment   *ProbeExperimentSource   `json:"experiment,omitempty"`
 	PipelineStep *ProbePipelineStepSource `json:"pipelineStep,omitempty"`
 }
 
-// ProbeExperimentSource identifies the experiment run that executed the probe.
 type ProbeExperimentSource struct {
 	ExperimentID    string `json:"experimentID,omitempty"`
 	ExperimentRunID string `json:"experimentRunID,omitempty"`
 }
 
-// ProbePipelineStepSource identifies the pipeline step that executed the probe.
 type ProbePipelineStepSource struct {
 	PipelineID    string `json:"pipelineID,omitempty"`
 	PipelineRunID string `json:"pipelineRunID,omitempty"`
 }
 
-// PipelineScanRequest creates a pipeline scan from a successful execution.
-// DetectionMethod accepts ai, ruleBased, AI, and RiskAnalyzer.
 type PipelineScanRequest struct {
 	Identity            string
 	Name                string
@@ -232,10 +198,6 @@ type PipelineScanRequest struct {
 	NotifyID            string
 }
 
-// InfrastructureScanRequest creates an infrastructure scan from a chaos
-// infrastructure. InfrastructureID and EnvironmentID are both required.
-// DetectionMethod is ai or ruleBased. The client fills the agent, environment,
-// and parent id from that infrastructure's discovery agent.
 type InfrastructureScanRequest struct {
 	Identity         string
 	Name             string
@@ -246,7 +208,6 @@ type InfrastructureScanRequest struct {
 	EnvironmentID    string
 }
 
-// ScanCreateRequest is the body for POST /v3/risk-scans.
 type ScanCreateRequest struct {
 	Identity        string     `json:"identity"`
 	Name            string     `json:"name"`
@@ -257,16 +218,13 @@ type ScanCreateRequest struct {
 	Source          ScanSource `json:"source"`
 }
 
-// ScanUpdateRequest updates user-facing metadata. Scan type and source are immutable.
-// A nil Tags slice is omitted. A non-nil empty slice is sent as [] so tags can be cleared
-// without a name-only update wiping them.
+// ScanUpdateRequest updates name, description, and tags. A nil tag list is omitted.
 type ScanUpdateRequest struct {
 	Name        *string  `json:"name,omitempty"`
 	Description *string  `json:"description,omitempty"`
 	Tags        []string `json:"-"`
 }
 
-// MarshalJSON omits a nil tag list and encodes an empty list as [].
 func (r ScanUpdateRequest) MarshalJSON() ([]byte, error) {
 	payload := map[string]interface{}{}
 	if r.Name != nil {
@@ -281,7 +239,6 @@ func (r ScanUpdateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(payload)
 }
 
-// UnmarshalJSON keeps a missing tag list nil and an empty list empty.
 func (r *ScanUpdateRequest) UnmarshalJSON(data []byte) error {
 	var payload struct {
 		Name        *string   `json:"name"`
@@ -301,7 +258,6 @@ func (r *ScanUpdateRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// ScanListRequest filters GET /v3/risk-scans.
 type ScanListRequest struct {
 	Scope
 	Page                int
@@ -319,14 +275,12 @@ type ScanListRequest struct {
 	EndTime             int64
 }
 
-// ScanListResponse is the body of GET /v3/risk-scans.
 type ScanListResponse struct {
 	CorrelationID string     `json:"correlationID,omitempty"`
 	Data          []Scan     `json:"data"`
 	Pagination    Pagination `json:"pagination"`
 }
 
-// Pagination is the shared list page descriptor.
 type Pagination struct {
 	Index      int64 `json:"index,omitempty"`
 	Limit      int64 `json:"limit,omitempty"`
@@ -334,7 +288,6 @@ type Pagination struct {
 	TotalPages int64 `json:"totalPages,omitempty"`
 }
 
-// CollectionSummary describes resources gathered for a scan.
 type CollectionSummary struct {
 	ScanType           string            `json:"scanType,omitempty"`
 	CollectedAt        int64             `json:"collectedAt,omitempty"`
@@ -346,13 +299,11 @@ type CollectionSummary struct {
 	Errors             []CollectionError `json:"errors,omitempty"`
 }
 
-// CollectionError is a single collection failure.
 type CollectionError struct {
 	Source  string `json:"source,omitempty"`
 	Message string `json:"message,omitempty"`
 }
 
-// RiskSummary is the aggregate produced when analysis finishes.
 type RiskSummary struct {
 	RiskCount        int            `json:"riskCount,omitempty"`
 	AnalysedAt       int64          `json:"analysedAt,omitempty"`
@@ -364,7 +315,6 @@ type RiskSummary struct {
 	ScoreMax         int            `json:"scoreMax,omitempty"`
 }
 
-// ReportInfo tracks PDF report generation for a scan.
 type ReportInfo struct {
 	Status       string `json:"status,omitempty"`
 	ErrorMessage string `json:"errorMessage,omitempty"`
@@ -372,7 +322,6 @@ type ReportInfo struct {
 	ExpiresAt    int64  `json:"expiresAt,omitempty"`
 }
 
-// HeatmapSummary is the severity rollup returned with a scan.
 type HeatmapSummary struct {
 	Score           uint `json:"score,omitempty"`
 	MaxScore        uint `json:"maxScore,omitempty"`
@@ -385,16 +334,12 @@ type HeatmapSummary struct {
 	Low             int  `json:"low,omitempty"`
 }
 
-// ScanReport is GET /v3/risk-scans/{identity}/report.
-// Scan is the same document Get returns. ScannedRisks is the report embedding
-// for this scan, not the durable scanned-risk object.
 type ScanReport struct {
 	Scan         *Scan         `json:"scan,omitempty"`
 	ScannedRisks []ScanRisk    `json:"scannedRisks"`
 	Summary      ReportSummary `json:"summary"`
 }
 
-// ReportSummary counts risks and occurrences on a scan report.
 type ReportSummary struct {
 	TotalRisks       int            `json:"totalRisks,omitempty"`
 	TotalOccurrences int            `json:"totalOccurrences,omitempty"`
@@ -402,8 +347,6 @@ type ReportSummary struct {
 	ByStatus         map[string]int `json:"byStatus,omitempty"`
 }
 
-// ScanRisk is one risk embedded in a scan report, including the occurrences
-// found by that scan.
 type ScanRisk struct {
 	Identity        string                 `json:"identity,omitempty"`
 	Name            string                 `json:"name,omitempty"`
@@ -419,7 +362,6 @@ type ScanRisk struct {
 	Occurrences     []ScanRiskOccurrence   `json:"occurrences,omitempty"`
 }
 
-// ScanRiskOccurrence is a single detection of a risk inside a scan.
 type ScanRiskOccurrence struct {
 	OccurrenceID         string                `json:"occurrenceId,omitempty"`
 	DetectedAt           int64                 `json:"detectedAt,omitempty"`
@@ -434,7 +376,6 @@ type ScanRiskOccurrence struct {
 	ProbeExecutionSource *ProbeExecutionSource `json:"probeExecutionSource,omitempty"`
 }
 
-// OccurrenceContext holds the evidence and guidance shown for an occurrence.
 type OccurrenceContext struct {
 	Evidence              []string       `json:"evidence,omitempty"`
 	Remediation           []string       `json:"remediation,omitempty"`

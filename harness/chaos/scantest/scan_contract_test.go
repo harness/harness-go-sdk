@@ -12,13 +12,6 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-// TestScanContractMatchesHCESaaSSwagger checks the hand-written scan client
-// against the chaos-manager OpenAPI spec in hce-saas. It does not import
-// hce-saas and it does not call a live account.
-//
-// The spec is found from HCE_SAAS_SWAGGER, HCE_SAAS_ROOT, or a sibling
-// checkout at ../hce-saas relative to this module. CI without that checkout
-// skips this test. The fixture test below always runs.
 func TestScanContractMatchesHCESaaSSwagger(t *testing.T) {
 	path := hceSwaggerPath()
 	if path == "" {
@@ -80,8 +73,6 @@ func TestScanContractMatchesHCESaaSSwagger(t *testing.T) {
 		ScanStatusCompleted, ScanStatusErrored, ScanStatusAborted)
 }
 
-// TestScanResponseFixtures unmarshals chaos-manager JSON shapes that the
-// swagger types allow, including the two createdBy encodings and false booleans.
 func TestScanResponseFixtures(t *testing.T) {
 	var scan Scan
 	if err := json.Unmarshal([]byte(`{
