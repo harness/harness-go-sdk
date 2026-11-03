@@ -9,7 +9,8 @@ Method | HTTP request | Description
 [**AgentServiceForServerGet**](AgentsApi.md#AgentServiceForServerGet) | **Get** /gitops/api/v1/agents/{identifier} | 
 [**AgentServiceForServerGetDeployYaml**](AgentsApi.md#AgentServiceForServerGetDeployYaml) | **Get** /gitops/api/v1/agents/{agentIdentifier}/deploy.yaml | 
 [**AgentServiceForServerList**](AgentsApi.md#AgentServiceForServerList) | **Get** /gitops/api/v1/agents | 
-[**AgentServiceForServerRegenerateCredentials**](AgentsApi.md#AgentServiceForServerRegenerateCredentials) | **Post** /gitops/api/v1/agents/{identifier}/credentials | 
+[**AgentServiceForServerRegenerateCredentials**](AgentsApi.md#AgentServiceForServerRegenerateCredentials) | **Post** /gitops/api/v1/agents/{identifier}/credentials | Deprecated: no scope params, use WithScope
+[**AgentServiceForServerRegenerateCredentialsWithScope**](AgentsApi.md#AgentServiceForServerRegenerateCredentialsWithScope) | **Post** /gitops/api/v1/agents/{identifier}/credentials | Regenerate credentials with account/org/project scope
 [**AgentServiceForServerUnique**](AgentsApi.md#AgentServiceForServerUnique) | **Get** /gitops/api/v1/agents/{identifier}/unique | 
 [**AgentServiceForServerUpdate**](AgentsApi.md#AgentServiceForServerUpdate) | **Put** /gitops/api/v1/agents/{agent.identifier} | 
 
@@ -433,12 +434,52 @@ Name | Type | Description  | Notes
 
 Regenerate credentials for agents.
 
+**Deprecated:** sends no account/org/project scope; only works for account-level agents. Use `AgentServiceForServerRegenerateCredentialsWithScope`.
+
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **identifier** | **string**|  | 
+
+### Return type
+
+[**V1Agent**](v1Agent.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **AgentServiceForServerRegenerateCredentialsWithScope**
+> V1Agent AgentServiceForServerRegenerateCredentialsWithScope(ctx, identifier, accountIdentifier, optional)
+
+
+Regenerate credentials for agents, scoped to the given account and optional org/project.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **identifier** | **string**|  | 
+  **accountIdentifier** | **string**| Account Identifier for the Entity. | 
+ **optional** | ***AgentsApiAgentServiceForServerRegenerateCredentialsWithScopeOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a AgentsApiAgentServiceForServerRegenerateCredentialsWithScopeOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orgIdentifier** | **optional.String**| Organization Identifier for the Entity. | 
+ **projectIdentifier** | **optional.String**| Project Identifier for the Entity. | 
 
 ### Return type
 
