@@ -3717,6 +3717,7 @@ components:
           CRAN: "#/components/schemas/CranArtifactDetailConfig"
           ALPINE: "#/components/schemas/AlpineArtifactDetailConfig"
           WOLFI: "#/components/schemas/WolfiArtifactDetailConfig"
+          APM: "#/components/schemas/ApmArtifactDetailConfig"
           GO: "#/components/schemas/GoArtifactDetailConfig"
           HUGGINGFACE: "#/components/schemas/HuggingFaceArtifactDetailConfig"
           CONDA: "#/components/schemas/CondaArtifactDetailConfig"
@@ -3744,6 +3745,7 @@ components:
       - $ref: "#/components/schemas/CranArtifactDetailConfig"
       - $ref: "#/components/schemas/AlpineArtifactDetailConfig"
       - $ref: "#/components/schemas/WolfiArtifactDetailConfig"
+      - $ref: "#/components/schemas/ApmArtifactDetailConfig"
       - $ref: "#/components/schemas/GoArtifactDetailConfig"
       - $ref: "#/components/schemas/HuggingFaceArtifactDetailConfig"
       - $ref: "#/components/schemas/CondaArtifactDetailConfig"
@@ -4037,6 +4039,13 @@ components:
           type: object
           additionalProperties: true
       description: Config for wolfi artifact details
+    ApmArtifactDetailConfig:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+      description: Config for apm artifact details
     GoArtifactDetailConfig:
       type: object
       properties:
@@ -5278,6 +5287,7 @@ components:
       - CRAN
       - ALPINE
       - WOLFI
+      - APM
       - TERRAFORM_BACKEND
     ArtifactType:
       type: string
@@ -5803,6 +5813,7 @@ components:
           - CRAN
           - ALPINE
           - WOLFI
+          - APM
         url:
           type: string
         remoteUrlSuffix:

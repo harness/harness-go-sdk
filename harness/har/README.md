@@ -100,6 +100,7 @@ Class | Method | HTTP request | Description
  - [CranArtifactDetailConfig](docs/CranArtifactDetailConfig.md)
  - [AlpineArtifactDetailConfig](docs/AlpineArtifactDetailConfig.md)
  - [WolfiArtifactDetailConfig](docs/WolfiArtifactDetailConfig.md)
+ - [ApmArtifactDetailConfig](docs/ApmArtifactDetailConfig.md)
  - [GoArtifactDetailConfig](docs/GoArtifactDetailConfig.md)
  - [HuggingFaceArtifactDetailConfig](docs/HuggingFaceArtifactDetailConfig.md)
  - [CondaArtifactDetailConfig](docs/CondaArtifactDetailConfig.md)

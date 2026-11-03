@@ -38,5 +38,6 @@ const (
 	CRAN_PackageType              PackageType = "CRAN"
 	ALPINE_PackageType            PackageType = "ALPINE"
 	WOLFI_PackageType             PackageType = "WOLFI"
+	APM_PackageType               PackageType = "APM"
 	TERRAFORM_BACKEND_PackageType PackageType = "TERRAFORM_BACKEND"
 )
