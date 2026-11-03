@@ -80,7 +80,7 @@ func (c *ScanClient) CreateInfrastructureScan(ctx context.Context, scope Scope, 
 		Tags:            req.Tags,
 		ScanType:        ScanTypeDiscoveryAgent,
 		DetectionMethod: req.DetectionMethod,
-		Source:          ScanSource{Infrastructure: source},
+		Source:          ScanSource{DiscoveryAgent: source},
 	})
 }
 
@@ -209,7 +209,7 @@ type discoveryAgent struct {
 	ParentUniqueID        string `json:"parentUniqueId"`
 }
 
-func (c *ScanClient) infrastructureSource(ctx context.Context, scope Scope, req InfrastructureScanRequest) (*InfrastructureScan, error) {
+func (c *ScanClient) infrastructureSource(ctx context.Context, scope Scope, req InfrastructureScanRequest) (*DiscoveryAgentScan, error) {
 	if req.InfrastructureID == "" || req.EnvironmentID == "" {
 		return nil, fmt.Errorf("infrastructure id and environment id are required")
 	}
@@ -260,12 +260,12 @@ func (c *ScanClient) getDiscoveryAgent(ctx context.Context, scope Scope, agentID
 	return agent, nil
 }
 
-func discoveryScanSource(agent discoveryAgent, environmentID string) *InfrastructureScan {
+func discoveryScanSource(agent discoveryAgent, environmentID string) *DiscoveryAgentScan {
 	environment := agent.EnvironmentIdentifier
 	if environment == "" {
 		environment = environmentID
 	}
-	return &InfrastructureScan{
+	return &DiscoveryAgentScan{
 		AgentIdentity:             agent.Identity,
 		EnvironmentIdentity:       environment,
 		EnvironmentParentUniqueID: agent.ParentUniqueID,

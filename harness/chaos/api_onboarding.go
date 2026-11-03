@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"regexp"
-	"strconv"
+	"sort"
 	"strings"
 	"time"
 )
@@ -18,7 +18,7 @@ var onboardingPollInterval = 5 * time.Second
 // It is not a field on the generated APIClient, so swagger regeneration does not have to know about it.
 type OnboardingClient struct {
 	client *APIClient
-	// PollInterval is how often CreateServiceOnboarding checks discovery. Zero uses 5 seconds.
+	// PollInterval is how often FinishServiceOnboarding checks discovery. Zero uses 5 seconds.
 	PollInterval time.Duration
 }
 
@@ -29,28 +29,41 @@ func NewOnboardingClient(client *APIClient) *OnboardingClient {
 
 // ServiceOnboardingRequest starts a manual onboarding session whose method is Service.
 // EnvironmentID and InfrastructureID are the existing environment and chaos infrastructure.
-// The create API also registers that chaos infrastructure. ServiceIDs are discovered
-// service ids. Leave ServiceIDs empty to onboard every service discovery finds.
+// The create API also registers that chaos infrastructure. Set ServiceID or ServiceName
+// for one discovered service. ServiceID is the Id shown under the service name, or the
+// discovery record id. ServiceName is the service name shown in the list. Name and
+// Identity override the values taken from that discovered service. Probes are existing
+// project probe ids to associate.
 type ServiceOnboardingRequest struct {
 	EnvironmentID    string
 	InfrastructureID string
-	ServiceIDs       []string
+	ServiceID        string
+	ServiceName      string
+	Name             string
+	Identity         string
+	Probes           []ServiceProbe
+}
+
+// ServiceProbe associates one project probe with the onboarded chaos service.
+// Inputs are optional runtime values keyed by input name.
+type ServiceProbe struct {
+	ProbeID string
+	Inputs  map[string]string
 }
 
 // ServiceOnboarding is the session the create and get calls return.
 type ServiceOnboarding struct {
-	OnboardingID        string   `json:"onboardingID"`
-	EnvironmentRef      string   `json:"environmentRef"`
-	InfrastructureRef   string   `json:"infrastructureRef"`
-	Mode                string   `json:"mode"`
-	ManualMethod        string   `json:"manualMethod"`
-	Status              string   `json:"status"`
-	DiscoveryStatus     string   `json:"-"`
-	AgentIdentity       string   `json:"-"`
-	ServiceStatus       string   `json:"-"`
-	OnboardedCount      int      `json:"-"`
-	OnboardedServiceIDs []string `json:"-"`
-	InstallCommand      string   `json:"-"`
+	OnboardingID      string `json:"onboardingID"`
+	EnvironmentRef    string `json:"environmentRef"`
+	InfrastructureRef string `json:"infrastructureRef"`
+	Mode              string `json:"mode"`
+	ManualMethod      string `json:"manualMethod"`
+	Status            string `json:"status"`
+	DiscoveryStatus   string `json:"-"`
+	AgentIdentity     string `json:"-"`
+	ServiceStatus     string `json:"-"`
+	InstallCommand    string `json:"-"`
+	ChaosServiceID    string `json:"-"`
 }
 
 type serviceOnboardingResponse struct {
@@ -65,19 +78,8 @@ type serviceOnboardingResponse struct {
 		SDAgentIdentity string `json:"sDAgentIdentity"`
 	} `json:"discoveredServiceStatus"`
 	OnboardingChaosServiceStatus struct {
-		Status            string `json:"status"`
-		ChaosServiceCount int    `json:"chaosServiceCount"`
+		Status string `json:"status"`
 	} `json:"onboardingChaosServiceStatus"`
-}
-
-type onboardServicesRequest struct {
-	ExternalServiceIDs []string `json:"externalServiceIds"`
-}
-
-// OnboardServicesResult is what the onboard-services call returns.
-type OnboardServicesResult struct {
-	OnboardedCount      int      `json:"onboardedCount"`
-	OnboardedServiceIDs []string `json:"onboardedServiceIds"`
 }
 
 type confirmDiscoveryResponse struct {
@@ -86,90 +88,51 @@ type confirmDiscoveryResponse struct {
 	DiscoveryCompleted bool `json:"discoveryCompleted"`
 }
 
-// CreateServiceOnboarding starts a Manual session with manualMethod Service, or resumes one
-// that already exists for the same infrastructure. It confirms discovery, onboards the
-// services, and confirms that step. The session status stays PENDING because the risk-scan step is left queued.
-func (c *OnboardingClient) CreateServiceOnboarding(ctx context.Context, scope Scope, req ServiceOnboardingRequest) (*ServiceOnboarding, *http.Response, error) {
-	opened, resp, err := c.OpenServiceOnboarding(ctx, scope, req)
-	if err != nil {
-		return opened, resp, err
-	}
-	return c.FinishServiceOnboarding(ctx, scope, opened, req.ServiceIDs)
-}
-
-// OpenServiceOnboarding returns the session and its infrastructure manifest without waiting for discovery.
-// A retry uses the session already created for this infrastructure instead of registering it again.
+// OpenServiceOnboarding registers a Manual session with method Service and returns its
+// infrastructure manifest. It does not look up an existing session; the caller does that.
 func (c *OnboardingClient) OpenServiceOnboarding(ctx context.Context, scope Scope, req ServiceOnboardingRequest) (*ServiceOnboarding, *http.Response, error) {
 	if req.EnvironmentID == "" || req.InfrastructureID == "" {
 		return nil, nil, fmt.Errorf("environment id and infrastructure id are required")
 	}
-	existing, resp, err := c.FindServiceOnboarding(ctx, scope, req.InfrastructureID)
+	opened, resp, err := c.createSession(ctx, scope, req)
 	if err != nil {
-		return nil, resp, err
-	}
-	if existing == nil {
-		existing, resp, err = c.createSession(ctx, scope, req)
-		if err != nil {
-			return existing, resp, err
-		}
+		return opened, resp, err
 	}
 	manifest, manifestErr := c.InfrastructureManifest(ctx, scope, req.InfrastructureID, req.EnvironmentID)
 	if manifestErr != nil {
-		return existing, resp, manifestErr
+		return opened, resp, manifestErr
 	}
-	existing.InstallCommand = manifest
-	return existing, resp, nil
+	opened.InstallCommand = manifest
+	return opened, resp, nil
 }
 
-// FinishServiceOnboarding confirms discovery, onboards services, and confirms the service step.
-func (c *OnboardingClient) FinishServiceOnboarding(ctx context.Context, scope Scope, current *ServiceOnboarding, serviceIDs []string) (*ServiceOnboarding, *http.Response, error) {
+// FinishServiceOnboarding confirms discovery and creates one chaos service for the
+// discovered service id. Probes on the request are associated with that service.
+// A session that already has ChaosServiceID is returned unchanged.
+func (c *OnboardingClient) FinishServiceOnboarding(ctx context.Context, scope Scope, current *ServiceOnboarding, req ServiceOnboardingRequest) (*ServiceOnboarding, *http.Response, error) {
 	if current == nil || current.OnboardingID == "" {
 		return current, nil, fmt.Errorf("onboarding id is required")
 	}
-	if current.ServiceStatus == "COMPLETED" {
-		return c.refreshOnboarded(ctx, scope, current)
+	if req.ServiceID == "" && req.ServiceName == "" {
+		return current, nil, fmt.Errorf("discovered service id or name is required")
+	}
+	if req.ServiceID != "" && req.ServiceName != "" {
+		return current, nil, fmt.Errorf("set discovered service id or name, not both")
+	}
+	if current.ChaosServiceID != "" {
+		return current, nil, nil
 	}
 	ready, waitResp, waitErr := c.waitForDiscovery(ctx, scope, current)
 	if waitErr != nil {
-		ready = current
-		if ready == nil {
-			return current, waitResp, waitErr
-		}
-		ready.InstallCommand = current.InstallCommand
-		return ready, waitResp, waitErr
+		return current, waitResp, waitErr
 	}
 	ready.InstallCommand = current.InstallCommand
-	out := ready
-	if len(serviceIDs) == 0 {
-		agentID := ready.AgentIdentity
-		if agentID == "" {
-			agentID = ready.InfrastructureRef
-		}
-		listed, listErr := c.DiscoveredServiceIDs(ctx, scope, agentID, environmentID(ready))
-		if listErr != nil {
-			return out, waitResp, listErr
-		}
-		if len(listed) == 0 {
-			return out, waitResp, fmt.Errorf("onboarding %s discovery completed with no services", out.OnboardingID)
-		}
-		serviceIDs = listed
+	created, createResp, createErr := c.createOnboardedService(ctx, scope, ready, req)
+	if createErr != nil {
+		return ready, createResp, createErr
 	}
-	if out.ServiceStatus != "COMPLETED" {
-		onboarded, onboardResp, onboardErr := c.OnboardServices(ctx, scope, out.OnboardingID, serviceIDs)
-		if onboardErr != nil {
-			return out, onboardResp, onboardErr
-		}
-		out.OnboardedCount = onboarded.OnboardedCount
-		out.OnboardedServiceIDs = onboarded.OnboardedServiceIDs
-		if confirmResp, confirmErr := c.ConfirmServiceOnboarding(ctx, scope, out.OnboardingID); confirmErr != nil {
-			return out, confirmResp, confirmErr
-		}
-	}
-	latest, getResp, getErr := c.refreshOnboarded(ctx, scope, out)
-	if getErr != nil {
-		return out, getResp, getErr
-	}
-	return latest, waitResp, nil
+	ready.ChaosServiceID = created.Identity
+	return ready, waitResp, nil
 }
 
 func (c *OnboardingClient) createSession(ctx context.Context, scope Scope, req ServiceOnboardingRequest) (*ServiceOnboarding, *http.Response, error) {
@@ -235,41 +198,6 @@ func (c *OnboardingClient) Get(ctx context.Context, scope Scope, onboardingID st
 	return raw.session(), resp, nil
 }
 
-// OnboardServices registers the selected discovered services on a manual session.
-// Discovery must already be completed. externalServiceIds are the discovered service external ids.
-func (c *OnboardingClient) OnboardServices(ctx context.Context, scope Scope, onboardingID string, serviceIDs []string) (*OnboardServicesResult, *http.Response, error) {
-	if onboardingID == "" {
-		return nil, nil, fmt.Errorf("onboarding id is required")
-	}
-	if len(serviceIDs) == 0 {
-		return nil, nil, fmt.Errorf("at least one service id is required")
-	}
-	api, err := c.api()
-	if err != nil {
-		return nil, nil, err
-	}
-	var out OnboardServicesResult
-	path := "/rest/v2/onboarding-onboard-services/" + url.PathEscape(onboardingID)
-	resp, err := api.doChaosJSON(ctx, http.MethodPost, path, scopeQuery(scope), &onboardServicesRequest{ExternalServiceIDs: serviceIDs}, &out)
-	if err != nil {
-		return nil, resp, err
-	}
-	return &out, resp, nil
-}
-
-// ConfirmServiceOnboarding marks the service onboarding step completed.
-func (c *OnboardingClient) ConfirmServiceOnboarding(ctx context.Context, scope Scope, onboardingID string) (*http.Response, error) {
-	if onboardingID == "" {
-		return nil, fmt.Errorf("onboarding id is required")
-	}
-	api, err := c.api()
-	if err != nil {
-		return nil, err
-	}
-	path := "/rest/v2/onboarding-confirm-service-onboarding/" + url.PathEscape(onboardingID)
-	return api.doChaosJSON(ctx, http.MethodPost, path, scopeQuery(scope), nil, nil)
-}
-
 // ConfirmDiscovery asks the manual session to mark discovery completed once the agent is installed.
 func (c *OnboardingClient) ConfirmDiscovery(ctx context.Context, scope Scope, onboardingID string) (*confirmDiscoveryResponse, *http.Response, error) {
 	api, err := c.api()
@@ -295,40 +223,6 @@ func (c *OnboardingClient) Delete(ctx context.Context, scope Scope, onboardingID
 		return nil, err
 	}
 	return api.doChaosJSON(ctx, http.MethodDelete, onboardingPath(onboardingID), scopeQuery(scope), nil, nil)
-}
-
-// OnboardedServiceIDs reads the services this session onboarded.
-func (c *OnboardingClient) OnboardedServiceIDs(ctx context.Context, scope Scope, onboardingID string) ([]string, error) {
-	api, err := c.api()
-	if err != nil {
-		return nil, err
-	}
-	var ids []string
-	for page := 0; ; page++ {
-		q := scopeQuery(scope)
-		q.Set("page", strconv.Itoa(page))
-		q.Set("limit", "100")
-		var body struct {
-			Services []struct {
-				ExternalServiceID string `json:"externalServiceId"`
-			} `json:"services"`
-			Pagination struct {
-				TotalPages int `json:"totalPages"`
-			} `json:"pagination"`
-		}
-		if _, err = api.doChaosJSON(ctx, http.MethodGet, onboardingPath(onboardingID)+"/services", q, nil, &body); err != nil {
-			return nil, err
-		}
-		for _, service := range body.Services {
-			if service.ExternalServiceID != "" {
-				ids = append(ids, service.ExternalServiceID)
-			}
-		}
-		if page+1 >= body.Pagination.TotalPages || len(body.Services) == 0 {
-			break
-		}
-	}
-	return ids, nil
 }
 
 // InfrastructureManifest reads the chaos infrastructure and returns the install manifest.
@@ -407,67 +301,6 @@ func (c *OnboardingClient) waitForDiscovery(ctx context.Context, scope Scope, cu
 	}
 }
 
-func (c *OnboardingClient) refreshOnboarded(ctx context.Context, scope Scope, current *ServiceOnboarding) (*ServiceOnboarding, *http.Response, error) {
-	latest, resp, err := c.Get(ctx, scope, current.OnboardingID)
-	if err != nil {
-		return current, resp, err
-	}
-	latest.InstallCommand = current.InstallCommand
-	if ids, listErr := c.OnboardedServiceIDs(ctx, scope, current.OnboardingID); listErr == nil {
-		latest.OnboardedServiceIDs = ids
-		if len(ids) > 0 {
-			latest.OnboardedCount = len(ids)
-		}
-	} else if len(current.OnboardedServiceIDs) > 0 {
-		latest.OnboardedServiceIDs = current.OnboardedServiceIDs
-	}
-	if latest.OnboardedCount == 0 {
-		latest.OnboardedCount = current.OnboardedCount
-	}
-	return latest, resp, nil
-}
-
-func environmentID(session *ServiceOnboarding) string {
-	if session == nil {
-		return ""
-	}
-	return session.EnvironmentRef
-}
-
-// DiscoveredServiceIDs lists the ids discovery recorded for an agent. Service onboarding sends these as externalServiceIds.
-func (c *OnboardingClient) DiscoveredServiceIDs(ctx context.Context, scope Scope, agentID, environmentID string) ([]string, error) {
-	api, err := c.api()
-	if err != nil {
-		return nil, err
-	}
-	base, err := serviceDiscoveryAgentsURL(api.cfg.BasePath)
-	if err != nil {
-		return nil, err
-	}
-	q := scopeQuery(scope)
-	q.Set("environmentIdentifier", environmentID)
-	q.Set("all", "true")
-	q.Set("page", "0")
-	q.Set("limit", "0")
-	var body struct {
-		Items []struct {
-			ID      string `json:"id"`
-			Removed bool   `json:"removed"`
-		} `json:"items"`
-	}
-	path := base + "/" + url.PathEscape(agentID) + "/discoveredservices"
-	if _, err = api.doAbsoluteJSON(ctx, http.MethodGet, path, q, nil, &body); err != nil {
-		return nil, fmt.Errorf("list discovered services for agent %s: %w", agentID, err)
-	}
-	ids := make([]string, 0, len(body.Items))
-	for _, item := range body.Items {
-		if item.ID != "" && !item.Removed {
-			ids = append(ids, item.ID)
-		}
-	}
-	return ids, nil
-}
-
 func (c *OnboardingClient) interval() time.Duration {
 	if c != nil && c.PollInterval > 0 {
 		return c.PollInterval
@@ -493,10 +326,394 @@ func (raw serviceOnboardingResponse) session() *ServiceOnboarding {
 		DiscoveryStatus:   raw.DiscoveredServiceStatus.Status,
 		AgentIdentity:     raw.DiscoveredServiceStatus.SDAgentIdentity,
 		ServiceStatus:     raw.OnboardingChaosServiceStatus.Status,
-		OnboardedCount:    raw.OnboardingChaosServiceStatus.ChaosServiceCount,
 	}
 }
 
 func onboardingPath(id string) string {
 	return "/rest/v2/onboarding/" + url.PathEscape(id)
+}
+
+// ChaosService is one chaos service created from a discovered service.
+type ChaosService struct {
+	Identity           string
+	Name               string
+	AgentID            string
+	EnvironmentID      string
+	InfrastructureID   string
+	ExternalServiceID  string
+	InfrastructureType string
+	Probes             []ServiceProbe
+}
+
+// ChaosServiceRequest is the body for creating or updating one chaos service.
+// Name and AgentID can be left empty on update; they are read from the current service.
+type ChaosServiceRequest struct {
+	Identity          string
+	Name              string
+	AgentID           string
+	EnvironmentID     string
+	InfrastructureID  string
+	ExternalServiceID string
+	Probes            []ServiceProbe
+}
+
+// CreateChaosService creates one chaos service on an existing onboarding session.
+// It does not register another session.
+func (c *OnboardingClient) CreateChaosService(ctx context.Context, scope Scope, onboardingID string, req ServiceOnboardingRequest) (*ChaosService, *http.Response, error) {
+	if onboardingID == "" {
+		return nil, nil, fmt.Errorf("onboarding id is required")
+	}
+	if req.ServiceID == "" && req.ServiceName == "" {
+		return nil, nil, fmt.Errorf("discovered service id or name is required")
+	}
+	if req.ServiceID != "" && req.ServiceName != "" {
+		return nil, nil, fmt.Errorf("set discovered service id or name, not both")
+	}
+	session, resp, err := c.Get(ctx, scope, onboardingID)
+	if err != nil {
+		return nil, resp, err
+	}
+	if session.DiscoveryStatus != "COMPLETED" {
+		return nil, resp, fmt.Errorf("discovery for onboarding %s is %s", onboardingID, session.DiscoveryStatus)
+	}
+	if req.InfrastructureID != "" && session.InfrastructureRef != "" && req.InfrastructureID != session.InfrastructureRef {
+		return nil, resp, fmt.Errorf("onboarding %s is for infrastructure %s", onboardingID, session.InfrastructureRef)
+	}
+	return c.createOnboardedService(ctx, scope, session, req)
+}
+
+func (c *OnboardingClient) createOnboardedService(ctx context.Context, scope Scope, session *ServiceOnboarding, req ServiceOnboardingRequest) (*ChaosService, *http.Response, error) {
+	discoveryAgent := session.AgentIdentity
+	if discoveryAgent == "" {
+		discoveryAgent = session.InfrastructureRef
+	}
+	listed, err := c.listDiscoveredServices(ctx, scope, discoveryAgent, session.EnvironmentRef)
+	if err != nil {
+		return nil, nil, err
+	}
+	found, err := matchDiscoveredService(listed, req)
+	if err != nil {
+		return nil, nil, err
+	}
+	name := req.Name
+	if name == "" {
+		name = found.Name
+	}
+	if name == "" {
+		name = req.ServiceID
+	}
+	if name == "" {
+		name = req.ServiceName
+	}
+	identity := req.Identity
+	if identity == "" {
+		namespace := ""
+		switch {
+		case found.Spec.Kubernetes != nil && found.Spec.Kubernetes.Namespace != "":
+			namespace = found.Spec.Kubernetes.Namespace
+		case found.Spec.KubernetesWorkload != nil && found.Spec.KubernetesWorkload.Namespace != "":
+			namespace = found.Spec.KubernetesWorkload.Namespace
+		case found.Spec.KubernetesService != nil:
+			namespace = found.Spec.KubernetesService.Namespace
+		}
+		identity = chaosServiceIdentity(name, found.Type, namespace, discoveryAgent)
+	}
+	// A Kubernetes service uses the infrastructure id for both fields, matching the dialog.
+	// Linux and Windows services use the agent id the dialog uses for that infrastructure.
+	infrastructureID := session.InfrastructureRef
+	infrastructureType := "KubernetesV2"
+	agentID := infrastructureID
+	switch found.Type {
+	case "LinuxVM", "LinuxVMProcess":
+		infrastructureType = "Linux"
+		agentID = "custom-discovery-agent"
+	case "WindowsVM", "WindowsVMProcess":
+		infrastructureType = "Windows"
+		agentID = "custom-discovery-agent"
+	}
+	body := chaosServiceBody{
+		Identity:           identity,
+		Name:               name,
+		AgentID:            agentID,
+		EnvironmentID:      session.EnvironmentRef,
+		InfrastructureID:   infrastructureID,
+		InfrastructureType: infrastructureType,
+		ExternalServiceID:  found.ID,
+		OnboardingID:       session.OnboardingID,
+		Probes:             encodeProbes(req.Probes),
+	}
+	return c.writeChaosService(ctx, scope, http.MethodPost, "/v3/chaos-services", body)
+}
+
+// GetChaosService reads one chaos service by identity.
+func (c *OnboardingClient) GetChaosService(ctx context.Context, scope Scope, identity string) (*ChaosService, *http.Response, error) {
+	if identity == "" {
+		return nil, nil, fmt.Errorf("chaos service identity is required")
+	}
+	api, err := c.api()
+	if err != nil {
+		return nil, nil, err
+	}
+	var raw chaosServiceResponse
+	resp, err := api.doChaosJSON(ctx, http.MethodGet, "/v3/chaos-services/"+url.PathEscape(identity), scopeQuery(scope), nil, &raw)
+	if err != nil {
+		return nil, resp, err
+	}
+	got := raw.service()
+	return &got, resp, nil
+}
+
+// UpdateChaosService replaces the probe associations on an existing chaos service.
+func (c *OnboardingClient) UpdateChaosService(ctx context.Context, scope Scope, req ChaosServiceRequest) (*ChaosService, *http.Response, error) {
+	if req.Identity == "" {
+		return nil, nil, fmt.Errorf("chaos service identity is required")
+	}
+	// The update API leaves infrastructureType unchanged when it is omitted, and
+	// replaces it when it is sent. Always send the type already stored so a probe
+	// update cannot clear Linux or Windows.
+	current, resp, err := c.GetChaosService(ctx, scope, req.Identity)
+	if err != nil {
+		return nil, resp, err
+	}
+	if req.Name == "" {
+		req.Name = current.Name
+	}
+	if req.AgentID == "" {
+		req.AgentID = current.AgentID
+	}
+	if req.ExternalServiceID == "" {
+		req.ExternalServiceID = current.ExternalServiceID
+	}
+	if req.EnvironmentID == "" {
+		req.EnvironmentID = current.EnvironmentID
+	}
+	if req.InfrastructureID == "" {
+		req.InfrastructureID = current.InfrastructureID
+	}
+	body := chaosServiceBody{
+		Identity:           req.Identity,
+		Name:               req.Name,
+		AgentID:            req.AgentID,
+		EnvironmentID:      req.EnvironmentID,
+		InfrastructureID:   req.InfrastructureID,
+		InfrastructureType: current.InfrastructureType,
+		ExternalServiceID:  req.ExternalServiceID,
+		Probes:             encodeProbes(req.Probes),
+	}
+	return c.writeChaosService(ctx, scope, http.MethodPut, "/v3/chaos-services/"+url.PathEscape(req.Identity), body)
+}
+
+// DeleteChaosService removes one chaos service. A missing service is not an error.
+func (c *OnboardingClient) DeleteChaosService(ctx context.Context, scope Scope, identity string) (*http.Response, error) {
+	if identity == "" {
+		return nil, nil
+	}
+	api, err := c.api()
+	if err != nil {
+		return nil, err
+	}
+	resp, err := api.doChaosJSON(ctx, http.MethodDelete, "/v3/chaos-services/"+url.PathEscape(identity), scopeQuery(scope), nil, nil)
+	if err != nil && ((resp != nil && resp.StatusCode == http.StatusNotFound) || OnboardingGone(err)) {
+		return resp, nil
+	}
+	return resp, err
+}
+
+func (c *OnboardingClient) writeChaosService(ctx context.Context, scope Scope, method, path string, body chaosServiceBody) (*ChaosService, *http.Response, error) {
+	api, err := c.api()
+	if err != nil {
+		return nil, nil, err
+	}
+	var raw chaosServiceResponse
+	resp, err := api.doChaosJSON(ctx, method, path, scopeQuery(scope), body, &raw)
+	if err != nil {
+		return nil, resp, err
+	}
+	got := raw.service()
+	if got.Identity == "" {
+		got.Identity = body.Identity
+	}
+	return &got, resp, nil
+}
+
+func (c *OnboardingClient) listDiscoveredServices(ctx context.Context, scope Scope, agentID, environmentID string) ([]discoveredService, error) {
+	api, err := c.api()
+	if err != nil {
+		return nil, err
+	}
+	base, err := serviceDiscoveryAgentsURL(api.cfg.BasePath)
+	if err != nil {
+		return nil, err
+	}
+	q := scopeQuery(scope)
+	q.Set("environmentIdentifier", environmentID)
+	q.Set("all", "true")
+	q.Set("page", "0")
+	q.Set("limit", "0")
+	var body struct {
+		Items []discoveredService `json:"items"`
+	}
+	path := base + "/" + url.PathEscape(agentID) + "/discoveredservices"
+	if _, err = api.doAbsoluteJSON(ctx, http.MethodGet, path, q, nil, &body); err != nil {
+		return nil, fmt.Errorf("list discovered services for agent %s: %w", agentID, err)
+	}
+	return body.Items, nil
+}
+
+// matchDiscoveredService accepts the Id shown in the UI, the discovery record id,
+// or the service name. The create API is called with the record id.
+func matchDiscoveredService(listed []discoveredService, req ServiceOnboardingRequest) (discoveredService, error) {
+	if req.ServiceName != "" {
+		var matches []discoveredService
+		for _, item := range listed {
+			if !item.Removed && item.Name == req.ServiceName {
+				matches = append(matches, item)
+			}
+		}
+		switch len(matches) {
+		case 1:
+			return matches[0], nil
+		case 0:
+			return discoveredService{}, fmt.Errorf("discovered service %s was not found", req.ServiceName)
+		default:
+			labels := make([]string, 0, len(matches))
+			for _, item := range matches {
+				if item.Identity != "" {
+					labels = append(labels, item.Identity)
+				} else {
+					labels = append(labels, item.ID)
+				}
+			}
+			return discoveredService{}, fmt.Errorf("discovered service name %q matches %s; set discovered_service_id", req.ServiceName, strings.Join(labels, ", "))
+		}
+	}
+
+	var found discoveredService
+	var recordIDMatch *discoveredService
+	for i := range listed {
+		item := listed[i]
+		if item.Removed {
+			continue
+		}
+		if item.Identity != "" && item.Identity == req.ServiceID {
+			return item, nil
+		}
+		if item.ID == req.ServiceID {
+			recordIDMatch = &listed[i]
+		}
+	}
+	if recordIDMatch != nil {
+		found = *recordIDMatch
+	}
+	if found.ID == "" {
+		return discoveredService{}, fmt.Errorf("discovered service %s was not found", req.ServiceID)
+	}
+	return found, nil
+}
+
+type discoveredService struct {
+	ID            string `json:"id"`
+	Identity      string `json:"identity"`
+	Name          string `json:"name"`
+	Type          string `json:"type"`
+	AgentIdentity string `json:"agentIdentity"`
+	Removed       bool   `json:"removed"`
+	Spec          struct {
+		Kubernetes         *discoveredNamespace `json:"kubernetes"`
+		KubernetesWorkload *discoveredNamespace `json:"kubernetesWorkload"`
+		KubernetesService  *discoveredNamespace `json:"kubernetesService"`
+	} `json:"spec"`
+}
+
+type discoveredNamespace struct {
+	Namespace string `json:"namespace"`
+}
+
+type chaosServiceBody struct {
+	Identity           string              `json:"identity"`
+	Name               string              `json:"name"`
+	AgentID            string              `json:"agentId"`
+	EnvironmentID      string              `json:"environmentId"`
+	InfrastructureID   string              `json:"infrastructureId"`
+	InfrastructureType string              `json:"infrastructureType,omitempty"`
+	ExternalServiceID  string              `json:"externalServiceId"`
+	OnboardingID       string              `json:"onboardingId,omitempty"`
+	Probes             []chaosServiceProbe `json:"probes"`
+}
+
+type chaosServiceProbe struct {
+	ProbeID string            `json:"probeId"`
+	Inputs  []chaosProbeInput `json:"inputs,omitempty"`
+}
+
+type chaosProbeInput struct {
+	Name  string `json:"name"`
+	Value string `json:"value"`
+}
+
+type chaosServiceResponse struct {
+	Identity           string              `json:"identity"`
+	Name               string              `json:"name"`
+	AgentID            string              `json:"agentId"`
+	EnvironmentID      string              `json:"environmentId"`
+	InfrastructureID   string              `json:"infrastructureId"`
+	InfrastructureType string              `json:"infrastructureType"`
+	ExternalServiceID  string              `json:"externalServiceId"`
+	Probes             []chaosServiceProbe `json:"probes"`
+}
+
+func (raw chaosServiceResponse) service() ChaosService {
+	probes := make([]ServiceProbe, 0, len(raw.Probes))
+	for _, probe := range raw.Probes {
+		item := ServiceProbe{ProbeID: probe.ProbeID}
+		if len(probe.Inputs) > 0 {
+			item.Inputs = map[string]string{}
+			for _, input := range probe.Inputs {
+				item.Inputs[input.Name] = input.Value
+			}
+		}
+		probes = append(probes, item)
+	}
+	return ChaosService{
+		Identity:           raw.Identity,
+		Name:               raw.Name,
+		AgentID:            raw.AgentID,
+		EnvironmentID:      raw.EnvironmentID,
+		InfrastructureID:   raw.InfrastructureID,
+		InfrastructureType: raw.InfrastructureType,
+		ExternalServiceID:  raw.ExternalServiceID,
+		Probes:             probes,
+	}
+}
+
+func encodeProbes(probes []ServiceProbe) []chaosServiceProbe {
+	out := make([]chaosServiceProbe, 0, len(probes))
+	for _, probe := range probes {
+		item := chaosServiceProbe{ProbeID: probe.ProbeID}
+		if len(probe.Inputs) > 0 {
+			names := make([]string, 0, len(probe.Inputs))
+			for name := range probe.Inputs {
+				names = append(names, name)
+			}
+			sort.Strings(names)
+			item.Inputs = make([]chaosProbeInput, 0, len(names))
+			for _, name := range names {
+				item.Inputs = append(item.Inputs, chaosProbeInput{Name: name, Value: probe.Inputs[name]})
+			}
+		}
+		out = append(out, item)
+	}
+	return out
+}
+
+// chaosServiceIdentity matches the onboarding API: trim, lowercase, and remove
+// spaces from the name. The namespace is included only for a Kubernetes service
+// that has one. The agent id is the discovery agent.
+func chaosServiceIdentity(name, serviceType, namespace, agentID string) string {
+	name = strings.ToLower(strings.ReplaceAll(strings.TrimSpace(name), " ", ""))
+	kubernetes := serviceType == "Kubernetes" || serviceType == "KubernetesService" || serviceType == "KubernetesWorkload" || serviceType == "KubernetesNode"
+	if kubernetes && namespace != "" {
+		return fmt.Sprintf("%s-%s-%s", name, namespace, agentID)
+	}
+	return fmt.Sprintf("%s-%s", name, agentID)
 }

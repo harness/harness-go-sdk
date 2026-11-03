@@ -147,7 +147,7 @@ func TestScanClientPipelineAndInfrastructure(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if got.ScanType != ScanTypeDiscoveryAgent || got.Source.Infrastructure == nil || got.Source.Infrastructure.AgentIdentity != "agent-1" {
+	if got.ScanType != ScanTypeDiscoveryAgent || got.Source.DiscoveryAgent == nil || got.Source.DiscoveryAgent.AgentIdentity != "agent-1" {
 		t.Fatalf("get = %+v", got)
 	}
 	if got.CreatedBy.DisplayName() != "ada" || got.Summary == nil || got.Summary.TotalRisks != 2 {

@@ -118,11 +118,12 @@ type Scan struct {
 	UpdatedBy            UserRef               `json:"updatedBy,omitempty"`
 }
 
-// ScanSource is the origin of a scan. Exactly one of Pipeline, Infrastructure,
-// or ProbeExecution is set for a valid create request.
+// ScanSource is the origin of a scan. Exactly one of Pipeline, DiscoveryAgent,
+// or ProbeExecution is set for a valid create request. CodeRepository is decoded
+// when the API returns one; the public scan resource does not create it.
 type ScanSource struct {
 	Pipeline       *PipelineScan       `json:"pipeline,omitempty"`
-	Infrastructure *InfrastructureScan `json:"discoveryAgent,omitempty"`
+	DiscoveryAgent *DiscoveryAgentScan `json:"discoveryAgent,omitempty"`
 	ProbeExecution *ProbeExecutionScan `json:"probeExecution,omitempty"`
 	CodeRepository *CodeRepositoryScan `json:"codeRepository,omitempty"`
 }
@@ -138,9 +139,22 @@ type CodeRepositoryScan struct {
 }
 
 // LinkedService is a service attached to a code-repository scan.
+// The name and link fields are filled when a scan is read. Create does not send them.
 type LinkedService struct {
-	Module               string `json:"module,omitempty"`
-	ChaosServiceIdentity string `json:"chaosServiceIdentity,omitempty"`
+	Module                    string                   `json:"module,omitempty"`
+	ChaosServiceIdentity      string                   `json:"chaosServiceIdentity,omitempty"`
+	ChaosServiceName          string                   `json:"chaosServiceName,omitempty"`
+	MatchedByRepository       bool                     `json:"matchedByRepository,omitempty"`
+	LinkedToDiscoveredService *bool                    `json:"linkedToDiscoveredService,omitempty"`
+	LinkedDiscoveredService   *LinkedDiscoveredService `json:"linkedDiscoveredService,omitempty"`
+}
+
+// LinkedDiscoveredService is the discovered service linked to a code-repository chaos service.
+type LinkedDiscoveredService struct {
+	Identity            string `json:"identity,omitempty"`
+	EnvironmentIdentity string `json:"environmentIdentity,omitempty"`
+	AgentIdentity       string `json:"agentIdentity,omitempty"`
+	ExternalID          string `json:"externalID,omitempty"`
 }
 
 // RecommendationCounts is the recommendation rollup on a scan.
@@ -172,9 +186,9 @@ type PipelineInfrastructure struct {
 	ChaosSupported         bool   `json:"chaosSupported"`
 }
 
-// InfrastructureScan identifies the discovery agent whose Kubernetes infrastructure is scanned.
+// DiscoveryAgentScan identifies the discovery agent whose Kubernetes infrastructure is scanned.
 // The API field name is discoveryAgent; the product surface calls this an infrastructure scan.
-type InfrastructureScan struct {
+type DiscoveryAgentScan struct {
 	AgentIdentity             string `json:"agentIdentity"`
 	EnvironmentIdentity       string `json:"environmentIdentity"`
 	EnvironmentParentUniqueID string `json:"environmentParentUniqueId,omitempty"`

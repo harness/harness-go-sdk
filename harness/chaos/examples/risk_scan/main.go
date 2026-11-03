@@ -140,8 +140,8 @@ func main() {
 		method = "AI (API default)"
 	}
 	fmt.Printf("created: identity=%s status=%s scanType=%s detectionMethod=%s\n", scan.Identity, scan.Status, scan.ScanType, method)
-	if scan.Source.Infrastructure != nil {
-		fmt.Printf("discovery agent=%s environment=%s\n", scan.Source.Infrastructure.AgentIdentity, scan.Source.Infrastructure.EnvironmentIdentity)
+	if scan.Source.DiscoveryAgent != nil {
+		fmt.Printf("discovery agent=%s environment=%s\n", scan.Source.DiscoveryAgent.AgentIdentity, scan.Source.DiscoveryAgent.EnvironmentIdentity)
 	}
 
 	fmt.Println("\n=== Polling scan status ===")
