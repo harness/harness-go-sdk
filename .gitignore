@@ -33,6 +33,9 @@ website/vendor
 # Environment Variables
 .env
 
+# Local swagger/codegen snapshots. Not part of the SDK.
+harness/chaos_backup*/
+
 # VS Code
 .vscode/
 
