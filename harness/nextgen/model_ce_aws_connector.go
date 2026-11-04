@@ -11,8 +11,9 @@ package nextgen
 
 // This contains the cost explorer of AWS connector
 type CeAwsConnector struct {
-	CrossAccountAccess *CrossAccountAccess `json:"crossAccountAccess"`
+	CrossAccountAccess *CrossAccountAccess `json:"crossAccountAccess,omitempty"`
 	CurAttributes      *AwsCurAttributes   `json:"curAttributes,omitempty"`
 	AwsAccountId       string              `json:"awsAccountId,omitempty"`
 	FeaturesEnabled    []string            `json:"featuresEnabled,omitempty"`
+	Credential         *CeAwsCredential    `json:"credential,omitempty"`
 }
