@@ -1,0 +1,8 @@
+./common.go
+./convert.go
+./count.go
+./doc.go
+./format.go
+./manipulate.go
+./stringbuilder.go
+./translate.go
