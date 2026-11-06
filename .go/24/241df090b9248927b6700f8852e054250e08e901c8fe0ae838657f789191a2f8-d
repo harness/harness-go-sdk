@@ -1,0 +1,15 @@
+./api_keys.go
+./attributes.go
+./client.go
+./configuration.go
+./doc.go
+./environments.go
+./flag_sets.go
+./large_segments.go
+./rule_based_segments.go
+./segments.go
+./splits.go
+./tags.go
+./traffic_types.go
+./transport.go
+./workspaces.go
