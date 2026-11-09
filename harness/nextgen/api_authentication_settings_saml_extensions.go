@@ -53,8 +53,10 @@ type SamlSettingsRequest struct {
 
 // executeSamlRequest performs an HTTP call against the SAML endpoints of
 // /ng/api/authentication-settings and decodes the response into out.
-// When metadata is non-nil, the request is sent as multipart/form-data with the
-// metadata as the "file" part and the request fields as form fields.
+// When metadata or req is non-nil, the request is sent as multipart/form-data:
+// the metadata (when non-nil) as the "file" part and the request fields as form
+// fields. Sending the form fields without the file part is supported by the
+// update endpoint, which keeps the metadata already stored for the account.
 func (a *AuthenticationSettingsApiService) executeSamlRequest(ctx context.Context, method string, path string, accountQueryParam string, accountId string, metadata []byte, req *SamlSettingsRequest, out interface{}) (*http.Response, error) {
 	localVarPath := a.client.cfg.BasePath + path
 
@@ -67,13 +69,15 @@ func (a *AuthenticationSettingsApiService) executeSamlRequest(ctx context.Contex
 	var localVarFileName string
 	var localVarFileBytes []byte
 
-	if metadata != nil {
+	if metadata != nil || req != nil {
 		localVarHttpContentType := selectHeaderContentType([]string{"multipart/form-data"})
 		if localVarHttpContentType != "" {
 			localVarHeaderParams["Content-Type"] = localVarHttpContentType
 		}
-		localVarFileName = "metadata.xml"
-		localVarFileBytes = metadata
+		if metadata != nil {
+			localVarFileName = "metadata.xml"
+			localVarFileBytes = metadata
+		}
 
 		if req != nil {
 			if req.DisplayName != "" {
@@ -180,9 +184,10 @@ func (a *AuthenticationSettingsApiService) executeSamlRequest(ctx context.Contex
 		err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.error = err.Error()
-			newErr.model = v
 			return localVarHttpResponse, newErr
 		}
+		newErr.model = v
+		return localVarHttpResponse, newErr
 	}
 	return localVarHttpResponse, newErr
 }
@@ -223,7 +228,9 @@ AuthenticationSettingsApiService Update the SAML SSO configuration with the give
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param accountId Account Identifier for the Entity.
   - @param samlSSOId Identifier of the SAML SSO configuration to update.
-  - @param metadata SAML IdP metadata XML, sent as the multipart "file" part.
+  - @param metadata SAML IdP metadata XML, sent as the multipart "file" part. May be
+    empty, in which case no file part is sent and the backend keeps the metadata
+    already stored for the SAML configuration.
   - @param req Optional form fields of the SAML configuration.
 
 @return RestResponseSsoConfig
@@ -231,9 +238,9 @@ AuthenticationSettingsApiService Update the SAML SSO configuration with the give
 func (a *AuthenticationSettingsApiService) UpdateSamlSettings(ctx context.Context, accountId string, samlSSOId string, metadata []byte, req *SamlSettingsRequest) (RestResponseSsoConfig, *http.Response, error) {
 	var localVarReturnValue RestResponseSsoConfig
 	if len(metadata) == 0 {
-		return localVarReturnValue, nil, fmt.Errorf("metadata must not be empty")
+		metadata = nil
 	}
-	httpResp, err := a.executeSamlRequest(ctx, http.MethodPut, "/ng/api/authentication-settings/saml-metadata-upload/"+samlSSOId, "accountId", accountId, metadata, req, &localVarReturnValue)
+	httpResp, err := a.executeSamlRequest(ctx, http.MethodPut, "/ng/api/authentication-settings/saml-metadata-upload/"+samlSSOId, "accountIdentifier", accountId, metadata, req, &localVarReturnValue)
 	return localVarReturnValue, httpResp, err
 }
 
