@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**AgentServiceForServerList**](AgentsApi.md#AgentServiceForServerList) | **Get** /gitops/api/v1/agents | 
 [**AgentServiceForServerRegenerateCredentials**](AgentsApi.md#AgentServiceForServerRegenerateCredentials) | **Post** /gitops/api/v1/agents/{identifier}/credentials | Deprecated: no scope params, use WithScope
 [**AgentServiceForServerRegenerateCredentialsWithScope**](AgentsApi.md#AgentServiceForServerRegenerateCredentialsWithScope) | **Post** /gitops/api/v1/agents/{identifier}/credentials | Regenerate credentials with account/org/project scope
+[**AgentServiceForServerSetPrimaryNode**](AgentsApi.md#AgentServiceForServerSetPrimaryNode) | **Patch** /gitops/api/v1/agents/{agentIdentifier}/primaryNode | Set primary disaster recovery node.
 [**AgentServiceForServerUnique**](AgentsApi.md#AgentServiceForServerUnique) | **Get** /gitops/api/v1/agents/{identifier}/unique | 
 [**AgentServiceForServerUpdate**](AgentsApi.md#AgentServiceForServerUpdate) | **Put** /gitops/api/v1/agents/{agent.identifier} | 
 
@@ -79,6 +80,9 @@ Name | Type | Description  | Notes
  **connectedStatus** | **optional.String**|  | [default to CONNECTED_STATUS_UNSET]
  **healthStatus** | **optional.String**|  | [default to HEALTH_STATUS_UNSET]
  **withCredentials** | **optional.Bool**| Applicable when trying to retrieve an agent. Set to true to include the credentials for the agent in the response. (Private key may not be included in response if agent is already connected to harness). NOTE: Setting this to true requires the user to have edit permissions on Agent. | 
+ **drIdentifier** | **optional.String**|  | 
+ **includeSecondary** | **optional.Bool**|  | 
+ **drType** | **optional.String**|  | [default to UNKNOWN_TYPE]
 
 ### Return type
 
@@ -126,6 +130,9 @@ Name | Type | Description  | Notes
  **pageIndex** | **optional.Int32**|  | 
  **scope** | **optional.String**|  | [default to AGENT_SCOPE_UNSET]
  **withCredentials** | **optional.Bool**| Applicable when trying to retrieve an agent. Set to true to include the credentials for the agent in the response. (Private key may not be included in response if agent is already connected to harness). NOTE: Setting this to true requires the user to have edit permissions on Agent. |
+ **drIdentifier** | **optional.String**|  | 
+ **includeSecondary** | **optional.Bool**|  | 
+ **drType** | **optional.String**|  | [default to UNKNOWN_TYPE]
 
 ### Return type
 
@@ -328,6 +335,9 @@ Name | Type | Description  | Notes
  **connectedStatus** | **optional.String**|  | [default to CONNECTED_STATUS_UNSET]
  **healthStatus** | **optional.String**|  | [default to HEALTH_STATUS_UNSET]
  **withCredentials** | **optional.Bool**| Applicable when trying to retrieve an agent. Set to true to include the credentials for the agent in the response. (Private key may not be included in response if agent is already connected to harness). NOTE: Setting this to true requires the user to have edit permissions on Agent. | 
+ **drIdentifier** | **optional.String**|  | 
+ **includeSecondary** | **optional.Bool**|  | 
+ **drType** | **optional.String**|  | [default to UNKNOWN_TYPE]
 
 ### Return type
 
@@ -496,6 +506,35 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **AgentServiceForServerSetPrimaryNode**
+> V1Agent AgentServiceForServerSetPrimaryNode(ctx, body, agentIdentifier)
+
+
+Set primary disaster recovery node.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**V1AgentSetPrimaryNodeRequest**](V1AgentSetPrimaryNodeRequest.md)|  | 
+  **agentIdentifier** | **string**| Agent identifier for entity. | 
+
+### Return type
+
+[**V1Agent**](v1Agent.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **AgentServiceForServerUnique**
 > V1UniqueMessage AgentServiceForServerUnique(ctx, identifier, accountIdentifier, optional)
 
@@ -534,6 +573,9 @@ Name | Type | Description  | Notes
  **connectedStatus** | **optional.String**|  | [default to CONNECTED_STATUS_UNSET]
  **healthStatus** | **optional.String**|  | [default to HEALTH_STATUS_UNSET]
  **withCredentials** | **optional.Bool**| Applicable when trying to retrieve an agent. Set to true to include the credentials for the agent in the response. (Private key may not be included in response if agent is already connected to harness). NOTE: Setting this to true requires the user to have edit permissions on Agent. | 
+ **drIdentifier** | **optional.String**|  | 
+ **includeSecondary** | **optional.Bool**|  | 
+ **drType** | **optional.String**|  | [default to UNKNOWN_TYPE]
 
 ### Return type
 

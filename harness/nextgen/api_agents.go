@@ -167,6 +167,9 @@ func (a *AgentsApiService) AgentServiceForServerCreate(ctx context.Context, body
 	  * @param "PageSize" (optional.Int32) -
 	  * @param "PageIndex" (optional.Int32) -
 	  * @param "Scope" (optional.String) -
+	  * @param "DrIdentifier" (optional.String) -
+	  * @param "IncludeSecondary" (optional.Bool) -
+	  * @param "DrType" (optional.String) -
  @return V1Agent
 */
 
@@ -181,6 +184,9 @@ type AgentsApiAgentServiceForServerDeleteOpts struct {
 	PageSize          optional.Int32
 	PageIndex         optional.Int32
 	Scope             optional.String
+	DrIdentifier      optional.String
+	IncludeSecondary  optional.Bool
+	DrType            optional.String
 }
 
 func (a *AgentsApiService) AgentServiceForServerDelete(ctx context.Context, identifier string, localVarOptionals *AgentsApiAgentServiceForServerDeleteOpts) (V1Agent, *http.Response, error) {
@@ -230,6 +236,15 @@ func (a *AgentsApiService) AgentServiceForServerDelete(ctx context.Context, iden
 	}
 	if localVarOptionals != nil && localVarOptionals.Scope.IsSet() {
 		localVarQueryParams.Add("scope", parameterToString(localVarOptionals.Scope.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.DrIdentifier.IsSet() {
+		localVarQueryParams.Add("drIdentifier", parameterToString(localVarOptionals.DrIdentifier.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.IncludeSecondary.IsSet() {
+		localVarQueryParams.Add("includeSecondary", parameterToString(localVarOptionals.IncludeSecondary.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.DrType.IsSet() {
+		localVarQueryParams.Add("drType", parameterToString(localVarOptionals.DrType.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -343,6 +358,9 @@ func (a *AgentsApiService) AgentServiceForServerDelete(ctx context.Context, iden
 	  * @param "PageIndex" (optional.Int32) -
 	  * @param "Scope" (optional.String) -
 	  * @param "WithCredentials" (optional.Bool) -  Applicable when trying to retrieve an agent. Set to true to include the credentials for the agent in the response. (Private key may not be included in response if agent is already connected to harness). NOTE: Setting this to true requires the user to have edit permissions on Agent.
+	  * @param "DrIdentifier" (optional.String) -
+	  * @param "IncludeSecondary" (optional.Bool) -
+	  * @param "DrType" (optional.String) -
  @return V1Agent
 */
 
@@ -357,6 +375,9 @@ type AgentsApiAgentServiceForServerGetOpts struct {
 	PageIndex         optional.Int32
 	Scope             optional.String
 	WithCredentials   optional.Bool
+	DrIdentifier      optional.String
+	IncludeSecondary  optional.Bool
+	DrType            optional.String
 }
 
 func (a *AgentsApiService) AgentServiceForServerGet(ctx context.Context, identifier string, accountIdentifier string, localVarOptionals *AgentsApiAgentServiceForServerGetOpts) (V1Agent, *http.Response, error) {
@@ -407,6 +428,15 @@ func (a *AgentsApiService) AgentServiceForServerGet(ctx context.Context, identif
 	}
 	if localVarOptionals != nil && localVarOptionals.WithCredentials.IsSet() {
 		localVarQueryParams.Add("withCredentials", parameterToString(localVarOptionals.WithCredentials.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.DrIdentifier.IsSet() {
+		localVarQueryParams.Add("drIdentifier", parameterToString(localVarOptionals.DrIdentifier.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.IncludeSecondary.IsSet() {
+		localVarQueryParams.Add("includeSecondary", parameterToString(localVarOptionals.IncludeSecondary.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.DrType.IsSet() {
+		localVarQueryParams.Add("drType", parameterToString(localVarOptionals.DrType.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -1112,6 +1142,9 @@ func (a *AgentsApiService) AgentServiceForServerPostDeployYaml(ctx context.Conte
 	  * @param "Scope" (optional.String) -
 	  * @param "MetadataOnly" (optional.Bool) -
 	  * @param "IgnoreScope" (optional.Bool) -
+	  * @param "DrIdentifier" (optional.String) -
+	  * @param "IncludeSecondary" (optional.Bool) -
+	  * @param "DrType" (optional.String) -
  @return V1AgentList
 */
 
@@ -1127,6 +1160,9 @@ type AgentsApiAgentServiceForServerListOpts struct {
 	Scope             optional.String
 	MetadataOnly      optional.Bool
 	IgnoreScope       optional.Bool
+	DrIdentifier      optional.String
+	IncludeSecondary  optional.Bool
+	DrType            optional.String
 }
 
 func (a *AgentsApiService) AgentServiceForServerList(ctx context.Context, accountIdentifier string, type_ string, localVarOptionals *AgentsApiAgentServiceForServerListOpts) (V1AgentList, *http.Response, error) {
@@ -1180,6 +1216,15 @@ func (a *AgentsApiService) AgentServiceForServerList(ctx context.Context, accoun
 	}
 	if localVarOptionals != nil && localVarOptionals.IgnoreScope.IsSet() {
 		localVarQueryParams.Add("ignoreScope", parameterToString(localVarOptionals.IgnoreScope.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.DrIdentifier.IsSet() {
+		localVarQueryParams.Add("drIdentifier", parameterToString(localVarOptionals.DrIdentifier.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.IncludeSecondary.IsSet() {
+		localVarQueryParams.Add("includeSecondary", parameterToString(localVarOptionals.IncludeSecondary.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.DrType.IsSet() {
+		localVarQueryParams.Add("drType", parameterToString(localVarOptionals.DrType.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
@@ -1627,6 +1672,120 @@ func (a *AgentsApiService) AgentServiceForServerRegenerateCredentialsWithScope(c
 }
 
 /*
+AgentsApiService
+Set primary disaster recovery node.
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param body
+  - @param agentIdentifier Agent identifier for entity.
+
+@return V1Agent
+*/
+func (a *AgentsApiService) AgentServiceForServerSetPrimaryNode(ctx context.Context, body V1AgentSetPrimaryNodeRequest, agentIdentifier string) (V1Agent, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Patch")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue V1Agent
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/gitops/api/v1/agents/{agentIdentifier}/primaryNode"
+	localVarPath = strings.Replace(localVarPath, "{"+"agentIdentifier"+"}", fmt.Sprintf("%v", agentIdentifier), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	localVarQueryParams.Add("routingId", parameterToString(body.AccountIdentifier, ""))
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	// body params
+	localVarPostBody = &body
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+		if localVarHttpResponse.StatusCode == 200 {
+			var v V1Agent
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 0 {
+			var v GatewayruntimeError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
  AgentsApiService
  Unique returns unique agents.
   * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1642,6 +1801,9 @@ func (a *AgentsApiService) AgentServiceForServerRegenerateCredentialsWithScope(c
 	  * @param "PageSize" (optional.Int32) -
 	  * @param "PageIndex" (optional.Int32) -
 	  * @param "Scope" (optional.String) -
+	  * @param "DrIdentifier" (optional.String) -
+	  * @param "IncludeSecondary" (optional.Bool) -
+	  * @param "DrType" (optional.String) -
  @return V1UniqueMessage
 */
 
@@ -1655,6 +1817,9 @@ type AgentsApiAgentServiceForServerUniqueOpts struct {
 	PageSize          optional.Int32
 	PageIndex         optional.Int32
 	Scope             optional.String
+	DrIdentifier      optional.String
+	IncludeSecondary  optional.Bool
+	DrType            optional.String
 }
 
 func (a *AgentsApiService) AgentServiceForServerUnique(ctx context.Context, identifier string, accountIdentifier string, localVarOptionals *AgentsApiAgentServiceForServerUniqueOpts) (V1UniqueMessage, *http.Response, error) {
@@ -1702,6 +1867,15 @@ func (a *AgentsApiService) AgentServiceForServerUnique(ctx context.Context, iden
 	}
 	if localVarOptionals != nil && localVarOptionals.Scope.IsSet() {
 		localVarQueryParams.Add("scope", parameterToString(localVarOptionals.Scope.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.DrIdentifier.IsSet() {
+		localVarQueryParams.Add("drIdentifier", parameterToString(localVarOptionals.DrIdentifier.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.IncludeSecondary.IsSet() {
+		localVarQueryParams.Add("includeSecondary", parameterToString(localVarOptionals.IncludeSecondary.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.DrType.IsSet() {
+		localVarQueryParams.Add("drType", parameterToString(localVarOptionals.DrType.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}

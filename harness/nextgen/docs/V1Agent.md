@@ -21,6 +21,8 @@ Name | Type | Description | Notes
 **Scope** | [***V1AgentScope**](v1AgentScope.md) |  | [optional] [default to null]
 **Operator** | [***V1AgentOperator**](v1AgentOperator.md) |  | [optional] [default to null]
 **PrefixedIdentifier** | **string** | The scoped identifier of the agent. This is a combination of the account, org, project, and agent identifiers. | [optional] [default to null]
+**DisasterRecoveryNode** | [***V1DisasterRecoveryNode**](v1DisasterRecoveryNode.md) |  | [optional] [default to null]
+**Uuid** | **string** | Server-generated UUID for this agent. | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
