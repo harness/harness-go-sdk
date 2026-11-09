@@ -33,6 +33,9 @@ website/vendor
 # Environment Variables
 .env
 
+# Local swagger/codegen snapshots. Not part of the SDK.
+harness/chaos_backup*/
+
 # VS Code
 .vscode/
 
@@ -42,3 +45,7 @@ website/vendor
 example.tf
 terraform.tfplan
 terraform.tfstate
+
+# Coverage reports
+coverage.out
+*.cov

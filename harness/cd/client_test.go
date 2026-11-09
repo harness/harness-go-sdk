@@ -1,11 +1,26 @@
 package cd
 
 import (
+	"flag"
+	"os"
 	"sync"
 	"testing"
 
+	"github.com/harness/harness-go-sdk/harness/helpers"
 	"github.com/stretchr/testify/require"
 )
+
+func TestMain(m *testing.M) {
+	flag.Parse()
+	if testing.Short() && helpers.EnvVars.ApiKey.Get() == "" {
+		// When running unit tests in short mode without live FirstGen CD credentials,
+		// filter to unit tests so credential-free tests (TestClientRequire*) run and contribute coverage.
+		if f := flag.Lookup("test.run"); f == nil || f.Value.String() == "" {
+			flag.Set("test.run", "^TestClient")
+		}
+	}
+	os.Exit(m.Run())
+}
 
 var configureClient sync.Once
 var apiClient *ApiClient
@@ -34,6 +49,7 @@ func GetUnauthorizedClient() *ApiClient {
 
 func TestClientRequireApiKey_Config(t *testing.T) {
 	cfg := DefaultConfig()
+	cfg.AccountId = "ACCOUNT_ID"
 	cfg.APIKey = ""
 
 	_, err := NewClient(cfg)
@@ -44,13 +60,14 @@ func TestClientRequireApiKey_Config(t *testing.T) {
 	cfg.APIKey = "APIKEY"
 	c, err := NewClient(cfg)
 
-	require.Equal(t, c.Configuration.APIKey, cfg.APIKey)
 	require.NoError(t, err)
+	require.Equal(t, c.Configuration.APIKey, cfg.APIKey)
 }
 
 func TestClientRequireAccountId_Config(t *testing.T) {
 	cfg := DefaultConfig()
 	cfg.AccountId = ""
+	cfg.APIKey = "APIKEY"
 
 	_, err := NewClient(cfg)
 
@@ -60,6 +77,6 @@ func TestClientRequireAccountId_Config(t *testing.T) {
 	cfg.AccountId = "ACCOUNT_ID"
 	c, err := NewClient(cfg)
 
-	require.Equal(t, c.Configuration.AccountId, cfg.AccountId)
 	require.NoError(t, err)
+	require.Equal(t, c.Configuration.AccountId, cfg.AccountId)
 }

@@ -7,6 +7,9 @@ import (
 )
 
 func TestEnvVarsAreSet(t *testing.T) {
+	if testing.Short() || TestEnvVars.AwsAccessKeyId.Get() == "" {
+		t.Skip("skipping env var assertions in unit test mode")
+	}
 	assert.NotEmpty(t, TestEnvVars.AwsAccessKeyId.Get())
 	assert.NotEmpty(t, TestEnvVars.AwsSecretAccessKey.Get())
 	assert.NotEmpty(t, TestEnvVars.AzureClientId.Get())

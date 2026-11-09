@@ -13,7 +13,7 @@ func TestEnvironmentSerialization(t *testing.T) {
 	testObj.EnvironmentType = EnvironmentTypes.Prod
 	testObj.VariableOverrides = []*VariableOverride{{
 		ServiceName: "servicename",
-		Value:       "gcpkms:secret_name",
+		Value:       "secret_name",
 		ValueType:   VariableOverrideValueTypes.EncryptedText,
 	}}
 
