@@ -1,0 +1,1813 @@
+# Trimmed from the Load Test Manager swagger by harness/loadtest/scripts/copy_swagger.go.
+# basePath is / because the source paths already start with /v1. Swagger codegen joins basePath and the path.
+# The gateway prefix /loadTest/manager/api is not part of this spec. The provider adds it.
+# ApiKeyAuth is the X-API-Key header the chaos auth middleware accepts. The source spec documents the UI bearer token.
+swagger: "2.0"
+info:
+    contact:
+        email: support@example.com
+        name: API Support
+    description: |-
+        RESTful API for managing distributed load tests with Locust integration.
+
+        ## Key Features
+        - **Automated Load Test Orchestration**: Create and manage load tests programmatically
+        - **Script Versioning**: Full revision history with rollback capability
+        - **Real-time Metrics**: Collect metrics every 10 seconds during test execution
+        - **Distributed Testing**: Support for remote VM and multi-cluster execution
+        - **Automatic Plugin Injection**: Seamless Locust integration without script modification
+
+        ## Authentication
+        - **User-facing endpoints**: Bearer token authentication via Authorization header
+        - **Internal callbacks**: X-Locust-Token header for Locust integration
+    license:
+        name: Apache 2.0
+        url: https://www.apache.org/licenses/LICENSE-2.0.html
+    title: Load Test Management Platform API
+    version: 1.0.0
+basePath: /
+schemes:
+    - https
+    - http
+consumes:
+    - application/json
+produces:
+    - application/json
+securityDefinitions:
+    ApiKeyAuth:
+        type: apiKey
+        in: header
+        name: X-API-Key
+        description: Harness API key. Load Test Manager accepts the chaos auth middleware header.
+security:
+    - ApiKeyAuth: []
+paths:
+    /v1/load-tests:
+        get:
+            description: |-
+                Returns a paginated list of all load test configurations with optional filtering and sorting.
+                Items leave out the script: scriptContent, yaml and toolConfig's script.content. Get a load test by its identity for its script.
+            operationId: listLoadTests
+            parameters:
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - in: query
+                  name: environmentIdentifier
+                  type: string
+                - default: 15
+                  in: query
+                  maximum: 100
+                  minimum: 1
+                  name: limit
+                  type: integer
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - default: 0
+                  in: query
+                  name: page
+                  type: integer
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: name that you want to search
+                  in: query
+                  name: search
+                  type: string
+                - description: if sort order ascending or not
+                  in: query
+                  name: sortAscending
+                  type: boolean
+                - description: field  name that you want to sort
+                  enum:
+                    - name
+                    - lastUpdated
+                    - experimentName
+                    - lastExecuted
+                    - createdAt
+                  in: query
+                  name: sortField
+                  type: string
+                - collectionFormat: csv
+                  in: query
+                  items:
+                    type: string
+                  name: tags
+                  type: array
+                - enum:
+                    - Locust
+                    - JMeter
+                    - K6
+                  in: query
+                  name: toolType
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Paginated list of load tests
+                    schema:
+                        $ref: '#/definitions/internal_api.PaginatedLoadTestListResponse'
+                "400":
+                    description: Invalid query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to list load tests
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: List all load tests
+            tags:
+                - LoadTests
+        post:
+            consumes:
+                - application/json
+            description: Creates a new load test configuration with an initial script revision. The Harness plugin is automatically injected into the provided script.
+            operationId: createLoadTest
+            parameters:
+                - description: Load test configuration with base64 encoded script
+                  in: body
+                  name: request
+                  required: true
+                  schema:
+                    $ref: '#/definitions/internal_api.CreateLoadTestRequest'
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "201":
+                    description: Load test created successfully
+                    schema:
+                        $ref: '#/definitions/internal_api.LoadTestResponse'
+                "400":
+                    description: Invalid request body, or the script failed validation (errorCode E2022)
+                    schema:
+                        $ref: '#/definitions/internal_api.ScriptValidationErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to create load test
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Create a new load test
+            tags:
+                - LoadTests
+    /v1/load-tests/{identity}:
+        delete:
+            description: Deletes a load test configuration and all its associated data
+            operationId: deleteLoadTest
+            parameters:
+                - description: Load Test identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Load test deleted successfully
+                    schema:
+                        $ref: '#/definitions/internal_api.SuccessResponse'
+                "400":
+                    description: Invalid query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to delete load test
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Delete a load test
+            tags:
+                - LoadTests
+        get:
+            description: Retrieves a specific load test configuration by its ID, including the user's original script (without plugin) and recent runs
+            operationId: getLoadTest
+            parameters:
+                - description: Load Test identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Load test details with script content and recent runs
+                    schema:
+                        $ref: '#/definitions/internal_api.LoadTestResponse'
+                "400":
+                    description: Invalid query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Load test not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Get load test by ID
+            tags:
+                - LoadTests
+        put:
+            consumes:
+                - application/json
+            description: Updates an existing load test configuration (excluding script)
+            operationId: updateLoadTest
+            parameters:
+                - description: Load Test identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: Updated load test configuration
+                  in: body
+                  name: request
+                  required: true
+                  schema:
+                    $ref: '#/definitions/internal_api.UpdateLoadTestRequest'
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Load test updated successfully
+                    schema:
+                        $ref: '#/definitions/internal_api.LoadTestResponse'
+                "400":
+                    description: Invalid request body or query parameters, or the script failed validation (errorCode E2022)
+                    schema:
+                        $ref: '#/definitions/internal_api.ScriptValidationErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Load test not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to update load test
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Update load test configuration
+            tags:
+                - LoadTests
+    /v1/load-tests/{identity}/runs:
+        get:
+            description: Returns a paginated list of load test runs for a specific load test with optional filtering and sorting.
+            operationId: listLoadTestRuns
+            parameters:
+                - description: Load Test identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - in: query
+                  name: environmentIdentifier
+                  type: string
+                - default: 15
+                  in: query
+                  maximum: 100
+                  minimum: 1
+                  name: limit
+                  type: integer
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - default: 0
+                  in: query
+                  name: page
+                  type: integer
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: name that you want to search
+                  in: query
+                  name: search
+                  type: string
+                - description: if sort order ascending or not
+                  in: query
+                  name: sortAscending
+                  type: boolean
+                - description: field  name that you want to sort
+                  enum:
+                    - name
+                    - lastUpdated
+                    - experimentName
+                    - lastExecuted
+                    - createdAt
+                  in: query
+                  name: sortField
+                  type: string
+                - in: query
+                  name: status
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Paginated list of load test runs
+                    schema:
+                        $ref: '#/definitions/internal_api.PaginatedLoadTestRunListResponse'
+                "400":
+                    description: Invalid query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Load test not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to list load test runs
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: List load test runs
+            tags:
+                - Runs
+        post:
+            consumes:
+                - application/json
+            description: Creates and starts a new load test run using the latest script revision
+            operationId: createLoadTestRun
+            parameters:
+                - description: Load Test identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: Test run configuration
+                  in: body
+                  name: request
+                  required: true
+                  schema:
+                    $ref: '#/definitions/internal_api.CreateLoadTestRunRequest'
+            produces:
+                - application/json
+            responses:
+                "201":
+                    description: Load test run started successfully
+                    schema:
+                        $ref: '#/definitions/internal_api.LoadTestRunResponse'
+                "400":
+                    description: Invalid request or validation error, or the script failed validation (errorCode E2022)
+                    schema:
+                        $ref: '#/definitions/internal_api.ScriptValidationErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Load test not found or no script available
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to start load test run
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Start a new load test run
+            tags:
+                - Runs
+    /v1/load-tests/{identity}/variables:
+        get:
+            description: Returns all variable definitions for a load test, split into well-known load-tool inputs (toolInputs) and custom script env vars (scriptInputs). For REFERENCE-imported load tests, the variables are resolved from the pinned template (the response also carries templateIdentity / templateRevision). For LOCAL or direct load tests, the response is the load test's own variables. Used by the UI to display variable configuration and prompt for runtime inputs before starting a run.
+            operationId: getVariables
+            parameters:
+                - description: Load Test identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Variables for the load test (or TemplateVariablesResponse for REFERENCE imports)
+                    schema:
+                        $ref: '#/definitions/internal_api.VariablesResponse'
+                "400":
+                    description: Invalid query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Load test not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to fetch referenced template
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Get all variables for a load test
+            tags:
+                - LoadTests
+    /v1/runs/{identity}:
+        get:
+            description: Retrieves details and current status of a specific load test run
+            operationId: getLoadTestRun
+            parameters:
+                - description: Load Test Run identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - in: query
+                  name: loadTestIdentity
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Load test run details
+                    schema:
+                        $ref: '#/definitions/internal_api.LoadTestRunResponse'
+                "400":
+                    description: Invalid query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Load test run not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Get load test run details
+            tags:
+                - Runs
+    /v1/runs/{identity}/stop:
+        post:
+            description: Stops a currently running load test run
+            operationId: stopLoadTestRun
+            parameters:
+                - description: Load Test Run identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - in: query
+                  name: loadTestIdentity
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Load test run stopped successfully
+                    schema:
+                        $ref: '#/definitions/internal_api.SuccessResponse'
+                "400":
+                    description: Can only stop running tests
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Load test run not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to stop load test run
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Stop a running load test
+            tags:
+                - Runs
+definitions:
+    Load-manager-cli_internal_domain.CleanupPolicy:
+        enum:
+            - delete
+            - retain
+        type: string
+        x-enum-varnames:
+            - CleanupPolicyDelete
+            - CleanupPolicyRetain
+    Load-manager-cli_internal_domain.ResourceList:
+        additionalProperties:
+            type: string
+        type: object
+    Load-manager-cli_internal_domain.ResourceRequirements:
+        properties:
+            limits:
+                $ref: '#/definitions/Load-manager-cli_internal_domain.ResourceList'
+            requests:
+                $ref: '#/definitions/Load-manager-cli_internal_domain.ResourceList'
+        type: object
+    internal_api.AIFindingResponse:
+        properties:
+            evidence:
+                description: Evidence is the number trail from the run's own metrics that backs the finding.
+                type: string
+            recommendation:
+                description: Recommendation is the fix for this risk, so a reader never has to work out which advice addresses which problem. Present on critical and warning findings.
+                type: string
+            risk:
+                description: Risk is what this costs the reader if left alone.
+                type: string
+            severity:
+                enum:
+                    - critical
+                    - warning
+                    - info
+                type: string
+            title:
+                description: Title is what happened, in one line, carrying the number that makes it matter.
+                type: string
+        type: object
+    internal_api.AIInsightsResponse:
+        properties:
+            caveats:
+                items:
+                    type: string
+                type: array
+            error:
+                description: Error explains a Failed or Skipped status in the reader's language.
+                type: string
+            findings:
+                items:
+                    $ref: '#/definitions/internal_api.AIFindingResponse'
+                type: array
+            generatedAt:
+                type: string
+            headline:
+                type: string
+            model:
+                type: string
+            recommendations:
+                items:
+                    type: string
+                type: array
+            status:
+                enum:
+                    - Pending
+                    - Generating
+                    - Ready
+                    - Failed
+                    - Skipped
+                type: string
+            summary:
+                type: string
+        type: object
+    internal_api.CheckStatResponse:
+        properties:
+            fails:
+                type: integer
+            name:
+                type: string
+            passes:
+                type: integer
+        type: object
+    internal_api.CreateLoadTestRequest:
+        properties:
+            cleanupPolicy:
+                $ref: '#/definitions/Load-manager-cli_internal_domain.CleanupPolicy'
+            description:
+                type: string
+            environmentIdentifier:
+                type: string
+            identity:
+                type: string
+            infraIdentifier:
+                description: |-
+                    InfraIdentifier and EnvironmentIdentifier name the user's own infrastructure. Required unless
+                    ManagedInfra is set, in which case Harness provides the infrastructure and naming one is an
+                    error rather than a preference — see Validate.
+                type: string
+            infraType:
+                type: string
+            isAIUsed:
+                type: boolean
+            managedInfra:
+                description: |-
+                    ManagedInfra asks Harness to provide the infrastructure for every run of this load test, rather
+                    than running on infrastructure the user has already connected. Kubernetes only.
+                type: boolean
+            maxDurationSec:
+                description: |-
+                    MaxDurationSec is a per-LT hard cap on any run. It's an operator
+                    guardrail, not a user-tunable, so it stays as a typed field rather
+                    than living inside inputs.
+                type: integer
+            name:
+                type: string
+            resources:
+                $ref: '#/definitions/Load-manager-cli_internal_domain.ResourceRequirements'
+            scriptContent:
+                description: Base64 encoded script (required when scriptSource=inline)
+                type: string
+            scriptSource:
+                description: '"inline" (default) or "image"'
+                type: string
+            serviceReferences:
+                description: |-
+                    ServiceReferences links the load test to one or more chaos services
+                    (chaosService identity strings). When the CHAOS_RT_SERVICES_ENABLED
+                    feature flag is on, at least one is required; when off, the field is
+                    ignored and stored empty.
+                items:
+                    type: string
+                type: array
+            skipScriptValidation:
+                description: |-
+                    SkipScriptValidation saves the script without static validation, for this
+                    request only. The script size limit, the script-body expression check and
+                    the ZIP workspace safety checks still apply.
+                type: boolean
+            tags:
+                items:
+                    type: string
+                type: array
+            targetType:
+                description: Target infrastructure (linux or kubernetes)
+                type: string
+            toolConfig:
+                additionalProperties: true
+                description: |-
+                    ToolConfig carries tool-specific structured configuration. For
+                    toolType=K6 it holds the k6 spec (mode, uiDefinition, customImage,
+                    options, hostUrl, iterations, metricTags, thresholds); validated via
+                    domain.ParseK6ToolConfig; for toolType=Locust it holds the locust spec (mode, scriptContent, customImage, envVars, thresholds) under a `locust` key, validated via domain.ParseLocustToolConfig. Thresholds use the same shape for JMeter, Locust, and k6: metric, stat, operator, value, abortOnFail.
+                type: object
+            toolType:
+                $ref: '#/definitions/internal_api.LoadTestToolType'
+            useSampleTest:
+                type: boolean
+            variables:
+                items:
+                    $ref: '#/definitions/template.Variable'
+                type: array
+            yaml:
+                description: Optional YAML — fields are extracted and merged
+                type: string
+        required:
+            - identity
+            - name
+            - toolType
+        type: object
+    internal_api.CreateLoadTestRunRequest:
+        properties:
+            identity:
+                type: string
+            isAIUsed:
+                type: boolean
+            name:
+                type: string
+            runtimeValues:
+                additionalProperties: true
+                description: RuntimeValues is an optional, path-keyed bag of runtime overrides for toolConfig "<+input>" leaves (see domain.ToolConfigRuntimePaths for settable paths); when omitted, the stored toolConfig is snapshotted verbatim, and secret env-var values are not settable here. A value may itself be a Harness expression (e.g. "<+loadTest.variables.thr>"), which is evaluated before the toolConfig is rendered; an unresolvable reference fails the request.
+                type: object
+            values:
+                items:
+                    $ref: '#/definitions/template.InputMinimum'
+                type: array
+        required:
+            - identity
+        type: object
+    internal_api.EndpointAssertions:
+        properties:
+            max_response_time_ms:
+                description: Maximum response time in milliseconds
+                type: integer
+            status_code:
+                description: Expected HTTP status code
+                type: integer
+        type: object
+    internal_api.EndpointExtract:
+        properties:
+            json_path:
+                description: JSON path to extract value
+                type: string
+            variable_name:
+                description: Variable name to store extracted value
+                type: string
+        required:
+            - json_path
+            - variable_name
+        type: object
+    internal_api.ErrorResponse:
+        properties:
+            error:
+                type: string
+            message:
+                type: string
+        type: object
+    internal_api.InfraPreparationResponse:
+        properties:
+            errorCode:
+                type: string
+            errorMessage:
+                type: string
+            readyAt:
+                type: string
+            requestedAt:
+                type: string
+            stage:
+                type: string
+            state:
+                enum:
+                    - PROVISIONING
+                    - READY
+                    - TEARING_DOWN
+                    - FAILED
+                type: string
+        type: object
+    internal_api.LoadTestConfig:
+        properties:
+            host:
+                description: Base host URL
+                type: string
+            max_wait:
+                description: Max wait time between requests (seconds)
+                type: integer
+            min_wait:
+                description: Min wait time between requests (seconds)
+                type: integer
+        required:
+            - host
+        type: object
+    internal_api.LoadTestEndpoint:
+        properties:
+            assertions:
+                $ref: '#/definitions/internal_api.EndpointAssertions'
+            body:
+                additionalProperties: true
+                description: Request body (for POST, PUT, etc.)
+                type: object
+            extract:
+                $ref: '#/definitions/internal_api.EndpointExtract'
+            headers:
+                additionalProperties:
+                    type: string
+                description: HTTP headers
+                type: object
+            method:
+                description: HTTP method (GET, POST, etc.)
+                type: string
+            name:
+                description: Display name for the endpoint
+                type: string
+            path:
+                description: URL path
+                type: string
+            query_params:
+                additionalProperties:
+                    type: string
+                description: Query parameters
+                type: object
+        required:
+            - method
+            - name
+            - path
+        type: object
+    internal_api.LoadTestJsonSpec:
+        properties:
+            config:
+                $ref: '#/definitions/internal_api.LoadTestConfig'
+            endpoints:
+                items:
+                    $ref: '#/definitions/internal_api.LoadTestEndpoint'
+                minItems: 1
+                type: array
+        required:
+            - config
+            - endpoints
+        type: object
+    internal_api.LoadTestResponse:
+        properties:
+            accountIdentifier:
+                type: string
+            aiSummary:
+                type: string
+            cleanupPolicy:
+                $ref: '#/definitions/Load-manager-cli_internal_domain.CleanupPolicy'
+            createdAt:
+                type: string
+            createdBy:
+                type: string
+            createdByUserDetails:
+                $ref: '#/definitions/internal_api.UserDetailsResponse'
+            description:
+                type: string
+            durationSeconds:
+                type: string
+            environmentIdentifier:
+                type: string
+            generateAISummary:
+                type: boolean
+            identity:
+                type: string
+            importType:
+                type: string
+            infraIdentifier:
+                type: string
+            infraType:
+                type: string
+            isAIUsed:
+                type: boolean
+            isApiGenerated:
+                type: boolean
+            isSampleTest:
+                type: boolean
+            jsonScript:
+                type: string
+            jsonSpecData:
+                $ref: '#/definitions/internal_api.LoadTestJsonSpec'
+            lastExecuted:
+                type: string
+            latestRevisionIdentifier:
+                type: string
+            managedInfra:
+                description: |-
+                    ManagedInfra says Harness provides the infrastructure for every run of this load test, which is
+                    why infraIdentifier and environmentIdentifier above are empty on one.
+                type: boolean
+            maxDurationSec:
+                type: integer
+            name:
+                type: string
+            organizationIdentifier:
+                type: string
+            parentUniqueId:
+                type: string
+            projectIdentifier:
+                type: string
+            recentRuns:
+                items:
+                    $ref: '#/definitions/internal_api.RecentRunResponse'
+                type: array
+            resources:
+                $ref: '#/definitions/Load-manager-cli_internal_domain.ResourceRequirements'
+            scriptContent:
+                type: string
+            scriptSource:
+                type: string
+            serviceReferences:
+                items:
+                    type: string
+                type: array
+            tags:
+                items:
+                    type: string
+                type: array
+            targetType:
+                type: string
+            targetUsers:
+                description: |-
+                    TargetUsers / DurationSeconds are denormalised display projections of
+                    the ToolConfig tunables, formatted as strings.
+                type: string
+            templateReference:
+                $ref: '#/definitions/internal_api.TemplateReferenceResponse'
+            templateUpdateAvailable:
+                type: boolean
+            toolConfig:
+                additionalProperties: true
+                description: |-
+                    Custom variables are no longer surfaced as a top-level field: they live at
+                    toolConfig.<tool>.variables (echoed via ToolConfig below), the canonical location
+                    since the variables migration. The dedicated GET .../variables endpoint still returns
+                    them as a flat list for clients that want just the variables.
+
+                    ToolConfig surfaces the tool-specific structured config (k6 spec).
+                type: object
+            toolLanguage:
+                type: string
+            toolType:
+                $ref: '#/definitions/internal_api.LoadTestToolType'
+            uniqueId:
+                type: string
+            updatedAt:
+                type: string
+            updatedBy:
+                type: string
+            updatedByUserDetails:
+                $ref: '#/definitions/internal_api.UserDetailsResponse'
+            yaml:
+                type: string
+        type: object
+    internal_api.LoadTestRunResponse:
+        properties:
+            accountIdentifier:
+                type: string
+            action:
+                type: string
+            aiInsights:
+                $ref: '#/definitions/internal_api.AIInsightsResponse'
+            createdAt:
+                type: string
+            createdBy:
+                type: string
+            createdByUserDetails:
+                $ref: '#/definitions/internal_api.UserDetailsResponse'
+            ddciLogStreamId:
+                type: string
+            delegateLogUid:
+                type: string
+            durationSeconds:
+                type: integer
+            environmentIdentifier:
+                type: string
+            errorCode:
+                type: string
+            errorMessage:
+                type: string
+            errors:
+                items:
+                    $ref: '#/definitions/internal_api.RunErrorResponse'
+                type: array
+            finishedAt:
+                type: string
+            identity:
+                type: string
+            infraIdentifier:
+                type: string
+            infraPreparation:
+                $ref: '#/definitions/internal_api.InfraPreparationResponse'
+            isAIUsed:
+                type: boolean
+            lastMetrics:
+                $ref: '#/definitions/internal_api.MetricSnapshotResponse'
+            loadArgs:
+                example: tags=smoke,fast;headless;csv=results
+                type: string
+            loadTestIdentity:
+                type: string
+            loadTestName:
+                type: string
+            logStreamId:
+                type: string
+            managedInfra:
+                description: |-
+                    ManagedInfra says the run uses Harness-provided infrastructure, in which case
+                    environmentIdentifier and infraIdentifier stay empty until preparation succeeds and
+                    infraPreparation carries the progress to show while the run waits in PreparingInfra.
+                type: boolean
+            name:
+                type: string
+            notifyId:
+                type: string
+            organizationIdentifier:
+                type: string
+            parentUniqueId:
+                type: string
+            projectIdentifier:
+                type: string
+            rampUpTimeSec:
+                type: integer
+            resolvedExpressionValues:
+                additionalProperties: true
+                type: object
+            resolvedRuntimeValues:
+                additionalProperties: true
+                type: object
+            resolvedVariables:
+                additionalProperties: true
+                type: object
+            runSequence:
+                type: integer
+            scriptEntrypoint:
+                type: string
+            scriptImage:
+                type: string
+            scriptImagePullSecret:
+                type: string
+            scriptSource:
+                type: string
+            spawnRate:
+                type: number
+            startedAt:
+                type: string
+            status:
+                $ref: '#/definitions/internal_api.LoadTestRunStatus'
+            targetType:
+                type: string
+            targetUsers:
+                type: integer
+            thresholdResults:
+                description: Same verdicts the summary API serves; poll that endpoint to track a live run.
+                items:
+                    $ref: '#/definitions/internal_api.ThresholdResultResponse'
+                type: array
+            thresholdVerdict:
+                enum:
+                    - pass
+                    - fail
+                    - not_evaluated
+                type: string
+            toolLanguage:
+                type: string
+            toolType:
+                $ref: '#/definitions/internal_api.LoadTestToolType'
+            uniqueId:
+                type: string
+            updatedAt:
+                type: string
+            updatedBy:
+                type: string
+            updatedByUserDetails:
+                $ref: '#/definitions/internal_api.UserDetailsResponse'
+            workerCount:
+                description: 'K8s only: 0 = standalone, N>0 = distributed'
+                type: integer
+        type: object
+    internal_api.LoadTestRunStatus:
+        enum:
+            - PreparingInfra
+            - Pending
+            - Running
+            - Stopping
+            - Stopped
+            - Finished
+            - Failed
+        type: string
+        x-enum-comments:
+            LoadTestRunStatusFinished: Auto-completed
+            LoadTestRunStatusPreparingInfra: Managed infra being provisioned
+            LoadTestRunStatusStopped: Manual stop
+        x-enum-varnames:
+            - LoadTestRunStatusPreparingInfra
+            - LoadTestRunStatusPending
+            - LoadTestRunStatusRunning
+            - LoadTestRunStatusStopping
+            - LoadTestRunStatusStopped
+            - LoadTestRunStatusFinished
+            - LoadTestRunStatusFailed
+    internal_api.LoadTestToolType:
+        enum:
+            - Locust
+            - JMeter
+            - K6
+            - Gatling
+            - Custom
+        type: string
+        x-enum-comments:
+            LoadTestToolTypeCustom: 'Legacy: read-only, rejected on create'
+            LoadTestToolTypeGatling: 'Legacy: read-only, rejected on create'
+        x-enum-varnames:
+            - LoadTestToolTypeLocust
+            - LoadTestToolTypeJMeter
+            - LoadTestToolTypeK6
+            - LoadTestToolTypeGatling
+            - LoadTestToolTypeCustom
+    internal_api.MetricSnapshotResponse:
+        properties:
+            avgLatencyMs:
+                description: Time-to-first-byte percentiles, distinct from full response time (JMeter only; omitted otherwise).
+                type: number
+            avgResponseMs:
+                type: number
+            checkStats:
+                additionalProperties:
+                    $ref: '#/definitions/internal_api.CheckStatResponse'
+                description: Per-named-check pass/fail counts (k6 only; omitted for other engines).
+                type: object
+            currentUsers:
+                type: integer
+            errorRate:
+                type: number
+            p50LatencyMs:
+                type: number
+            p50ResponseMs:
+                type: number
+            p95LatencyMs:
+                type: number
+            p95ResponseMs:
+                type: number
+            p99LatencyMs:
+                type: number
+            p99ResponseMs:
+                type: number
+            requestStats:
+                additionalProperties:
+                    $ref: '#/definitions/internal_api.ReqStatResponse'
+                type: object
+            timestamp:
+                type: string
+            totalFailures:
+                type: integer
+            totalRequests:
+                type: integer
+            totalRps:
+                type: number
+            workerStats:
+                description: WorkerStats carries current resource usage per load generator pod.
+                items:
+                    $ref: '#/definitions/internal_api.WorkerStatResponse'
+                type: array
+        type: object
+    internal_api.PaginatedLoadTestListResponse:
+        properties:
+            items:
+                items:
+                    $ref: '#/definitions/internal_api.LoadTestResponse'
+                type: array
+            pagination:
+                $ref: '#/definitions/shared.PaginationResponse'
+        type: object
+    internal_api.PaginatedLoadTestRunListResponse:
+        properties:
+            items:
+                items:
+                    $ref: '#/definitions/internal_api.LoadTestRunResponse'
+                type: array
+            pagination:
+                $ref: '#/definitions/shared.PaginationResponse'
+        type: object
+    internal_api.RecentRunResponse:
+        properties:
+            createdAt:
+                type: string
+            createdBy:
+                type: string
+            createdByUserDetails:
+                $ref: '#/definitions/internal_api.UserDetailsResponse'
+            durationSeconds:
+                type: integer
+            finishedAt:
+                type: string
+            identity:
+                type: string
+            isAIUsed:
+                type: boolean
+            name:
+                type: string
+            spawnRate:
+                type: number
+            startedAt:
+                type: string
+            status:
+                $ref: '#/definitions/internal_api.LoadTestRunStatus'
+            targetUsers:
+                type: integer
+            uniqueId:
+                type: string
+        type: object
+    internal_api.ReqStatResponse:
+        properties:
+            avgResponseTime:
+                type: number
+            avgSizeBytes:
+                type: number
+            currentFailuresPerSec:
+                type: number
+            maxResponseTime:
+                type: number
+            medianResponseTime:
+                type: number
+            method:
+                type: string
+            minResponseTime:
+                type: number
+            name:
+                type: string
+            numFailures:
+                type: integer
+            numRequests:
+                type: integer
+            p95ResponseMs:
+                description: k6/JMeter populate per-endpoint stats; Locust leaves these zero.
+                type: number
+            p99ResponseMs:
+                type: number
+            requestsPerSec:
+                type: number
+        type: object
+    internal_api.RunErrorResponse:
+        properties:
+            context:
+                type: string
+            errorCode:
+                type: string
+            errorMessage:
+                type: string
+            phase:
+                type: string
+            severity:
+                type: string
+            source:
+                type: string
+            timestamp:
+                type: string
+        type: object
+    internal_api.ScriptValidationErrorResponse:
+        properties:
+            error:
+                example: Script validation failed
+                type: string
+            errorCode:
+                example: 'E2022: SCRIPT_VALIDATION_FAILED'
+                type: string
+            message:
+                example: '3:32: SyntaxError: Unexpected token ;'
+                type: string
+            validation:
+                $ref: '#/definitions/internal_api.ScriptValidationResult'
+        type: object
+    internal_api.ScriptValidationFinding:
+        properties:
+            category:
+                enum:
+                    - syntax
+                    - structure
+                    - archive
+                    - dependency
+                    - lint
+                    - limit
+                example: syntax
+                type: string
+            column:
+                description: Column is 1-based and counted in bytes.
+                example: 32
+                type: integer
+            file:
+                description: File is the ZIP entry; empty for single-file scripts.
+                type: string
+            hint:
+                type: string
+            line:
+                description: Line is 1-based; absent when the finding is about the whole file.
+                example: 3
+                type: integer
+            message:
+                example: 'SyntaxError: Unexpected token ;'
+                type: string
+            rule:
+                example: K6_SYNTAX
+                type: string
+            severity:
+                enum:
+                    - error
+                    - warning
+                example: error
+                type: string
+        type: object
+    internal_api.ScriptValidationResult:
+        properties:
+            complete:
+                description: Complete is false when validation was cut short or the tool has no checks yet.
+                type: boolean
+            errorCount:
+                type: integer
+            findings:
+                items:
+                    $ref: '#/definitions/internal_api.ScriptValidationFinding'
+                type: array
+            phase:
+                enum:
+                    - save
+                    - run
+                example: save
+                type: string
+            truncated:
+                description: Truncated is true when findings were capped; the counts include them all.
+                type: boolean
+            validatorVersion:
+                example: 1.0.0
+                type: string
+            warningCount:
+                type: integer
+        type: object
+    internal_api.SuccessResponse:
+        properties:
+            message:
+                type: string
+            success:
+                type: boolean
+        type: object
+    internal_api.TemplateReferenceResponse:
+        properties:
+            hubIdentity:
+                type: string
+            identity:
+                type: string
+            organizationIdentifier:
+                type: string
+            projectIdentifier:
+                type: string
+            revision:
+                type: string
+        type: object
+    internal_api.ThresholdResultResponse:
+        properties:
+            abortOnFail:
+                type: boolean
+            actual:
+                description: Actual is the latest observed value and keeps moving after a breach.
+                type: number
+            breachValue:
+                type: number
+            breachedAt:
+                description: Unix milliseconds
+                type: integer
+            currentStatus:
+                enum:
+                    - pass
+                    - fail
+                    - not_evaluated
+                type: string
+            metric:
+                type: string
+            operator:
+                type: string
+            stat:
+                type: string
+            status:
+                description: |-
+                    Status is sticky: a threshold breached at any point stays failed even if the
+                    metric recovers. CurrentStatus is the verdict for the latest snapshot alone.
+                enum:
+                    - pass
+                    - fail
+                    - not_evaluated
+                type: string
+            value:
+                type: number
+        type: object
+    internal_api.UpdateLoadTestRequest:
+        properties:
+            cleanupPolicy:
+                $ref: '#/definitions/Load-manager-cli_internal_domain.CleanupPolicy'
+            description:
+                type: string
+            environmentIdentifier:
+                type: string
+            infraIdentifier:
+                type: string
+            isAIUsed:
+                type: boolean
+            managedInfra:
+                description: |-
+                    ManagedInfra switches the load test between Harness-provided and user-owned infrastructure when
+                    non-nil. Omit/null to keep the current setting. Turning it on clears the stored infrastructure
+                    and environment identifiers, since an update has no way to send an empty string meaning "unset".
+                type: boolean
+            maxDurationSec:
+                type: integer
+            name:
+                type: string
+            resources:
+                $ref: '#/definitions/Load-manager-cli_internal_domain.ResourceRequirements'
+            scriptContent:
+                description: Replaces the script binary (rare — usually done via PUT /script)
+                type: string
+            scriptSource:
+                type: string
+            serviceReferences:
+                description: |-
+                    ServiceReferences replaces the linked chaos services when non-nil.
+                    Omit/null to keep existing; a non-nil slice must be non-empty.
+                items:
+                    type: string
+                type: array
+            skipScriptValidation:
+                description: |-
+                    SkipScriptValidation saves the script without static validation, for this
+                    request only. The script size limit, the script-body expression check and
+                    the ZIP workspace safety checks still apply.
+                type: boolean
+            tags:
+                items:
+                    type: string
+                type: array
+            targetType:
+                type: string
+            toolConfig:
+                additionalProperties: true
+                description: |-
+                    ToolConfig replaces the stored tool-specific config (k6 spec) when
+                    non-nil. Omit/null to keep the existing config.
+                type: object
+            variables:
+                items:
+                    $ref: '#/definitions/template.Variable'
+                type: array
+            yaml:
+                type: string
+        type: object
+        required:
+            - tags
+            - variables
+            - resources
+    internal_api.UserDetailsResponse:
+        properties:
+            email:
+                type: string
+            userID:
+                type: string
+            username:
+                type: string
+        type: object
+    internal_api.VariablesResponse:
+        properties:
+            inputs:
+                items:
+                    $ref: '#/definitions/template.Input'
+                type: array
+            loadTestIdentity:
+                type: string
+            variables:
+                items:
+                    $ref: '#/definitions/template.Variable'
+                type: array
+        type: object
+    internal_api.WorkerStatResponse:
+        properties:
+            cpuCores:
+                description: |-
+                    CPUCores is averaged over the interval between the two most recent samples,
+                    so a pod's first sample reports zero.
+                type: number
+            cpuLimitCores:
+                type: number
+            cpuRequestCores:
+                description: |-
+                    Requests and limits come from the pod spec, so they are present even when
+                    usage could not be read.
+                type: number
+            memoryBytes:
+                description: MemoryBytes is the working set, matching what kubectl top reports.
+                type: integer
+            memoryLimitBytes:
+                type: integer
+            memoryRequestBytes:
+                type: integer
+            name:
+                type: string
+            reason:
+                description: |-
+                    Reason explains the state in Kubernetes' own vocabulary, such as
+                    "ContainerCreating" or "ImagePullBackOff", omitted when the state says it all.
+                    Before a run starts every pod reads "pending", and only the reason separates a
+                    routine image pull from a run that will never start.
+                type: string
+            state:
+                type: string
+            users:
+                description: |-
+                    Users is how many virtual users this pod is driving, omitted when the load
+                    tool cannot report a per-pod count. These do not always sum to the run total:
+                    k6 and Locust divide users between pods, JMeter replicates them onto each.
+                type: integer
+        type: object
+    shared.PaginationResponse:
+        properties:
+            index:
+                type: integer
+            limit:
+                type: integer
+            totalItems:
+                type: integer
+            totalPages:
+                type: integer
+        type: object
+    template.Input:
+        properties:
+            allowedValues:
+                items: {}
+                type: array
+            category:
+                $ref: '#/definitions/template.InputCategory'
+            default: {}
+            description:
+                type: string
+            name:
+                type: string
+            path:
+                type: string
+            reference:
+                $ref: '#/definitions/template.InputReference'
+            required:
+                type: boolean
+            stringify:
+                type: boolean
+            tags:
+                items:
+                    type: string
+                type: array
+            tooltipId:
+                type: string
+            type:
+                $ref: '#/definitions/template.InputType'
+            validator:
+                type: string
+            value: {}
+        required:
+            - name
+            - value
+        type: object
+    template.InputCategory:
+        enum:
+            - FaultTarget
+            - FaultTunable
+            - TargetInfra
+            - ExperimentTunable
+            - ActionProperties
+            - ProbeProperties
+            - RunProperties
+            - FaultAuthentication
+            - Variables
+        type: string
+        x-enum-varnames:
+            - CategoryFaultTarget
+            - CategoryFaultTunable
+            - CategoryTargetInfra
+            - CategoryExperimentTunable
+            - CategoryActionProperties
+            - CategoryProbeProperties
+            - CategoryRunProperties
+            - CategoryFaultAuthentication
+            - CategoryVariables
+    template.InputMinimum:
+        properties:
+            name:
+                type: string
+            reference:
+                $ref: '#/definitions/template.InputReference'
+            value: {}
+        required:
+            - name
+            - value
+        type: object
+    template.InputReference:
+        properties:
+            kind:
+                $ref: '#/definitions/template.InputReferenceKind'
+            type:
+                $ref: '#/definitions/template.InputReferenceType'
+        type: object
+    template.InputReferenceKind:
+        enum:
+            - Connector
+            - Secret
+            - ChaosInfrastructure
+        type: string
+        x-enum-varnames:
+            - InputReferenceKindConnector
+            - InputReferenceKindSecret
+            - InputReferenceKindChaosInfrastructure
+    template.InputReferenceType:
+        enum:
+            - Prometheus
+            - AppDynamics
+            - SignalFX
+            - Dynatrace
+            - NewRelic
+            - Datadog
+            - Splunk
+            - SecretFile
+            - SecretText
+            - KubernetesV2
+            - Linux
+            - Windows
+        type: string
+        x-enum-varnames:
+            - InputReferenceTypePrometheusConnector
+            - InputReferenceTypeAppDynamicsConnector
+            - InputReferenceTypeSignalFXConnector
+            - InputReferenceTypeDynatraceConnector
+            - InputReferenceTypeNewRelicConnector
+            - InputReferenceTypeDatadogConnector
+            - InputReferenceTypeSplunkConnector
+            - InputReferenceTypeSecretFile
+            - InputReferenceTypeSecretText
+            - InputReferenceTypeChaosInfrastructureKubernetesV2
+            - InputReferenceTypeChaosInfrastructureLinux
+            - InputReferenceTypeChaosInfrastructureWindows
+    template.InputType:
+        enum:
+            - String
+            - Integer
+            - Boolean
+            - Number
+            - SecretFile
+            - SecretText
+        type: string
+        x-enum-varnames:
+            - StringInput
+            - IntegerInput
+            - BooleanInput
+            - NumberInput
+            - SecretFileInput
+            - SecretTextInput
+    template.Variable:
+        properties:
+            description:
+                type: string
+            name:
+                type: string
+            path:
+                type: string
+            reference:
+                $ref: '#/definitions/template.InputReference'
+            required:
+                type: boolean
+            type:
+                $ref: '#/definitions/template.VariableType'
+            value: {}
+        required:
+            - name
+            - value
+        type: object
+    template.VariableType:
+        enum:
+            - String
+            - Number
+        type: string
+        x-enum-varnames:
+            - StringVariable
+            - NumberVariable
