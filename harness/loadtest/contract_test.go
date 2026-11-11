@@ -27,20 +27,26 @@ func TestLoadTestContractMatchesLTMSwagger(t *testing.T) {
 
 	assertRequiredCovered(t, doc, "internal_api.CreateLoadTestRequest", LoadTestCreateRequest{})
 	assertRequiredCovered(t, doc, "internal_api.CreateLoadTestRunRequest", LoadTestRunCreateRequest{})
+	// Request bodies must be able to send every field the spec defines. A new
+	// response field is ignored by the decoder, so a newer Load Test Manager
+	// spec does not fail this test until a path, query, or request field changes.
 	for _, model := range []struct {
 		definition string
 		value      interface{}
+		request    bool
 	}{
-		{"internal_api.CreateLoadTestRequest", LoadTestCreateRequest{}},
-		{"internal_api.UpdateLoadTestRequest", LoadTestUpdateRequest{}},
-		{"internal_api.LoadTestResponse", LoadTest{}},
-		{"internal_api.CreateLoadTestRunRequest", LoadTestRunCreateRequest{}},
-		{"internal_api.PaginatedLoadTestListResponse", LoadTestListResponse{}},
-		{"internal_api.SuccessResponse", LoadTestSuccessResponse{}},
-		{"internal_api.LoadTestRunResponse", LoadTestRun{}},
+		{"internal_api.CreateLoadTestRequest", LoadTestCreateRequest{}, true},
+		{"internal_api.UpdateLoadTestRequest", LoadTestUpdateRequest{}, true},
+		{"internal_api.CreateLoadTestRunRequest", LoadTestRunCreateRequest{}, true},
+		{"internal_api.LoadTestResponse", LoadTest{}, false},
+		{"internal_api.PaginatedLoadTestListResponse", LoadTestListResponse{}, false},
+		{"internal_api.SuccessResponse", LoadTestSuccessResponse{}, false},
+		{"internal_api.LoadTestRunResponse", LoadTestRun{}, false},
 	} {
 		assertJSONFields(t, doc, model.definition, model.value)
-		assertSwaggerPropertiesPresent(t, doc, model.definition, model.value)
+		if model.request {
+			assertSwaggerPropertiesPresent(t, doc, model.definition, model.value)
+		}
 	}
 
 	assertEnumCovers(t, doc, "internal_api.LoadTestToolType",

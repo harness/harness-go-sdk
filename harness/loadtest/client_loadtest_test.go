@@ -220,6 +220,28 @@ func TestUpdateLeavesUnsetDurationAndManagedInfra(t *testing.T) {
 	}
 }
 
+func TestIdentityIsEscapedInThePath(t *testing.T) {
+	var gotRequest string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		gotRequest = r.RequestURI
+		_, _ = w.Write([]byte(`{"success":true}`))
+	}))
+	defer server.Close()
+
+	client := NewLoadTestClient(NewAPIClient(&Configuration{
+		BasePath:   server.URL + "/loadTest/manager/api",
+		HTTPClient: server.Client(),
+	}))
+	_, _, err := client.Delete(t.Context(), Scope{AccountID: "acc"}, "checkout?v2")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.HasPrefix(gotRequest, "/loadTest/manager/api/v1/load-tests/checkout%3Fv2?") {
+		t.Fatalf("request = %s", gotRequest)
+	}
+}
+
 func TestUpdateAndDeleteLoadTest(t *testing.T) {
 	var method, path string
 	var gotBody map[string]interface{}
@@ -320,7 +342,7 @@ func TestLoadTestRuns(t *testing.T) {
 	if err != nil || len(list.Items) != 1 || !strings.Contains(query, "status=Running") {
 		t.Fatalf("list %+v query %s err %v", list, query, err)
 	}
-	stopped, _, err := client.StopRun(t.Context(), scope, "run-1", "checkout")
+	stopped, _, err := client.StopRun(t.Context(), scope, "checkout", "run-1")
 	if err != nil || !stopped.Success || method != http.MethodPost || !strings.Contains(query, "loadTestIdentity=checkout") {
 		t.Fatalf("stop %+v %s %s err %v", stopped, method, query, err)
 	}
