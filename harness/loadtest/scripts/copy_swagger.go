@@ -1,3 +1,5 @@
+//go:build ignore
+
 // Copy the load-test operations this client calls out of the Load Test Manager
 // swagger. The gateway prefix stays out of the spec. The provider adds
 // /loadTest/manager/api the same way it adds /chaos/manager/api.

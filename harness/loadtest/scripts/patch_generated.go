@@ -1,3 +1,5 @@
+//go:build ignore
+
 // Reapply the provider fields after swagger-codegen. The generated client has no
 // account id or API key. Service discovery's client carries both, and the
 // provider sets them the same way.

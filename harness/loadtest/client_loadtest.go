@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 
 	"github.com/antihax/optional"
 )
@@ -54,7 +55,7 @@ func (c *LoadTestClient) Get(ctx context.Context, scope Scope, identity string) 
 	if err != nil {
 		return nil, nil, err
 	}
-	out, resp, err := api.LoadTestsApi.GetLoadTest(ctx, identity, scope.AccountID, &LoadTestsApiGetLoadTestOpts{
+	out, resp, err := api.LoadTestsApi.GetLoadTest(ctx, pathIdentity(identity), scope.AccountID, &LoadTestsApiGetLoadTestOpts{
 		OrganizationIdentifier: optString(scope.OrgID),
 		ProjectIdentifier:      optString(scope.ProjectID),
 		ParentUniqueId:         optString(scope.ParentUniqueID),
@@ -114,7 +115,7 @@ func (c *LoadTestClient) GetVariables(ctx context.Context, scope Scope, identity
 	if err != nil {
 		return nil, nil, err
 	}
-	out, resp, err := api.LoadTestsApi.GetVariables(ctx, identity, scope.AccountID, &LoadTestsApiGetVariablesOpts{
+	out, resp, err := api.LoadTestsApi.GetVariables(ctx, pathIdentity(identity), scope.AccountID, &LoadTestsApiGetVariablesOpts{
 		OrganizationIdentifier: optString(scope.OrgID),
 		ProjectIdentifier:      optString(scope.ProjectID),
 		ParentUniqueId:         optString(scope.ParentUniqueID),
@@ -141,7 +142,7 @@ func (c *LoadTestClient) Update(ctx context.Context, scope Scope, identity strin
 	if err != nil {
 		return nil, nil, err
 	}
-	out, resp, err := api.LoadTestsApi.UpdateLoadTest(ctx, body, scope.AccountID, identity, &LoadTestsApiUpdateLoadTestOpts{
+	out, resp, err := api.LoadTestsApi.UpdateLoadTest(ctx, body, scope.AccountID, pathIdentity(identity), &LoadTestsApiUpdateLoadTestOpts{
 		OrganizationIdentifier: optString(scope.OrgID),
 		ProjectIdentifier:      optString(scope.ProjectID),
 		ParentUniqueId:         optString(scope.ParentUniqueID),
@@ -164,7 +165,7 @@ func (c *LoadTestClient) Delete(ctx context.Context, scope Scope, identity strin
 	if err != nil {
 		return nil, nil, err
 	}
-	out, resp, err := api.LoadTestsApi.DeleteLoadTest(ctx, identity, scope.AccountID, &LoadTestsApiDeleteLoadTestOpts{
+	out, resp, err := api.LoadTestsApi.DeleteLoadTest(ctx, pathIdentity(identity), scope.AccountID, &LoadTestsApiDeleteLoadTestOpts{
 		OrganizationIdentifier: optString(scope.OrgID),
 		ProjectIdentifier:      optString(scope.ProjectID),
 		ParentUniqueId:         optString(scope.ParentUniqueID),
@@ -194,7 +195,7 @@ func (c *LoadTestClient) CreateRun(ctx context.Context, scope Scope, loadTestIde
 	if err != nil {
 		return nil, nil, err
 	}
-	out, resp, err := api.RunsApi.CreateLoadTestRun(ctx, body, scope.AccountID, loadTestIdentity, &RunsApiCreateLoadTestRunOpts{
+	out, resp, err := api.RunsApi.CreateLoadTestRun(ctx, body, scope.AccountID, pathIdentity(loadTestIdentity), &RunsApiCreateLoadTestRunOpts{
 		OrganizationIdentifier: optString(scope.OrgID),
 		ProjectIdentifier:      optString(scope.ProjectID),
 		ParentUniqueId:         optString(scope.ParentUniqueID),
@@ -217,7 +218,7 @@ func (c *LoadTestClient) GetRun(ctx context.Context, scope Scope, identity strin
 	if err != nil {
 		return nil, nil, err
 	}
-	out, resp, err := api.RunsApi.GetLoadTestRun(ctx, identity, scope.AccountID, &RunsApiGetLoadTestRunOpts{
+	out, resp, err := api.RunsApi.GetLoadTestRun(ctx, pathIdentity(identity), scope.AccountID, &RunsApiGetLoadTestRunOpts{
 		OrganizationIdentifier: optString(scope.OrgID),
 		ProjectIdentifier:      optString(scope.ProjectID),
 		ParentUniqueId:         optString(scope.ParentUniqueID),
@@ -257,7 +258,7 @@ func (c *LoadTestClient) ListRuns(ctx context.Context, loadTestIdentity string, 
 	if req.SortAscending != nil {
 		opts.SortAscending = optional.NewBool(*req.SortAscending)
 	}
-	out, resp, err := api.RunsApi.ListLoadTestRuns(ctx, loadTestIdentity, req.Scope.AccountID, opts)
+	out, resp, err := api.RunsApi.ListLoadTestRuns(ctx, pathIdentity(loadTestIdentity), req.Scope.AccountID, opts)
 	if err != nil {
 		return nil, resp, err
 	}
@@ -268,15 +269,18 @@ func (c *LoadTestClient) ListRuns(ctx context.Context, loadTestIdentity string, 
 	return got, resp, nil
 }
 
-func (c *LoadTestClient) StopRun(ctx context.Context, scope Scope, identity, loadTestIdentity string) (*LoadTestSuccessResponse, *http.Response, error) {
+func (c *LoadTestClient) StopRun(ctx context.Context, scope Scope, loadTestIdentity, identity string) (*LoadTestSuccessResponse, *http.Response, error) {
 	if identity == "" {
 		return nil, nil, fmt.Errorf("run identity is required")
+	}
+	if loadTestIdentity == "" {
+		return nil, nil, fmt.Errorf("load test identity is required")
 	}
 	api, err := c.api()
 	if err != nil {
 		return nil, nil, err
 	}
-	out, resp, err := api.RunsApi.StopLoadTestRun(ctx, identity, scope.AccountID, &RunsApiStopLoadTestRunOpts{
+	out, resp, err := api.RunsApi.StopLoadTestRun(ctx, pathIdentity(identity), scope.AccountID, &RunsApiStopLoadTestRunOpts{
 		LoadTestIdentity:       optString(loadTestIdentity),
 		OrganizationIdentifier: optString(scope.OrgID),
 		ProjectIdentifier:      optString(scope.ProjectID),
@@ -320,6 +324,10 @@ func validateLoadTestCreate(req LoadTestCreateRequest) error {
 		return fmt.Errorf("infraIdentifier and environmentIdentifier are required unless managedInfra is true")
 	}
 	return nil
+}
+
+func pathIdentity(identity string) string {
+	return url.PathEscape(identity)
 }
 
 func optString(value string) optional.String {
