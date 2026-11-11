@@ -23,13 +23,20 @@ import (
 )
 
 // SamlSettingsRequest carries the optional form fields of the SAML metadata
-// upload/update endpoints. Pointer fields are only sent when non-nil.
+// upload/update endpoints. String fields are only sent when non-empty; the
+// backend rebuilds the SAML configuration from the request on every call, so
+// an omitted string field clears the stored value (same as clearing the field
+// in the UI). The boolean fields are always sent, defaulting to false when
+// nil: the backend treats a missing boolean as false (there is no "keep
+// current value" semantic — a missing authorizationEnabled also nulls the
+// stored groupMembershipAttr), so sending false explicitly matches the UI
+// behavior exactly.
 type SamlSettingsRequest struct {
 	// Display Name of the SAML configuration.
 	DisplayName string
 	// Group membership attribute in the SAML assertion.
 	GroupMembershipAttr string
-	// Specify whether or not to enable authorization.
+	// Specify whether or not to enable authorization. Always sent; false when nil.
 	AuthorizationEnabled *bool
 	// Logout URL of the SAML identity provider.
 	LogoutUrl string
@@ -43,7 +50,7 @@ type SamlSettingsRequest struct {
 	ClientSecret string
 	// Friendly name of the app on the SAML SSO provider end in Harness.
 	FriendlySamlName string
-	// Enable Just in time user provisioning.
+	// Enable Just in time user provisioning. Always sent; false when nil.
 	JitEnabled *bool
 	// Optional key to match in the SAML assertion for Just in time user provisioning.
 	JitValidationKey string
@@ -86,9 +93,14 @@ func (a *AuthenticationSettingsApiService) executeSamlRequest(ctx context.Contex
 			if req.GroupMembershipAttr != "" {
 				localVarFormParams.Add("groupMembershipAttr", req.GroupMembershipAttr)
 			}
+			// Always sent: a missing boolean is treated as false by the backend
+			// (and nulls the stored groupMembershipAttr), so sending false
+			// explicitly matches the UI and avoids any ambiguity.
+			authorizationEnabled := false
 			if req.AuthorizationEnabled != nil {
-				localVarFormParams.Add("authorizationEnabled", strconv.FormatBool(*req.AuthorizationEnabled))
+				authorizationEnabled = *req.AuthorizationEnabled
 			}
+			localVarFormParams.Add("authorizationEnabled", strconv.FormatBool(authorizationEnabled))
 			if req.LogoutUrl != "" {
 				localVarFormParams.Add("logoutUrl", req.LogoutUrl)
 			}
@@ -107,9 +119,11 @@ func (a *AuthenticationSettingsApiService) executeSamlRequest(ctx context.Contex
 			if req.FriendlySamlName != "" {
 				localVarFormParams.Add("friendlySamlName", req.FriendlySamlName)
 			}
+			jitEnabled := false
 			if req.JitEnabled != nil {
-				localVarFormParams.Add("jitEnabled", strconv.FormatBool(*req.JitEnabled))
+				jitEnabled = *req.JitEnabled
 			}
+			localVarFormParams.Add("jitEnabled", strconv.FormatBool(jitEnabled))
 			if req.JitValidationKey != "" {
 				localVarFormParams.Add("jitValidationKey", req.JitValidationKey)
 			}

@@ -108,9 +108,10 @@ func (a *AuthenticationSettingsApiService) executeAuthenticationSettingsWriteReq
 		err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.error = err.Error()
-			newErr.model = v
 			return localVarHttpResponse, newErr
 		}
+		newErr.model = v
+		return localVarHttpResponse, newErr
 	}
 	return localVarHttpResponse, newErr
 }
