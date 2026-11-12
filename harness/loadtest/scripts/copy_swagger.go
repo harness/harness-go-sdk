@@ -28,11 +28,35 @@ var keepMethods = map[string]map[string]struct{}{
 	"/v1/load-tests/{identity}/runs": {
 		"get": {}, "post": {},
 	},
+	"/v1/load-tests/{identity}/sync-template": {
+		"post": {},
+	},
+	"/v1/load-tests/from-template": {
+		"post": {},
+	},
 	"/v1/runs/{identity}": {
 		"get": {},
 	},
 	"/v1/runs/{identity}/stop": {
 		"post": {},
+	},
+	"/v1/load-test-templates": {
+		"post": {},
+	},
+	"/v1/load-test-templates/{identity}": {
+		"get": {}, "put": {}, "delete": {},
+	},
+	"/v1/load-test-templates/{identity}/revisions": {
+		"post": {},
+	},
+	"/v1/load-test-templates/{identity}/revisions/{revision}": {
+		"get": {}, "delete": {},
+	},
+	"/v1/load-test-templates/{identity}/variables": {
+		"get": {},
+	},
+	"/v1/load-test-templates/{identity}/referenced-by": {
+		"get": {},
 	},
 }
 
@@ -277,6 +301,11 @@ func markUpdateFieldsAlwaysSent(defs *yaml.Node) {
 		exitf("trimmed swagger is missing internal_api.UpdateLoadTestRequest")
 	}
 	ensureRequired(def, "tags", "variables", "resources")
+	template := child(defs, "internal_api.UpdateLoadTestTemplateRequest")
+	if template == nil {
+		exitf("trimmed swagger is missing internal_api.UpdateLoadTestTemplateRequest")
+	}
+	ensureRequired(template, "tags", "variables")
 }
 
 func ensureRequired(def *yaml.Node, names ...string) {
