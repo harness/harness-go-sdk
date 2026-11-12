@@ -976,3 +976,291 @@ func (a *TriggersApiService) UpdateTrigger(ctx context.Context, body string, acc
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
+/*
+TriggersApiService Creates Trigger (v2) for triggering target pipeline identifier.
+V2 accepts a JSON body with yaml and optional executorInfo instead of a raw YAML string.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param body
+ * @param accountIdentifier
+ * @param orgIdentifier
+ * @param projectIdentifier
+ * @param targetIdentifier Identifier of the target pipeline
+ * @param optional nil or *TriggersApiCreateTriggerV2Opts - Optional Parameters:
+     * @param "IgnoreError" (optional.Bool) -
+     * @param "WithServiceV2" (optional.Bool) -
+@return ResponseDtongTriggerResponse
+*/
+
+type TriggersApiCreateTriggerV2Opts struct {
+	IgnoreError   optional.Bool
+	WithServiceV2 optional.Bool
+}
+
+func (a *TriggersApiService) CreateTriggerV2(ctx context.Context, body TriggerYamlRequest, accountIdentifier string, orgIdentifier string, projectIdentifier string, targetIdentifier string, localVarOptionals *TriggersApiCreateTriggerV2Opts) (ResponseDtongTriggerResponse, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue ResponseDtongTriggerResponse
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/pipeline/api/triggers/v2"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	localVarQueryParams.Add("accountIdentifier", parameterToString(accountIdentifier, ""))
+	localVarQueryParams.Add("orgIdentifier", parameterToString(orgIdentifier, ""))
+	localVarQueryParams.Add("projectIdentifier", parameterToString(projectIdentifier, ""))
+	localVarQueryParams.Add("targetIdentifier", parameterToString(targetIdentifier, ""))
+	if localVarOptionals != nil && localVarOptionals.IgnoreError.IsSet() {
+		localVarQueryParams.Add("ignoreError", parameterToString(localVarOptionals.IgnoreError.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.WithServiceV2.IsSet() {
+		localVarQueryParams.Add("withServiceV2", parameterToString(localVarOptionals.WithServiceV2.Value(), ""))
+	}
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json", "application/yaml"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	// body params
+	localVarPostBody = &body
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+		if localVarHttpResponse.StatusCode == 400 {
+			var v Failure
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 0 {
+			var v ResponseDtongTriggerResponse
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+TriggersApiService Updates Trigger (v2) for triggering target pipeline identifier.
+V2 accepts a JSON body with yaml and optional executorInfo instead of a raw YAML string.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param body
+ * @param accountIdentifier
+ * @param orgIdentifier
+ * @param projectIdentifier
+ * @param targetIdentifier Identifier of the target pipeline under which trigger resides
+ * @param triggerIdentifier
+ * @param optional nil or *TriggersApiUpdateTriggerV2Opts - Optional Parameters:
+     * @param "IfMatch" (optional.String) -
+     * @param "IgnoreError" (optional.Bool) -
+@return ResponseDtongTriggerResponse
+*/
+
+type TriggersApiUpdateTriggerV2Opts struct {
+	IfMatch     optional.String
+	IgnoreError optional.Bool
+}
+
+func (a *TriggersApiService) UpdateTriggerV2(ctx context.Context, body TriggerYamlRequest, accountIdentifier string, orgIdentifier string, projectIdentifier string, targetIdentifier string, triggerIdentifier string, localVarOptionals *TriggersApiUpdateTriggerV2Opts) (ResponseDtongTriggerResponse, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Put")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue ResponseDtongTriggerResponse
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/pipeline/api/triggers/{triggerIdentifier}/v2"
+	localVarPath = strings.Replace(localVarPath, "{"+"triggerIdentifier"+"}", fmt.Sprintf("%v", triggerIdentifier), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	localVarQueryParams.Add("accountIdentifier", parameterToString(accountIdentifier, ""))
+	localVarQueryParams.Add("orgIdentifier", parameterToString(orgIdentifier, ""))
+	localVarQueryParams.Add("projectIdentifier", parameterToString(projectIdentifier, ""))
+	localVarQueryParams.Add("targetIdentifier", parameterToString(targetIdentifier, ""))
+	if localVarOptionals != nil && localVarOptionals.IgnoreError.IsSet() {
+		localVarQueryParams.Add("ignoreError", parameterToString(localVarOptionals.IgnoreError.Value(), ""))
+	}
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json", "application/yaml"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.IfMatch.IsSet() {
+		localVarHeaderParams["If-Match"] = parameterToString(localVarOptionals.IfMatch.Value(), "")
+	}
+	// body params
+	localVarPostBody = &body
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["x-api-key"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+		if localVarHttpResponse.StatusCode == 400 {
+			var v Failure
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		if localVarHttpResponse.StatusCode == 0 {
+			var v ResponseDtongTriggerResponse
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}

@@ -25,4 +25,5 @@ type NgTriggerResponse struct {
 	WebhookUrl        string                       `json:"webhookUrl,omitempty"`
 	Errors            map[string]map[string]string `json:"errors,omitempty"`
 	ErrorResponse     bool                         `json:"errorResponse,omitempty"`
+	ExecutorInfo      *TriggerExecutorInfo         `json:"executorInfo,omitempty"`
 }
