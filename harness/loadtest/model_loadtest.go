@@ -75,6 +75,90 @@ type LoadTestUpdateRequest struct {
 	SkipScriptValidation  bool                   `json:"skipScriptValidation,omitempty"`
 }
 
+// LoadTestTemplate is one revision of a hub template. Variables are read from
+// the template variables endpoint, not this object.
+type LoadTestTemplate struct {
+	UniqueID      string                 `json:"uniqueId,omitempty"`
+	Identity      string                 `json:"identity,omitempty"`
+	HubIdentity   string                 `json:"hubIdentity,omitempty"`
+	Name          string                 `json:"name,omitempty"`
+	Description   string                 `json:"description,omitempty"`
+	Revision      string                 `json:"revision,omitempty"`
+	ToolType      string                 `json:"toolType,omitempty"`
+	ToolConfig    map[string]interface{} `json:"toolConfig,omitempty"`
+	Tags          []string               `json:"tags,omitempty"`
+	EnvID         string                 `json:"envId,omitempty"`
+	InfraID       string                 `json:"infraId,omitempty"`
+	InfraType     string                 `json:"infraType,omitempty"`
+	ScriptContent string                 `json:"scriptContent,omitempty"`
+	ScriptSource  string                 `json:"scriptSource,omitempty"`
+}
+
+// LoadTestTemplateRequest creates a hub template.
+type LoadTestTemplateRequest struct {
+	Identity             string                 `json:"identity,omitempty"`
+	Name                 string                 `json:"name,omitempty"`
+	Description          string                 `json:"description,omitempty"`
+	Revision             string                 `json:"revision,omitempty"`
+	ToolType             string                 `json:"toolType,omitempty"`
+	ToolConfig           map[string]interface{} `json:"toolConfig,omitempty"`
+	Variables            []LoadTestVariable     `json:"variables,omitempty"`
+	Tags                 []string               `json:"tags,omitempty"`
+	EnvID                string                 `json:"envId,omitempty"`
+	InfraID              string                 `json:"infraId,omitempty"`
+	InfraType            string                 `json:"infraType,omitempty"`
+	ScriptContent        string                 `json:"scriptContent,omitempty"`
+	ScriptSource         string                 `json:"scriptSource,omitempty"`
+	SkipScriptValidation bool                   `json:"skipScriptValidation,omitempty"`
+	YAML                 string                 `json:"yaml,omitempty"`
+}
+
+// LoadTestTemplateRevisionRequest creates one revision. Omitted fields are inherited.
+type LoadTestTemplateRevisionRequest struct {
+	Name                 string                 `json:"name,omitempty"`
+	Description          string                 `json:"description,omitempty"`
+	Revision             string                 `json:"revision,omitempty"`
+	ToolConfig           map[string]interface{} `json:"toolConfig,omitempty"`
+	Variables            []LoadTestVariable     `json:"variables,omitempty"`
+	Tags                 []string               `json:"tags,omitempty"`
+	EnvID                string                 `json:"envId,omitempty"`
+	InfraID              string                 `json:"infraId,omitempty"`
+	ScriptContent        string                 `json:"scriptContent,omitempty"`
+	ScriptSource         string                 `json:"scriptSource,omitempty"`
+	SkipScriptValidation bool                   `json:"skipScriptValidation,omitempty"`
+	YAML                 string                 `json:"yaml,omitempty"`
+}
+
+// LoadTestTemplateUpdateRequest edits the latest revision in place.
+// Tags and variables are always sent: an empty array replaces the stored list.
+type LoadTestTemplateUpdateRequest struct {
+	Name                 string                 `json:"name,omitempty"`
+	Description          string                 `json:"description,omitempty"`
+	ToolConfig           map[string]interface{} `json:"toolConfig,omitempty"`
+	Variables            []LoadTestVariable     `json:"variables"`
+	Tags                 []string               `json:"tags"`
+	EnvID                string                 `json:"envId,omitempty"`
+	InfraID              string                 `json:"infraId,omitempty"`
+	InfraType            string                 `json:"infraType,omitempty"`
+	SkipScriptValidation bool                   `json:"skipScriptValidation,omitempty"`
+	YAML                 string                 `json:"yaml,omitempty"`
+}
+
+// TemplateReferencedByItem is one load test that references a hub template.
+type TemplateReferencedByItem struct {
+	Identity          string `json:"identity,omitempty"`
+	Kind              string `json:"kind,omitempty"`
+	Name              string `json:"name,omitempty"`
+	OrgIdentifier     string `json:"orgIdentifier,omitempty"`
+	ProjectIdentifier string `json:"projectIdentifier,omitempty"`
+}
+
+// TemplateReferencedByResponse is one page of load tests that reference a template.
+type TemplateReferencedByResponse struct {
+	Data       []TemplateReferencedByItem `json:"data,omitempty"`
+	Pagination Pagination                 `json:"pagination,omitempty"`
+}
+
 // Scope is the account, org, and project for a load-test call.
 type Scope struct {
 	AccountID      string
@@ -195,6 +279,21 @@ type LoadTestInputReference struct {
 type LoadTestJSONSpec struct {
 	Config    map[string]interface{}   `json:"config,omitempty"`
 	Endpoints []map[string]interface{} `json:"endpoints,omitempty"`
+}
+
+// LoadTestFromTemplateRequest is the body for POST /v1/load-tests/from-template.
+type LoadTestFromTemplateRequest struct {
+	Identity              string                 `json:"identity"`
+	Name                  string                 `json:"name"`
+	Description           string                 `json:"description,omitempty"`
+	ImportType            string                 `json:"importType"`
+	EnvironmentIdentifier string                 `json:"environmentIdentifier"`
+	InfraIdentifier       string                 `json:"infraIdentifier"`
+	TargetType            string                 `json:"targetType,omitempty"`
+	ServiceReferences     []string               `json:"serviceReferences,omitempty"`
+	TemplateReference     *LoadTestTemplateRef   `json:"templateReference"`
+	ToolConfig            map[string]interface{} `json:"toolConfig,omitempty"`
+	Variables             []LoadTestVariable     `json:"variables,omitempty"`
 }
 
 // LoadTestTemplateRef is the template a load test was created from.

@@ -125,8 +125,18 @@ func TestCreateLocustNestsToolConfig(t *testing.T) {
 	}
 }
 
-func TestCreateRejectsJMeter(t *testing.T) {
-	client := NewLoadTestClient(NewAPIClient(&Configuration{BasePath: "http://unused/loadTest/manager/api"}))
+func TestCreateAllowsJMeter(t *testing.T) {
+	var gotType string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		var body map[string]interface{}
+		_ = json.NewDecoder(r.Body).Decode(&body)
+		gotType, _ = body["toolType"].(string)
+		w.WriteHeader(http.StatusCreated)
+		_, _ = w.Write([]byte(`{"identity":"checkout","name":"Checkout","toolType":"JMeter"}`))
+	}))
+	defer server.Close()
+	client := NewLoadTestClient(NewAPIClient(&Configuration{BasePath: server.URL + "/loadTest/manager/api", HTTPClient: server.Client()}))
 	_, _, err := client.Create(t.Context(), Scope{AccountID: "acc"}, LoadTestCreateRequest{
 		Identity:              "checkout",
 		Name:                  "Checkout",
@@ -135,8 +145,11 @@ func TestCreateRejectsJMeter(t *testing.T) {
 		EnvironmentIdentifier: "prod",
 		InfraIdentifier:       "payments",
 	})
-	if err == nil || !strings.Contains(err.Error(), "JMeter") {
+	if err != nil {
 		t.Fatal(err)
+	}
+	if gotType != LoadTestToolJMeter {
+		t.Fatalf("toolType = %s", gotType)
 	}
 }
 
@@ -345,5 +358,27 @@ func TestLoadTestRuns(t *testing.T) {
 	stopped, _, err := client.StopRun(t.Context(), scope, "checkout", "run-1")
 	if err != nil || !stopped.Success || method != http.MethodPost || !strings.Contains(query, "loadTestIdentity=checkout") {
 		t.Fatalf("stop %+v %s %s err %v", stopped, method, query, err)
+	}
+}
+
+func TestCreateTemplateUsesTemplatePath(t *testing.T) {
+	var gotPath, gotQuery string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		gotPath = r.URL.Path
+		gotQuery = r.URL.RawQuery
+		w.WriteHeader(http.StatusCreated)
+		_, _ = w.Write([]byte(`{"identity":"checkout$tpl","name":"Checkout","revision":"1","toolType":"K6","hubIdentity":"hub"}`))
+	}))
+	defer server.Close()
+	client := NewLoadTestClient(NewAPIClient(&Configuration{BasePath: server.URL + "/loadTest/manager/api", HTTPClient: server.Client()}))
+	got, _, err := client.CreateTemplate(t.Context(), Scope{AccountID: "acc", OrgID: "default", ProjectID: "demo"}, "hub", LoadTestTemplateRequest{
+		Identity: "checkout$tpl", Name: "Checkout", Revision: "1", ToolType: LoadTestToolK6,
+	})
+	if err != nil || got.Identity != "checkout$tpl" {
+		t.Fatalf("create template %+v err %v", got, err)
+	}
+	if gotPath != "/loadTest/manager/api/v1/load-test-templates" || !strings.Contains(gotQuery, "hubIdentity=hub") {
+		t.Fatalf("path %s query %s", gotPath, gotQuery)
 	}
 }

@@ -42,6 +42,10 @@ func TestLoadTestContractMatchesLTMSwagger(t *testing.T) {
 		{"internal_api.PaginatedLoadTestListResponse", LoadTestListResponse{}, false},
 		{"internal_api.SuccessResponse", LoadTestSuccessResponse{}, false},
 		{"internal_api.LoadTestRunResponse", LoadTestRun{}, false},
+		{"internal_api.CreateLoadTestTemplateRequest", LoadTestTemplateRequest{}, true},
+		{"internal_api.UpdateLoadTestTemplateRequest", LoadTestTemplateUpdateRequest{}, true},
+		{"internal_api.CreateTemplateRevisionRequest", LoadTestTemplateRevisionRequest{}, true},
+		{"internal_api.LoadTestTemplateResponse", LoadTestTemplate{}, false},
 	} {
 		assertJSONFields(t, doc, model.definition, model.value)
 		if model.request {
@@ -57,12 +61,20 @@ func TestLoadTestContractMatchesLTMSwagger(t *testing.T) {
 // queries in the source annotation; the vendored copy adds the same names the
 // other operations already list.
 var loadTestOperations = map[string][]string{
-	"/v1/load-tests":                      {"get", "post"},
-	"/v1/load-tests/{identity}":           {"delete", "get", "put"},
-	"/v1/load-tests/{identity}/runs":      {"get", "post"},
-	"/v1/load-tests/{identity}/variables": {"get"},
-	"/v1/runs/{identity}":                 {"get"},
-	"/v1/runs/{identity}/stop":            {"post"},
+	"/v1/load-tests":                                          {"get", "post"},
+	"/v1/load-tests/{identity}":                               {"delete", "get", "put"},
+	"/v1/load-tests/{identity}/runs":                          {"get", "post"},
+	"/v1/load-tests/{identity}/sync-template":                 {"post"},
+	"/v1/load-tests/from-template":                            {"post"},
+	"/v1/load-tests/{identity}/variables":                     {"get"},
+	"/v1/runs/{identity}":                                     {"get"},
+	"/v1/runs/{identity}/stop":                                {"post"},
+	"/v1/load-test-templates":                                 {"post"},
+	"/v1/load-test-templates/{identity}":                      {"delete", "get", "put"},
+	"/v1/load-test-templates/{identity}/revisions":            {"post"},
+	"/v1/load-test-templates/{identity}/revisions/{revision}": {"delete", "get"},
+	"/v1/load-test-templates/{identity}/variables":            {"get"},
+	"/v1/load-test-templates/{identity}/referenced-by":        {"get"},
 }
 
 var scopeQueryNames = map[string]struct{}{

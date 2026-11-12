@@ -42,6 +42,568 @@ securityDefinitions:
 security:
     - ApiKeyAuth: []
 paths:
+    /v1/load-test-templates:
+        post:
+            consumes:
+                - application/json
+            description: Creates a new load test template with an initial revision. Supports base64-encoded script upload (scriptSource="inline") or container image reference (scriptSource="image"). When a script is provided, variables are auto-detected using hybrid env + tool-native argument parsing.
+            operationId: createTemplate
+            parameters:
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: Hub identity where the template belongs
+                  in: query
+                  name: hubIdentity
+                  required: true
+                  type: string
+                - description: Template configuration
+                  in: body
+                  name: request
+                  required: true
+                  schema:
+                    $ref: '#/definitions/internal_api.CreateLoadTestTemplateRequest'
+            produces:
+                - application/json
+            responses:
+                "201":
+                    description: Template created successfully
+                    schema:
+                        $ref: '#/definitions/internal_api.LoadTestTemplateResponse'
+                "400":
+                    description: Invalid request body or validation error, or the script failed validation (errorCode E2022)
+                    schema:
+                        $ref: '#/definitions/internal_api.ScriptValidationErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to create template
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Create a new load test template
+            tags:
+                - Templates
+    /v1/load-test-templates/{identity}:
+        delete:
+            description: Soft-deletes all revisions of a template. Returns 409 Conflict if any active load tests reference this template — delete the associated load tests first.
+            operationId: deleteTemplate
+            parameters:
+                - description: Template identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: Hub identity
+                  in: query
+                  name: hubIdentity
+                  required: true
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Template deleted successfully
+                    schema:
+                        $ref: '#/definitions/internal_api.SuccessResponse'
+                "400":
+                    description: Invalid query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "409":
+                    description: Cannot delete — load tests reference this template
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to delete template
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Delete a load test template
+            tags:
+                - Templates
+        get:
+            description: Retrieves the latest revision of a load test template by identity within a hub
+            operationId: getTemplate
+            parameters:
+                - description: Template identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: Hub identity
+                  in: query
+                  name: hubIdentity
+                  required: true
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Template details
+                    schema:
+                        $ref: '#/definitions/internal_api.LoadTestTemplateResponse'
+                "400":
+                    description: Invalid query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Template not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Get load test template
+            tags:
+                - Templates
+        put:
+            consumes:
+                - application/json
+            description: Updates mutable fields (name, description, variables, toolConfig, args, tags) of the latest revision of a template
+            operationId: updateTemplate
+            parameters:
+                - description: Template identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: Hub identity
+                  in: query
+                  name: hubIdentity
+                  required: true
+                  type: string
+                - description: Fields to update
+                  in: body
+                  name: request
+                  required: true
+                  schema:
+                    $ref: '#/definitions/internal_api.UpdateLoadTestTemplateRequest'
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Template updated successfully
+                    schema:
+                        $ref: '#/definitions/internal_api.LoadTestTemplateResponse'
+                "400":
+                    description: Invalid request body or validation error, or the script failed validation (errorCode E2022)
+                    schema:
+                        $ref: '#/definitions/internal_api.ScriptValidationErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Template not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to update template
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Update a load test template
+            tags:
+                - Templates
+    /v1/load-test-templates/{identity}/referenced-by:
+        get:
+            description: Returns a paginated list of entities that reference the given template. Today only load tests can reference a template (kind="LoadTest"); the list is account-wide because a REFERENCE load test can live in a different org / project than the template it pins.
+            operationId: getTemplateReferencedBy
+            parameters:
+                - description: Template identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: Hub identity
+                  in: query
+                  name: hubIdentity
+                  required: true
+                  type: string
+                - description: Page index (0-based)
+                  in: query
+                  name: page
+                  type: integer
+                - description: Page size
+                  in: query
+                  name: limit
+                  type: integer
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Paginated list of referencing entities
+                    schema:
+                        $ref: '#/definitions/internal_api.TemplateReferencedByResponse'
+                "400":
+                    description: Invalid query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Template not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to list referencing entities
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: List entities referencing a load test template
+            tags:
+                - Templates
+    /v1/load-test-templates/{identity}/revisions:
+        post:
+            consumes:
+                - application/json
+            description: Creates a new revision of an existing template. Fields not provided in the request are inherited from the latest revision. Each revision is stored as a separate MongoDB document.
+            operationId: createTemplateRevision
+            parameters:
+                - description: Template identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: Hub identity
+                  in: query
+                  name: hubIdentity
+                  required: true
+                  type: string
+                - description: New revision configuration
+                  in: body
+                  name: request
+                  required: true
+                  schema:
+                    $ref: '#/definitions/internal_api.CreateTemplateRevisionRequest'
+            produces:
+                - application/json
+            responses:
+                "201":
+                    description: Template revision created successfully
+                    schema:
+                        $ref: '#/definitions/internal_api.LoadTestTemplateResponse'
+                "400":
+                    description: Invalid request body or validation error, or the script failed validation (errorCode E2022)
+                    schema:
+                        $ref: '#/definitions/internal_api.ScriptValidationErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Template not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to create revision
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Create a new template revision
+            tags:
+                - Templates
+    /v1/load-test-templates/{identity}/revisions/{revision}:
+        delete:
+            description: Soft-deletes a specific revision of a template
+            operationId: deleteTemplateRevision
+            parameters:
+                - description: Template identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: Template revision to delete
+                  in: path
+                  name: revision
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: Hub identity
+                  in: query
+                  name: hubIdentity
+                  required: true
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Template revision deleted successfully
+                    schema:
+                        $ref: '#/definitions/internal_api.SuccessResponse'
+                "400":
+                    description: Invalid query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to delete template revision
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Delete a specific template revision
+            tags:
+                - Templates
+        get:
+            description: Retrieves a specific revision of a load test template
+            operationId: getTemplateRevision
+            parameters:
+                - description: Template identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: Template revision
+                  in: path
+                  name: revision
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: Hub identity
+                  in: query
+                  name: hubIdentity
+                  required: true
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Template revision details
+                    schema:
+                        $ref: '#/definitions/internal_api.LoadTestTemplateResponse'
+                "400":
+                    description: Invalid query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Template revision not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Get a specific template revision
+            tags:
+                - Templates
+    /v1/load-test-templates/{identity}/variables:
+        get:
+            description: Returns a template revision's variable definitions (custom script env vars) alongside the runtime inputs discovered in its toolConfig — every leaf left as the "<+input>" sentinel — each carrying the declared type so a client knows whether to prompt for a string, number, integer or boolean. This is the template-side counterpart of GET /v1/load-tests/{identity}/variables and returns the same two arrays, so a caller binding runtime values against a template revision (for example a pipeline step that references a template) does not have to read them out of the full template envelope. Omit the revision query parameter to resolve the template's latest revision.
+            operationId: getTemplateVariables
+            parameters:
+                - description: Template identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: Hub identity
+                  in: query
+                  name: hubIdentity
+                  required: true
+                  type: string
+                - description: Template revision; defaults to the latest revision
+                  in: query
+                  name: revision
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Variables and runtime inputs for the template revision
+                    schema:
+                        $ref: '#/definitions/internal_api.LoadTestTemplateVariablesResponse'
+                "400":
+                    description: Invalid query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Template not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to resolve tool inputs
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Get all variables for a load test template
+            tags:
+                - Templates
     /v1/load-tests:
         get:
             description: |-
@@ -185,6 +747,64 @@ paths:
             security:
                 - ApiKeyAuth: []
             summary: Create a new load test
+            tags:
+                - LoadTests
+    /v1/load-tests/from-template:
+        post:
+            consumes:
+                - application/json
+            description: Creates a new load test from an existing template. Supports REFERENCE (lightweight pointer, template is source of truth) or LOCAL (full copy of script and variables) import modes.
+            operationId: createLoadTestFromTemplate
+            parameters:
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: Load test creation from template
+                  in: body
+                  name: request
+                  required: true
+                  schema:
+                    $ref: '#/definitions/internal_api.CreateLoadTestFromTemplateRequest'
+            produces:
+                - application/json
+            responses:
+                "201":
+                    description: Load test created successfully
+                    schema:
+                        $ref: '#/definitions/internal_api.LoadTestResponse'
+                "400":
+                    description: Invalid request body, or the script failed validation (errorCode E2022)
+                    schema:
+                        $ref: '#/definitions/internal_api.ScriptValidationErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Template not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to create load test
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Create a load test from a template
             tags:
                 - LoadTests
     /v1/load-tests/{identity}:
@@ -501,6 +1121,61 @@ paths:
             summary: Start a new load test run
             tags:
                 - Runs
+    /v1/load-tests/{identity}/sync-template:
+        post:
+            description: Updates the pinned template revision on a REFERENCE-imported load test to the latest revision. Returns 400 if the load test is not a REFERENCE import.
+            operationId: syncTemplate
+            parameters:
+                - description: Load Test identity
+                  in: path
+                  name: identity
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Load test synced to latest template revision
+                    schema:
+                        $ref: '#/definitions/internal_api.LoadTestResponse'
+                "400":
+                    description: Not a REFERENCE import load test
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Load test or template not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to sync template
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Sync load test with latest template revision
+            tags:
+                - LoadTests
     /v1/load-tests/{identity}/variables:
         get:
             description: Returns all variable definitions for a load test, split into well-known load-tool inputs (toolInputs) and custom script env vars (scriptInputs). For REFERENCE-imported load tests, the variables are resolved from the pinned template (the response also carries templateIdentity / templateRevision). For LOCAL or direct load tests, the response is the load test's own variables. Used by the UI to display variable configuration and prompt for runtime inputs before starting a run.
@@ -752,6 +1427,65 @@ definitions:
             passes:
                 type: integer
         type: object
+    internal_api.CreateLoadTestFromTemplateRequest:
+        properties:
+            description:
+                type: string
+            environmentIdentifier:
+                type: string
+            identity:
+                type: string
+            importType:
+                type: string
+            infraIdentifier:
+                description: |-
+                    InfraIdentifier + EnvironmentIdentifier are the concrete IDs the
+                    resulting LoadTest will dispatch to. Required at the top level —
+                    templates can carry `infraId: <+input>` and `envId: <+input>`
+                    as runtime-input sentinels, but a LoadTest always needs concrete
+                    values for both.
+                type: string
+            name:
+                type: string
+            serviceReferences:
+                description: |-
+                    ServiceReferences links the resulting load test to one or more chaos
+                    services (chaosService identity strings). When the
+                    CHAOS_RT_SERVICES_ENABLED feature flag is on, at least one link is
+                    mandatory (services are the licensed unit); when off, the field is
+                    ignored and stored empty. Templates do not carry service references, so
+                    there is no inheritance: the value must be supplied directly on this
+                    request (or via metadata.serviceReferences in the YAML body).
+                items:
+                    type: string
+                type: array
+            skipScriptValidation:
+                description: |-
+                    SkipScriptValidation saves the script without static validation, for this
+                    request only. The script size limit, the script-body expression check and
+                    the ZIP workspace safety checks still apply.
+                type: boolean
+            targetType:
+                type: string
+            templateReference:
+                $ref: '#/definitions/internal_api.FromTemplateReferenceRequest'
+            toolConfig:
+                additionalProperties: true
+                type: object
+            variables:
+                items:
+                    $ref: '#/definitions/template.Variable'
+                type: array
+            yaml:
+                type: string
+        required:
+            - environmentIdentifier
+            - identity
+            - importType
+            - infraIdentifier
+            - name
+            - templateReference
+        type: object
     internal_api.CreateLoadTestRequest:
         properties:
             cleanupPolicy:
@@ -858,6 +1592,122 @@ definitions:
         required:
             - identity
         type: object
+    internal_api.CreateLoadTestTemplateRequest:
+        properties:
+            description:
+                type: string
+            envId:
+                type: string
+            identity:
+                type: string
+            infraId:
+                description: InfraID / EnvID optionally pin a concrete infra/env on the template; not required, since callers must always supply infraIdentifier/environmentIdentifier when creating a LoadTest from it regardless.
+                type: string
+            infraType:
+                type: string
+            name:
+                type: string
+            revision:
+                type: string
+            scriptContent:
+                description: Base64-encoded script (required when scriptSource=inline)
+                type: string
+            scriptSource:
+                description: '"inline" (default) or "image"'
+                type: string
+            skipScriptValidation:
+                description: |-
+                    SkipScriptValidation saves the script without static validation, for this
+                    request only. The script size limit, the script-body expression check and
+                    the ZIP workspace safety checks still apply.
+                type: boolean
+            tags:
+                items:
+                    type: string
+                type: array
+            toolConfig:
+                additionalProperties: true
+                type: object
+            toolType:
+                $ref: '#/definitions/internal_api.LoadTestToolType'
+            variables:
+                items:
+                    $ref: '#/definitions/template.Variable'
+                type: array
+            yaml:
+                description: |-
+                    YAML is an optional base64-encoded canonical template YAML. When
+                    supplied, the server parses it and folds the parsed fields into
+                    the request as fallbacks (explicit JSON fields win on conflict).
+                    The decoded YAML is also persisted verbatim on the document so the
+                    caller-supplied form round-trips through GET unchanged. Omit to let
+                    the server generate YAML from the JSON body.
+                type: string
+        required:
+            - identity
+            - name
+            - revision
+            - toolType
+        type: object
+    internal_api.CreateTemplateRevisionRequest:
+        properties:
+            description:
+                type: string
+            envId:
+                type: string
+            infraId:
+                description: 'InfraID / EnvID: send to override; omit to inherit from the previous revision. See CreateLoadTestTemplateRequest''s doc comment.'
+                type: string
+            name:
+                type: string
+            revision:
+                type: string
+            scriptContent:
+                type: string
+            scriptSource:
+                type: string
+            skipScriptValidation:
+                description: |-
+                    SkipScriptValidation saves the script without static validation, for this
+                    request only. The script size limit, the script-body expression check and
+                    the ZIP workspace safety checks still apply.
+                type: boolean
+            tags:
+                items:
+                    type: string
+                type: array
+            toolConfig:
+                additionalProperties: true
+                type: object
+            variables:
+                description: 'Variables: send a non-nil (possibly empty) slice to replace; omit/null to inherit from the previous revision.'
+                items:
+                    $ref: '#/definitions/template.Variable'
+                type: array
+            yaml:
+                description: |-
+                    YAML is an optional base64-encoded canonical template YAML. When
+                    supplied, the server parses it and folds the parsed fields into
+                    the request as fallbacks (explicit JSON fields win on conflict).
+                    Inherit semantics still apply for fields absent from both: the
+                    previous revision's value is used.
+                type: string
+        required:
+            - revision
+        type: object
+    internal_api.DetectedVariableResponse:
+        properties:
+            default:
+                type: string
+            description:
+                type: string
+            name:
+                type: string
+            source:
+                type: string
+            type:
+                type: string
+        type: object
     internal_api.EndpointAssertions:
         properties:
             max_response_time_ms:
@@ -885,6 +1735,23 @@ definitions:
                 type: string
             message:
                 type: string
+        type: object
+    internal_api.FromTemplateReferenceRequest:
+        properties:
+            hubIdentity:
+                type: string
+            identity:
+                type: string
+            organizationIdentifier:
+                type: string
+            projectIdentifier:
+                type: string
+            revision:
+                type: string
+        required:
+            - hubIdentity
+            - identity
+            - revision
         type: object
     internal_api.InfraPreparationResponse:
         properties:
@@ -1227,6 +2094,81 @@ definitions:
             - LoadTestRunStatusStopped
             - LoadTestRunStatusFinished
             - LoadTestRunStatusFailed
+    internal_api.LoadTestTemplateResponse:
+        properties:
+            accountIdentifier:
+                type: string
+            createdAt:
+                type: string
+            createdBy:
+                type: string
+            createdByUserDetails:
+                $ref: '#/definitions/internal_api.UserDetailsResponse'
+            description:
+                type: string
+            detectedVariables:
+                items:
+                    $ref: '#/definitions/internal_api.DetectedVariableResponse'
+                type: array
+            envId:
+                type: string
+            hubIdentity:
+                type: string
+            identity:
+                type: string
+            infraId:
+                type: string
+            infraType:
+                type: string
+            name:
+                type: string
+            organizationIdentifier:
+                type: string
+            parentUniqueId:
+                type: string
+            projectIdentifier:
+                type: string
+            revision:
+                type: string
+            scriptContent:
+                type: string
+            scriptSource:
+                type: string
+            tags:
+                items:
+                    type: string
+                type: array
+            toolConfig:
+                additionalProperties: true
+                type: object
+            toolType:
+                $ref: '#/definitions/internal_api.LoadTestToolType'
+            uniqueId:
+                type: string
+            updatedAt:
+                type: string
+            updatedBy:
+                type: string
+            updatedByUserDetails:
+                $ref: '#/definitions/internal_api.UserDetailsResponse'
+            yaml:
+                type: string
+        type: object
+    internal_api.LoadTestTemplateVariablesResponse:
+        properties:
+            inputs:
+                items:
+                    $ref: '#/definitions/template.Input'
+                type: array
+            templateIdentity:
+                type: string
+            templateRevision:
+                type: string
+            variables:
+                items:
+                    $ref: '#/definitions/template.Variable'
+                type: array
+        type: object
     internal_api.LoadTestToolType:
         enum:
             - Locust
@@ -1482,6 +2424,30 @@ definitions:
             revision:
                 type: string
         type: object
+    internal_api.TemplateReferencedByItem:
+        properties:
+            identity:
+                type: string
+            kind:
+                type: string
+            name:
+                type: string
+            orgIdentifier:
+                type: string
+            projectIdentifier:
+                type: string
+        type: object
+    internal_api.TemplateReferencedByResponse:
+        properties:
+            correlationID:
+                type: string
+            data:
+                items:
+                    $ref: '#/definitions/internal_api.TemplateReferencedByItem'
+                type: array
+            pagination:
+                $ref: '#/definitions/shared.PaginationResponse'
+        type: object
     internal_api.ThresholdResultResponse:
         properties:
             abortOnFail:
@@ -1583,6 +2549,47 @@ definitions:
             - tags
             - variables
             - resources
+    internal_api.UpdateLoadTestTemplateRequest:
+        properties:
+            description:
+                type: string
+            envId:
+                type: string
+            infraId:
+                description: InfraID / EnvID optionally pin a concrete infra/env on the template. See CreateLoadTestTemplateRequest's doc comment.
+                type: string
+            infraType:
+                type: string
+            name:
+                type: string
+            skipScriptValidation:
+                description: |-
+                    SkipScriptValidation saves the script without static validation, for this
+                    request only. The script size limit, the script-body expression check and
+                    the ZIP workspace safety checks still apply.
+                type: boolean
+            tags:
+                items:
+                    type: string
+                type: array
+            toolConfig:
+                additionalProperties: true
+                type: object
+            variables:
+                items:
+                    $ref: '#/definitions/template.Variable'
+                type: array
+            yaml:
+                description: |-
+                    YAML is an optional base64-encoded canonical template YAML. When
+                    supplied, the server parses it and folds the parsed fields into
+                    the request as fallbacks (explicit JSON fields win on conflict).
+                    Fields absent from both keep their previous values.
+                type: string
+        type: object
+        required:
+            - tags
+            - variables
     internal_api.UserDetailsResponse:
         properties:
             email:
