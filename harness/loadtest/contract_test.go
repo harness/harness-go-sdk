@@ -46,6 +46,10 @@ func TestLoadTestContractMatchesLTMSwagger(t *testing.T) {
 		{"internal_api.UpdateLoadTestTemplateRequest", LoadTestTemplateUpdateRequest{}, true},
 		{"internal_api.CreateTemplateRevisionRequest", LoadTestTemplateRevisionRequest{}, true},
 		{"internal_api.LoadTestTemplateResponse", LoadTestTemplate{}, false},
+		{"internal_api.CreateCompositeLoadTestRequest", CompositeLoadTestRequest{}, true},
+		{"internal_api.UpdateCompositeLoadTestRequest", CompositeLoadTestUpdateRequest{}, true},
+		{"internal_api.CompositeLoadTest", CompositeLoadTest{}, false},
+		{"internal_api.CreateCompositeLoadTestResponse", CompositeLoadTestCreated{}, false},
 	} {
 		assertJSONFields(t, doc, model.definition, model.value)
 		if model.request {
@@ -75,6 +79,8 @@ var loadTestOperations = map[string][]string{
 	"/v1/load-test-templates/{identity}/revisions/{revision}": {"delete", "get"},
 	"/v1/load-test-templates/{identity}/variables":            {"get"},
 	"/v1/load-test-templates/{identity}/referenced-by":        {"get"},
+	"/v1/composite-load-tests":                                {"post"},
+	"/v1/composite-load-tests/{identifier}":                   {"delete", "get", "put"},
 }
 
 var scopeQueryNames = map[string]struct{}{

@@ -26,6 +26,9 @@ func main() {
 		"\tc.cfg = cfg\n\tc.common.client = c\n\tc.AccountId = cfg.AccountId\n\tc.ApiKey = cfg.ApiKey\n\n",
 		"c.AccountId = cfg.AccountId")
 	patchUpdatePointers()
+	// swagger-codegen names this file from CompositeLoadTest, which ends in _test.go.
+	// Go then compiles it only for tests, and the client fails to build.
+	renameGenerated("model_internal_api_composite_load_test.go", "model_internal_api_composite_loadtest.go")
 }
 
 // A plain int32 or bool cannot represent "leave the stored value". Null does.
@@ -69,6 +72,19 @@ func patch(path, old, new, already string) {
 		exitf("write %s: %v", path, err)
 	}
 	fmt.Printf("patched %s\n", path)
+}
+
+func renameGenerated(oldName, newName string) {
+	if _, err := os.Stat(oldName); err != nil {
+		if _, statErr := os.Stat(newName); statErr == nil {
+			return
+		}
+		exitf("missing generated file %s", oldName)
+	}
+	if err := os.Rename(oldName, newName); err != nil {
+		exitf("rename %s: %v", oldName, err)
+	}
+	fmt.Printf("renamed %s\n", oldName)
 }
 
 func exitf(format string, args ...interface{}) {

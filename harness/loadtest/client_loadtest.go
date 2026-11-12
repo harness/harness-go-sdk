@@ -584,6 +584,106 @@ func validateTemplateRevision(hubIdentity string, req LoadTestTemplateRevisionRe
 	return nil
 }
 
+func (c *LoadTestClient) CreateCompositeLoadTest(ctx context.Context, scope Scope, req CompositeLoadTestRequest) (*CompositeLoadTestCreated, *http.Response, error) {
+	if err := validateCompositeLoadTest(req.Name, req.Identifier, req.LoadTest.LoadTestRef, req.Probe.Identity); err != nil {
+		return nil, nil, err
+	}
+	api, err := c.api()
+	if err != nil {
+		return nil, nil, err
+	}
+	body, err := convert[InternalApiCreateCompositeLoadTestRequest](req)
+	if err != nil {
+		return nil, nil, err
+	}
+	out, resp, err := api.CompositeLoadTestsApi.CreateCompositeLoadTest(ctx, body, scope.AccountID, &CompositeLoadTestsApiCreateCompositeLoadTestOpts{
+		OrganizationIdentifier: optString(scope.OrgID),
+		ProjectIdentifier:      optString(scope.ProjectID),
+		ParentUniqueId:         optString(scope.ParentUniqueID),
+	})
+	if err != nil {
+		return nil, resp, err
+	}
+	got, convErr := convertPtr[CompositeLoadTestCreated](out)
+	if convErr != nil {
+		return nil, resp, convErr
+	}
+	return got, resp, nil
+}
+
+func (c *LoadTestClient) GetCompositeLoadTest(ctx context.Context, scope Scope, identifier string) (*CompositeLoadTest, *http.Response, error) {
+	if identifier == "" {
+		return nil, nil, fmt.Errorf("composite load test identifier is required")
+	}
+	api, err := c.api()
+	if err != nil {
+		return nil, nil, err
+	}
+	out, resp, err := api.CompositeLoadTestsApi.GetCompositeLoadTest(ctx, pathIdentity(identifier), scope.AccountID, &CompositeLoadTestsApiGetCompositeLoadTestOpts{
+		OrganizationIdentifier: optString(scope.OrgID),
+		ProjectIdentifier:      optString(scope.ProjectID),
+		ParentUniqueId:         optString(scope.ParentUniqueID),
+	})
+	if err != nil {
+		return nil, resp, err
+	}
+	got, convErr := convertPtr[CompositeLoadTest](out)
+	if convErr != nil {
+		return nil, resp, convErr
+	}
+	return got, resp, nil
+}
+
+func (c *LoadTestClient) UpdateCompositeLoadTest(ctx context.Context, scope Scope, identifier string, req CompositeLoadTestUpdateRequest) (*CompositeLoadTest, *http.Response, error) {
+	if err := validateCompositeLoadTest(req.Name, identifier, req.LoadTest.LoadTestRef, req.Probe.Identity); err != nil {
+		return nil, nil, err
+	}
+	api, err := c.api()
+	if err != nil {
+		return nil, nil, err
+	}
+	body, err := convert[InternalApiUpdateCompositeLoadTestRequest](req)
+	if err != nil {
+		return nil, nil, err
+	}
+	out, resp, err := api.CompositeLoadTestsApi.UpdateCompositeLoadTest(ctx, body, scope.AccountID, pathIdentity(identifier), &CompositeLoadTestsApiUpdateCompositeLoadTestOpts{
+		OrganizationIdentifier: optString(scope.OrgID),
+		ProjectIdentifier:      optString(scope.ProjectID),
+		ParentUniqueId:         optString(scope.ParentUniqueID),
+	})
+	if err != nil {
+		return nil, resp, err
+	}
+	got, convErr := convertPtr[CompositeLoadTest](out)
+	if convErr != nil {
+		return nil, resp, convErr
+	}
+	return got, resp, nil
+}
+
+func (c *LoadTestClient) DeleteCompositeLoadTest(ctx context.Context, scope Scope, identifier string) (*http.Response, error) {
+	if identifier == "" {
+		return nil, fmt.Errorf("composite load test identifier is required")
+	}
+	api, err := c.api()
+	if err != nil {
+		return nil, err
+	}
+	_, resp, err := api.CompositeLoadTestsApi.DeleteCompositeLoadTest(ctx, pathIdentity(identifier), scope.AccountID, &CompositeLoadTestsApiDeleteCompositeLoadTestOpts{
+		OrganizationIdentifier: optString(scope.OrgID),
+		ProjectIdentifier:      optString(scope.ProjectID),
+		ParentUniqueId:         optString(scope.ParentUniqueID),
+	})
+	return resp, err
+}
+
+func validateCompositeLoadTest(name, identifier, loadTestRef, probeIdentity string) error {
+	if name == "" || identifier == "" || loadTestRef == "" || probeIdentity == "" {
+		return fmt.Errorf("name, identifier, loadTestRef, and probe identity are required")
+	}
+	return nil
+}
+
 func (c *LoadTestClient) api() (*APIClient, error) {
 	if c == nil || c.client == nil || c.client.cfg == nil || c.client.cfg.BasePath == "" {
 		return nil, fmt.Errorf("load test API client is not configured")

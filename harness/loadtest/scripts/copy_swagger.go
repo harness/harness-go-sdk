@@ -58,6 +58,12 @@ var keepMethods = map[string]map[string]struct{}{
 	"/v1/load-test-templates/{identity}/referenced-by": {
 		"get": {},
 	},
+	"/v1/composite-load-tests": {
+		"post": {},
+	},
+	"/v1/composite-load-tests/{identifier}": {
+		"get": {}, "put": {}, "delete": {},
+	},
 }
 
 func main() {

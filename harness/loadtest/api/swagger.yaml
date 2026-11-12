@@ -42,6 +42,231 @@ securityDefinitions:
 security:
     - ApiKeyAuth: []
 paths:
+    /v1/composite-load-tests:
+        post:
+            consumes:
+                - application/json
+            description: Creates a pipeline containing a single CompositeLoadTest stage that runs the selected load test and chaos probe in parallel.
+            operationId: createCompositeLoadTest
+            parameters:
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: Composite load test definition
+                  in: body
+                  name: request
+                  required: true
+                  schema:
+                    $ref: '#/definitions/internal_api.CreateCompositeLoadTestRequest'
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Composite load test created successfully
+                    schema:
+                        $ref: '#/definitions/internal_api.CreateCompositeLoadTestResponse'
+                "400":
+                    description: Invalid request body or query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to create composite load test
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Create a composite load test
+            tags:
+                - CompositeLoadTests
+    /v1/composite-load-tests/{identifier}:
+        delete:
+            description: Deletes the pipeline created for this stage id. The load test and the probe are left in place.
+            operationId: deleteCompositeLoadTest
+            parameters:
+                - description: Stage identifier
+                  in: path
+                  name: identifier
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Composite load test deleted
+                    schema:
+                        $ref: '#/definitions/internal_api.SuccessResponse'
+                "400":
+                    description: Invalid query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Composite load test not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to delete composite load test
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Delete a composite load test
+            tags:
+                - CompositeLoadTests
+        get:
+            description: Reads the pipeline created for this stage id and returns the load test and probe stored in it. A runtime-input infrastructure reference and the default probe timeout are returned empty.
+            operationId: getCompositeLoadTest
+            parameters:
+                - description: Stage identifier
+                  in: path
+                  name: identifier
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Composite load test
+                    schema:
+                        $ref: '#/definitions/internal_api.CompositeLoadTest'
+                "400":
+                    description: Invalid query parameters
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Composite load test not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to get composite load test
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Get a composite load test
+            tags:
+                - CompositeLoadTests
+        put:
+            consumes:
+                - application/json
+            description: Rewrites the pipeline for this stage id. The load test must already exist in the same project.
+            operationId: updateCompositeLoadTest
+            parameters:
+                - description: Stage identifier
+                  in: path
+                  name: identifier
+                  required: true
+                  type: string
+                - description: account id to access the resource
+                  in: query
+                  name: accountIdentifier
+                  required: true
+                  type: string
+                - description: organization id to access the resource
+                  in: query
+                  name: organizationIdentifier
+                  type: string
+                - description: resolved parent scope unique ID (from scope-info API or query param)
+                  in: query
+                  name: parentUniqueId
+                  type: string
+                - description: project id to access the resource
+                  in: query
+                  name: projectIdentifier
+                  type: string
+                - description: Composite load test definition
+                  in: body
+                  name: request
+                  required: true
+                  schema:
+                    $ref: '#/definitions/internal_api.UpdateCompositeLoadTestRequest'
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: Composite load test updated
+                    schema:
+                        $ref: '#/definitions/internal_api.CompositeLoadTest'
+                "400":
+                    description: Invalid request
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "401":
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "404":
+                    description: Composite load test not found
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+                "500":
+                    description: Failed to update composite load test
+                    schema:
+                        $ref: '#/definitions/internal_api.ErrorResponse'
+            security:
+                - ApiKeyAuth: []
+            summary: Update a composite load test
+            tags:
+                - CompositeLoadTests
     /v1/load-test-templates:
         post:
             consumes:
@@ -1427,6 +1652,86 @@ definitions:
             passes:
                 type: integer
         type: object
+    internal_api.CompositeLoadTest:
+        properties:
+            description:
+                type: string
+            identifier:
+                type: string
+            loadTest:
+                $ref: '#/definitions/internal_api.CompositeLoadTestLoadTestSelection'
+            name:
+                type: string
+            objective:
+                type: string
+            pipelineIdentifier:
+                type: string
+            probe:
+                $ref: '#/definitions/internal_api.CompositeLoadTestProbeSelection'
+            tags:
+                additionalProperties:
+                    type: string
+                type: object
+        type: object
+    internal_api.CompositeLoadTestLoadTestSelection:
+        properties:
+            loadTestRef:
+                description: LoadTestRef is the identity of the load test entity in the current scope.
+                type: string
+        required:
+            - loadTestRef
+        type: object
+    internal_api.CompositeLoadTestProbeSelection:
+        properties:
+            duration:
+                description: Duration is the probe run duration (e.g. "10m"); defaults when empty.
+                type: string
+            identity:
+                description: Identity is the probe identity/reference.
+                type: string
+            infraReference:
+                description: |-
+                    InfraReference is optional; when empty the generated ChaosProbe step uses
+                    a runtime input (<+input>) for Pipeline Studio.
+                type: string
+        required:
+            - identity
+        type: object
+    internal_api.CreateCompositeLoadTestRequest:
+        properties:
+            description:
+                type: string
+            identifier:
+                type: string
+            loadTest:
+                $ref: '#/definitions/internal_api.CompositeLoadTestLoadTestSelection'
+            name:
+                type: string
+            objective:
+                type: string
+            probe:
+                $ref: '#/definitions/internal_api.CompositeLoadTestProbeSelection'
+            tags:
+                additionalProperties:
+                    type: string
+                type: object
+        required:
+            - identifier
+            - loadTest
+            - name
+            - probe
+        type: object
+    internal_api.CreateCompositeLoadTestResponse:
+        properties:
+            identifier:
+                type: string
+            name:
+                type: string
+            pipelineIdentifier:
+                type: string
+            stageIdentifier:
+                type: string
+        type: object
     internal_api.CreateLoadTestFromTemplateRequest:
         properties:
             description:
@@ -2483,6 +2788,27 @@ definitions:
                 type: string
             value:
                 type: number
+        type: object
+    internal_api.UpdateCompositeLoadTestRequest:
+        properties:
+            description:
+                type: string
+            loadTest:
+                $ref: '#/definitions/internal_api.CompositeLoadTestLoadTestSelection'
+            name:
+                type: string
+            objective:
+                type: string
+            probe:
+                $ref: '#/definitions/internal_api.CompositeLoadTestProbeSelection'
+            tags:
+                additionalProperties:
+                    type: string
+                type: object
+        required:
+            - loadTest
+            - name
+            - probe
         type: object
     internal_api.UpdateLoadTestRequest:
         properties:

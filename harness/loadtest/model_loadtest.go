@@ -424,3 +424,57 @@ type ListLoadTestRunsRequest struct {
 	SortAscending *bool
 	Status        string
 }
+
+// CompositeLoadTestRequest is POST /v1/composite-load-tests.
+// Identifier is the stage id. The pipeline id is that value plus "_pipeline".
+type CompositeLoadTestRequest struct {
+	Name        string                 `json:"name"`
+	Identifier  string                 `json:"identifier"`
+	Description string                 `json:"description,omitempty"`
+	Objective   string                 `json:"objective,omitempty"`
+	Tags        map[string]string      `json:"tags,omitempty"`
+	LoadTest    CompositeLoadTestRef   `json:"loadTest"`
+	Probe       CompositeLoadTestProbe `json:"probe"`
+}
+
+// CompositeLoadTestUpdateRequest is PUT /v1/composite-load-tests/{identifier}.
+type CompositeLoadTestUpdateRequest struct {
+	Name        string                 `json:"name"`
+	Description string                 `json:"description,omitempty"`
+	Objective   string                 `json:"objective,omitempty"`
+	Tags        map[string]string      `json:"tags,omitempty"`
+	LoadTest    CompositeLoadTestRef   `json:"loadTest"`
+	Probe       CompositeLoadTestProbe `json:"probe"`
+}
+
+// CompositeLoadTest is one composite load test read from its pipeline.
+type CompositeLoadTest struct {
+	Identifier         string                 `json:"identifier,omitempty"`
+	PipelineIdentifier string                 `json:"pipelineIdentifier,omitempty"`
+	Name               string                 `json:"name,omitempty"`
+	Description        string                 `json:"description,omitempty"`
+	Objective          string                 `json:"objective,omitempty"`
+	Tags               map[string]string      `json:"tags,omitempty"`
+	LoadTest           CompositeLoadTestRef   `json:"loadTest,omitempty"`
+	Probe              CompositeLoadTestProbe `json:"probe,omitempty"`
+}
+
+// CompositeLoadTestCreated is the create response. Identifier is the stage id.
+type CompositeLoadTestCreated struct {
+	Identifier         string `json:"identifier,omitempty"`
+	Name               string `json:"name,omitempty"`
+	PipelineIdentifier string `json:"pipelineIdentifier,omitempty"`
+	StageIdentifier    string `json:"stageIdentifier,omitempty"`
+}
+
+// CompositeLoadTestRef is the load test identity in the same project.
+type CompositeLoadTestRef struct {
+	LoadTestRef string `json:"loadTestRef,omitempty"`
+}
+
+// CompositeLoadTestProbe is the chaos probe stored on the composite stage.
+type CompositeLoadTestProbe struct {
+	Identity       string `json:"identity,omitempty"`
+	InfraReference string `json:"infraReference,omitempty"`
+	Duration       string `json:"duration,omitempty"`
+}

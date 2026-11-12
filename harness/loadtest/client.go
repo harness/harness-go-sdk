@@ -48,6 +48,8 @@ type APIClient struct {
 
 	// API Services
 
+	CompositeLoadTestsApi *CompositeLoadTestsApiService
+
 	LoadTestsApi *LoadTestsApiService
 
 	RunsApi *RunsApiService
@@ -73,6 +75,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ApiKey = cfg.ApiKey
 
 	// API Services
+	c.CompositeLoadTestsApi = (*CompositeLoadTestsApiService)(&c.common)
 	c.LoadTestsApi = (*LoadTestsApiService)(&c.common)
 	c.RunsApi = (*RunsApiService)(&c.common)
 	c.TemplatesApi = (*TemplatesApiService)(&c.common)
