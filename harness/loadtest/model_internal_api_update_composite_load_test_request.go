@@ -13,7 +13,6 @@ type InternalApiUpdateCompositeLoadTestRequest struct {
 	Description string                                         `json:"description,omitempty"`
 	LoadTest    *InternalApiCompositeLoadTestLoadTestSelection `json:"loadTest"`
 	Name        string                                         `json:"name"`
-	Objective   string                                         `json:"objective,omitempty"`
 	Probe       *InternalApiCompositeLoadTestProbeSelection    `json:"probe"`
 	Tags        map[string]string                              `json:"tags,omitempty"`
 }

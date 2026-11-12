@@ -1662,8 +1662,6 @@ definitions:
                 $ref: '#/definitions/internal_api.CompositeLoadTestLoadTestSelection'
             name:
                 type: string
-            objective:
-                type: string
             pipelineIdentifier:
                 type: string
             probe:
@@ -1706,8 +1704,6 @@ definitions:
             loadTest:
                 $ref: '#/definitions/internal_api.CompositeLoadTestLoadTestSelection'
             name:
-                type: string
-            objective:
                 type: string
             probe:
                 $ref: '#/definitions/internal_api.CompositeLoadTestProbeSelection'
@@ -2796,8 +2792,6 @@ definitions:
             loadTest:
                 $ref: '#/definitions/internal_api.CompositeLoadTestLoadTestSelection'
             name:
-                type: string
-            objective:
                 type: string
             probe:
                 $ref: '#/definitions/internal_api.CompositeLoadTestProbeSelection'

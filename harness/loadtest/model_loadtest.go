@@ -431,7 +431,6 @@ type CompositeLoadTestRequest struct {
 	Name        string                 `json:"name"`
 	Identifier  string                 `json:"identifier"`
 	Description string                 `json:"description,omitempty"`
-	Objective   string                 `json:"objective,omitempty"`
 	Tags        map[string]string      `json:"tags,omitempty"`
 	LoadTest    CompositeLoadTestRef   `json:"loadTest"`
 	Probe       CompositeLoadTestProbe `json:"probe"`
@@ -441,7 +440,6 @@ type CompositeLoadTestRequest struct {
 type CompositeLoadTestUpdateRequest struct {
 	Name        string                 `json:"name"`
 	Description string                 `json:"description,omitempty"`
-	Objective   string                 `json:"objective,omitempty"`
 	Tags        map[string]string      `json:"tags,omitempty"`
 	LoadTest    CompositeLoadTestRef   `json:"loadTest"`
 	Probe       CompositeLoadTestProbe `json:"probe"`
@@ -453,7 +451,6 @@ type CompositeLoadTest struct {
 	PipelineIdentifier string                 `json:"pipelineIdentifier,omitempty"`
 	Name               string                 `json:"name,omitempty"`
 	Description        string                 `json:"description,omitempty"`
-	Objective          string                 `json:"objective,omitempty"`
 	Tags               map[string]string      `json:"tags,omitempty"`
 	LoadTest           CompositeLoadTestRef   `json:"loadTest,omitempty"`
 	Probe              CompositeLoadTestProbe `json:"probe,omitempty"`

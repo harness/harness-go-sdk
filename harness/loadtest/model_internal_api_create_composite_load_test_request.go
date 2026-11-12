@@ -14,7 +14,6 @@ type InternalApiCreateCompositeLoadTestRequest struct {
 	Identifier  string                                         `json:"identifier"`
 	LoadTest    *InternalApiCompositeLoadTestLoadTestSelection `json:"loadTest"`
 	Name        string                                         `json:"name"`
-	Objective   string                                         `json:"objective,omitempty"`
 	Probe       *InternalApiCompositeLoadTestProbeSelection    `json:"probe"`
 	Tags        map[string]string                              `json:"tags,omitempty"`
 }
