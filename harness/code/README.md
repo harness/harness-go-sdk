@@ -55,6 +55,7 @@ Class | Method | HTTP request | Description
 *RepositoryApi* | [**DeleteRepository**](docs/RepositoryApi.md#deleterepository) | **Delete** /repos/{repo_identifier} | Soft delete repository
 *RepositoryApi* | [**DeleteTag**](docs/RepositoryApi.md#deletetag) | **Delete** /repos/{repo_identifier}/tags/{tag_name} | Delete tag
 *RepositoryApi* | [**DiffStats**](docs/RepositoryApi.md#diffstats) | **Get** /repos/{repo_identifier}/diff-stats/{range} | Get diff stats
+*RepositoryApi* | [**ForkCreate**](docs/RepositoryApi.md#forkcreate) | **Post** /repos/{repo_identifier}/fork | Fork repository
 *RepositoryApi* | [**GetBlame**](docs/RepositoryApi.md#getblame) | **Get** /repos/{repo_identifier}/blame/{path} | Get git blame
 *RepositoryApi* | [**GetBranch**](docs/RepositoryApi.md#getbranch) | **Get** /repos/{repo_identifier}/branches/{branch_name} | Get branch
 *RepositoryApi* | [**GetCommit**](docs/RepositoryApi.md#getcommit) | **Get** /repos/{repo_identifier}/commits/{commit_sha} | Get commit
@@ -172,6 +173,7 @@ Class | Method | HTTP request | Description
  - [RepoCommitTag](docs/RepoCommitTag.md)
  - [RepoContentInfo](docs/RepoContentInfo.md)
  - [RepoFileContent](docs/RepoFileContent.md)
+ - [RepoIdentifierForkBody](docs/RepoIdentifierForkBody.md)
  - [RepoIdentifierRulesBody](docs/RepoIdentifierRulesBody.md)
  - [RepoMergeCheck](docs/RepoMergeCheck.md)
  - [RepoPathsDetailsOutput](docs/RepoPathsDetailsOutput.md)

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **GitUrl** | **string** |  | [optional] [default to null]
 **Id** | **int32** |  | [optional] [default to null]
 **Identifier** | **string** |  | [optional] [default to null]
+**ImportFailed** | **bool** |  | [optional] [default to null]
 **Importing** | **bool** |  | [optional] [default to null]
 **IsPublic** | **bool** |  | [optional] [default to null]
 **NumClosedPulls** | **int32** |  | [optional] [default to null]
