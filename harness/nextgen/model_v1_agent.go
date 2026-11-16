@@ -31,5 +31,8 @@ type V1Agent struct {
 	Scope            *V1AgentScope       `json:"scope,omitempty"`
 	Operator         *V1AgentOperator    `json:"operator,omitempty"`
 	// The scoped identifier of the agent. This is a combination of the account, org, project, and agent identifiers.
-	PrefixedIdentifier string `json:"prefixedIdentifier,omitempty"`
+	PrefixedIdentifier   string                  `json:"prefixedIdentifier,omitempty"`
+	DisasterRecoveryNode *V1DisasterRecoveryNode `json:"disasterRecoveryNode,omitempty"`
+	// Server-generated UUID for this agent.
+	Uuid string `json:"uuid,omitempty"`
 }
