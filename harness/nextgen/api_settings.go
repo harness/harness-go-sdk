@@ -625,3 +625,4 @@ func (a *SettingsApiService) SettingsUpsertDefaultPipeline(ctx context.Context, 
 
 	return localVarHttpResponse, nil
 }
+

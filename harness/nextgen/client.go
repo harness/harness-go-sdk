@@ -267,6 +267,7 @@ type APIClient struct {
 	ProviderRegistryApi           *ProviderRegistryApiService
 	VariableSetsApi               *VariableSetsApiService
 	AnsibleApi                    *AnsibleApiService
+	IacmProjectDriftConfigApi     *IacmProjectDriftConfigApiService
 }
 
 type service struct {
@@ -403,6 +404,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ProviderRegistryApi = (*ProviderRegistryApiService)(&c.common)
 	c.VariableSetsApi = (*VariableSetsApiService)(&c.common)
 	c.AnsibleApi = (*AnsibleApiService)(&c.common)
+	c.IacmProjectDriftConfigApi = (*IacmProjectDriftConfigApiService)(&c.common)
 	return c
 }
 
