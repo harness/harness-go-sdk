@@ -25,7 +25,7 @@ type iacmTestContext struct {
 }
 
 func TestIacmExecutionConfig(t *testing.T) {
-	client, ctx := getClientWithContext()
+	client, ctx := getClientWithContext(t)
 
 	tc := &iacmTestContext{
 		t:         t,

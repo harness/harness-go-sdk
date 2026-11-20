@@ -30,6 +30,9 @@ Like the other tests in this package it only runs when live credentials are pass
 The offline wire-level tests live in harness/nextgen/clienttests.
 */
 func TestAgentServiceForServerRegenerateCredentials_LiveScopeMatrix(t *testing.T) {
+	if *accountID == "" || *apiKey == "" {
+		t.Skip("Skipping live test: provide -account and -api-key to run it")
+	}
 	client, ctx := setupClient()
 	acct := *accountID
 	suffix := strings.ToLower(utils.RandStringBytes(6))

@@ -9,7 +9,7 @@ import (
 )
 
 func TestGetUserGroupByName(t *testing.T) {
-	c, ctx := getClientWithContext()
+	c, ctx := getClientWithContext(t)
 	id := fmt.Sprintf("%s%s", t.Name(), utils.RandStringBytes(6))
 
 	ug := UserGroup{

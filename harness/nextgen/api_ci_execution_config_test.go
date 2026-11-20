@@ -25,7 +25,7 @@ type ciTestContext struct {
 }
 
 func TestCiExecutionConfig(t *testing.T) {
-	client, ctx := getClientWithContext()
+	client, ctx := getClientWithContext(t)
 
 	tc := &ciTestContext{
 		t:         t,

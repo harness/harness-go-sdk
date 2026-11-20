@@ -20,6 +20,10 @@ func (a *AwsCredential) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
+	if len(aux.Spec) == 0 {
+		return nil
+	}
+
 	switch a.Type_ {
 	case AwsAuthTypes.ManualConfig:
 		err = json.Unmarshal(aux.Spec, &a.ManualConfig)
@@ -35,7 +39,7 @@ func (a *AwsCredential) UnmarshalJSON(data []byte) error {
 	return err
 }
 
-func (a *AwsCredential) MarshalJSON() ([]byte, error) {
+func (a AwsCredential) MarshalJSON() ([]byte, error) {
 	type Alias AwsCredential
 
 	var spec []byte
@@ -57,7 +61,10 @@ func (a *AwsCredential) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 
-	a.Spec = json.RawMessage(spec)
+	out := a
+	if len(spec) > 0 {
+		out.Spec = json.RawMessage(spec)
+	}
 
-	return json.Marshal((*Alias)(a))
+	return json.Marshal((*Alias)(&out))
 }

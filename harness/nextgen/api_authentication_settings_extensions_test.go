@@ -1,15 +1,4 @@
-package clienttests
-
-// Offline tests for the hand-written authentication settings extensions
-// (PL-72067): executeAuthenticationSettingsWriteRequest, executeSamlRequest
-// and executeUpdateLoginSettingsRequest. They cover the response-decode
-// branches (<300, 400/404, 500) and the SAML multipart/form wire format,
-// including two regressions fixed in this PR:
-//   - the 500 branch must attach the decoded ModelError to GenericSwaggerError
-//     on decode success (previously only set on decode failure),
-//   - the SAML booleans authorizationEnabled/jitEnabled must always be sent
-//     (false when unset), because the backend treats a missing value as false
-//     and nulls the stored groupMembershipAttr.
+package nextgen
 
 import (
 	"context"
@@ -22,37 +11,39 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/harness/harness-go-sdk/harness/nextgen"
 	"github.com/hashicorp/go-retryablehttp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
-// newPassthroughClient builds a client whose retryablehttp ErrorHandler returns
-// the response instead of draining it: with the default policy a retried 500
-// surfaces as a "giving up" error and the helpers' error-decode branches never
-// run. Pass-through makes the response reachable so the decode logic itself
-// can be exercised.
-func newPassthroughClient(baseURL string) *nextgen.APIClient {
+func newAuthExtPassthroughClient(baseURL string) *APIClient {
 	httpClient := retryablehttp.NewClient()
 	httpClient.RetryMax = 0
 	httpClient.Logger = nil
 	httpClient.ErrorHandler = func(resp *http.Response, _ error, _ int) (*http.Response, error) {
 		return resp, nil
 	}
-	cfg := nextgen.NewConfiguration()
+	cfg := NewConfiguration()
 	cfg.BasePath = baseURL
 	cfg.HTTPClient = httpClient
-	return nextgen.NewAPIClient(cfg)
+	return NewAPIClient(cfg)
 }
 
-// serve starts a test server returning the given status/body for every request
-// and captures the last request for assertions.
-func serve(t *testing.T, status int, contentType, body string) (*httptest.Server, *capturedRequest) {
+func newAuthExtClient(baseURL string) *APIClient {
+	httpClient := retryablehttp.NewClient()
+	httpClient.RetryMax = 0
+	httpClient.Logger = nil
+	cfg := NewConfiguration()
+	cfg.BasePath = baseURL
+	cfg.HTTPClient = httpClient
+	return NewAPIClient(cfg)
+}
+
+func authExtServe(t *testing.T, status int, contentType, body string) (*httptest.Server, *authExtCapturedRequest) {
 	t.Helper()
-	var lastReq capturedRequest
+	var lastReq authExtCapturedRequest
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		lastReq = capture(r)
+		lastReq = authExtCapture(r)
 		if contentType != "" {
 			w.Header().Set("Content-Type", contentType)
 		}
@@ -85,19 +76,19 @@ func TestAuthenticationSettingsWriteRequest_DecodeBranches(t *testing.T) {
 			status:    http.StatusBadRequest,
 			body:      `{"status":"FAILURE","code":"INVALID_REQUEST","message":"bad domain"}`,
 			wantErr:   true,
-			wantModel: nextgen.Failure{Status: "FAILURE", Code: "INVALID_REQUEST", Message: "bad domain"},
+			wantModel: Failure{Status: "FAILURE", Code: "INVALID_REQUEST", Message: "bad domain"},
 		},
 		"Given a 404 - then the Failure model is attached to the error": {
 			status:    http.StatusNotFound,
 			body:      `{"status":"FAILURE","code":"RESOURCE_NOT_FOUND","message":"not found"}`,
 			wantErr:   true,
-			wantModel: nextgen.Failure{Status: "FAILURE", Code: "RESOURCE_NOT_FOUND", Message: "not found"},
+			wantModel: Failure{Status: "FAILURE", Code: "RESOURCE_NOT_FOUND", Message: "not found"},
 		},
 		"Given a 500 with a valid error body - then the ModelError model is attached to the error": {
 			status:    http.StatusInternalServerError,
 			body:      `{"status":"ERROR","code":"UNKNOWN_ERROR","message":"boom"}`,
 			wantErr:   true,
-			wantModel: nextgen.ModelError{Status: "ERROR", Code: "UNKNOWN_ERROR", Message: "boom"},
+			wantModel: ModelError{Status: "ERROR", Code: "UNKNOWN_ERROR", Message: "boom"},
 		},
 		"Given a 500 with an undecodable body - then no model is attached": {
 			status:  http.StatusInternalServerError,
@@ -108,9 +99,9 @@ func TestAuthenticationSettingsWriteRequest_DecodeBranches(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			server, lastReq := serve(t, tc.status, "application/json", tc.body)
+			server, lastReq := authExtServe(t, tc.status, "application/json", tc.body)
 
-			out, resp, err := newPassthroughClient(server.URL).AuthenticationSettingsApi.SetWhitelistedDomains(
+			out, resp, err := newAuthExtPassthroughClient(server.URL).AuthenticationSettingsApi.SetWhitelistedDomains(
 				context.Background(), []string{"example.com"}, "acc")
 
 			require.NotNil(t, resp)
@@ -127,7 +118,7 @@ func TestAuthenticationSettingsWriteRequest_DecodeBranches(t *testing.T) {
 			}
 
 			require.Error(t, err)
-			swaggerErr, ok := err.(nextgen.GenericSwaggerError)
+			swaggerErr, ok := err.(GenericSwaggerError)
 			if !ok {
 				// plain decode error on the 2xx path
 				assert.Equal(t, http.StatusOK, tc.status)
@@ -156,9 +147,9 @@ func TestGetAuthenticationSettingsV2_DecodesPolymorphicEntries(t *testing.T) {
 			{"settingsType":"SAML","identifier":"saml-1","displayName":"Test","authenticationEnabled":true},
 			{"settingsType":"OAUTH","allowedProviders":["GOOGLE"],"filter":"x"}
 		]}}`
-	server, _ := serve(t, http.StatusOK, "application/json", body)
+	server, _ := authExtServe(t, http.StatusOK, "application/json", body)
 
-	out, _, err := newClient(server.URL).AuthenticationSettingsApi.GetAuthenticationSettingsV2(context.Background(), "acc")
+	out, _, err := newAuthExtClient(server.URL).AuthenticationSettingsApi.GetAuthenticationSettingsV2(context.Background(), "acc")
 
 	require.NoError(t, err)
 	require.NotNil(t, out.Resource)
@@ -192,9 +183,9 @@ func TestGetLoginSettings_ReadsFromUserPasswordEntry(t *testing.T) {
 		{"settingsType":"USER_PASSWORD","loginSettings":{"uuid":"ls-1","accountId":"acc",
 			"passwordStrengthPolicy":{"enabled":true}}}
 	]}}`
-	server, _ := serve(t, http.StatusOK, "application/json", body)
+	server, _ := authExtServe(t, http.StatusOK, "application/json", body)
 
-	out, _, err := newClient(server.URL).AuthenticationSettingsApi.GetLoginSettings(context.Background(), "acc")
+	out, _, err := newAuthExtClient(server.URL).AuthenticationSettingsApi.GetLoginSettings(context.Background(), "acc")
 
 	require.NoError(t, err)
 	require.NotNil(t, out.Resource)
@@ -203,9 +194,7 @@ func TestGetLoginSettings_ReadsFromUserPasswordEntry(t *testing.T) {
 	assert.True(t, out.Resource.PasswordStrengthPolicy.Enabled)
 }
 
-// capturedRequest holds a request captured inside the handler (the body is
-// closed by the server once the handler returns, so it must be read there).
-type capturedRequest struct {
+type authExtCapturedRequest struct {
 	method      string
 	path        string
 	query       url.Values
@@ -213,9 +202,9 @@ type capturedRequest struct {
 	body        []byte
 }
 
-func capture(r *http.Request) capturedRequest {
+func authExtCapture(r *http.Request) authExtCapturedRequest {
 	body, _ := io.ReadAll(r.Body)
-	return capturedRequest{
+	return authExtCapturedRequest{
 		method:      r.Method,
 		path:        r.URL.Path,
 		query:       r.URL.Query(),
@@ -224,8 +213,7 @@ func capture(r *http.Request) capturedRequest {
 	}
 }
 
-// parseMultipart parses a captured multipart body into form values and file parts.
-func parseMultipart(t *testing.T, req capturedRequest) (values map[string]string, fileParts map[string]string) {
+func authExtParseMultipart(t *testing.T, req authExtCapturedRequest) (values map[string]string, fileParts map[string]string) {
 	t.Helper()
 	mediaType, params, err := mime.ParseMediaType(req.contentType)
 	require.NoError(t, err)
@@ -251,9 +239,9 @@ func parseMultipart(t *testing.T, req capturedRequest) (values map[string]string
 }
 
 func TestSamlRequest_CreateSendsMultipartWithExplicitBooleans(t *testing.T) {
-	var lastReq capturedRequest
+	var lastReq authExtCapturedRequest
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		lastReq = capture(r)
+		lastReq = authExtCapture(r)
 		w.Header().Set("Content-Type", "application/json")
 		_, _ = w.Write([]byte(`{"resource":{"uuid":"saml-1","displayName":"Test"}}`))
 	}))
@@ -262,8 +250,8 @@ func TestSamlRequest_CreateSendsMultipartWithExplicitBooleans(t *testing.T) {
 	// Booleans left nil: the SDK must send explicit "false" (UI parity) rather
 	// than omitting the fields, which the backend also treats as false but
 	// only after a fragile null -> "null" -> parseBoolean chain.
-	out, _, err := newClient(server.URL).AuthenticationSettingsApi.CreateSamlSettings(
-		context.Background(), "acc", []byte("<xml/>"), &nextgen.SamlSettingsRequest{DisplayName: "Test"})
+	out, _, err := newAuthExtClient(server.URL).AuthenticationSettingsApi.CreateSamlSettings(
+		context.Background(), "acc", []byte("<xml/>"), &SamlSettingsRequest{DisplayName: "Test"})
 
 	require.NoError(t, err)
 	assert.Equal(t, "saml-1", out.Resource.Uuid)
@@ -273,7 +261,7 @@ func TestSamlRequest_CreateSendsMultipartWithExplicitBooleans(t *testing.T) {
 	assert.Equal(t, "acc", lastReq.query.Get("accountId"))
 	assert.True(t, strings.HasPrefix(lastReq.contentType, "multipart/form-data"))
 
-	values, files := parseMultipart(t, lastReq)
+	values, files := authExtParseMultipart(t, lastReq)
 	assert.Equal(t, "<xml/>", files["file"])
 	assert.Equal(t, "Test", values["displayName"])
 	assert.Equal(t, "false", values["authorizationEnabled"])
@@ -281,7 +269,7 @@ func TestSamlRequest_CreateSendsMultipartWithExplicitBooleans(t *testing.T) {
 }
 
 func TestSamlRequest_CreateRequiresMetadata(t *testing.T) {
-	_, resp, err := newClient("http://localhost:1").AuthenticationSettingsApi.CreateSamlSettings(
+	_, resp, err := newAuthExtClient("http://localhost:1").AuthenticationSettingsApi.CreateSamlSettings(
 		context.Background(), "acc", nil, nil)
 
 	require.Error(t, err)
@@ -289,19 +277,40 @@ func TestSamlRequest_CreateRequiresMetadata(t *testing.T) {
 	assert.Contains(t, err.Error(), "metadata must not be empty")
 }
 
+// The backend rebuilds the SAML configuration from the request on every call,
+// so a nil request would silently reset authorizationEnabled/jitEnabled and
+// clear the stored values. The SDK must reject it before any HTTP call.
+func TestSamlRequest_CreateRequiresRequest(t *testing.T) {
+	_, resp, err := newAuthExtClient("http://localhost:1").AuthenticationSettingsApi.CreateSamlSettings(
+		context.Background(), "acc", []byte("<xml/>"), nil)
+
+	require.Error(t, err)
+	assert.Nil(t, resp)
+	assert.Contains(t, err.Error(), "req must not be nil")
+}
+
+func TestSamlRequest_UpdateRequiresRequest(t *testing.T) {
+	_, resp, err := newAuthExtClient("http://localhost:1").AuthenticationSettingsApi.UpdateSamlSettings(
+		context.Background(), "acc", "saml-1", []byte("<xml/>"), nil)
+
+	require.Error(t, err)
+	assert.Nil(t, resp)
+	assert.Contains(t, err.Error(), "req must not be nil")
+}
+
 func TestSamlRequest_UpdateWithoutMetadataSendsFormFieldsOnly(t *testing.T) {
-	var lastReq capturedRequest
+	var lastReq authExtCapturedRequest
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		lastReq = capture(r)
+		lastReq = authExtCapture(r)
 		w.Header().Set("Content-Type", "application/json")
 		_, _ = w.Write([]byte(`{"resource":{"accountId":"acc"}}`))
 	}))
 	defer server.Close()
 
 	enabled := true
-	_, _, err := newClient(server.URL).AuthenticationSettingsApi.UpdateSamlSettings(
+	_, _, err := newAuthExtClient(server.URL).AuthenticationSettingsApi.UpdateSamlSettings(
 		context.Background(), "acc", "saml-1", nil,
-		&nextgen.SamlSettingsRequest{DisplayName: "Renamed", AuthorizationEnabled: &enabled, JitEnabled: &enabled})
+		&SamlSettingsRequest{DisplayName: "Renamed", AuthorizationEnabled: &enabled, JitEnabled: &enabled})
 
 	require.NoError(t, err)
 
@@ -309,7 +318,7 @@ func TestSamlRequest_UpdateWithoutMetadataSendsFormFieldsOnly(t *testing.T) {
 	assert.Equal(t, "/ng/api/authentication-settings/saml-metadata-upload/saml-1", lastReq.path)
 	assert.Equal(t, "acc", lastReq.query.Get("accountIdentifier"))
 
-	values, files := parseMultipart(t, lastReq)
+	values, files := authExtParseMultipart(t, lastReq)
 	assert.Empty(t, files) // no file part: backend keeps the stored metadata
 	assert.Equal(t, "Renamed", values["displayName"])
 	assert.Equal(t, "true", values["authorizationEnabled"])
@@ -327,13 +336,13 @@ func TestSamlRequest_DecodeBranches(t *testing.T) {
 			status:    http.StatusBadRequest,
 			body:      `{"status":"FAILURE","code":"INVALID_REQUEST","message":"No Saml Metadata found for account acc and saml sso id x"}`,
 			wantErr:   true,
-			wantModel: nextgen.Failure{Status: "FAILURE", Code: "INVALID_REQUEST", Message: "No Saml Metadata found for account acc and saml sso id x"},
+			wantModel: Failure{Status: "FAILURE", Code: "INVALID_REQUEST", Message: "No Saml Metadata found for account acc and saml sso id x"},
 		},
 		"Given a 500 with a valid error body - then the ModelError model is attached": {
 			status:    http.StatusInternalServerError,
 			body:      `{"status":"ERROR","code":"UNKNOWN_ERROR","message":"boom"}`,
 			wantErr:   true,
-			wantModel: nextgen.ModelError{Status: "ERROR", Code: "UNKNOWN_ERROR", Message: "boom"},
+			wantModel: ModelError{Status: "ERROR", Code: "UNKNOWN_ERROR", Message: "boom"},
 		},
 		"Given a 500 with an undecodable body - then no model is attached": {
 			status:  http.StatusInternalServerError,
@@ -344,13 +353,13 @@ func TestSamlRequest_DecodeBranches(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			server, _ := serve(t, tc.status, "application/json", tc.body)
+			server, _ := authExtServe(t, tc.status, "application/json", tc.body)
 
-			_, resp, err := newPassthroughClient(server.URL).AuthenticationSettingsApi.DeleteSamlSettings(context.Background(), "acc", "x")
+			_, resp, err := newAuthExtPassthroughClient(server.URL).AuthenticationSettingsApi.DeleteSamlSettings(context.Background(), "acc", "x")
 
 			require.NotNil(t, resp)
 			require.Error(t, err)
-			swaggerErr, ok := err.(nextgen.GenericSwaggerError)
+			swaggerErr, ok := err.(GenericSwaggerError)
 			require.True(t, ok, "expected GenericSwaggerError, got %T", err)
 			if tc.wantModel == nil {
 				assert.Nil(t, swaggerErr.Model())
@@ -362,15 +371,15 @@ func TestSamlRequest_DecodeBranches(t *testing.T) {
 }
 
 func TestSetSamlAuthenticationEnabled_WireFormat(t *testing.T) {
-	var lastReq capturedRequest
+	var lastReq authExtCapturedRequest
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		lastReq = capture(r)
+		lastReq = authExtCapture(r)
 		w.Header().Set("Content-Type", "application/json")
 		_, _ = w.Write([]byte(`{"resource":true}`))
 	}))
 	defer server.Close()
 
-	out, _, err := newClient(server.URL).AuthenticationSettingsApi.SetSamlAuthenticationEnabled(
+	out, _, err := newAuthExtClient(server.URL).AuthenticationSettingsApi.SetSamlAuthenticationEnabled(
 		context.Background(), "acc", "saml-1", true)
 
 	require.NoError(t, err)
@@ -382,18 +391,18 @@ func TestSetSamlAuthenticationEnabled_WireFormat(t *testing.T) {
 
 func TestUpdateLoginSettings_WireFormatAnd500Model(t *testing.T) {
 	t.Run("Given a full login settings body - then it is PUT to the login settings path", func(t *testing.T) {
-		var lastReq capturedRequest
+		var lastReq authExtCapturedRequest
 		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			lastReq = capture(r)
+			lastReq = authExtCapture(r)
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(`{"resource":{"uuid":"ls-1"}}`))
 		}))
 		defer server.Close()
 
-		settings := nextgen.LoginSettings{
+		settings := LoginSettings{
 			Uuid:      "ls-1",
 			AccountId: "acc",
-			UserLockoutPolicy: &nextgen.UserLockoutPolicy{
+			UserLockoutPolicy: &UserLockoutPolicy{
 				EnableLockoutPolicy:                 true,
 				NumberOfFailedAttemptsBeforeLockout: 5,
 				LockOutPeriod:                       24,
@@ -401,7 +410,7 @@ func TestUpdateLoginSettings_WireFormatAnd500Model(t *testing.T) {
 				UserGroupsToNotify:                  []map[string]interface{}{{"name": "admins"}},
 			},
 		}
-		out, _, err := newClient(server.URL).AuthenticationSettingsApi.UpdateLoginSettings(context.Background(), settings, "ls-1", "acc")
+		out, _, err := newAuthExtClient(server.URL).AuthenticationSettingsApi.UpdateLoginSettings(context.Background(), settings, "ls-1", "acc")
 
 		require.NoError(t, err)
 		assert.Equal(t, "ls-1", out.Resource.Uuid)
@@ -413,15 +422,15 @@ func TestUpdateLoginSettings_WireFormatAnd500Model(t *testing.T) {
 	})
 
 	t.Run("Given a 500 with a valid error body - then the ModelError model is attached", func(t *testing.T) {
-		server, _ := serve(t, http.StatusInternalServerError, "application/json",
+		server, _ := authExtServe(t, http.StatusInternalServerError, "application/json",
 			`{"status":"ERROR","code":"UNKNOWN_ERROR","message":"boom"}`)
 
-		_, _, err := newPassthroughClient(server.URL).AuthenticationSettingsApi.UpdateLoginSettings(
-			context.Background(), nextgen.LoginSettings{}, "ls-1", "acc")
+		_, _, err := newAuthExtPassthroughClient(server.URL).AuthenticationSettingsApi.UpdateLoginSettings(
+			context.Background(), LoginSettings{}, "ls-1", "acc")
 
 		require.Error(t, err)
-		swaggerErr, ok := err.(nextgen.GenericSwaggerError)
+		swaggerErr, ok := err.(GenericSwaggerError)
 		require.True(t, ok, "expected GenericSwaggerError, got %T", err)
-		assert.Equal(t, nextgen.ModelError{Status: "ERROR", Code: "UNKNOWN_ERROR", Message: "boom"}, swaggerErr.Model())
+		assert.Equal(t, ModelError{Status: "ERROR", Code: "UNKNOWN_ERROR", Message: "boom"}, swaggerErr.Model())
 	})
 }

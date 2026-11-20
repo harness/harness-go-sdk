@@ -233,6 +233,9 @@ func (a *AuthenticationSettingsApiService) CreateSamlSettings(ctx context.Contex
 	if len(metadata) == 0 {
 		return localVarReturnValue, nil, fmt.Errorf("metadata must not be empty")
 	}
+	if req == nil {
+		return localVarReturnValue, nil, fmt.Errorf("req must not be nil: the backend rebuilds the SAML configuration from the request, so a call without the full settings form would reset authorizationEnabled/jitEnabled and clear the stored values")
+	}
 	httpResp, err := a.executeSamlRequest(ctx, http.MethodPost, "/ng/api/authentication-settings/saml-metadata", "accountId", accountId, metadata, req, &localVarReturnValue)
 	return localVarReturnValue, httpResp, err
 }
@@ -251,6 +254,9 @@ AuthenticationSettingsApiService Update the SAML SSO configuration with the give
 */
 func (a *AuthenticationSettingsApiService) UpdateSamlSettings(ctx context.Context, accountId string, samlSSOId string, metadata []byte, req *SamlSettingsRequest) (RestResponseSsoConfig, *http.Response, error) {
 	var localVarReturnValue RestResponseSsoConfig
+	if req == nil {
+		return localVarReturnValue, nil, fmt.Errorf("req must not be nil: the backend rebuilds the SAML configuration from the request, so an update without the full settings form would reset authorizationEnabled/jitEnabled and clear the stored values")
+	}
 	if len(metadata) == 0 {
 		metadata = nil
 	}

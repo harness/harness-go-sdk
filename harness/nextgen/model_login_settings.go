@@ -22,4 +22,8 @@ type LoginSettings struct {
 	PasswordExpirationPolicy *PasswordExpirationPolicy `json:"passwordExpirationPolicy,omitempty"`
 	// Password strength policy of the account.
 	PasswordStrengthPolicy *PasswordStrengthPolicy `json:"passwordStrengthPolicy,omitempty"`
+	// Email of the user who last updated the login settings (server-managed, read-only).
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
+	// Epoch timestamp (millis) of the last update to the login settings (server-managed, read-only).
+	LastUpdatedAt int64 `json:"lastUpdatedAt,omitempty"`
 }

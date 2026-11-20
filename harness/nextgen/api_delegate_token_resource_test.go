@@ -36,10 +36,6 @@ var (
 
 func TestMain(m *testing.M) {
 	flag.Parse()
-	if *accountID == "" || *apiKey == "" {
-		fmt.Println("Skipping tests: account ID or API key not provided")
-		os.Exit(0)
-	}
 	os.Exit(m.Run())
 }
 
@@ -106,6 +102,9 @@ func checkDelegateTokenTest(t *testing.T, testType string, resp nextgen.RestResp
 func TestDelegateTokenCreateRevokeDelete(t *testing.T) {
 	if testing.Short() {
 		t.Skip("Skipping integration test in short mode")
+	}
+	if *accountID == "" || *apiKey == "" {
+		t.Skip("Skipping: provide -account and -api-key to run this integration test")
 	}
 
 	client, ctx := setupClient()

@@ -10,7 +10,7 @@ import (
 )
 
 func TestCreateSecret(t *testing.T) {
-	c, ctx := getClientWithContext()
+	c, ctx := getClientWithContext(t)
 
 	id := fmt.Sprintf("%s_%s", t.Name(), utils.RandStringBytes(5))
 
@@ -33,7 +33,7 @@ func TestCreateSecret(t *testing.T) {
 }
 
 func TestForceDeleteSecret(t *testing.T) {
-	c, ctx := getClientWithContext()
+	c, ctx := getClientWithContext(t)
 
 	id := fmt.Sprintf("%s_%s", t.Name(), utils.RandStringBytes(5))
 

@@ -16,4 +16,38 @@ type NgAuthSettings struct {
 	// Not part of the generated spec; added to expose the login settings document
 	// embedded in the authentication settings response.
 	LoginSettings *LoginSettings `json:"loginSettings,omitempty"`
+	// Unique identifier of the SAML SSO configuration (the samlSSOId). Present only on SAML entries.
+	Identifier string `json:"identifier,omitempty"`
+	// Display name of the SAML SSO configuration. Present only on SAML entries.
+	DisplayName string `json:"displayName,omitempty"`
+	// Origin URL derived from the uploaded SAML metadata. Present only on SAML entries.
+	Origin string `json:"origin,omitempty"`
+	// Logout URL of the SAML identity provider. Present only on SAML entries.
+	LogoutUrl string `json:"logoutUrl,omitempty"`
+	// Attribute in the SAML assertion containing the user's group memberships. Present only on SAML entries.
+	GroupMembershipAttr string `json:"groupMembershipAttr,omitempty"`
+	// Whether group-based authorization is enabled. Present only on SAML entries.
+	AuthorizationEnabled bool `json:"authorizationEnabled,omitempty"`
+	// Entity identifier of the SAML service provider. Present only on SAML entries.
+	EntityIdentifier string `json:"entityIdentifier,omitempty"`
+	// SAML provider type. Present only on SAML entries.
+	SamlProviderType string `json:"samlProviderType,omitempty"`
+	// Optional clientId for Azure SSO. Present only on SAML entries.
+	ClientId string `json:"clientId,omitempty"`
+	// Optional Harness secret reference for the Azure SSO client secret (returned masked). Present only on SAML entries.
+	ClientSecret string `json:"clientSecret,omitempty"`
+	// Friendly name of the app on the SAML SSO provider end in Harness. Present only on SAML entries.
+	FriendlySamlName string `json:"friendlySamlName,omitempty"`
+	// Whether login via this SAML configuration is enabled. Present only on SAML entries.
+	AuthenticationEnabled bool `json:"authenticationEnabled,omitempty"`
+	// Whether Just in time user provisioning is enabled. Present only on SAML entries.
+	JitEnabled bool `json:"jitEnabled,omitempty"`
+	// Optional key to match in the SAML assertion for Just in time user provisioning. Present only on SAML entries.
+	JitValidationKey string `json:"jitValidationKey,omitempty"`
+	// Optional value to match in the SAML assertion for Just in time user provisioning. Present only on SAML entries.
+	JitValidationValue string `json:"jitValidationValue,omitempty"`
+	// List of allowed OAuth providers. Present only on OAUTH entries.
+	AllowedProviders []string `json:"allowedProviders,omitempty"`
+	// Filter out the available OAuth providers. Present only on OAUTH entries.
+	Filter string `json:"filter,omitempty"`
 }
