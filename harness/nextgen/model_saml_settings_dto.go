@@ -46,7 +46,7 @@ type SamlSettingsDto struct {
 	// Optional value to match in the SAML assertion for Just in time user provisioning.
 	JitValidationValue string `json:"jitValidationValue,omitempty"`
 	// Azure SSO client secret (Harness secret reference; returned encrypted/masked by the server).
-	ClientSecret string `json:"clientSecret,omitempty"`
+	ClientSecret          string `json:"clientSecret,omitempty"`
 	EncryptedClientSecret string `json:"encryptedClientSecret,omitempty"`
 	// Whether this SAML configuration was created from NextGen (server-managed, read-only).
 	ConfiguredFromNG bool `json:"configuredFromNG,omitempty"`
