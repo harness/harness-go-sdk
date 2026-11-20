@@ -231,3 +231,45 @@ func TestDo_SuccessDecodeError(t *testing.T) {
 
 	require.Error(t, err, "an undecodable 2xx body must surface as an error, not a zero-value result")
 }
+
+func TestDo_TransportError(t *testing.T) {
+	_, _, err := newTestClient("http://localhost:1").LdapSettingsApi.GetLdapSettings(context.Background())
+
+	require.Error(t, err)
+	_, ok := err.(GenericError)
+	assert.False(t, ok, "transport failures must not be wrapped in GenericError, got %T", err)
+}
+
+func TestDo_DebugLoggingAndDefaultHeaders(t *testing.T) {
+	var lastReq capturedRequest
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		reqBody, _ := io.ReadAll(r.Body)
+		lastReq = capturedRequest{method: r.Method, path: r.URL.Path, body: reqBody, contentType: r.Header.Get("X-Custom")}
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{}`))
+	}))
+	defer server.Close()
+
+	cfg := NewConfiguration()
+	cfg.BasePath = server.URL
+	cfg.DebugLogging = true
+	cfg.AddDefaultHeader("X-Custom", "present")
+	httpClient := retryablehttp.NewClient()
+	httpClient.RetryMax = 0
+	httpClient.Logger = nil
+	cfg.HTTPClient = httpClient
+
+	_, _, err := NewAPIClient(cfg).LdapSettingsApi.GetLdapSettings(context.Background())
+
+	require.NoError(t, err)
+	assert.Equal(t, "present", lastReq.contentType)
+}
+
+func TestNewConfiguration_DebugLogLevel(t *testing.T) {
+	t.Setenv("TF_LOG", "DEBUG")
+
+	cfg := NewConfiguration()
+
+	assert.NotNil(t, cfg.Logger)
+	assert.NotEmpty(t, cfg.UserAgent)
+}

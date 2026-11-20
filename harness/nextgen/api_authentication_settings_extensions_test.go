@@ -199,6 +199,7 @@ type authExtCapturedRequest struct {
 	path        string
 	query       url.Values
 	contentType string
+	header      http.Header
 	body        []byte
 }
 
@@ -209,6 +210,7 @@ func authExtCapture(r *http.Request) authExtCapturedRequest {
 		path:        r.URL.Path,
 		query:       r.URL.Query(),
 		contentType: r.Header.Get("Content-Type"),
+		header:      r.Header,
 		body:        body,
 	}
 }
@@ -389,6 +391,209 @@ func TestSetSamlAuthenticationEnabled_WireFormat(t *testing.T) {
 	assert.Equal(t, url.Values{"accountIdentifier": {"acc"}, "enable": {"true"}}, lastReq.query)
 }
 
+func TestSamlRequest_CreateSendsAllOptionalFormFields(t *testing.T) {
+	var lastReq authExtCapturedRequest
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		lastReq = authExtCapture(r)
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"resource":{"uuid":"saml-1"}}`))
+	}))
+	defer server.Close()
+
+	disabled := false
+	_, _, err := newAuthExtClient(server.URL).AuthenticationSettingsApi.CreateSamlSettings(
+		context.Background(), "acc", []byte("<xml/>"), &SamlSettingsRequest{
+			DisplayName:          "Test",
+			GroupMembershipAttr:  "memberOf",
+			AuthorizationEnabled: &disabled,
+			LogoutUrl:            "https://idp.example.com/logout",
+			EntityIdentifier:     "entity-1",
+			SamlProviderType:     "AZURE",
+			ClientId:             "client-1",
+			ClientSecret:         "account.secret-ref",
+			FriendlySamlName:     "friendly",
+			JitEnabled:           &disabled,
+			JitValidationKey:     "email",
+			JitValidationValue:   "example.com",
+		})
+
+	require.NoError(t, err)
+
+	values, files := authExtParseMultipart(t, lastReq)
+	assert.Equal(t, "<xml/>", files["file"])
+	assert.Equal(t, map[string]string{
+		"displayName":          "Test",
+		"groupMembershipAttr":  "memberOf",
+		"authorizationEnabled": "false",
+		"logoutUrl":            "https://idp.example.com/logout",
+		"entityIdentifier":     "entity-1",
+		"samlProviderType":     "AZURE",
+		"clientId":             "client-1",
+		"clientSecret":         "account.secret-ref",
+		"friendlySamlName":     "friendly",
+		"jitEnabled":           "false",
+		"jitValidationKey":     "email",
+		"jitValidationValue":   "example.com",
+	}, values)
+}
+
+func TestSamlRequest_TransportError(t *testing.T) {
+	enabled := true
+	_, _, err := newAuthExtClient("http://localhost:1").AuthenticationSettingsApi.UpdateSamlSettings(
+		context.Background(), "acc", "saml-1", []byte("<xml/>"),
+		&SamlSettingsRequest{DisplayName: "Test", AuthorizationEnabled: &enabled, JitEnabled: &enabled})
+
+	require.Error(t, err)
+	_, ok := err.(GenericSwaggerError)
+	assert.False(t, ok, "transport failures must not be wrapped in GenericSwaggerError, got %T", err)
+}
+
+func TestSamlRequest_ApiKeyWithPrefixSetsHeader(t *testing.T) {
+	var lastReq authExtCapturedRequest
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		lastReq = authExtCapture(r)
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"resource":true}`))
+	}))
+	defer server.Close()
+
+	ctx := context.WithValue(context.Background(), ContextAPIKey, APIKey{Key: "k", Prefix: "Bearer"})
+	_, _, err := newAuthExtClient(server.URL).AuthenticationSettingsApi.SetSamlAuthenticationEnabled(ctx, "acc", "saml-1", false)
+
+	require.NoError(t, err)
+	assert.Equal(t, "Bearer k", lastReq.header.Get("x-api-key"))
+}
+
+func TestSamlRequest_NonModelErrorStatusFallsThrough(t *testing.T) {
+	server, _ := authExtServe(t, http.StatusForbidden, "application/json", `{"status":"FAILURE","code":"FORBIDDEN","message":"denied"}`)
+
+	_, _, err := newAuthExtPassthroughClient(server.URL).AuthenticationSettingsApi.DeleteSamlSettings(context.Background(), "acc", "x")
+
+	require.Error(t, err)
+	swaggerErr, ok := err.(GenericSwaggerError)
+	require.True(t, ok, "expected GenericSwaggerError, got %T", err)
+	assert.Nil(t, swaggerErr.Model(), "only 400/404/500 decode into a typed model")
+}
+
+func TestSessionTimeoutAndPublicAccess_WireFormat(t *testing.T) {
+	t.Run("Given session timeout settings - then they are PUT to the session timeout path", func(t *testing.T) {
+		var lastReq authExtCapturedRequest
+		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			lastReq = authExtCapture(r)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(`{"resource":true}`))
+		}))
+		defer server.Close()
+
+		out, _, err := newAuthExtClient(server.URL).AuthenticationSettingsApi.SetSessionTimeoutAtAccountLevel(
+			context.Background(), SessionTimeoutSettings{SessionTimeOutInMinutes: 60, AbsoluteSessionTimeOutInMinutes: 480}, "acc")
+
+		require.NoError(t, err)
+		assert.True(t, out.Resource)
+		assert.Equal(t, http.MethodPut, lastReq.method)
+		assert.Equal(t, "/ng/api/authentication-settings/session-timeout-account-level", lastReq.path)
+		assert.Equal(t, "acc", lastReq.query.Get("accountIdentifier"))
+		assert.JSONEq(t, `{"sessionTimeOutInMinutes":60,"absoluteSessionTimeOutInMinutes":480}`, string(lastReq.body))
+	})
+
+	t.Run("Given a public access flag - then it is PUT to the public access path", func(t *testing.T) {
+		var lastReq authExtCapturedRequest
+		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			lastReq = authExtCapture(r)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(`{"resource":true}`))
+		}))
+		defer server.Close()
+
+		out, _, err := newAuthExtClient(server.URL).AuthenticationSettingsApi.SetPublicAccess(context.Background(), true, "acc")
+
+		require.NoError(t, err)
+		assert.True(t, out.Resource)
+		assert.Equal(t, "/ng/api/authentication-settings/public-access", lastReq.path)
+		assert.Equal(t, "true", strings.TrimSpace(string(lastReq.body)))
+	})
+
+	t.Run("Given an unreachable server - then the transport error is returned unwrapped", func(t *testing.T) {
+		_, _, err := newAuthExtClient("http://localhost:1").AuthenticationSettingsApi.SetPublicAccess(context.Background(), true, "acc")
+
+		require.Error(t, err)
+		_, ok := err.(GenericSwaggerError)
+		assert.False(t, ok, "transport failures must not be wrapped in GenericSwaggerError, got %T", err)
+	})
+}
+
+func TestSetTwoFactorAuthAndOauthProviders_WireFormat(t *testing.T) {
+	t.Run("Given two factor override settings - then they are PUT to the two factor path", func(t *testing.T) {
+		var lastReq authExtCapturedRequest
+		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			lastReq = authExtCapture(r)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(`{"resource":true}`))
+		}))
+		defer server.Close()
+
+		out, _, err := newAuthExtClient(server.URL).AuthenticationSettingsApi.SetTwoFactorAuth(
+			context.Background(), TwoFactorAdminOverrideSettings{AdminOverrideTwoFactorEnabled: true}, "acc")
+
+		require.NoError(t, err)
+		assert.True(t, out.Resource)
+		assert.Equal(t, http.MethodPut, lastReq.method)
+		assert.Equal(t, "/ng/api/authentication-settings/two-factor-admin-override-settings", lastReq.path)
+		assert.Equal(t, "acc", lastReq.query.Get("accountIdentifier"))
+		assert.JSONEq(t, `{"adminOverrideTwoFactorEnabled":true}`, string(lastReq.body))
+	})
+
+	t.Run("Given OAuth providers - then they are PUT to the oauth providers path", func(t *testing.T) {
+		var lastReq authExtCapturedRequest
+		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			lastReq = authExtCapture(r)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(`{"resource":true}`))
+		}))
+		defer server.Close()
+
+		out, _, err := newAuthExtClient(server.URL).AuthenticationSettingsApi.SetOauthProviders(
+			context.Background(), OAuthSettings{AllowedProviders: []string{"GOOGLE"}}, "acc")
+
+		require.NoError(t, err)
+		assert.True(t, out.Resource)
+		assert.Equal(t, http.MethodPut, lastReq.method)
+		assert.Equal(t, "/ng/api/authentication-settings/oauth/update-providers", lastReq.path)
+		assert.Equal(t, "acc", lastReq.query.Get("accountIdentifier"))
+		assert.JSONEq(t, `{"allowedProviders":["GOOGLE"]}`, string(lastReq.body))
+	})
+
+	t.Run("Given an API key with a prefix - then the prefixed key is sent", func(t *testing.T) {
+		var lastReq authExtCapturedRequest
+		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			lastReq = authExtCapture(r)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(`{"resource":true}`))
+		}))
+		defer server.Close()
+
+		ctx := context.WithValue(context.Background(), ContextAPIKey, APIKey{Key: "k", Prefix: "Bearer"})
+		_, _, err := newAuthExtClient(server.URL).AuthenticationSettingsApi.SetWhitelistedDomains(
+			ctx, []string{"example.com"}, "acc")
+
+		require.NoError(t, err)
+		assert.Equal(t, "Bearer k", lastReq.header.Get("x-api-key"))
+	})
+
+	t.Run("Given a 403 - then no typed model is attached", func(t *testing.T) {
+		server, _ := authExtServe(t, http.StatusForbidden, "application/json",
+			`{"status":"FAILURE","code":"FORBIDDEN","message":"denied"}`)
+
+		_, _, err := newAuthExtPassthroughClient(server.URL).AuthenticationSettingsApi.SetWhitelistedDomains(
+			context.Background(), []string{"example.com"}, "acc")
+
+		require.Error(t, err)
+		swaggerErr, ok := err.(GenericSwaggerError)
+		require.True(t, ok, "expected GenericSwaggerError, got %T", err)
+		assert.Nil(t, swaggerErr.Model(), "only 400/404/500 decode into a typed model")
+	})
+}
+
 func TestUpdateLoginSettings_WireFormatAnd500Model(t *testing.T) {
 	t.Run("Given a full login settings body - then it is PUT to the login settings path", func(t *testing.T) {
 		var lastReq authExtCapturedRequest
@@ -433,4 +638,63 @@ func TestUpdateLoginSettings_WireFormatAnd500Model(t *testing.T) {
 		require.True(t, ok, "expected GenericSwaggerError, got %T", err)
 		assert.Equal(t, ModelError{Status: "ERROR", Code: "UNKNOWN_ERROR", Message: "boom"}, swaggerErr.Model())
 	})
+
+	t.Run("Given a 403 - then no typed model is attached", func(t *testing.T) {
+		server, _ := authExtServe(t, http.StatusForbidden, "application/json",
+			`{"status":"FAILURE","code":"FORBIDDEN","message":"denied"}`)
+
+		_, _, err := newAuthExtPassthroughClient(server.URL).AuthenticationSettingsApi.UpdateLoginSettings(
+			context.Background(), LoginSettings{}, "ls-1", "acc")
+
+		require.Error(t, err)
+		swaggerErr, ok := err.(GenericSwaggerError)
+		require.True(t, ok, "expected GenericSwaggerError, got %T", err)
+		assert.Nil(t, swaggerErr.Model(), "only 400/404/500 decode into a typed model")
+	})
+
+	t.Run("Given an unreachable server - then the transport error is returned unwrapped", func(t *testing.T) {
+		_, _, err := newAuthExtClient("http://localhost:1").AuthenticationSettingsApi.UpdateLoginSettings(
+			context.Background(), LoginSettings{}, "ls-1", "acc")
+
+		require.Error(t, err)
+		_, ok := err.(GenericSwaggerError)
+		assert.False(t, ok, "transport failures must not be wrapped in GenericSwaggerError, got %T", err)
+	})
+
+	t.Run("Given a 2xx with an undecodable body - then the decode error is returned", func(t *testing.T) {
+		server, _ := authExtServe(t, http.StatusOK, "application/json", `not-json`)
+
+		_, _, err := newAuthExtClient(server.URL).AuthenticationSettingsApi.UpdateLoginSettings(
+			context.Background(), LoginSettings{}, "ls-1", "acc")
+
+		require.Error(t, err)
+		_, ok := err.(GenericSwaggerError)
+		assert.False(t, ok, "a 2xx decode failure must not be wrapped in GenericSwaggerError, got %T", err)
+	})
+
+	t.Run("Given a 400 and a 500 with undecodable bodies - then no typed model is attached", func(t *testing.T) {
+		for _, status := range []int{http.StatusBadRequest, http.StatusInternalServerError} {
+			server, _ := authExtServe(t, status, "application/json", `<html>proxy error</html>`)
+
+			_, _, err := newAuthExtPassthroughClient(server.URL).AuthenticationSettingsApi.UpdateLoginSettings(
+				context.Background(), LoginSettings{}, "ls-1", "acc")
+
+			require.Error(t, err)
+			swaggerErr, ok := err.(GenericSwaggerError)
+			require.True(t, ok, "expected GenericSwaggerError, got %T", err)
+			assert.Nil(t, swaggerErr.Model(), "an undecodable error body must not attach a model")
+		}
+	})
+}
+
+func TestGetLoginSettings_PropagatesV2Error(t *testing.T) {
+	server, _ := authExtServe(t, http.StatusInternalServerError, "application/json",
+		`{"status":"ERROR","code":"UNKNOWN_ERROR","message":"boom"}`)
+
+	_, _, err := newAuthExtPassthroughClient(server.URL).AuthenticationSettingsApi.GetLoginSettings(context.Background(), "acc")
+
+	require.Error(t, err)
+	swaggerErr, ok := err.(GenericSwaggerError)
+	require.True(t, ok, "expected GenericSwaggerError, got %T", err)
+	assert.Equal(t, ModelError{Status: "ERROR", Code: "UNKNOWN_ERROR", Message: "boom"}, swaggerErr.Model())
 }
