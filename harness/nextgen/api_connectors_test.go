@@ -10,7 +10,7 @@ import (
 )
 
 func TestGetConnectorByName(t *testing.T) {
-	c, ctx := getClientWithContext()
+	c, ctx := getClientWithContext(t)
 
 	name := fmt.Sprintf("%s_%s", t.Name(), utils.RandStringBytes(4))
 
@@ -42,7 +42,7 @@ func TestGetConnectorByName(t *testing.T) {
 }
 
 func TestDeleteConnectorForceDelete(t *testing.T) {
-	c, ctx := getClientWithContext()
+	c, ctx := getClientWithContext(t)
 
 	name := fmt.Sprintf("%s_%s", t.Name(), utils.RandStringBytes(4))
 

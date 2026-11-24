@@ -10,7 +10,7 @@ import (
 )
 
 func TestGetIpConfig(t *testing.T) {
-	c, ctx := getClientWithContext()
+	c, ctx := getClientWithContext(t)
 
 	name := fmt.Sprintf("%s_%s", t.Name(), utils.RandStringBytes(4))
 	var ipAddress = "0.0.0.0/0"

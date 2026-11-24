@@ -19,4 +19,12 @@ type AuthenticationSettingsResponse struct {
 	AuthenticationMechanism string `json:"authenticationMechanism,omitempty"`
 	// If Two Factor Authentication is enabled, this value is true. Otherwise, it is false.
 	TwoFactorEnabled bool `json:"twoFactorEnabled,omitempty"`
+	// Any user of this account will be logged out if there is no activity for this number of minutes
+	SessionTimeoutInMinutes int32 `json:"sessionTimeoutInMinutes,omitempty"`
+	// If public access is enabled, this value is true. Otherwise, it is false.
+	PublicAccessEnabled bool `json:"publicAccessEnabled,omitempty"`
+	// If OAUTH is enabled
+	OauthEnabled bool `json:"oauthEnabled,omitempty"`
+	// Any user of this account will be logged out after this number of minutes
+	AbsoluteSessionTimeoutInMinutes int32 `json:"absoluteSessionTimeoutInMinutes,omitempty"`
 }

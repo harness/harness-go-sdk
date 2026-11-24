@@ -10,11 +10,15 @@ import (
 var configureClient sync.Once
 var client *APIClient
 
-func getClientWithContext() (*APIClient, context.Context) {
+func getClientWithContext(t *testing.T) (*APIClient, context.Context) {
+	t.Helper()
 	configureClient.Do(func() {
 		cfg := NewConfiguration()
 		client = NewAPIClient(cfg)
 	})
+	if client.ApiKey == "" {
+		t.Skip("Skipping integration test: platform API key not configured")
+	}
 
 	ctx := context.WithValue(context.Background(), ContextAPIKey, APIKey{Key: client.ApiKey})
 	return client, ctx

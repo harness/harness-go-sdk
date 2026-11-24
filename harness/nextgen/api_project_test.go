@@ -10,7 +10,7 @@ import (
 
 func TestGetProjectByName(t *testing.T) {
 	name := fmt.Sprintf("%s%s", t.Name(), utils.RandStringBytes(6))
-	c, ctx := getClientWithContext()
+	c, ctx := getClientWithContext(t)
 
 	p := ProjectRequest{
 		Project: &Project{
