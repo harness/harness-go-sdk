@@ -1547,6 +1547,7 @@ func (a *AgentsApiService) AgentServiceForServerRegenerateCredentials(ctx contex
 type AgentsApiAgentServiceForServerRegenerateCredentialsWithScopeOpts struct {
 	OrgIdentifier     optional.String
 	ProjectIdentifier optional.String
+	DrIdentifier      optional.String
 }
 
 /*
@@ -1558,6 +1559,7 @@ Regenerate credentials for agents, scoped to the given account and optional org/
   - @param optional nil or *AgentsApiAgentServiceForServerRegenerateCredentialsWithScopeOpts - Optional Parameters:
   - @param "OrgIdentifier" (optional.String) -  Organization Identifier for the Entity.
   - @param "ProjectIdentifier" (optional.String) -  Project Identifier for the Entity.
+  - @param "DrIdentifier" (optional.String) -  Disaster Recovery identifier of the specific node to regenerate credentials for.
 
 @return V1Agent
 */
@@ -1584,6 +1586,9 @@ func (a *AgentsApiService) AgentServiceForServerRegenerateCredentialsWithScope(c
 	}
 	if localVarOptionals != nil && localVarOptionals.ProjectIdentifier.IsSet() {
 		localVarQueryParams.Add("projectIdentifier", parameterToString(localVarOptionals.ProjectIdentifier.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.DrIdentifier.IsSet() {
+		localVarQueryParams.Add("drIdentifier", parameterToString(localVarOptionals.DrIdentifier.Value(), ""))
 	}
 
 	// to determine the Content-Type header

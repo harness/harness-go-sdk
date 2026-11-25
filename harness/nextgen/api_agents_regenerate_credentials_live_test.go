@@ -27,7 +27,7 @@ Like the other tests in this package it only runs when live credentials are pass
 	  -api-key <API_KEY> \
 	  -endpoint https://qa.harness.io/gateway
 
-The offline wire-level tests live in harness/nextgen/clienttests.
+The offline wire-level tests live in api_agents_regenerate_credentials_offline_test.go.
 */
 func TestAgentServiceForServerRegenerateCredentials_LiveScopeMatrix(t *testing.T) {
 	if *accountID == "" || *apiKey == "" {

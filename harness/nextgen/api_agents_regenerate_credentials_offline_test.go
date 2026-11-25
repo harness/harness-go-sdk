@@ -1,7 +1,4 @@
-// Package clienttests holds offline tests for the nextgen client. It deliberately
-// has no TestMain: the nextgen package's TestMain exits early unless live
-// credentials are passed, which would silently skip these tests in CI.
-package clienttests
+package nextgen_test
 
 import (
 	"context"
@@ -17,9 +14,14 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// CDS-136012: the gateway only learns the agent's scope from query params, and
-// the server swagger omits them for this body-less POST. The client must send
-// them, otherwise org/project scoped agents return 404.
+// CDS-136012/CDS-136576: the gateway only learns the agent's scope (and DR
+// sibling) from query params, and the server swagger omits them for this
+// body-less POST. The client must send them, otherwise org/project/DR scoped
+// agents return 404 or hit the wrong sibling.
+//
+// These are offline wire-level tests and must live in this package (not a
+// subpackage) so `go test -coverprofile` attributes the exercised lines in
+// api_agents.go to this package's coverage.
 
 func TestAgentServiceForServerRegenerateCredentialsWithScope_ScopeQueryParams(t *testing.T) {
 	testCases := map[string]struct {
@@ -46,6 +48,17 @@ func TestAgentServiceForServerRegenerateCredentialsWithScope_ScopeQueryParams(t 
 				"orgIdentifier": {"org1"}, "projectIdentifier": {"proj1"},
 			},
 		},
+		"Given a DR identifier - then drIdentifier param is sent": {
+			opts: &nextgen.AgentsApiAgentServiceForServerRegenerateCredentialsWithScopeOpts{
+				OrgIdentifier:     optional.NewString("org1"),
+				ProjectIdentifier: optional.NewString("proj1"),
+				DrIdentifier:      optional.NewString("dr1"),
+			},
+			expected: url.Values{
+				"accountIdentifier": {"acc"}, "routingId": {"acc"},
+				"orgIdentifier": {"org1"}, "projectIdentifier": {"proj1"}, "drIdentifier": {"dr1"},
+			},
+		},
 	}
 
 	for name, tc := range testCases {
@@ -59,7 +72,7 @@ func TestAgentServiceForServerRegenerateCredentialsWithScope_ScopeQueryParams(t 
 			}))
 			defer server.Close()
 
-			client := newClient(server.URL)
+			client := newOfflineClient(server.URL)
 			agent, resp, err := client.AgentApi.AgentServiceForServerRegenerateCredentialsWithScope(context.Background(), "agent1", "acc", tc.opts)
 
 			require.NoError(t, err)
@@ -78,7 +91,7 @@ func TestAgentServiceForServerRegenerateCredentialsWithScope_ErrorStatusReturned
 	}))
 	defer server.Close()
 
-	_, resp, err := newClient(server.URL).AgentApi.AgentServiceForServerRegenerateCredentialsWithScope(context.Background(), "agent1", "acc", nil)
+	_, resp, err := newOfflineClient(server.URL).AgentApi.AgentServiceForServerRegenerateCredentialsWithScope(context.Background(), "agent1", "acc", nil)
 
 	require.Error(t, err)
 	require.NotNil(t, resp)
@@ -97,7 +110,7 @@ func TestAgentServiceForServerRegenerateCredentials_LegacySignatureUnchanged(t *
 	}))
 	defer server.Close()
 
-	agent, _, err := newClient(server.URL).AgentApi.AgentServiceForServerRegenerateCredentials(context.Background(), "agent1")
+	agent, _, err := newOfflineClient(server.URL).AgentApi.AgentServiceForServerRegenerateCredentials(context.Background(), "agent1")
 
 	require.NoError(t, err)
 	assert.Equal(t, "agent1", agent.Identifier)
@@ -105,9 +118,9 @@ func TestAgentServiceForServerRegenerateCredentials_LegacySignatureUnchanged(t *
 	assert.Empty(t, gotQuery)
 }
 
-// newClient returns a client pointed at baseURL with retries disabled so error
-// statuses are returned immediately.
-func newClient(baseURL string) *nextgen.APIClient {
+// newOfflineClient returns a client pointed at baseURL with retries disabled
+// so error statuses are returned immediately.
+func newOfflineClient(baseURL string) *nextgen.APIClient {
 	httpClient := retryablehttp.NewClient()
 	httpClient.RetryMax = 0
 	httpClient.Logger = nil
