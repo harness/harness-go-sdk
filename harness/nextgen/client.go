@@ -268,6 +268,7 @@ type APIClient struct {
 	VariableSetsApi               *VariableSetsApiService
 	AnsibleApi                    *AnsibleApiService
 	IacmProjectDriftConfigApi     *IacmProjectDriftConfigApiService
+	IacmWorkspaceDriftConfigApi   *IacmWorkspaceDriftConfigApiService
 }
 
 type service struct {
@@ -405,6 +406,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.VariableSetsApi = (*VariableSetsApiService)(&c.common)
 	c.AnsibleApi = (*AnsibleApiService)(&c.common)
 	c.IacmProjectDriftConfigApi = (*IacmProjectDriftConfigApiService)(&c.common)
+	c.IacmWorkspaceDriftConfigApi = (*IacmWorkspaceDriftConfigApiService)(&c.common)
 	return c
 }
 
